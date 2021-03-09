@@ -1,0 +1,10 @@
+node_modules
+coverage
+out
+.env
+
+data/osm.pbf
+data/osm.json
+data/linz.csv
+data/linz.json
+data/status.json

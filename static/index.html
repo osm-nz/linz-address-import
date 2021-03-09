@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LINZ Address Import</title>
+    <meta charset="UTF-8" />
+    <style>
+      * {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <table border>
+      <tr style="font-weight: 800">
+        <td>Data Category</td>
+        <td>No. of addresses</td>
+        <td>Percentage of total</td>
+        <td>How to action</td>
+      </tr>
+    </table>
+
+    <p></p>
+
+    <footer>
+      For more infomation, see
+      <a
+        href="https://wiki.openstreetmap.org/wiki/Import/New_Zealand_Street_Addresses_(2021)"
+        >the wiki page</a
+      >
+      &nbsp;and&nbsp;
+      <a href="https://github.com/k-yle/linz-address-import">the repository</a>
+    </footer>
+    <script>
+      async function main() {
+        const { date, count, total } = await fetch('./stats.json').then((r) =>
+          r.json(),
+        );
+
+        document.querySelector('p').innerHTML =
+          'Statistics last updated on ' + new Date(date);
+
+        const META = {
+          PERFECT: ['Data is already perfect', 'No action required'],
+          EXISTS_BUT_WRONG_DATA: [
+            'Address exists but the data is wrong',
+            'TBC - raw data available <a href="./data-wrong.txt">here</a>',
+          ],
+          EXISTS_BUT_NO_LINZ_REF: [
+            'Address exists but no linz ref',
+            'TBC - raw data available <a href="./needs-linz-ref.txt">here</a>',
+          ],
+          MULTIPLE_EXIST_BUT_NO_LINZ_REF: [
+            'Multiple addresses exists, none have linz ref',
+            'TBC - raw data available <a href="./needs-linz-ref-but-multiple.txt">here</a>',
+          ],
+          MULTIPLE_EXIST: [
+            'Multiple addresses exists with same linz ref',
+            'TBC - raw data available <a href="./duplicate-linz-ref.txt">here</a>',
+          ],
+          EXISTS_BUT_LOCATION_WRONG: [
+            'Addresses exist but location is very wrong',
+            'TBC - raw data available <a href="./location-wrong.txt">here</a>',
+          ],
+          TOTALLY_MISSING: [
+            'Addresses totally missing from OSM',
+            '<a href="./rapid/">✨ Click to start mapping</a>',
+          ],
+        };
+
+        const table = document.querySelector('table');
+
+        for (const status in count) {
+          table.innerHTML += `<tr><td>${META[status][0]}</td><td>${count[
+            status
+          ].toLocaleString()}</td><td>${((count[status] / total) * 100).toFixed(
+            2,
+          )}%</td><td>${META[status][1]}</td></tr>`;
+        }
+      }
+      main();
+    </script>
+  </body>
+</html>
