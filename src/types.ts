@@ -111,6 +111,8 @@ export type StatusDiagnostics = {
     osmId: string,
     linzLat: number,
     linzLng: number,
+    osmLat: number,
+    osmLng: number,
   ];
   [Status.TOTALLY_MISSING]: LinzAddr;
 };

@@ -32,15 +32,17 @@ export function processWithRef(
 
     if (offset < LOCATION_THRESHOLD) return { status: Status.PERFECT };
 
-    return {
+    return validate({
       status: Status.EXISTS_BUT_LOCATION_WRONG,
       diagnostics: [
         Math.round(offset),
         osmAddr.osmId,
         linzAddr.lat,
         linzAddr.lng,
+        osmAddr.lat,
+        osmAddr.lng,
       ],
-    };
+    });
   }
 
   // something is wrong in the data

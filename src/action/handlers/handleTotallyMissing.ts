@@ -8,6 +8,20 @@ const suburbsFolder = join(outFolder, './suburbs');
 
 const REGEX = /(\/| )+/g;
 
+const SPECIAL = [
+  {
+    suburb: 'ZZ Special Location Wrong',
+    // temporary, lazy assumption to cover the whole mainland + chathams + stewart is.
+    bbox: {
+      minLat: -48.026701,
+      maxLat: -32.932388,
+      minLng: 165.019045,
+      maxLng: 184.227542,
+    },
+    count: -1,
+  },
+];
+
 export async function handleTotallyMissing(
   arr: StatusReport[Status.TOTALLY_MISSING],
 ): Promise<void> {
@@ -125,7 +139,7 @@ export async function handleTotallyMissing(
         defaultValue: null,
       },
     ],
-    results: index
+    results: [...SPECIAL, ...index]
       .map(({ suburb, bbox, count }) => ({
         id: suburb,
         licenseInfo:
