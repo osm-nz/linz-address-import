@@ -84,6 +84,7 @@ export enum Status {
   MULTIPLE_EXIST = 5, // processDuplicates
   EXISTS_BUT_LOCATION_WRONG = 6, // processWithRef
   TOTALLY_MISSING = 7, // processWithoutRef
+  NEEDS_DELETE = 8,
 }
 
 export enum Action {
@@ -95,7 +96,7 @@ export enum Action {
 }
 
 export type StatusDiagnostics = {
-  [Status.PERFECT]: undefined;
+  [Status.PERFECT]: void;
   [Status.EXISTS_BUT_WRONG_DATA]: [
     osmId: string,
     ...issues: `${string}|${string}|${string}`[] // `field|linzValue|osmValue`
@@ -115,6 +116,7 @@ export type StatusDiagnostics = {
     osmLng: number,
   ];
   [Status.TOTALLY_MISSING]: LinzAddr;
+  [Status.NEEDS_DELETE]: [suburb: string, osmData: OsmAddr];
 };
 
 export type StatusReport = {

@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
-import { OSMData, LinzData, Status } from '../types';
+import { OSMData, LinzData, Status, OsmAddr } from '../types';
 import { processWithRef } from './processWithRef';
 import { processWithoutRef } from './processWithoutRef';
 import { findPotentialOsmAddresses } from './findPotentialOsmAddresses';
@@ -17,6 +17,14 @@ async function main() {
     await fs.readFile(join(__dirname, '../../data/osm.json'), 'utf-8'),
   );
 
+  console.log('Reading deletion data into memory...');
+  const deletionData: [linzId: string, suburb: string][] = JSON.parse(
+    await fs.readFile(
+      join(__dirname, '../../data/linz-deletions.json'),
+      'utf-8',
+    ),
+  );
+
   const statusReport: Record<
     Status,
     [linzId: string, diagnostics: unknown][]
@@ -28,6 +36,7 @@ async function main() {
     5: [],
     6: [],
     7: [],
+    8: [],
   };
 
   console.log('Processing data...');
@@ -66,6 +75,14 @@ async function main() {
     i += 1;
     if (!(i % 1000)) process.stdout.write('.');
   }
+
+  statusReport[Status.NEEDS_DELETE] = deletionData
+    .map(
+      ([linzId, suburb]) =>
+        [linzId, [suburb, osmData.linz[linzId]]] as [string, [string, OsmAddr]],
+    )
+    .filter((x) => x[1][1]);
+
   console.timeEnd('conflate');
 
   await fs.writeFile(

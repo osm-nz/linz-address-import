@@ -1,5 +1,6 @@
 import { Status } from '../../types';
 import { existsButDataWrong } from './existsButDataWrong';
+import { handleDeleted } from './handleDeleted';
 import { handleDuplicateLinzRef } from './handleDuplicateLinzRef';
 import { handleExistsButNoLinzRef } from './handleExistsButNoLinzRef';
 import { handleLocationWrong } from './handleLocationWrong';
@@ -14,4 +15,5 @@ export const handlers: Record<Status, (data: any) => Promise<void>> = {
   [Status.MULTIPLE_EXIST]: handleDuplicateLinzRef,
   [Status.EXISTS_BUT_LOCATION_WRONG]: handleLocationWrong,
   [Status.TOTALLY_MISSING]: handleTotallyMissing,
+  [Status.NEEDS_DELETE]: handleDeleted,
 };

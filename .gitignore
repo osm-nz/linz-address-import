@@ -7,4 +7,5 @@ data/osm.pbf
 data/osm.json
 data/linz.csv
 data/linz.json
+data/linz-deletions.json
 data/status.json
