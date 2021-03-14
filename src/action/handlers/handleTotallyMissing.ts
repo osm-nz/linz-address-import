@@ -2,9 +2,7 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
 import { LinzAddr, Status, StatusReport } from '../../types';
-import { outFolder, CDN_URL } from '../util';
-
-const suburbsFolder = join(outFolder, './suburbs');
+import { suburbsFolder, CDN_URL } from '../util';
 
 const REGEX = /(\/| )+/g;
 
@@ -18,41 +16,71 @@ const SPECIAL = [
       minLng: 165.019045,
       maxLng: 184.227542,
     },
-    count: -1,
+    count: 'N/A',
   },
 ];
 
+class ExtentRecorder {
+  public bbox = {
+    minLat: Infinity,
+    minLng: Infinity,
+    maxLat: -Infinity,
+    maxLng: -Infinity,
+  };
+
+  visit(addr: LinzAddr) {
+    if (addr.lat < this.bbox.minLat) this.bbox.minLat = addr.lat;
+    if (addr.lng < this.bbox.minLng) this.bbox.minLng = addr.lng;
+    if (addr.lat > this.bbox.maxLat) this.bbox.maxLat = addr.lat;
+    if (addr.lng > this.bbox.maxLng) this.bbox.maxLng = addr.lng;
+  }
+}
+
+type BySuburb = {
+  [suburb: string]: [
+    linzId: string,
+    data: LinzAddr & {
+      /** symbolic. if present, tells u that it's to be deleted */
+      osmId?: symbol;
+    },
+  ][];
+};
+
 export async function handleTotallyMissing(
   arr: StatusReport[Status.TOTALLY_MISSING],
+  needsDeleteArr: StatusReport[Status.NEEDS_DELETE],
 ): Promise<void> {
   await fs.mkdir(suburbsFolder, { recursive: true });
 
-  const bySuburb = arr.reduce((ac, [linzId, data]) => {
+  const bySuburb = arr.reduce<BySuburb>((ac, [linzId, data]) => {
     const key = data.suburb[1];
     ac[key] ||= [];
     ac[key].push([linzId, data]);
     return ac;
-  }, {} as Record<string, [linzId: string, data: LinzAddr][]>);
+  }, {});
+
+  for (const [linzId, [suburb, osmAddr]] of needsDeleteArr) {
+    bySuburb[suburb] ||= [];
+
+    // because we are deleting the node, if the data is incorrect in osm we don't care so
+    // use the OSM data. We identify it as a node to delete if it has the osmId `prop`.
+    const fakeLinzAddr = osmAddr as LinzAddr;
+    fakeLinzAddr.suburb ||= ['' as 'U', suburb]; // sneaky
+
+    bySuburb[suburb].push([linzId, fakeLinzAddr]);
+  }
 
   const index = [];
 
   for (const suburb in bySuburb) {
-    const bbox = {
-      minLat: Infinity,
-      minLng: Infinity,
-      maxLat: -Infinity,
-      maxLng: -Infinity,
-    };
+    let minus = 0;
+    const extent = new ExtentRecorder();
     const geojson = {
       type: 'FeatureCollection',
       crs: { type: 'name', properties: { name: 'EPSG:4326' } },
       features: bySuburb[suburb].map(([linzId, addr]) => {
-        // bbox
-        if (addr.lat < bbox.minLat) bbox.minLat = addr.lat;
-        if (addr.lng < bbox.minLng) bbox.minLng = addr.lng;
-        if (addr.lat > bbox.maxLat) bbox.maxLat = addr.lat;
-        if (addr.lng > bbox.maxLng) bbox.maxLng = addr.lng;
-
+        extent.visit(addr);
+        if (addr.osmId) minus += 1;
         return {
           type: 'Feature',
           id: linzId,
@@ -65,7 +93,7 @@ export async function handleTotallyMissing(
             addr_street: addr.street,
             addr_suburb: addr.suburb[0] === 'U' ? addr.suburb[1] : undefined,
             addr_hamlet: addr.suburb[0] === 'R' ? addr.suburb[1] : undefined,
-            ref_linz_address: linzId,
+            ref_linz_address: (addr.osmId ? 'SPECIAL_DELETE_' : '') + linzId,
           },
         };
       }),
@@ -75,7 +103,14 @@ export async function handleTotallyMissing(
       JSON.stringify(geojson),
     );
 
-    index.push({ suburb, count: bySuburb[suburb].length, bbox });
+    const total = bySuburb[suburb].length;
+    const plus = total - minus;
+
+    index.push({
+      suburb,
+      count: `${total} (+${plus} -${minus})`,
+      bbox: extent.bbox,
+    });
   }
 
   const date = new Date().toISOString().split('T')[0];

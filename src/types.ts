@@ -85,14 +85,7 @@ export enum Status {
   EXISTS_BUT_LOCATION_WRONG = 6, // processWithRef
   TOTALLY_MISSING = 7, // processWithoutRef
   NEEDS_DELETE = 8,
-}
-
-export enum Action {
-  FIX = 1,
-  ADD_REF = 2,
-  ERROR = 3,
-  MOVE = 4,
-  CREATE = 5,
+  NEEDS_DELETE_BUILDING = 9,
 }
 
 export type StatusDiagnostics = {
@@ -117,6 +110,7 @@ export type StatusDiagnostics = {
   ];
   [Status.TOTALLY_MISSING]: LinzAddr;
   [Status.NEEDS_DELETE]: [suburb: string, osmData: OsmAddr];
+  [Status.NEEDS_DELETE_BUILDING]: [suburb: string, osmData: OsmAddr];
 };
 
 export type StatusReport = {

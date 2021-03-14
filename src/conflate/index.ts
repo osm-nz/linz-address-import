@@ -37,6 +37,7 @@ async function main() {
     6: [],
     7: [],
     8: [],
+    9: [],
   };
 
   console.log('Processing data...');
@@ -77,11 +78,21 @@ async function main() {
   }
 
   statusReport[Status.NEEDS_DELETE] = deletionData
+    .filter(([linzId]) => osmData.linz[linzId]?.osmId[0] === 'n')
     .map(
       ([linzId, suburb]) =>
         [linzId, [suburb, osmData.linz[linzId]]] as [string, [string, OsmAddr]],
+    );
+
+  statusReport[Status.NEEDS_DELETE_BUILDING] = deletionData
+    .filter(
+      ([linzId]) =>
+        osmData.linz[linzId] && osmData.linz[linzId].osmId[0] !== 'n',
     )
-    .filter((x) => x[1][1]);
+    .map(
+      ([linzId, suburb]) =>
+        [linzId, [suburb, osmData.linz[linzId]]] as [string, [string, OsmAddr]],
+    );
 
   console.timeEnd('conflate');
 

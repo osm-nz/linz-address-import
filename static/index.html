@@ -7,15 +7,21 @@
       * {
         font-family: Arial, Helvetica, sans-serif;
       }
+      table,
+      td {
+        border-collapse: collapse;
+        border: 1px solid #000;
+      }
     </style>
   </head>
   <body>
-    <table border>
+    <table>
       <tr style="font-weight: 800">
         <td>Data Category</td>
         <td>No. of addresses</td>
         <td>Percentage of total</td>
         <td>How to action</td>
+        <td>Raw data</td>
       </tr>
     </table>
 
@@ -43,23 +49,23 @@
           PERFECT: ['Data is already perfect', 'No action required'],
           EXISTS_BUT_WRONG_DATA: [
             'Address exists but the data is wrong',
-            'TBC - raw data available <a href="./data-wrong.txt">here</a>',
+            'TBC',
+            'data-wrong.txt',
           ],
           EXISTS_BUT_NO_LINZ_REF: [
             'Address exists but no linz ref',
-            'TBC - raw data available <a href="./needs-linz-ref.txt">here</a>',
+            'TBC',
+            'needs-linz-ref.txt',
           ],
           MULTIPLE_EXIST_BUT_NO_LINZ_REF: [
             'Multiple addresses exists, none have linz ref',
-            'TBC - raw data available <a href="./needs-linz-ref-but-multiple.txt">here</a>',
+            'TBC',
+            'needs-linz-ref-but-multiple.txt',
           ],
           MULTIPLE_EXIST: [
             'Multiple addresses exists with same linz ref',
-            'TBC - raw data available <a href="./duplicate-linz-ref.txt">here</a>',
-          ],
-          EXISTS_BUT_LOCATION_WRONG: [
-            'Addresses exist but location is very wrong',
-            'Go to <a href="./rapid/">the fork of RapiD</a>, select the suburb called "ZZ Special Location Wrong". raw data also available <a href="./location-wrong.txt">here</a>',
+            'TBC',
+            'duplicate-linz-ref.txt',
           ],
           TOTALLY_MISSING: [
             'Addresses totally missing from OSM',
@@ -67,18 +73,35 @@
           ],
           NEEDS_DELETE: [
             'Addresses in OSM that have been deleted by LINZ',
-            'TBC - raw data available <a href="./needs-delete.txt">here</a>',
+            'As above, select a suburb. Addresses to be deleted will be shown in red.',
+            'needs-delete.txt',
+          ],
+          EXISTS_BUT_LOCATION_WRONG: [
+            'Addresses exist but location is very wrong',
+            'As above but select the suburb called "ZZ Special Location Wrong".',
+            'location-wrong.txt',
+          ],
+          NEEDS_DELETE_BUILDING: [
+            'Addresses in OSM that have been deleted by LINZ, but are on a OSM building',
+            'manual action required',
+            'needs-delete-building.txt',
           ],
         };
 
         const table = document.querySelector('table');
 
         for (const status in count) {
-          table.innerHTML += `<tr><td>${META[status][0]}</td><td>${count[
-            status
-          ].toLocaleString()}</td><td>${((count[status] / total) * 100).toFixed(
-            2,
-          )}%</td><td>${META[status][1]}</td></tr>`;
+          table.innerHTML += `<tr>
+            <td>${META[status][0]}</td>
+            <td>${count[status].toLocaleString()}</td>
+            <td>${((count[status] / total) * 100).toFixed(2)}%</td>
+            <td>${META[status][1]}</td>
+            ${
+              META[status][2]
+                ? `<td><a href="./${META[status][2]}">download</a></td>`
+                : ''
+            }
+          </tr>`;
         }
       }
       main();

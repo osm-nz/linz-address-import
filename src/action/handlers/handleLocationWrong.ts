@@ -1,11 +1,13 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
 import { Status, StatusReport } from '../../types';
-import { outFolder, toLink } from '../util';
+import { outFolder, suburbsFolder, toLink } from '../util';
 
 export async function handleLocationWrong(
   arr: StatusReport[Status.EXISTS_BUT_LOCATION_WRONG],
 ): Promise<void> {
+  await fs.mkdir(suburbsFolder, { recursive: true });
+
   const geojson = {
     type: 'FeatureCollection',
     crs: { type: 'name', properties: { name: 'EPSG:4326' } },

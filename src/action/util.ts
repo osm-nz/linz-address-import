@@ -3,6 +3,7 @@ import { join } from 'path';
 export const CDN_URL = 'https://linz-addr.kyle.kiwi';
 
 export const outFolder = join(__dirname, '../../out');
+export const suburbsFolder = join(outFolder, './suburbs');
 
 const MAP = {
   n: 'node',

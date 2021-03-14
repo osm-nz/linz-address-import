@@ -21,7 +21,11 @@ async function main() {
   for (const $state in handlers) {
     const state = +$state as Status;
     console.log(`handling status ${Status[state]} ...`);
-    handlers[+state as Status](status[state]);
+    // always pass in NEEDS_DELETE data for handlers that need it
+    await handlers[+state as Status](
+      status[state],
+      status[Status.NEEDS_DELETE],
+    );
   }
 }
 main();
