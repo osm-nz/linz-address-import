@@ -38,6 +38,7 @@ async function main() {
     7: [],
     8: [],
     9: [],
+    10: [],
   };
 
   console.log('Processing data...');
@@ -49,6 +50,7 @@ async function main() {
     const osmAddr = osmData.linz[linzId];
     const linzAddr = linzData[linzId];
     const duplicate = osmData.duplicateLinzIds[linzId];
+    const semi = osmData.semi[linzId];
 
     if (osmAddr) {
       const { status, diagnostics } = processWithRef(linzId, linzAddr, osmAddr);
@@ -60,6 +62,8 @@ async function main() {
         duplicate,
       );
       statusReport[status].push([linzId, diagnostics]);
+    } else if (semi) {
+      statusReport[Status.CORRUPT].push([linzId, semi]);
     } else {
       const possibleAddresses = findPotentialOsmAddresses(
         linzAddr,

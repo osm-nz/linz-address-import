@@ -34,6 +34,10 @@ export type OSMData = {
   duplicateLinzIds: {
     [linzId: string]: OsmAddr[];
   };
+  /** if an OSM node has mutliple values for the linz ref, seperated by a semicolon */
+  semi: {
+    [linzId: string]: OsmAddr;
+  };
   noRef: OsmAddr[];
 };
 
@@ -86,6 +90,7 @@ export enum Status {
   TOTALLY_MISSING = 7, // processWithoutRef
   NEEDS_DELETE = 8,
   NEEDS_DELETE_BUILDING = 9,
+  CORRUPT = 10,
 }
 
 export type StatusDiagnostics = {
@@ -111,6 +116,7 @@ export type StatusDiagnostics = {
   [Status.TOTALLY_MISSING]: LinzAddr;
   [Status.NEEDS_DELETE]: [suburb: string, osmData: OsmAddr];
   [Status.NEEDS_DELETE_BUILDING]: [suburb: string, osmData: OsmAddr];
+  [Status.CORRUPT]: OsmAddr;
 };
 
 export type StatusReport = {

@@ -1,5 +1,6 @@
 import { Status, StatusReport } from '../../types';
 import { existsButDataWrong } from './existsButDataWrong';
+import { handleCorrupted } from './handleCorrupted';
 import { handleDeleted } from './handleDeleted';
 import { handleDeletedOnBuilding } from './handleDeletedOnBuilding';
 import { handleDuplicateLinzRef } from './handleDuplicateLinzRef';
@@ -24,4 +25,5 @@ export const handlers: Record<
   [Status.TOTALLY_MISSING]: handleTotallyMissing,
   [Status.NEEDS_DELETE]: handleDeleted,
   [Status.NEEDS_DELETE_BUILDING]: handleDeletedOnBuilding,
+  [Status.CORRUPT]: handleCorrupted,
 };

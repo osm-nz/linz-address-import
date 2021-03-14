@@ -38,7 +38,12 @@ const MAP = { node: 'n', way: 'w', relation: 'r' };
 // TODO: perf baseline is 87 seconds
 function osmToJson(): Promise<OSMData> {
   return new Promise<OSMData>((resolve, reject) => {
-    const out: OSMData = { linz: {}, noRef: [], duplicateLinzIds: {} };
+    const out: OSMData = {
+      linz: {},
+      noRef: [],
+      duplicateLinzIds: {},
+      semi: {},
+    };
     let i = 0;
 
     pbf2json
@@ -78,6 +83,13 @@ function osmToJson(): Promise<OSMData> {
             else if (out.linz[linzId]) {
               out.duplicateLinzIds[linzId] = [out.linz[linzId], obj];
               delete out.linz[linzId];
+            }
+
+            // the linz id has a semicolon in it - we don't like this
+            else if (linzId.includes(';')) {
+              for (const maybeLinzId of linzId.split(';')) {
+                out.semi[maybeLinzId] = obj;
+              }
             }
 
             // not a duplicate
