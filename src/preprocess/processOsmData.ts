@@ -59,6 +59,7 @@ function osmToJson(): Promise<OSMData> {
           const suburbU = item.tags['addr:suburb'];
           const suburbR = item.tags['addr:hamlet'];
           const suburb = suburbU || suburbR;
+          const tags = Object.keys(item.tags);
 
           const coords = item.type === 'node' ? item : item.centroid;
 
@@ -69,6 +70,11 @@ function osmToJson(): Promise<OSMData> {
             housenumber: item.tags['addr:housenumber'],
             street: item.tags['addr:street'],
             suburb: suburb ? [suburbU ? 'U' : 'R', suburb] : undefined,
+            // this is an expensive check :(
+            isNonTrivial:
+              tags.includes('name') ||
+              tags.includes('craft') ||
+              tags.includes('shop'),
           };
           const linzId = item.tags['ref:linz:address_id'];
           if (linzId) {

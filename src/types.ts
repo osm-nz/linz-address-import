@@ -21,6 +21,7 @@ export type OsmAddr = {
   suburb?: Suburb;
   lat: number;
   lng: number;
+  isNonTrivial: boolean;
 };
 export type OsmAddrWithConfidence = OsmAddr & {
   /** distance in metres away from expected location */
@@ -89,7 +90,7 @@ export enum Status {
   EXISTS_BUT_LOCATION_WRONG = 6, // processWithRef
   TOTALLY_MISSING = 7, // processWithoutRef
   NEEDS_DELETE = 8,
-  NEEDS_DELETE_BUILDING = 9,
+  NEEDS_DELETE_NON_TRIVIAL = 9,
   CORRUPT = 10,
 }
 
@@ -115,7 +116,7 @@ export type StatusDiagnostics = {
   ];
   [Status.TOTALLY_MISSING]: LinzAddr;
   [Status.NEEDS_DELETE]: [suburb: string, osmData: OsmAddr];
-  [Status.NEEDS_DELETE_BUILDING]: [suburb: string, osmData: OsmAddr];
+  [Status.NEEDS_DELETE_NON_TRIVIAL]: [suburb: string, osmData: OsmAddr];
   [Status.CORRUPT]: OsmAddr;
 };
 

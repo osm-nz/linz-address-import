@@ -24,6 +24,6 @@ export const handlers: Record<
   [Status.EXISTS_BUT_LOCATION_WRONG]: handleLocationWrong,
   [Status.TOTALLY_MISSING]: handleTotallyMissing,
   [Status.NEEDS_DELETE]: handleDeleted,
-  [Status.NEEDS_DELETE_BUILDING]: handleDeletedOnBuilding,
+  [Status.NEEDS_DELETE_NON_TRIVIAL]: handleDeletedOnBuilding,
   [Status.CORRUPT]: handleCorrupted,
 };

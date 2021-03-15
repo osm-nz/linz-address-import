@@ -6,6 +6,9 @@ import { processWithoutRef } from './processWithoutRef';
 import { findPotentialOsmAddresses } from './findPotentialOsmAddresses';
 import { processDuplicates } from './processDuplicates';
 
+const isNonTrivial = (addr: OsmAddr) =>
+  addr.osmId[0] !== 'n' || addr.isNonTrivial;
+
 async function main() {
   console.log('Reading LINZ data into memory...');
   const linzData: LinzData = JSON.parse(
@@ -82,16 +85,17 @@ async function main() {
   }
 
   statusReport[Status.NEEDS_DELETE] = deletionData
-    .filter(([linzId]) => osmData.linz[linzId]?.osmId[0] === 'n')
+    .filter(
+      ([linzId]) => osmData.linz[linzId] && !isNonTrivial(osmData.linz[linzId]),
+    )
     .map(
       ([linzId, suburb]) =>
         [linzId, [suburb, osmData.linz[linzId]]] as [string, [string, OsmAddr]],
     );
 
-  statusReport[Status.NEEDS_DELETE_BUILDING] = deletionData
+  statusReport[Status.NEEDS_DELETE_NON_TRIVIAL] = deletionData
     .filter(
-      ([linzId]) =>
-        osmData.linz[linzId] && osmData.linz[linzId].osmId[0] !== 'n',
+      ([linzId]) => osmData.linz[linzId] && isNonTrivial(osmData.linz[linzId]),
     )
     .map(
       ([linzId, suburb]) =>
