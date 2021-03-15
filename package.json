@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "author": "Kyle Hensel",
   "license": "MIT",
-  "repository": "https://github.com/k-yle/linz-address-import",
   "scripts": {
     "download-planet": "sh src/download-planet.sh",
     "preprocess": "ts-node src/preprocess",

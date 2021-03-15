@@ -1,5 +1,7 @@
 # LINZ to OSM Street Address Import (2021 update)
 
+[![Test](https://github.com/osm-nz/linz-address-import/actions/workflows/ci.yml/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/ci.yml)
+
 Street address data from [Land Infomation New Zealand (LINZ)](https://linz.govt.nz) was [first imported into OpenStreetMap in 2017](https://wiki.openstreetmap.org/wiki/LINZ/Address_Import). Since then, the imported data has become out of date.
 
 This project aims to update the address data, and set up a system to reguarly update addresses in OSM, by conflating them with [the data from LINZ](https://data.linz.govt.nz/layer/3353).
@@ -10,7 +12,7 @@ This project aims to update the address data, and set up a system to reguarly up
 
 This is modified version of the [RapiD editor](https://github.com/facebookincubator/rapid), which is a modified version of the [iD editor](https://github.com/openstreetmap/iD).
 
-The source code is in a separate repository ([see here](https://github.com/k-yle/RapiD)). It is available at [linz-addr.kyle.kiwi](https://linz-addr.kyle.kiwi)
+The source code is in a separate repository ([see here](https://github.com/osm-nz/RapiD)). It is available at [linz-addr.kyle.kiwi](https://linz-addr.kyle.kiwi)
 
 # Setup
 
