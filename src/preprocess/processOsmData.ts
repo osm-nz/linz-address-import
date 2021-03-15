@@ -1,37 +1,11 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
-// @ts-expect-error FIXME: no typedefs
-import pbf2json from 'pbf2json';
+import pbf2json, { Item } from 'pbf2json';
 import through from 'through2';
 import { OsmAddr, OSMData, OsmId } from '../types';
 
 const input = join(__dirname, '../../data/osm.pbf');
 const output = join(__dirname, '../../data/osm.json');
-
-type Node = {
-  id: number;
-  type: 'node';
-  lat: number;
-  lon: number;
-  tags: Record<string, string>;
-};
-type Way = {
-  id: number;
-  type: 'way';
-  tags: Record<string, string>;
-  centroid: {
-    lat: number;
-    lon: number;
-  };
-  bounds: {
-    n: number;
-    s: number;
-    e: number;
-    w: number;
-  };
-  nodes: { lat: number; lon: number }[];
-};
-type Relation = never;
 
 const MAP = { node: 'n', way: 'w', relation: 'r' };
 
@@ -53,7 +27,7 @@ function osmToJson(): Promise<OSMData> {
         leveldb: '/tmp',
       })
       .pipe(
-        through.obj((item: Node | Way | Relation, _e, next) => {
+        through.obj((item: Item, _e, next) => {
           const type = MAP[item.type];
 
           const suburbU = item.tags['addr:suburb'];

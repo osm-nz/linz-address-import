@@ -14,6 +14,7 @@ async function main() {
   const linzData: LinzData = JSON.parse(
     await fs.readFile(join(__dirname, '../../data/linz.json'), 'utf-8'),
   );
+  const { length } = Object.keys(linzData);
 
   console.log('Reading OSM data into memory...');
   const osmData: OSMData = JSON.parse(
@@ -81,7 +82,9 @@ async function main() {
     }
 
     i += 1;
-    if (!(i % 1000)) process.stdout.write('.');
+    if (!(i % 1000)) {
+      process.stdout.write(`${((i / length) * 100).toFixed(1)}% `);
+    }
   }
 
   statusReport[Status.NEEDS_DELETE] = deletionData
