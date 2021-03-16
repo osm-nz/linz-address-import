@@ -22,6 +22,7 @@ export type OsmAddr = {
   lat: number;
   lng: number;
   isNonTrivial: boolean;
+  checked: boolean;
 };
 export type OsmAddrWithConfidence = OsmAddr & {
   /** distance in metres away from expected location */

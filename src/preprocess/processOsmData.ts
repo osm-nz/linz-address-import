@@ -9,6 +9,10 @@ const output = join(__dirname, '../../data/osm.json');
 
 const MAP = { node: 'n', way: 'w', relation: 'r' };
 
+/** checks if an ISO date exists and if it it's less than 1 year old */
+const isChecked = (v: string | undefined) =>
+  !!v && (+new Date() - +new Date(v)) / 1000 / 60 / 60 / 24 < 365;
+
 // TODO: perf baseline is 87 seconds
 function osmToJson(): Promise<OSMData> {
   return new Promise<OSMData>((resolve, reject) => {
@@ -49,6 +53,7 @@ function osmToJson(): Promise<OSMData> {
               tags.includes('name') ||
               tags.includes('craft') ||
               tags.includes('shop'),
+            checked: isChecked(item.tags.check_date),
           };
           const linzId = item.tags['ref:linz:address_id'];
           if (linzId) {

@@ -12,6 +12,8 @@ export function processWithRef(
   linzAddr: LinzAddr,
   osmAddr: OsmAddr,
 ): { status: Status; diagnostics?: unknown } {
+  if (osmAddr.checked) return { status: Status.PERFECT };
+
   const houseOk = linzAddr.housenumber === osmAddr.housenumber;
   const streetOk = linzAddr.street === osmAddr.street;
   const suburbOk = linzAddr.suburb[1] === osmAddr.suburb?.[1];
@@ -19,9 +21,6 @@ export function processWithRef(
 
   if (houseOk && streetOk && suburbOk && suburbTypeOk) {
     // looks perfect - last check is if location is correct
-
-    // the address is on a way/relation so we skip this check
-    if (!osmAddr.lat || !osmAddr.lng) return { status: Status.PERFECT };
 
     const offset = distanceBetween(
       linzAddr.lat,
