@@ -42,6 +42,8 @@ export type OSMData = {
   noRef: OsmAddr[];
 };
 
+export type DeletionData = [linzId: string, suburb: string][];
+
 export type LinzSourceAddress = {
   // we should be careful to use the same fields as the original import
   // https://git.nzoss.org.nz/ewblen/osmlinzaddr/-/blob/master/import-xref.sql#L156-166
@@ -92,6 +94,8 @@ export enum Status {
   NEEDS_DELETE = 8,
   NEEDS_DELETE_NON_TRIVIAL = 9,
   CORRUPT = 10,
+  LINZ_REF_CHANGED = 11,
+  UNKNOWN_ERROR = 12,
 }
 
 export type StatusDiagnostics = {
@@ -108,7 +112,7 @@ export type StatusDiagnostics = {
   [Status.MULTIPLE_EXIST]: OsmId[];
   [Status.EXISTS_BUT_LOCATION_WRONG]: [
     metres: number,
-    osmId: string,
+    osmId: OsmId,
     linzLat: number,
     linzLng: number,
     osmLat: number,
@@ -118,6 +122,12 @@ export type StatusDiagnostics = {
   [Status.NEEDS_DELETE]: [suburb: string, osmData: OsmAddr];
   [Status.NEEDS_DELETE_NON_TRIVIAL]: [suburb: string, osmData: OsmAddr];
   [Status.CORRUPT]: OsmAddr;
+  [Status.LINZ_REF_CHANGED]: [
+    suburb: string,
+    newLinzId: string,
+    osmData: OsmAddr,
+  ];
+  [Status.UNKNOWN_ERROR]: OsmId;
 };
 
 export type StatusReport = {

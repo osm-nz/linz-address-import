@@ -1,13 +1,11 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
-import { OSMData, LinzData, Status, OsmAddr } from '../types';
+import { OSMData, LinzData, Status, DeletionData } from '../types';
 import { processWithRef } from './processWithRef';
 import { processWithoutRef } from './processWithoutRef';
 import { findPotentialOsmAddresses } from './findPotentialOsmAddresses';
 import { processDuplicates } from './processDuplicates';
-
-const isNonTrivial = (addr: OsmAddr) =>
-  addr.osmId[0] !== 'n' || addr.isNonTrivial;
+import { processDeletions } from './processDeletions';
 
 async function main() {
   console.log('Reading LINZ data into memory...');
@@ -22,7 +20,7 @@ async function main() {
   );
 
   console.log('Reading deletion data into memory...');
-  const deletionData: [linzId: string, suburb: string][] = JSON.parse(
+  const deletionData: DeletionData = JSON.parse(
     await fs.readFile(
       join(__dirname, '../../data/linz-deletions.json'),
       'utf-8',
@@ -43,7 +41,21 @@ async function main() {
     8: [],
     9: [],
     10: [],
+    11: [],
+    12: [],
   };
+
+  console.log('processing deleted data...');
+  console.time('conflateDeletions');
+
+  const [extraStatusReportSections, doNotCreate] = processDeletions(
+    deletionData,
+    osmData,
+    linzData,
+  );
+  // this mutates statusReport
+  Object.assign(statusReport, extraStatusReportSections);
+  console.timeEnd('conflateDeletions');
 
   console.log('Processing data...');
   let i = 0;
@@ -51,6 +63,9 @@ async function main() {
 
   // TODO: perf baseline: 300seconds
   for (const linzId in linzData) {
+    // skip this one if it's a LINZ_REF_CHANGED
+    if (doNotCreate.includes(linzId)) continue; // eslint-disable-line no-continue
+
     const osmAddr = osmData.linz[linzId];
     const linzAddr = linzData[linzId];
     const duplicate = osmData.duplicateLinzIds[linzId];
@@ -86,24 +101,6 @@ async function main() {
       process.stdout.write(`${((i / length) * 100).toFixed(1)}% `);
     }
   }
-
-  statusReport[Status.NEEDS_DELETE] = deletionData
-    .filter(
-      ([linzId]) => osmData.linz[linzId] && !isNonTrivial(osmData.linz[linzId]),
-    )
-    .map(
-      ([linzId, suburb]) =>
-        [linzId, [suburb, osmData.linz[linzId]]] as [string, [string, OsmAddr]],
-    );
-
-  statusReport[Status.NEEDS_DELETE_NON_TRIVIAL] = deletionData
-    .filter(
-      ([linzId]) => osmData.linz[linzId] && isNonTrivial(osmData.linz[linzId]),
-    )
-    .map(
-      ([linzId, suburb]) =>
-        [linzId, [suburb, osmData.linz[linzId]]] as [string, [string, OsmAddr]],
-    );
 
   console.timeEnd('conflate');
 

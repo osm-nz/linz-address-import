@@ -81,6 +81,11 @@
             'As above but select the suburb called "ZZ Special Location Wrong".',
             'location-wrong.txt',
           ],
+          UNKNOWN_ERROR: [
+            'Unknown Error',
+            "Something went wrong during conflating that the system doesn't understand.",
+            'unknown-error.txt',
+          ],
           NEEDS_DELETE_NON_TRIVIAL: [
             'Addresses in OSM that have been deleted by LINZ, but are on a OSM building or business',
             'manual action required',
@@ -90,6 +95,11 @@
             'There are multiple LINZ refs on the same OSM node',
             'manual action required',
             'corrupt.txt',
+          ],
+          LINZ_REF_CHANGED: [
+            'LINZ has changed their ID for an address, but not the data',
+            'manual action required',
+            'linz-ref-changed.txt',
           ],
         };
 

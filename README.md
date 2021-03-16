@@ -14,6 +14,8 @@ This is modified version of the [RapiD editor](https://github.com/facebookincuba
 
 The source code is in a separate repository ([see here](https://github.com/osm-nz/RapiD)). It is available at [linz-addr.kyle.kiwi](https://linz-addr.kyle.kiwi)
 
+![Sreenshot of the fork of RapiD](https://github.com/osm-nz/linz-address-import/blob/main/static/header.png?raw=true)
+
 # Setup
 
 If you want to contribute to the code, the following needs to be done manually:
