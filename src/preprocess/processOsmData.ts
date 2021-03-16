@@ -39,6 +39,7 @@ function osmToJson(): Promise<OSMData> {
         through.obj((item: Item, _e, next) => {
           const type = MAP[item.type];
 
+          const isWater = item.tags['addr:type'] === 'water';
           const suburbU = item.tags['addr:suburb'];
           const suburbR = item.tags['addr:hamlet'];
           const suburb = suburbU || suburbR;
@@ -60,6 +61,8 @@ function osmToJson(): Promise<OSMData> {
               tags.includes('shop'),
             checked: isChecked(item.tags.check_date),
           };
+          if (isWater) obj.water = true;
+
           const linzId = item.tags['ref:linz:address_id'];
           if (linzId) {
             // check if there is already an OSM object with the same linz ID

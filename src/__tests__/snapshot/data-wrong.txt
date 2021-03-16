@@ -8,3 +8,5 @@ L43		https://osm.org/node/43		street|Example Street|Example Lane
 L44		https://osm.org/node/44		suburbType|R|U
 L46		https://osm.org/node/46		suburb|Oakleigh|West Hoe Heights	and	suburbType|R|U
 L48		https://osm.org/node/48		housenumber|48|undefined	and	street|Example Street|undefined	and	suburb|Oakleigh|0	and	suburbType|R|0
+L59		https://osm.org/node/59		water|true|0
+L60		https://osm.org/node/60		water|0|true

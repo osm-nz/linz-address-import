@@ -1,5 +1,4 @@
 ﻿WKT,address_id,change_id,address_type,unit_value,address_number,address_number_suffix,address_number_high,water_route_name,water_name,suburb_locality,town_city,full_address_number,full_road_name,full_address,road_section_id,gd2000_xcoord,gd2000_ycoord,water_route_name_ascii,water_name_ascii,suburb_locality_ascii,town_city_ascii,full_road_name_ascii,full_address_ascii,shape_X,shape_Y
-,L0,,Water,,,,,,,Pacific Ocean,,26A,Henley Road,,,,,,,,,,,174.9,-36.9
 ,L1,,Road,,,,,,,Oakleigh,,1,Example Street,,,,,,,,,,,174.901,-36.9
 ,L2,,Road,,,,,,,Oakleigh,,2,Example Street,,,,,,,,,,,174.902,-36.9
 ,L3,,Road,,,,,,,Oakleigh,,3,Example Street,,,,,,,,,,,174.903,-36.9
@@ -35,3 +34,7 @@
 ,L48,,Road,,,,,,,Oakleigh,,48,Example Street,,"49,50,51,52,53 skipped",,,,,,,,,174.948,-36.9
 ,L54,,Road,,,,,,,Oakleigh,,54,Example Street,,,,,,,,,,,174.954,-36.9
 ,L55,,Road,,,,,,,Oakleigh,,55,Example Street,,,,,,,,,,,174.955,-36.9
+,L57,,Water,,,,,Awaroa Inlet,Abel Tasman National Park,,,57,Awaroa Inlet,,,,,,,,,,,174.957,-36.9
+,L58,,Water,,,,,Awaroa Inlet,Abel Tasman National Park,,,58,Awaroa Inlet,,,,,,,,,,,174.958,-36.9
+,L59,,Water,,,,,Awaroa Inlet,Abel Tasman National Park,,,59,Awaroa Inlet,,,,,,,,,,,174.959,-36.9
+,L60,,Road,,,,,,,Oakleigh,,60,Example Street,,,,,,,,,,,174.960,-36.9

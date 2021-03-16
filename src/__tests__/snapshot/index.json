@@ -58,6 +58,43 @@
   ],
   "results": [
     {
+      "id": "Abel Tasman National Park",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr.kyle.kiwi/suburbs/Abel-Tasman-National-Park.geo.json",
+      "itemURL": "https://linz-addr.kyle.kiwi",
+      "name": "Abel Tasman National Park Addresses (1 (+1 -0))",
+      "title": "Abel Tasman National Park Addresses (1 (+1 -0))",
+      "type": "Feature Service",
+      "description": "1 (+1 -0) missing address points for Abel Tasman National Park sourced from LINZ, last updated on 2021-03-16",
+      "snippet": "1 (+1 -0) missing address points for Abel Tasman National Park sourced from LINZ, last updated on 2021-03-16",
+      "tags": [
+        "Abel Tasman National Park",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/thumbnail.png",
+      "extent": [
+        [
+          174.958,
+          -36.9
+        ],
+        [
+          174.958,
+          -36.9
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
       "id": "Oakleigh",
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr.kyle.kiwi/suburbs/Oakleigh.geo.json",

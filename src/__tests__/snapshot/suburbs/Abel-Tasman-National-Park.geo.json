@@ -1,0 +1,28 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "L58",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.958,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr_housenumber": "58",
+        "addr_street": "Awaroa Inlet",
+        "addr_hamlet": "Abel Tasman National Park",
+        "ref_linz_address": "L58"
+      }
+    }
+  ]
+}

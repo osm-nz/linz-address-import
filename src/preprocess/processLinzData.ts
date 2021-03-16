@@ -20,14 +20,17 @@ function linzToJson(): Promise<LinzData> {
     createReadStream(input)
       .pipe(csv())
       .on('data', (data: LinzSourceAddress) => {
-        if (data.address_type !== 'Road') return; // skip water addresses
         out[data.address_id] = {
           housenumber: data.full_address_number,
           street: data.full_road_name,
-          suburb: [data.town_city ? 'U' : 'R', data.suburb_locality],
+          suburb: [
+            data.town_city ? 'U' : 'R',
+            data.water_name || data.suburb_locality,
+          ],
           lat: +data.shape_Y,
           lng: +data.shape_X,
         };
+        if (data.water_name) out[data.address_id].water = true;
 
         i += 1;
         if (!(i % 1000)) process.stdout.write('.');

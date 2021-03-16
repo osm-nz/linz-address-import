@@ -358,6 +358,35 @@
     <tag k="addr:hamlet" v="Oakleigh" />
   </node>
 
+  <!-- 57 water address already exists in OSM -->
+  <node id="57" version="1" changeset="1" lat="-36.9" lon="174.957" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="57" />
+    <tag k="addr:street" v="Awaroa Inlet" />
+    <tag k="addr:hamlet" v="Abel Tasman National Park" />
+    <tag k="addr:type" v="water" />
+    <tag k="ref:linz:address_id" v="L57" />
+  </node>
+
+  <!-- 58 water address does not exist in OSM -->
+
+  <!-- 59 water address already exists in OSM but is missing addr:type=water -->
+  <node id="59" version="1" changeset="1" lat="-36.9" lon="174.959" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="59" />
+    <tag k="addr:street" v="Awaroa Inlet" />
+    <tag k="addr:hamlet" v="Abel Tasman National Park" />
+    <tag k="ref:linz:address_id" v="L59" />
+  </node>
+
+
+  <!-- 60 street address already exists in OSM but erroneously has addr:type=water -->
+  <node id="60" version="1" changeset="1" lat="-36.9" lon="174.960" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="60" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="addr:type" v="water" />
+    <tag k="ref:linz:address_id" v="L60" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />

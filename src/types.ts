@@ -9,6 +9,8 @@ export type LinzAddr = {
   suburb: Suburb;
   lat: number;
   lng: number;
+  /** whether this address is a water address */
+  water?: true;
 };
 export type LinzData = {
   [linzId: string]: LinzAddr;
@@ -23,6 +25,8 @@ export type OsmAddr = {
   lng: number;
   isNonTrivial: boolean;
   checked: boolean;
+  /** whether this address is a water address */
+  water?: true;
 };
 export type OsmAddrWithConfidence = OsmAddr & {
   /** distance in metres away from expected location */
@@ -60,6 +64,8 @@ export type LinzSourceAddress = {
   shape_X: string;
   /** stringified number (lat) */
   shape_Y: string;
+  /** if a water address, this field will have the "suburb" instead of `suburb_locality` */
+  water_name: string;
 
   // redundant infomation. don't use
 
@@ -71,7 +77,6 @@ export type LinzSourceAddress = {
   /** @deprecated */ address_number_suffix: string;
   /** @deprecated */ address_number_high: string;
   /** @deprecated */ water_route_name: string;
-  /** @deprecated */ water_name: string;
   /** @deprecated */ full_address: string;
   /** @deprecated */ road_section_id: string;
   /** @deprecated */ gd2000_xcoord: string;

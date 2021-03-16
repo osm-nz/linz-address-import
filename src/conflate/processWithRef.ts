@@ -18,8 +18,9 @@ export function processWithRef(
   const streetOk = linzAddr.street === osmAddr.street;
   const suburbOk = linzAddr.suburb[1] === osmAddr.suburb?.[1];
   const suburbTypeOk = linzAddr.suburb[0] === osmAddr.suburb?.[0];
+  const waterOk = linzAddr.water === osmAddr.water;
 
-  if (houseOk && streetOk && suburbOk && suburbTypeOk) {
+  if (houseOk && streetOk && suburbOk && suburbTypeOk && waterOk) {
     // looks perfect - last check is if location is correct
 
     const offset = distanceBetween(
@@ -53,6 +54,7 @@ export function processWithRef(
       !houseOk && `housenumber|${linzAddr.housenumber}|${osmAddr.housenumber}`,
       !streetOk && `street|${linzAddr.street}|${osmAddr.street}`,
       !suburbOk && `suburb|${linzAddr.suburb[1]}|${osmAddr.suburb?.[1] || 0}`,
+      !waterOk && `water|${linzAddr.water || 0}|${osmAddr.water || 0}`,
       !suburbTypeOk &&
         `suburbType|${linzAddr.suburb[0]}|${osmAddr.suburb?.[0] || 0}`,
     ].filter(isTruthy) as StatusDiagnostics[Status.EXISTS_BUT_WRONG_DATA],
