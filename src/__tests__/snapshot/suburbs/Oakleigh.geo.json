@@ -1,0 +1,79 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "L4B",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.9045,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr_housenumber": "4B",
+        "addr_street": "Example Street",
+        "addr_hamlet": "Oakleigh",
+        "ref_linz_address": "L4B"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "L17",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.917,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr_housenumber": "17",
+        "addr_street": "Example Street",
+        "addr_hamlet": "Oakleigh",
+        "ref_linz_address": "L17"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "L54",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.954,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr_housenumber": "54",
+        "addr_street": "Example Street",
+        "addr_hamlet": "Oakleigh",
+        "ref_linz_address": "L54"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "L14",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.91400000000002,
+          -36.900000000000006
+        ]
+      },
+      "properties": {
+        "addr_housenumber": "14",
+        "addr_street": "Example Street",
+        "addr_hamlet": "Oakleigh",
+        "ref_linz_address": "SPECIAL_DELETE_L14"
+      }
+    }
+  ]
+}

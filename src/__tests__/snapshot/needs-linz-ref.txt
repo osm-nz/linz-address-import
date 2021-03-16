@@ -1,0 +1,5 @@
+ref:linz:address_id=L8		(4)needs to be added to		https://osm.org/node/8
+ref:linz:address_id=L9		(2)needs to be added to		https://osm.org/node/9
+ref:linz:address_id=L10		(2)needs to be added to		https://osm.org/node/10
+ref:linz:address_id=L11		(4)needs to be added to		https://osm.org/node/11
+ref:linz:address_id=L12		(4)needs to be added to		https://osm.org/node/12

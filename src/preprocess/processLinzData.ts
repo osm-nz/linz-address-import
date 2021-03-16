@@ -3,8 +3,13 @@ import { join } from 'path';
 import csv from 'csv-parser';
 import { LinzSourceAddress, LinzData } from '../types';
 
-const input = join(__dirname, '../../data/linz.csv');
-const output = join(__dirname, '../../data/linz.json');
+const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
+
+const input = join(
+  __dirname,
+  mock ? '../__tests__/mock/linz-dump.csv' : '../../data/linz.csv',
+);
+const output = join(__dirname, `../../data/linz${mock}.json`);
 
 // TODO: perf baseline is 50seconds
 function linzToJson(): Promise<LinzData> {

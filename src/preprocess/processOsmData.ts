@@ -4,8 +4,13 @@ import pbf2json, { Item } from 'pbf2json';
 import through from 'through2';
 import { OsmAddr, OSMData, OsmId } from '../types';
 
-const input = join(__dirname, '../../data/osm.pbf');
-const output = join(__dirname, '../../data/osm.json');
+const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
+
+const input = join(
+  __dirname,
+  mock ? '../__tests__/mock/planet.pbf' : '../../data/osm.pbf',
+);
+const output = join(__dirname, `../../data/osm${mock}.json`);
 
 const MAP = { node: 'n', way: 'w', relation: 'r' };
 

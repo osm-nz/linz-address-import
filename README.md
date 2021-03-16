@@ -1,6 +1,7 @@
 # LINZ to OSM Street Address Import (2021 update)
 
 [![Test](https://github.com/osm-nz/linz-address-import/actions/workflows/ci.yml/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/osm-nz/linz-address-import/badge.svg?branch=main)](https://coveralls.io/github/osm-nz/linz-address-import?branch=main)
 
 Street address data from [Land Infomation New Zealand (LINZ)](https://linz.govt.nz) was [first imported into OpenStreetMap in 2017](https://wiki.openstreetmap.org/wiki/LINZ/Address_Import). Since then, the imported data has become out of date.
 
@@ -34,3 +35,9 @@ The remaining steps are done automatically by the CI
 9. Start the confate script by running `npm run conflate`. This will take circa. 6 minutes and create `./data/status.json`
 10. Start the action script by running `npm run action`. This will take 10 seconds and generate a ton of files in the `./out` folder
 11. Upload the contents of `./out` and `./static` to the CDN by running `npm run upload`. This will take ca. 4 minutes
+
+## Tests
+
+There are end-to-end tests than run based on [a mock planet file](src/__tests__/mock/planet.xml), [a mock linz CSV file](src/__tests__/mock/linz-dump.csv) and [a mock linz changelog file](src/__tests__/mock/linz-linz-changelog.rss).
+
+To start the test, run `npm test`. If it changes the contents of the snapshot folder, commit those changes.

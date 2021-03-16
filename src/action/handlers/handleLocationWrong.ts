@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
 import { Status, StatusReport } from '../../types';
-import { outFolder, suburbsFolder, toLink } from '../util';
+import { mock, outFolder, suburbsFolder, toLink } from '../util';
 
 export async function handleLocationWrong(
   arr: StatusReport[Status.EXISTS_BUT_LOCATION_WRONG],
@@ -39,6 +39,6 @@ export async function handleLocationWrong(
   await fs.writeFile(join(outFolder, 'location-wrong.txt'), report);
   await fs.writeFile(
     join(outFolder, 'suburbs', 'ZZ-Special-Location-Wrong.geo.json'),
-    JSON.stringify(geojson),
+    JSON.stringify(geojson, null, mock ? 2 : undefined),
   );
 }

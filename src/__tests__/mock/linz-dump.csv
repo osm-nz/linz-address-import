@@ -1,0 +1,37 @@
+﻿WKT,address_id,change_id,address_type,unit_value,address_number,address_number_suffix,address_number_high,water_route_name,water_name,suburb_locality,town_city,full_address_number,full_road_name,full_address,road_section_id,gd2000_xcoord,gd2000_ycoord,water_route_name_ascii,water_name_ascii,suburb_locality_ascii,town_city_ascii,full_road_name_ascii,full_address_ascii,shape_X,shape_Y
+,L0,,Water,,,,,,,Pacific Ocean,,26A,Henley Road,,,,,,,,,,,174.9,-36.9
+,L1,,Road,,,,,,,Oakleigh,,1,Example Street,,,,,,,,,,,174.901,-36.9
+,L2,,Road,,,,,,,Oakleigh,,2,Example Street,,,,,,,,,,,174.902,-36.9
+,L3,,Road,,,,,,,Oakleigh,,3,Example Street,,,,,,,,,,,174.903,-36.9
+,L4,,Road,,,,,,,Oakleigh,,4A,Example Street,,,,,,,,,,,174.904,-36.9
+,L4B,,Road,,,,,,,Oakleigh,,4B,Example Street,,,,,,,,,,,174.9045,-36.9
+,L5,,Road,,,,,,,Oakleigh,,5,Example Street,,,,,,,,,,,174.905,-36.9
+,L6,,Road,,,,,,,Oakleigh,,6,Example Street,,,,,,,,,,,174.906,-36.9
+,L7,,Road,,,,,,,Oakleigh,,7,Example Street,,,,,,,,,,,174.907,-36.9
+,L8,,Road,,,,,,,Oakleigh,,8,Example Street,,,,,,,,,,,174.908,-36.9
+,L9,,Road,,,,,,,Oakleigh,,9,Example Street,,,,,,,,,,,174.909,-36.9
+,L10,,Road,,,,,,,Oakleigh,,10,Example Street,,,,,,,,,,,174.91,-36.9
+,L11,,Road,,,,,,,Oakleigh,,11,Example Street,,,,,,,,,,,174.911,-36.9
+,L12,,Road,,,,,,,Oakleigh,,12,Example Street,,"note 13 is skipped. 14,16 only in delete list",,,,,,,,,174.912,-36.9
+,L15,,Road,,,,,,,Oakleigh,,15,Example Street,,,,,,,,,,,174.915,-36.9
+,L17,,Road,,,,,,,Oakleigh,,17,Example Street,,,,,,,,,,,174.917,-36.9
+,L18,,Road,,,,,,,Oakleigh,,18,Example Street,,,,,,,,,,,174.918,-36.9
+,L19,,Road,,,,,,,West Hoe Heights,Silverdale,19,Example Street,,"21,22,23 doesn’t exist",,,,,,,,,174.919,-36.9
+,L20,,Road,,,,,,,Oakleigh,,20,Example Street,,,,,,,,,,,174.92,-36.9
+,L23A,,Road,,,,,,,Oakleigh,,23A,Example Street,,,,,,,,,,,174.922,-36.9
+,L23B,,Road,,,,,,,Oakleigh,,23B,Example Street,,,,,,,,,,,174.923,-36.9
+,L24,,Road,,,,,,,Oakleigh,,24,Example Street,,25 doesn’t exist,,,,,,,,,174.924,-36.9
+,L26,,Road,,,,,,,Oakleigh,,26,Example Street,,"27,28,29,30 don't exist",,,,,,,,,174.926,-36.9
+,L31,,Road,,,,,,,Oakleigh,,31,Example Street,,"32,33,34,35,36,37,38 don't exist",,,,,,,,,174.931,-36.9
+,L39new,,Road,,,,,,,Oakleigh,,39,Example Street,,,,,,,,,,,174.939,-36.9
+,L40,,Road,,,,,,,Oakleigh,,40,Example Street,,,,,,,,,,,174.94,-36.9
+,L41,,Road,,,,,,,Oakleigh,,41,Example Street,,,,,,,,,,,174.941,-36.9
+,L42,,Road,,,,,,,Oakleigh,,42,Example Street,,,,,,,,,,,174.942,-36.9
+,L43,,Road,,,,,,,Oakleigh,,43,Example Street,,,,,,,,,,,174.943,-36.9
+,L44,,Road,,,,,,,Oakleigh,,44,Example Street,,,,,,,,,,,174.944,-36.9
+,L45,,Road,,,,,,,West Hoe Heights,Silverdale,45,Example Street,,,,,,,,,,,174.945,-36.9
+,L46,,Road,,,,,,,Oakleigh,,46,Example Street,,,,,,,,,,,174.946,-36.9
+,L47,,Road,,,,,,,West Hoe Heights,Silverdale,47,Example Street,,,,,,,,,,,174.947,-36.9
+,L48,,Road,,,,,,,Oakleigh,,48,Example Street,,"49,50,51,52,53 skipped",,,,,,,,,174.948,-36.9
+,L54,,Road,,,,,,,Oakleigh,,54,Example Street,,,,,,,,,,,174.954,-36.9
+,L55,,Road,,,,,,,Oakleigh,,55,Example Street,,,,,,,,,,,174.955,-36.9

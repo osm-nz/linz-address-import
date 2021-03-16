@@ -1,0 +1,135 @@
+{
+  "fields": [
+    {
+      "name": "addr_housenumber",
+      "type": "esriFieldTypeString",
+      "alias": "addr:housenumber",
+      "sqlType": "sqlTypeOther",
+      "length": 10,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "addr_street",
+      "type": "esriFieldTypeString",
+      "alias": "addr:street",
+      "sqlType": "sqlTypeOther",
+      "length": 50,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "addr_suburb",
+      "type": "esriFieldTypeString",
+      "alias": "addr:suburb",
+      "sqlType": "sqlTypeOther",
+      "length": 50,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "addr_hamlet",
+      "type": "esriFieldTypeString",
+      "alias": "addr:hamlet",
+      "sqlType": "sqlTypeOther",
+      "length": 2,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
+      "name": "ref_linz_address",
+      "type": "esriFieldTypeOID",
+      "alias": "ref:linz:address_id",
+      "sqlType": "sqlTypeOther",
+      "length": 10,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    }
+  ],
+  "results": [
+    {
+      "id": "Oakleigh",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr.kyle.kiwi/suburbs/Oakleigh.geo.json",
+      "itemURL": "https://linz-addr.kyle.kiwi",
+      "name": "Oakleigh Addresses (4 (+3 -1))",
+      "title": "Oakleigh Addresses (4 (+3 -1))",
+      "type": "Feature Service",
+      "description": "4 (+3 -1) missing address points for Oakleigh sourced from LINZ, last updated on 2021-03-16",
+      "snippet": "4 (+3 -1) missing address points for Oakleigh sourced from LINZ, last updated on 2021-03-16",
+      "tags": [
+        "Oakleigh",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/thumbnail.png",
+      "extent": [
+        [
+          174.9045,
+          -36.900000000000006
+        ],
+        [
+          174.954,
+          -36.9
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
+      "id": "ZZ Special Location Wrong",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr.kyle.kiwi/suburbs/ZZ-Special-Location-Wrong.geo.json",
+      "itemURL": "https://linz-addr.kyle.kiwi",
+      "name": "ZZ Special Location Wrong Addresses (N/A)",
+      "title": "ZZ Special Location Wrong Addresses (N/A)",
+      "type": "Feature Service",
+      "description": "N/A missing address points for ZZ Special Location Wrong sourced from LINZ, last updated on 2021-03-16",
+      "snippet": "N/A missing address points for ZZ Special Location Wrong sourced from LINZ, last updated on 2021-03-16",
+      "tags": [
+        "ZZ Special Location Wrong",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/thumbnail.png",
+      "extent": [
+        [
+          165.019045,
+          -48.026701
+        ],
+        [
+          184.227542,
+          -32.932388
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    }
+  ]
+}

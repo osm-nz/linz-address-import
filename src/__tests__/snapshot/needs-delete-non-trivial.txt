@@ -1,0 +1,6 @@
+
+Oakleigh
+L35		needs deleting but is on a building/business		https://osm.org/way/35
+L36		needs deleting but is on a building/business		https://osm.org/node/36
+L37		needs deleting but is on a building/business		https://osm.org/node/37
+L38		needs deleting but is on a building/business		https://osm.org/node/38

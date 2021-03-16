@@ -1,0 +1,51 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "L3",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            174.90300000000002,
+            -36
+          ],
+          [
+            174.903,
+            -36.9
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "LOCATION_WRONG_SPECIAL_L3"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "L42",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            174.942,
+            -36
+          ],
+          [
+            174.942,
+            -36.9
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "LOCATION_WRONG_SPECIAL_L42"
+      }
+    }
+  ]
+}

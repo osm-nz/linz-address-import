@@ -2,10 +2,5 @@ node_modules
 coverage
 out
 .env
-
-data/osm.pbf
-data/osm.json
-data/linz.csv
-data/linz.json
-data/linz-deletions.json
-data/status.json
+data
+src/__tests__/mock/planet.pbf

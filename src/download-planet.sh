@@ -1,3 +1,4 @@
+mkdir -p data
 cd data
 rm -rf osm.pbf
 

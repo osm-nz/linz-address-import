@@ -1,0 +1,2 @@
+L3		https://osm.org/node/3		needs to move 100075m to -36.9,174.903
+L42		https://osm.org/node/42		needs to move 100075m to -36.9,174.942

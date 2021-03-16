@@ -2,7 +2,7 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
 import { LinzAddr, Status, StatusReport } from '../../types';
-import { suburbsFolder, CDN_URL } from '../util';
+import { suburbsFolder, CDN_URL, mock } from '../util';
 
 const REGEX = /(\/| )+/g;
 
@@ -100,7 +100,7 @@ export async function handleTotallyMissing(
     };
     await fs.writeFile(
       join(suburbsFolder, `${suburb.replace(REGEX, '-')}.geo.json`),
-      JSON.stringify(geojson),
+      JSON.stringify(geojson, null, mock ? 2 : undefined),
     );
 
     const total = bySuburb[suburb].length;
@@ -181,8 +181,7 @@ export async function handleTotallyMissing(
           'See https://wiki.openstreetmap.org/wiki/Contributors#LINZ',
         url: `${CDN_URL}/suburbs/${suburb.replace(REGEX, '-')}.geo.json`,
         itemURL: CDN_URL,
-        created: Date.now(),
-        modified: Date.now(),
+        ...(!mock && { created: Date.now(), modified: Date.now() }),
         name: `${suburb} Addresses (${count})`,
         title: `${suburb} Addresses (${count})`,
         type: 'Feature Service',
@@ -206,7 +205,7 @@ export async function handleTotallyMissing(
   };
   await fs.writeFile(
     join(suburbsFolder, '../index.json'),
-    JSON.stringify(indexFile),
+    JSON.stringify(indexFile, null, mock ? 2 : undefined),
   );
 }
 /* eslint-enable no-param-reassign */

@@ -48,6 +48,7 @@
     "transform": {
       "^.+\\.(t|j)sx?$": "ts-jest"
     },
+    "testTimeout": 15000,
     "collectCoverage": true
   }
 }

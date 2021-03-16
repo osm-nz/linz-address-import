@@ -1,14 +1,17 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
 import { Status, StatusReport } from '../types';
-import { outFolder } from './util';
+import { outFolder, mock } from './util';
 import { generateStats } from './generateStats';
 import { handlers } from './handlers';
 
-async function main() {
+export async function main(): Promise<void> {
   console.log('Reading status file into memory...');
   const status: StatusReport = JSON.parse(
-    await fs.readFile(join(__dirname, '../../data/status.json'), 'utf-8'),
+    await fs.readFile(
+      join(__dirname, `../../data/status${mock}.json`),
+      'utf-8',
+    ),
   );
 
   console.log('Clearing output folder...');
@@ -28,4 +31,5 @@ async function main() {
     );
   }
 }
-main();
+
+if (process.env.NODE_ENV !== 'test') main();

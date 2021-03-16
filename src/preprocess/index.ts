@@ -5,7 +5,7 @@ import { processDeletedData } from './processDeletedData';
 
 dotenv();
 
-async function main() {
+export async function main(): Promise<void> {
   console.log('Starting preprocess...');
 
   console.time('deletions');
@@ -21,7 +21,4 @@ async function main() {
   console.timeEnd('linz');
 }
 
-main().catch((ex) => {
-  console.error(ex);
-  process.exit(1);
-});
+if (process.env.NODE_ENV !== 'test') main();

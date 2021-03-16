@@ -7,22 +7,24 @@ import { findPotentialOsmAddresses } from './findPotentialOsmAddresses';
 import { processDuplicates } from './processDuplicates';
 import { processDeletions } from './processDeletions';
 
-async function main() {
+const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
+
+export async function main(): Promise<void> {
   console.log('Reading LINZ data into memory...');
   const linzData: LinzData = JSON.parse(
-    await fs.readFile(join(__dirname, '../../data/linz.json'), 'utf-8'),
+    await fs.readFile(join(__dirname, `../../data/linz${mock}.json`), 'utf-8'),
   );
   const { length } = Object.keys(linzData);
 
   console.log('Reading OSM data into memory...');
   const osmData: OSMData = JSON.parse(
-    await fs.readFile(join(__dirname, '../../data/osm.json'), 'utf-8'),
+    await fs.readFile(join(__dirname, `../../data/osm${mock}.json`), 'utf-8'),
   );
 
   console.log('Reading deletion data into memory...');
   const deletionData: DeletionData = JSON.parse(
     await fs.readFile(
-      join(__dirname, '../../data/linz-deletions.json'),
+      join(__dirname, `../../data/linz-deletions${mock}.json`),
       'utf-8',
     ),
   );
@@ -98,6 +100,7 @@ async function main() {
 
     i += 1;
     if (!(i % 1000)) {
+      /* istanbul ignore next */
       process.stdout.write(`${((i / length) * 100).toFixed(1)}% `);
     }
   }
@@ -105,9 +108,9 @@ async function main() {
   console.timeEnd('conflate');
 
   await fs.writeFile(
-    join(__dirname, '../../data/status.json'),
-    JSON.stringify(statusReport),
+    join(__dirname, `../../data/status${mock}.json`),
+    JSON.stringify(statusReport, null, mock ? 2 : undefined),
   );
 }
 
-main();
+if (process.env.NODE_ENV !== 'test') main();
