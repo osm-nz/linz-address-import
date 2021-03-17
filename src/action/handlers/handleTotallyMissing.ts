@@ -113,8 +113,6 @@ export async function handleTotallyMissing(
     });
   }
 
-  const date = new Date().toISOString().split('T')[0];
-
   // create index.json
   const indexFile = {
     fields: [
