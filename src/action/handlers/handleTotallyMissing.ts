@@ -185,10 +185,10 @@ export async function handleTotallyMissing(
         name: `${suburb} Addresses (${count})`,
         title: `${suburb} Addresses (${count})`,
         type: 'Feature Service',
-        description: `${count} missing address points for ${suburb} sourced from LINZ, last updated on ${date}`,
-        snippet: `${count} missing address points for ${suburb} sourced from LINZ, last updated on ${date}`,
+        description: `${count} missing address points for ${suburb} sourced from LINZ`,
+        snippet: `${count} missing address points for ${suburb} sourced from LINZ`,
         tags: [suburb, 'address', 'OSM', 'OpenStreetMap'],
-        thumbnail: `${CDN_URL}/thumbnail.png`,
+        thumbnail: `https://linz-addr.kyle.kiwi/img/thumbnail.png`,
         extent: [
           [bbox.minLng, bbox.minLat],
           [bbox.maxLng, bbox.maxLat],

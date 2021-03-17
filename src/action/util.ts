@@ -1,6 +1,6 @@
 import { join } from 'path';
 
-export const CDN_URL = 'https://linz-addr.kyle.kiwi';
+export const CDN_URL = 'https://linz-addr-cdn.kyle.kiwi';
 
 export const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
 

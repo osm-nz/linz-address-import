@@ -6,7 +6,7 @@ import { lookup } from 'mime-types';
 
 dotenv();
 
-const KEEP_REGEX = /(rapid)/i; // don't delete anything in /rapid
+const KEEP_REGEX = /(linz.csv)/i; // don't delete linz.csv
 
 async function getFilesDeep(folder: string): Promise<string[]> {
   const out = [];
@@ -39,8 +39,9 @@ async function upload(
       prefix || '',
       relative(base, file).replace(/\\/g, '/'),
     );
-    await azContainer.getBlockBlobClient(relPath).uploadFile(file);
-    await azContainer.getBlockBlobClient(relPath).setHTTPHeaders({
+    const fileClient = azContainer.getBlockBlobClient(relPath);
+    await fileClient.uploadFile(file);
+    await fileClient.setHTTPHeaders({
       blobContentType: lookup(extname(file)) || 'text/plain',
     });
     if (!(i % 10)) process.stdout.write('.');
@@ -71,12 +72,6 @@ async function main() {
 
   console.log('Preparing upload...');
   await upload(azC, './out');
-  await upload(azC, './static');
-
-  // for developing locally
-  if (await fs.stat(join(root, '../RapiD/dist')).catch(() => false)) {
-    await upload(azC, '../RapiD/dist', 'rapid');
-  }
 
   console.log('\nUpload complete!');
 }

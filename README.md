@@ -15,7 +15,7 @@ This is modified version of the [RapiD editor](https://github.com/facebookincuba
 
 The source code is in a separate repository ([see here](https://github.com/osm-nz/RapiD)). It is available at [linz-addr.kyle.kiwi](https://linz-addr.kyle.kiwi)
 
-![Sreenshot of the fork of RapiD](https://github.com/osm-nz/linz-address-import/blob/main/static/header.png?raw=true)
+![Sreenshot of the fork of RapiD](https://linz-addr.kyle.kiwi/img/header.png)
 
 # Setup
 
@@ -34,7 +34,7 @@ The remaining steps are done automatically by the CI
 8. Start the preprocess script by running `npm run preprocess`. This will take ca. 2.5 minutes and create `./data/osm.json` and `./data/linz.json`
 9. Start the confate script by running `npm run conflate`. This will take circa. 6 minutes and create `./data/status.json`
 10. Start the action script by running `npm run action`. This will take 10 seconds and generate a ton of files in the `./out` folder
-11. Upload the contents of `./out` and `./static` to the CDN by running `npm run upload`. This will take ca. 4 minutes
+11. Upload the contents of the `./out` folder to the CDN by running `npm run upload`. This will take ca. 4 minutes
 
 ## Tests
 

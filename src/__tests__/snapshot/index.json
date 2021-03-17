@@ -60,20 +60,20 @@
     {
       "id": "Abel Tasman National Park",
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
-      "url": "https://linz-addr.kyle.kiwi/suburbs/Abel-Tasman-National-Park.geo.json",
-      "itemURL": "https://linz-addr.kyle.kiwi",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Abel-Tasman-National-Park.geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "Abel Tasman National Park Addresses (1 (+1 -0))",
       "title": "Abel Tasman National Park Addresses (1 (+1 -0))",
       "type": "Feature Service",
-      "description": "1 (+1 -0) missing address points for Abel Tasman National Park sourced from LINZ, last updated on 2021-03-16",
-      "snippet": "1 (+1 -0) missing address points for Abel Tasman National Park sourced from LINZ, last updated on 2021-03-16",
+      "description": "1 (+1 -0) missing address points for Abel Tasman National Park sourced from LINZ",
+      "snippet": "1 (+1 -0) missing address points for Abel Tasman National Park sourced from LINZ",
       "tags": [
         "Abel Tasman National Park",
         "address",
         "OSM",
         "OpenStreetMap"
       ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/thumbnail.png",
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           174.958,
@@ -97,20 +97,20 @@
     {
       "id": "Oakleigh",
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
-      "url": "https://linz-addr.kyle.kiwi/suburbs/Oakleigh.geo.json",
-      "itemURL": "https://linz-addr.kyle.kiwi",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Oakleigh.geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "Oakleigh Addresses (4 (+3 -1))",
       "title": "Oakleigh Addresses (4 (+3 -1))",
       "type": "Feature Service",
-      "description": "4 (+3 -1) missing address points for Oakleigh sourced from LINZ, last updated on 2021-03-16",
-      "snippet": "4 (+3 -1) missing address points for Oakleigh sourced from LINZ, last updated on 2021-03-16",
+      "description": "4 (+3 -1) missing address points for Oakleigh sourced from LINZ",
+      "snippet": "4 (+3 -1) missing address points for Oakleigh sourced from LINZ",
       "tags": [
         "Oakleigh",
         "address",
         "OSM",
         "OpenStreetMap"
       ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/thumbnail.png",
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           174.9045,
@@ -134,20 +134,20 @@
     {
       "id": "ZZ Special Location Wrong",
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
-      "url": "https://linz-addr.kyle.kiwi/suburbs/ZZ-Special-Location-Wrong.geo.json",
-      "itemURL": "https://linz-addr.kyle.kiwi",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZ-Special-Location-Wrong.geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "ZZ Special Location Wrong Addresses (N/A)",
       "title": "ZZ Special Location Wrong Addresses (N/A)",
       "type": "Feature Service",
-      "description": "N/A missing address points for ZZ Special Location Wrong sourced from LINZ, last updated on 2021-03-16",
-      "snippet": "N/A missing address points for ZZ Special Location Wrong sourced from LINZ, last updated on 2021-03-16",
+      "description": "N/A missing address points for ZZ Special Location Wrong sourced from LINZ",
+      "snippet": "N/A missing address points for ZZ Special Location Wrong sourced from LINZ",
       "tags": [
         "ZZ Special Location Wrong",
         "address",
         "OSM",
         "OpenStreetMap"
       ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/thumbnail.png",
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           165.019045,
