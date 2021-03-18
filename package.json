@@ -10,6 +10,7 @@
     "action": "ts-node src/action",
     "upload": "ts-node src/upload",
     "lint": "eslint --ignore-path .gitignore . && tsc",
+    "pretest": "chmod u+x src/__tests__/bin/osmconvert",
     "test": "jest"
   },
   "dependencies": {

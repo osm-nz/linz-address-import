@@ -29,9 +29,17 @@ jobs:
 
       - name: 🧪 Test
         run: |
+          mkdir -p data
           npm test
         env:
           FORCE_COLOR: 1
+          AZ_CON: ${{ secrets.AZ_CON }}
+          LINZ_API_KEY: ${{ secrets.LINZ_API_KEY }}
+
+      - name: 😥 Print snapshot diff on failure
+        if: failure()
+        run: |
+          git diff --color=always
 
       - name: 📈 Coveralls
         uses: coverallsapp/github-action@v1.1.2
