@@ -22,6 +22,8 @@ jobs:
       - name: ⏬ Install
         run: |
           npm install
+          git reset --hard
+        # ^ if the lockfile changed, remove it from the git diff
 
       - name: ✨ Lint
         run: |

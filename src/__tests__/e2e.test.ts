@@ -14,7 +14,7 @@ async function time(f: () => unknown) {
 
 const exe = j(
   'bin',
-  process.platform === 'win32' ? 'osmconvert.exe' : 'osmconvert',
+  process.platform === 'win32' ? 'osmconvert.exe' : 'osmconvert2',
 );
 
 describe('end-to-end test', () => {
