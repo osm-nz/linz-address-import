@@ -139,3 +139,14 @@ export type StatusDiagnostics = {
 export type StatusReport = {
   [S in Status]: [linzId: string, diagnostics: StatusDiagnostics[S]][];
 };
+
+export type StatsFile = {
+  total: number;
+  count: Record<number, number>;
+  date: string;
+};
+export type LinzMetaFile = {
+  version: string;
+  /** the date that this version of the LINZ data was published */
+  date: string;
+};

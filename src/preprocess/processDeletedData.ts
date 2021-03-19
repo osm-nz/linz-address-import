@@ -8,6 +8,7 @@ const FROM_DATE = '2017-12-17T09:22:31.538834Z'; // compare with v66, the first 
 const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
 
 const output = join(__dirname, `../../data/linz-deletions${mock}.json`);
+const metaFile = join(__dirname, `../../data/linz-meta${mock}.json`);
 
 async function fetchLinzChangelogRss() {
   const xml = mock
@@ -21,13 +22,17 @@ async function fetchLinzChangelogRss() {
 
   // don't need an XML parser if all we want is this
   const lastUpdateDate = xml.match(/<published>(.+)<\/published>/)?.[1];
+  const version = xml.match(/Revision (.+)<\/title>/)?.[1] || '?';
 
   if (!lastUpdateDate) {
     throw new Error("Failed to parse LINZ's RSS changelog");
   }
 
   // fix dodgy python ISO date returned. needs to end in `.12345Z` not `+12:34`
-  return new Date(lastUpdateDate).toISOString();
+  return {
+    date: new Date(lastUpdateDate).toISOString(),
+    version,
+  };
 }
 
 // perf baseline is 17seconds (most of that is waiting for LINZ's API)
@@ -59,8 +64,9 @@ async function fetchLinzChangesCsv(
 }
 
 export async function processDeletedData(): Promise<void> {
-  const lastUpdateDate = await fetchLinzChangelogRss();
-  const res = await fetchLinzChangesCsv(lastUpdateDate);
+  const { date, version } = await fetchLinzChangelogRss();
+  const res = await fetchLinzChangesCsv(date);
 
   await fs.writeFile(output, JSON.stringify(res));
+  await fs.writeFile(metaFile, JSON.stringify({ version, date }));
 }

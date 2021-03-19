@@ -21,6 +21,7 @@
         "addr_housenumber": "58",
         "addr_street": "Awaroa Inlet",
         "addr_hamlet": "Abel Tasman National Park",
+        "addr_type": "water",
         "ref_linz_address": "L58"
       }
     }

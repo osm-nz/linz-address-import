@@ -45,6 +45,17 @@
       "defaultValue": null
     },
     {
+      "name": "addr_type",
+      "type": "esriFieldTypeString",
+      "alias": "addr:type",
+      "sqlType": "sqlTypeOther",
+      "length": 2,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
       "name": "ref_linz_address",
       "type": "esriFieldTypeOID",
       "alias": "ref:linz:address_id",

@@ -93,6 +93,7 @@ export async function handleTotallyMissing(
             addr_street: addr.street,
             addr_suburb: addr.suburb[0] === 'U' ? addr.suburb[1] : undefined,
             addr_hamlet: addr.suburb[0] === 'R' ? addr.suburb[1] : undefined,
+            addr_type: addr.water ? 'water' : undefined,
             ref_linz_address: (addr.osmId ? 'SPECIAL_DELETE_' : '') + linzId,
           },
         };
@@ -161,6 +162,17 @@ export async function handleTotallyMissing(
         defaultValue: null,
       },
       {
+        name: 'addr_type',
+        type: 'esriFieldTypeString',
+        alias: 'addr:type',
+        sqlType: 'sqlTypeOther',
+        length: 2,
+        nullable: true,
+        editable: true,
+        domain: null,
+        defaultValue: null,
+      },
+      {
         name: 'ref_linz_address',
         type: 'esriFieldTypeOID',
         alias: 'ref:linz:address_id',
@@ -174,7 +186,7 @@ export async function handleTotallyMissing(
     ],
     results: [...SPECIAL, ...index]
       .map(({ suburb, bbox, count }) => ({
-        id: suburb,
+        id: suburb.replace(/\//g, '-'),
         licenseInfo:
           'See https://wiki.openstreetmap.org/wiki/Contributors#LINZ',
         url: `${CDN_URL}/suburbs/${suburb.replace(REGEX, '-')}.geo.json`,

@@ -3,10 +3,11 @@ import { config as dotenv } from 'dotenv';
 import { join, relative, extname } from 'path';
 import { promises as fs } from 'fs';
 import { lookup } from 'mime-types';
+import { uploadStatsToGH } from './uploadStatsToGH';
 
 dotenv();
 
-const KEEP_REGEX = /(linz.csv)/i; // don't delete linz.csv
+// const KEEP_REGEX = /(linz.csv)/i; // don't delete linz.csv
 
 async function getFilesDeep(folder: string): Promise<string[]> {
   const out = [];
@@ -30,6 +31,8 @@ async function upload(
   folder: string,
   prefix?: string,
 ) {
+  console.log('Parsing files to upload...');
+
   const base = join(root, folder);
   const files = await getFilesDeep(base);
 
@@ -57,18 +60,21 @@ async function main() {
     );
   }
 
+  console.log('Updating stats on GitHub...');
+  await uploadStatsToGH();
+
   const az = BlobServiceClient.fromConnectionString(AZ_CON);
   const azC = az.getContainerClient('$web');
 
-  console.log('Deleting existing files...');
-  let j = 0;
-  for await (const file of azC.listBlobsFlat()) {
-    if (!file.name.match(KEEP_REGEX)) {
-      await azC.getBlockBlobClient(file.name).delete();
-      j += 1;
-      if (!(j % 10)) process.stdout.write('.');
-    }
-  }
+  // console.log('Deleting existing files...');
+  // let j = 0;
+  // for await (const file of azC.listBlobsFlat()) {
+  //   if (!file.name.match(KEEP_REGEX)) {
+  //     await azC.getBlockBlobClient(file.name).delete();
+  //     j += 1;
+  //     if (!(j % 10)) process.stdout.write('.');
+  //   }
+  // }
 
   console.log('Preparing upload...');
   await upload(azC, './out');

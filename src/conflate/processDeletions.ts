@@ -11,7 +11,7 @@ const isNonTrivial = (addr: OsmAddr) =>
   addr.osmId[0] !== 'n' || addr.isNonTrivial;
 
 export function processDeletions(
-  deletionData: DeletionData,
+  _deletionData: DeletionData,
   osmData: OSMData,
   linzData: LinzData,
 ): [ret: Partial<StatusReport>, removeFromCreate: string[]] {
@@ -24,11 +24,15 @@ export function processDeletions(
     linzByKey[suburb][key] = linzId;
   }
 
-  const needsDeleteTrivial = deletionData.filter(
-    ([linzId]) => osmData.linz[linzId] && !isNonTrivial(osmData.linz[linzId]),
+  const deletionData = _deletionData.filter(
+    ([linzId]) => osmData.linz[linzId] && !osmData.linz[linzId].checked,
   );
-  const needsDeleteNonTrivial = deletionData.filter(
-    ([linzId]) => osmData.linz[linzId] && isNonTrivial(osmData.linz[linzId]),
+
+  const needsDeleteTrivial = deletionData.filter(
+    ([linzId]) => !isNonTrivial(osmData.linz[linzId]),
+  );
+  const needsDeleteNonTrivial = deletionData.filter(([linzId]) =>
+    isNonTrivial(osmData.linz[linzId]),
   );
 
   /** keep track of a list of new linzRefs that we should remove from which ever status they're in */
