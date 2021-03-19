@@ -27,6 +27,7 @@ function linzToJson(): Promise<LinzData> {
             data.town_city ? 'U' : 'R',
             data.water_name || data.suburb_locality,
           ],
+          town: data.town_city,
           lat: +data.shape_Y,
           lng: +data.shape_X,
         };

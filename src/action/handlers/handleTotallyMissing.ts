@@ -52,8 +52,23 @@ export async function handleTotallyMissing(
 ): Promise<void> {
   await fs.mkdir(suburbsFolder, { recursive: true });
 
+  const tmp = arr.reduce((ac, [, data]) => {
+    const suburb = data.suburb[1];
+    if (!ac[suburb]) {
+      ac[suburb] = [data.town];
+    } else if (!ac[suburb].includes(data.town)) {
+      ac[suburb].push(data.town);
+    }
+    return ac;
+  }, {} as Record<string, string[]>);
+  const duplicates = Object.keys(tmp).filter((k) => tmp[k].length > 1);
+
   const bySuburb = arr.reduce<BySuburb>((ac, [linzId, data]) => {
-    const key = data.suburb[1];
+    const suburb = data.suburb[1];
+    const key = duplicates.includes(suburb)
+      ? `${suburb} (${data.town || 'Rural'})`
+      : suburb;
+
     ac[key] ||= [];
     ac[key].push([linzId, data]);
     return ac;
@@ -64,7 +79,7 @@ export async function handleTotallyMissing(
 
     // because we are deleting the node, if the data is incorrect in osm we don't care so
     // use the OSM data. We identify it as a node to delete if it has the osmId `prop`.
-    const fakeLinzAddr = osmAddr as LinzAddr;
+    const fakeLinzAddr = Object.assign(osmAddr, { town: '' }) as LinzAddr;
     fakeLinzAddr.suburb ||= ['' as 'U', suburb]; // sneaky
 
     bySuburb[suburb].push([linzId, fakeLinzAddr]);

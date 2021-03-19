@@ -143,6 +143,80 @@
       ]
     },
     {
+      "id": "West Hoe Heights (Another Town)",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/West-Hoe-Heights-(Another-Town).geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
+      "name": "West Hoe Heights (Another Town) Addresses (1 (+1 -0))",
+      "title": "West Hoe Heights (Another Town) Addresses (1 (+1 -0))",
+      "type": "Feature Service",
+      "description": "1 (+1 -0) missing address points for West Hoe Heights (Another Town) sourced from LINZ",
+      "snippet": "1 (+1 -0) missing address points for West Hoe Heights (Another Town) sourced from LINZ",
+      "tags": [
+        "West Hoe Heights (Another Town)",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
+      "extent": [
+        [
+          174.963,
+          -36.9
+        ],
+        [
+          174.963,
+          -36.9
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
+      "id": "West Hoe Heights (Silverdale)",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/West-Hoe-Heights-(Silverdale).geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
+      "name": "West Hoe Heights (Silverdale) Addresses (1 (+1 -0))",
+      "title": "West Hoe Heights (Silverdale) Addresses (1 (+1 -0))",
+      "type": "Feature Service",
+      "description": "1 (+1 -0) missing address points for West Hoe Heights (Silverdale) sourced from LINZ",
+      "snippet": "1 (+1 -0) missing address points for West Hoe Heights (Silverdale) sourced from LINZ",
+      "tags": [
+        "West Hoe Heights (Silverdale)",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
+      "extent": [
+        [
+          174.962,
+          -36.9
+        ],
+        [
+          174.962,
+          -36.9
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
       "id": "ZZ Special Location Wrong",
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZ-Special-Location-Wrong.geo.json",

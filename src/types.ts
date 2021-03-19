@@ -7,6 +7,7 @@ export type LinzAddr = {
   housenumber: string;
   street: string;
   suburb: Suburb;
+  town: string;
   lat: number;
   lng: number;
   /** whether this address is a water address */

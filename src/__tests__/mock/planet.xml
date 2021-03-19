@@ -396,6 +396,10 @@
     <tag k="check_date" v="2022-02-02" />
   </node>
 
+  <!-- 62 doesn't exist in OSM. it has the same suburb, but is in a different town -->
+  <!-- 63 doesn't exist in OSM. it has the same suburb, but is in a different town -->
+
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />
