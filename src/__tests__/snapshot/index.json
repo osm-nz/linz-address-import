@@ -180,6 +180,43 @@
       ]
     },
     {
+      "id": "West Hoe Heights (Deletions)",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/West-Hoe-Heights-(Deletions).geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
+      "name": "West Hoe Heights (Deletions) Addresses (1 (+0 -1))",
+      "title": "West Hoe Heights (Deletions) Addresses (1 (+0 -1))",
+      "type": "Feature Service",
+      "description": "1 (+0 -1) missing address points for West Hoe Heights (Deletions) sourced from LINZ",
+      "snippet": "1 (+0 -1) missing address points for West Hoe Heights (Deletions) sourced from LINZ",
+      "tags": [
+        "West Hoe Heights (Deletions)",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
+      "extent": [
+        [
+          174.964,
+          -36.900000000000006
+        ],
+        [
+          174.964,
+          -36.900000000000006
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
       "id": "West Hoe Heights (Silverdale)",
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/West-Hoe-Heights-(Silverdale).geo.json",

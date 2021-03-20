@@ -75,14 +75,18 @@ export async function handleTotallyMissing(
   }, {});
 
   for (const [linzId, [suburb, osmAddr]] of needsDeleteArr) {
-    bySuburb[suburb] ||= [];
+    // ideally we would deduce which town this deletion belongs to,
+    // but there is no trivial way of doing that, so we create a third suburb (Deletions)
+    const key = duplicates.includes(suburb) ? `${suburb} (Deletions)` : suburb;
+
+    bySuburb[key] ||= [];
 
     // because we are deleting the node, if the data is incorrect in osm we don't care so
     // use the OSM data. We identify it as a node to delete if it has the osmId `prop`.
     const fakeLinzAddr = Object.assign(osmAddr, { town: '' }) as LinzAddr;
     fakeLinzAddr.suburb ||= ['' as 'U', suburb]; // sneaky
 
-    bySuburb[suburb].push([linzId, fakeLinzAddr]);
+    bySuburb[key].push([linzId, fakeLinzAddr]);
   }
 
   const index = [];

@@ -399,6 +399,13 @@
   <!-- 62 doesn't exist in OSM. it has the same suburb, but is in a different town -->
   <!-- 63 doesn't exist in OSM. it has the same suburb, but is in a different town -->
 
+  <!-- 64 linz says delete, but we can't deduce which town it belongs to -->
+  <node id="64" version="1" changeset="1" lat="-36.9" lon="174.964" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="64" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:suburb" v="West Hoe Heights" />
+    <tag k="ref:linz:address_id" v="L64" />
+  </node>
 
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
