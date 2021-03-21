@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { promises as fs } from 'fs';
 import { join } from 'path';
-import { LinzAddr, Status, StatusReport } from '../../types';
+import { GeoJson, LinzAddr, Status, StatusReport } from '../../types';
 import { suburbsFolder, CDN_URL, mock } from '../util';
 
 const REGEX = /(\/| )+/g;
@@ -9,6 +9,17 @@ const REGEX = /(\/| )+/g;
 const SPECIAL = [
   {
     suburb: 'ZZ Special Location Wrong',
+    // temporary, lazy assumption to cover the whole mainland + chathams + stewart is.
+    bbox: {
+      minLat: -48.026701,
+      maxLat: -32.932388,
+      minLng: 165.019045,
+      maxLng: 184.227542,
+    },
+    count: 'N/A',
+  },
+  {
+    suburb: 'ZZ Special Linz Ref Changed',
     // temporary, lazy assumption to cover the whole mainland + chathams + stewart is.
     bbox: {
       minLat: -48.026701,
@@ -94,7 +105,7 @@ export async function handleTotallyMissing(
   for (const suburb in bySuburb) {
     let minus = 0;
     const extent = new ExtentRecorder();
-    const geojson = {
+    const geojson: GeoJson = {
       type: 'FeatureCollection',
       crs: { type: 'name', properties: { name: 'EPSG:4326' } },
       features: bySuburb[suburb].map(([linzId, addr]) => {
@@ -128,7 +139,7 @@ export async function handleTotallyMissing(
 
     index.push({
       suburb,
-      count: `${total} (+${plus} -${minus})`,
+      count: `+${plus} -${minus}`,
       bbox: extent.bbox,
     });
   }
@@ -192,6 +203,17 @@ export async function handleTotallyMissing(
         defaultValue: null,
       },
       {
+        name: 'new_linz_ref',
+        type: 'esriFieldTypeString',
+        alias: 'new_linz_ref',
+        sqlType: 'sqlTypeOther',
+        length: 2,
+        nullable: true,
+        editable: true,
+        domain: null,
+        defaultValue: null,
+      },
+      {
         name: 'ref_linz_address',
         type: 'esriFieldTypeOID',
         alias: 'ref:linz:address_id',
@@ -211,11 +233,11 @@ export async function handleTotallyMissing(
         url: `${CDN_URL}/suburbs/${suburb.replace(REGEX, '-')}.geo.json`,
         itemURL: CDN_URL,
         ...(!mock && { created: Date.now(), modified: Date.now() }),
-        name: `${suburb} Addresses (${count})`,
-        title: `${suburb} Addresses (${count})`,
+        name: `${suburb} (${count})`,
+        title: `${suburb} (${count})`,
         type: 'Feature Service',
-        description: `${count} missing address points for ${suburb} sourced from LINZ`,
-        snippet: `${count} missing address points for ${suburb} sourced from LINZ`,
+        description: `${count} address points for ${suburb} (add & delete)`,
+        snippet: `${count} address points for ${suburb} (add & delete)`,
         tags: [suburb, 'address', 'OSM', 'OpenStreetMap'],
         thumbnail: `https://linz-addr.kyle.kiwi/img/thumbnail.png`,
         extent: [

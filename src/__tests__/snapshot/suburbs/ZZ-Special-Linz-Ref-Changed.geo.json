@@ -1,0 +1,46 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "SPECIAL_EDIT_L39old",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.93900000000002,
+              -36.899800000000006
+            ],
+            [
+              174.93920000000003,
+              -36.900000000000006
+            ],
+            [
+              174.93900000000002,
+              -36.900200000000005
+            ],
+            [
+              174.93880000000001,
+              -36.900000000000006
+            ],
+            [
+              174.93900000000002,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "SPECIAL_EDIT_L39old",
+        "new_linz_ref": "L39new"
+      }
+    }
+  ]
+}

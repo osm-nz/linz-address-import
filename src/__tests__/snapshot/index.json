@@ -56,6 +56,17 @@
       "defaultValue": null
     },
     {
+      "name": "new_linz_ref",
+      "type": "esriFieldTypeString",
+      "alias": "new_linz_ref",
+      "sqlType": "sqlTypeOther",
+      "length": 2,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
       "name": "ref_linz_address",
       "type": "esriFieldTypeOID",
       "alias": "ref:linz:address_id",
@@ -73,11 +84,11 @@
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Abel-Tasman-National-Park.geo.json",
       "itemURL": "https://linz-addr-cdn.kyle.kiwi",
-      "name": "Abel Tasman National Park Addresses (1 (+1 -0))",
-      "title": "Abel Tasman National Park Addresses (1 (+1 -0))",
+      "name": "Abel Tasman National Park (+1 -0)",
+      "title": "Abel Tasman National Park (+1 -0)",
       "type": "Feature Service",
-      "description": "1 (+1 -0) missing address points for Abel Tasman National Park sourced from LINZ",
-      "snippet": "1 (+1 -0) missing address points for Abel Tasman National Park sourced from LINZ",
+      "description": "+1 -0 address points for Abel Tasman National Park (add & delete)",
+      "snippet": "+1 -0 address points for Abel Tasman National Park (add & delete)",
       "tags": [
         "Abel Tasman National Park",
         "address",
@@ -110,11 +121,11 @@
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Oakleigh.geo.json",
       "itemURL": "https://linz-addr-cdn.kyle.kiwi",
-      "name": "Oakleigh Addresses (4 (+3 -1))",
-      "title": "Oakleigh Addresses (4 (+3 -1))",
+      "name": "Oakleigh (+3 -1)",
+      "title": "Oakleigh (+3 -1)",
       "type": "Feature Service",
-      "description": "4 (+3 -1) missing address points for Oakleigh sourced from LINZ",
-      "snippet": "4 (+3 -1) missing address points for Oakleigh sourced from LINZ",
+      "description": "+3 -1 address points for Oakleigh (add & delete)",
+      "snippet": "+3 -1 address points for Oakleigh (add & delete)",
       "tags": [
         "Oakleigh",
         "address",
@@ -147,11 +158,11 @@
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/West-Hoe-Heights-(Another-Town).geo.json",
       "itemURL": "https://linz-addr-cdn.kyle.kiwi",
-      "name": "West Hoe Heights (Another Town) Addresses (1 (+1 -0))",
-      "title": "West Hoe Heights (Another Town) Addresses (1 (+1 -0))",
+      "name": "West Hoe Heights (Another Town) (+1 -0)",
+      "title": "West Hoe Heights (Another Town) (+1 -0)",
       "type": "Feature Service",
-      "description": "1 (+1 -0) missing address points for West Hoe Heights (Another Town) sourced from LINZ",
-      "snippet": "1 (+1 -0) missing address points for West Hoe Heights (Another Town) sourced from LINZ",
+      "description": "+1 -0 address points for West Hoe Heights (Another Town) (add & delete)",
+      "snippet": "+1 -0 address points for West Hoe Heights (Another Town) (add & delete)",
       "tags": [
         "West Hoe Heights (Another Town)",
         "address",
@@ -184,11 +195,11 @@
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/West-Hoe-Heights-(Deletions).geo.json",
       "itemURL": "https://linz-addr-cdn.kyle.kiwi",
-      "name": "West Hoe Heights (Deletions) Addresses (1 (+0 -1))",
-      "title": "West Hoe Heights (Deletions) Addresses (1 (+0 -1))",
+      "name": "West Hoe Heights (Deletions) (+0 -1)",
+      "title": "West Hoe Heights (Deletions) (+0 -1)",
       "type": "Feature Service",
-      "description": "1 (+0 -1) missing address points for West Hoe Heights (Deletions) sourced from LINZ",
-      "snippet": "1 (+0 -1) missing address points for West Hoe Heights (Deletions) sourced from LINZ",
+      "description": "+0 -1 address points for West Hoe Heights (Deletions) (add & delete)",
+      "snippet": "+0 -1 address points for West Hoe Heights (Deletions) (add & delete)",
       "tags": [
         "West Hoe Heights (Deletions)",
         "address",
@@ -221,11 +232,11 @@
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/West-Hoe-Heights-(Silverdale).geo.json",
       "itemURL": "https://linz-addr-cdn.kyle.kiwi",
-      "name": "West Hoe Heights (Silverdale) Addresses (1 (+1 -0))",
-      "title": "West Hoe Heights (Silverdale) Addresses (1 (+1 -0))",
+      "name": "West Hoe Heights (Silverdale) (+1 -0)",
+      "title": "West Hoe Heights (Silverdale) (+1 -0)",
       "type": "Feature Service",
-      "description": "1 (+1 -0) missing address points for West Hoe Heights (Silverdale) sourced from LINZ",
-      "snippet": "1 (+1 -0) missing address points for West Hoe Heights (Silverdale) sourced from LINZ",
+      "description": "+1 -0 address points for West Hoe Heights (Silverdale) (add & delete)",
+      "snippet": "+1 -0 address points for West Hoe Heights (Silverdale) (add & delete)",
       "tags": [
         "West Hoe Heights (Silverdale)",
         "address",
@@ -254,15 +265,52 @@
       ]
     },
     {
+      "id": "ZZ Special Linz Ref Changed",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZ-Special-Linz-Ref-Changed.geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
+      "name": "ZZ Special Linz Ref Changed (N/A)",
+      "title": "ZZ Special Linz Ref Changed (N/A)",
+      "type": "Feature Service",
+      "description": "N/A address points for ZZ Special Linz Ref Changed (add & delete)",
+      "snippet": "N/A address points for ZZ Special Linz Ref Changed (add & delete)",
+      "tags": [
+        "ZZ Special Linz Ref Changed",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
+      "extent": [
+        [
+          165.019045,
+          -48.026701
+        ],
+        [
+          184.227542,
+          -32.932388
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
       "id": "ZZ Special Location Wrong",
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZ-Special-Location-Wrong.geo.json",
       "itemURL": "https://linz-addr-cdn.kyle.kiwi",
-      "name": "ZZ Special Location Wrong Addresses (N/A)",
-      "title": "ZZ Special Location Wrong Addresses (N/A)",
+      "name": "ZZ Special Location Wrong (N/A)",
+      "title": "ZZ Special Location Wrong (N/A)",
       "type": "Feature Service",
-      "description": "N/A missing address points for ZZ Special Location Wrong sourced from LINZ",
-      "snippet": "N/A missing address points for ZZ Special Location Wrong sourced from LINZ",
+      "description": "N/A address points for ZZ Special Location Wrong (add & delete)",
+      "snippet": "N/A address points for ZZ Special Location Wrong (add & delete)",
       "tags": [
         "ZZ Special Location Wrong",
         "address",

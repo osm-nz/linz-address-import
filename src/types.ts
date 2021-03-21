@@ -151,3 +151,26 @@ export type LinzMetaFile = {
   /** the date that this version of the LINZ data was published */
   date: string;
 };
+
+type GeoJsonPoint = {
+  type: 'Point';
+  coordinates: [lng: number, lat: number];
+};
+type GeoJsonLine = {
+  type: 'LineString';
+  coordinates: [lng: number, lat: number][];
+};
+type GeoJsonArea = {
+  type: 'Polygon';
+  coordinates: [ring1: [lng: number, lat: number][]];
+};
+export type GeoJson = {
+  type: 'FeatureCollection';
+  crs: { type: 'name'; properties: { name: 'EPSG:4326' } };
+  features: {
+    type: 'Feature';
+    id: string;
+    geometry: GeoJsonPoint | GeoJsonLine | GeoJsonArea;
+    properties: Record<string, string | undefined>;
+  }[];
+};

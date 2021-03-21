@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
-import { OsmAddr, Status, StatusReport } from '../../types';
-import { outFolder, toLink } from '../util';
+import { GeoJson, OsmAddr, Status, StatusReport } from '../../types';
+import { createDiamond, mock, outFolder, toLink } from '../util';
 
 export async function handleLinzRefChanged(
   arr: StatusReport[Status.LINZ_REF_CHANGED],
@@ -25,4 +25,28 @@ export async function handleLinzRefChanged(
   }
 
   await fs.writeFile(join(outFolder, 'linz-ref-changed.txt'), report);
+
+  const geojson: GeoJson = {
+    type: 'FeatureCollection',
+    crs: { type: 'name', properties: { name: 'EPSG:4326' } },
+    features: [],
+  };
+  for (const [oldLinzId, [, newLinzId, osmData]] of arr) {
+    geojson.features.push({
+      type: 'Feature',
+      id: `SPECIAL_EDIT_${oldLinzId}`,
+      geometry: {
+        type: 'Polygon',
+        coordinates: createDiamond(osmData),
+      },
+      properties: {
+        ref_linz_address: `SPECIAL_EDIT_${oldLinzId}`,
+        new_linz_ref: newLinzId,
+      },
+    });
+  }
+  await fs.writeFile(
+    join(outFolder, 'suburbs', 'ZZ-Special-Linz-Ref-Changed.geo.json'),
+    JSON.stringify(geojson, null, mock ? 2 : undefined),
+  );
 }

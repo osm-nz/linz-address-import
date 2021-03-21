@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
-import { Status, StatusReport } from '../../types';
+import { Status, StatusReport, GeoJson } from '../../types';
 import { mock, outFolder, suburbsFolder, toLink } from '../util';
 
 export async function handleLocationWrong(
@@ -8,10 +8,10 @@ export async function handleLocationWrong(
 ): Promise<void> {
   await fs.mkdir(suburbsFolder, { recursive: true });
 
-  const geojson = {
+  const geojson: GeoJson = {
     type: 'FeatureCollection',
     crs: { type: 'name', properties: { name: 'EPSG:4326' } },
-    features: [] as any[],
+    features: [],
   };
   let report = '';
   for (const [linzId, d] of arr) {
