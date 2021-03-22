@@ -1,7 +1,13 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
 import { GeoJson, Index, OsmAddr, Status, StatusReport } from '../../types';
-import { createDiamond, mock, outFolder, toLink } from '../util';
+import {
+  createDiamond,
+  ExtentRecorder,
+  mock,
+  outFolder,
+  toLink,
+} from '../util';
 
 export async function handleLinzRefChanged(
   arr: StatusReport[Status.LINZ_REF_CHANGED],
@@ -31,7 +37,10 @@ export async function handleLinzRefChanged(
     crs: { type: 'name', properties: { name: 'EPSG:4326' } },
     features: [],
   };
+  const extent = new ExtentRecorder();
+
   for (const [oldLinzId, [, newLinzId, osmData]] of arr) {
+    extent.visit(osmData);
     geojson.features.push({
       type: 'Feature',
       id: `SPECIAL_EDIT_${oldLinzId}`,
@@ -50,17 +59,13 @@ export async function handleLinzRefChanged(
     JSON.stringify(geojson, null, mock ? 2 : undefined),
   );
 
+  if (!arr.length) return [];
+
   return [
     {
       suburb: 'ZZ Special Linz Ref Changed',
-      // temporary, lazy assumption to cover the whole mainland + chathams + stewart is.
-      bbox: {
-        minLat: -48.026701,
-        maxLat: -32.932388,
-        minLng: 165.019045,
-        maxLng: 184.227542,
-      },
-      count: 'N/A',
+      bbox: extent.bbox,
+      count: arr.length,
       action: 'edit ref',
     },
   ];

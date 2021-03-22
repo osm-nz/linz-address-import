@@ -317,11 +317,11 @@
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZ-Special-Linz-Ref-Changed.geo.json",
       "itemURL": "https://linz-addr-cdn.kyle.kiwi",
-      "name": "ZZ Special Linz Ref Changed (N/A)",
-      "title": "ZZ Special Linz Ref Changed (N/A)",
+      "name": "ZZ Special Linz Ref Changed (1)",
+      "title": "ZZ Special Linz Ref Changed (1)",
       "type": "Feature Service",
-      "description": "N/A address points for ZZ Special Linz Ref Changed (edit ref)",
-      "snippet": "N/A address points for ZZ Special Linz Ref Changed (edit ref)",
+      "description": "1 address points for ZZ Special Linz Ref Changed (edit ref)",
+      "snippet": "1 address points for ZZ Special Linz Ref Changed (edit ref)",
       "tags": [
         "ZZ Special Linz Ref Changed",
         "address",
@@ -331,12 +331,12 @@
       "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
-          165.019045,
-          -48.026701
+          174.93900000000002,
+          -36.900000000000006
         ],
         [
-          184.227542,
-          -32.932388
+          174.93900000000002,
+          -36.900000000000006
         ]
       ],
       "categories": [],
@@ -354,11 +354,11 @@
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZ-Special-Location-Wrong.geo.json",
       "itemURL": "https://linz-addr-cdn.kyle.kiwi",
-      "name": "ZZ Special Location Wrong (N/A)",
-      "title": "ZZ Special Location Wrong (N/A)",
+      "name": "ZZ Special Location Wrong (2)",
+      "title": "ZZ Special Location Wrong (2)",
       "type": "Feature Service",
-      "description": "N/A address points for ZZ Special Location Wrong (move)",
-      "snippet": "N/A address points for ZZ Special Location Wrong (move)",
+      "description": "2 address points for ZZ Special Location Wrong (move)",
+      "snippet": "2 address points for ZZ Special Location Wrong (move)",
       "tags": [
         "ZZ Special Location Wrong",
         "address",
@@ -368,12 +368,12 @@
       "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
-          165.019045,
-          -48.026701
+          174.903,
+          -36.9
         ],
         [
-          184.227542,
-          -32.932388
+          174.942,
+          -36
         ]
       ],
       "categories": [],

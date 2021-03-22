@@ -3,7 +3,9 @@ import { config as dotenv } from 'dotenv';
 import { join, relative, extname } from 'path';
 import { promises as fs } from 'fs';
 import { lookup } from 'mime-types';
+import fetch from 'node-fetch';
 import { uploadStatsToGH } from './uploadStatsToGH';
+import { CDN_URL } from '../action/util';
 
 dotenv();
 
@@ -78,6 +80,9 @@ async function main() {
 
   console.log('Preparing upload...');
   await upload(azC, './out');
+
+  console.log('Reseting locked datasets...');
+  await fetch(`${CDN_URL}/__postsync`);
 
   console.log('\nUpload complete!');
 }

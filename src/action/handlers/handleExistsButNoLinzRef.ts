@@ -70,16 +70,19 @@ export async function handleExistsButNoLinzRef(
       });
     }
 
-    index.push({
-      suburb: sector,
-      bbox: extent.bbox,
-      count: bySuburb[suburb].length,
-      action: 'edit ref',
-    });
-    await fs.writeFile(
-      join(suburbsFolder, `${sector.replace(REGEX, '-')}.geo.json`),
-      JSON.stringify(geojson, null, mock ? 2 : undefined),
-    );
+    // gotta check in case every item was skipped because Confidence.UNLIKELY_GUESS
+    if (geojson.features.length) {
+      index.push({
+        suburb: sector,
+        bbox: extent.bbox,
+        count: bySuburb[suburb].length,
+        action: 'edit ref',
+      });
+      await fs.writeFile(
+        join(suburbsFolder, `${sector.replace(REGEX, '-')}.geo.json`),
+        JSON.stringify(geojson, null, mock ? 2 : undefined),
+      );
+    }
   }
 
   await fs.writeFile(join(outFolder, 'needs-linz-ref.txt'), report);
