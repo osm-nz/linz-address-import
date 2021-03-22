@@ -25,13 +25,21 @@ export async function uploadStatsToGH(): Promise<void> {
   const date = stats.date.split('T')[0];
   const numbers = Object.values(stats.count);
 
-  const updatedBody = `${body.trim()}\n|${[
+  const newLine = `|${[
     date,
     linzMeta.version,
     ...numbers, // multiple columns,
     stats.total,
     '', // comment column
   ].join('|')}|`;
+
+  // don't create a duplicate row. the date is in the row so this is safe
+  if (body.includes(newLine)) {
+    console.log('No change in statistics, not updating table');
+    return;
+  }
+
+  const updatedBody = `${body.trim()}\n${newLine}`;
 
   const { status } = await fetch(url, {
     method: 'PATCH',

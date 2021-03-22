@@ -1,11 +1,11 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
-import { GeoJson, OsmAddr, Status, StatusReport } from '../../types';
+import { GeoJson, Index, OsmAddr, Status, StatusReport } from '../../types';
 import { createDiamond, mock, outFolder, toLink } from '../util';
 
 export async function handleLinzRefChanged(
   arr: StatusReport[Status.LINZ_REF_CHANGED],
-): Promise<void> {
+): Promise<Index[]> {
   const bySuburb = arr.reduce(
     (ac, [oldLinzId, [suburb, newLinzId, osmAddr]]) => {
       // eslint-disable-next-line no-param-reassign -- mutation is cheap
@@ -49,4 +49,19 @@ export async function handleLinzRefChanged(
     join(outFolder, 'suburbs', 'ZZ-Special-Linz-Ref-Changed.geo.json'),
     JSON.stringify(geojson, null, mock ? 2 : undefined),
   );
+
+  return [
+    {
+      suburb: 'ZZ Special Linz Ref Changed',
+      // temporary, lazy assumption to cover the whole mainland + chathams + stewart is.
+      bbox: {
+        minLat: -48.026701,
+        maxLat: -32.932388,
+        minLng: 165.019045,
+        maxLng: 184.227542,
+      },
+      count: 'N/A',
+      action: 'edit ref',
+    },
+  ];
 }

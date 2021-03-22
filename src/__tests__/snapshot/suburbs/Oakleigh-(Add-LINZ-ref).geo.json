@@ -1,0 +1,196 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "SPECIAL_EDIT_L8",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.90800000000002,
+              -36.899800000000006
+            ],
+            [
+              174.90820000000002,
+              -36.900000000000006
+            ],
+            [
+              174.90800000000002,
+              -36.900200000000005
+            ],
+            [
+              174.9078,
+              -36.900000000000006
+            ],
+            [
+              174.90800000000002,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "SPECIAL_EDIT_L8",
+        "new_linz_ref": "L8",
+        "addr_hamlet": "Oakleigh",
+        "osm_id": "n8"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SPECIAL_EDIT_L9",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.90900000000002,
+              -36.899800000000006
+            ],
+            [
+              174.90920000000003,
+              -36.900000000000006
+            ],
+            [
+              174.90900000000002,
+              -36.900200000000005
+            ],
+            [
+              174.9088,
+              -36.900000000000006
+            ],
+            [
+              174.90900000000002,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "SPECIAL_EDIT_L9",
+        "new_linz_ref": "L9",
+        "addr_hamlet": "Oakleigh",
+        "osm_id": "n9"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SPECIAL_EDIT_L10",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.91000000000003,
+              -36.899800000000006
+            ],
+            [
+              174.91020000000003,
+              -36.900000000000006
+            ],
+            [
+              174.91000000000003,
+              -36.900200000000005
+            ],
+            [
+              174.90980000000002,
+              -36.900000000000006
+            ],
+            [
+              174.91000000000003,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "SPECIAL_EDIT_L10",
+        "new_linz_ref": "L10",
+        "addr_hamlet": "Oakleigh",
+        "osm_id": "n10"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SPECIAL_EDIT_L11",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.911,
+              -35.9998
+            ],
+            [
+              174.9112,
+              -36
+            ],
+            [
+              174.911,
+              -36.0002
+            ],
+            [
+              174.9108,
+              -36
+            ],
+            [
+              174.911,
+              -35.9998
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "SPECIAL_EDIT_L11",
+        "new_linz_ref": "L11",
+        "addr_hamlet": "Oakleigh",
+        "osm_id": "n11"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SPECIAL_EDIT_L12",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.912,
+              -36.9018
+            ],
+            [
+              174.9122,
+              -36.902
+            ],
+            [
+              174.912,
+              -36.9022
+            ],
+            [
+              174.9118,
+              -36.902
+            ],
+            [
+              174.912,
+              -36.9018
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "SPECIAL_EDIT_L12",
+        "new_linz_ref": "L12",
+        "addr_hamlet": "Oakleigh",
+        "osm_id": "n12"
+      }
+    }
+  ]
+}

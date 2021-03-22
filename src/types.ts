@@ -32,7 +32,7 @@ export type OsmAddr = {
 export type OsmAddrWithConfidence = OsmAddr & {
   /** distance in metres away from expected location */
   offset?: number;
-  confidence: 4 | 3 | 2 | 1;
+  confidence: Confidence;
 }; // 4=highest, 1=lowest
 export type OSMData = {
   linz: {
@@ -105,15 +105,30 @@ export enum Status {
   UNKNOWN_ERROR = 12,
 }
 
+export enum Confidence {
+  /** after a lot of searching we found a similar address, but it's significantly far away */
+  UNLIKELY_GUESS = 1,
+  /** found a similar address nearby */
+  NORMAL = 2,
+  /** found multiple perfect matches */
+  HIGH_BUT_MULTIPLE = 3,
+  /** found one perfect match */
+  CERTAIN = 4,
+}
+
 export type StatusDiagnostics = {
   [Status.PERFECT]: void;
   [Status.EXISTS_BUT_WRONG_DATA]: [
     osmId: string,
     ...issues: `${string}|${string}|${string}`[] // `field|linzValue|osmValue`
   ];
-  [Status.EXISTS_BUT_NO_LINZ_REF]: [confidence: 1 | 2 | 3 | 4, osmId: OsmId];
+  [Status.EXISTS_BUT_NO_LINZ_REF]: [
+    suburb: Suburb,
+    confidence: Confidence,
+    osmData: OsmAddr,
+  ];
   [Status.MULTIPLE_EXIST_BUT_NO_LINZ_REF]: [
-    confidence: 1 | 2 | 3 | 4,
+    confidence: Confidence,
     osmId: OsmId,
   ][];
   [Status.MULTIPLE_EXIST]: OsmId[];
@@ -173,4 +188,18 @@ export type GeoJson = {
     geometry: GeoJsonPoint | GeoJsonLine | GeoJsonArea;
     properties: Record<string, string | undefined>;
   }[];
+};
+
+export type BBox = {
+  minLat: number;
+  maxLat: number;
+  minLng: number;
+  maxLng: number;
+};
+
+export type Index = {
+  suburb: string;
+  bbox: BBox;
+  count: number | string;
+  action?: string;
 };

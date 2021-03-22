@@ -67,6 +67,17 @@
       "defaultValue": null
     },
     {
+      "name": "osm_id",
+      "type": "esriFieldTypeString",
+      "alias": "osm_id",
+      "sqlType": "sqlTypeOther",
+      "length": 2,
+      "nullable": true,
+      "editable": true,
+      "domain": null,
+      "defaultValue": null
+    },
+    {
       "name": "ref_linz_address",
       "type": "esriFieldTypeOID",
       "alias": "ref:linz:address_id",
@@ -151,6 +162,43 @@
       "listed": false,
       "groupCategories": [
         "/Categories/Addresses"
+      ]
+    },
+    {
+      "id": "Oakleigh (Add LINZ ref)",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Oakleigh-(Add-LINZ-ref).geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
+      "name": "Oakleigh (Add LINZ ref) (5)",
+      "title": "Oakleigh (Add LINZ ref) (5)",
+      "type": "Feature Service",
+      "description": "5 address points for Oakleigh (Add LINZ ref) (edit ref)",
+      "snippet": "5 address points for Oakleigh (Add LINZ ref) (edit ref)",
+      "tags": [
+        "Oakleigh (Add LINZ ref)",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
+      "extent": [
+        [
+          174.90800000000002,
+          -36.902
+        ],
+        [
+          174.912,
+          -36
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Preview"
       ]
     },
     {
@@ -272,8 +320,8 @@
       "name": "ZZ Special Linz Ref Changed (N/A)",
       "title": "ZZ Special Linz Ref Changed (N/A)",
       "type": "Feature Service",
-      "description": "N/A address points for ZZ Special Linz Ref Changed (add & delete)",
-      "snippet": "N/A address points for ZZ Special Linz Ref Changed (add & delete)",
+      "description": "N/A address points for ZZ Special Linz Ref Changed (edit ref)",
+      "snippet": "N/A address points for ZZ Special Linz Ref Changed (edit ref)",
       "tags": [
         "ZZ Special Linz Ref Changed",
         "address",
@@ -298,7 +346,7 @@
       "languages": [],
       "listed": false,
       "groupCategories": [
-        "/Categories/Addresses"
+        "/Categories/Preview"
       ]
     },
     {
@@ -309,8 +357,8 @@
       "name": "ZZ Special Location Wrong (N/A)",
       "title": "ZZ Special Location Wrong (N/A)",
       "type": "Feature Service",
-      "description": "N/A address points for ZZ Special Location Wrong (add & delete)",
-      "snippet": "N/A address points for ZZ Special Location Wrong (add & delete)",
+      "description": "N/A address points for ZZ Special Location Wrong (move)",
+      "snippet": "N/A address points for ZZ Special Location Wrong (move)",
       "tags": [
         "ZZ Special Location Wrong",
         "address",
@@ -335,7 +383,7 @@
       "languages": [],
       "listed": false,
       "groupCategories": [
-        "/Categories/Addresses"
+        "/Categories/Preview"
       ]
     }
   ]

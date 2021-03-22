@@ -49,8 +49,8 @@ function osmToJson(): Promise<OSMData> {
 
           const obj: OsmAddr = {
             osmId: (type + item.id) as OsmId,
-            lat: coords.lat,
-            lng: coords.lon,
+            lat: +coords.lat,
+            lng: +coords.lon,
             housenumber: item.tags['addr:housenumber'],
             street: item.tags['addr:street'],
             suburb: suburb ? [suburbU ? 'U' : 'R', suburb] : undefined,

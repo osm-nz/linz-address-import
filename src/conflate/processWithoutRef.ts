@@ -22,7 +22,7 @@ export function processWithoutRef(
   if (osmAddrs.length === 1) {
     return validate({
       status: Status.EXISTS_BUT_NO_LINZ_REF,
-      diagnostics: [osmAddrs[0].confidence, osmAddrs[0].osmId],
+      diagnostics: [linzData.suburb, osmAddrs[0].confidence, osmAddrs[0]],
     });
   }
 

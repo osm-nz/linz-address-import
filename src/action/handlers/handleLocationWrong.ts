@@ -1,13 +1,11 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
-import { Status, StatusReport, GeoJson } from '../../types';
+import { Status, StatusReport, GeoJson, Index } from '../../types';
 import { mock, outFolder, suburbsFolder, toLink } from '../util';
 
 export async function handleLocationWrong(
   arr: StatusReport[Status.EXISTS_BUT_LOCATION_WRONG],
-): Promise<void> {
-  await fs.mkdir(suburbsFolder, { recursive: true });
-
+): Promise<Index[]> {
   const geojson: GeoJson = {
     type: 'FeatureCollection',
     crs: { type: 'name', properties: { name: 'EPSG:4326' } },
@@ -38,7 +36,22 @@ export async function handleLocationWrong(
 
   await fs.writeFile(join(outFolder, 'location-wrong.txt'), report);
   await fs.writeFile(
-    join(outFolder, 'suburbs', 'ZZ-Special-Location-Wrong.geo.json'),
+    join(suburbsFolder, 'ZZ-Special-Location-Wrong.geo.json'),
     JSON.stringify(geojson, null, mock ? 2 : undefined),
   );
+
+  return [
+    {
+      suburb: 'ZZ Special Location Wrong',
+      // temporary, lazy assumption to cover the whole mainland + chathams + stewart is.
+      bbox: {
+        minLat: -48.026701,
+        maxLat: -32.932388,
+        minLng: 165.019045,
+        maxLng: 184.227542,
+      },
+      count: 'N/A',
+      action: 'move',
+    },
+  ];
 }

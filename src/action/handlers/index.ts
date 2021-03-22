@@ -1,4 +1,4 @@
-import { Status, StatusReport } from '../../types';
+import { Index, Status, StatusReport } from '../../types';
 import { existsButDataWrong } from './existsButDataWrong';
 import { handleCorrupted } from './handleCorrupted';
 import { handleDeleted } from './handleDeleted';
@@ -16,7 +16,7 @@ export const handlers: Record<
   (
     data: any,
     needsDeleteData: StatusReport[Status.NEEDS_DELETE],
-  ) => Promise<void>
+  ) => Promise<void | Index[]>
 > = {
   [Status.PERFECT]: async () => undefined,
   [Status.EXISTS_BUT_WRONG_DATA]: existsButDataWrong,
