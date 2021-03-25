@@ -186,15 +186,16 @@ type GeoJsonArea = {
   type: 'Polygon';
   coordinates: [ring1: [lng: number, lat: number][]];
 };
+export type GeoJsonFeature = {
+  type: 'Feature';
+  id: string;
+  geometry: GeoJsonPoint | GeoJsonLine | GeoJsonArea;
+  properties: Record<string, string | undefined>;
+};
 export type GeoJson = {
   type: 'FeatureCollection';
   crs: { type: 'name'; properties: { name: 'EPSG:4326' } };
-  features: {
-    type: 'Feature';
-    id: string;
-    geometry: GeoJsonPoint | GeoJsonLine | GeoJsonArea;
-    properties: Record<string, string | undefined>;
-  }[];
+  features: GeoJsonFeature[];
 };
 
 export type BBox = {
@@ -204,9 +205,4 @@ export type BBox = {
   maxLng: number;
 };
 
-export type Index = {
-  suburb: string;
-  bbox: BBox;
-  count: number | string;
-  action?: string;
-};
+export type HandlerReturn = Record<string, GeoJsonFeature[]>;

@@ -1,17 +1,17 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
-import { GeoJson, Index, OsmAddr, Status, StatusReport } from '../../types';
 import {
-  createDiamond,
-  ExtentRecorder,
-  mock,
-  outFolder,
-  toLink,
-} from '../util';
+  GeoJsonFeature,
+  HandlerReturn,
+  OsmAddr,
+  Status,
+  StatusReport,
+} from '../../types';
+import { createDiamond, outFolder, toLink } from '../util';
 
 export async function handleLinzRefChanged(
   arr: StatusReport[Status.LINZ_REF_CHANGED],
-): Promise<Index[]> {
+): Promise<HandlerReturn> {
   const bySuburb = arr.reduce(
     (ac, [oldLinzId, [suburb, newLinzId, osmAddr]]) => {
       // eslint-disable-next-line no-param-reassign -- mutation is cheap
@@ -32,16 +32,10 @@ export async function handleLinzRefChanged(
 
   await fs.writeFile(join(outFolder, 'linz-ref-changed.txt'), report);
 
-  const geojson: GeoJson = {
-    type: 'FeatureCollection',
-    crs: { type: 'name', properties: { name: 'EPSG:4326' } },
-    features: [],
-  };
-  const extent = new ExtentRecorder();
+  const features: GeoJsonFeature[] = [];
 
   for (const [oldLinzId, [, newLinzId, osmData]] of arr) {
-    extent.visit(osmData);
-    geojson.features.push({
+    features.push({
       type: 'Feature',
       id: `SPECIAL_EDIT_${oldLinzId}`,
       geometry: {
@@ -54,19 +48,6 @@ export async function handleLinzRefChanged(
       },
     });
   }
-  await fs.writeFile(
-    join(outFolder, 'suburbs', 'ZZ-Special-Linz-Ref-Changed.geo.json'),
-    JSON.stringify(geojson, null, mock ? 2 : undefined),
-  );
 
-  if (!arr.length) return [];
-
-  return [
-    {
-      suburb: 'ZZ Special Linz Ref Changed',
-      bbox: extent.bbox,
-      count: arr.length,
-      action: 'edit ref',
-    },
-  ];
+  return { 'ZZ Special Linz Ref Changed': features };
 }

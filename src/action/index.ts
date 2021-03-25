@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
-import { Index, Status, StatusReport } from '../types';
+import { HandlerReturn, Status, StatusReport } from '../types';
 import { outFolder, mock, suburbsFolder } from './util';
 import { generateStats } from './generateStats';
 import { handlers } from './handlers';
@@ -22,7 +22,7 @@ export async function main(): Promise<void> {
   console.log('generating stats...');
   await generateStats(status);
 
-  const indexes: Index[] = [];
+  const features: HandlerReturn = {};
 
   for (const $state in handlers) {
     const state = +$state as Status;
@@ -32,10 +32,15 @@ export async function main(): Promise<void> {
       status[state],
       status[Status.NEEDS_DELETE],
     );
-    if (res) indexes.push(...res);
+    if (res) {
+      for (const k in res) {
+        features[k] ||= [];
+        features[k].push(...res[k]);
+      }
+    }
   }
 
-  await createIndex(indexes);
+  await createIndex(features);
 }
 
 if (process.env.NODE_ENV !== 'test') main();

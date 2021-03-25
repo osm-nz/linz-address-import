@@ -1,8 +1,11 @@
 /* eslint-disable no-param-reassign */
-import { promises as fs } from 'fs';
-import { join } from 'path';
-import { GeoJson, Index, LinzAddr, Status, StatusReport } from '../../types';
-import { suburbsFolder, REGEX, mock, ExtentRecorder } from '../util';
+import {
+  GeoJsonFeature,
+  HandlerReturn,
+  LinzAddr,
+  Status,
+  StatusReport,
+} from '../../types';
 
 type BySuburb = {
   [suburb: string]: [
@@ -17,7 +20,7 @@ type BySuburb = {
 export async function handleTotallyMissing(
   arr: StatusReport[Status.TOTALLY_MISSING],
   needsDeleteArr: StatusReport[Status.NEEDS_DELETE],
-): Promise<Index[]> {
+): Promise<HandlerReturn> {
   const tmp = arr.reduce((ac, [, data]) => {
     const suburb = data.suburb[1];
     if (!ac[suburb]) {
@@ -55,17 +58,11 @@ export async function handleTotallyMissing(
     bySuburb[key].push([linzId, fakeLinzAddr]);
   }
 
-  const index: Index[] = [];
+  const index: HandlerReturn = {};
 
   for (const suburb in bySuburb) {
-    let minus = 0;
-    const extent = new ExtentRecorder();
-    const geojson: GeoJson = {
-      type: 'FeatureCollection',
-      crs: { type: 'name', properties: { name: 'EPSG:4326' } },
-      features: bySuburb[suburb].map(([linzId, addr]) => {
-        extent.visit(addr);
-        if (addr.osmId) minus += 1;
+    const features: GeoJsonFeature[] = bySuburb[suburb].map(
+      ([linzId, addr]) => {
         return {
           type: 'Feature',
           id: linzId,
@@ -82,21 +79,10 @@ export async function handleTotallyMissing(
             ref_linz_address: (addr.osmId ? 'SPECIAL_DELETE_' : '') + linzId,
           },
         };
-      }),
-    };
-    await fs.writeFile(
-      join(suburbsFolder, `${suburb.replace(REGEX, '-')}.geo.json`),
-      JSON.stringify(geojson, null, mock ? 2 : undefined),
+      },
     );
 
-    const total = bySuburb[suburb].length;
-    const plus = total - minus;
-
-    index.push({
-      suburb,
-      count: `+${plus} -${minus}`,
-      bbox: extent.bbox,
-    });
+    index[suburb] = features;
   }
 
   return index;
