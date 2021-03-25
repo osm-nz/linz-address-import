@@ -128,6 +128,43 @@
       ]
     },
     {
+      "id": "Abel Tasman National Park (Edit)",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Abel-Tasman-National-Park-(Edit).geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
+      "name": "Abel Tasman National Park (Edit) (1)",
+      "title": "Abel Tasman National Park (Edit) (1)",
+      "type": "Feature Service",
+      "description": "1 address points for Abel Tasman National Park (Edit) (edit)",
+      "snippet": "1 address points for Abel Tasman National Park (Edit) (edit)",
+      "tags": [
+        "Abel Tasman National Park (Edit)",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
+      "extent": [
+        [
+          174.959,
+          -36.900000000000006
+        ],
+        [
+          174.959,
+          -36.900000000000006
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Preview"
+      ]
+    },
+    {
       "id": "Oakleigh",
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Oakleigh.geo.json",
@@ -189,6 +226,43 @@
         [
           174.912,
           -36
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Preview"
+      ]
+    },
+    {
+      "id": "Oakleigh (Edit)",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Oakleigh-(Edit).geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
+      "name": "Oakleigh (Edit) (10)",
+      "title": "Oakleigh (Edit) (10)",
+      "type": "Feature Service",
+      "description": "10 address points for Oakleigh (Edit) (edit)",
+      "snippet": "10 address points for Oakleigh (Edit) (edit)",
+      "tags": [
+        "Oakleigh (Edit)",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
+      "extent": [
+        [
+          174.90400000000002,
+          -36.900000000000006
+        ],
+        [
+          174.96,
+          -36.900000000000006
         ]
       ],
       "categories": [],
@@ -273,6 +347,43 @@
       "listed": false,
       "groupCategories": [
         "/Categories/Addresses"
+      ]
+    },
+    {
+      "id": "West Hoe Heights (Edit)",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/West-Hoe-Heights-(Edit).geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
+      "name": "West Hoe Heights (Edit) (1)",
+      "title": "West Hoe Heights (Edit) (1)",
+      "type": "Feature Service",
+      "description": "1 address points for West Hoe Heights (Edit) (edit)",
+      "snippet": "1 address points for West Hoe Heights (Edit) (edit)",
+      "tags": [
+        "West Hoe Heights (Edit)",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
+      "extent": [
+        [
+          174.919,
+          -36.900000000000006
+        ],
+        [
+          174.919,
+          -36.900000000000006
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Preview"
       ]
     },
     {

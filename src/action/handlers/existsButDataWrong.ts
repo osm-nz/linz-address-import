@@ -21,7 +21,7 @@ import { fieldsToModify } from '../util/fieldsToModify';
 
 export async function existsButDataWrong(
   arr: StatusReport[Status.EXISTS_BUT_WRONG_DATA],
-): Promise<void> {
+): Promise<Index[]> {
   const bySuburb = arr.reduce((ac, [linzId, [osmAddr, suburb, ...issues]]) => {
     // eslint-disable-next-line no-param-reassign -- mutation is cheap
     ac[suburb] ||= [];
@@ -77,4 +77,6 @@ export async function existsButDataWrong(
   }
 
   await fs.writeFile(join(outFolder, 'data-wrong.txt'), report);
+
+  return index;
 }
