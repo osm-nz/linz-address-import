@@ -1,0 +1,46 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "SPECIAL_EDIT_L19",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.919,
+              -36.899800000000006
+            ],
+            [
+              174.91920000000002,
+              -36.900000000000006
+            ],
+            [
+              174.919,
+              -36.900200000000005
+            ],
+            [
+              174.9188,
+              -36.900000000000006
+            ],
+            [
+              174.919,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "SPECIAL_EDIT_L19",
+        "addr_suburb": "West Hoe Heights"
+      }
+    }
+  ]
+}

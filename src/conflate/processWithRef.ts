@@ -14,13 +14,21 @@ export function processWithRef(
 ): { status: Status; diagnostics?: unknown } {
   if (osmAddr.checked) return { status: Status.PERFECT };
 
+  const linzSuburb = `${
+    linzAddr.suburb[0] === 'U' ? 'addr_suburb' : 'addr_hamlet'
+  }=${linzAddr.suburb[1]}`;
+  const osmSuburb = osmAddr.suburb
+    ? `${osmAddr.suburb[0] === 'U' ? 'addr_suburb' : 'addr_hamlet'}=${
+        osmAddr.suburb[1]
+      }`
+    : 0;
+
   const houseOk = linzAddr.housenumber === osmAddr.housenumber;
   const streetOk = linzAddr.street === osmAddr.street;
-  const suburbOk = linzAddr.suburb[1] === osmAddr.suburb?.[1];
-  const suburbTypeOk = linzAddr.suburb[0] === osmAddr.suburb?.[0];
+  const suburbOk = linzSuburb === osmSuburb;
   const waterOk = linzAddr.water === osmAddr.water;
 
-  if (houseOk && streetOk && suburbOk && suburbTypeOk && waterOk) {
+  if (houseOk && streetOk && suburbOk && waterOk) {
     // looks perfect - last check is if location is correct
 
     const offset = distanceBetween(
@@ -50,13 +58,13 @@ export function processWithRef(
   return validate({
     status: Status.EXISTS_BUT_WRONG_DATA,
     diagnostics: [
-      osmAddr.osmId,
+      osmAddr,
+      linzAddr.suburb[1],
       !houseOk && `housenumber|${linzAddr.housenumber}|${osmAddr.housenumber}`,
       !streetOk && `street|${linzAddr.street}|${osmAddr.street}`,
-      !suburbOk && `suburb|${linzAddr.suburb[1]}|${osmAddr.suburb?.[1] || 0}`,
-      !waterOk && `water|${linzAddr.water || 0}|${osmAddr.water || 0}`,
-      !suburbTypeOk &&
-        `suburbType|${linzAddr.suburb[0]}|${osmAddr.suburb?.[0] || 0}`,
+      !suburbOk && `suburb|${linzSuburb}|${osmSuburb}`,
+      !waterOk &&
+        `water|${+(linzAddr.water || false)}|${+(osmAddr.water || false)}`,
     ].filter(isTruthy) as StatusDiagnostics[Status.EXISTS_BUT_WRONG_DATA],
   });
 }

@@ -116,11 +116,18 @@ export enum Confidence {
   CERTAIN = 4,
 }
 
+export type Issue = `${
+  | 'housenumber'
+  | 'street'
+  | 'suburb'
+  | 'water'}|${string}|${string}`; // `field|linzValue|osmValue`;
+
 export type StatusDiagnostics = {
   [Status.PERFECT]: void;
   [Status.EXISTS_BUT_WRONG_DATA]: [
-    osmId: string,
-    ...issues: `${string}|${string}|${string}`[] // `field|linzValue|osmValue`
+    osmAddr: OsmAddr,
+    Suburb: string,
+    ...issues: Issue[]
   ];
   [Status.EXISTS_BUT_NO_LINZ_REF]: [
     suburb: Suburb,
