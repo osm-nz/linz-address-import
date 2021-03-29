@@ -167,6 +167,44 @@
       ]
     },
     {
+      "id": "Rangitāhua",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Rangitāhua.geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
+      "name": "Rangitāhua",
+      "title": "Rangitāhua",
+      "type": "Feature Service",
+      "totalCount": 1,
+      "description": "add 1",
+      "snippet": "add 1",
+      "tags": [
+        "Rangitāhua",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
+      "extent": [
+        [
+          -176.035,
+          -36.9
+        ],
+        [
+          -176.035,
+          -36.9
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
       "id": "West Hoe Heights",
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/West-Hoe-Heights.geo.json",

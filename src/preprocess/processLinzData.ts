@@ -11,6 +11,13 @@ const input = join(
 );
 const output = join(__dirname, `../../data/linz${mock}.json`);
 
+/** LINZ's longitude values go >180 e.g. 183deg which is invalid. It should be -177 */
+const correctLng = (lng: number) => {
+  // we could do `((lng + 180) % 360) - 180` but this is computationally cheaper
+  if (lng < 180) return lng;
+  return lng - 360;
+};
+
 // TODO: perf baseline is 50seconds
 function linzToJson(): Promise<LinzData> {
   return new Promise((resolve, reject) => {
@@ -29,7 +36,7 @@ function linzToJson(): Promise<LinzData> {
           ],
           town: data.town_city,
           lat: +data.shape_Y,
-          lng: +data.shape_X,
+          lng: correctLng(+data.shape_X),
         };
         if (data.water_name) out[data.address_id].water = true;
 
