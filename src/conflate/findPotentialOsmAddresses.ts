@@ -10,10 +10,14 @@ export const findPotentialOsmAddresses = (
   linzAddr: LinzAddr,
   osmData: OsmAddr[],
 ): OsmAddrWithConfidence[] => {
-  const perfectMatches = osmData.filter(
+  const f1 = osmData.filter(
     (osmAddr) =>
       osmAddr.housenumber === linzAddr.housenumber &&
-      osmAddr.street === linzAddr.street &&
+      osmAddr.street === linzAddr.street,
+  );
+
+  const perfectMatches = f1.filter(
+    (osmAddr) =>
       osmAddr.suburb &&
       osmAddr.suburb[0] === linzAddr.suburb[0] &&
       osmAddr.suburb[1] === linzAddr.suburb[1],
@@ -26,12 +30,7 @@ export const findPotentialOsmAddresses = (
 
   // if theres no perfect match, see if there are any with matching housenumber &
   // street (but not suburb). sort by closest to the correct location
-  const almostPerfect = osmData
-    .filter(
-      (osmAddr) =>
-        osmAddr.housenumber === linzAddr.housenumber &&
-        osmAddr.street === linzAddr.street,
-    )
+  const almostPerfect = f1
     .map((osmAddr) => {
       const offset = distanceBetween(
         osmAddr.lat,

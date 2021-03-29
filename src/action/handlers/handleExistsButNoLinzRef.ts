@@ -47,7 +47,7 @@ export async function handleExistsButNoLinzRef(
         properties: {
           ref_linz_address: `SPECIAL_EDIT_${linzId}`,
           new_linz_ref: linzId,
-          // chances arore if the ref is missing, so is the suburb/hamlet. so we may as well add it now.
+          // chances are if the ref is missing, so is the suburb/hamlet. so we may as well add it now.
           addr_suburb: suburbType === 'U' ? suburb : undefined,
           addr_hamlet: suburbType === 'R' ? suburb : undefined,
           osm_id: osmData.osmId, // special tag to instruct RapiD which node to add the tag to, since the node has no linz ref

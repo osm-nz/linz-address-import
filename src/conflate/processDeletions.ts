@@ -56,10 +56,12 @@ export function processDeletions(
         // this address.
         // THIS CAN ONLY HAPPEN IF THE LINZ CSV and the LINZ DELETIONS don't have matching version numbers
         error.push([linzRef, osmAddr.osmId]);
+      } else if (osmData.linz[newLinzRef]) {
+        // linz ref changed && new one is already in osm -> so basically it didn't change. Normal delete
+        // probably because address accidently existed twice in the LINZ db, with 2 different refs and LINZ fixed it by deleting one.
+        normal.push([linzRef, [suburb, osmAddr]]);
       } else {
-        // there is a slight flaw here: if the newLinzRef already exists in OSM, we will end
-        // up creating a duplicate. This is rare enough that we don't need to worry - the
-        // system will pick it up next time and classify it as MULTIPLE_EXIST
+        // linz ref changed, and the new ref doesn't exist in OSM
         sus.push([linzRef, [suburb, newLinzRef, osmAddr]]);
       }
       removeFromCreate.push(newLinzRef);
