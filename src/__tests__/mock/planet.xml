@@ -104,7 +104,7 @@
 
   <!-- 13 skipped -->
 
-  <!-- in OSM and not in LINZ and in LINZ delete list -->
+  <!-- in OSM and not in LINZ -->
   <node id="14" version="1" changeset="1" lat="-36.9" lon="174.914" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="14" />
     <tag k="addr:street" v="Example Street" />
@@ -112,16 +112,9 @@
     <tag k="ref:linz:address_id" v="L14" />
   </node>
 
-  <!-- in OSM and LINZ AND in LINZ delete list. unknown_error -->
-  <node id="15" version="1" changeset="1" lat="-36.9" lon="174.915" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
-    <tag k="addr:housenumber" v="15" />
-    <tag k="addr:street" v="Example Street" />
-    <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L15" />
-  </node>
-
-  <!-- 16 not in OSM and not in LINZ and in LINZ delete list -->
-  <!-- 17 not in OSM and LINZ AND in LINZ delete list. unknown_error -->
+  <!-- 15 obsolete and repealed -->
+  <!-- 16 obsolete and repealed -->
+  <!-- 17 obsolete and repealed -->
 
   <!-- all correct in OSM/linz except suburb instead of hamlet -->
   <node id="18" version="1" changeset="1" lat="-36.9" lon="174.918" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
@@ -213,13 +206,13 @@
 
   <!-- for consistency, 32-34 Example Street do not exist -->
 
-  <!-- on a building, not in LINZ, but in delete list -->
+  <!-- on a building, not in LINZ so it will be deleted -->
   <node id="32" version="1" changeset="1" lat="-36.9" lon="174.935" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z" />
   <node id="33" version="1" changeset="1" lat="-36.901" lon="174.935" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z" />
   <node id="34" version="1" changeset="1" lat="-36.9" lon="174.9355" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z" />
   <!-- THE WAY IS DEFINED AT THE END OF THE FILE -->
 
-  <!-- node with name= not in LINZ, but in delete list -->
+  <!-- node with name= not in LINZ so it will be deleted -->
   <node id="36" version="1" changeset="1" lat="-36.9" lon="174.936" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="name" v="Challenge House" />
     <tag k="addr:housenumber" v="36" />
@@ -228,7 +221,7 @@
     <tag k="ref:linz:address_id" v="L36" />
   </node>
 
-  <!-- node with shop= not in LINZ, but in delete list -->
+  <!-- node with shop= not in LINZ so it will be deleted -->
   <node id="37" version="1" changeset="1" lat="-36.9" lon="174.937" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="shop" v="alcohol" />
     <tag k="addr:housenumber" v="37" />
@@ -237,7 +230,7 @@
     <tag k="ref:linz:address_id" v="L37" />
   </node>
 
-  <!-- node with craft= not in LINZ, but in delete list -->
+  <!-- node with craft= not in LINZ so it will be deleted -->
   <node id="38" version="1" changeset="1" lat="-36.9" lon="174.938" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="craft" v="rigger" />
     <tag k="addr:housenumber" v="38" />

@@ -1,16 +1,13 @@
 import { promises as fs } from 'fs';
 import fetch from 'node-fetch';
 import { join } from 'path';
-import { StatsFile, LinzMetaFile } from '../types';
+import { StatsFile } from '../types';
 
 type Issue = { body: string };
 
 export async function uploadStatsToGH(): Promise<void> {
   const stats: StatsFile = JSON.parse(
     await fs.readFile(join(__dirname, `../../out/stats.json`), 'utf-8'),
-  );
-  const linzMeta: LinzMetaFile = JSON.parse(
-    await fs.readFile(join(__dirname, `../../data/linz-meta.json`), 'utf-8'),
   );
 
   const { GH_BASIC_AUTH } = process.env;
@@ -27,7 +24,7 @@ export async function uploadStatsToGH(): Promise<void> {
 
   const newLine = `|${[
     date,
-    linzMeta.version,
+    '?',
     ...numbers, // multiple columns,
     stats.total,
     '', // comment column

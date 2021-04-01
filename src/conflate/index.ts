@@ -21,13 +21,18 @@ export async function main(): Promise<void> {
     await fs.readFile(join(__dirname, `../../data/osm${mock}.json`), 'utf-8'),
   );
 
-  console.log('Reading deletion data into memory...');
-  const deletionData: DeletionData = JSON.parse(
-    await fs.readFile(
-      join(__dirname, `../../data/linz-deletions${mock}.json`),
-      'utf-8',
-    ),
-  );
+  console.log('Computing which addresses to delte...');
+  const deletionData: DeletionData = Object.entries(osmData.linz)
+    .filter(
+      ([linzId, osmAddr]) =>
+        !(linzId in linzData) && // we delete every OSM node with a linzRef that does not exist in the LINZ data
+        !linzId.startsWith('stack(') && // ...unless it is a stack
+        !osmAddr.checked, // ...or it has a recent check_date
+    )
+    .map(([linzId, osmAddr]) => [
+      linzId,
+      osmAddr.suburb?.[1] || 'ZZ Deletions from unknown sector',
+    ]);
 
   const statusReport: Record<
     Status,
@@ -44,7 +49,6 @@ export async function main(): Promise<void> {
     9: [],
     10: [],
     11: [],
-    12: [],
   };
 
   console.log('processing deleted data...');
@@ -76,6 +80,8 @@ export async function main(): Promise<void> {
     if (osmAddr) {
       const { status, diagnostics } = processWithRef(linzId, linzAddr, osmAddr);
       statusReport[status].push([linzId, diagnostics]);
+
+      delete osmData.linz[linzId]; // visited so we can get rid of it
     } else if (duplicate) {
       const { status, diagnostics } = processDuplicates(
         linzId,

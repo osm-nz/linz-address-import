@@ -137,8 +137,8 @@
       "title": "Oakleigh",
       "type": "Feature Service",
       "totalCount": 19,
-      "description": "add 3, delete 1, edit 15",
-      "snippet": "add 3, delete 1, edit 15",
+      "description": "add 2, delete 2, edit 15",
+      "snippet": "add 2, delete 2, edit 15",
       "tags": [
         "Oakleigh",
         "address",
@@ -354,6 +354,44 @@
       "listed": false,
       "groupCategories": [
         "/Categories/Addresses"
+      ]
+    },
+    {
+      "id": "ZZ Deletions from unknown sector",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZ-Deletions-from-unknown-sector.geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
+      "name": "ZZ Deletions from unknown sector",
+      "title": "ZZ Deletions from unknown sector",
+      "type": "Feature Service",
+      "totalCount": 1,
+      "description": "delete 1",
+      "snippet": "delete 1",
+      "tags": [
+        "ZZ Deletions from unknown sector",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
+      "extent": [
+        [
+          174.949,
+          -36.900000000000006
+        ],
+        [
+          174.949,
+          -36.900000000000006
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Preview"
       ]
     },
     {

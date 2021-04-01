@@ -563,23 +563,6 @@
     },
     {
       "type": "Feature",
-      "id": "L17",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          174.917,
-          -36.9
-        ]
-      },
-      "properties": {
-        "addr_housenumber": "17",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
-        "ref_linz_address": "L17"
-      }
-    },
-    {
-      "type": "Feature",
       "id": "L54",
       "geometry": {
         "type": "Point",
@@ -610,6 +593,23 @@
         "addr_street": "Example Street",
         "addr_hamlet": "Oakleigh",
         "ref_linz_address": "SPECIAL_DELETE_L14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "oof",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.922,
+          -36.900000000000006
+        ]
+      },
+      "properties": {
+        "addr_housenumber": "22",
+        "addr_street": "Example Street",
+        "addr_hamlet": "Oakleigh",
+        "ref_linz_address": "SPECIAL_DELETE_oof"
       }
     }
   ]

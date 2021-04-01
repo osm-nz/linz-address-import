@@ -102,7 +102,7 @@ export enum Status {
   NEEDS_DELETE_NON_TRIVIAL = 9,
   CORRUPT = 10,
   LINZ_REF_CHANGED = 11,
-  UNKNOWN_ERROR = 12,
+  // 12 has been repealed since it's now obsolete. It was UNKNOWN_ERROR
 }
 
 export enum Confidence {
@@ -156,7 +156,6 @@ export type StatusDiagnostics = {
     newLinzId: string,
     osmData: OsmAddr,
   ];
-  [Status.UNKNOWN_ERROR]: OsmId;
 };
 
 export type StatusReport = {
@@ -166,11 +165,6 @@ export type StatusReport = {
 export type StatsFile = {
   total: number;
   count: Record<number, number>;
-  date: string;
-};
-export type LinzMetaFile = {
-  version: string;
-  /** the date that this version of the LINZ data was published */
   date: string;
 };
 

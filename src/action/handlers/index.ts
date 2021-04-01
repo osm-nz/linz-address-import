@@ -7,7 +7,6 @@ import { handleDuplicateLinzRef } from './handleDuplicateLinzRef';
 import { handleExistsButNoLinzRef } from './handleExistsButNoLinzRef';
 import { handleLinzRefChanged } from './handleLinzRefChanged';
 import { handleLocationWrong } from './handleLocationWrong';
-import { handleUnknown } from './handleUnknown';
 import { handleMultipleExistButNoLinzRef } from './handleMultipleExistButNoLinzRef';
 import { handleTotallyMissing } from './handleTotallyMissing';
 
@@ -29,5 +28,4 @@ export const handlers: Record<
   [Status.NEEDS_DELETE_NON_TRIVIAL]: handleDeletedOnBuilding,
   [Status.CORRUPT]: handleCorrupted,
   [Status.LINZ_REF_CHANGED]: handleLinzRefChanged,
-  [Status.UNKNOWN_ERROR]: handleUnknown,
 };

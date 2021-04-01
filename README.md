@@ -38,6 +38,6 @@ The remaining steps are done automatically by the CI
 
 ## Tests
 
-There are end-to-end tests than run based on [a mock planet file](src/__tests__/mock/planet.xml), [a mock linz CSV file](src/__tests__/mock/linz-dump.csv) and [a mock linz changelog file](src/__tests__/mock/linz-changelog.rss).
+There are end-to-end tests than run based on [a mock planet file](src/__tests__/mock/planet.xml) and [a mock linz CSV file](src/__tests__/mock/linz-dump.csv).
 
 To start the test, run `npm test`. If it changes the contents of the snapshot folder, commit those changes.
