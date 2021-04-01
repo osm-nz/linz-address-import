@@ -288,9 +288,9 @@
       "name": "Oakleigh",
       "title": "Oakleigh",
       "type": "Feature Service",
-      "totalCount": 19,
-      "description": "add 2, delete 2, edit 15",
-      "snippet": "add 2, delete 2, edit 15",
+      "totalCount": 31,
+      "description": "add 9, delete 5, edit 17",
+      "snippet": "add 9, delete 5, edit 17",
       "tags": [
         "Oakleigh",
         "address",
@@ -304,7 +304,7 @@
           -36.9022
         ],
         [
-          174.96020000000001,
+          174.989,
           -35.9998
         ]
       ],
@@ -554,9 +554,9 @@
       "name": "ZZ Special Linz Ref Changed",
       "title": "ZZ Special Linz Ref Changed",
       "type": "Feature Service",
-      "totalCount": 1,
-      "description": "edit 1",
-      "snippet": "edit 1",
+      "totalCount": 2,
+      "description": "edit 2",
+      "snippet": "edit 2",
       "tags": [
         "ZZ Special Linz Ref Changed",
         "address",
@@ -570,7 +570,7 @@
           -36.900200000000005
         ],
         [
-          174.93920000000003,
+          174.97220000000002,
           -36.899800000000006
         ]
       ],

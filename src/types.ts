@@ -5,6 +5,8 @@ export type OsmId = `${'n' | 'w' | 'r'}${string}`;
 
 export type LinzAddr = {
   housenumber: string;
+  /** @deprecated don't use, for internal use in pre-process only */
+  $houseNumberMsb?: string;
   street: string;
   suburb: Suburb;
   town: string;

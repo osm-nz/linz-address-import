@@ -41,6 +41,41 @@
         "ref_linz_address": "SPECIAL_EDIT_70039old",
         "new_linz_ref": "70039new"
       }
+    },
+    {
+      "type": "Feature",
+      "id": "SPECIAL_EDIT_stack(70072-70075)",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.972,
+              -36.899800000000006
+            ],
+            [
+              174.97220000000002,
+              -36.900000000000006
+            ],
+            [
+              174.972,
+              -36.900200000000005
+            ],
+            [
+              174.9718,
+              -36.900000000000006
+            ],
+            [
+              174.972,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "SPECIAL_EDIT_stack(70072-70075)",
+        "new_linz_ref": "stack(70072,70074-70075)"
+      }
     }
   ]
 }

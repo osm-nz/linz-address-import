@@ -8,11 +8,11 @@ export async function main(): Promise<void> {
   console.log('Starting preprocess...');
 
   console.time('osm');
-  await processOsmData();
+  const osmData = await processOsmData();
   console.timeEnd('osm');
 
   console.time('linz');
-  await processLinzData();
+  await processLinzData(osmData);
   console.timeEnd('linz');
 }
 

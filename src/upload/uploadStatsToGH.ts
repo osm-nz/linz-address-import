@@ -26,6 +26,7 @@ export async function uploadStatsToGH(): Promise<void> {
     date,
     '?',
     ...numbers, // multiple columns,
+    '', // gap because we deleted status code 12
     stats.total,
     '', // comment column
   ].join('|')}|`;

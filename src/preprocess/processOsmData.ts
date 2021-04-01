@@ -104,7 +104,8 @@ function osmToJson(): Promise<OSMData> {
   });
 }
 
-export async function processOsmData(): Promise<void> {
+export async function processOsmData(): Promise<OSMData> {
   const res = await osmToJson();
   await fs.writeFile(output, JSON.stringify(res));
+  return res;
 }

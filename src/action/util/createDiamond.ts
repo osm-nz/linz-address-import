@@ -1,5 +1,6 @@
 /** radius of the diamond */
 const RADIUS = 0.0002;
+// 0.0002° ~= 0° 0' 0.72"
 
 /** generates a bbox around a point, but as a diamond not a square */
 export function createDiamond({

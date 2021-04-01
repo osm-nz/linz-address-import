@@ -1,3 +1,4 @@
 
 Oakleigh
 70039old	->	70039new		https://osm.org/node/39
+stack(70072-70075)	->	stack(70072,70074-70075)		https://osm.org/node/72

@@ -400,6 +400,72 @@
     <tag k="ref:linz:address_id" v="70064" />
   </node>
 
+  <!-- 65 is missing from OSM, and has a macron, and is east of the antimeridian (>180deg lng) -->
+
+  <!-- 66-68 are stacked into one node in OSM. They are 66A, 66B, 66C -->
+  <node id="66" version="1" changeset="1" lat="-36.9" lon="174.966" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="66" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="stack(70066-70068)" />
+  </node>
+
+  <!-- 69-71 in a stack, but 70 deleted. So we should delete the stack and create the two addrs separately -->
+  <node id="69" version="1" changeset="1" lat="-36.9" lon="174.969" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="69" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="stack(70069-70071)" />
+  </node>
+
+  <!-- 72-75 in a stack, but 73 deleted. So we classify this as a LINZ_REF_CHANGED -->
+  <node id="72" version="1" changeset="1" lat="-36.9" lon="174.972" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="72" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="stack(70072-70075)" />
+  </node>
+
+  <!-- 76-78 in a stack, but coords are different on each one -->
+  <node id="76" version="1" changeset="1" lat="-36.9" lon="174.976" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="76" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="stack(70076-70078)" />
+  </node>
+
+  <!-- 79-81 stacked but suburb wrong -->
+  <node id="79" version="1" changeset="1" lat="-36.9" lon="174.979" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="79" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="The City of Ember" />
+    <tag k="ref:linz:address_id" v="stack(70079-70081)" />
+  </node>
+
+  <!-- 82-84 stacked but house number wrong -->
+  <node id="82" version="1" changeset="1" lat="-36.9" lon="174.982" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="82typo" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="stack(70082-70084)" />
+  </node>
+
+  <!-- 85-87 stacked but all stack members deleted by linz -->
+  <node id="85" version="1" changeset="1" lat="-36.9" lon="174.985" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="85" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="stack(70085-70087)" />
+  </node>
+
+  <!-- 89-91 stacked but 90 already in OSM individually. It will NOT suggest to delete 90. Instead it suggests to add the rest of the stack separately -->
+  <node id="90" version="1" changeset="1" lat="-36.9" lon="174.989" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="89B" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70090" />
+  </node>
+
   <!-- 96-97 and 98-99 don't exist in OSM, they are in huge hamlets that will be split into smaller sectors -->
 
   <!-- <ways> -->
