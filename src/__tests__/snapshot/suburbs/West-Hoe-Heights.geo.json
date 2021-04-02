@@ -9,7 +9,7 @@
   "features": [
     {
       "type": "Feature",
-      "id": "SPECIAL_EDIT_L19",
+      "id": "SPECIAL_EDIT_70019",
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -38,7 +38,7 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_L19",
+        "ref_linz_address": "SPECIAL_EDIT_70019",
         "addr_suburb": "West Hoe Heights"
       }
     }

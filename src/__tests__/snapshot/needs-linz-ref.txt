@@ -1,7 +1,7 @@
 
 Oakleigh
-ref:linz:address_id=L8		(4)needs to be added to		https://osm.org/node/8
-ref:linz:address_id=L9		(2)needs to be added to		https://osm.org/node/9
-ref:linz:address_id=L10		(2)needs to be added to		https://osm.org/node/10
-ref:linz:address_id=L11		(4)needs to be added to		https://osm.org/node/11
-ref:linz:address_id=L12		(4)needs to be added to		https://osm.org/node/12
+ref:linz:address_id=70008		(4)needs to be added to		https://osm.org/node/8
+ref:linz:address_id=70009		(2)needs to be added to		https://osm.org/node/9
+ref:linz:address_id=70010		(2)needs to be added to		https://osm.org/node/10
+ref:linz:address_id=70011		(4)needs to be added to		https://osm.org/node/11
+ref:linz:address_id=70012		(4)needs to be added to		https://osm.org/node/12

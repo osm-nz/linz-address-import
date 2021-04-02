@@ -1,18 +1,18 @@
 
 Oakleigh
-L4		https://osm.org/node/4		housenumber|4A|4
-L5		https://osm.org/node/5		street|Example Street|Example Lane
-L6		https://osm.org/node/6		suburb|addr_hamlet=Oakleigh|addr_hamlet=Yeetville
-L7		https://osm.org/node/7		suburb|addr_hamlet=Oakleigh|0
-L18		https://osm.org/node/18		suburb|addr_hamlet=Oakleigh|addr_suburb=Oakleigh
-L43		https://osm.org/node/43		street|Example Street|Example Lane
-L44		https://osm.org/node/44		suburb|addr_hamlet=Oakleigh|addr_suburb=Oakleigh
-L46		https://osm.org/node/46		suburb|addr_hamlet=Oakleigh|addr_suburb=West Hoe Heights
-L48		https://osm.org/node/48		housenumber|48|undefined	and	street|Example Street|undefined	and	suburb|addr_hamlet=Oakleigh|0
-L60		https://osm.org/node/60		water|0|1
+70004		https://osm.org/node/4		housenumber|4A|4
+70005		https://osm.org/node/5		street|Example Street|Example Lane
+70006		https://osm.org/node/6		suburb|addr_hamlet=Oakleigh|addr_hamlet=Yeetville
+70007		https://osm.org/node/7		suburb|addr_hamlet=Oakleigh|0
+70018		https://osm.org/node/18		suburb|addr_hamlet=Oakleigh|addr_suburb=Oakleigh
+70043		https://osm.org/node/43		street|Example Street|Example Lane
+70044		https://osm.org/node/44		suburb|addr_hamlet=Oakleigh|addr_suburb=Oakleigh
+70046		https://osm.org/node/46		suburb|addr_hamlet=Oakleigh|addr_suburb=West Hoe Heights
+70048		https://osm.org/node/48		housenumber|48|undefined	and	street|Example Street|undefined	and	suburb|addr_hamlet=Oakleigh|0
+70060		https://osm.org/node/60		water|0|1
 
 West Hoe Heights
-L19		https://osm.org/node/19		suburb|addr_suburb=West Hoe Heights|addr_hamlet=West Hoe Heights
+70019		https://osm.org/node/19		suburb|addr_suburb=West Hoe Heights|addr_hamlet=West Hoe Heights
 
 Abel Tasman National Park
-L59		https://osm.org/node/59		water|1|0
+70059		https://osm.org/node/59		water|1|0

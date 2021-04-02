@@ -9,7 +9,7 @@
   "features": [
     {
       "type": "Feature",
-      "id": "SPECIAL_EDIT_L39old",
+      "id": "SPECIAL_EDIT_70039old",
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -38,8 +38,8 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_L39old",
-        "new_linz_ref": "L39new"
+        "ref_linz_address": "SPECIAL_EDIT_70039old",
+        "new_linz_ref": "70039new"
       }
     }
   ]

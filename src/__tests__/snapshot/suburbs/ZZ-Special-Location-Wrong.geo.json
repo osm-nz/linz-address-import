@@ -9,7 +9,7 @@
   "features": [
     {
       "type": "Feature",
-      "id": "L3",
+      "id": "70003",
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -24,12 +24,12 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "LOCATION_WRONG_SPECIAL_L3"
+        "ref_linz_address": "LOCATION_WRONG_SPECIAL_70003"
       }
     },
     {
       "type": "Feature",
-      "id": "L42",
+      "id": "70042",
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -44,7 +44,7 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "LOCATION_WRONG_SPECIAL_L42"
+        "ref_linz_address": "LOCATION_WRONG_SPECIAL_70042"
       }
     }
   ]

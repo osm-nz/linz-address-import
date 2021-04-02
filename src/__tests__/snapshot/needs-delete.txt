@@ -1,10 +1,10 @@
 
 Oakleigh
-L14		needs deleting		https://osm.org/node/14
+70014		needs deleting		https://osm.org/node/14
 oof		needs deleting		https://osm.org/node/22
 
-ZZ Deletions from unknown sector
-L49doesntExist		needs deleting		https://osm.org/node/49
-
 West Hoe Heights
-L64		needs deleting		https://osm.org/node/64
+70064		needs deleting		https://osm.org/node/64
+
+ZZ Deletions from unknown sector
+70049doesntExist		needs deleting		https://osm.org/node/49

@@ -1,1 +1,1 @@
-L23A and L23B		are on the same node		https://osm.org/node/23
+70023A and 70023B		are on the same node		https://osm.org/node/23

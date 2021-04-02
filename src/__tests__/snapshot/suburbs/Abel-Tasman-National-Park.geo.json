@@ -9,7 +9,7 @@
   "features": [
     {
       "type": "Feature",
-      "id": "SPECIAL_EDIT_L59",
+      "id": "SPECIAL_EDIT_70059",
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -38,13 +38,13 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_L59",
+        "ref_linz_address": "SPECIAL_EDIT_70059",
         "addr_type": "water"
       }
     },
     {
       "type": "Feature",
-      "id": "L58",
+      "id": "70058",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -57,7 +57,7 @@
         "addr_street": "Awaroa Inlet",
         "addr_hamlet": "Abel Tasman National Park",
         "addr_type": "water",
-        "ref_linz_address": "L58"
+        "ref_linz_address": "70058"
       }
     }
   ]

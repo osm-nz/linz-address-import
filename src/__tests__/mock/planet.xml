@@ -16,7 +16,7 @@
     <tag k="addr:housenumber" v="1" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L1" />
+    <tag k="ref:linz:address_id" v="70001" />
   </node>
 
   <!-- latitude off a little -->
@@ -24,7 +24,7 @@
     <tag k="addr:housenumber" v="2" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L2" />
+    <tag k="ref:linz:address_id" v="70002" />
   </node>
 
   <!-- location off a lot -->
@@ -32,7 +32,7 @@
     <tag k="addr:housenumber" v="3" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L3" />
+    <tag k="ref:linz:address_id" v="70003" />
   </node>
 
   <!-- house number 4A in LINZ -->
@@ -40,7 +40,7 @@
     <tag k="addr:housenumber" v="4" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L4" />
+    <tag k="ref:linz:address_id" v="70004" />
   </node>
 
   <!-- 4B - LINZ gazetted that it exists, but it's not in OSM yet -->
@@ -50,7 +50,7 @@
     <tag k="addr:housenumber" v="5" />
     <tag k="addr:street" v="Example Lane" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L5" />
+    <tag k="ref:linz:address_id" v="70005" />
   </node>
 
   <!-- LINZ has the suburb as "Oakleigh", typo in OSM -->
@@ -58,44 +58,44 @@
     <tag k="addr:housenumber" v="6" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Yeetville" />
-    <tag k="ref:linz:address_id" v="L6" />
+    <tag k="ref:linz:address_id" v="70006" />
   </node>
 
   <!-- No suburb nor hamlet in OSM -->
   <node id="7" version="1" changeset="1" lat="-36.9" lon="174.907" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="7" />
     <tag k="addr:street" v="Example Street" />
-    <tag k="ref:linz:address_id" v="L7" />
+    <tag k="ref:linz:address_id" v="70007" />
   </node>
 
-  <!-- no LINZ ref (should be L8). LINZ straightforwardly has an identical entry -->
+  <!-- no LINZ ref (should be 70008). LINZ straightforwardly has an identical entry -->
   <node id="8" version="1" changeset="1" lat="-36.9" lon="174.908" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="8" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
   </node>
 
-  <!-- no LINZ ref (should be L9) also no suburb. LINZ has the correct entry -->
+  <!-- no LINZ ref (should be 70009) also no suburb. LINZ has the correct entry -->
   <node id="9" version="1" changeset="1" lat="-36.9" lon="174.909" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="9" />
     <tag k="addr:street" v="Example Street" />
   </node>
 
-  <!-- no LINZ ref (should be L10). LINZ has an identical address but the suburb is different -->
+  <!-- no LINZ ref (should be 70010). LINZ has an identical address but the suburb is different -->
   <node id="10" version="1" changeset="1" lat="-36.9" lon="174.910" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="10" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Wrongville" />
   </node>
 
-  <!-- no LINZ ref (should be L11). LINZ has an identical entry but location well off -->
+  <!-- no LINZ ref (should be 70011). LINZ has an identical entry but location well off -->
   <node id="11" version="1" changeset="1" lat="-36" lon="174.911" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="11" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
   </node>
 
-  <!-- no LINZ ref (should be L12). LINZ has an identical entry but location slightly off -->
+  <!-- no LINZ ref (should be 70012). LINZ has an identical entry but location slightly off -->
   <node id="12" version="1" changeset="1" lat="-36.902" lon="174.912" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="12" />
     <tag k="addr:street" v="Example Street" />
@@ -109,7 +109,7 @@
     <tag k="addr:housenumber" v="14" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L14" />
+    <tag k="ref:linz:address_id" v="70014" />
   </node>
 
   <!-- 15 obsolete and repealed -->
@@ -121,7 +121,7 @@
     <tag k="addr:housenumber" v="18" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:suburb" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L18" />
+    <tag k="ref:linz:address_id" v="70018" />
   </node>
 
   <!-- all correct in OSM/linz except hamlet instead of suburb -->
@@ -129,7 +129,7 @@
     <tag k="addr:housenumber" v="19" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="West Hoe Heights" />
-    <tag k="ref:linz:address_id" v="L19" />
+    <tag k="ref:linz:address_id" v="70019" />
   </node>
 
   <!-- has linz ref of 20 (i.e. perfect) -->
@@ -137,7 +137,7 @@
     <tag k="addr:housenumber" v="20" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L20" />
+    <tag k="ref:linz:address_id" v="70020" />
   </node>
 
   <!-- has linz ref of 20 -->
@@ -145,7 +145,7 @@
     <tag k="addr:housenumber" v="21" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L20" />
+    <tag k="ref:linz:address_id" v="70020" />
   </node>
 
   <!-- has non existant linz ref -->
@@ -161,7 +161,7 @@
     <tag k="addr:housenumber" v="23A;23B" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L23A;L23B" />
+    <tag k="ref:linz:address_id" v="70023A;70023B" />
   </node>
 
   <!-- 24 Example Street exists twice in OSM. this one has a linz ref -->
@@ -169,7 +169,7 @@
     <tag k="addr:housenumber" v="24" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L24" />
+    <tag k="ref:linz:address_id" v="70024" />
   </node>
 
   <!-- 24 Example Street exists twice in OSM. this one has NO linz ref, location marginally off -->
@@ -186,7 +186,7 @@
     <tag k="addr:housenumber" v="26" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L26" />
+    <tag k="ref:linz:address_id" v="70026" />
   </node>
 
   <!-- 26 Example Street exists twice in OSM. this one has NO linz ref, location very far off -->
@@ -218,7 +218,7 @@
     <tag k="addr:housenumber" v="36" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L36" />
+    <tag k="ref:linz:address_id" v="70036" />
   </node>
 
   <!-- node with shop= not in LINZ so it will be deleted -->
@@ -227,7 +227,7 @@
     <tag k="addr:housenumber" v="37" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L37" />
+    <tag k="ref:linz:address_id" v="70037" />
   </node>
 
   <!-- node with craft= not in LINZ so it will be deleted -->
@@ -236,15 +236,15 @@
     <tag k="addr:housenumber" v="38" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L38" />
+    <tag k="ref:linz:address_id" v="70038" />
   </node>
 
-  <!-- delete/re-create: L39old in OSM & delete list. L39new in linz add list. L39old == L39new except for ID -->
+  <!-- delete/re-create: 70039old in OSM & delete list. 70039new in linz add list. 70039old == 70039new except for ID -->
   <node id="39" version="1" changeset="1" lat="-36.9" lon="174.939" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="39" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L39old" />
+    <tag k="ref:linz:address_id" v="70039old" />
   </node>
 
   <!-- location off a lot but has a recent check_date -->
@@ -253,7 +253,7 @@
     <tag k="addr:housenumber" v="40" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L40" />
+    <tag k="ref:linz:address_id" v="70040" />
   </node>
 
   <!-- street name wrong but has a recent check_date -->
@@ -262,7 +262,7 @@
     <tag k="addr:housenumber" v="41" />
     <tag k="addr:street" v="Example Lane" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L41" />
+    <tag k="ref:linz:address_id" v="70041" />
   </node>
 
   <!-- location off a lot but has a non-recent check_date -->
@@ -271,7 +271,7 @@
     <tag k="addr:housenumber" v="42" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L42" />
+    <tag k="ref:linz:address_id" v="70042" />
   </node>
 
   <!-- street name wrong but has a non-recent check_date -->
@@ -280,7 +280,7 @@
     <tag k="addr:housenumber" v="43" />
     <tag k="addr:street" v="Example Lane" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L43" />
+    <tag k="ref:linz:address_id" v="70043" />
   </node>
 
   <!-- has hamlet and suburb. same value. hamlet correct -->
@@ -289,7 +289,7 @@
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
     <tag k="addr:suburb" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L44" />
+    <tag k="ref:linz:address_id" v="70044" />
   </node>
 
   <!-- has hamlet and suburb. same value. suburb correct -->
@@ -298,7 +298,7 @@
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="West Hoe Heights" />
     <tag k="addr:suburb" v="West Hoe Heights" />
-    <tag k="ref:linz:address_id" v="L45" />
+    <tag k="ref:linz:address_id" v="70045" />
   </node>
 
   <!-- has hamlet and suburb. different value. hamlet correct -->
@@ -307,7 +307,7 @@
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
     <tag k="addr:suburb" v="West Hoe Heights" />
-    <tag k="ref:linz:address_id" v="L46" />
+    <tag k="ref:linz:address_id" v="70046" />
   </node>
 
   <!-- has hamlet and suburb. different value. suburb correct -->
@@ -316,17 +316,17 @@
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
     <tag k="addr:suburb" v="West Hoe Heights" />
-    <tag k="ref:linz:address_id" v="L47" />
+    <tag k="ref:linz:address_id" v="70047" />
   </node>
 
   <!-- random node with valid linz ref but no addr details -->
   <node id="48" version="1" changeset="1" lat="-36.9" lon="174.948" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
-    <tag k="ref:linz:address_id" v="L48" />
+    <tag k="ref:linz:address_id" v="70048" />
   </node>
 
   <!-- random node with nonexistant linz ref and no addr details -->
   <node id="49" version="1" changeset="1" lat="-36.9" lon="174.949" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
-    <tag k="ref:linz:address_id" v="L49doesntExist" />
+    <tag k="ref:linz:address_id" v="70049doesntExist" />
   </node>
 
   <!-- for consistency, 50-53 Example Street do not exist -->
@@ -357,7 +357,7 @@
     <tag k="addr:street" v="Awaroa Inlet" />
     <tag k="addr:hamlet" v="Abel Tasman National Park" />
     <tag k="addr:type" v="water" />
-    <tag k="ref:linz:address_id" v="L57" />
+    <tag k="ref:linz:address_id" v="70057" />
   </node>
 
   <!-- 58 water address does not exist in OSM -->
@@ -367,7 +367,7 @@
     <tag k="addr:housenumber" v="59" />
     <tag k="addr:street" v="Awaroa Inlet" />
     <tag k="addr:hamlet" v="Abel Tasman National Park" />
-    <tag k="ref:linz:address_id" v="L59" />
+    <tag k="ref:linz:address_id" v="70059" />
   </node>
 
 
@@ -377,7 +377,7 @@
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
     <tag k="addr:type" v="water" />
-    <tag k="ref:linz:address_id" v="L60" />
+    <tag k="ref:linz:address_id" v="70060" />
   </node>
 
   <!-- 61 linz says delete, but it has a check_date -->
@@ -385,7 +385,7 @@
     <tag k="addr:housenumber" v="61" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
-    <tag k="ref:linz:address_id" v="L61" />
+    <tag k="ref:linz:address_id" v="70061" />
     <tag k="check_date" v="2022-02-02" />
   </node>
 
@@ -397,7 +397,7 @@
     <tag k="addr:housenumber" v="64" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:suburb" v="West Hoe Heights" />
-    <tag k="ref:linz:address_id" v="L64" />
+    <tag k="ref:linz:address_id" v="70064" />
   </node>
 
   <!-- <ways> -->
@@ -410,7 +410,7 @@
       <tag k="addr:housenumber" v="31" />
       <tag k="addr:street" v="Example Street" />
       <tag k="addr:hamlet" v="Oakleigh" />
-      <tag k="ref:linz:address_id" v="L31" />
+      <tag k="ref:linz:address_id" v="70031" />
     </way>
     <way id="35" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="32" />
@@ -421,7 +421,7 @@
       <tag k="addr:housenumber" v="35" />
       <tag k="addr:street" v="Example Street" />
       <tag k="addr:hamlet" v="Oakleigh" />
-      <tag k="ref:linz:address_id" v="L35" />
+      <tag k="ref:linz:address_id" v="70035" />
     </way>
 
     <way id="53" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
@@ -439,7 +439,7 @@
       <tag k="addr:housenumber" v="54" />
       <tag k="addr:street" v="Example Street" />
       <tag k="addr:hamlet" v="Oakleigh" />
-      <tag k="ref:linz:address_id" v="L54" />
+      <tag k="ref:linz:address_id" v="70054" />
     </relation>
   <!-- </relations> -->
 </osm>

@@ -9,7 +9,7 @@
   "features": [
     {
       "type": "Feature",
-      "id": "L65",
+      "id": "70065",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -21,7 +21,7 @@
         "addr_housenumber": "65",
         "addr_street": "Example Street",
         "addr_hamlet": "Rangitāhua",
-        "ref_linz_address": "L65"
+        "ref_linz_address": "70065"
       }
     }
   ]
