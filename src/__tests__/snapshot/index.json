@@ -4,110 +4,67 @@
       "name": "addr_housenumber",
       "type": "esriFieldTypeString",
       "alias": "addr:housenumber",
-      "sqlType": "sqlTypeOther",
       "length": 10,
-      "nullable": true,
-      "editable": true,
-      "domain": null,
-      "defaultValue": null
+      "editable": true
     },
     {
       "name": "addr_street",
       "type": "esriFieldTypeString",
       "alias": "addr:street",
-      "sqlType": "sqlTypeOther",
       "length": 50,
-      "nullable": true,
-      "editable": true,
-      "domain": null,
-      "defaultValue": null
+      "editable": true
     },
     {
       "name": "addr_suburb",
       "type": "esriFieldTypeString",
       "alias": "addr:suburb",
-      "sqlType": "sqlTypeOther",
       "length": 50,
-      "nullable": true,
-      "editable": true,
-      "domain": null,
-      "defaultValue": null
+      "editable": true
     },
     {
       "name": "addr_hamlet",
       "type": "esriFieldTypeString",
       "alias": "addr:hamlet",
-      "sqlType": "sqlTypeOther",
       "length": 2,
-      "nullable": true,
-      "editable": true,
-      "domain": null,
-      "defaultValue": null
+      "editable": true
     },
     {
       "name": "addr_type",
       "type": "esriFieldTypeString",
       "alias": "addr:type",
-      "sqlType": "sqlTypeOther",
       "length": 2,
-      "nullable": true,
-      "editable": true,
-      "domain": null,
-      "defaultValue": null
+      "editable": true
     },
     {
       "name": "new_linz_ref",
       "type": "esriFieldTypeString",
       "alias": "new_linz_ref",
-      "sqlType": "sqlTypeOther",
       "length": 2,
-      "nullable": true,
-      "editable": true,
-      "domain": null,
-      "defaultValue": null
+      "editable": true
     },
     {
       "name": "osm_id",
       "type": "esriFieldTypeString",
       "alias": "osm_id",
-      "sqlType": "sqlTypeOther",
       "length": 2,
-      "nullable": true,
-      "editable": true,
-      "domain": null,
-      "defaultValue": null
+      "editable": true
     },
     {
       "name": "ref_linz_address",
       "type": "esriFieldTypeOID",
       "alias": "ref:linz:address_id",
-      "sqlType": "sqlTypeOther",
       "length": 10,
-      "nullable": true,
-      "editable": true,
-      "domain": null,
-      "defaultValue": null
+      "editable": true
     }
   ],
   "results": [
     {
       "id": "Abel Tasman National Park",
-      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Abel-Tasman-National-Park.geo.json",
-      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "Abel Tasman National Park",
       "title": "Abel Tasman National Park",
-      "type": "Feature Service",
       "totalCount": 2,
-      "description": "add 1, edit 1",
       "snippet": "add 1, edit 1",
-      "tags": [
-        "Abel Tasman National Park",
-        "address",
-        "OSM",
-        "OpenStreetMap"
-      ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           174.958,
@@ -118,34 +75,17 @@
           -36.899800000000006
         ]
       ],
-      "categories": [],
-      "properties": null,
-      "access": "public",
-      "size": -1,
-      "languages": [],
-      "listed": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
     },
     {
       "id": "Duplicate Tall Hamlet - northern sector",
-      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Duplicate-Tall-Hamlet---northern-sector.geo.json",
-      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "Duplicate Tall Hamlet - northern sector",
       "title": "Duplicate Tall Hamlet - northern sector",
-      "type": "Feature Service",
       "totalCount": 1,
-      "description": "add 1",
       "snippet": "add 1",
-      "tags": [
-        "Duplicate Tall Hamlet - northern sector",
-        "address",
-        "OSM",
-        "OpenStreetMap"
-      ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           174.996,
@@ -156,34 +96,17 @@
           -35
         ]
       ],
-      "categories": [],
-      "properties": null,
-      "access": "public",
-      "size": -1,
-      "languages": [],
-      "listed": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
     },
     {
       "id": "Duplicate Tall Hamlet - southern sector",
-      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Duplicate-Tall-Hamlet---southern-sector.geo.json",
-      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "Duplicate Tall Hamlet - southern sector",
       "title": "Duplicate Tall Hamlet - southern sector",
-      "type": "Feature Service",
       "totalCount": 1,
-      "description": "add 1",
       "snippet": "add 1",
-      "tags": [
-        "Duplicate Tall Hamlet - southern sector",
-        "address",
-        "OSM",
-        "OpenStreetMap"
-      ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           174.997,
@@ -194,34 +117,17 @@
           -36.9
         ]
       ],
-      "categories": [],
-      "properties": null,
-      "access": "public",
-      "size": -1,
-      "languages": [],
-      "listed": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
     },
     {
       "id": "Duplicate Wide Hamlet - eastern sector",
-      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Duplicate-Wide-Hamlet---eastern-sector.geo.json",
-      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "Duplicate Wide Hamlet - eastern sector",
       "title": "Duplicate Wide Hamlet - eastern sector",
-      "type": "Feature Service",
       "totalCount": 1,
-      "description": "add 1",
       "snippet": "add 1",
-      "tags": [
-        "Duplicate Wide Hamlet - eastern sector",
-        "address",
-        "OSM",
-        "OpenStreetMap"
-      ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           174.999,
@@ -232,34 +138,17 @@
           -36.9
         ]
       ],
-      "categories": [],
-      "properties": null,
-      "access": "public",
-      "size": -1,
-      "languages": [],
-      "listed": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
     },
     {
       "id": "Duplicate Wide Hamlet - western sector",
-      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Duplicate-Wide-Hamlet---western-sector.geo.json",
-      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "Duplicate Wide Hamlet - western sector",
       "title": "Duplicate Wide Hamlet - western sector",
-      "type": "Feature Service",
       "totalCount": 1,
-      "description": "add 1",
       "snippet": "add 1",
-      "tags": [
-        "Duplicate Wide Hamlet - western sector",
-        "address",
-        "OSM",
-        "OpenStreetMap"
-      ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           172.998,
@@ -270,34 +159,17 @@
           -36.9
         ]
       ],
-      "categories": [],
-      "properties": null,
-      "access": "public",
-      "size": -1,
-      "languages": [],
-      "listed": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
     },
     {
       "id": "Oakleigh",
-      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Oakleigh.geo.json",
-      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "Oakleigh",
       "title": "Oakleigh",
-      "type": "Feature Service",
       "totalCount": 31,
-      "description": "add 9, delete 5, edit 17",
       "snippet": "add 9, delete 5, edit 17",
-      "tags": [
-        "Oakleigh",
-        "address",
-        "OSM",
-        "OpenStreetMap"
-      ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           174.90380000000002,
@@ -308,34 +180,17 @@
           -35.9998
         ]
       ],
-      "categories": [],
-      "properties": null,
-      "access": "public",
-      "size": -1,
-      "languages": [],
-      "listed": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
     },
     {
       "id": "Rangitāhua",
-      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Rangitāhua.geo.json",
-      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "Rangitāhua",
       "title": "Rangitāhua",
-      "type": "Feature Service",
       "totalCount": 1,
-      "description": "add 1",
       "snippet": "add 1",
-      "tags": [
-        "Rangitāhua",
-        "address",
-        "OSM",
-        "OpenStreetMap"
-      ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           -176.035,
@@ -346,34 +201,17 @@
           -36.9
         ]
       ],
-      "categories": [],
-      "properties": null,
-      "access": "public",
-      "size": -1,
-      "languages": [],
-      "listed": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
     },
     {
       "id": "West Hoe Heights",
-      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/West-Hoe-Heights.geo.json",
-      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "West Hoe Heights",
       "title": "West Hoe Heights",
-      "type": "Feature Service",
       "totalCount": 1,
-      "description": "edit 1",
       "snippet": "edit 1",
-      "tags": [
-        "West Hoe Heights",
-        "address",
-        "OSM",
-        "OpenStreetMap"
-      ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           174.9188,
@@ -384,34 +222,17 @@
           -36.899800000000006
         ]
       ],
-      "categories": [],
-      "properties": null,
-      "access": "public",
-      "size": -1,
-      "languages": [],
-      "listed": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
     },
     {
       "id": "West Hoe Heights (Another Town)",
-      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/West-Hoe-Heights-(Another-Town).geo.json",
-      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "West Hoe Heights (Another Town)",
       "title": "West Hoe Heights (Another Town)",
-      "type": "Feature Service",
       "totalCount": 1,
-      "description": "add 1",
       "snippet": "add 1",
-      "tags": [
-        "West Hoe Heights (Another Town)",
-        "address",
-        "OSM",
-        "OpenStreetMap"
-      ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           174.963,
@@ -422,34 +243,17 @@
           -36.9
         ]
       ],
-      "categories": [],
-      "properties": null,
-      "access": "public",
-      "size": -1,
-      "languages": [],
-      "listed": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
     },
     {
       "id": "West Hoe Heights (Deletions)",
-      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/West-Hoe-Heights-(Deletions).geo.json",
-      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "West Hoe Heights (Deletions)",
       "title": "West Hoe Heights (Deletions)",
-      "type": "Feature Service",
       "totalCount": 1,
-      "description": "delete 1",
       "snippet": "delete 1",
-      "tags": [
-        "West Hoe Heights (Deletions)",
-        "address",
-        "OSM",
-        "OpenStreetMap"
-      ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           174.964,
@@ -460,34 +264,17 @@
           -36.900000000000006
         ]
       ],
-      "categories": [],
-      "properties": null,
-      "access": "public",
-      "size": -1,
-      "languages": [],
-      "listed": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
     },
     {
       "id": "West Hoe Heights (Silverdale)",
-      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/West-Hoe-Heights-(Silverdale).geo.json",
-      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "West Hoe Heights (Silverdale)",
       "title": "West Hoe Heights (Silverdale)",
-      "type": "Feature Service",
       "totalCount": 1,
-      "description": "add 1",
       "snippet": "add 1",
-      "tags": [
-        "West Hoe Heights (Silverdale)",
-        "address",
-        "OSM",
-        "OpenStreetMap"
-      ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           174.962,
@@ -498,34 +285,17 @@
           -36.9
         ]
       ],
-      "categories": [],
-      "properties": null,
-      "access": "public",
-      "size": -1,
-      "languages": [],
-      "listed": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
     },
     {
       "id": "ZZ Deletions from unknown sector",
-      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZ-Deletions-from-unknown-sector.geo.json",
-      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "ZZ Deletions from unknown sector",
       "title": "ZZ Deletions from unknown sector",
-      "type": "Feature Service",
       "totalCount": 1,
-      "description": "delete 1",
       "snippet": "delete 1",
-      "tags": [
-        "ZZ Deletions from unknown sector",
-        "address",
-        "OSM",
-        "OpenStreetMap"
-      ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           174.949,
@@ -536,34 +306,17 @@
           -36.900000000000006
         ]
       ],
-      "categories": [],
-      "properties": null,
-      "access": "public",
-      "size": -1,
-      "languages": [],
-      "listed": false,
       "groupCategories": [
         "/Categories/Preview"
       ]
     },
     {
       "id": "ZZ Special Linz Ref Changed",
-      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZ-Special-Linz-Ref-Changed.geo.json",
-      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "ZZ Special Linz Ref Changed",
       "title": "ZZ Special Linz Ref Changed",
-      "type": "Feature Service",
       "totalCount": 2,
-      "description": "edit 2",
       "snippet": "edit 2",
-      "tags": [
-        "ZZ Special Linz Ref Changed",
-        "address",
-        "OSM",
-        "OpenStreetMap"
-      ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           174.93880000000001,
@@ -574,34 +327,17 @@
           -36.899800000000006
         ]
       ],
-      "categories": [],
-      "properties": null,
-      "access": "public",
-      "size": -1,
-      "languages": [],
-      "listed": false,
       "groupCategories": [
         "/Categories/Preview"
       ]
     },
     {
       "id": "ZZ Special Location Wrong",
-      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZ-Special-Location-Wrong.geo.json",
-      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
       "name": "ZZ Special Location Wrong",
       "title": "ZZ Special Location Wrong",
-      "type": "Feature Service",
       "totalCount": 2,
-      "description": "move 2",
       "snippet": "move 2",
-      "tags": [
-        "ZZ Special Location Wrong",
-        "address",
-        "OSM",
-        "OpenStreetMap"
-      ],
-      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
       "extent": [
         [
           174.903,
@@ -612,12 +348,6 @@
           -36
         ]
       ],
-      "categories": [],
-      "properties": null,
-      "access": "public",
-      "size": -1,
-      "languages": [],
-      "listed": false,
       "groupCategories": [
         "/Categories/Preview"
       ]
