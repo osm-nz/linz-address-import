@@ -41,6 +41,23 @@
         "ref_linz_address": "SPECIAL_EDIT_70019",
         "addr_suburb": "West Hoe Heights"
       }
+    },
+    {
+      "type": "Feature",
+      "id": "70064",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.964,
+          -36.900000000000006
+        ]
+      },
+      "properties": {
+        "addr_housenumber": "64",
+        "addr_street": "Example Street",
+        "addr_suburb": "West Hoe Heights",
+        "ref_linz_address": "SPECIAL_DELETE_70064"
+      }
     }
   ]
 }

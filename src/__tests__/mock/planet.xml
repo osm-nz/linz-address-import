@@ -466,6 +466,14 @@
     <tag k="ref:linz:address_id" v="70090" />
   </node>
 
+  <!-- 92-95 are stacked in OSM, but LINZ says 95 should be mapped separately -->
+  <node id="92" version="1" changeset="1" lat="-36.9" lon="174.992" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="92" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="stack(70092-70095)" />
+  </node>
+
   <!-- 96-97 and 98-99 don't exist in OSM, they are in huge hamlets that will be split into smaller sectors -->
 
   <!-- <ways> -->

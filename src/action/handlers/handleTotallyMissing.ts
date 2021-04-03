@@ -46,7 +46,7 @@ export async function handleTotallyMissing(
   for (const [linzId, [suburb, osmAddr]] of needsDeleteArr) {
     // ideally we would deduce which town this deletion belongs to,
     // but there is no trivial way of doing that, so we create a third suburb (Deletions)
-    const key = duplicates.includes(suburb) ? `${suburb} (Deletions)` : suburb;
+    const key = suburb;
 
     bySuburb[key] ||= [];
 

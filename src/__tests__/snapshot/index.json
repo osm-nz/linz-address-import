@@ -210,15 +210,15 @@
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/West-Hoe-Heights.geo.json",
       "name": "West Hoe Heights",
       "title": "West Hoe Heights",
-      "totalCount": 1,
-      "snippet": "edit 1",
+      "totalCount": 2,
+      "snippet": "delete 1, edit 1",
       "extent": [
         [
           174.9188,
           -36.900200000000005
         ],
         [
-          174.91920000000002,
+          174.964,
           -36.899800000000006
         ]
       ],
@@ -241,27 +241,6 @@
         [
           174.963,
           -36.9
-        ]
-      ],
-      "groupCategories": [
-        "/Categories/Addresses"
-      ]
-    },
-    {
-      "id": "West Hoe Heights (Deletions)",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/West-Hoe-Heights-(Deletions).geo.json",
-      "name": "West Hoe Heights (Deletions)",
-      "title": "West Hoe Heights (Deletions)",
-      "totalCount": 1,
-      "snippet": "delete 1",
-      "extent": [
-        [
-          174.964,
-          -36.900000000000006
-        ],
-        [
-          174.964,
-          -36.900000000000006
         ]
       ],
       "groupCategories": [
