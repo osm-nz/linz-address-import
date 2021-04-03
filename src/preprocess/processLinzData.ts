@@ -44,7 +44,11 @@ function mergeIntoStacks(_linzData: LinzData, osmData: OSMData): LinzData {
       /** a uniq key to identify this *house* (which may have multiple flats) */
       const houseKey = `${a.$houseNumberMsb!}|${a.street}${a.suburb}`;
       visited[houseKey] ||= [];
-      visited[houseKey].push([linzId, <const>`${a.lat},${a.lng}`]);
+      visited[houseKey].push([
+        linzId,
+        // round to nearest 0.05seconds of latitude/longitude in case the points are slightly off
+        <`${number},${number}`>`${a.lat.toFixed(4)},${a.lng.toFixed(4)}`,
+      ]);
     }
 
     // ideally we would delete this prop, but it OOMs since it basically creates a clone of `out` in memory
@@ -56,7 +60,10 @@ function mergeIntoStacks(_linzData: LinzData, osmData: OSMData): LinzData {
 
   for (const houseKey in visited) {
     const addrIds = visited[houseKey]; // a list of all flats at this MSB house number
-    const alreadyMappedSeparatelyInOsm = addrIds.some(alreadyInOsm);
+
+    // >2 because maybe someone got confused with the IDs and mapped a single one.
+    const alreadyMappedSeparatelyInOsm =
+      addrIds.filter(alreadyInOsm).length > 2;
 
     const uniqLoc = addrIds.map(([, pos]) => pos).filter(uniq).length;
 

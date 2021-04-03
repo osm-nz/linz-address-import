@@ -458,7 +458,7 @@
     <tag k="ref:linz:address_id" v="stack(70085-70087)" />
   </node>
 
-  <!-- 89-91 stacked but 90 already in OSM individually. It will NOT suggest to delete 90. Instead it suggests to add the rest of the stack separately -->
+  <!-- 89-91 stacked but 90 already in OSM individually. It will suggest to delete 90 and create a stack instead -->
   <node id="90" version="1" changeset="1" lat="-36.9" lon="174.989" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="89B" />
     <tag k="addr:street" v="Example Street" />
