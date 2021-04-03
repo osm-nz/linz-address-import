@@ -5,6 +5,7 @@ import { outFolder, mock, suburbsFolder } from './util';
 import { generateStats } from './generateStats';
 import { handlers } from './handlers';
 import { createIndex } from './createIndex';
+import { sectorize } from './sectorize';
 
 export async function main(): Promise<void> {
   console.log('Reading status file into memory...');
@@ -40,7 +41,7 @@ export async function main(): Promise<void> {
     }
   }
 
-  await createIndex(features);
+  await createIndex(sectorize(features));
 }
 
 if (process.env.NODE_ENV !== 'test') main();

@@ -200,3 +200,9 @@ export type BBox = {
 };
 
 export type HandlerReturn = Record<string, GeoJsonFeature[]>;
+export type HandlerReturnWithBBox = {
+  [sectorName: string]: {
+    features: GeoJsonFeature[];
+    bbox: BBox;
+  };
+};

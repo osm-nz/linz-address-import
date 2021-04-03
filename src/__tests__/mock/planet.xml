@@ -400,6 +400,8 @@
     <tag k="ref:linz:address_id" v="70064" />
   </node>
 
+  <!-- 96-97 and 98-99 don't exist in OSM, they are in huge hamlets that will be split into smaller sectors -->
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />

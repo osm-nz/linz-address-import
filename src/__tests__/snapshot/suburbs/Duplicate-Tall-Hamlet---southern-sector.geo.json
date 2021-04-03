@@ -1,0 +1,28 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "70097",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.997,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr_housenumber": "97",
+        "addr_street": "Example Street",
+        "addr_hamlet": "Duplicate Tall Hamlet",
+        "ref_linz_address": "70097"
+      }
+    }
+  ]
+}

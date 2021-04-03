@@ -45,5 +45,3 @@ export async function uploadStatsToGH(): Promise<void> {
   });
   if (status !== 200) throw new Error(`HTTP ${status} from PATCH`);
 }
-
-uploadStatsToGH();

@@ -1,20 +1,15 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
-import { GeoJson, HandlerReturn } from '../types';
-import {
-  calcBBox,
-  calcCount,
-  CDN_URL,
-  mock,
-  REGEX,
-  suburbsFolder,
-} from './util';
+import { GeoJson, HandlerReturnWithBBox } from '../types';
+import { calcCount, CDN_URL, mock, REGEX, suburbsFolder } from './util';
 
-export async function createIndex(suburbs: HandlerReturn): Promise<void> {
+export async function createIndex(
+  suburbs: HandlerReturnWithBBox,
+): Promise<void> {
   const meta = Object.entries(suburbs).map(([suburb, v]) => ({
     suburb,
-    bbox: calcBBox(v),
-    ...calcCount(v),
+    bbox: v.bbox,
+    ...calcCount(v.features),
   }));
 
   // create index.json
@@ -155,7 +150,7 @@ export async function createIndex(suburbs: HandlerReturn): Promise<void> {
     const geojson: GeoJson = {
       type: 'FeatureCollection',
       crs: { type: 'name', properties: { name: 'EPSG:4326' } },
-      features: suburbs[suburb],
+      features: suburbs[suburb].features,
     };
     await fs.writeFile(
       join(suburbsFolder, `${suburb.replace(REGEX, '-')}.geo.json`),

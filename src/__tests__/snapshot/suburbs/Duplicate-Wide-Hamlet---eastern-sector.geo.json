@@ -1,0 +1,28 @@
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:4326"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "70099",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.999,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr_housenumber": "99",
+        "addr_street": "Example Street",
+        "addr_hamlet": "Duplicate Wide Hamlet",
+        "ref_linz_address": "70099"
+      }
+    }
+  ]
+}

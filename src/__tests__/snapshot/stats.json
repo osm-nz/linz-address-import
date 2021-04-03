@@ -7,11 +7,11 @@
     "MULTIPLE_EXIST_BUT_NO_LINZ_REF": 1,
     "MULTIPLE_EXIST": 1,
     "EXISTS_BUT_LOCATION_WRONG": 2,
-    "TOTALLY_MISSING": 6,
+    "TOTALLY_MISSING": 10,
     "NEEDS_DELETE": 4,
     "NEEDS_DELETE_NON_TRIVIAL": 4,
     "CORRUPT": 2,
     "LINZ_REF_CHANGED": 1
   },
-  "total": 48
+  "total": 52
 }

@@ -129,6 +129,158 @@
       ]
     },
     {
+      "id": "Duplicate Tall Hamlet - northern sector",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Duplicate-Tall-Hamlet---northern-sector.geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
+      "name": "Duplicate Tall Hamlet - northern sector",
+      "title": "Duplicate Tall Hamlet - northern sector",
+      "type": "Feature Service",
+      "totalCount": 1,
+      "description": "add 1",
+      "snippet": "add 1",
+      "tags": [
+        "Duplicate Tall Hamlet - northern sector",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
+      "extent": [
+        [
+          174.996,
+          -35
+        ],
+        [
+          174.996,
+          -35
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
+      "id": "Duplicate Tall Hamlet - southern sector",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Duplicate-Tall-Hamlet---southern-sector.geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
+      "name": "Duplicate Tall Hamlet - southern sector",
+      "title": "Duplicate Tall Hamlet - southern sector",
+      "type": "Feature Service",
+      "totalCount": 1,
+      "description": "add 1",
+      "snippet": "add 1",
+      "tags": [
+        "Duplicate Tall Hamlet - southern sector",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
+      "extent": [
+        [
+          174.997,
+          -36.9
+        ],
+        [
+          174.997,
+          -36.9
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
+      "id": "Duplicate Wide Hamlet - eastern sector",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Duplicate-Wide-Hamlet---eastern-sector.geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
+      "name": "Duplicate Wide Hamlet - eastern sector",
+      "title": "Duplicate Wide Hamlet - eastern sector",
+      "type": "Feature Service",
+      "totalCount": 1,
+      "description": "add 1",
+      "snippet": "add 1",
+      "tags": [
+        "Duplicate Wide Hamlet - eastern sector",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
+      "extent": [
+        [
+          174.999,
+          -36.9
+        ],
+        [
+          174.999,
+          -36.9
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
+      "id": "Duplicate Wide Hamlet - western sector",
+      "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Duplicate-Wide-Hamlet---western-sector.geo.json",
+      "itemURL": "https://linz-addr-cdn.kyle.kiwi",
+      "name": "Duplicate Wide Hamlet - western sector",
+      "title": "Duplicate Wide Hamlet - western sector",
+      "type": "Feature Service",
+      "totalCount": 1,
+      "description": "add 1",
+      "snippet": "add 1",
+      "tags": [
+        "Duplicate Wide Hamlet - western sector",
+        "address",
+        "OSM",
+        "OpenStreetMap"
+      ],
+      "thumbnail": "https://linz-addr.kyle.kiwi/img/thumbnail.png",
+      "extent": [
+        [
+          172.998,
+          -36.9
+        ],
+        [
+          172.998,
+          -36.9
+        ]
+      ],
+      "categories": [],
+      "properties": null,
+      "access": "public",
+      "size": -1,
+      "languages": [],
+      "listed": false,
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
       "id": "Oakleigh",
       "licenseInfo": "See https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Oakleigh.geo.json",
