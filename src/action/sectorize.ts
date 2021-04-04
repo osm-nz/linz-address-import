@@ -33,7 +33,11 @@ export function sectorize(
     const isTall = bbox.maxLat - bbox.minLat > LAT_THRESHOLD;
     const isWide = bbox.maxLng - bbox.minLng > LNG_THRESHOLD;
 
-    if (suburb.startsWith('ZZ ') || suburb === 'Address Update') {
+    if (
+      suburb.startsWith('ZZ ') ||
+      suburb.startsWith('Z ') ||
+      suburb === 'Address Update'
+    ) {
       // special sector, split this by region
       const out: Record<string, GeoJsonFeature[]> = {};
       for (const f of features) {

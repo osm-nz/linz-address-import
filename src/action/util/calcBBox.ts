@@ -24,6 +24,10 @@ export function calcBBox(features: GeoJsonFeature[]): BBox {
       f.geometry.coordinates.forEach(visit);
     } else if (f.geometry.type === 'Polygon') {
       f.geometry.coordinates.forEach((ring) => ring.forEach(visit));
+    } else if (f.geometry.type === 'MultiPolygon') {
+      f.geometry.coordinates.forEach((member) =>
+        member.forEach((ring) => ring.forEach(visit)),
+      );
     }
   }
   return bbox;
