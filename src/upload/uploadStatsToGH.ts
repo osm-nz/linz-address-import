@@ -20,13 +20,14 @@ export async function uploadStatsToGH(): Promise<void> {
   }).then((r) => r.json());
 
   const date = stats.date.split('T')[0];
-  const numbers = Object.values(stats.count);
+  const numbers: (string | number)[] = Object.values(stats.count);
+
+  numbers.splice(11, 0, ''); // gap because we deleted status code 12
 
   const newLine = `|${[
     date,
     '?',
     ...numbers, // multiple columns,
-    '', // gap because we deleted status code 12
     stats.total,
     '', // comment column
   ].join('|')}|`;

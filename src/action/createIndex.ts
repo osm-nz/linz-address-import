@@ -14,6 +14,7 @@ export async function createIndex(
 
   // create index.json
   const indexFile = {
+    // heritage - we could technically remove this. Requires updating geojson files too
     fields: [
       {
         name: 'addr_housenumber',

@@ -1,6 +1,7 @@
 import { HandlerReturn, Status, StatusReport } from '../../types';
 import { existsButDataWrong } from './existsButDataWrong';
 import { handleCorrupted } from './handleCorrupted';
+import { handleCouldBeStacked } from './handleCouldBeStacked';
 import { handleDeleted } from './handleDeleted';
 import { handleDeletedOnBuilding } from './handleDeletedOnBuilding';
 import { handleDuplicateLinzRef } from './handleDuplicateLinzRef';
@@ -28,4 +29,5 @@ export const handlers: Record<
   [Status.NEEDS_DELETE_NON_TRIVIAL]: handleDeletedOnBuilding,
   [Status.CORRUPT]: handleCorrupted,
   [Status.LINZ_REF_CHANGED]: handleLinzRefChanged,
+  [Status.COULD_BE_STACKED]: handleCouldBeStacked,
 };

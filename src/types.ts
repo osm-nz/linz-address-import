@@ -52,6 +52,15 @@ export type OSMData = {
 
 export type DeletionData = [linzId: string, suburb: string][];
 
+export type CouldStackData = {
+  [linzId: string]: [
+    osmId: OsmId,
+    suburb: string,
+    readableAddr: string,
+    meta: number | `${number}+${number}`,
+  ];
+};
+
 export type LinzSourceAddress = {
   // we should be careful to use the same fields as the original import
   // https://git.nzoss.org.nz/ewblen/osmlinzaddr/-/blob/master/import-xref.sql#L156-166
@@ -105,6 +114,7 @@ export enum Status {
   CORRUPT = 10,
   LINZ_REF_CHANGED = 11,
   // 12 has been repealed since it's now obsolete. It was UNKNOWN_ERROR
+  COULD_BE_STACKED = 13,
 }
 
 export enum Confidence {
@@ -158,6 +168,7 @@ export type StatusDiagnostics = {
     newLinzId: string,
     osmData: OsmAddr,
   ];
+  [Status.COULD_BE_STACKED]: CouldStackData[string];
 };
 
 export type StatusReport = {

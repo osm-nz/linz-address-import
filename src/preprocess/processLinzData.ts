@@ -1,7 +1,13 @@
 import { promises as fs, createReadStream } from 'fs';
 import { join } from 'path';
 import csv from 'csv-parser';
-import { LinzSourceAddress, LinzData, LinzAddr, OSMData } from '../types';
+import {
+  LinzSourceAddress,
+  LinzData,
+  LinzAddr,
+  OSMData,
+  CouldStackData,
+} from '../types';
 import { toStackId } from '../common';
 
 const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
@@ -13,6 +19,7 @@ const input = join(
   mock ? '../__tests__/mock/linz-dump.csv' : '../../data/linz.csv',
 );
 const output = join(__dirname, `../../data/linz${mock}.json`);
+const outputStack = join(__dirname, `../../data/linzCouldStack${mock}.json`);
 
 function uniq<T>(value: T, index: number, self: T[]) {
   return self.indexOf(value) === index;
@@ -31,10 +38,14 @@ const correctLng = (lng: number) => {
   return lng - 360;
 };
 
-function mergeIntoStacks(_linzData: LinzData, osmData: OSMData): LinzData {
+async function mergeIntoStacks(
+  _linzData: LinzData,
+  osmData: OSMData,
+): Promise<LinzData> {
   const linzData = _linzData;
   console.log('\nmerging some addresses into stacks...');
   const visited: VisitedCoords = {};
+  const couldBeStacked: CouldStackData = {};
 
   for (const linzId in linzData) {
     const a = linzData[linzId];
@@ -62,8 +73,8 @@ function mergeIntoStacks(_linzData: LinzData, osmData: OSMData): LinzData {
     const addrIds = visited[houseKey]; // a list of all flats at this MSB house number
 
     // >2 because maybe someone got confused with the IDs and mapped a single one.
-    const alreadyMappedSeparatelyInOsm =
-      addrIds.filter(alreadyInOsm).length > 2;
+    const inOsm = addrIds.filter(alreadyInOsm);
+    const alreadyMappedSeparatelyInOsm = inOsm.length > 2;
 
     const uniqLoc = addrIds.map(([, pos]) => pos).filter(uniq).length;
 
@@ -72,30 +83,42 @@ function mergeIntoStacks(_linzData: LinzData, osmData: OSMData): LinzData {
      */
     const flatsMostlyStacked = uniqLoc / addrIds.length <= 0.5;
 
-    if (
-      addrIds.length > STACK_THRESHOLD &&
-      !alreadyMappedSeparatelyInOsm &&
-      flatsMostlyStacked
-    ) {
-      // this address should be stacked.
-      const [firstLinzId] = addrIds[0];
+    if (addrIds.length > STACK_THRESHOLD && flatsMostlyStacked) {
+      const housenumberMsb = houseKey.split('|')[0];
 
-      const stackId = toStackId(addrIds.map((x) => x[0]));
-      const stackedAddr: LinzAddr = {
-        ...linzData[firstLinzId],
-        housenumber: houseKey.split('|')[0], // replace `62A` or `Flat 1, 62` with `62`
-      };
+      if (alreadyMappedSeparatelyInOsm) {
+        // the 2017 import generated a lot of these, so we won't suggest undoing all
+        // that hard work. But we generate a diagnostic for them.
+        for (const [linzId] of inOsm) {
+          const a = linzData[linzId];
+          const [inOsmL, totalL] = [inOsm.length, addrIds.length];
+          couldBeStacked[linzId] = [
+            osmData.linz[linzId].osmId,
+            a.suburb[1],
+            `${housenumberMsb} ${a.street}`,
+            inOsmL === totalL ? inOsmL : <const>`${inOsmL}+${totalL - inOsmL}`,
+          ];
+        }
+      } else {
+        // this address should be stacked.
+        const [firstLinzId] = addrIds[0];
 
-      // delete the individual addresses
-      for (const [linzId] of addrIds) delete linzData[linzId];
+        const stackId = toStackId(addrIds.map((x) => x[0]));
+        const stackedAddr: LinzAddr = {
+          ...linzData[firstLinzId],
+          housenumber: housenumberMsb, // replace `62A` or `Flat 1, 62` with `62`
+        };
 
-      // add the stacked address
-      linzData[stackId] = stackedAddr;
+        // delete the individual addresses
+        for (const [linzId] of addrIds) delete linzData[linzId];
+
+        // add the stacked address
+        linzData[stackId] = stackedAddr;
+      }
     }
   }
 
-  // we basically need a second step - look thru every expanded stack ID from OSM, if the data is still in linzData
-  // with it's original linz ID, delete it and add it to the stack ID that it's in in OSM. Very annoying
+  await fs.writeFile(outputStack, JSON.stringify(couldBeStacked));
 
   return linzData;
 }

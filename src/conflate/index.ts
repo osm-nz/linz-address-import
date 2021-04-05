@@ -1,6 +1,12 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
-import { OSMData, LinzData, Status, DeletionData } from '../types';
+import {
+  OSMData,
+  LinzData,
+  Status,
+  DeletionData,
+  CouldStackData,
+} from '../types';
 import { processWithRef } from './processWithRef';
 import { processWithoutRef } from './processWithoutRef';
 import { findPotentialOsmAddresses } from './findPotentialOsmAddresses';
@@ -19,6 +25,14 @@ export async function main(): Promise<void> {
   console.log('Reading OSM data into memory...');
   const osmData: OSMData = JSON.parse(
     await fs.readFile(join(__dirname, `../../data/osm${mock}.json`), 'utf-8'),
+  );
+
+  console.log('Reading could-stack data into memory...');
+  const couldBeStacked: CouldStackData = JSON.parse(
+    await fs.readFile(
+      join(__dirname, `../../data/linzCouldStack${mock}.json`),
+      'utf-8',
+    ),
   );
 
   console.log('Computing which addresses to delte...');
@@ -49,6 +63,7 @@ export async function main(): Promise<void> {
     9: [],
     10: [],
     11: [],
+    13: [],
   };
 
   console.log('processing deleted data...');
@@ -71,6 +86,14 @@ export async function main(): Promise<void> {
   for (const linzId in linzData) {
     // skip this one if it's a LINZ_REF_CHANGED
     if (doNotCreate.includes(linzId)) continue; // eslint-disable-line no-continue
+
+    if (couldBeStacked[linzId]) {
+      statusReport[Status.COULD_BE_STACKED].push([
+        linzId,
+        couldBeStacked[linzId],
+      ]);
+      continue; // eslint-disable-line no-continue
+    }
 
     const osmAddr = osmData.linz[linzId];
     const linzAddr = linzData[linzId];

@@ -476,6 +476,26 @@
 
   <!-- 96-97 and 98-99 don't exist in OSM, they are in huge hamlets that will be split into smaller sectors -->
 
+  <!-- 100-102 are mapped separated in OSM, but could be replaced with a stack in OSM -->
+  <node id="100" version="1" changeset="1" lat="-36.9" lon="175.100" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="100A" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70100" />
+  </node>
+  <node id="101" version="1" changeset="1" lat="-36.9" lon="175.101" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="100B" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70101" />
+  </node>
+  <node id="102" version="1" changeset="1" lat="-36.9" lon="175.102" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="100C" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70102" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />

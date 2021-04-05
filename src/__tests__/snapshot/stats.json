@@ -11,7 +11,8 @@
     "NEEDS_DELETE": 8,
     "NEEDS_DELETE_NON_TRIVIAL": 4,
     "CORRUPT": 2,
-    "LINZ_REF_CHANGED": 2
+    "LINZ_REF_CHANGED": 2,
+    "COULD_BE_STACKED": 3
   },
-  "total": 67
+  "total": 70
 }
