@@ -12,7 +12,7 @@ describe('generateMd', () => {
       },
     };
     expect(generateMd(input)).toMatchInlineSnapshot(`
-      "## \`v123\` - March 2, 2021
+      "## \`v123\` - 2 March 2021
 
       - [ ] available to import
 
