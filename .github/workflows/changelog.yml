@@ -3,6 +3,7 @@ name: Changelog
 on:
   schedule:
     - cron: '0 3 * * *' # at 3am
+  workflow_dispatch:
 
 jobs:
   build:
