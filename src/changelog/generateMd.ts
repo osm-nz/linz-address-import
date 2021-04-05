@@ -31,8 +31,8 @@ export function generateMd({
     day: 'numeric',
     month: 'long',
     year: 'numeric',
+    timeZone: 'Pacific/Auckland',
   });
-  new Date().toLocaleDateString();
   return `## \`v${version}\` - ${niceDate}
 
 - [ ] available to import
