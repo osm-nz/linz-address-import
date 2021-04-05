@@ -4,7 +4,7 @@ describe('processChangelog', () => {
   it('returns the correct JSON', async () => {
     expect(await processChangelog('245')).toMatchInlineSnapshot(`
       Object {
-        "date": "2021-03-12T14:39:30.000Z",
+        "date": "2021-03-12T13:37:56.287567Z",
         "json": Object {
           "add": Object {
             "Oakleigh": 1,

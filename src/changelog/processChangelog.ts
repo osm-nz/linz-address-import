@@ -12,45 +12,49 @@ const MAP = <const>{
   DELETE: 'delete',
 };
 
-async function fetchLinzChangelogRss() {
-  const xml = mock
-    ? await fs.readFile(
-        join(__dirname, '../__tests__/mock/linz-changelog.rss'),
-        'utf8',
+type LinzChangelogRss = {
+  version: string;
+  data: {
+    published_at: string;
+  }[];
+};
+
+async function fetchLinzChangelogRss(LINZ_API_KEY: string) {
+  const json: LinzChangelogRss = mock
+    ? JSON.parse(
+        await fs.readFile(
+          join(__dirname, '../__tests__/mock/linz-changelog.json'),
+          'utf8',
+        ),
       )
     : await fetch(
-        'https://data.linz.govt.nz/feeds/layers/53353/revisions',
-      ).then((r) => r.text());
+        `https://data.linz.govt.nz/services/api/v1/layers/53353/versions/?page_size=5&key=${LINZ_API_KEY}&format=json`,
+        { headers: { expand: 'list' } },
+      ).then(async (r) => ({
+        data: await r.json(),
+        version: r.headers.get('X-Resource-Range')?.split('/')[1],
+      }));
 
-  // don't need an XML parser if all we want is this
-  const [lastUpdate, secondLastUpdate] = [
-    ...xml.matchAll(/<published>(.+)<\/published>/g),
-  ].map((x) => x[1]);
-  const version = xml.match(/Revision (.+)<\/title>/)?.[1];
+  const lastUpdate = json.data[0].published_at;
+  const secondLastUpdate = json.data[1].published_at;
+  const { version } = json;
 
   if (!lastUpdate || !secondLastUpdate || !version) {
     throw new Error("Failed to parse LINZ's RSS changelog");
   }
 
-  // fix dodgy python ISO date returned. needs to end in `.12345Z` not `+12:34`
   return {
-    to: new Date(lastUpdate).toISOString(),
-    from: new Date(secondLastUpdate).toISOString(),
+    to: lastUpdate,
+    from: secondLastUpdate,
     version,
   };
 }
 
 // perf baseline is 17seconds (most of that is waiting for LINZ's API)
-async function processLinzChangelogCsv({
-  from,
-  to,
-}: {
-  from: string;
-  to: string;
-}): Promise<ChangelogJson> {
-  const { LINZ_API_KEY } = process.env;
-  if (!LINZ_API_KEY) throw new Error('No LINZ_API_KEY env variable');
-
+async function processLinzChangelogCsv(
+  LINZ_API_KEY: string,
+  { from, to }: { from: string; to: string },
+): Promise<ChangelogJson> {
   const stream = mock
     ? createReadStream(join(__dirname, '../__tests__/mock/linz-changelog.csv'))
     : await fetch(
@@ -86,14 +90,18 @@ export async function processChangelog(
       json: ChangelogJson;
     }
 > {
+  const { LINZ_API_KEY } = process.env;
+  if (!LINZ_API_KEY) throw new Error('No LINZ_API_KEY env variable');
+
   console.log('fetching rss...');
-  const { from, to, version } = await fetchLinzChangelogRss();
+  const { from, to, version } = await fetchLinzChangelogRss(LINZ_API_KEY);
+  console.log(`Last version is ${version} (from ${from} to ${to})`);
 
   // we've already left a comment for this version, so exit now
   if (version === latestKnownVersion) return undefined;
 
   console.log(version, 'is a new version, fetching csv...');
-  const json = await processLinzChangelogCsv({ from, to });
+  const json = await processLinzChangelogCsv(LINZ_API_KEY, { from, to });
 
   return { version, date: to, json };
 }
