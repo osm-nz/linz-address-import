@@ -1,0 +1,6 @@
+__change__,address_id,suburb_locality
+DELETE,80001,Oakleigh
+DELETE,80002,Oakleigh
+DELETE,80003,West Hoe Heights
+INSERT,80004,Oakleigh
+UPDATE,80005,Oakleigh

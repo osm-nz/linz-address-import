@@ -101,6 +101,15 @@ export type LinzSourceAddress = {
   /** @deprecated */ full_address_ascii: string;
 };
 
+export type LinzChangelog = LinzSourceAddress & {
+  __change__: 'INSERT' | 'UPDATE' | 'DELETE';
+};
+export type ChangelogJson = {
+  add: { [suburb: string]: number };
+  update: { [suburb: string]: number };
+  delete: { [suburb: string]: number };
+};
+
 export enum Status {
   PERFECT = 1, // processWithRef
   EXISTS_BUT_WRONG_DATA = 2, // processWithRef
@@ -219,3 +228,9 @@ export type HandlerReturnWithBBox = {
     bbox: BBox;
   };
 };
+
+export namespace GH {
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  export type Issue = { body: string };
+  export type IssueComment = { body: string };
+}

@@ -1,9 +1,7 @@
 import { promises as fs } from 'fs';
 import fetch from 'node-fetch';
 import { join } from 'path';
-import { StatsFile } from '../types';
-
-type Issue = { body: string };
+import { StatsFile, GH } from '../types';
 
 export async function uploadStatsToGH(): Promise<void> {
   const stats: StatsFile = JSON.parse(
@@ -15,7 +13,7 @@ export async function uploadStatsToGH(): Promise<void> {
 
   const url = `https://${GH_BASIC_AUTH}@api.github.com/repos/osm-nz/linz-address-import/issues/1`;
 
-  const { body }: Issue = await fetch(url, {
+  const { body }: GH.Issue = await fetch(url, {
     headers: { Accept: 'application/vnd.github.v3+json' },
   }).then((r) => r.json());
 

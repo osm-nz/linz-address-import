@@ -9,6 +9,7 @@
     "conflate": "ts-node src/conflate",
     "action": "ts-node src/action",
     "upload": "ts-node src/upload",
+    "changelog": "ts-node src/changelog",
     "lint": "eslint --ignore-path .gitignore . && tsc",
     "pretest": "cp src/__tests__/bin/osmconvert src/__tests__/bin/osmconvert2 && chmod u+x src/__tests__/bin/osmconvert2",
     "test": "jest"
@@ -41,6 +42,7 @@
     "extends": "kyle",
     "rules": {
       "camelcase": 0,
+      "@typescript-eslint/no-namespace": 0,
       "@typescript-eslint/no-non-null-assertion": 0
     }
   },
@@ -49,6 +51,9 @@
     "transform": {
       "^.+\\.(t|j)sx?$": "ts-jest"
     },
+    "setupFiles": [
+      "./src/setupTests.ts"
+    ],
     "testTimeout": 15000,
     "collectCoverage": true
   }

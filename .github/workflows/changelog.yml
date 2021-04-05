@@ -1,0 +1,30 @@
+name: Changelog
+
+on:
+  schedule:
+    - cron: '0 3 * * *' # at 3am
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [15.x]
+
+    steps:
+      - name: ⏬ Checkout code
+        uses: actions/checkout@v2
+
+      - name: 🔢 Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: ⏬ Install
+        run: |
+          npm install
+
+      - name: 📰 Run LINZ Changelog script
+        run: |
+          npm run changelog
