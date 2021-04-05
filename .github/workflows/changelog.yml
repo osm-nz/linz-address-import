@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  changelog:
     runs-on: ubuntu-latest
 
     strategy:
@@ -29,3 +29,6 @@ jobs:
       - name: 📰 Run LINZ Changelog script
         run: |
           npm run changelog
+        env:
+          LINZ_API_KEY: ${{ secrets.LINZ_API_KEY }}
+          GH_BASIC_AUTH: ${{ secrets.GH_BASIC_AUTH }}
