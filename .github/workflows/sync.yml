@@ -36,19 +36,19 @@ jobs:
 
       - name: 🚚 Preprocess the .csv and .osm.pbf files
         run: |
-          npm run preprocess
+          npm run preprocess -- --max-old-space-size=6144
 
       - name: 🔁 Conflate LINZ data with OSM
         run: |
-          npm run conflate
+          npm run conflate -- --max-old-space-size=6144
 
       - name: 🏡 Generate geojson and reports
         run: |
-          npm run action
+          npm run action -- --max-old-space-size=6144
 
       - name: ⛅ Upload geojson and reports to CDN
         run: |
-          npm run upload
+          npm run upload -- --max-old-space-size=6144
         env:
           GH_BASIC_AUTH: ${{ secrets.GH_BASIC_AUTH }}
           AZ_CON: ${{ secrets.AZ_CON }}
