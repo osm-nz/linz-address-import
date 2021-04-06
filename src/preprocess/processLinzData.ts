@@ -9,6 +9,7 @@ import {
   CouldStackData,
 } from '../types';
 import { toStackId } from '../common';
+import { output as osmDataFile } from './processOsmData';
 
 const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
 
@@ -38,12 +39,12 @@ const correctLng = (lng: number) => {
   return lng - 360;
 };
 
-async function mergeIntoStacks(
-  _linzData: LinzData,
-  osmData: OSMData,
-): Promise<LinzData> {
+async function mergeIntoStacks(_linzData: LinzData): Promise<LinzData> {
+  console.log('\nreading OSM data into memory...');
+  const osmData: OSMData = JSON.parse(await fs.readFile(osmDataFile, 'utf8'));
+
+  console.log('merging some addresses into stacks...');
   const linzData = _linzData;
-  console.log('\nmerging some addresses into stacks...');
   const visited: VisitedCoords = {};
   const couldBeStacked: CouldStackData = {};
 
@@ -125,6 +126,7 @@ async function mergeIntoStacks(
 
 // TODO: perf baseline is 50seconds
 function linzToJson(): Promise<LinzData> {
+  console.log('Starting preprocess of LINZ data...');
   return new Promise((resolve, reject) => {
     const out: LinzData = {};
     let i = 0;
@@ -154,7 +156,9 @@ function linzToJson(): Promise<LinzData> {
   });
 }
 
-export async function processLinzData(o: OSMData): Promise<void> {
-  const res = await linzToJson().then((l) => mergeIntoStacks(l, o));
+export async function main(): Promise<void> {
+  const res = await mergeIntoStacks(await linzToJson());
   await fs.writeFile(output, JSON.stringify(res));
 }
+
+if (process.env.NODE_ENV !== 'test') main();

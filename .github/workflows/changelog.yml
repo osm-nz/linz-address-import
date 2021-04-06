@@ -2,7 +2,7 @@ name: Changelog
 
 on:
   schedule:
-    - cron: '0 3 * * *' # at 3am
+    - cron: '0 15 * * *' # at 3am (it's in UTC)
   workflow_dispatch:
 
 jobs:

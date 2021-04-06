@@ -10,7 +10,7 @@ const input = join(
   __dirname,
   mock ? '../__tests__/mock/planet.pbf' : '../../data/osm.pbf',
 );
-const output = join(__dirname, `../../data/osm${mock}.json`);
+export const output = join(__dirname, `../../data/osm${mock}.json`);
 
 const MAP = { node: 'n', way: 'w', relation: 'r' };
 
@@ -20,6 +20,7 @@ const isChecked = (v: string | undefined) =>
 
 // TODO: perf baseline is 87 seconds
 function osmToJson(): Promise<OSMData> {
+  console.log('Starting preprocess of OSM data...');
   return new Promise<OSMData>((resolve, reject) => {
     const out: OSMData = {
       linz: {},
@@ -104,8 +105,9 @@ function osmToJson(): Promise<OSMData> {
   });
 }
 
-export async function processOsmData(): Promise<OSMData> {
+export async function main(): Promise<void> {
   const res = await osmToJson();
   await fs.writeFile(output, JSON.stringify(res));
-  return res;
 }
+
+if (process.env.NODE_ENV !== 'test') main();

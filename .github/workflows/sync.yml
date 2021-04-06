@@ -1,8 +1,8 @@
 name: Sync
 
 on:
-  schedule:
-    - cron: '0 4 * * 3,6' # at 4am on wed & sat
+  # schedule:
+  #   - cron: '0 16 * * 3,6' # at 4am on wed & sat (it's in UTC)
   workflow_dispatch:
 
 jobs:
@@ -36,19 +36,19 @@ jobs:
 
       - name: 🚚 Preprocess the .csv and .osm.pbf files
         run: |
-          yarn preprocess --max-old-space-size=7168
+          yarn preprocess --max-old-space-size=6144
 
       - name: 🔁 Conflate LINZ data with OSM
         run: |
-          yarn conflate --max-old-space-size=7168
+          yarn conflate --max-old-space-size=6144
 
       - name: 🏡 Generate geojson and reports
         run: |
-          yarn action --max-old-space-size=7168
+          yarn action --max-old-space-size=6144
 
       - name: ⛅ Upload geojson and reports to CDN
         run: |
-          yarn upload --max-old-space-size=7168
+          yarn upload --max-old-space-size=6144
         env:
           GH_BASIC_AUTH: ${{ secrets.GH_BASIC_AUTH }}
           AZ_CON: ${{ secrets.AZ_CON }}

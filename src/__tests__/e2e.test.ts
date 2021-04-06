@@ -1,6 +1,7 @@
 import { execSync } from 'child_process';
 import { join } from 'path';
-import { main as preprocess } from '../preprocess';
+import { main as preprocessLinz } from '../preprocess/processLinzData';
+import { main as preprocessOsm } from '../preprocess/processOsmData';
 import { main as conflate } from '../conflate';
 import { main as action } from '../action';
 
@@ -27,7 +28,9 @@ describe('end-to-end test', () => {
   });
 
   it('works', async () => {
-    expect(await time(preprocess)).toBeLessThan(0.5);
+    expect(await time(preprocessLinz)).toBeLessThan(0.5);
+
+    expect(await time(preprocessOsm)).toBeLessThan(0.5);
 
     expect(await time(conflate)).toBeLessThan(0.5);
 
