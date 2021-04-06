@@ -28,27 +28,27 @@ jobs:
 
       - name: 🌏 Download planet file extract
         run: |
-          npm run download-planet
+          yarn download-planet
 
       - name: 🥝 Download LINZ csv file
         run: |
-          npm run download-linz
+          yarn download-linz
 
       - name: 🚚 Preprocess the .csv and .osm.pbf files
         run: |
-          npm run preprocess -- --max-old-space-size=6144
+          yarn preprocess --max-old-space-size=7168
 
       - name: 🔁 Conflate LINZ data with OSM
         run: |
-          npm run conflate -- --max-old-space-size=6144
+          yarn conflate --max-old-space-size=7168
 
       - name: 🏡 Generate geojson and reports
         run: |
-          npm run action -- --max-old-space-size=6144
+          yarn action --max-old-space-size=7168
 
       - name: ⛅ Upload geojson and reports to CDN
         run: |
-          npm run upload -- --max-old-space-size=6144
+          yarn upload --max-old-space-size=7168
         env:
           GH_BASIC_AUTH: ${{ secrets.GH_BASIC_AUTH }}
           AZ_CON: ${{ secrets.AZ_CON }}
