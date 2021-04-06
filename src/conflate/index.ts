@@ -35,7 +35,7 @@ export async function main(): Promise<void> {
     ),
   );
 
-  console.log('Computing which addresses to delte...');
+  console.log('Computing which addresses to delete...');
   const deletionData: DeletionData = Object.entries(osmData.linz)
     .filter(
       ([linzId, osmAddr]) =>

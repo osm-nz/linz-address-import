@@ -3,14 +3,12 @@ import { join } from 'path';
 import pbf2json, { Item } from 'pbf2json';
 import through from 'through2';
 import { OsmAddr, OSMData, OsmId } from '../types';
-
-const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
+import { mock, osmFile } from './const';
 
 const input = join(
   __dirname,
   mock ? '../__tests__/mock/planet.pbf' : '../../data/osm.pbf',
 );
-export const output = join(__dirname, `../../data/osm${mock}.json`);
 
 const MAP = { node: 'n', way: 'w', relation: 'r' };
 
@@ -107,7 +105,7 @@ function osmToJson(): Promise<OSMData> {
 
 export async function main(): Promise<void> {
   const res = await osmToJson();
-  await fs.writeFile(output, JSON.stringify(res));
+  await fs.writeFile(osmFile, JSON.stringify(res));
 }
 
 if (process.env.NODE_ENV !== 'test') main();

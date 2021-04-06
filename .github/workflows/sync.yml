@@ -1,8 +1,8 @@
 name: Sync
 
 on:
-  # schedule:
-  #   - cron: '0 16 * * 3,6' # at 4am on wed & sat (it's in UTC)
+  schedule:
+    - cron: '0 16 * * 1,5' # at 4pm on mon & fri UTC = at 4am on tue & sat NZST
   workflow_dispatch:
 
 jobs:
@@ -34,9 +34,17 @@ jobs:
         run: |
           yarn download-linz
 
-      - name: 🚚 Preprocess the .csv and .osm.pbf files
+      - name: 🚚 Preprocess the .osm.pbf file
         run: |
-          yarn preprocess --max-old-space-size=6144
+          yarn preprocess1 --max-old-space-size=6144
+
+      - name: 🚚 Preprocess the .csv file
+        run: |
+          yarn preprocess2 --max-old-space-size=6144
+
+      - name: 🚚 Creates stacks from LINZ data
+        run: |
+          yarn preprocess3 --max-old-space-size=6144
 
       - name: 🔁 Conflate LINZ data with OSM
         run: |

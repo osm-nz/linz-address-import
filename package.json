@@ -6,7 +6,10 @@
   "scripts": {
     "download-planet": "sh src/download-planet.sh",
     "download-linz": "sh src/download-linz.sh",
-    "preprocess": "ts-node -T src/preprocess/processOsmData && ts-node -T src/preprocess/processLinzData",
+    "preprocess1": "ts-node -T src/preprocess/processOsmData",
+    "preprocess2": "ts-node -T src/preprocess/processLinzData",
+    "preprocess3": "ts-node -T src/preprocess/stackLinzData",
+    "preprocess": "npm run preprocess1 && npm run preprocess2 && npm run preprocess3",
     "conflate": "ts-node src/conflate",
     "action": "ts-node src/action",
     "upload": "ts-node src/upload",
