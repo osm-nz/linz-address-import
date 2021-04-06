@@ -1,8 +1,5 @@
-import { config as dotenv } from 'dotenv';
 import { processLinzData } from './processLinzData';
 import { processOsmData } from './processOsmData';
-
-dotenv();
 
 export async function main(): Promise<void> {
   console.log('Starting preprocess...');

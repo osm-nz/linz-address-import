@@ -1,0 +1,54 @@
+name: Sync
+
+on:
+  schedule:
+    - cron: '0 4 * * 3,6' # at 4am on wed & sat
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [15.x]
+
+    steps:
+      - name: ⏬ Checkout code
+        uses: actions/checkout@v2
+
+      - name: 🔢 Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: ⏬ Install
+        run: |
+          npm install
+
+      - name: 🌏 Download planet file extract
+        run: |
+          npm run download-planet
+
+      - name: 🥝 Download LINZ csv file
+        run: |
+          npm run download-linz
+
+      - name: 🚚 Preprocess the .csv and .osm.pbf files
+        run: |
+          npm run preprocess
+
+      - name: 🔁 Conflate LINZ data with OSM
+        run: |
+          npm run conflate
+
+      - name: 🏡 Generate geojson and reports
+        run: |
+          npm run action
+
+      - name: ⛅ Upload geojson and reports to CDN
+        run: |
+          npm run upload
+        env:
+          GH_BASIC_AUTH: ${{ secrets.GH_BASIC_AUTH }}
+          AZ_CON: ${{ secrets.AZ_CON }}

@@ -2,6 +2,7 @@
 
 [![Test](https://github.com/osm-nz/linz-address-import/actions/workflows/ci.yml/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/ci.yml)
 [![Changelog](https://github.com/osm-nz/linz-address-import/actions/workflows/changelog.yml/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/changelog.yml)
+[![Sync](https://github.com/osm-nz/linz-address-import/actions/workflows/sync.yml/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/sync.yml)
 [![Coverage Status](https://coveralls.io/repos/github/osm-nz/linz-address-import/badge.svg?branch=main)](https://coveralls.io/github/osm-nz/linz-address-import?branch=main)
 
 Street address data from [Land Infomation New Zealand (LINZ)](https://linz.govt.nz) was [first imported into OpenStreetMap in 2017](https://wiki.openstreetmap.org/wiki/LINZ/Address_Import). Since then, the imported data has become out of date.
@@ -33,8 +34,8 @@ The remaining steps are done automatically by the CI
 6. Run `npm install`
 7. Download the planet file (for just NZ) by running `npm run download-planet`. This will create `./data/osm.pbf`
 8. Start the preprocess script by running `npm run preprocess`. This will take ca. 2.5 minutes and create `./data/osm.json` and `./data/linz.json`
-9. Start the confate script by running `npm run conflate`. This will take circa. 6 minutes and create `./data/status.json`
-10. Start the action script by running `npm run action`. This will take 10 seconds and generate a ton of files in the `./out` folder
+9. Start the confate script by running `npm run conflate`. This will take circa. 2 minutes and create `./data/status.json`
+10. Start the action script by running `npm run action`. This will take 20 seconds and generate a ton of files in the `./out` folder
 11. Upload the contents of the `./out` folder to the CDN by running `npm run upload`. This will take ca. 4 minutes
 
 ## Tests

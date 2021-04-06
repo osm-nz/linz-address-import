@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "download-planet": "sh src/download-planet.sh",
+    "download-linz": "sh src/download-linz.sh",
     "preprocess": "ts-node src/preprocess",
     "conflate": "ts-node src/conflate",
     "action": "ts-node src/action",
