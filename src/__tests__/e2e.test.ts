@@ -28,9 +28,9 @@ describe('end-to-end test', () => {
   });
 
   it('works', async () => {
-    expect(await time(preprocessLinz)).toBeLessThan(0.5);
-
     expect(await time(preprocessOsm)).toBeLessThan(0.5);
+
+    expect(await time(preprocessLinz)).toBeLessThan(0.5);
 
     expect(await time(conflate)).toBeLessThan(0.5);
 
