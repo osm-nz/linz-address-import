@@ -28,7 +28,8 @@
     "mime-types": "^2.1.31",
     "node-fetch": "^2.6.1",
     "pbf2json": "^6.6.0",
-    "through2": "^4.0.2"
+    "through2": "^4.0.2",
+    "unzipper": "^0.10.11"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
@@ -38,6 +39,7 @@
     "@types/node-fetch": "^2.5.10",
     "@types/pbf2json": "^6.6.0",
     "@types/through2": "^2.0.36",
+    "@types/unzipper": "^0.10.3",
     "eslint": "^7.29.0",
     "eslint-config-kyle": "^2.48.0",
     "jest": "^27.0.4",

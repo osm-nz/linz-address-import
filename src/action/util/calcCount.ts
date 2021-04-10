@@ -10,11 +10,10 @@ export function calcCount(features: GeoJsonFeature[]): {
   let edit = 0;
 
   for (const f of features) {
-    if (f.properties.ref_linz_address?.startsWith('SPECIAL_DELETE_')) {
+    const ref = f.properties.ref_linz_address || f.properties.ref;
+    if (ref?.startsWith('SPECIAL_DELETE_')) {
       minus += 1;
-    } else if (
-      f.properties.ref_linz_address?.startsWith('LOCATION_WRONG_SPECIAL_')
-    ) {
+    } else if (ref?.startsWith('LOCATION_WRONG_SPECIAL_')) {
       move += 1;
     } else if (f.id.startsWith('SPECIAL_EDIT_')) {
       edit += 1;

@@ -82,7 +82,7 @@ export type LinzSourceAddress = {
   /** if a water address, this field will have the "suburb" instead of `suburb_locality` */
   water_name: string;
 
-  // redundant infomation. don't use
+  // redundant information. don't use
 
   address_type: 'Road' | 'Water';
   /** @deprecated */ WKT: string;

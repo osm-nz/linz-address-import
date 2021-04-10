@@ -5,11 +5,11 @@
 [![Sync](https://github.com/osm-nz/linz-address-import/actions/workflows/sync.yml/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/sync.yml)
 [![Coverage Status](https://coveralls.io/repos/github/osm-nz/linz-address-import/badge.svg?branch=main)](https://coveralls.io/github/osm-nz/linz-address-import?branch=main)
 
-Street address data from [Land Infomation New Zealand (LINZ)](https://linz.govt.nz) was [first imported into OpenStreetMap in 2017](https://wiki.openstreetmap.org/wiki/LINZ/Address_Import). Since then, the imported data has become out of date.
+Street address data from [Land Information New Zealand (LINZ)](https://linz.govt.nz) was [first imported into OpenStreetMap in 2017](https://wiki.openstreetmap.org/wiki/LINZ/Address_Import). Since then, the imported data has become out of date.
 
 This project aims to update the address data, and set up a system to reguarly update addresses in OSM, by conflating them with [the data from LINZ](https://data.linz.govt.nz/layer/3353).
 
-> 🌏 For more infomation, please see [the wiki page](<https://wiki.openstreetmap.org/wiki/Import/New_Zealand_Street_Addresses_(2021)>) for this project. The rest of this document contains only technical detail. Continue reading if you wish to contribute to the code
+> 🌏 For more information, please see [the wiki page](<https://wiki.openstreetmap.org/wiki/Import/New_Zealand_Street_Addresses_(2021)>) for this project. The rest of this document contains only technical detail. Continue reading if you wish to contribute to the code
 
 # The fork of RapiD
 
