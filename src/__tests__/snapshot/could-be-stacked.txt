@@ -1,3 +1,3 @@
 
 Oakleigh
-3 flats at		100 Example Street		could be stacked instead of n100,n101,n102
+3 flats at		100 Example Street		could be stacked instead of n100,n101,n102		stack(70100-70102)
