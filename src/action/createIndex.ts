@@ -1,7 +1,12 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
 import { GeoJson, HandlerReturnWithBBox } from '../types';
-import { calcCount, CDN_URL, mock, REGEX, suburbsFolder } from './util';
+import { calcCount, CDN_URL, mock, suburbsFolder } from './util';
+import { hash } from '../common';
+
+function toId(suburb: string) {
+  return `${suburb.replace(/\W/g, '')}_${hash(suburb)}`;
+}
 
 export async function createIndex(
   suburbs: HandlerReturnWithBBox,
@@ -77,8 +82,8 @@ export async function createIndex(
     ],
     results: meta
       .map(({ suburb, bbox, count, totalCount }) => ({
-        id: suburb.replace(/\//g, '-'),
-        url: `${CDN_URL}/suburbs/${suburb.replace(REGEX, '-')}.geo.json`,
+        id: toId(suburb),
+        url: `${CDN_URL}/suburbs/${toId(suburb)}.geo.json`,
         name: suburb,
         title: suburb,
         totalCount,
@@ -108,7 +113,7 @@ export async function createIndex(
       features: suburbs[suburb].features,
     };
     await fs.writeFile(
-      join(suburbsFolder, `${suburb.replace(REGEX, '-')}.geo.json`),
+      join(suburbsFolder, `${toId(suburb)}.geo.json`),
       JSON.stringify(geojson, null, mock ? 2 : undefined),
     );
   }

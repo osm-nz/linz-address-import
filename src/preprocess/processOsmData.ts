@@ -32,7 +32,7 @@ function osmToJson(): Promise<OSMData> {
       .createReadStream({
         file: input,
         tags: ['addr:housenumber+addr:street,ref:linz:address_id'], // (houseNumber & street) | linzId
-        leveldb: '/tmp',
+        leveldb: mock ? '/tmp-mock' : '/tmp', // different incase they're running in parallel
       })
       .pipe(
         through.obj((item: Item, _e, next) => {

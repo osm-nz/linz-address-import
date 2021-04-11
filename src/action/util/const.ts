@@ -18,5 +18,3 @@ const MAP = {
 
 export const toLink = (osmId: string): string =>
   `https://osm.org/${MAP[osmId[0] as keyof typeof MAP]}/${osmId.slice(1)}`;
-
-export const REGEX = /(\/| )+/g;
