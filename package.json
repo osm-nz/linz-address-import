@@ -13,6 +13,7 @@
     "conflate": "ts-node src/conflate",
     "action": "ts-node src/action",
     "upload": "ts-node src/upload",
+    "all": "npm run preprocess && npm run conflate && npm run action && npm run upload",
     "changelog": "ts-node src/changelog",
     "lint": "eslint --ignore-path .gitignore . && tsc",
     "pretest": "cp src/__tests__/bin/osmconvert src/__tests__/bin/osmconvert2 && chmod u+x src/__tests__/bin/osmconvert2",

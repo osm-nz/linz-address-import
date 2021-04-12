@@ -269,10 +269,10 @@
       ]
     },
     {
-      "id": "ZZDeletionsfromunknownsector_14gre2f",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZDeletionsfromunknownsector_14gre2f.geo.json",
-      "name": "ZZ Deletions from unknown sector",
-      "title": "ZZ Deletions from unknown sector",
+      "id": "ZZDeletionsfromunknownsectorAuckland_3w0z5v",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZDeletionsfromunknownsectorAuckland_3w0z5v.geo.json",
+      "name": "ZZ Deletions from unknown sector - Auckland",
+      "title": "ZZ Deletions from unknown sector - Auckland",
       "totalCount": 1,
       "snippet": "delete 1",
       "extent": [
@@ -290,10 +290,10 @@
       ]
     },
     {
-      "id": "ZZSpecialLinzRefChanged_14hmign",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZSpecialLinzRefChanged_14hmign.geo.json",
-      "name": "ZZ Special Linz Ref Changed",
-      "title": "ZZ Special Linz Ref Changed",
+      "id": "ZZSpecialLinzRefChangedAuckland_1o5ern",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZSpecialLinzRefChangedAuckland_1o5ern.geo.json",
+      "name": "ZZ Special Linz Ref Changed - Auckland",
+      "title": "ZZ Special Linz Ref Changed - Auckland",
       "totalCount": 2,
       "snippet": "edit 2",
       "extent": [
@@ -311,10 +311,10 @@
       ]
     },
     {
-      "id": "ZZSpecialLocationWrong_ojaymh",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZSpecialLocationWrong_ojaymh.geo.json",
-      "name": "ZZ Special Location Wrong",
-      "title": "ZZ Special Location Wrong",
+      "id": "ZZSpecialLocationWrongAuckland_k3m50x",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZSpecialLocationWrongAuckland_k3m50x.geo.json",
+      "name": "ZZ Special Location Wrong - Auckland",
+      "title": "ZZ Special Location Wrong - Auckland",
       "totalCount": 2,
       "snippet": "move 2",
       "extent": [

@@ -3,15 +3,18 @@ type Suburb = [type: 'U' | 'R', suburb: string];
 
 export type OsmId = `${'n' | 'w' | 'r'}${string}`;
 
-export type LinzAddr = {
+export type Coords = {
+  lat: number;
+  lng: number;
+};
+
+export type LinzAddr = Coords & {
   housenumber: string;
   /** @deprecated don't use, for internal use in pre-process only */
   $houseNumberMsb?: string;
   street: string;
   suburb: Suburb;
   town: string;
-  lat: number;
-  lng: number;
   /** whether this address is a water address */
   water?: true;
 };
@@ -19,13 +22,11 @@ export type LinzData = {
   [linzId: string]: LinzAddr;
 };
 
-export type OsmAddr = {
+export type OsmAddr = Coords & {
   osmId: OsmId;
   housenumber?: string;
   street?: string;
   suburb?: Suburb;
-  lat: number;
-  lng: number;
   isNonTrivial: boolean;
   checked: boolean;
   /** whether this address is a water address */
@@ -202,10 +203,14 @@ type GeoJsonArea = {
   type: 'Polygon';
   coordinates: [ring1: [lng: number, lat: number][]];
 };
+type GeoJsonMultiPolygon = {
+  type: 'MultiPolygon';
+  coordinates: [lng: number, lat: number][][]; // same as Area but multiple rings allowed
+};
 export type GeoJsonFeature = {
   type: 'Feature';
   id: string;
-  geometry: GeoJsonPoint | GeoJsonLine | GeoJsonArea;
+  geometry: GeoJsonPoint | GeoJsonLine | GeoJsonArea | GeoJsonMultiPolygon;
   properties: Record<string, string | undefined>;
 };
 export type GeoJson = {

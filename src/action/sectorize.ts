@@ -1,3 +1,4 @@
+import { getSector } from '../common/getSector';
 import { GeoJsonFeature, HandlerReturn, HandlerReturnWithBBox } from '../types';
 import { calcBBox } from './util';
 
@@ -33,8 +34,20 @@ export function sectorize(
     const isWide = bbox.maxLng - bbox.minLng > LNG_THRESHOLD;
 
     if (suburb.startsWith('ZZ')) {
-      // special sector, don't split this one up
-      newFeatures[suburb] = { features, bbox };
+      // special sector, split this by region
+      const out: Record<string, GeoJsonFeature[]> = {};
+      for (const f of features) {
+        const [lng, lat] = getFirstCoord(f);
+        const sector = getSector({ lat, lng });
+        out[sector] ||= [];
+        out[sector].push(f);
+      }
+      for (const sector in out) {
+        newFeatures[`${suburb} - ${sector}`] = {
+          features: out[sector],
+          bbox: calcBBox(out[sector]),
+        };
+      }
     } else if (isTall) {
       // big latitude wise
       const midway = bbox.minLat + (bbox.maxLat - bbox.minLat) / 2;
