@@ -12,7 +12,15 @@ export function fieldsToModify(issues: Issue[]): Record<string, string> {
         ac.addr_street = linzValue;
         break;
       case 'suburb': {
-        const [k, v] = linzValue.split('=');
+        const [k, v] = linzValue.split('=') as ['hamlet' | 'suburb', string];
+        const [oldK] = osmValue.split('=') as [
+          'hamlet' | 'suburb' | '0',
+          string,
+        ];
+        if (k !== oldK && oldK !== '0') {
+          // hamlet changed to suburb or vica-versa
+          ac[oldK] = '🗑️'; // delete the tag
+        }
         ac[k] = v;
         break;
       }
