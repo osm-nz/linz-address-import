@@ -12,9 +12,12 @@ export function fieldsToModify(issues: Issue[]): Record<string, string> {
         ac.addr_street = linzValue;
         break;
       case 'suburb': {
-        const [k, v] = linzValue.split('=') as ['hamlet' | 'suburb', string];
+        const [k, v] = linzValue.split('=') as [
+          'addr_hamlet' | 'addr_suburb',
+          string,
+        ];
         const [oldK] = osmValue.split('=') as [
-          'hamlet' | 'suburb' | '0',
+          'addr_hamlet' | 'addr_suburb' | '0',
           string,
         ];
         if (k !== oldK && oldK !== '0') {

@@ -7,6 +7,13 @@ const LOCATION_THRESHOLD = 500;
 
 const isTruthy = <T>(x: T | undefined | false | null | 0): x is T => !!x;
 
+/** swap suburb <=> hamlet */
+const inverse = (linz: string) => {
+  const [k, v] = linz.split('=');
+  const swappedK = k === 'addr_hamlet' ? 'addr_suburb' : 'addr_hamlet';
+  return [swappedK, v].join('=');
+};
+
 export function processWithRef(
   _addressId: string,
   linzAddr: LinzAddr,
@@ -28,7 +35,7 @@ export function processWithRef(
   const suburbOk = linzSuburb === osmSuburb;
   const waterOk = linzAddr.water === osmAddr.water;
 
-  if (houseOk && streetOk && suburbOk && waterOk) {
+  if (houseOk && streetOk && suburbOk && waterOk && !osmAddr.doubleSuburb) {
     // looks perfect - last check is if location is correct
 
     const offset = distanceBetween(
@@ -63,6 +70,12 @@ export function processWithRef(
       !houseOk && `housenumber|${linzAddr.housenumber}|${osmAddr.housenumber}`,
       !streetOk && `street|${linzAddr.street}|${osmAddr.street}`,
       !suburbOk && `suburb|${linzSuburb}|${osmSuburb}`,
+
+      // this is the buggy one (see #7) if it's a double suburb, the system may think `suburbOk` but it's wrong
+      suburbOk &&
+        osmAddr.doubleSuburb &&
+        `suburb|${linzSuburb}|${inverse(linzSuburb)}`, // we want the wrong one to be in the diagnostic
+
       !waterOk &&
         `water|${+(linzAddr.water || false)}|${+(osmAddr.water || false)}`,
     ].filter(isTruthy) as StatusDiagnostics[Status.EXISTS_BUT_WRONG_DATA],

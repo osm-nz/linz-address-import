@@ -45,6 +45,78 @@
     },
     {
       "type": "Feature",
+      "id": "SPECIAL_EDIT_70045",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.94500000000002,
+              -36.899800000000006
+            ],
+            [
+              174.94520000000003,
+              -36.900000000000006
+            ],
+            [
+              174.94500000000002,
+              -36.900200000000005
+            ],
+            [
+              174.94480000000001,
+              -36.900000000000006
+            ],
+            [
+              174.94500000000002,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "SPECIAL_EDIT_70045",
+        "addr_hamlet": "🗑️",
+        "addr_suburb": "West Hoe Heights"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SPECIAL_EDIT_70047",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.947,
+              -36.899800000000006
+            ],
+            [
+              174.9472,
+              -36.900000000000006
+            ],
+            [
+              174.947,
+              -36.900200000000005
+            ],
+            [
+              174.9468,
+              -36.900000000000006
+            ],
+            [
+              174.947,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "SPECIAL_EDIT_70047",
+        "addr_hamlet": "🗑️",
+        "addr_suburb": "West Hoe Heights"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "70064",
       "geometry": {
         "type": "Point",

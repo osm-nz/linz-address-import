@@ -31,6 +31,8 @@ export type OsmAddr = Coords & {
   checked: boolean;
   /** whether this address is a water address */
   water?: true;
+  /** whether this address has `addr:suburb` and `addr:hamlet` */
+  doubleSuburb?: true;
 };
 export type OsmAddrWithConfidence = OsmAddr & {
   /** distance in metres away from expected location */

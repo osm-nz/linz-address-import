@@ -15,6 +15,8 @@ stack(70082-70084)		https://osm.org/node/82		housenumber|82|82typo
 
 West Hoe Heights
 70019		https://osm.org/node/19		suburb|addr_suburb=West Hoe Heights|addr_hamlet=West Hoe Heights
+70045		https://osm.org/node/45		suburb|addr_suburb=West Hoe Heights|addr_hamlet=West Hoe Heights
+70047		https://osm.org/node/47		suburb|addr_suburb=West Hoe Heights|addr_hamlet=West Hoe Heights
 
 Abel Tasman National Park
 70059		https://osm.org/node/59		water|1|0

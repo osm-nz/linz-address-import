@@ -1,8 +1,8 @@
 {
   "date": "MOCK",
   "count": {
-    "PERFECT": 12,
-    "EXISTS_BUT_WRONG_DATA": 14,
+    "PERFECT": 10,
+    "EXISTS_BUT_WRONG_DATA": 16,
     "EXISTS_BUT_NO_LINZ_REF": 5,
     "MULTIPLE_EXIST_BUT_NO_LINZ_REF": 1,
     "MULTIPLE_EXIST": 1,

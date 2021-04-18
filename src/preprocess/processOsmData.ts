@@ -61,6 +61,7 @@ function osmToJson(): Promise<OSMData> {
             checked: isChecked(item.tags.check_date),
           };
           if (isWater) obj.water = true;
+          if (suburbU && suburbR) obj.doubleSuburb = true;
 
           const linzId = item.tags['ref:linz:address_id'];
           if (linzId) {
