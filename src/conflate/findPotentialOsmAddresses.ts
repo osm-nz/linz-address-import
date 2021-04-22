@@ -38,13 +38,17 @@ export const findPotentialOsmAddresses = (
         linzAddr.lat,
         linzAddr.lng,
       );
+
+      // if our best guess is more than 200m from the gazetted location, it's definitely wrong
+      if (offset > 200) return undefined;
+
       // mutating assign is cheaper than spread
       return Object.assign(osmAddr, {
         offset,
-        confidence:
-          offset < 200 ? Confidence.NORMAL : Confidence.UNLIKELY_GUESS, // we have more confidence if the osm node is closer than 200m to the gazetted location
+        confidence: Confidence.NORMAL,
       });
     })
+    .filter(<T>(x: T | undefined): x is T => !!x)
     .sort((a, b) => a.offset - b.offset);
 
   if (almostPerfect.length) {

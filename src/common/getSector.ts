@@ -8,9 +8,11 @@ type Sector =
   | 'Top of the South Island'
   | 'Canterbury / West Coast'
   | 'Southland / Otago / Stewart Is'
+  | 'Antarctic'
   | 'Outer Islands';
 
 export function getSector({ lat, lng }: Coords): Sector {
+  if (lat < -63.929) return 'Antarctic';
   if (lat > -33.92 || lat < -47.59 || lng < 164.75 || lng > 178.85) {
     return 'Outer Islands';
   }

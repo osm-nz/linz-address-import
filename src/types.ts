@@ -131,7 +131,8 @@ export enum Status {
 
 export enum Confidence {
   /** after a lot of searching we found a similar address, but it's significantly far away */
-  UNLIKELY_GUESS = 1,
+  // UNLIKELY_GUESS = 1, // obsolete, we now ignore these rubbish guesses
+
   /** found a similar address nearby */
   NORMAL = 2,
   /** found multiple perfect matches */

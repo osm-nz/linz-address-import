@@ -13,6 +13,7 @@ describe('getSector', () => {
     ${-36.93233}  | ${174.902343} | ${'Auckland'}
     ${-35.137879} | ${173.408203} | ${'Northland'}
     ${-29.190532} | ${182.043457} | ${'Outer Islands'}
+    ${-77.8466}   | ${166.7489}   | ${'Antarctic'}
   `('works for $lat,$lng ($sector)', ({ lat, lng, sector }) => {
     expect(getSector({ lat, lng })).toStrictEqual(sector);
   });

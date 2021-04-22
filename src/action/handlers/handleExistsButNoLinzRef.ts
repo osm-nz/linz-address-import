@@ -34,9 +34,6 @@ export async function handleExistsButNoLinzRef(
         osmData.osmId,
       )}\n`;
 
-      // don't suggest adding these in RapiD. Leave it for manual entry.
-      if (confidence === Confidence.UNLIKELY_GUESS) continue; // eslint-disable-line no-continue
-
       features.push({
         type: 'Feature',
         id: `SPECIAL_EDIT_${linzId}`,
