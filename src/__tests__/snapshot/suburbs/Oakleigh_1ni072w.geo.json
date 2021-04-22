@@ -806,6 +806,57 @@
     },
     {
       "type": "Feature",
+      "id": "70105",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          175.10500000000002,
+          -36.900000000000006
+        ]
+      },
+      "properties": {
+        "addr_housenumber": "104A",
+        "addr_street": "Example Street",
+        "addr_hamlet": "Oakleigh",
+        "ref_linz_address": "SPECIAL_DELETE_70105"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70106",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          175.10600000000002,
+          -36.900000000000006
+        ]
+      },
+      "properties": {
+        "addr_housenumber": "104B",
+        "addr_street": "Example Street",
+        "addr_hamlet": "Oakleigh",
+        "ref_linz_address": "SPECIAL_DELETE_70106"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70107",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          175.107,
+          -36.900000000000006
+        ]
+      },
+      "properties": {
+        "addr_housenumber": "104C",
+        "addr_street": "Example Street",
+        "addr_hamlet": "Oakleigh",
+        "ref_linz_address": "SPECIAL_DELETE_70107"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "oof",
       "geometry": {
         "type": "Point",

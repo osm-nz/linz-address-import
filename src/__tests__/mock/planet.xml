@@ -502,6 +502,32 @@
     <tag k="addr:street" v="Example Street" />
   </node>
 
+  <!-- 104 mapped as a stack, but the stack is also mapped separately as 105-107 -->
+  <node id="104" version="1" changeset="1" lat="-36.9" lon="175.104" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="104" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="stack(70105-70107)" />
+  </node>
+  <node id="105" version="1" changeset="1" lat="-36.9" lon="175.105" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="104A" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70105" />
+  </node>
+  <node id="106" version="1" changeset="1" lat="-36.9" lon="175.106" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="104B" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70106" />
+  </node>
+  <node id="107" version="1" changeset="1" lat="-36.9" lon="175.107" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="104C" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70107" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />

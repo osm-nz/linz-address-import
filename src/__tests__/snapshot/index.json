@@ -168,15 +168,15 @@
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Oakleigh_1ni072w.geo.json",
       "name": "Oakleigh",
       "title": "Oakleigh",
-      "totalCount": 32,
-      "snippet": "add 9, delete 6, edit 17",
+      "totalCount": 35,
+      "snippet": "add 9, delete 9, edit 17",
       "extent": [
         [
           174.90380000000002,
           -36.9022
         ],
         [
-          175.103,
+          175.107,
           -35.9998
         ]
       ],

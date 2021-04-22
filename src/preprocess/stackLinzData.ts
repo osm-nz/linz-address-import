@@ -51,10 +51,12 @@ async function mergeIntoStacks(): Promise<LinzData> {
 
   for (const houseKey in visited) {
     const addrIds = visited[houseKey]; // a list of all flats at this MSB house number
+    const stackId = toStackId(addrIds.map((x) => x[0]));
 
     // >2 because maybe someone got confused with the IDs and mapped a single one.
     const inOsm = addrIds.filter(alreadyInOsm);
-    const alreadyMappedSeparatelyInOsm = inOsm.length > 2;
+    const alreadyMappedSeparatelyInOsm =
+      inOsm.length > 2 && !(stackId in osmData.linz); // if it's mapped a stack, favour the stack over any number of addresses mapped separately
 
     const uniqLoc = addrIds.map(([, pos]) => pos).filter(uniq).length;
 
@@ -83,7 +85,6 @@ async function mergeIntoStacks(): Promise<LinzData> {
         // this address should be stacked.
         const [firstLinzId] = addrIds[0];
 
-        const stackId = toStackId(addrIds.map((x) => x[0]));
         const stackedAddr: LinzAddr = {
           ...linzData[firstLinzId],
           housenumber: housenumberMsb, // replace `62A` or `Flat 1, 62` with `62`
