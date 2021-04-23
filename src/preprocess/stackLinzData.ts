@@ -56,7 +56,9 @@ async function mergeIntoStacks(): Promise<LinzData> {
     // >2 because maybe someone got confused with the IDs and mapped a single one.
     const inOsm = addrIds.filter(alreadyInOsm);
     const alreadyMappedSeparatelyInOsm =
-      inOsm.length > 2 && !(stackId in osmData.linz); // if it's mapped a stack, favour the stack over any number of addresses mapped separately
+      inOsm.length > 2 &&
+      inOsm.length > addrIds.length / 2 && // if more than half are mapped in OSM, keep it
+      !(stackId in osmData.linz); // if it's mapped a stack, favour the stack over any number of addresses mapped separately
 
     const uniqLoc = addrIds.map(([, pos]) => pos).filter(uniq).length;
 
