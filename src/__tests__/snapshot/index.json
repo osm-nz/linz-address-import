@@ -59,11 +59,12 @@
   ],
   "results": [
     {
-      "id": "AbelTasmanNationalPark_xgr950",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AbelTasmanNationalPark_xgr950.geo.json",
-      "name": "Abel Tasman National Park",
-      "title": "Abel Tasman National Park",
+      "id": "AddressUpdateAbelTasmanNationalPark_177vr3a",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateAbelTasmanNationalPark_177vr3a.geo.json",
+      "name": "Address Update - Abel Tasman National Park",
+      "title": "Address Update - Abel Tasman National Park",
       "totalCount": 2,
+      "source": "https://data.linz.govt.nz/layer/3353",
       "snippet": "add 1, edit 1",
       "extent": [
         [
@@ -80,11 +81,34 @@
       ]
     },
     {
-      "id": "DuplicateTallHamletnorthernsector_18d9cws",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/DuplicateTallHamletnorthernsector_18d9cws.geo.json",
-      "name": "Duplicate Tall Hamlet - northern sector",
-      "title": "Duplicate Tall Hamlet - northern sector",
+      "id": "AddressUpdatedeletionsfromunknownsector_1szv2s9",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdatedeletionsfromunknownsector_1szv2s9.geo.json",
+      "name": "Address Update - deletions from unknown sector",
+      "title": "Address Update - deletions from unknown sector",
       "totalCount": 1,
+      "source": "https://data.linz.govt.nz/layer/3353",
+      "snippet": "delete 1",
+      "extent": [
+        [
+          174.949,
+          -36.900000000000006
+        ],
+        [
+          174.949,
+          -36.900000000000006
+        ]
+      ],
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
+      "id": "AddressUpdateDuplicateTallHamletnorthernsector_1uxdry",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateDuplicateTallHamletnorthernsector_1uxdry.geo.json",
+      "name": "Address Update - Duplicate Tall Hamlet - northern sector",
+      "title": "Address Update - Duplicate Tall Hamlet - northern sector",
+      "totalCount": 1,
+      "source": "https://data.linz.govt.nz/layer/3353",
       "snippet": "add 1",
       "extent": [
         [
@@ -101,11 +125,12 @@
       ]
     },
     {
-      "id": "DuplicateTallHamletsouthernsector_cernfo",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/DuplicateTallHamletsouthernsector_cernfo.geo.json",
-      "name": "Duplicate Tall Hamlet - southern sector",
-      "title": "Duplicate Tall Hamlet - southern sector",
+      "id": "AddressUpdateDuplicateTallHamletsouthernsector_14xjq9y",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateDuplicateTallHamletsouthernsector_14xjq9y.geo.json",
+      "name": "Address Update - Duplicate Tall Hamlet - southern sector",
+      "title": "Address Update - Duplicate Tall Hamlet - southern sector",
       "totalCount": 1,
+      "source": "https://data.linz.govt.nz/layer/3353",
       "snippet": "add 1",
       "extent": [
         [
@@ -122,11 +147,12 @@
       ]
     },
     {
-      "id": "DuplicateWideHamleteasternsector_1yy36xi",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/DuplicateWideHamleteasternsector_1yy36xi.geo.json",
-      "name": "Duplicate Wide Hamlet - eastern sector",
-      "title": "Duplicate Wide Hamlet - eastern sector",
+      "id": "AddressUpdateDuplicateWideHamleteasternsector_1f8tmpg",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateDuplicateWideHamleteasternsector_1f8tmpg.geo.json",
+      "name": "Address Update - Duplicate Wide Hamlet - eastern sector",
+      "title": "Address Update - Duplicate Wide Hamlet - eastern sector",
       "totalCount": 1,
+      "source": "https://data.linz.govt.nz/layer/3353",
       "snippet": "add 1",
       "extent": [
         [
@@ -143,11 +169,12 @@
       ]
     },
     {
-      "id": "DuplicateWideHamletwesternsector_173myh4",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/DuplicateWideHamletwesternsector_173myh4.geo.json",
-      "name": "Duplicate Wide Hamlet - western sector",
-      "title": "Duplicate Wide Hamlet - western sector",
+      "id": "AddressUpdateDuplicateWideHamletwesternsector_nede92",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateDuplicateWideHamletwesternsector_nede92.geo.json",
+      "name": "Address Update - Duplicate Wide Hamlet - western sector",
+      "title": "Address Update - Duplicate Wide Hamlet - western sector",
       "totalCount": 1,
+      "source": "https://data.linz.govt.nz/layer/3353",
       "snippet": "add 1",
       "extent": [
         [
@@ -164,11 +191,12 @@
       ]
     },
     {
-      "id": "Oakleigh_1ni072w",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Oakleigh_1ni072w.geo.json",
-      "name": "Oakleigh",
-      "title": "Oakleigh",
+      "id": "AddressUpdateOakleigh_4b67jq",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateOakleigh_4b67jq.geo.json",
+      "name": "Address Update - Oakleigh",
+      "title": "Address Update - Oakleigh",
       "totalCount": 35,
+      "source": "https://data.linz.govt.nz/layer/3353",
       "snippet": "add 9, delete 9, edit 17",
       "extent": [
         [
@@ -185,11 +213,12 @@
       ]
     },
     {
-      "id": "Rangithua_58fkna",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/Rangithua_58fkna.geo.json",
-      "name": "Rangitāhua",
-      "title": "Rangitāhua",
+      "id": "AddressUpdateRangithua_rx31k4",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateRangithua_rx31k4.geo.json",
+      "name": "Address Update - Rangitāhua",
+      "title": "Address Update - Rangitāhua",
       "totalCount": 1,
+      "source": "https://data.linz.govt.nz/layer/3353",
       "snippet": "add 1",
       "extent": [
         [
@@ -206,11 +235,56 @@
       ]
     },
     {
-      "id": "WestHoeHeights_wxxxkp",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/WestHoeHeights_wxxxkp.geo.json",
-      "name": "West Hoe Heights",
-      "title": "West Hoe Heights",
+      "id": "AddressUpdateSpecialLinzRefChanged_d7ib5h",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateSpecialLinzRefChanged_d7ib5h.geo.json",
+      "name": "Address Update - Special Linz Ref Changed",
+      "title": "Address Update - Special Linz Ref Changed",
+      "totalCount": 2,
+      "source": "https://data.linz.govt.nz/layer/3353",
+      "snippet": "edit 2",
+      "extent": [
+        [
+          174.93880000000001,
+          -36.900200000000005
+        ],
+        [
+          174.97220000000002,
+          -36.899800000000006
+        ]
+      ],
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
+      "id": "AddressUpdateSpecialLocationWrong_101dpon",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateSpecialLocationWrong_101dpon.geo.json",
+      "name": "Address Update - Special Location Wrong",
+      "title": "Address Update - Special Location Wrong",
+      "totalCount": 2,
+      "source": "https://data.linz.govt.nz/layer/3353",
+      "snippet": "move 2",
+      "extent": [
+        [
+          174.903,
+          -36.9
+        ],
+        [
+          174.942,
+          -36
+        ]
+      ],
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
+      "id": "AddressUpdateWestHoeHeights_5cj1uf",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateWestHoeHeights_5cj1uf.geo.json",
+      "name": "Address Update - West Hoe Heights",
+      "title": "Address Update - West Hoe Heights",
       "totalCount": 4,
+      "source": "https://data.linz.govt.nz/layer/3353",
       "snippet": "delete 1, edit 3",
       "extent": [
         [
@@ -227,11 +301,12 @@
       ]
     },
     {
-      "id": "WestHoeHeightsAnotherTown_1d68p21",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/WestHoeHeightsAnotherTown_1d68p21.geo.json",
-      "name": "West Hoe Heights (Another Town)",
-      "title": "West Hoe Heights (Another Town)",
+      "id": "AddressUpdateWestHoeHeightsAnotherTown_1etb0hn",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateWestHoeHeightsAnotherTown_1etb0hn.geo.json",
+      "name": "Address Update - West Hoe Heights (Another Town)",
+      "title": "Address Update - West Hoe Heights (Another Town)",
       "totalCount": 1,
+      "source": "https://data.linz.govt.nz/layer/3353",
       "snippet": "add 1",
       "extent": [
         [
@@ -248,11 +323,12 @@
       ]
     },
     {
-      "id": "WestHoeHeightsSilverdale_177g1ol",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/WestHoeHeightsSilverdale_177g1ol.geo.json",
-      "name": "West Hoe Heights (Silverdale)",
-      "title": "West Hoe Heights (Silverdale)",
+      "id": "AddressUpdateWestHoeHeightsSilverdale_7cz61z",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateWestHoeHeightsSilverdale_7cz61z.geo.json",
+      "name": "Address Update - West Hoe Heights (Silverdale)",
+      "title": "Address Update - West Hoe Heights (Silverdale)",
       "totalCount": 1,
+      "source": "https://data.linz.govt.nz/layer/3353",
       "snippet": "add 1",
       "extent": [
         [
@@ -266,69 +342,6 @@
       ],
       "groupCategories": [
         "/Categories/Addresses"
-      ]
-    },
-    {
-      "id": "ZZDeletionsfromunknownsectorAuckland_3w0z5v",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZDeletionsfromunknownsectorAuckland_3w0z5v.geo.json",
-      "name": "ZZ Deletions from unknown sector - Auckland",
-      "title": "ZZ Deletions from unknown sector - Auckland",
-      "totalCount": 1,
-      "snippet": "delete 1",
-      "extent": [
-        [
-          174.949,
-          -36.900000000000006
-        ],
-        [
-          174.949,
-          -36.900000000000006
-        ]
-      ],
-      "groupCategories": [
-        "/Categories/Preview"
-      ]
-    },
-    {
-      "id": "ZZSpecialLinzRefChangedAuckland_1o5ern",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZSpecialLinzRefChangedAuckland_1o5ern.geo.json",
-      "name": "ZZ Special Linz Ref Changed - Auckland",
-      "title": "ZZ Special Linz Ref Changed - Auckland",
-      "totalCount": 2,
-      "snippet": "edit 2",
-      "extent": [
-        [
-          174.93880000000001,
-          -36.900200000000005
-        ],
-        [
-          174.97220000000002,
-          -36.899800000000006
-        ]
-      ],
-      "groupCategories": [
-        "/Categories/Preview"
-      ]
-    },
-    {
-      "id": "ZZSpecialLocationWrongAuckland_k3m50x",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/ZZSpecialLocationWrongAuckland_k3m50x.geo.json",
-      "name": "ZZ Special Location Wrong - Auckland",
-      "title": "ZZ Special Location Wrong - Auckland",
-      "totalCount": 2,
-      "snippet": "move 2",
-      "extent": [
-        [
-          174.903,
-          -36.9
-        ],
-        [
-          174.942,
-          -36
-        ]
-      ],
-      "groupCategories": [
-        "/Categories/Preview"
       ]
     }
   ]

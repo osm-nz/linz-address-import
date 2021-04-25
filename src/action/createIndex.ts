@@ -87,6 +87,7 @@ export async function createIndex(
         name: suburb,
         title: suburb,
         totalCount,
+        source: 'https://data.linz.govt.nz/layer/3353',
         snippet: count,
         extent: [
           [bbox.minLng, bbox.minLat],

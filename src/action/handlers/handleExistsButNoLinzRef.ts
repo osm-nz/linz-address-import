@@ -51,7 +51,7 @@ export async function handleExistsButNoLinzRef(
         },
       });
     }
-    index[suburb] = features;
+    index[`Address Update - ${suburb}`] = features;
   }
 
   await fs.writeFile(join(outFolder, 'needs-linz-ref.txt'), report);

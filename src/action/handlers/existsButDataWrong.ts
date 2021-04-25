@@ -49,7 +49,7 @@ export async function existsButDataWrong(
       });
     }
 
-    index[suburb] = features;
+    index[`Address Update - ${suburb}`] = features;
   }
 
   await fs.writeFile(join(outFolder, 'data-wrong.txt'), report);

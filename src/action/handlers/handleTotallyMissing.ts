@@ -82,7 +82,7 @@ export async function handleTotallyMissing(
       },
     );
 
-    index[suburb] = features;
+    index[`Address Update - ${suburb}`] = features;
   }
 
   return index;

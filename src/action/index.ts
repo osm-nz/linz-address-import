@@ -41,13 +41,27 @@ export async function main(): Promise<void> {
     }
   }
 
-  const mass = 'Z many small places';
+  const mass = 'Address Update';
   features[mass] = [];
   for (const k in features) {
     if (features[k].length < 50 && !mock) {
       features[mass].push(...features[k]);
       delete features[k];
     }
+  }
+  if (!features[mass].length) delete features[mass];
+
+  // we do this after generating the 'small places' layer, beacuse we only want to include addresses
+  try {
+    const specialLayers = JSON.parse(
+      await fs.readFile(
+        join(__dirname, '../../data/special-layers.geo.json'),
+        'utf-8',
+      ),
+    );
+    Object.assign(features, specialLayers);
+  } catch {
+    console.log('(!) Failed to include special layers');
   }
 
   await createIndex(sectorize(features));

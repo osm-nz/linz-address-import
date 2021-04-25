@@ -210,10 +210,15 @@ type GeoJsonMultiPolygon = {
   type: 'MultiPolygon';
   coordinates: [lng: number, lat: number][][]; // same as Area but multiple rings allowed
 };
+export type GeoJsonCoords =
+  | GeoJsonPoint
+  | GeoJsonLine
+  | GeoJsonArea
+  | GeoJsonMultiPolygon;
 export type GeoJsonFeature = {
   type: 'Feature';
   id: string;
-  geometry: GeoJsonPoint | GeoJsonLine | GeoJsonArea | GeoJsonMultiPolygon;
+  geometry: GeoJsonCoords;
   properties: Record<string, string | undefined>;
 };
 export type GeoJson = {
