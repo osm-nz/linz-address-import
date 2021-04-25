@@ -9,3 +9,7 @@ export const stackFile = join(
   __dirname,
   `../../data/linzCouldStack${mock}.json`,
 );
+export const ignoreFile = join(__dirname, `../../data/ignoreFile${mock}.json`);
+
+/** more performant to lookup an object */
+export type IgnoreFile = Record<string, 1>;

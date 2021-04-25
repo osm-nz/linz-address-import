@@ -1,0 +1,6 @@
+"When you ignore an address in the LINZ Address Import, it gets added to this list automatically. The conflation process then looks up this spreadsheet and ignores any addresses listed here.
+
+For more info see https://wiki.osm.org/Import/New_Zealand_Street_Addresses_(2021)",,,,,,
+,,,,,,
+LINZ Address ID,Street Address,Suburb/Hamlet,User,Date/Time (UTC),Is Data Error?,Comment
+70108,108 Example Street,Oakleigh,demo-user,2021-01-02T03:04:05.678Z,TRUE,"Testing an ignored address"

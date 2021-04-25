@@ -34,6 +34,10 @@ jobs:
         run: |
           yarn download-linz
 
+      - name: ⏩ Download list of addresses to ignore
+        run: |
+          yarn preprocess0
+
       - name: 🚚 Preprocess the .osm.pbf file
         run: |
           yarn preprocess1 --max-old-space-size=6144

@@ -44,7 +44,7 @@ export async function main(): Promise<void> {
   const mass = 'Z many small places';
   features[mass] = [];
   for (const k in features) {
-    if (features[k].length < 50) {
+    if (features[k].length < 50 && !mock) {
       features[mass].push(...features[k]);
       delete features[k];
     }

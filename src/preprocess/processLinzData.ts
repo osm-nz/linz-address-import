@@ -2,7 +2,7 @@ import { promises as fs, createReadStream } from 'fs';
 import { join } from 'path';
 import csv from 'csv-parser';
 import { LinzSourceAddress, LinzData } from '../types';
-import { linzTempFile, mock } from './const';
+import { linzTempFile, mock, ignoreFile, IgnoreFile } from './const';
 
 const input = join(
   __dirname,
@@ -17,7 +17,10 @@ const correctLng = (lng: number) => {
 };
 
 // TODO: perf baseline is 50seconds
-function linzToJson(): Promise<LinzData> {
+async function linzToJson(): Promise<LinzData> {
+  console.log('Reading ignore file...');
+  const ignore: IgnoreFile = JSON.parse(await fs.readFile(ignoreFile, 'utf-8'));
+
   console.log('Starting preprocess of LINZ data...');
   return new Promise((resolve, reject) => {
     const out: LinzData = {};
@@ -26,6 +29,9 @@ function linzToJson(): Promise<LinzData> {
     createReadStream(input)
       .pipe(csv())
       .on('data', (data: LinzSourceAddress) => {
+        // skip addresses where mappers clicked ignore
+        if (ignore[data.address_id]) return;
+
         out[data.address_id] = {
           housenumber: data.full_address_number,
           $houseNumberMsb: data.address_number,

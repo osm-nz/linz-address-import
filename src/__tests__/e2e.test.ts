@@ -1,5 +1,6 @@
 import { execSync } from 'child_process';
 import { join } from 'path';
+import { main as fetchIgnoreList } from '../preprocess/fetchIgnoreList';
 import { main as preprocessLinz } from '../preprocess/processLinzData';
 import { main as preprocessOsm } from '../preprocess/processOsmData';
 import { main as stackLinzData } from '../preprocess/stackLinzData';
@@ -29,6 +30,8 @@ describe('end-to-end test', () => {
   });
 
   it('works', async () => {
+    expect(await time(fetchIgnoreList)).toBeLessThan(0.5);
+
     expect(await time(preprocessOsm)).toBeLessThan(0.5);
 
     expect(await time(preprocessLinz)).toBeLessThan(0.5);
