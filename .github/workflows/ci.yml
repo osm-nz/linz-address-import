@@ -29,6 +29,10 @@ jobs:
         run: |
           npm run lint
 
+      - name: 🔣 Validate taginfo.json
+        run: |
+          node -e 'require("./taginfo.json")'
+
       - name: 🧪 Test
         run: |
           mkdir -p data

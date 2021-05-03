@@ -1,0 +1,58 @@
+{
+  "$schema": "https://raw.githubusercontent.com/taginfo/taginfo-projects/master/taginfo-project-schema.json",
+  "data_format": 1,
+  "data_url": "https://raw.githubusercontent.com/osm-nz/linz-address-import/main/taginfo.json",
+  "data_updated": "20210503T000000Z",
+  "project": {
+    "name": "New Zealand Address Import",
+    "description": "Tags used by the New Zealand Address Import project, which regularly updates addresses in OSM based on data from LINZ.",
+    "project_url": "https://github.com/osm-nz/linz-address-import",
+    "doc_url": "https://wiki.osm.org/Import/New_Zealand_Street_Addresses_(2021)",
+    "icon_url": "https://osm-nz.github.io/img/logo.png",
+    "contact_name": "Kyle Hensel",
+    "contact_email": "message @kylenz on OpenStreetMap"
+  },
+  "tags": [
+    {
+      "key": "addr:housenumber",
+      "object_types": ["node", "area", "relation"],
+      "description": "Added to addresses in New Zealand"
+    },
+    {
+      "key": "addr:street",
+      "object_types": ["node", "area", "relation"],
+      "description": "Added to addresses in New Zealand"
+    },
+    {
+      "key": "addr:hamlet",
+      "object_types": ["node", "area", "relation"],
+      "description": "The suburb/locality name for rural areas in New Zealand"
+    },
+    {
+      "key": "addr:suburb",
+      "object_types": ["node", "area", "relation"],
+      "description": "The suburb/locality name for urban areas in New Zealand"
+    },
+    {
+      "key": "addr:type",
+      "object_types": ["node", "area", "relation"],
+      "description": "addr:type=water is added for water addresses, which are different to street addresses"
+    },
+    {
+      "key": "addr:type",
+      "value": "water",
+      "object_types": ["node", "area", "relation"],
+      "description": "Added for water addresses in New Zealand, which are different to street addresses"
+    },
+    {
+      "key": "ref:linz:address_id",
+      "object_types": ["node", "area", "relation"],
+      "description": "A unique ID used in the weekly street addresses update for New Zealand"
+    },
+    {
+      "key": "check_date",
+      "object_types": ["node", "area", "relation"],
+      "description": "Added to street addresses in New Zealand if a mapper believes that the government data is wrong and should be skipped by the address update project"
+    }
+  ]
+}
