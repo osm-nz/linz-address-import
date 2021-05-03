@@ -1,5 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/taginfo/taginfo-projects/master/taginfo-project-schema.json",
   "data_format": 1,
   "data_url": "https://raw.githubusercontent.com/osm-nz/linz-address-import/main/taginfo.json",
   "data_updated": "20210503T000000Z",

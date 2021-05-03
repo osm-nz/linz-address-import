@@ -1,0 +1,8 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["taginfo.json"],
+      "url": "https://raw.githubusercontent.com/taginfo/taginfo-projects/master/taginfo-project-schema.json"
+    }
+  ]
+}
