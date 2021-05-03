@@ -49,7 +49,7 @@ export async function main(): Promise<void> {
       delete features[k];
     }
   }
-  if (!features[mass].length) delete features[mass];
+  if (!features[mass]?.length) delete features[mass];
 
   // we do this after generating the 'small places' layer, beacuse we only want to include addresses
   try {
