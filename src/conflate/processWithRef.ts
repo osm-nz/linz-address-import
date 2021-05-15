@@ -3,7 +3,7 @@ import { distanceBetween } from './helpers/geo';
 import { validate } from './helpers/validate';
 
 /** distance in metres beyond which we classify the address as `EXISTS_BUT_LOCATION_WRONG` */
-const LOCATION_THRESHOLD = 500;
+const LOCATION_THRESHOLD = 300;
 
 const isTruthy = <T>(x: T | undefined | false | null | 0): x is T => !!x;
 
