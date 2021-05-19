@@ -80,9 +80,7 @@ async function processLinzChangelogCsv(
   });
 }
 
-export async function processChangelog(
-  latestKnownVersion: string,
-): Promise<
+export async function processChangelog(latestKnownVersion: string): Promise<
   | undefined
   | {
       version: string;

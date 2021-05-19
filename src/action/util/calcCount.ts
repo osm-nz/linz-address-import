@@ -1,8 +1,9 @@
 import { GeoJsonFeature } from '../../types';
 
-export function calcCount(
-  features: GeoJsonFeature[],
-): { count: string; totalCount: number } {
+export function calcCount(features: GeoJsonFeature[]): {
+  count: string;
+  totalCount: number;
+} {
   let plus = 0;
   let minus = 0;
   let move = 0;

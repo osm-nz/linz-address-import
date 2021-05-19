@@ -48,23 +48,21 @@ export async function main(): Promise<void> {
       osmAddr.suburb?.[1] || 'deletions from unknown sector',
     ]);
 
-  const statusReport: Record<
-    Status,
-    [linzId: string, diagnostics: unknown][]
-  > = {
-    1: [],
-    2: [],
-    3: [],
-    4: [],
-    5: [],
-    6: [],
-    7: [],
-    8: [],
-    9: [],
-    10: [],
-    11: [],
-    13: [],
-  };
+  const statusReport: Record<Status, [linzId: string, diagnostics: unknown][]> =
+    {
+      1: [],
+      2: [],
+      3: [],
+      4: [],
+      5: [],
+      6: [],
+      7: [],
+      8: [],
+      9: [],
+      10: [],
+      11: [],
+      13: [],
+    };
 
   console.log('processing deleted data...');
   console.time('conflateDeletions');

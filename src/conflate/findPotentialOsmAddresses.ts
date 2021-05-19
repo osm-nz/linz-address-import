@@ -2,8 +2,10 @@ import { Confidence, LinzAddr, OsmAddr, OsmAddrWithConfidence } from '../types';
 import { distanceBetween } from './helpers/geo';
 
 // using the mutating Object.assign because it's computationally cheaper than object spread
-const withC = (confidence: Confidence) => (p: OsmAddr): OsmAddrWithConfidence =>
-  Object.assign(p, { confidence });
+const withC =
+  (confidence: Confidence) =>
+  (p: OsmAddr): OsmAddrWithConfidence =>
+    Object.assign(p, { confidence });
 
 /** If there are multiple osm addresses found, none of which have a linz ref, find the most likely ones */
 export const findPotentialOsmAddresses = (
