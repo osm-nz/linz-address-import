@@ -530,6 +530,15 @@
 
   <!-- 108 ignored by a mapper so it won't be suggested -->
 
+  <!-- 109 is spelt incorrectly in LINZ but has a mapping in the NZGB file. Not in OSM yet -->
+  <!-- 110 like 109 but already in OSM with the wrong spelling -->
+  <node id="110" version="1" changeset="1" lat="-36.9" lon="175.110" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="110" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Opotiki" />
+    <tag k="ref:linz:address_id" v="70110" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />

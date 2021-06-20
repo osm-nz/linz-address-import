@@ -213,6 +213,28 @@
       ]
     },
     {
+      "id": "AddressUpdateptiki_no5kf2",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateptiki_no5kf2.geo.json",
+      "name": "Address Update - Ōpōtiki",
+      "title": "Address Update - Ōpōtiki",
+      "totalCount": 2,
+      "source": "https://data.linz.govt.nz/layer/3353",
+      "snippet": "add 1, edit 1",
+      "extent": [
+        [
+          175.109,
+          -36.900200000000005
+        ],
+        [
+          175.11020000000002,
+          -36.899800000000006
+        ]
+      ],
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
       "id": "AddressUpdateRangithua_rx31k4",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateRangithua_rx31k4.geo.json",
       "name": "Address Update - Rangitāhua",

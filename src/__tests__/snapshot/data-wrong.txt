@@ -20,3 +20,6 @@ West Hoe Heights
 
 Abel Tasman National Park
 70059		https://osm.org/node/59		water|1|0
+
+Ōpōtiki
+70110		https://osm.org/node/110		suburb|addr_hamlet=Ōpōtiki|addr_hamlet=Opotiki

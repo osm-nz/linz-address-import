@@ -2,7 +2,7 @@ import { promises as fs, createReadStream } from 'fs';
 import { join } from 'path';
 import csv from 'csv-parser';
 import { LinzSourceAddress, LinzData } from '../types';
-import { linzTempFile, mock, ignoreFile, IgnoreFile } from './const';
+import { linzTempFile, mock, ignoreFile, IgnoreFile, nzgbFile } from './const';
 
 const input = join(
   __dirname,
@@ -21,6 +21,12 @@ async function linzToJson(): Promise<LinzData> {
   console.log('Reading ignore file...');
   const ignore: IgnoreFile = JSON.parse(await fs.readFile(ignoreFile, 'utf-8'));
 
+  console.log('Reading NZGB file...');
+  const nzgb: Record<string, string> = JSON.parse(
+    await fs.readFile(nzgbFile, 'utf-8'),
+  );
+  const useOfficialName = (name: string) => nzgb[name] || name;
+
   console.log('Starting preprocess of LINZ data...');
   return new Promise((resolve, reject) => {
     const out: LinzData = {};
@@ -38,9 +44,9 @@ async function linzToJson(): Promise<LinzData> {
           street: data.full_road_name,
           suburb: [
             data.town_city ? 'U' : 'R',
-            data.water_name || data.suburb_locality,
+            useOfficialName(data.water_name || data.suburb_locality),
           ],
-          town: data.town_city,
+          town: useOfficialName(data.town_city),
           lat: +data.shape_Y,
           lng: correctLng(+data.shape_X),
         };
