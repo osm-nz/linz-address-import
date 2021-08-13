@@ -1,18 +1,22 @@
 import { join } from 'path';
 import pbf2json, { Item } from 'pbf2json';
 import through from 'through2';
-import { OsmId } from '../../types';
+import { withinBBox } from '../../common/geo';
+import { BBox, OsmId } from '../../types';
 import { OsmMarker } from './const';
 
 /** checks if an ISO date exists and if it it's less than 1 year old */
 const isChecked = (v: string | undefined) =>
   !!v && (+new Date() - +new Date(v)) / 1000 / 60 / 60 / 24 < 365;
 
-export async function readFromPlanet(): Promise<Record<string, OsmMarker>> {
+export async function readFromPlanet(
+  bbox: BBox,
+): Promise<Record<string, OsmMarker>> {
   return new Promise((resolve, reject) => {
     console.log('Extracting markers from OSM Planet...');
     const out: Record<string, OsmMarker> = {};
     let i = 0;
+    let skipped = 0;
 
     const planetFile = join(__dirname, '../../../data/osm.pbf');
 
@@ -29,6 +33,12 @@ export async function readFromPlanet(): Promise<Record<string, OsmMarker>> {
 
           if (item.type !== 'node') {
             console.warn('\t(!) skipping a non-node');
+            next();
+            return;
+          }
+
+          if (!withinBBox(bbox, +item.lat, +item.lon)) {
+            skipped += 1;
             next();
             return;
           }
@@ -70,7 +80,11 @@ export async function readFromPlanet(): Promise<Record<string, OsmMarker>> {
         }),
       )
       .on('finish', () => {
-        console.log(`Read ${Object.keys(out).length} markers from OSM`);
+        console.log(
+          `Read ${
+            Object.keys(out).length
+          } markers from OSM, skipped ${skipped}`,
+        );
         resolve(out);
       })
       .on('error', reject);

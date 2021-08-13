@@ -71,7 +71,7 @@ export const markConditions = <const>{
 export type LINZCSVItem = {
   /** @deprecated */ WKT: string;
   /** @deprecated */ id: number;
-  geodetic_code: number;
+  geodetic_code: string;
   current_mark_name?: string;
   description: string;
   /** @deprecated */ mark_type: string;

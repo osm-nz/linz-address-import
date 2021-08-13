@@ -158,7 +158,7 @@ export async function conflate(
     'ZZ Survey Markers - Add': add,
     'ZZ Survey Markers - Move': move,
     'ZZ Survey Markers - Edit': edit,
-    'ZZ Survey Markers Delete': remove,
+    'ZZ Survey Markers - Delete': remove,
   };
 
   await fs.writeFile(

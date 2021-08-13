@@ -2,8 +2,13 @@ import { createReadStream } from 'fs';
 import csv from 'csv-parser';
 import { join } from 'path';
 import { beaconTypes, LINZCSVItem, LINZMarker, markConditions } from './const';
+import { BBox } from '../../types';
+import { withinBBox } from '../../common/geo';
 
-export async function readLINZData(): Promise<Record<string, LINZMarker>> {
+export async function readLINZData(
+  bbox: BBox,
+  ignore: string[],
+): Promise<Record<string, LINZMarker>> {
   console.log('Extracting survey markers from LINZ csv file...');
 
   const alreadyWarnedAbout1: Record<string, true> = {};
@@ -11,11 +16,20 @@ export async function readLINZData(): Promise<Record<string, LINZMarker>> {
 
   const csvFile = join(__dirname, '../../../data/geodetic-marks.csv');
 
+  let skipped = 0;
+
   return new Promise((resolve, reject) => {
     const out: Record<string, LINZMarker> = {};
     createReadStream(csvFile)
       .pipe(csv())
       .on('data', (marker: LINZCSVItem) => {
+        if (!withinBBox(bbox, +marker.latitude, +marker.longitude)) {
+          skipped += 1;
+          return;
+        }
+
+        if (ignore.includes(marker.geodetic_code)) return;
+
         if (!(marker.beacon_type in beaconTypes)) {
           if (!alreadyWarnedAbout1[marker.beacon_type]) {
             console.warn(
@@ -73,7 +87,11 @@ export async function readLINZData(): Promise<Record<string, LINZMarker>> {
         };
       })
       .on('end', () => {
-        console.log(`Read ${Object.keys(out).length} markers from LINZ`);
+        console.log(
+          `Read ${
+            Object.keys(out).length
+          } markers from LINZ, skipped ${skipped}`,
+        );
         resolve(out);
       })
       .on('error', reject);
