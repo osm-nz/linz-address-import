@@ -13,8 +13,9 @@ const includeIfWrong = (
   osmMarker: OsmMarker | undefined,
   key: MutalTags,
 ) => {
-  if (osmMarker?.[key] && linzMarker && !linzMarker[key])
+  if (osmMarker?.[key] && linzMarker && !linzMarker[key]) {
     return { [key]: '🗑️' };
+  }
 
   if (!osmMarker?.[key] || linzMarker?.[key] !== osmMarker[key]) {
     return { [key]: linzMarker?.[key] };
@@ -161,7 +162,7 @@ export async function conflate(
   };
 
   await fs.writeFile(
-    join(__dirname, `../../../data/special-layers.geo.json`),
+    join(__dirname, `../../../data/extra-layers.geo.json`),
     JSON.stringify(out),
   );
 }

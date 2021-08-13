@@ -12,7 +12,7 @@
     "preprocess3": "ts-node -T src/preprocess/stackLinzData",
     "preprocess": "npm run preprocess0 && npm run preprocess1 && npm run preprocess2 && npm run preprocess3",
     "conflate": "ts-node src/conflate",
-    "extralayers": "ts-node src/experiments",
+    "extralayers": "ts-node src/extraLayers",
     "action": "ts-node src/action",
     "upload": "ts-node src/upload",
     "all": "npm run preprocess && npm run conflate && npm run extralayers && npm run action && npm run upload",
@@ -32,7 +32,6 @@
     "unzipper": "^0.10.11"
   },
   "devDependencies": {
-    "@types/dotenv": "^8.2.0",
     "@types/jest": "^26.0.23",
     "@types/mime-types": "^2.1.0",
     "@types/node": "^15.12.4",

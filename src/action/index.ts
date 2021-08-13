@@ -17,7 +17,7 @@ export async function main(): Promise<void> {
   );
 
   console.log('Clearing output folder...');
-  await fs.rmdir(outFolder, { recursive: true });
+  await fs.rm(outFolder, { recursive: true });
   await fs.mkdir(suburbsFolder, { recursive: true });
 
   console.log('generating stats...');
@@ -53,15 +53,17 @@ export async function main(): Promise<void> {
 
   // we do this after generating the 'small places' layer, beacuse we only want to include addresses
   try {
-    const specialLayers = JSON.parse(
-      await fs.readFile(
-        join(__dirname, '../../data/special-layers.geo.json'),
-        'utf-8',
-      ),
-    );
-    Object.assign(features, specialLayers);
+    if (process.env.NODE_ENV !== 'test') {
+      const extraLayers = JSON.parse(
+        await fs.readFile(
+          join(__dirname, '../../data/extra-layers.geo.json'),
+          'utf-8',
+        ),
+      );
+      Object.assign(features, extraLayers);
+    }
   } catch {
-    console.log('(!) Failed to include special layers');
+    console.log('(!) Failed to include extra layers');
   }
 
   await createIndex(sectorize(features));

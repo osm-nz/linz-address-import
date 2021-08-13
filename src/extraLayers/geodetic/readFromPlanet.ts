@@ -34,7 +34,7 @@ export async function readFromPlanet(): Promise<Record<string, OsmMarker>> {
           }
 
           const obj: OsmMarker = {
-            osmId: ('n' + item.id) as OsmId,
+            osmId: <OsmId>`n${item.id}`,
             lat: +item.lat,
             lng: +item.lon,
             name: item.tags.name,
