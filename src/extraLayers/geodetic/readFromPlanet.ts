@@ -17,6 +17,7 @@ export async function readFromPlanet(
     const out: Record<string, OsmMarker> = {};
     let i = 0;
     let skipped = 0;
+    const duplicates: Record<string, OsmId[]> = {};
 
     const planetFile = join(__dirname, '../../../data/osm.pbf');
 
@@ -43,6 +44,8 @@ export async function readFromPlanet(
             return;
           }
 
+          const ref = item.tags.ref!;
+
           const obj: OsmMarker = {
             osmId: <OsmId>`n${item.id}`,
             lat: +item.lat,
@@ -50,8 +53,8 @@ export async function readFromPlanet(
             name: item.tags.name,
             description: item.tags.description
               ?.replace(/\s\s+/g, ' ')
-              .trim()
-              .slice(0, 255),
+              .slice(0, 255)
+              .trim(),
             ele: item.tags.ele,
             height: item.tags.height,
             material: item.tags.material,
@@ -65,7 +68,7 @@ export async function readFromPlanet(
             checked: isChecked(item.tags.check_date),
           };
 
-          const website = `https://www.geodesy.linz.govt.nz/gdb?code=${item.tags.ref}`;
+          const website = `https://www.geodesy.linz.govt.nz/gdb?code=${ref}`;
 
           if (item.tags.operator !== 'Land Information New Zealand') {
             obj.needsOperatorTag = true;
@@ -74,7 +77,13 @@ export async function readFromPlanet(
             obj.needsWebsiteTag = true;
           }
 
-          out[item.tags.ref!] = obj;
+          if (ref in out) {
+            if (!duplicates[ref]) {
+              duplicates[ref] = [out[ref].osmId, obj.osmId];
+            } else duplicates[ref].push(obj.osmId);
+          }
+
+          out[ref] = obj;
 
           next();
         }),
@@ -85,6 +94,15 @@ export async function readFromPlanet(
             Object.keys(out).length
           } markers from OSM, skipped ${skipped}`,
         );
+
+        if (Object.keys(duplicates).length) {
+          console.log(
+            '\n\nCAUTION: RESULT IS UNSTABLE DUE TO DUPLICATE REFS',
+            duplicates,
+            '\n\n',
+          );
+        }
+
         resolve(out);
       })
       .on('error', reject);

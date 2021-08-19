@@ -5,6 +5,41 @@ import { beaconTypes, LINZCSVItem, LINZMarker, markConditions } from './const';
 import { BBox } from '../../types';
 import { withinBBox } from '../../common/geo';
 
+type Structure = false | [string, string?, string?];
+
+export function csvToMarker(
+  marker: LINZCSVItem,
+  includeNonBeaconed: boolean,
+): LINZMarker | undefined {
+  const condition = markConditions[marker.mark_condition];
+  if (condition === false) return undefined;
+
+  let $structure = beaconTypes[marker.beacon_type] as Structure;
+
+  if (!$structure) {
+    if (includeNonBeaconed) $structure ||= ['pin', undefined, undefined];
+    else return undefined;
+  }
+
+  const [structure, height, material] = $structure;
+
+  return {
+    lat: +marker.latitude,
+    lng: +marker.longitude,
+    description:
+      // make all multi-spaces/tabs/newlines into single space
+      marker.description.replace(/\s\s+/g, ' ').slice(0, 255).trim() ||
+      undefined,
+    ele: marker.ellipsoidal_height || undefined,
+    name: marker.current_mark_name?.trim(),
+    'survey_point:structure': structure,
+    height,
+    material,
+    'survey_point:datum_aligned': condition || undefined,
+    'survey_point:purpose': marker.ellipsoidal_height ? 'both' : 'horizontal',
+  };
+}
+
 export async function readLINZData(
   bbox: BBox,
   ignore: string[],
@@ -53,10 +88,6 @@ export async function readLINZData(
           return;
         }
 
-        const $structure = beaconTypes[marker.beacon_type];
-        const condition = markConditions[marker.mark_condition];
-        if ($structure === false || condition === false) return; // skip this one
-
         if (
           // more efficient than a regex?
           marker.description.toLowerCase().includes('topmark') ||
@@ -66,25 +97,8 @@ export async function readLINZData(
           return; // a floating beacon in the sea
         }
 
-        const [structure, height, material] = $structure;
-
-        out[marker.geodetic_code] = {
-          lat: +marker.latitude,
-          lng: +marker.longitude,
-          description:
-            // make all multi-spaces/tabs/newlines into single space
-            marker.description.replace(/\s\s+/g, ' ').trim().slice(0, 255) ||
-            undefined,
-          ele: marker.ellipsoidal_height || undefined,
-          name: marker.current_mark_name?.trim(),
-          'survey_point:structure': structure,
-          height,
-          material,
-          'survey_point:datum_aligned': condition || undefined,
-          'survey_point:purpose': marker.ellipsoidal_height
-            ? 'both'
-            : 'horizontal',
-        };
+        const m = csvToMarker(marker, false);
+        if (m) out[marker.geodetic_code] = m;
       })
       .on('end', () => {
         console.log(

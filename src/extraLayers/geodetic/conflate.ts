@@ -4,8 +4,20 @@ import { HandlerReturn, GeoJsonFeature } from '../../types';
 import { distanceBetween } from '../../conflate/helpers/geo';
 import { createDiamond } from '../../action/util';
 import { LINZMarker, OsmMarker } from './const';
+import { checkStatus } from './checkStatus';
 
 type MutalTags = keyof (LINZMarker | OsmMarker);
+
+const MUTAL_TAGS: MutalTags[] = [
+  'name',
+  // 'ele', // don't touch the ele tag because there are various issues that need solving
+  // 'survey_point:purpose', // as above
+  'survey_point:datum_aligned',
+  'survey_point:structure',
+  'description',
+  'height',
+  'material',
+];
 
 /** only include this tag if it's currently missing or wrong */
 const includeIfWrong = (
@@ -83,15 +95,9 @@ export async function conflate(
         continue; // eslint-disable-line no-continue
       }
 
-      const anyTagsWrong = (<MutalTags[]>[
-        'name',
-        // 'ele', // don't touch the ele tag because there are various issues that need solving
-        'description',
-        'datumAligned',
-        'height',
-        'material',
-        'structure',
-      ]).some((tag) => linzMarker[tag] !== osmMarker[tag]);
+      const anyTagsWrong = MUTAL_TAGS.some(
+        (tag) => linzMarker[tag] !== osmMarker[tag],
+      );
 
       const distanceApart = distanceBetween(
         linzMarker.lat,
@@ -140,9 +146,19 @@ export async function conflate(
     delete osm[code];
   }
 
-  const remove: GeoJsonFeature[] = Object.entries(osm).map(
-    ([code, osmMarker]) => {
-      return {
+  console.log('Procesing deletions...');
+  const remove: GeoJsonFeature[] = [];
+  const demote: GeoJsonFeature[] = [];
+  for (const [code, osmMarker] of Object.entries(osm)) {
+    if (osmMarker.checked) {
+      // skip if recent check_date
+      continue; // eslint-disable-line no-continue
+    }
+
+    const out = await checkStatus(code);
+    if (out.isDestroyed) {
+      // LINZ has explicitly stated this marker is destroyed
+      remove.push({
         type: 'Feature',
         id: `SPECIAL_DELETE_${code}`,
         geometry: {
@@ -150,14 +166,38 @@ export async function conflate(
           coordinates: [osmMarker.lng, osmMarker.lat],
         },
         properties: tagging(`SPECIAL_DELETE_${code}`, undefined, osmMarker),
-      };
-    },
-  );
+      });
+    } else {
+      // marker is NOT explicrtly marked as destroyed by LINZ
+      // so we just downgrade the survey_point:structure tag
+
+      const anyTagsWrong = MUTAL_TAGS.some(
+        (tag) => out.linzMarker[tag] !== osmMarker[tag],
+      );
+      if (anyTagsWrong) {
+        // some tags on this pin need changing
+        demote.push({
+          type: 'Feature',
+          id: `SPECIAL_EDIT_${code}`,
+          geometry: { type: 'Polygon', coordinates: createDiamond(osmMarker) },
+          properties: tagging(
+            `SPECIAL_EDIT_${code}`,
+            out.linzMarker,
+            osmMarker,
+          ),
+        });
+      } else {
+        // nothing to do: the pin is mapped fine
+      }
+    }
+  }
+  console.log('Finished procesing deletions');
 
   const out: HandlerReturn = {
     'ZZ Survey Markers - Add': add,
     'ZZ Survey Markers - Move': move,
     'ZZ Survey Markers - Edit': edit,
+    'ZZ Survey Markers - Demote': demote,
     'ZZ Survey Markers - Delete': remove,
   };
 
