@@ -34,8 +34,16 @@ export function processWithRef(
   const streetOk = linzAddr.street === osmAddr.street;
   const suburbOk = linzSuburb === osmSuburb;
   const waterOk = linzAddr.water === osmAddr.water;
+  const flatCountOk = linzAddr.flatCount === osmAddr.flatCount;
 
-  if (houseOk && streetOk && suburbOk && waterOk && !osmAddr.doubleSuburb) {
+  if (
+    houseOk &&
+    streetOk &&
+    suburbOk &&
+    waterOk &&
+    flatCountOk &&
+    !osmAddr.doubleSuburb
+  ) {
     // looks perfect - last check is if location is correct
 
     const offset = distanceBetween(
@@ -70,6 +78,8 @@ export function processWithRef(
       !houseOk && `housenumber|${linzAddr.housenumber}|${osmAddr.housenumber}`,
       !streetOk && `street|${linzAddr.street}|${osmAddr.street}`,
       !suburbOk && `suburb|${linzSuburb}|${osmSuburb}`,
+      !flatCountOk &&
+        `flatCount|${linzAddr.flatCount || 0}|${osmAddr.flatCount || 0}`,
 
       // this is the buggy one (see #7) if it's a double suburb, the system may think `suburbOk` but it's wrong
       suburbOk &&

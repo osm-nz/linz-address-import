@@ -364,6 +364,111 @@
     },
     {
       "type": "Feature",
+      "id": "SPECIAL_EDIT_70117",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              175.11700000000002,
+              -36.899800000000006
+            ],
+            [
+              175.11720000000003,
+              -36.900000000000006
+            ],
+            [
+              175.11700000000002,
+              -36.900200000000005
+            ],
+            [
+              175.1168,
+              -36.900000000000006
+            ],
+            [
+              175.11700000000002,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "SPECIAL_EDIT_70117",
+        "building:flats": "🗑️"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SPECIAL_EDIT_70118",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              175.11800000000002,
+              -36.899800000000006
+            ],
+            [
+              175.11820000000003,
+              -36.900000000000006
+            ],
+            [
+              175.11800000000002,
+              -36.900200000000005
+            ],
+            [
+              175.11780000000002,
+              -36.900000000000006
+            ],
+            [
+              175.11800000000002,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "SPECIAL_EDIT_70118",
+        "building:flats": "🗑️"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SPECIAL_EDIT_70122",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              175.122,
+              -36.899800000000006
+            ],
+            [
+              175.12220000000002,
+              -36.900000000000006
+            ],
+            [
+              175.122,
+              -36.900200000000005
+            ],
+            [
+              175.1218,
+              -36.900000000000006
+            ],
+            [
+              175.122,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "SPECIAL_EDIT_70122",
+        "building:flats": "3"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "SPECIAL_EDIT_stack(70079-70081)",
       "geometry": {
         "type": "Polygon",
@@ -430,6 +535,76 @@
       "properties": {
         "ref_linz_address": "SPECIAL_EDIT_stack(70082-70084)",
         "addr_housenumber": "82"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SPECIAL_EDIT_stack(70111-70113)",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              175.11100000000002,
+              -36.899800000000006
+            ],
+            [
+              175.11120000000003,
+              -36.900000000000006
+            ],
+            [
+              175.11100000000002,
+              -36.900200000000005
+            ],
+            [
+              175.1108,
+              -36.900000000000006
+            ],
+            [
+              175.11100000000002,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "SPECIAL_EDIT_stack(70111-70113)",
+        "building:flats": "3"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SPECIAL_EDIT_stack(70114-70116)",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              175.114,
+              -36.899800000000006
+            ],
+            [
+              175.1142,
+              -36.900000000000006
+            ],
+            [
+              175.114,
+              -36.900200000000005
+            ],
+            [
+              175.1138,
+              -36.900000000000006
+            ],
+            [
+              175.114,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "SPECIAL_EDIT_stack(70114-70116)",
+        "building:flats": "3"
       }
     },
     {
@@ -921,6 +1096,23 @@
         "addr_street": "Example Street",
         "addr_hamlet": "Oakleigh",
         "ref_linz_address": "SPECIAL_DELETE_stack(70085-70087)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stack(70119-70121)",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          175.119,
+          -36.900000000000006
+        ]
+      },
+      "properties": {
+        "addr_housenumber": "122",
+        "addr_street": "Example Street",
+        "addr_hamlet": "Oakleigh",
+        "ref_linz_address": "SPECIAL_DELETE_stack(70119-70121)"
       }
     }
   ]

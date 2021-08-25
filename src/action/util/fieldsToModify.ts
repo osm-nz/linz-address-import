@@ -36,6 +36,15 @@ export function fieldsToModify(issues: Issue[]): Record<string, string> {
         }
         break;
       }
+      case 'flatCount': {
+        if (linzValue === '0' && osmValue !== '0') {
+          ac['building:flats'] = '🗑️'; // delete the tag
+        } else {
+          // this implies linzValue != 0 && linzValue != osmValue
+          ac['building:flats'] = linzValue;
+        }
+        break;
+      }
       default:
         throw new Error('Unexpected field type');
     }

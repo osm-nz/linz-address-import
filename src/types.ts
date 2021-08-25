@@ -17,6 +17,8 @@ export type LinzAddr = Coords & {
   town: string;
   /** whether this address is a water address */
   water?: true;
+  /** for stacked addresse, this is the number of addresses in this stack */
+  flatCount?: number;
 };
 export type LinzData = {
   [linzId: string]: LinzAddr;
@@ -33,6 +35,8 @@ export type OsmAddr = Coords & {
   water?: true;
   /** whether this address has `addr:suburb` and `addr:hamlet` */
   doubleSuburb?: true;
+  /** for stacked addresse, this is the number of addresses in this stack */
+  flatCount?: number;
 };
 export type OsmAddrWithConfidence = OsmAddr & {
   /** distance in metres away from expected location */

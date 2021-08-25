@@ -407,6 +407,7 @@
     <tag k="addr:housenumber" v="66" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="building:flats" v="3" />
     <tag k="ref:linz:address_id" v="stack(70066-70068)" />
   </node>
 
@@ -415,6 +416,7 @@
     <tag k="addr:housenumber" v="69" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="building:flats" v="3" />
     <tag k="ref:linz:address_id" v="stack(70069-70071)" />
   </node>
 
@@ -423,6 +425,7 @@
     <tag k="addr:housenumber" v="72" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="building:flats" v="4" />
     <tag k="ref:linz:address_id" v="stack(70072-70075)" />
   </node>
 
@@ -431,6 +434,7 @@
     <tag k="addr:housenumber" v="76" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="building:flats" v="3" />
     <tag k="ref:linz:address_id" v="stack(70076-70078)" />
   </node>
 
@@ -439,6 +443,7 @@
     <tag k="addr:housenumber" v="79" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="The City of Ember" />
+    <tag k="building:flats" v="3" />
     <tag k="ref:linz:address_id" v="stack(70079-70081)" />
   </node>
 
@@ -447,6 +452,7 @@
     <tag k="addr:housenumber" v="82typo" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="building:flats" v="3" />
     <tag k="ref:linz:address_id" v="stack(70082-70084)" />
   </node>
 
@@ -455,6 +461,7 @@
     <tag k="addr:housenumber" v="85" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="building:flats" v="3" />
     <tag k="ref:linz:address_id" v="stack(70085-70087)" />
   </node>
 
@@ -471,6 +478,7 @@
     <tag k="addr:housenumber" v="92" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="building:flats" v="4" />
     <tag k="ref:linz:address_id" v="stack(70092-70095)" />
   </node>
 
@@ -507,6 +515,7 @@
     <tag k="addr:housenumber" v="104" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="building:flats" v="3" />
     <tag k="ref:linz:address_id" v="stack(70105-70107)" />
   </node>
   <node id="105" version="1" changeset="1" lat="-36.9" lon="175.105" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
@@ -537,6 +546,58 @@
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Opotiki" />
     <tag k="ref:linz:address_id" v="70110" />
+  </node>
+
+  <!-- 111-113 stacked but building:flats tag is missing -->
+  <node id="111" version="1" changeset="1" lat="-36.9" lon="175.111" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="111" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="stack(70111-70113)" />
+  </node>
+
+  <!-- 114-116 but building:flats tag is wrong -->
+  <node id="114" version="1" changeset="1" lat="-36.9" lon="175.114" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="114" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="building:flats" v="123" />
+    <tag k="ref:linz:address_id" v="stack(70114-70116)" />
+  </node>
+
+  <!-- 117 is not a stack, but it erroneously has a building:flats tag -->
+  <node id="117" version="1" changeset="1" lat="-36.9" lon="175.117" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="117" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="building:flats" v="44" />
+    <tag k="ref:linz:address_id" v="70117" />
+  </node>
+
+  <!-- 118 is not a stack, but it erroneously has the tag `building:flats=0` (zero could be an edge case) -->
+  <node id="118" version="1" changeset="1" lat="-36.9" lon="175.118" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="118" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="building:flats" v="0" />
+    <tag k="ref:linz:address_id" v="70118" />
+  </node>
+
+  <!-- 119-121 are the flats of an annoying stack (122), which is currently duplicated in OSM -->
+  <node id="119" version="1" changeset="1" lat="-36.9" lon="175.119" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="122" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="building:flats" v="3" />
+    <tag k="ref:linz:address_id" v="stack(70119-70121)" />
+  </node>
+
+  <!-- 122 is the parent of 119-121, which is currently duplicated in OSM (also without building:flats tag)-->
+  <node id="122" version="1" changeset="1" lat="-36.9" lon="175.122" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="122" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70122" />
   </node>
 
   <!-- <ways> -->

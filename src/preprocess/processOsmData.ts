@@ -42,7 +42,6 @@ function osmToJson(): Promise<OSMData> {
           const suburbU = item.tags['addr:suburb'];
           const suburbR = item.tags['addr:hamlet'];
           const suburb = suburbU || suburbR;
-          const tags = Object.keys(item.tags);
 
           const coords = item.type === 'node' ? item : item.centroid;
 
@@ -55,10 +54,16 @@ function osmToJson(): Promise<OSMData> {
             suburb: suburb ? [suburbU ? 'U' : 'R', suburb] : undefined,
             // this is an expensive check :(
             isNonTrivial:
-              tags.includes('name') ||
-              tags.includes('craft') ||
-              tags.includes('shop'),
+              'name' in item.tags ||
+              'craft' in item.tags ||
+              'shop' in item.tags,
             checked: isChecked(item.tags.check_date),
+            // safe to use || instead of ?? because the tag value will never be 0
+            flatCount:
+              // if the OSM tag has building:flats=0, we pretend it's -1 (since neither is valid anyway)
+              'building:flats' in item.tags
+                ? +item.tags['building:flats']! || -1
+                : undefined,
           };
           if (isWater) obj.water = true;
           if (suburbU && suburbR) obj.doubleSuburb = true;

@@ -44,13 +44,33 @@
       "description": "Added for water addresses in New Zealand, which are different to street addresses"
     },
     {
+      "key": "building:flats",
+      "object_types": ["node", "area", "relation"],
+      "description": "Added to street addresses in New Zealand when one address node is used to represent multiple flats"
+    },
+    {
       "key": "ref:linz:address_id",
       "object_types": ["node", "area", "relation"],
       "description": "A unique ID used in the weekly street addresses update for New Zealand"
     },
     {
+      "key": "ref:linz:topo50_id",
+      "object_types": ["node", "way", "area", "relation"],
+      "description": "A unique ID used to conflate topographic data imported from LINZ"
+    },
+    {
+      "key": "ref:linz:pastoral_lease_id",
+      "object_types": ["area", "relation"],
+      "description": "A unique ID used to conflate pastoral lease data imported from LINZ"
+    },
+    {
+      "key": "ref:linz:building_id",
+      "object_types": ["area", "relation"],
+      "description": "A unique ID used to conflate building outlines imported from LINZ"
+    },
+    {
       "key": "check_date",
-      "object_types": ["node", "area", "relation"],
+      "object_types": ["node", "way", "area", "relation"],
       "description": "Added to street addresses in New Zealand if a mapper believes that the government data is wrong and should be skipped by the address update project"
     }
   ]

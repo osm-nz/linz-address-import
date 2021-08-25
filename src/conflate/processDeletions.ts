@@ -48,12 +48,14 @@ export function processDeletions(
       if (osmData.linz[newLinzRef]) {
         // linz ref changed && new one is already in osm -> so basically it didn't change. Normal delete
         // probably because address accidently existed twice in the LINZ db, with 2 different refs and LINZ fixed it by deleting one.
+
+        // this could also happen if a stack is mapped twice due to the bug from osm-nz/linz-address-import#8
         normal.push([linzRef, [suburb, osmAddr]]);
       } else {
         // linz ref changed, and the new ref doesn't exist in OSM
         sus.push([linzRef, [suburb, newLinzRef, osmAddr]]);
+        removeFromCreate.push(newLinzRef);
       }
-      removeFromCreate.push(newLinzRef);
     } else {
       normal.push([linzRef, [suburb, osmAddr]]);
     }

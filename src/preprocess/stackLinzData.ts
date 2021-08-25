@@ -24,22 +24,27 @@ async function mergeIntoStacks(): Promise<LinzData> {
   );
 
   console.log('merging some addresses into stacks...');
-  const visited: VisitedCoords = {};
+  const visitedFlats: VisitedCoords = {};
+  const visitedNonFlats: Record<string, string> = {};
   const couldBeStacked: CouldStackData = {};
 
   for (const linzId in linzData) {
     const a = linzData[linzId];
 
+    const houseKey = `${a.$houseNumberMsb!}|${a.street}${a.suburb}`;
+
     // if this is a flat
     if (a.$houseNumberMsb !== a.housenumber) {
       /** a uniq key to identify this *house* (which may have multiple flats) */
-      const houseKey = `${a.$houseNumberMsb!}|${a.street}${a.suburb}`;
-      visited[houseKey] ||= [];
-      visited[houseKey].push([
+      visitedFlats[houseKey] ||= [];
+      visitedFlats[houseKey].push([
         linzId,
         // round to nearest 0.05seconds of latitude/longitude in case the points are slightly off
         <`${number},${number}`>`${a.lat.toFixed(4)},${a.lng.toFixed(4)}`,
       ]);
+    } else {
+      // this is not a flat
+      visitedNonFlats[houseKey] = linzId;
     }
 
     // ideally we would delete this prop, but it OOMs since it basically creates a clone of `out` in memory
@@ -49,8 +54,8 @@ async function mergeIntoStacks(): Promise<LinzData> {
   const alreadyInOsm = ([linzId]: VisitedCoords[string][number]) =>
     linzId in osmData.linz;
 
-  for (const houseKey in visited) {
-    const addrIds = visited[houseKey]; // a list of all flats at this MSB house number
+  for (const houseKey in visitedFlats) {
+    const addrIds = visitedFlats[houseKey]; // a list of all flats at this MSB house number
     const stackId = toStackId(addrIds.map((x) => x[0]));
 
     // >2 because maybe someone got confused with the IDs and mapped a single one.
@@ -90,13 +95,21 @@ async function mergeIntoStacks(): Promise<LinzData> {
         const stackedAddr: LinzAddr = {
           ...linzData[firstLinzId],
           housenumber: housenumberMsb, // replace `62A` or `Flat 1, 62` with `62`
+          flatCount: addrIds.length,
         };
 
         // delete the individual addresses
         for (const [linzId] of addrIds) delete linzData[linzId];
 
-        // add the stacked address
-        linzData[stackId] = stackedAddr;
+        if (houseKey in visitedNonFlats) {
+          // if we're creating a stack that would duplicate the property (see osm-nz/linz-address-import#8)
+          // don't actually create the stack, but add the flatCount to the parent
+          const singleLinzId = visitedNonFlats[houseKey];
+          linzData[singleLinzId].flatCount = addrIds.length;
+        } else {
+          // add the stacked address
+          linzData[stackId] = stackedAddr;
+        }
       }
     }
   }

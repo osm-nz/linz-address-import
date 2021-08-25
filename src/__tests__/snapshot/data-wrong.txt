@@ -10,8 +10,13 @@ Oakleigh
 70046		https://osm.org/node/46		suburb|addr_hamlet=Oakleigh|addr_suburb=West Hoe Heights
 70048		https://osm.org/node/48		housenumber|48|undefined	and	street|Example Street|undefined	and	suburb|addr_hamlet=Oakleigh|0
 70060		https://osm.org/node/60		water|0|1
+70117		https://osm.org/node/117		flatCount|0|44
+70118		https://osm.org/node/118		flatCount|0|-1
+70122		https://osm.org/node/122		flatCount|3|0
 stack(70079-70081)		https://osm.org/node/79		suburb|addr_hamlet=Oakleigh|addr_hamlet=The City of Ember
 stack(70082-70084)		https://osm.org/node/82		housenumber|82|82typo
+stack(70111-70113)		https://osm.org/node/111		flatCount|3|0
+stack(70114-70116)		https://osm.org/node/114		flatCount|3|123
 
 West Hoe Heights
 70019		https://osm.org/node/19		suburb|addr_suburb=West Hoe Heights|addr_hamlet=West Hoe Heights
