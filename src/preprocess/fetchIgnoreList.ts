@@ -4,11 +4,14 @@ import csv from 'csv-parser';
 import { join } from 'path';
 import { ignoreFile, IgnoreFile, mock } from './const';
 
-export async function fetchIgnoreList(): Promise<IgnoreFile> {
+export async function fetchIgnoreList(
+  gId = 0,
+  columnName = 'LINZ Address ID',
+): Promise<IgnoreFile> {
   const stream = mock
     ? createReadStream(join(__dirname, '../__tests__/mock/ignore-list.csv'))
     : await fetch(
-        'https://docs.google.com/spreadsheets/d/1BNrUQof78t-OZlCHF3n_MKnYDARFoCRZB7xKxQPmKds/export?format=csv&gid=0',
+        `https://docs.google.com/spreadsheets/d/1BNrUQof78t-OZlCHF3n_MKnYDARFoCRZB7xKxQPmKds/export?format=csv&gid=${gId}`,
       ).then((r) => r.body);
 
   return new Promise((resolve, reject) => {
@@ -18,7 +21,7 @@ export async function fetchIgnoreList(): Promise<IgnoreFile> {
     stream
       .pipe(csv({ skipLines: 2 }))
       .on('data', (data) => {
-        out[data['LINZ Address ID']] = 1;
+        out[data[columnName]] = 1;
       })
       .on('end', () => resolve(out))
       .on('error', reject);

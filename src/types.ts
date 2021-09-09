@@ -208,11 +208,12 @@ type GeoJsonLine = {
 };
 type GeoJsonArea = {
   type: 'Polygon';
+  // hack, should be [lng, lat][][]
   coordinates: [ring1: [lng: number, lat: number][]];
 };
 type GeoJsonMultiPolygon = {
   type: 'MultiPolygon';
-  coordinates: [lng: number, lat: number][][]; // same as Area but multiple rings allowed
+  coordinates: [member1: [ring1: [lng: number, lat: number][]]]; // hack, should be [lng, lat][][][]
 };
 export type GeoJsonCoords =
   | GeoJsonPoint
