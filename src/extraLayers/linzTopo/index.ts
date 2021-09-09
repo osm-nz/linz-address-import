@@ -73,11 +73,12 @@ export async function linzTopo(): Promise<void> {
     },
   });
 
-  const waterRace = await csvToGeoJson<{
+  type WaterRaceCl = {
     t50_fid: string;
     name?: string;
     status?: 'disused';
-  }>({
+  };
+  const waterRace = await csvToGeoJson<WaterRaceCl>({
     input: 'water_race_cl.csv',
     idField: 't50_fid',
     sourceLayer: '50369',
@@ -211,13 +212,15 @@ export async function linzTopo(): Promise<void> {
     },
   });
 
-  const masts = await csvToGeoJson<{ t50_fid: string }>({
+  type MastPnt = { t50_fid: string; height: string };
+  const masts = await csvToGeoJson<MastPnt>({
     input: 'mast_pnt.csv',
     idField: 't50_fid',
     sourceLayer: '',
     tagging(data) {
       return {
         man_made: 'mast',
+        height: data.height === '0' ? undefined : data.height, // 0 means undefined
         'ref:linz:topo50_id': data.t50_fid,
       };
     },
@@ -517,7 +520,7 @@ export async function linzTopo(): Promise<void> {
     tagging(data) {
       return {
         man_made: 'tower',
-        'tower:construction': data.material,
+        material: data.material,
         'ref:linz:topo50_id': data.t50_fid,
       };
     },
@@ -800,14 +803,14 @@ export async function linzTopo(): Promise<void> {
     '❌ Antarctic Ice': A_icePoly,
     '❌ Antarctic Icebergs': A_iceberg,
     '❌ Antarctic Ice Sreams': A_iceStream,
-    'ZZ Antarctic Lakes': A_lake,
+    '❌ Antarctic Lakes': A_lake,
     '❌ Antarctic Melt Streams': A_meltStream,
     '❌ Antarctic Scree': A_scree,
     '❌ Antarctic Tracks & Paths': A_track,
 
     // Mainland
     '❌ Goods Aerialway': goodsAerialway,
-    '❌ Cattle Stops': cattleStops,
+    'Z Cattle Stops': cattleStops,
     'Z Cutting': cutting,
     '❌ Dredge Tailing': dredgeTailing,
     '❌ Floodgates': floodgates,
@@ -833,7 +836,7 @@ export async function linzTopo(): Promise<void> {
     '❌ Redoubt': redoubts,
     '❌ Pinnancle (rock outcrop)': rockOutcrop,
     '❌ Saddle': saddles,
-    'ZZ Sinkholes': sinkholes,
+    'Z Sinkholes': sinkholes,
     '❌ Spillways': spillwayEdges,
     'Z Towers': towerPnts,
     '❌ Siphons': [...(siphonPolys || []), ...(siphonPnts || [])],

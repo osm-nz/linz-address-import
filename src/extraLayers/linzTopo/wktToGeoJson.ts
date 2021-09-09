@@ -35,7 +35,9 @@ export const wktToGeoJson = (wkt: string): GeoJsonCoords => {
     [coordinates] = coordinates;
   }
 
-  // TODO: reverse coordinates? coastline, cliff, emabankment, landslide, antarctic_depForm, antarctic_melt_stream were facing the wrong way
+  // coastline, cliff, emabankment, landslide, antarctic_depForm,
+  // antarctic_melt_stream were all facing the wrong way, so we reverse the way
+  if (type === 'LineString') coordinates.reverse();
 
   return { type, coordinates };
 };
