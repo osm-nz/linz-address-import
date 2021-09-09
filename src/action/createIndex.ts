@@ -3,9 +3,11 @@ import { join } from 'path';
 import { GeoJson, HandlerReturnWithBBox } from '../types';
 import { calcCount, CDN_URL, mock, suburbsFolder } from './util';
 import { hash } from '../common';
+import { geoJsonToOSMChange } from './geoJsonToOSMChange';
 
 function toId(suburb: string) {
-  return `${suburb.replace(/\W/g, '')}_${hash(suburb)}`;
+  // macrons are url safe
+  return `${suburb.replace(/[^a-zA-ZāēīōūĀĒĪŌŪ]/g, '')}_${hash(suburb)}`;
 }
 
 export async function createIndex(
@@ -14,6 +16,10 @@ export async function createIndex(
   const meta = Object.entries(suburbs).map(([suburb, v]) => ({
     suburb,
     bbox: v.bbox,
+    osmChangeAvailable:
+      // osmChange fails are not available for addresses, nor if there are edits/moves/deletes
+      !suburb.includes('Address Update') &&
+      !v.features.some((f) => f.id.startsWith('SPECIAL_')),
     ...calcCount(v.features),
   }));
 
@@ -81,18 +87,19 @@ export async function createIndex(
       },
     ],
     results: meta
-      .map(({ suburb, bbox, count, totalCount }) => ({
+      .map(({ suburb, bbox, count, totalCount, osmChangeAvailable }) => ({
         id: toId(suburb),
         url: `${CDN_URL}/suburbs/${toId(suburb)}.geo.json`,
         name: suburb,
         title: suburb,
         totalCount,
-        source: 'https://data.linz.govt.nz/layer/3353',
+        source: '',
         snippet: count,
         extent: [
           [bbox.minLng, bbox.minLat],
           [bbox.maxLng, bbox.maxLat],
         ],
+        osmChangeAvailable,
         groupCategories: [
           suburb.startsWith('ZZ')
             ? '/Categories/Preview'
@@ -107,7 +114,8 @@ export async function createIndex(
   );
 
   // save each suburb
-  for (const suburb in suburbs) {
+  for (const s of meta) {
+    const { suburb, osmChangeAvailable, count } = s;
     const geojson: GeoJson = {
       type: 'FeatureCollection',
       crs: { type: 'name', properties: { name: 'EPSG:4326' } },
@@ -117,5 +125,10 @@ export async function createIndex(
       join(suburbsFolder, `${toId(suburb)}.geo.json`),
       JSON.stringify(geojson, null, mock ? 2 : undefined),
     );
+
+    if (osmChangeAvailable) {
+      const osmChange = geoJsonToOSMChange(geojson, suburb, count);
+      await fs.writeFile(join(suburbsFolder, `${toId(suburb)}.osc`), osmChange);
+    }
   }
 }

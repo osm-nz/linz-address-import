@@ -1,7 +1,7 @@
 import { join } from 'path';
 import pbf2json, { Item } from 'pbf2json';
 import through from 'through2';
-import { withinBBox } from '../../common/geo';
+import { withinBBox } from '../../common';
 import { BBox, OsmId } from '../../types';
 import { OsmMarker } from './const';
 

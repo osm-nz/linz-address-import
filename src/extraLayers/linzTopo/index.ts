@@ -22,12 +22,13 @@ const radToDeg = (radians: number): string =>
 export async function linzTopo(): Promise<void> {
   const IDsToSkip = await getT50IDsToSkip();
   const csvToGeoJson = csvToGeoJsonFactory(IDsToSkip);
+  console.log('Processing layers...');
 
   type CablewayCl = { t50_fid: string; mtlconveyd?: string };
   const goodsAerialway = await csvToGeoJson<CablewayCl>({
     input: 'cableway_industrial_cl.csv',
     idField: 't50_fid',
-    sourceLayer: '',
+    sourceLayer: '50248',
     tagging(data) {
       return {
         aerialway: 'goods',
@@ -40,10 +41,24 @@ export async function linzTopo(): Promise<void> {
   const cattleStops = await csvToGeoJson<{ t50_fid: string }>({
     input: 'cattlestop_pnt.csv',
     idField: 't50_fid',
-    sourceLayer: '',
+    sourceLayer: '50252',
+    complete: true,
     tagging(data) {
       return {
         barrier: 'cattle_grid',
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+
+  const cemeteries = await csvToGeoJson<{ t50_fid: string; name?: string }>({
+    input: 'cemetery_pnt.csv',
+    idField: 't50_fid',
+    sourceLayer: '50254',
+    tagging(data) {
+      return {
+        amenity: 'grave_yard',
+        name: data.name,
         'ref:linz:topo50_id': data.t50_fid,
       };
     },
@@ -73,6 +88,36 @@ export async function linzTopo(): Promise<void> {
     },
   });
 
+  type Embankment = { t50_fid: string; embkmt_use?: 'stopbank' | 'causeway' };
+  const embankment = await csvToGeoJson<Embankment>({
+    input: 'embankment_cl.csv',
+    idField: 't50_fid',
+    sourceLayer: '50266',
+    tagging(data) {
+      // embkmt_use: 2288=stopbank, 95=causeway, 558=blank
+      if (data.embkmt_use === 'causeway') {
+        // this must be merged with a highway
+        return {
+          causeway: 'yes',
+          'ref:linz:topo50_id': data.t50_fid,
+        };
+      }
+
+      return {
+        // long disucssion on gravitystorm/openstreetmap-carto#823
+        // man_made=embankment is for the edges (both sides), man_made=dyke is for the centreline
+        // inspite of this layer being called _cl (centreline), it it is more often the edge of a
+        // one-sided embankment.
+
+        // for embkmt_use=causeway we should use embankment=yes merged onto the way
+        // for stopbank we should probably use man_made=dyke
+        man_made: 'embankment',
+        description: data.embkmt_use,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+
   type WaterRaceCl = {
     t50_fid: string;
     name?: string;
@@ -85,6 +130,8 @@ export async function linzTopo(): Promise<void> {
     tagging(data) {
       return {
         waterway: 'ditch',
+        usage: 'irrigation',
+        description: 'water race',
         name: data.name,
         disused: data.status === 'disused' ? 'yes' : undefined,
         'ref:linz:topo50_id': data.t50_fid,
@@ -129,7 +176,7 @@ export async function linzTopo(): Promise<void> {
   const fords = await csvToGeoJson<FordPnt>({
     input: 'ford_pnt.csv',
     idField: 't50_fid',
-    sourceLayer: '',
+    sourceLayer: '50275',
     tagging(data) {
       return {
         ford: 'yes',
@@ -171,10 +218,24 @@ export async function linzTopo(): Promise<void> {
     },
   });
 
+  const golfCourses = await csvToGeoJson<{ t50_fid: string; name?: string }>({
+    input: 'golf_course_poly.csv',
+    idField: 't50_fid',
+    sourceLayer: '50281',
+    complete: true,
+    tagging(data) {
+      return {
+        leisure: 'golf_course',
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+
   const gravelPits = await csvToGeoJson<{ t50_fid: string }>({
     input: 'gravel_pit_poly.csv',
     idField: 't50_fid',
-    sourceLayer: '',
+    sourceLayer: '50283',
     tagging(data) {
       return {
         landuse: 'quarry',
@@ -411,6 +472,18 @@ export async function linzTopo(): Promise<void> {
     },
   });
 
+  const shelterBelt = await csvToGeoJson<{ t50_fid: string }>({
+    input: 'shelter_belt_cl.csv',
+    idField: 't50_fid',
+    sourceLayer: '50341',
+    tagging(data) {
+      return {
+        natural: 'tree_row',
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+
   const showgrounds = await csvToGeoJson<{ t50_fid: string }>({
     input: 'showground_poly.csv',
     idField: 't50_fid',
@@ -418,7 +491,7 @@ export async function linzTopo(): Promise<void> {
     tagging(data) {
       return {
         landuse: 'recreation_ground',
-        recreation_ground: 'showground', // TODO: confirm/document?
+        recreation_ground: 'showground',
         'ref:linz:topo50_id': data.t50_fid,
       };
     },
@@ -568,7 +641,7 @@ export async function linzTopo(): Promise<void> {
     tagging(data) {
       return {
         name: data.info_disp,
-        // TODO: tagging
+        tourism: 'attraction', // mappers must decide the tagging for each one
         'ref:linz:topo50_id': data.t50_fid,
       };
     },
@@ -758,7 +831,7 @@ export async function linzTopo(): Promise<void> {
           // try to extract "Year x-y" and include only "x-y", otherwise use whole field
           grades: data.use_type.match(/Year (\d+-\d+)/)?.[1] || data.use_type,
           capacity: data.estimated_occupancy,
-          'ref:nz:MOE': data.source_facility_id,
+          ref: data.source_facility_id,
           'ref:linz:facility_id': data.facility_id,
         };
       }
@@ -779,7 +852,7 @@ export async function linzTopo(): Promise<void> {
         'healthcare:speciality': data.use_subtype
           ?.replace(/, /g, ';')
           .toLowerCase(),
-        'ref:nz:MOH': data.source_facility_id, // this is the Health Provider Index (HPI) Facility Id (FACID)
+        ref: data.source_facility_id, // this is the Health Provider Index (HPI) Facility Id (FACID)
         'ref:linz:facility_id': data.facility_id,
       };
     },
@@ -809,15 +882,18 @@ export async function linzTopo(): Promise<void> {
     '❌ Antarctic Tracks & Paths': A_track,
 
     // Mainland
-    '❌ Goods Aerialway': goodsAerialway,
+    'Z Goods Aerialway': goodsAerialway,
     'Z Cattle Stops': cattleStops,
+    'ZZ Cemeteries': cemeteries,
     'Z Cutting': cutting,
     '❌ Dredge Tailing': dredgeTailing,
+    'ZZ Embankments DO NOT IMPORT': embankment,
     '❌ Floodgates': floodgates,
     '❌ Fumaroles': fumaroles,
-    '❌ Fords': fords,
+    'Z Fords': fords,
     'Z Gates': gates,
-    '❌ Gravel Pits': gravelPits,
+    'Z Golf Courses': golfCourses,
+    'Z Gravel Pits': gravelPits,
     '❌ Marine & Fish Farm Areas': [
       ...(fishfarm || []),
       ...(marineFarmPolys || []),
@@ -836,6 +912,7 @@ export async function linzTopo(): Promise<void> {
     '❌ Redoubt': redoubts,
     '❌ Pinnancle (rock outcrop)': rockOutcrop,
     '❌ Saddle': saddles,
+    'ZZ Tree Rows': shelterBelt,
     'Z Sinkholes': sinkholes,
     '❌ Spillways': spillwayEdges,
     'Z Towers': towerPnts,

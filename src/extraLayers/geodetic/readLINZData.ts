@@ -3,7 +3,7 @@ import csv from 'csv-parser';
 import { join } from 'path';
 import { beaconTypes, LINZCSVItem, LINZMarker, markConditions } from './const';
 import { BBox } from '../../types';
-import { withinBBox } from '../../common/geo';
+import { withinBBox } from '../../common';
 
 type Structure = false | [string, string?, string?];
 

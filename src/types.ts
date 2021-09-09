@@ -198,22 +198,21 @@ export type StatsFile = {
   date: string;
 };
 
-type GeoJsonPoint = {
+export type GeoJsonPoint = {
   type: 'Point';
   coordinates: [lng: number, lat: number];
 };
-type GeoJsonLine = {
+export type GeoJsonLine = {
   type: 'LineString';
   coordinates: [lng: number, lat: number][];
 };
-type GeoJsonArea = {
+export type GeoJsonArea = {
   type: 'Polygon';
-  // hack, should be [lng, lat][][]
-  coordinates: [ring1: [lng: number, lat: number][]];
+  coordinates: [lng: number, lat: number][][];
 };
-type GeoJsonMultiPolygon = {
+export type GeoJsonMultiPolygon = {
   type: 'MultiPolygon';
-  coordinates: [member1: [ring1: [lng: number, lat: number][]]]; // hack, should be [lng, lat][][][]
+  coordinates: [lng: number, lat: number][][][];
 };
 export type GeoJsonCoords =
   | GeoJsonPoint

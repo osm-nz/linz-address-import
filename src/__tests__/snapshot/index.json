@@ -64,7 +64,7 @@
       "name": "Address Update - Abel Tasman National Park",
       "title": "Address Update - Abel Tasman National Park",
       "totalCount": 2,
-      "source": "https://data.linz.govt.nz/layer/3353",
+      "source": "",
       "snippet": "add 1, edit 1",
       "extent": [
         [
@@ -76,6 +76,7 @@
           -36.899800000000006
         ]
       ],
+      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -86,7 +87,7 @@
       "name": "Address Update - deletions from unknown sector",
       "title": "Address Update - deletions from unknown sector",
       "totalCount": 1,
-      "source": "https://data.linz.govt.nz/layer/3353",
+      "source": "",
       "snippet": "delete 1",
       "extent": [
         [
@@ -98,6 +99,7 @@
           -36.900000000000006
         ]
       ],
+      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -108,7 +110,7 @@
       "name": "Address Update - Duplicate Tall Hamlet - northern sector",
       "title": "Address Update - Duplicate Tall Hamlet - northern sector",
       "totalCount": 1,
-      "source": "https://data.linz.govt.nz/layer/3353",
+      "source": "",
       "snippet": "add 1",
       "extent": [
         [
@@ -120,6 +122,7 @@
           -35
         ]
       ],
+      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -130,7 +133,7 @@
       "name": "Address Update - Duplicate Tall Hamlet - southern sector",
       "title": "Address Update - Duplicate Tall Hamlet - southern sector",
       "totalCount": 1,
-      "source": "https://data.linz.govt.nz/layer/3353",
+      "source": "",
       "snippet": "add 1",
       "extent": [
         [
@@ -142,6 +145,7 @@
           -36.9
         ]
       ],
+      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -152,7 +156,7 @@
       "name": "Address Update - Duplicate Wide Hamlet - eastern sector",
       "title": "Address Update - Duplicate Wide Hamlet - eastern sector",
       "totalCount": 1,
-      "source": "https://data.linz.govt.nz/layer/3353",
+      "source": "",
       "snippet": "add 1",
       "extent": [
         [
@@ -164,6 +168,7 @@
           -36.9
         ]
       ],
+      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -174,7 +179,7 @@
       "name": "Address Update - Duplicate Wide Hamlet - western sector",
       "title": "Address Update - Duplicate Wide Hamlet - western sector",
       "totalCount": 1,
-      "source": "https://data.linz.govt.nz/layer/3353",
+      "source": "",
       "snippet": "add 1",
       "extent": [
         [
@@ -186,6 +191,7 @@
           -36.9
         ]
       ],
+      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -196,7 +202,7 @@
       "name": "Address Update - Oakleigh",
       "title": "Address Update - Oakleigh",
       "totalCount": 41,
-      "source": "https://data.linz.govt.nz/layer/3353",
+      "source": "",
       "snippet": "add 9, delete 10, edit 22",
       "extent": [
         [
@@ -208,17 +214,18 @@
           -35.9998
         ]
       ],
+      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
     },
     {
-      "id": "AddressUpdateptiki_no5kf2",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateptiki_no5kf2.geo.json",
+      "id": "AddressUpdateŌpōtiki_no5kf2",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateŌpōtiki_no5kf2.geo.json",
       "name": "Address Update - Ōpōtiki",
       "title": "Address Update - Ōpōtiki",
       "totalCount": 2,
-      "source": "https://data.linz.govt.nz/layer/3353",
+      "source": "",
       "snippet": "add 1, edit 1",
       "extent": [
         [
@@ -230,17 +237,18 @@
           -36.899800000000006
         ]
       ],
+      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
     },
     {
-      "id": "AddressUpdateRangithua_rx31k4",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateRangithua_rx31k4.geo.json",
+      "id": "AddressUpdateRangitāhua_rx31k4",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateRangitāhua_rx31k4.geo.json",
       "name": "Address Update - Rangitāhua",
       "title": "Address Update - Rangitāhua",
       "totalCount": 1,
-      "source": "https://data.linz.govt.nz/layer/3353",
+      "source": "",
       "snippet": "add 1",
       "extent": [
         [
@@ -252,6 +260,7 @@
           -36.9
         ]
       ],
+      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -262,7 +271,7 @@
       "name": "Address Update - Special Linz Ref Changed",
       "title": "Address Update - Special Linz Ref Changed",
       "totalCount": 2,
-      "source": "https://data.linz.govt.nz/layer/3353",
+      "source": "",
       "snippet": "edit 2",
       "extent": [
         [
@@ -274,6 +283,7 @@
           -36.899800000000006
         ]
       ],
+      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -284,7 +294,7 @@
       "name": "Address Update - Special Location Wrong",
       "title": "Address Update - Special Location Wrong",
       "totalCount": 2,
-      "source": "https://data.linz.govt.nz/layer/3353",
+      "source": "",
       "snippet": "move 2",
       "extent": [
         [
@@ -296,6 +306,7 @@
           -36
         ]
       ],
+      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -306,7 +317,7 @@
       "name": "Address Update - West Hoe Heights",
       "title": "Address Update - West Hoe Heights",
       "totalCount": 4,
-      "source": "https://data.linz.govt.nz/layer/3353",
+      "source": "",
       "snippet": "delete 1, edit 3",
       "extent": [
         [
@@ -318,6 +329,7 @@
           -36.899800000000006
         ]
       ],
+      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -328,7 +340,7 @@
       "name": "Address Update - West Hoe Heights (Another Town)",
       "title": "Address Update - West Hoe Heights (Another Town)",
       "totalCount": 1,
-      "source": "https://data.linz.govt.nz/layer/3353",
+      "source": "",
       "snippet": "add 1",
       "extent": [
         [
@@ -340,6 +352,7 @@
           -36.9
         ]
       ],
+      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -350,7 +363,7 @@
       "name": "Address Update - West Hoe Heights (Silverdale)",
       "title": "Address Update - West Hoe Heights (Silverdale)",
       "totalCount": 1,
-      "source": "https://data.linz.govt.nz/layer/3353",
+      "source": "",
       "snippet": "add 1",
       "extent": [
         [
@@ -362,6 +375,7 @@
           -36.9
         ]
       ],
+      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]

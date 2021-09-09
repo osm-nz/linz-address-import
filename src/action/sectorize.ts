@@ -1,4 +1,4 @@
-import { getSector } from '../common/getSector';
+import { chunk, getSector } from '../common';
 import { GeoJsonFeature, HandlerReturn, HandlerReturnWithBBox } from '../types';
 import { calcBBox } from './util';
 
@@ -80,6 +80,15 @@ export function sectorize(
         features: out[1],
         bbox: calcBBox(out[1]),
       };
+    } else if (suburb.includes('Antarctic')) {
+      // split so that there are max 100 items per dataset
+      const chunked = chunk(features, 100);
+      for (let i = 0; i < chunked.length; i += 1) {
+        newFeatures[`${suburb} ${i + 1}`] = {
+          features: chunked[i],
+          bbox: calcBBox(chunked[i]),
+        };
+      }
     } else {
       // not big
       newFeatures[suburb] = { features, bbox };

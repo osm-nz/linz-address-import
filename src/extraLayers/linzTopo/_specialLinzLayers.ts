@@ -52,7 +52,7 @@ export function csvToGeoJsonFactory(IDsToSkip: IgnoreFile) {
           features.push({
             type: 'Feature',
             id: idField === 'USE_ID' ? `${i}` : data[idField],
-            geometry: wktToGeoJson(data[wktField]),
+            geometry: wktToGeoJson(data[wktField], input),
             properties: tagging(data, i),
           });
         })

@@ -5,11 +5,18 @@ import through from 'through2';
 import { IgnoreFile } from '../../preprocess/const';
 import { fetchIgnoreList } from '../../preprocess/fetchIgnoreList';
 
+const PATH = join(__dirname, '../../../data/t50ids.json');
+
 /**
  * fetches every ref:linz:topo50_id tag from the OSM planet
  * Eventually this method will be too inefficient
  */
 export async function getT50IDsToSkip(): Promise<IgnoreFile> {
+  if (process.argv.includes('--quick')) {
+    console.log('Using potentially out-of-date version of t50ids.json');
+    return JSON.parse(await fs.readFile(PATH, 'utf8'));
+  }
+
   console.log('Fetching ref:linz:topo50_ids to skip...');
   const out: IgnoreFile = await fetchIgnoreList(1908575024, 'LINZ Topo50 ID');
 
@@ -42,10 +49,7 @@ export async function getT50IDsToSkip(): Promise<IgnoreFile> {
       .on('error', reject);
   });
 
-  await fs.writeFile(
-    join(__dirname, '../../../data/t50ids.json'),
-    JSON.stringify(out),
-  );
+  await fs.writeFile(PATH, JSON.stringify(out));
 
   return out;
 }
