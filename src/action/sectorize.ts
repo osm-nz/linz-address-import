@@ -1,5 +1,5 @@
 import { chunk, getSector } from '../common';
-import { GeoJsonFeature, HandlerReturn, HandlerReturnWithBBox } from '../types';
+import { ExtraLayers, GeoJsonFeature, HandlerReturnWithBBox } from '../types';
 import { calcBBox } from './util';
 
 const LAT_THRESHOLD = 1; // in degress of latitude
@@ -22,11 +22,11 @@ function getFirstCoord(f: GeoJsonFeature) {
  * (unless its a ZZ special suburb)
  */
 export function sectorize(
-  originalFeatures: HandlerReturn,
+  originalFeatures: ExtraLayers,
 ): HandlerReturnWithBBox {
   const newFeatures: HandlerReturnWithBBox = {};
   for (const suburb in originalFeatures) {
-    const features = originalFeatures[suburb];
+    const { size, features, instructions } = originalFeatures[suburb];
     const bbox = calcBBox(features);
 
     // very geographic names...
@@ -40,9 +40,10 @@ export function sectorize(
     ) {
       // special sector, split this by region
       const out: Record<string, GeoJsonFeature[]> = {};
-      for (const f of features) {
+      for (let i = 0; i < features.length; i += 1) {
+        const f = features[i];
         const [lng, lat] = getFirstCoord(f);
-        const sector = getSector({ lat, lng });
+        const sector = getSector({ lat, lng }, size, i);
         out[sector] ||= [];
         out[sector].push(f);
       }
@@ -50,6 +51,7 @@ export function sectorize(
         newFeatures[`${suburb} - ${sector}`] = {
           features: out[sector],
           bbox: calcBBox(out[sector]),
+          instructions,
         };
       }
     } else if (isTall) {
@@ -61,10 +63,12 @@ export function sectorize(
       newFeatures[`${suburb} - northern sector`] = {
         features: out[0],
         bbox: calcBBox(out[0]),
+        instructions,
       };
       newFeatures[`${suburb} - southern sector`] = {
         features: out[1],
         bbox: calcBBox(out[1]),
+        instructions,
       };
     } else if (isWide) {
       // big longitude wise
@@ -75,10 +79,12 @@ export function sectorize(
       newFeatures[`${suburb} - eastern sector`] = {
         features: out[0],
         bbox: calcBBox(out[0]),
+        instructions,
       };
       newFeatures[`${suburb} - western sector`] = {
         features: out[1],
         bbox: calcBBox(out[1]),
+        instructions,
       };
     } else if (suburb.includes('Antarctic')) {
       // split so that there are max 100 items per dataset
@@ -87,11 +93,12 @@ export function sectorize(
         newFeatures[`${suburb} ${i + 1}`] = {
           features: chunked[i],
           bbox: calcBBox(chunked[i]),
+          instructions,
         };
       }
     } else {
       // not big
-      newFeatures[suburb] = { features, bbox };
+      newFeatures[suburb] = { features, bbox, instructions };
     }
   }
   return newFeatures;

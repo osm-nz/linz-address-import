@@ -243,6 +243,7 @@ export type HandlerReturnWithBBox = {
   [sectorName: string]: {
     features: GeoJsonFeature[];
     bbox: BBox;
+    instructions?: string;
   };
 };
 
@@ -251,3 +252,12 @@ export namespace GH {
   export type Issue = { body: string };
   export type IssueComment = { body: string };
 }
+
+export type ChunkSize = 'small' | 'medium' | 'large';
+export type ExtraLayers = {
+  [layerId: string]: {
+    size: ChunkSize;
+    instructions?: string;
+    features: GeoJsonFeature[];
+  };
+};

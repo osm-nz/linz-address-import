@@ -7,7 +7,7 @@ import { geoJsonToOSMChange } from './geoJsonToOSMChange';
 
 function toId(suburb: string) {
   // macrons are url safe
-  return `${suburb.replace(/[^a-zA-ZāēīōūĀĒĪŌŪ]/g, '')}_${hash(suburb)}`;
+  return `${suburb.replace(/[^a-zA-ZāēīōūĀĒĪŌŪ0-9]/g, '')}_${hash(suburb)}`;
 }
 
 export async function createIndex(
@@ -16,6 +16,7 @@ export async function createIndex(
   const meta = Object.entries(suburbs).map(([suburb, v]) => ({
     suburb,
     bbox: v.bbox,
+    instructions: v.instructions,
     osmChangeAvailable:
       // osmChange fails are not available for addresses, nor if there are edits/moves/deletes
       !suburb.includes('Address Update') &&
@@ -87,25 +88,29 @@ export async function createIndex(
       },
     ],
     results: meta
-      .map(({ suburb, bbox, count, totalCount, osmChangeAvailable }) => ({
-        id: toId(suburb),
-        url: `${CDN_URL}/suburbs/${toId(suburb)}.geo.json`,
-        name: suburb,
-        title: suburb,
-        totalCount,
-        source: '',
-        snippet: count,
-        extent: [
-          [bbox.minLng, bbox.minLat],
-          [bbox.maxLng, bbox.maxLat],
-        ],
-        osmChangeAvailable,
-        groupCategories: [
-          suburb.startsWith('ZZ')
-            ? '/Categories/Preview'
-            : '/Categories/Addresses',
-        ],
-      }))
+      .map((v) => {
+        const title = v.suburb.replace('ZZ ', '').replace('Z ', '');
+        return {
+          id: toId(v.suburb),
+          url: `${CDN_URL}/suburbs/${toId(v.suburb)}.geo.json`,
+          name: title,
+          title,
+          totalCount: v.totalCount,
+          source: '',
+          snippet: v.count,
+          extent: [
+            [v.bbox.minLng, v.bbox.minLat],
+            [v.bbox.maxLng, v.bbox.maxLat],
+          ],
+          osmChangeAvailable: v.osmChangeAvailable,
+          instructions: v.instructions,
+          groupCategories: [
+            v.suburb.startsWith('ZZ')
+              ? '/Categories/Preview'
+              : '/Categories/Addresses',
+          ],
+        };
+      })
       .sort((a, b) => a.name.localeCompare(b.name)),
   };
   await fs.writeFile(

@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
-import { HandlerReturn, Status, StatusReport } from '../types';
+import { ExtraLayers, HandlerReturn, Status, StatusReport } from '../types';
 import { outFolder, mock, suburbsFolder } from './util';
 import { generateStats } from './generateStats';
 import { handlers } from './handlers';
@@ -51,22 +51,27 @@ export async function main(): Promise<void> {
   }
   if (!features[mass]?.length) delete features[mass];
 
+  const out: ExtraLayers = {};
+  for (const k in features) {
+    out[k] = { size: 'medium', features: features[k] };
+  }
+
   // we do this after generating the 'small places' layer, beacuse we only want to include addresses
   try {
     if (process.env.NODE_ENV !== 'test') {
-      const extraLayers = JSON.parse(
+      const extraLayers: ExtraLayers = JSON.parse(
         await fs.readFile(
           join(__dirname, '../../data/extra-layers.geo.json'),
           'utf-8',
         ),
       );
-      Object.assign(features, extraLayers);
+      Object.assign(out, extraLayers);
     }
   } catch {
     console.log('(!) Failed to include extra layers');
   }
 
-  await createIndex(sectorize(features));
+  await createIndex(sectorize(out));
 }
 
 if (process.env.NODE_ENV !== 'test') main();

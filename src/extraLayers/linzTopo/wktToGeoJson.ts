@@ -29,6 +29,7 @@ export const wktToGeoJson = (
   wkt: string,
   layerName?: string,
   shouldSimplify?: boolean,
+  dontFlipWays?: boolean,
 ): GeoJsonCoords => {
   let type = TYPES[wkt.match(/^\w+/)![0] as keyof typeof TYPES];
 
@@ -56,8 +57,9 @@ export const wktToGeoJson = (
   }
 
   // coastline, cliff, emabankment, landslide, antarctic_depForm,
-  // antarctic_melt_stream were all facing the wrong way, so we reverse the way
-  if (type === 'LineString') {
+  // were all facing the wrong way, so we reverse the way
+  // BUT water_race, ice_stream, melt_stream need to remain in their original direction!
+  if (type === 'LineString' && !dontFlipWays) {
     coordinates.reverse();
     if (shouldSimplify) coordinates = simplify(coordinates, WAY_SIMPLIFICATION);
   }

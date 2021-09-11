@@ -7,24 +7,14 @@ import { fetchIgnoreList } from '../../preprocess/fetchIgnoreList';
 
 const PATH = join(__dirname, '../../../data/t50ids.json');
 
-/**
- * fetches every ref:linz:topo50_id tag from the OSM planet
- * Eventually this method will be too inefficient
- */
-export async function getT50IDsToSkip(): Promise<IgnoreFile> {
-  if (process.argv.includes('--quick')) {
-    console.log('Using potentially out-of-date version of t50ids.json');
-    return JSON.parse(await fs.readFile(PATH, 'utf8'));
-  }
-
-  console.log('Fetching ref:linz:topo50_ids to skip...');
-  const out: IgnoreFile = await fetchIgnoreList(1908575024, 'LINZ Topo50 ID');
-
-  console.log('Extracting ref:linz:topo50_ids from the OSM Planet...');
+async function readFromPlanet(mutableOut: IgnoreFile, fileName: string) {
+  console.log(
+    `Extracting ref:linz:topo50_ids from the OSM Planet (${fileName})...`,
+  );
   await new Promise<void>((resolve, reject) => {
     let i = 0;
 
-    const planetFile = join(__dirname, '../../../data/osm.pbf');
+    const planetFile = join(__dirname, `../../../data/${fileName}`);
 
     pbf2json
       .createReadStream({
@@ -38,7 +28,9 @@ export async function getT50IDsToSkip(): Promise<IgnoreFile> {
           if (!(i % 1000)) process.stdout.write('.');
 
           const ref = item.tags['ref:linz:topo50_id']!;
-          out[ref] = 1;
+
+          // eslint-disable-next-line no-param-reassign -- we are deliberately mutating it
+          mutableOut[ref] = 1;
           next();
         }),
       )
@@ -48,6 +40,23 @@ export async function getT50IDsToSkip(): Promise<IgnoreFile> {
       })
       .on('error', reject);
   });
+}
+
+/**
+ * fetches every ref:linz:topo50_id tag from the OSM planet
+ * Eventually this method will be too inefficient
+ */
+export async function getT50IDsToSkip(): Promise<IgnoreFile> {
+  if (process.argv.includes('--quick')) {
+    console.log('Using potentially out-of-date version of t50ids.json');
+    return JSON.parse(await fs.readFile(PATH, 'utf8'));
+  }
+
+  console.log('Fetching ref:linz:topo50_ids to skip...');
+  const out: IgnoreFile = await fetchIgnoreList(1908575024, 'LINZ Topo50 ID');
+
+  await readFromPlanet(out, 'osm.pbf');
+  await readFromPlanet(out, 'rossdep.osm.pbf'); // TODO: disable once antarctica done
 
   await fs.writeFile(PATH, JSON.stringify(out));
 

@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
-import { GeoJsonFeature } from '../../types';
+import { ExtraLayers } from '../../types';
 import { getT50IDsToSkip } from './getT50IDsToSkip';
 import { csvToGeoJsonFactory } from './_specialLinzLayers';
 
@@ -29,6 +29,7 @@ export async function linzTopo(): Promise<void> {
     input: 'cableway_industrial_cl.csv',
     idField: 't50_fid',
     sourceLayer: '50248',
+    size: 'large',
     tagging(data) {
       return {
         aerialway: 'goods',
@@ -43,6 +44,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50252',
     complete: true,
+    size: 'large',
     tagging(data) {
       return {
         barrier: 'cattle_grid',
@@ -55,6 +57,9 @@ export async function linzTopo(): Promise<void> {
     input: 'cemetery_pnt.csv',
     idField: 't50_fid',
     sourceLayer: '50254',
+    size: 'large',
+    complete: true,
+    instructions: 'Do not import if already mapped as an area',
     tagging(data) {
       return {
         amenity: 'grave_yard',
@@ -68,6 +73,8 @@ export async function linzTopo(): Promise<void> {
     input: 'cutting_edge.csv',
     idField: 't50_fid',
     sourceLayer: '',
+    size: 'large',
+    instructions: "You may need to flip these if they're facing the wrong way",
     tagging(data) {
       return {
         man_made: 'embankment',
@@ -79,7 +86,10 @@ export async function linzTopo(): Promise<void> {
   const dredgeTailing = await csvToGeoJson<{ t50_fid: string }>({
     input: 'dredge_tailing_cl.csv',
     idField: 't50_fid',
-    sourceLayer: '',
+    sourceLayer: '50264',
+    size: 'large',
+    complete: true,
+    instructions: 'You MUST convert these to areas',
     tagging(data) {
       return {
         man_made: 'spoil_heap',
@@ -93,12 +103,14 @@ export async function linzTopo(): Promise<void> {
     input: 'embankment_cl.csv',
     idField: 't50_fid',
     sourceLayer: '50266',
+    size: 'medium',
+    instructions: "You may need to flip these if they're facing the wrong way",
     tagging(data) {
       // embkmt_use: 2288=stopbank, 95=causeway, 558=blank
       if (data.embkmt_use === 'causeway') {
         // this must be merged with a highway
         return {
-          causeway: 'yes',
+          embankment: 'yes',
           'ref:linz:topo50_id': data.t50_fid,
         };
       }
@@ -127,9 +139,11 @@ export async function linzTopo(): Promise<void> {
     input: 'water_race_cl.csv',
     idField: 't50_fid',
     sourceLayer: '50369',
+    size: 'medium',
+    dontFlipWays: true,
     tagging(data) {
       return {
-        waterway: 'ditch',
+        waterway: 'canal',
         usage: 'irrigation',
         description: 'water race',
         name: data.name,
@@ -147,12 +161,12 @@ export async function linzTopo(): Promise<void> {
   const fishfarm = await csvToGeoJson<FishMarineFarmPoly>({
     input: 'fish_farm_poly.csv',
     idField: 't50_fid',
-    sourceLayer: '',
+    sourceLayer: '50270',
+    size: 'large',
     tagging(data) {
       return {
         landuse: 'aquaculture',
         produce: data.species || data.type,
-        // TODO: also man_made=pier & floating=yes ?
         'ref:linz:topo50_id': data.t50_fid,
       };
     },
@@ -163,6 +177,8 @@ export async function linzTopo(): Promise<void> {
     input: 'floodgate_pnt.csv',
     idField: 't50_fid',
     sourceLayer: '',
+    size: 'large',
+    instructions: 'You must merge with the waterway',
     tagging(data) {
       return {
         waterway: 'floodgate',
@@ -177,6 +193,9 @@ export async function linzTopo(): Promise<void> {
     input: 'ford_pnt.csv',
     idField: 't50_fid',
     sourceLayer: '50275',
+    size: 'large',
+    instructions:
+      "You must merge these nodes with the highway AND waterway if they're mapped",
     tagging(data) {
       return {
         ford: 'yes',
@@ -190,9 +209,10 @@ export async function linzTopo(): Promise<void> {
     input: 'fumarole_pnt.csv',
     idField: 't50_fid',
     sourceLayer: '',
+    size: 'large',
     tagging(data) {
       return {
-        natural: 'geyser',
+        natural: 'fumarole',
         'ref:linz:topo50_id': data.t50_fid,
       };
     },
@@ -208,6 +228,8 @@ export async function linzTopo(): Promise<void> {
     input: 'gate_pnt.csv',
     idField: 't50_fid',
     sourceLayer: '',
+    size: 'medium',
+    instructions: "You MUST merge these nodes with the highway if it's mapped",
     tagging(data) {
       return {
         barrier: 'gate',
@@ -223,6 +245,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50281',
     complete: true,
+    size: 'large',
     tagging(data) {
       return {
         leisure: 'golf_course',
@@ -236,6 +259,7 @@ export async function linzTopo(): Promise<void> {
     input: 'gravel_pit_poly.csv',
     idField: 't50_fid',
     sourceLayer: '50283',
+    size: 'large',
     tagging(data) {
       return {
         landuse: 'quarry',
@@ -248,12 +272,14 @@ export async function linzTopo(): Promise<void> {
   const marineFarmLines = await csvToGeoJson<FishMarineFarmPoly>({
     input: 'marine_farm_cl.csv',
     idField: 't50_fid',
-    sourceLayer: '',
+    sourceLayer: '50297',
+    size: 'large',
+    instructions: 'You must convert these to areas',
+    complete: true,
     tagging(data) {
       return {
         landuse: 'aquaculture',
         produce: data.species || data.type,
-        // TODO: also man_made=pier & floating=yes ?
         'ref:linz:topo50_id': data.t50_fid,
       };
     },
@@ -263,11 +289,11 @@ export async function linzTopo(): Promise<void> {
     input: 'marine_farm_poly.csv',
     idField: 't50_fid',
     sourceLayer: '50298',
+    size: 'large',
     tagging(data) {
       return {
         landuse: 'aquaculture',
         produce: data.species || data.type,
-        // TODO: also man_made=pier & floating=yes ?
         'ref:linz:topo50_id': data.t50_fid,
       };
     },
@@ -278,6 +304,7 @@ export async function linzTopo(): Promise<void> {
     input: 'mast_pnt.csv',
     idField: 't50_fid',
     sourceLayer: '',
+    size: 'medium',
     tagging(data) {
       return {
         man_made: 'mast',
@@ -312,13 +339,44 @@ export async function linzTopo(): Promise<void> {
     input: 'mine_pnt.csv',
     idField: 't50_fid',
     sourceLayer: '',
+    size: 'large',
     tagging: mineTagging,
   });
   const minePolys = await csvToGeoJson<Mine>({
     input: 'mine_poly.csv',
     idField: 't50_fid',
     sourceLayer: '',
+    size: 'large',
     tagging: mineTagging,
+  });
+
+  type Pond = {
+    t50_fid: string;
+    name?: string;
+    pond_use?:
+      | 'evaporation'
+      | 'ice_skating'
+      | 'oil'
+      | 'oxidation'
+      | 'settling'
+      | 'sewage'
+      | 'sewage treatment'
+      | 'sludge';
+  };
+  const ponds = await csvToGeoJson<Pond>({
+    input: 'pond_poly.csv',
+    idField: 't50_fid',
+    sourceLayer: '50310',
+    size: 'medium',
+    tagging(data) {
+      return {
+        natural: 'water',
+        water: data.pond_use ? 'basin' : 'pond',
+        basin: data.pond_use,
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
   });
 
   type QuarryPoly = {
@@ -331,6 +389,7 @@ export async function linzTopo(): Promise<void> {
     input: 'quarry_poly.csv',
     idField: 't50_fid',
     sourceLayer: '',
+    size: 'large',
     tagging(data) {
       return {
         landuse: 'quarry', // landuse=quarry is okay even on a node
@@ -352,6 +411,7 @@ export async function linzTopo(): Promise<void> {
     input: 'racetrack_poly.csv',
     idField: 't50_fid',
     sourceLayer: '',
+    size: 'large',
     tagging(data) {
       return {
         leisure: 'track',
@@ -369,10 +429,12 @@ export async function linzTopo(): Promise<void> {
     input: 'rapid_cl.csv',
     idField: 't50_fid',
     sourceLayer: '',
+    instructions: 'You must convert these to areas',
+    size: 'large',
     tagging(data) {
       return {
-        natural: 'water', // area tag, so mappers must convert to area
-        waterway: 'rapids',
+        natural: 'water',
+        water: 'rapids',
         name: data.name,
         'ref:linz:topo50_id': data.t50_fid,
       };
@@ -382,10 +444,11 @@ export async function linzTopo(): Promise<void> {
     input: 'rapid_poly.csv',
     idField: 't50_fid',
     sourceLayer: '',
+    size: 'large',
     tagging(data) {
       return {
         natural: 'water',
-        waterway: 'rapids',
+        water: 'rapids',
         name: data.name,
         'ref:linz:topo50_id': data.t50_fid,
       };
@@ -397,13 +460,14 @@ export async function linzTopo(): Promise<void> {
     input: 'redoubt_pnt.csv',
     idField: 't50_fid',
     sourceLayer: '50322',
+    size: 'large',
+    complete: true,
     tagging(data) {
       return {
         name: data.name,
         historic: 'archaeological_site',
         site_type: 'fortification',
-        // see https://wiki.openstreetmap.org/wiki/Key:historic:civilization#Māori and https://wiki.openstreetmap.org/wiki/Historic_Britain
-        'historic:civilization': 'colonialism', // would pākehā find this tagging offensive?
+        'historic:civilization': 'colonialism',
         'ref:linz:topo50_id': data.t50_fid,
       };
     },
@@ -419,9 +483,10 @@ export async function linzTopo(): Promise<void> {
     input: 'rock_outcrop_pnt.csv',
     idField: 't50_fid',
     sourceLayer: '50322',
+    size: 'large',
     tagging(data) {
       return {
-        natural: 'rock', // TODO: discuss
+        natural: 'rock',
         ele: data.elevation === '0' ? undefined : data.elevation,
         name: data.name,
         direction: radToDeg(+data.orientatn),
@@ -440,6 +505,7 @@ export async function linzTopo(): Promise<void> {
     input: 'runway_poly.csv',
     idField: 't50_fid',
     sourceLayer: '',
+    size: 'medium',
     tagging(data) {
       return {
         name: data.name,
@@ -461,6 +527,7 @@ export async function linzTopo(): Promise<void> {
     input: 'saddle_pnt.csv',
     idField: 't50_fid',
     sourceLayer: '50334',
+    size: 'large',
     tagging(data) {
       return {
         natural: 'saddle',
@@ -476,6 +543,7 @@ export async function linzTopo(): Promise<void> {
     input: 'shelter_belt_cl.csv',
     idField: 't50_fid',
     sourceLayer: '50341',
+    size: 'small',
     tagging(data) {
       return {
         natural: 'tree_row',
@@ -488,6 +556,8 @@ export async function linzTopo(): Promise<void> {
     input: 'showground_poly.csv',
     idField: 't50_fid',
     sourceLayer: '',
+    size: 'large',
+    complete: true,
     tagging(data) {
       return {
         landuse: 'recreation_ground',
@@ -502,6 +572,8 @@ export async function linzTopo(): Promise<void> {
     input: 'sinkhole_pnt.csv',
     idField: 't50_fid',
     sourceLayer: '50345',
+    size: 'large',
+    complete: true,
     tagging(data) {
       return {
         natural: 'sinkhole',
@@ -510,16 +582,29 @@ export async function linzTopo(): Promise<void> {
     },
   });
 
+  function siphonTagging() {
+    // discussions on the tagging mailing list weren't able to decide on a tag
+    // https://lists.openstreetmap.org/pipermail/tagging/2021-September/thread.html
+    // https://help.osm.org/questions/61943
+    return {
+      waterway: 'canal',
+      layer: '-1',
+      tunnel: 'culvert',
+      culvert: 'inverted_syphon',
+      description: 'siphon',
+      pressure: 'yes', // means pressurized
+    };
+  }
   const siphonPnts = await csvToGeoJson<{ t50_fid: string }>({
     input: 'siphon_pnt.csv',
     idField: 't50_fid',
-    sourceLayer: '',
+    sourceLayer: '50346',
+    size: 'large',
+    instructions:
+      'Nodes and Areas must be converted to ways (part of the canal)',
     tagging(data) {
       return {
-        // TODO: confirm
-        // https://help.openstreetmap.org/questions/61943/how-to-tag-a-syphon
-        layer: '-1',
-        man_made: 'syphon', // TODO: document
+        ...siphonTagging(),
         'ref:linz:topo50_id': data.t50_fid,
       };
     },
@@ -528,14 +613,12 @@ export async function linzTopo(): Promise<void> {
     input: 'siphon_poly.csv',
     idField: 't50_fid',
     sourceLayer: '50347',
+    size: 'large',
+    instructions:
+      'Nodes and Areas must be converted to ways (part of the canal)',
     tagging(data) {
       return {
-        // TODO: confirm
-        // https://help.openstreetmap.org/questions/61943/how-to-tag-a-syphon
-        layer: '-1',
-        man_made: 'syphon', // TODO: document
-        tunnel: 'culvert',
-        waterway: 'canal',
+        ...siphonTagging(),
         'ref:linz:topo50_id': data.t50_fid,
       };
     },
@@ -544,7 +627,10 @@ export async function linzTopo(): Promise<void> {
   const slipEdges = await csvToGeoJson<{ t50_fid: string }>({
     input: 'slip_edge.csv',
     idField: 't50_fid',
-    sourceLayer: '',
+    sourceLayer: '50350',
+    size: 'medium',
+    instructions:
+      'merging this layer with existing data is very tedious in some regions',
     tagging(data) {
       return {
         natural: 'cliff',
@@ -560,6 +646,7 @@ export async function linzTopo(): Promise<void> {
     input: 'south-island-pastoral-leases.csv',
     idField: 'id',
     sourceLayer: '51572',
+    size: 'large',
     tagging(data) {
       return {
         landuse: 'farmland',
@@ -574,7 +661,10 @@ export async function linzTopo(): Promise<void> {
   const spillwayEdges = await csvToGeoJson<{ t50_fid: string }>({
     input: 'spillway_edge.csv',
     idField: 't50_fid',
-    sourceLayer: '',
+    sourceLayer: '50354',
+    instructions: 'You must convert these to areas',
+    complete: true,
+    size: 'large',
     tagging(data) {
       return {
         natural: 'water',
@@ -589,7 +679,9 @@ export async function linzTopo(): Promise<void> {
   const towerPnts = await csvToGeoJson<{ t50_fid: string; material?: string }>({
     input: 'tower_pnt.csv',
     idField: 't50_fid',
-    sourceLayer: '',
+    sourceLayer: '50363',
+    size: 'large',
+    complete: true,
     tagging(data) {
       return {
         man_made: 'tower',
@@ -607,26 +699,27 @@ export async function linzTopo(): Promise<void> {
 
   const A_crevasseCl = await csvToGeoJson<never>({
     input: 'antarctic_crevasse_cl.csv',
-    idField: 'USE_ID',
+    idField: 'HASH_WKT',
     sourceLayer: '51161',
-    tagging(_, index) {
+    size: 'large',
+    tagging(_, wktHash) {
       return {
         natural: 'crevasse',
-        source: 'LINZ',
-        'ref:linz:temp_id': `${index}`,
+        'ref:linz:topo50_id': wktHash,
       };
     },
   });
 
   const A_depformEdge = await csvToGeoJson<never>({
     input: 'antarctic_depform_edge.csv',
-    idField: 'USE_ID',
+    idField: 'HASH_WKT',
     sourceLayer: '',
-    tagging(_, index) {
+    size: 'large',
+    complete: true,
+    tagging(_, wktHash) {
       return {
         natural: 'cliff',
-        source: 'LINZ',
-        'ref:linz:temp_id': `${index}`,
+        'ref:linz:topo50_id': wktHash,
       };
     },
   });
@@ -638,6 +731,7 @@ export async function linzTopo(): Promise<void> {
     input: 'antarctic_descriptive_texts.csv',
     idField: 't50_fid',
     sourceLayer: '',
+    size: 'large',
     tagging(data) {
       return {
         name: data.info_disp,
@@ -647,132 +741,117 @@ export async function linzTopo(): Promise<void> {
     },
   });
 
-  const A_distIcePoly = await csvToGeoJson<never>({
-    input: 'antarctic_distice_poly.csv',
-    idField: 'USE_ID',
-    sourceLayer: '',
-    tagging(_, index) {
-      return {
-        source: 'LINZ',
-        'ref:linz:temp_id': `${index}`,
-      };
-    },
-  });
-
-  const A_fastIcePoly = await csvToGeoJson<never>({
-    input: 'antarctic_fastice_poly.csv',
-    idField: 'USE_ID',
-    sourceLayer: '',
-    tagging(_, index) {
-      return {
-        source: 'LINZ',
-        'ref:linz:temp_id': `${index}`,
-      };
-    },
-  });
-
   const A_glacialLake = await csvToGeoJson<never>({
     input: 'antarctic_glacial_lake_poly.csv',
-    idField: 'USE_ID',
+    idField: 'HASH_WKT',
     sourceLayer: '',
-    tagging(_, index) {
+    size: 'large',
+    tagging(_, wktHash) {
       return {
         natural: 'water',
         water: 'lake',
-        source: 'LINZ',
-        'ref:linz:temp_id': `${index}`,
+        'ref:linz:topo50_id': wktHash,
       };
     },
   });
 
-  const A_cliffs = await csvToGeoJson<{ descriptn: string }>({
+  const A_heightPnt = await csvToGeoJson<{ elevation: string }>({
+    input: 'antarctic_height_pnt.csv',
+    idField: 'HASH_WKT',
+    sourceLayer: '51163',
+    size: 'large',
+    tagging(data, wktHash) {
+      return {
+        natural: 'hill',
+        ele: data.elevation,
+        'ref:linz:topo50_id': wktHash,
+      };
+    },
+  });
+
+  const A_iceCliffs = await csvToGeoJson<never>({
     input: 'antarctic_ice_cliff_edges.csv',
-    idField: 'USE_ID',
+    idField: 'HASH_WKT',
     sourceLayer: '',
-    tagging(_, index) {
+    size: 'large',
+    tagging(_, wktHash) {
       return {
         natural: 'cliff',
-        source: 'LINZ',
-        'ref:linz:temp_id': `${index}`,
+        surface: 'ice',
+        'ref:linz:topo50_id': wktHash,
       };
     },
   });
 
   const A_icePoly = await csvToGeoJson<never>({
     input: 'antarctic_ice_poly.csv',
-    idField: 'USE_ID',
+    idField: 'HASH_WKT',
     sourceLayer: '',
-    tagging(_, index) {
+    complete: true,
+    size: 'large',
+    tagging(_, wktHash) {
       return {
-        source: 'LINZ',
-        'ref:linz:temp_id': `${index}`,
+        'ref:linz:topo50_id': wktHash,
       };
     },
   });
 
   const A_iceStream = await csvToGeoJson<never>({
     input: 'antarctic_ice_stream_cl.csv',
-    idField: 'USE_ID',
+    idField: 'HASH_WKT',
     sourceLayer: '',
-    tagging(_, index) {
+    size: 'large',
+    dontFlipWays: true,
+    complete: true,
+    tagging(_, wktHash) {
       return {
         waterway: 'stream',
         description: 'ice stream',
-        source: 'LINZ',
-        'ref:linz:temp_id': `${index}`,
-      };
-    },
-  });
-
-  const A_iceberg = await csvToGeoJson<never>({
-    input: 'antarctic_iceberg_poly.csv',
-    idField: 'USE_ID',
-    sourceLayer: '',
-    tagging(_, index) {
-      return {
-        source: 'LINZ',
-        'ref:linz:temp_id': `${index}`,
+        'ref:linz:topo50_id': wktHash,
       };
     },
   });
 
   const A_lake = await csvToGeoJson<never>({
     input: 'antarctic_lake_poly.csv',
-    idField: 'USE_ID',
+    idField: 'HASH_WKT',
     sourceLayer: '',
-    tagging(_, index) {
+    size: 'large',
+    complete: true,
+    tagging(_, wktHash) {
       return {
         natural: 'water',
         water: 'lake',
-        source: 'LINZ',
-        'ref:linz:temp_id': `${index}`,
+        'ref:linz:topo50_id': wktHash,
       };
     },
   });
 
   const A_meltStream = await csvToGeoJson<never>({
     input: 'antarctic_melt_stream_cl.csv',
-    idField: 'USE_ID',
+    idField: 'HASH_WKT',
     sourceLayer: '',
-    tagging(_, index) {
+    size: 'large',
+    dontFlipWays: true,
+    tagging(_, wktHash) {
       return {
         waterway: 'stream',
         description: 'melt stream',
-        source: 'LINZ',
-        'ref:linz:temp_id': `${index}`,
+        'ref:linz:topo50_id': wktHash,
       };
     },
   });
 
   const A_scree = await csvToGeoJson<never>({
     input: 'antarctic_scree_poly.csv',
-    idField: 'USE_ID',
+    idField: 'HASH_WKT',
     sourceLayer: '',
-    tagging(data, index) {
+    size: 'large',
+    complete: true,
+    tagging(data, wktHash) {
       return {
         natural: 'scree',
-        source: 'LINZ',
-        'ref:linz:temp_id': `${index}`,
+        'ref:linz:topo50_id': wktHash,
       };
     },
   });
@@ -784,16 +863,17 @@ export async function linzTopo(): Promise<void> {
   };
   const A_track = await csvToGeoJson<AntarcticTrack>({
     input: 'antarctic_track_cl.csv',
-    idField: 'USE_ID',
+    idField: 'HASH_WKT',
     sourceLayer: '',
-    tagging(data, index) {
+    size: 'large',
+    complete: true,
+    tagging(data, wktHash) {
       if (data.track_use === 'foot') {
         return {
           highway: 'path',
           'piste:type': 'hike',
           'piste:grooming': 'backcountry',
-          source: 'LINZ',
-          'ref:linz:temp_id': `${index}`,
+          'ref:linz:topo50_id': wktHash,
         };
       }
 
@@ -801,8 +881,7 @@ export async function linzTopo(): Promise<void> {
       return {
         highway: 'track',
         ice_road: 'yes',
-        source: 'LINZ',
-        'ref:linz:temp_id': `${index}`,
+        'ref:linz:topo50_id': wktHash,
       };
     },
   });
@@ -823,6 +902,7 @@ export async function linzTopo(): Promise<void> {
     input: 'nz-facilities.csv',
     idField: 'facility_id',
     sourceLayer: '105588',
+    size: 'large',
     tagging(data) {
       if (data.use === 'School') {
         return {
@@ -852,7 +932,7 @@ export async function linzTopo(): Promise<void> {
         'healthcare:speciality': data.use_subtype
           ?.replace(/, /g, ';')
           .toLowerCase(),
-        ref: data.source_facility_id, // this is the Health Provider Index (HPI) Facility Id (FACID)
+        ref: data.source_facility_id, // this is the Health Provider wktHash (HPI) Facility Id (FACID)
         'ref:linz:facility_id': data.facility_id,
       };
     },
@@ -864,66 +944,70 @@ export async function linzTopo(): Promise<void> {
   //   ZZ means it will be published but only visible to power users
   //   Z means it will be published
   //
-  const out: Record<string, GeoJsonFeature[] | undefined> = {
+  const out: ExtraLayers = {
     // Antarctic
     '❌ Antarctic Crevasse': A_crevasseCl,
+    'ZZ Antarctic Ice Cliffs': A_iceCliffs,
     '❌ Antarctic Descriptive Text': A_descripText,
-    '❌ Antarctic depFormEdge': A_depformEdge,
-    '❌ Antarctic Land Ice': A_distIcePoly,
-    '❌ Antarctic Sea Ice': A_fastIcePoly,
-    '❌ Antarctic Glacial Lakes': A_glacialLake,
-    '❌ Antarctic Cliffs': A_cliffs,
-    '❌ Antarctic Ice': A_icePoly,
-    '❌ Antarctic Icebergs': A_iceberg,
-    '❌ Antarctic Ice Sreams': A_iceStream,
-    '❌ Antarctic Lakes': A_lake,
-    '❌ Antarctic Melt Streams': A_meltStream,
-    '❌ Antarctic Scree': A_scree,
-    '❌ Antarctic Tracks & Paths': A_track,
+    'Z Antarctic depFormEdge': A_depformEdge,
+    'ZZ Antarctic Glacial Lakes': A_glacialLake,
+    'ZZ Antarctic Hills': A_heightPnt,
+    'Z Antarctic Ice': A_icePoly,
+    'Z Antarctic Ice Streams': A_iceStream,
+    'Z Antarctic Lakes': A_lake,
+    'ZZ Antarctic Melt Streams': A_meltStream,
+    'Z Antarctic Scree': A_scree,
+    'Z Antarctic Tracks & Paths': A_track,
 
     // Mainland
-    'Z Goods Aerialway': goodsAerialway,
+    'Z Goods Aerialways': goodsAerialway,
     'Z Cattle Stops': cattleStops,
-    'ZZ Cemeteries': cemeteries,
-    'Z Cutting': cutting,
-    '❌ Dredge Tailing': dredgeTailing,
-    'ZZ Embankments DO NOT IMPORT': embankment,
+    'Z Cemeteries': cemeteries,
+    'Z Cuttings': cutting,
+    'Z Dredge Tailing': dredgeTailing,
+    'ZZ Embankments': embankment,
     '❌ Floodgates': floodgates,
     '❌ Fumaroles': fumaroles,
     'Z Fords': fords,
     'Z Gates': gates,
     'Z Golf Courses': golfCourses,
     'Z Gravel Pits': gravelPits,
-    '❌ Marine & Fish Farm Areas': [
-      ...(fishfarm || []),
-      ...(marineFarmPolys || []),
-    ],
-    '❌ Marine Farm Lines': marineFarmLines,
+    'Z Marine Farm Areas': {
+      ...fishfarm,
+      features: [...fishfarm.features, ...marineFarmPolys.features],
+    },
+    'Z Marine Farm Lines': marineFarmLines,
     'Z Masts': masts,
     '❌ Mine Points': minePts,
-    '❌ Mine Areas': minePolys,
+    'Z Mine Areas': minePolys,
+    'Z Ponds': ponds,
     'Z Quarrys': quarrys,
-    '❌ Racetracks': racetracks,
-    '❌ Rapids (line)': rapidLines,
-    '❌ Rapids (area)': rapidPolys,
-    '❌ Runway Areas': runways,
+    'Z Racetracks': racetracks,
+    'ZZ Rapids (line)': rapidLines,
+    'ZZ Rapids (area)': rapidPolys,
+    'Z Runway Areas': runways,
     'Z Showgrounds': showgrounds,
-    '❌ Landslide (slip)': slipEdges,
-    '❌ Redoubt': redoubts,
-    '❌ Pinnancle (rock outcrop)': rockOutcrop,
-    '❌ Saddle': saddles,
+    'ZZ Landslides': slipEdges,
+    'Z Redoubts': redoubts,
+    'Z Pinnancles': rockOutcrop,
+    'Z Saddles': saddles,
     'ZZ Tree Rows': shelterBelt,
     'Z Sinkholes': sinkholes,
-    '❌ Spillways': spillwayEdges,
+    'Z Spillways': spillwayEdges,
     'Z Towers': towerPnts,
-    '❌ Siphons': [...(siphonPolys || []), ...(siphonPnts || [])],
+    '❌ Siphons': {
+      ...siphonPnts,
+      features: [...siphonPolys.features, ...siphonPnts.features],
+    },
     '❌ Stations': stations,
-    '❌ Water Race': waterRace,
+    'Z Water Races': waterRace,
 
     '❌ Facilities': facilities,
   };
 
-  for (const key in out) if (key.includes('❌')) delete out[key];
+  for (const key in out) {
+    if (key.includes('❌') || !out[key].features.length) delete out[key];
+  }
 
   await fs.writeFile(
     join(__dirname, `../../../data/extra-layers.geo.json`),
