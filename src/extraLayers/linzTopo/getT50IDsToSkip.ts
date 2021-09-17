@@ -56,7 +56,7 @@ export async function getT50IDsToSkip(): Promise<IgnoreFile> {
   const out: IgnoreFile = await fetchIgnoreList(1908575024, 'LINZ Topo50 ID');
 
   await readFromPlanet(out, 'osm.pbf');
-  await readFromPlanet(out, 'rossdep.osm.pbf'); // TODO: disable once antarctica done
+  // await readFromPlanet(out, 'rossdep.osm.pbf'); // disabled because antarctica is complete
 
   await fs.writeFile(PATH, JSON.stringify(out));
 

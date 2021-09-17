@@ -10,13 +10,17 @@ const ROWS = [
   ...LETTERS.map((X) => X + X + X),
 ];
 
+const ANT_SIZE = 50;
+
 export function getSector(
   { lat, lng }: Coords,
   size: ChunkSize,
   index: number,
 ): string {
-  // for Antarctica, chunk into datasets of 100 feature each
-  if (lat < -63.929) return `${Math.floor(index / 100) + 1}`;
+  // for Antarctica, chunk into datasets with ANT_SIZE features each
+  if (lat < -63.929) {
+    return `${Math.floor(index / ANT_SIZE) + 1}`.padStart(2, '0');
+  }
 
   if (lat > -33.92 || lat < -47.59 || lng < 164.75 || lng > 178.85) {
     return 'Outer Islands';

@@ -132,8 +132,11 @@ export async function createIndex(
     );
 
     if (osmChangeAvailable) {
-      const osmChange = geoJsonToOSMChange(geojson, suburb, count);
-      await fs.writeFile(join(suburbsFolder, `${toId(suburb)}.osc`), osmChange);
+      const { osmChange, tooBig } = geoJsonToOSMChange(geojson, suburb, count);
+      await fs.writeFile(
+        join(suburbsFolder, `${toId(suburb)}${tooBig ? '_tooBig' : ''}.osc`),
+        osmChange,
+      );
     }
   }
 }

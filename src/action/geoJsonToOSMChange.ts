@@ -25,6 +25,10 @@ class IDManager {
     this.#count.relation -= 1;
     return this.#count.relation;
   }
+
+  get changesetSize() {
+    return -this.#count.node + -this.#count.way + -this.#count.relation;
+  }
 }
 
 const tagsToXml = (tags: Tags) =>
@@ -51,7 +55,7 @@ function handleWay(ID: IDManager, geometry: GeoJsonLine, tags: Tags) {
   }
 
   str += `
-    <way id="${ID.way}">
+    <way id="${ID.way}" version="0">
       ${nodes.map((id) => `<nd ref="${id}" />`).join('\n      ')}
       ${tagsToXml(tags)}
     </way>
@@ -79,7 +83,7 @@ function handleMultiPolygon(
       const wayId = ID.way;
       ways.push({ wayId, role: i === 0 ? 'outer' : 'inner' });
       str += `
-        <way id="${wayId}">
+        <way id="${wayId}" version="0">
           ${nodes.map((id) => `<nd ref="${id}" />`).join('\n    ')}
         </way>
       `;
@@ -100,7 +104,7 @@ export function geoJsonToOSMChange(
   geoJson: GeoJson,
   fileName: string,
   count: string,
-): string {
+): { osmChange: string; tooBig: boolean } {
   const ID = new IDManager();
 
   let out = '';
@@ -149,13 +153,15 @@ export function geoJsonToOSMChange(
     }
   }
 
+  const tooBig = ID.changesetSize >= 10_000;
+
   // this would brek the snapshot tests
   const date =
     process.env.NODE_ENV === 'test'
       ? 'DATE_GOES_HERE'
       : new Date().toISOString();
 
-  return `
+  const osmChange = `
 <osmChange version="0.6" generator="LINZ Data Import" LINZ_title="${fileName}" LINZ_count="${count}" LINZ_generated_on="${date}">
   <create>
     ${out}
@@ -163,4 +169,5 @@ export function geoJsonToOSMChange(
   <modify />
   <delete if-unused="true" />
 </osmChange>`;
+  return { osmChange, tooBig };
 }

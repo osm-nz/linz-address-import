@@ -99,26 +99,36 @@ const MultiPolygon: GeoJsonFeature = {
 describe('geoJsonToOSMChange', () => {
   it('can convert files with Point', () => {
     const file = geoJson([Point]);
-    expect(geoJsonToOSMChange(file, 'test layer', 'add 1')).toMatchSnapshot();
+    expect(
+      geoJsonToOSMChange(file, 'test layer', 'add 1').osmChange,
+    ).toMatchSnapshot();
   });
 
   it('can convert files with LineString', () => {
     const file = geoJson([LineString]);
-    expect(geoJsonToOSMChange(file, 'test layer', 'add 1')).toMatchSnapshot();
+    expect(
+      geoJsonToOSMChange(file, 'test layer', 'add 1').osmChange,
+    ).toMatchSnapshot();
   });
 
   it('can convert files with Polygon', () => {
     const file = geoJson([Polygon]);
-    expect(geoJsonToOSMChange(file, 'test layer', 'add 1')).toMatchSnapshot();
+    expect(
+      geoJsonToOSMChange(file, 'test layer', 'add 1').osmChange,
+    ).toMatchSnapshot();
   });
 
   it('can convert files with MultiPolygon', () => {
     const file = geoJson([MultiPolygon]);
-    expect(geoJsonToOSMChange(file, 'test layer', 'add 1')).toMatchSnapshot();
+    expect(
+      geoJsonToOSMChange(file, 'test layer', 'add 1').osmChange,
+    ).toMatchSnapshot();
   });
 
   it('can convert files with all features', () => {
     const file = geoJson([Point, LineString, Polygon, LineString]);
-    expect(geoJsonToOSMChange(file, 'test layer', 'add 4')).toMatchSnapshot();
+    expect(
+      geoJsonToOSMChange(file, 'test layer', 'add 4').osmChange,
+    ).toMatchSnapshot();
   });
 });

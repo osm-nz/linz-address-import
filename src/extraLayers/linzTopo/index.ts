@@ -179,9 +179,10 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     size: 'large',
     instructions: 'You must merge with the waterway',
+    complete: true,
     tagging(data) {
       return {
-        waterway: 'floodgate',
+        waterway: 'sluice_gate',
         direction: radToDeg(+data.orientatn),
         'ref:linz:topo50_id': data.t50_fid,
       };
@@ -269,6 +270,21 @@ export async function linzTopo(): Promise<void> {
     },
   });
 
+  const landfillPoly = await csvToGeoJson<{ t50_fid: string; name: string }>({
+    input: 'landfill_poly.csv',
+    idField: 't50_fid',
+    sourceLayer: '',
+    size: 'large',
+    complete: true,
+    tagging(data) {
+      return {
+        landuse: 'landfill',
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+
   const marineFarmLines = await csvToGeoJson<FishMarineFarmPoly>({
     input: 'marine_farm_cl.csv',
     idField: 't50_fid',
@@ -340,6 +356,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '',
     size: 'large',
+    complete: true,
     tagging: mineTagging,
   });
   const minePolys = await csvToGeoJson<Mine>({
@@ -431,6 +448,7 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     instructions: 'You must convert these to areas',
     size: 'large',
+    complete: true,
     tagging(data) {
       return {
         natural: 'water',
@@ -445,6 +463,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '',
     size: 'large',
+    complete: true,
     tagging(data) {
       return {
         natural: 'water',
@@ -483,7 +502,7 @@ export async function linzTopo(): Promise<void> {
     input: 'rock_outcrop_pnt.csv',
     idField: 't50_fid',
     sourceLayer: '50322',
-    size: 'large',
+    size: 'medium',
     tagging(data) {
       return {
         natural: 'rock',
@@ -590,9 +609,8 @@ export async function linzTopo(): Promise<void> {
       waterway: 'canal',
       layer: '-1',
       tunnel: 'culvert',
-      culvert: 'inverted_syphon',
+      culvert: 'inverted_siphon',
       description: 'siphon',
-      pressure: 'yes', // means pressurized
     };
   }
   const siphonPnts = await csvToGeoJson<{ t50_fid: string }>({
@@ -649,8 +667,8 @@ export async function linzTopo(): Promise<void> {
     size: 'large',
     tagging(data) {
       return {
-        landuse: 'farmland',
-        farmland: 'station', // TODO: confirm/document?
+        landuse: 'meadow',
+        meadow: 'pasture',
         place: 'farm',
         name: toTitleCase(addSuffix(data.lease_name)),
         'ref:linz:pastoral_lease_id': data.id,
@@ -702,6 +720,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'HASH_WKT',
     sourceLayer: '51161',
     size: 'large',
+    complete: true,
     tagging(_, wktHash) {
       return {
         natural: 'crevasse',
@@ -732,6 +751,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '',
     size: 'large',
+    complete: true,
     tagging(data) {
       return {
         name: data.info_disp,
@@ -746,6 +766,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'HASH_WKT',
     sourceLayer: '',
     size: 'large',
+    complete: true,
     tagging(_, wktHash) {
       return {
         natural: 'water',
@@ -760,6 +781,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'HASH_WKT',
     sourceLayer: '51163',
     size: 'large',
+    complete: true,
     tagging(data, wktHash) {
       return {
         natural: 'hill',
@@ -774,6 +796,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'HASH_WKT',
     sourceLayer: '',
     size: 'large',
+    complete: true,
     tagging(_, wktHash) {
       return {
         natural: 'cliff',
@@ -833,6 +856,7 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     size: 'large',
     dontFlipWays: true,
+    complete: true,
     tagging(_, wktHash) {
       return {
         waterway: 'stream',
@@ -946,16 +970,16 @@ export async function linzTopo(): Promise<void> {
   //
   const out: ExtraLayers = {
     // Antarctic
-    '❌ Antarctic Crevasse': A_crevasseCl,
-    'ZZ Antarctic Ice Cliffs': A_iceCliffs,
-    '❌ Antarctic Descriptive Text': A_descripText,
+    'Z Antarctic Crevasse': A_crevasseCl,
+    'Z Antarctic Ice Cliffs': A_iceCliffs,
+    'Z Antarctic Descriptive Text': A_descripText,
     'Z Antarctic depFormEdge': A_depformEdge,
-    'ZZ Antarctic Glacial Lakes': A_glacialLake,
-    'ZZ Antarctic Hills': A_heightPnt,
+    'Z Antarctic Glacial Lakes': A_glacialLake,
+    'Z Antarctic Hills': A_heightPnt,
     'Z Antarctic Ice': A_icePoly,
     'Z Antarctic Ice Streams': A_iceStream,
     'Z Antarctic Lakes': A_lake,
-    'ZZ Antarctic Melt Streams': A_meltStream,
+    'Z Antarctic Melt Streams': A_meltStream,
     'Z Antarctic Scree': A_scree,
     'Z Antarctic Tracks & Paths': A_track,
 
@@ -966,32 +990,33 @@ export async function linzTopo(): Promise<void> {
     'Z Cuttings': cutting,
     'Z Dredge Tailing': dredgeTailing,
     'ZZ Embankments': embankment,
-    '❌ Floodgates': floodgates,
+    'Z Floodgates': floodgates,
     '❌ Fumaroles': fumaroles,
     'Z Fords': fords,
     'Z Gates': gates,
     'Z Golf Courses': golfCourses,
     'Z Gravel Pits': gravelPits,
+    'Z Landfills': landfillPoly,
     'Z Marine Farm Areas': {
       ...fishfarm,
       features: [...fishfarm.features, ...marineFarmPolys.features],
     },
     'Z Marine Farm Lines': marineFarmLines,
     'Z Masts': masts,
-    '❌ Mine Points': minePts,
+    'Z Mine Points': minePts,
     'Z Mine Areas': minePolys,
     'Z Ponds': ponds,
     'Z Quarrys': quarrys,
     'Z Racetracks': racetracks,
-    'ZZ Rapids (line)': rapidLines,
-    'ZZ Rapids (area)': rapidPolys,
+    'Z Rapids (line)': rapidLines,
+    'Z Rapids (area)': rapidPolys,
     'Z Runway Areas': runways,
     'Z Showgrounds': showgrounds,
-    'ZZ Landslides': slipEdges,
+    'Z Landslides': slipEdges,
     'Z Redoubts': redoubts,
-    'Z Pinnancles': rockOutcrop,
+    'Z Pinnacles': rockOutcrop,
     'Z Saddles': saddles,
-    'ZZ Tree Rows': shelterBelt,
+    'Z Tree Rows': shelterBelt,
     'Z Sinkholes': sinkholes,
     'Z Spillways': spillwayEdges,
     'Z Towers': towerPnts,

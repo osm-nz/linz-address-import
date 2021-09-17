@@ -13,7 +13,7 @@ describe('getSector', () => {
     ${-36.93233}  | ${174.902343} | ${'Sector Q5'}     | ${'Auckland South'}     | ${'Auckland'}
     ${-35.137879} | ${173.408203} | ${'Sector N2'}     | ${'Far North'}          | ${'Northland'}
     ${-29.190532} | ${182.043457} | ${'Outer Islands'} | ${'Outer Islands'}      | ${'Outer Islands'}
-    ${-77.8466}   | ${166.7489}   | ${'1'}             | ${'1'}                  | ${'1' /* antarctic is chunked by index */}
+    ${-77.8466}   | ${166.7489}   | ${'01'}            | ${'01'}                 | ${'01' /* antarctic is chunked by index */}
   `('works for $lat,$lng ($small)', ({ lat, lng, small, medium, large }) => {
     expect(getSector({ lat, lng }, 'small', 0)).toStrictEqual(small);
     expect(getSector({ lat, lng }, 'medium', 0)).toStrictEqual(medium);

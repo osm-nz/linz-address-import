@@ -56,6 +56,8 @@ export async function main(): Promise<void> {
     out[k] = { size: 'medium', features: features[k] };
   }
 
+  console.log('handling extra layers...');
+
   // we do this after generating the 'small places' layer, beacuse we only want to include addresses
   try {
     if (process.env.NODE_ENV !== 'test') {

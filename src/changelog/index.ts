@@ -14,7 +14,7 @@ async function main() {
     return;
   }
 
-  const md = generateMd(data);
+  const md = await generateMd(data);
   await addComment(md);
   console.log('Left a comment');
 }

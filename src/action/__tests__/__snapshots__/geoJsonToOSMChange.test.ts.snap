@@ -7,7 +7,7 @@ exports[`geoJsonToOSMChange can convert files with LineString 1`] = `
     <node id=\\"-1\\" lon=\\"174.5\\" lat=\\"-37\\" version=\\"0\\" />
     <node id=\\"-2\\" lon=\\"174.6\\" lat=\\"-37\\" version=\\"0\\" />
     
-    <way id=\\"-1\\">
+    <way id=\\"-1\\" version=\\"0\\">
       <nd ref=\\"-1\\" />
       <nd ref=\\"-2\\" />
       <tag k=\\"highway\\" v=\\"footway\\" />
@@ -28,7 +28,7 @@ exports[`geoJsonToOSMChange can convert files with MultiPolygon 1`] = `
     <node id=\\"-3\\" lon=\\"5\\" lat=\\"6\\" version=\\"0\\" />
     <node id=\\"-4\\" lon=\\"7\\" lat=\\"8\\" version=\\"0\\" />
     
-        <way id=\\"-1\\">
+        <way id=\\"-1\\" version=\\"0\\">
           <nd ref=\\"-1\\" />
     <nd ref=\\"-2\\" />
     <nd ref=\\"-3\\" />
@@ -39,7 +39,7 @@ exports[`geoJsonToOSMChange can convert files with MultiPolygon 1`] = `
     <node id=\\"-7\\" lon=\\"19\\" lat=\\"20\\" version=\\"0\\" />
     <node id=\\"-8\\" lon=\\"21\\" lat=\\"22\\" version=\\"0\\" />
     
-        <way id=\\"-2\\">
+        <way id=\\"-2\\" version=\\"0\\">
           <nd ref=\\"-5\\" />
     <nd ref=\\"-6\\" />
     <nd ref=\\"-7\\" />
@@ -49,7 +49,7 @@ exports[`geoJsonToOSMChange can convert files with MultiPolygon 1`] = `
     <node id=\\"-10\\" lon=\\"25\\" lat=\\"26\\" version=\\"0\\" />
     <node id=\\"-11\\" lon=\\"27\\" lat=\\"28\\" version=\\"0\\" />
     
-        <way id=\\"-3\\">
+        <way id=\\"-3\\" version=\\"0\\">
           <nd ref=\\"-9\\" />
     <nd ref=\\"-10\\" />
     <nd ref=\\"-11\\" />
@@ -58,7 +58,7 @@ exports[`geoJsonToOSMChange can convert files with MultiPolygon 1`] = `
     <node id=\\"-13\\" lon=\\"11\\" lat=\\"12\\" version=\\"0\\" />
     <node id=\\"-14\\" lon=\\"13\\" lat=\\"14\\" version=\\"0\\" />
     
-        <way id=\\"-4\\">
+        <way id=\\"-4\\" version=\\"0\\">
           <nd ref=\\"-12\\" />
     <nd ref=\\"-13\\" />
     <nd ref=\\"-14\\" />
@@ -102,7 +102,7 @@ exports[`geoJsonToOSMChange can convert files with Polygon 1`] = `
     <node id=\\"-3\\" lon=\\"174.82\\" lat=\\"-36.92\\" version=\\"0\\" />
     <node id=\\"-4\\" lon=\\"174.8\\" lat=\\"-36.9\\" version=\\"0\\" />
     
-    <way id=\\"-1\\">
+    <way id=\\"-1\\" version=\\"0\\">
       <nd ref=\\"-1\\" />
       <nd ref=\\"-2\\" />
       <nd ref=\\"-3\\" />
@@ -127,7 +127,7 @@ exports[`geoJsonToOSMChange can convert files with all features 1`] = `
     </node><node id=\\"-2\\" lon=\\"174.5\\" lat=\\"-37\\" version=\\"0\\" />
     <node id=\\"-3\\" lon=\\"174.6\\" lat=\\"-37\\" version=\\"0\\" />
     
-    <way id=\\"-1\\">
+    <way id=\\"-1\\" version=\\"0\\">
       <nd ref=\\"-2\\" />
       <nd ref=\\"-3\\" />
       <tag k=\\"highway\\" v=\\"footway\\" />
@@ -137,7 +137,7 @@ exports[`geoJsonToOSMChange can convert files with all features 1`] = `
     <node id=\\"-6\\" lon=\\"174.82\\" lat=\\"-36.92\\" version=\\"0\\" />
     <node id=\\"-7\\" lon=\\"174.8\\" lat=\\"-36.9\\" version=\\"0\\" />
     
-    <way id=\\"-2\\">
+    <way id=\\"-2\\" version=\\"0\\">
       <nd ref=\\"-4\\" />
       <nd ref=\\"-5\\" />
       <nd ref=\\"-6\\" />
@@ -148,7 +148,7 @@ exports[`geoJsonToOSMChange can convert files with all features 1`] = `
   <node id=\\"-8\\" lon=\\"174.5\\" lat=\\"-37\\" version=\\"0\\" />
     <node id=\\"-9\\" lon=\\"174.6\\" lat=\\"-37\\" version=\\"0\\" />
     
-    <way id=\\"-3\\">
+    <way id=\\"-3\\" version=\\"0\\">
       <nd ref=\\"-8\\" />
       <nd ref=\\"-9\\" />
       <tag k=\\"highway\\" v=\\"footway\\" />
