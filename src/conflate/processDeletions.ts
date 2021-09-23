@@ -53,7 +53,10 @@ export function processDeletions(
         normal.push([linzRef, [suburb, osmAddr]]);
       } else {
         // linz ref changed, and the new ref doesn't exist in OSM
-        sus.push([linzRef, [suburb, newLinzRef, osmAddr]]);
+        sus.push([
+          linzRef,
+          [suburb, newLinzRef, osmAddr, linzData[newLinzRef]],
+        ]);
         removeFromCreate.push(newLinzRef);
       }
     } else {

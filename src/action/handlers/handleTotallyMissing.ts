@@ -76,6 +76,7 @@ export async function handleTotallyMissing(
             addr_suburb: addr.suburb[0] === 'U' ? addr.suburb[1] : undefined,
             addr_hamlet: addr.suburb[0] === 'R' ? addr.suburb[1] : undefined,
             addr_type: addr.water ? 'water' : undefined,
+            'building:flats': addr.flatCount?.toString(),
             ref_linz_address: (addr.osmId ? 'SPECIAL_DELETE_' : '') + linzId,
           },
         };

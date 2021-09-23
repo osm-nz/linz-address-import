@@ -184,6 +184,7 @@ export type StatusDiagnostics = {
     suburb: string,
     newLinzId: string,
     osmData: OsmAddr,
+    linzData: LinzAddr,
   ];
   [Status.COULD_BE_STACKED]: CouldStackData[string];
 };

@@ -600,6 +600,14 @@
     <tag k="ref:linz:address_id" v="70122" />
   </node>
 
+  <!-- 125 used to be a single address, now it's a stack. So when we change the ref tag, we also need to add building:flats-->
+  <node id="125" version="1" changeset="1" lat="-36.9" lon="175.125" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="125" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="THE_OLD_ID" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />

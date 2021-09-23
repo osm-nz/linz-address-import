@@ -74,7 +74,44 @@
       },
       "properties": {
         "ref_linz_address": "SPECIAL_EDIT_stack(70072-70075)",
-        "new_linz_ref": "stack(70072,70074-70075)"
+        "new_linz_ref": "stack(70072,70074-70075)",
+        "building:flats": "3"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SPECIAL_EDIT_THE_OLD_ID",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              175.125,
+              -36.899800000000006
+            ],
+            [
+              175.1252,
+              -36.900000000000006
+            ],
+            [
+              175.125,
+              -36.900200000000005
+            ],
+            [
+              175.1248,
+              -36.900000000000006
+            ],
+            [
+              175.125,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "ref_linz_address": "SPECIAL_EDIT_THE_OLD_ID",
+        "new_linz_ref": "stack(70123-70125)",
+        "building:flats": "3"
       }
     }
   ]

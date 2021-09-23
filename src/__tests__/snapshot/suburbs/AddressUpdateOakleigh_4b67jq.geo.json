@@ -942,6 +942,7 @@
         "addr_housenumber": "89",
         "addr_street": "Example Street",
         "addr_hamlet": "Oakleigh",
+        "building:flats": "3",
         "ref_linz_address": "stack(70089-70091)"
       }
     },
@@ -1061,6 +1062,7 @@
         "addr_housenumber": "69",
         "addr_street": "Example Street",
         "addr_hamlet": "Oakleigh",
+        "building:flats": "3",
         "ref_linz_address": "SPECIAL_DELETE_stack(70069-70071)"
       }
     },
@@ -1078,6 +1080,7 @@
         "addr_housenumber": "76",
         "addr_street": "Example Street",
         "addr_hamlet": "Oakleigh",
+        "building:flats": "3",
         "ref_linz_address": "SPECIAL_DELETE_stack(70076-70078)"
       }
     },
@@ -1095,6 +1098,7 @@
         "addr_housenumber": "85",
         "addr_street": "Example Street",
         "addr_hamlet": "Oakleigh",
+        "building:flats": "3",
         "ref_linz_address": "SPECIAL_DELETE_stack(70085-70087)"
       }
     },
@@ -1112,6 +1116,7 @@
         "addr_housenumber": "122",
         "addr_street": "Example Street",
         "addr_hamlet": "Oakleigh",
+        "building:flats": "3",
         "ref_linz_address": "SPECIAL_DELETE_stack(70119-70121)"
       }
     }
