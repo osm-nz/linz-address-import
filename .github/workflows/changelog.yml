@@ -28,6 +28,7 @@ jobs:
 
       - name: 📰 Run LINZ Changelog script
         run: |
+          mkdir -p data
           npm run nzgb
           npm run changelog
         env:
