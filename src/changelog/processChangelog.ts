@@ -59,7 +59,7 @@ async function processLinzChangelogCsv(
     ? createReadStream(join(__dirname, '../__tests__/mock/linz-changelog.csv'))
     : await fetch(
         `https://data.linz.govt.nz/services;key=${LINZ_API_KEY}/wfs/layer-53353-changeset?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&typeNames=layer-53353-changeset&viewparams=from:${from};to:${to}&outputFormat=csv`,
-      ).then((r) => r.body);
+      ).then((r) => r.body!);
 
   return new Promise((resolve, reject) => {
     const out: ChangelogJson = {

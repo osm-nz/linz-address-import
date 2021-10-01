@@ -12,7 +12,7 @@ export async function fetchIgnoreList(
     ? createReadStream(join(__dirname, '../__tests__/mock/ignore-list.csv'))
     : await fetch(
         `https://docs.google.com/spreadsheets/d/1BNrUQof78t-OZlCHF3n_MKnYDARFoCRZB7xKxQPmKds/export?format=csv&gid=${gId}`,
-      ).then((r) => r.body);
+      ).then((r) => r.body!);
 
   return new Promise((resolve, reject) => {
     /** list of LINZ refs */
