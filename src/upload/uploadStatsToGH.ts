@@ -13,9 +13,9 @@ export async function uploadStatsToGH(): Promise<void> {
 
   const url = `https://${GH_BASIC_AUTH}@api.github.com/repos/osm-nz/linz-address-import/issues/1`;
 
-  const { body }: GH.Issue = await fetch(url, {
+  const { body } = (await fetch(url, {
     headers: { Accept: 'application/vnd.github.v3+json' },
-  }).then((r) => r.json());
+  }).then((r) => r.json())) as GH.Issue;
 
   const date = stats.date.split('T')[0];
   const numbers: (string | number)[] = Object.values(stats.count);

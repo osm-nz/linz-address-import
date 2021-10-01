@@ -10,9 +10,9 @@ function getUrl() {
 }
 
 export async function getLatestKnownVersion(): Promise<string> {
-  const comments: GH.IssueComment[] = await fetch(getUrl(), {
+  const comments = (await fetch(getUrl(), {
     headers: { Accept: 'application/vnd.github.v3+json' },
-  }).then((r) => r.json());
+  }).then((r) => r.json())) as GH.IssueComment[];
 
   const { body: latestCommentBody } = comments[comments.length - 1];
 
