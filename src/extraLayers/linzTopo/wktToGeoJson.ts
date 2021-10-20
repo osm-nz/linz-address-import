@@ -56,12 +56,27 @@ export const wktToGeoJson = (
     [coordinates] = coordinates;
   }
 
+  if (shouldSimplify) {
+    if (typeof coordinates[0] === 'number') {
+      // point, nothing to do
+    } else if (typeof coordinates[0][0] === 'number') {
+      coordinates = simplify(coordinates, WAY_SIMPLIFICATION);
+    } else if (typeof coordinates[0][0][0] === 'number') {
+      coordinates = coordinates.map((c: Coord[]) =>
+        simplify(c, WAY_SIMPLIFICATION),
+      );
+    } else if (typeof coordinates[0][0][0][0] === 'number') {
+      coordinates = coordinates.map((c1: Coord[][]) =>
+        c1.map((c2) => simplify(c2, WAY_SIMPLIFICATION)),
+      );
+    }
+  }
+
   // coastline, cliff, emabankment, landslide, antarctic_depForm,
   // were all facing the wrong way, so we reverse the way
   // BUT water_race, ice_stream, melt_stream need to remain in their original direction!
   if (type === 'LineString' && !dontFlipWays) {
     coordinates.reverse();
-    if (shouldSimplify) coordinates = simplify(coordinates, WAY_SIMPLIFICATION);
   }
 
   // RapiD doesn't support multipolygons of unclosed ways yet.

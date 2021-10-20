@@ -1,8 +1,9 @@
 name: Sync
 
 on:
-  schedule:
-    - cron: '0 16 * * 1,5' # at 4pm on mon & fri UTC = at 4am on tue & sat NZST
+  # temporarily disabled during topo50 import
+  # schedule:
+  #   - cron: '0 16 * * 1,5' # at 4pm on mon & fri UTC = at 4am on tue & sat NZST
   workflow_dispatch:
 
 jobs:

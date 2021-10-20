@@ -30,6 +30,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50248',
     size: 'large',
+    complete: true,
     tagging(data) {
       return {
         aerialway: 'goods',
@@ -194,7 +195,7 @@ export async function linzTopo(): Promise<void> {
     input: 'ford_pnt.csv',
     idField: 't50_fid',
     sourceLayer: '50275',
-    size: 'large',
+    size: 'medium',
     instructions:
       "You must merge these nodes with the highway AND waterway if they're mapped",
     tagging(data) {
@@ -211,6 +212,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '',
     size: 'large',
+    complete: true,
     tagging(data) {
       return {
         natural: 'fumarole',
@@ -429,6 +431,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '',
     size: 'large',
+    complete: true,
     tagging(data) {
       return {
         leisure: 'track',
@@ -503,6 +506,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50322',
     size: 'medium',
+    complete: true,
     tagging(data) {
       return {
         natural: 'rock',
@@ -603,6 +607,7 @@ export async function linzTopo(): Promise<void> {
 
   function siphonTagging() {
     // discussions on the tagging mailing list weren't able to decide on a tag
+    // culvert=inverted_siphon is in use and was the only suggestion on the mailing list
     // https://lists.openstreetmap.org/pipermail/tagging/2021-September/thread.html
     // https://help.osm.org/questions/61943
     return {
@@ -620,6 +625,7 @@ export async function linzTopo(): Promise<void> {
     size: 'large',
     instructions:
       'Nodes and Areas must be converted to ways (part of the canal)',
+    complete: true,
     tagging(data) {
       return {
         ...siphonTagging(),
@@ -634,6 +640,7 @@ export async function linzTopo(): Promise<void> {
     size: 'large',
     instructions:
       'Nodes and Areas must be converted to ways (part of the canal)',
+    complete: true,
     tagging(data) {
       return {
         ...siphonTagging(),
@@ -664,7 +671,7 @@ export async function linzTopo(): Promise<void> {
     input: 'south-island-pastoral-leases.csv',
     idField: 'id',
     sourceLayer: '51572',
-    size: 'large',
+    size: 'small',
     tagging(data) {
       return {
         landuse: 'meadow',
@@ -872,7 +879,7 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     size: 'large',
     complete: true,
-    tagging(data, wktHash) {
+    tagging(_, wktHash) {
       return {
         natural: 'scree',
         'ref:linz:topo50_id': wktHash,
@@ -991,7 +998,7 @@ export async function linzTopo(): Promise<void> {
     'Z Dredge Tailing': dredgeTailing,
     'ZZ Embankments': embankment,
     'Z Floodgates': floodgates,
-    '❌ Fumaroles': fumaroles,
+    'Z Fumaroles': fumaroles,
     'Z Fords': fords,
     'Z Gates': gates,
     'Z Golf Courses': golfCourses,
@@ -1020,11 +1027,11 @@ export async function linzTopo(): Promise<void> {
     'Z Sinkholes': sinkholes,
     'Z Spillways': spillwayEdges,
     'Z Towers': towerPnts,
-    '❌ Siphons': {
+    'Z Siphons': {
       ...siphonPnts,
       features: [...siphonPolys.features, ...siphonPnts.features],
     },
-    '❌ Stations': stations,
+    'ZZ Stations': stations,
     'Z Water Races': waterRace,
 
     '❌ Facilities': facilities,
