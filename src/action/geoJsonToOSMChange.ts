@@ -149,7 +149,10 @@ export function geoJsonToOSMChange(
 
       // will never happen
       default:
-        throw new Error('Invalid geojson type');
+        throw new Error(
+          // @ts-expect-error ts knows this can never happen
+          `Invalid geojson type in ${fileName}: ${feature.geometry.type}`,
+        );
     }
   }
 

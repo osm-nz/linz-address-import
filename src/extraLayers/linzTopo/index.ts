@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import { join } from 'path';
 import { ExtraLayers } from '../../types';
 import { getT50IDsToSkip } from './getT50IDsToSkip';
+import { seamarkTagging, Seamark } from './seamarkTagging';
 import { csvToGeoJsonFactory } from './_specialLinzLayers';
 
 const toTitleCase = (str: string) =>
@@ -917,6 +918,508 @@ export async function linzTopo(): Promise<void> {
     },
   });
 
+  //
+  // Hydrographic
+  //
+  const maritimeInstructions =
+    'Sometimes there are multiple features on top of each other. Be careful not to add duplicate data.';
+
+  const H_anchorBerths = await csvToGeoJson<Seamark['anchor_berth']>({
+    input: [
+      'sea/anchor-berth-points-hydro-122k-190k.csv',
+      'sea/anchor-berth-points-hydro-14k-122k.csv',
+      'sea/anchor-berth-points-hydro-190k-1350k.csv',
+      'sea/anchor-berth-polygons-hydro-122k-190k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('anchor_berth'),
+  });
+
+  const H_anchorages = await csvToGeoJson<Seamark['anchorage']>({
+    input: [
+      'sea/anchorage-area-points-hydro-122k-190k.csv',
+      'sea/anchorage-area-points-hydro-14k-122k.csv',
+      'sea/anchorage-area-points-hydro-190k-1350k.csv',
+      'sea/anchorage-area-polygons-hydro-122k-190k.csv',
+      'sea/anchorage-area-polygons-hydro-14k-122k.csv',
+      'sea/anchorage-area-polygons-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('anchorage'),
+  });
+
+  const H_submarineCables = await csvToGeoJson<Seamark['cable_submarine']>({
+    input: [
+      'sea/cable-submarine-polyline-hydro-14k-122k.csv',
+      'sea/cable-submarine-polyline-hydro-122k-190k.csv',
+      'sea/cable-submarine-polyline-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('cable_submarine'),
+  });
+
+  const H_daymarks = await csvToGeoJson<Seamark['daymark']>({
+    input: [
+      'sea/daymark-points-hydro-115mil-and-smaller.csv',
+      'sea/daymark-points-hydro-122k-190k.csv',
+      'sea/daymark-points-hydro-14k-122k.csv',
+      'sea/daymark-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('daymark'),
+  });
+
+  const H_dumpingGrounds = await csvToGeoJson<Seamark['dumping_ground']>({
+    input: [
+      'sea/dumping-ground-points-hydro-14k-122k.csv',
+      'sea/dumping-ground-polygons-hydro-14k-122k.csv',
+      'sea/dumping-ground-polygons-hydro-122k-190k.csv',
+      'sea/dumping-ground-polygons-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('dumping_ground'),
+  });
+
+  const H_fishingFacs = await csvToGeoJson<Seamark['fishing_facility']>({
+    input: [
+      'sea/fishing-facility-points-hydro-122k-190k.csv',
+      'sea/fishing-facility-polyline-hydro-122k-190k.csv',
+      'sea/fishing-facility-polyline-hydro-14k-122k.csv',
+      'sea/fishing-facility-polyline-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('fishing_facility'),
+  });
+
+  const H_fogSignals = await csvToGeoJson<Seamark['fog_signal']>({
+    input: [
+      'sea/fog-signal-points-hydro-115mil-and-smaller.csv',
+      'sea/fog-signal-points-hydro-122k-190k.csv',
+      'sea/fog-signal-points-hydro-1350k-11500k.csv',
+      'sea/fog-signal-points-hydro-14k-122k.csv',
+      'sea/fog-signal-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('fog_signal'),
+  });
+
+  const H_hulk = await csvToGeoJson<Seamark['hulk']>({
+    input: [
+      'sea/hulk-points-hydro-122k-190k.csv',
+      'sea/hulk-points-hydro-14k-122k.csv',
+      'sea/hulk-points-hydro-190k-1350k.csv',
+      'sea/hulk-polygons-hydro-122k-190k.csv',
+      'sea/hulk-polygons-hydro-14k-122k.csv',
+      'sea/hulk-polygons-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('hulk'),
+  });
+
+  const H_lights = await csvToGeoJson<Seamark['light']>({
+    input: [
+      'sea/light-points-hydro-115mil-and-smaller.csv',
+      'sea/light-points-hydro-122k-190k.csv',
+      'sea/light-points-hydro-1350k-11500k.csv',
+      'sea/light-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: `${maritimeInstructions}\n\nMOST LIGHTS ARE ALREADY IMPORTED FROM THE US NGA IMPORT`,
+    tagging: seamarkTagging('light'),
+  });
+
+  const H_mooring = await csvToGeoJson<Seamark['mooring']>({
+    input: [
+      'sea/mooring-warping-facility-points-hydro-122k-190k.csv',
+      'sea/mooring-warping-facility-points-hydro-1350k-11500k.csv',
+      'sea/mooring-warping-facility-points-hydro-14k-122k.csv',
+      'sea/mooring-warping-facility-points-hydro-190k-1350k.csv',
+      'sea/mooring-warping-facility-polygons-hydro-14k-122k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('mooring'),
+  });
+
+  const H_oilRigs = await csvToGeoJson<Seamark['platform']>({
+    input: 'sea/offshore-platform-points-hydro-190k-1350k.csv',
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('platform'),
+  });
+
+  const H_piles = await csvToGeoJson<Seamark['pile']>({
+    input: [
+      'sea/pile-points-hydro-122k-190k.csv',
+      'sea/pile-points-hydro-14k-122k.csv',
+      'sea/pile-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('pile'),
+  });
+
+  const H_pontoons = await csvToGeoJson<Seamark['cable_submarine']>({
+    input: [
+      'sea/pontoon-polygons-hydro-14k-122k.csv',
+      'sea/pontoon-polyline-hydro-14k-122k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('cable_submarine'),
+  });
+
+  const H_pylons = await csvToGeoJson<Seamark['pylon']>({
+    input: [
+      'sea/pylon-bridge-support-points-hydro-122k-190k.csv',
+      'sea/pylon-bridge-support-points-hydro-14k-122k.csv',
+      'sea/pylon-bridge-support-points-hydro-190k-1350k.csv',
+      'sea/pylon-bridge-support-polygons-hydro-14k-122k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('pylon'),
+  });
+
+  const H_radar_stations = await csvToGeoJson<Seamark['radar_station']>({
+    input: [
+      'sea/radar-station-points-hydro-122k-190k.csv',
+      'sea/radar-station-points-hydro-14k-122k.csv',
+      'sea/radar-station-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('radar_station'),
+  });
+
+  const H_radar_transponder = await csvToGeoJson<Seamark['radar_transponder']>({
+    input: [
+      'sea/radar-transponder-beacon-points-hydro-1350k-11500k.csv',
+      'sea/radar-transponder-beacon-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('radar_transponder'),
+  });
+
+  const H_rescueStations = await csvToGeoJson<Seamark['rescue_station']>({
+    input: [
+      'sea/rescue-station-points-hydro-122k-190k.csv',
+      'sea/rescue-station-points-hydro-14k-122k.csv',
+      'sea/rescue-station-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('rescue_station'),
+  });
+
+  const H_sandWaves = await csvToGeoJson<Seamark['sand_waves']>({
+    input: [
+      'sea/sand-waves-points-hydro-122k-190k.csv',
+      'sea/sand-waves-points-hydro-14k-122k.csv',
+      'sea/sand-waves-points-hydro-190k-1350k.csv',
+      'sea/sand-waves-polygons-hydro-122k-190k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('sand_waves'),
+  });
+
+  const H_seaplaneRunways = await csvToGeoJson<
+    Seamark['seaplane_landing_area']
+  >({
+    input: [
+      'sea/sea-plane-landing-area-points-hydro-14k-122k.csv',
+      'sea/sea-plane-landing-area-polygons-hydro-122k-190k.csv',
+      'sea/sea-plane-landing-area-polygons-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('seaplane_landing_area'),
+  });
+
+  const H_springs = await csvToGeoJson<Seamark['spring']>({
+    input: [
+      'sea/spring-points-hydro-122k-190k.csv',
+      'sea/spring-points-hydro-1350k-11500k.csv',
+      'sea/spring-points-hydro-14k-122k.csv',
+      'sea/spring-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('spring'),
+  });
+
+  const H_topmarks = await csvToGeoJson<Seamark['topmark']>({
+    input: [
+      'sea/topmark-points-hydro-115mil-and-smaller.csv',
+      'sea/topmark-points-hydro-122k-190k.csv',
+      'sea/topmark-points-hydro-1350k-11500k.csv',
+      'sea/topmark-points-hydro-14k-122k.csv',
+      'sea/topmark-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('topmark'),
+  });
+
+  const H_subseaRocks = await csvToGeoJson<Seamark['rock']>({
+    input: [
+      'sea/underwater-awash-rock-points-hydro-115mil-and-smaller.csv',
+      'sea/underwater-awash-rock-points-hydro-122k-190k.csv',
+      'sea/underwater-awash-rock-points-hydro-1350k-11500k.csv',
+      'sea/underwater-awash-rock-points-hydro-14k-122k.csv',
+      'sea/underwater-awash-rock-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('rock'),
+  });
+
+  const H_weeds = await csvToGeoJson<Seamark['weed']>({
+    input: [
+      'sea/weed-kelp-points-hydro-122k-190k.csv',
+      'sea/weed-kelp-points-hydro-14k-122k.csv',
+      'sea/weed-kelp-points-hydro-190k-1350k.csv',
+      'sea/weed-kelp-polygons-hydro-122k-190k.csv',
+      'sea/weed-kelp-polygons-hydro-14k-122k.csv',
+      'sea/weed-kelp-polygons-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('weed'),
+  });
+
+  const H_distanceMarkers = await csvToGeoJson<Seamark['distance_mark']>({
+    input: ['sea/distance-mark-points-hydro-14k-122k.csv'],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('distance_mark'),
+  });
+
+  const H_obstructions = await csvToGeoJson<Seamark['obstruction']>({
+    input: [
+      'sea/obstruction-points-hydro-115mil-and-smaller.csv',
+      'sea/obstruction-points-hydro-122k-190k.csv',
+      'sea/obstruction-points-hydro-1350k-11500k.csv',
+      'sea/obstruction-points-hydro-14k-122k.csv',
+      'sea/obstruction-points-hydro-190k-1350k.csv',
+      'sea/obstruction-polygons-hydro-115mil-and-smaller.csv',
+      'sea/obstruction-polygons-hydro-122k-190k.csv',
+      'sea/obstruction-polygons-hydro-1350k-11500k.csv',
+      'sea/obstruction-polygons-hydro-14k-122k.csv',
+      'sea/obstruction-polygons-hydro-190k-1350k.csv',
+      'sea/offshore-platform-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('obstruction'),
+  });
+
+  const H_beaconCardinal = await csvToGeoJson<Seamark['beacon_cardinal']>({
+    input: [
+      'sea/beacon-cardinal-points-hydro-122k-190k.csv',
+      'sea/beacon-cardinal-points-hydro-14k-122k.csv',
+      'sea/beacon-cardinal-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('beacon_cardinal'),
+  });
+
+  const H_beaconIsolatedDanger = await csvToGeoJson<
+    Seamark['beacon_isolated_danger']
+  >({
+    input: [
+      'sea/beacon-isolated-danger-points-hydro-122k-190k.csv',
+      'sea/beacon-isolated-danger-points-hydro-14k-122k.csv',
+      'sea/beacon-isolated-danger-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('beacon_isolated_danger'),
+  });
+
+  const H_beaconLateral = await csvToGeoJson<Seamark['beacon_lateral']>({
+    input: [
+      'sea/beacon-lateral-points-hydro-122k-190k.csv',
+      'sea/beacon-lateral-points-hydro-14k-122k.csv',
+      'sea/beacon-lateral-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('beacon_lateral'),
+  });
+
+  const H_beaconSafeWater = await csvToGeoJson<Seamark['beacon_safe_water']>({
+    input: [
+      'sea/beacon-safe-water-points-hydro-122k-190k.csv',
+      'sea/beacon-safe-water-points-hydro-14k-122k.csv',
+      'sea/beacon-safe-water-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('beacon_safe_water'),
+  });
+
+  const H_beaconSpecialPurpose = await csvToGeoJson<
+    Seamark['beacon_special_purpose']
+  >({
+    input: [
+      'sea/beacon-special-purpose-general-points-hydro-115mil-and-small.csv',
+      'sea/beacon-special-purpose-general-points-hydro-122k-190k.csv',
+      'sea/beacon-special-purpose-general-points-hydro-1350k-11500k.csv',
+      'sea/beacon-special-purpose-general-points-hydro-14k-122k.csv',
+      'sea/beacon-special-purpose-general-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('beacon_special_purpose'),
+  });
+
+  const H_buoyCardinal = await csvToGeoJson<Seamark['buoy_cardinal']>({
+    input: [
+      'sea/buoy-cardinal-points-hydro-122k-190k.csv',
+      'sea/buoy-cardinal-points-hydro-14k-122k.csv',
+      'sea/buoy-cardinal-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('buoy_cardinal'),
+  });
+
+  const H_buoyIsolatedDanger = await csvToGeoJson<
+    Seamark['buoy_isolated_danger']
+  >({
+    input: [
+      'sea/buoy-isolated-danger-points-hydro-122k-190k.csv',
+      'sea/buoy-isolated-danger-points-hydro-14k-122k.csv',
+      'sea/buoy-isolated-danger-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('buoy_isolated_danger'),
+  });
+
+  const H_buoyLateral = await csvToGeoJson<Seamark['buoy_lateral']>({
+    input: [
+      'sea/buoy-lateral-points-hydro-122k-190k.csv',
+      'sea/buoy-lateral-points-hydro-14k-122k.csv',
+      'sea/buoy-lateral-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('buoy_lateral'),
+  });
+
+  const H_buoySafeWater = await csvToGeoJson<Seamark['buoy_safe_water']>({
+    input: [
+      'sea/buoy-safe-water-points-hydro-122k-190k.csv',
+      'sea/buoy-safe-water-points-hydro-14k-122k.csv',
+      'sea/buoy-safe-water-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('buoy_safe_water'),
+  });
+
+  const H_buoySpecialPurpose = await csvToGeoJson<
+    Seamark['buoy_special_purpose']
+  >({
+    input: [
+      'sea/buoy-special-purpose-general-points-hydro-115mil-and-smaller.csv',
+      'sea/buoy-special-purpose-general-points-hydro-122k-190k.csv',
+      'sea/buoy-special-purpose-general-points-hydro-1350k-11500k.csv',
+      'sea/buoy-special-purpose-general-points-hydro-14k-122k.csv',
+      'sea/buoy-special-purpose-general-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('buoy_special_purpose'),
+  });
+
+  //
+  // misc
+  //
+
   /** see https://nz-facilities.readthedocs.io */
   type Facility = {
     facility_id?: string;
@@ -1033,6 +1536,43 @@ export async function linzTopo(): Promise<void> {
     },
     'ZZ Stations': stations,
     'Z Water Races': waterRace,
+
+    // Hydrographic
+    'ZZ Anchor Berths': H_anchorBerths,
+    'ZZ Anchorages': H_anchorages,
+    'ZZ Submarine Cables': H_submarineCables,
+    'ZZ Daymarks': H_daymarks,
+    'ZZ Dumping Ground': H_dumpingGrounds,
+    'ZZ Fishing Facilities': H_fishingFacs,
+    'ZZ Fog Signals': H_fogSignals,
+    'ZZ Hulks': H_hulk,
+    'ZZ Lights': H_lights,
+    'ZZ Mooring': H_mooring,
+    'ZZ Piles': H_piles,
+    'ZZ Pontoons': H_pontoons,
+    'ZZ Pylons': H_pylons,
+    'ZZ Radar Stations': H_radar_stations,
+    'ZZ Radar Transponders': H_radar_transponder,
+    'ZZ Rescue Stations': H_rescueStations,
+    'ZZ Sand Waves': H_sandWaves,
+    'ZZ Seaplane Runways': H_seaplaneRunways,
+    'ZZ Springs': H_springs,
+    'ZZ Topmarks': H_topmarks,
+    'ZZ Sub-sea Rocks': H_subseaRocks,
+    'ZZ Oil Rigs': H_oilRigs,
+    'ZZ Weeds': H_weeds,
+    'ZZ Distance Markers': H_distanceMarkers,
+    'ZZ Obstructions': H_obstructions,
+    'ZZ Beacons - Cardinal': H_beaconCardinal,
+    'ZZ Beacons - Isolated Danger': H_beaconIsolatedDanger,
+    'ZZ Beacons - Lateral': H_beaconLateral,
+    'ZZ Beacons - Safe Water': H_beaconSafeWater,
+    'ZZ Beacons - Special Purpose': H_beaconSpecialPurpose,
+    'ZZ Buoys - Cardinal': H_buoyCardinal,
+    'ZZ Buoys - Isolated Danger': H_buoyIsolatedDanger,
+    'ZZ Buoys - Lateral': H_buoyLateral,
+    'ZZ Buoys - Safe Water': H_buoySafeWater,
+    'ZZ Buoys - Special Purpose': H_buoySpecialPurpose,
 
     '❌ Facilities': facilities,
   };

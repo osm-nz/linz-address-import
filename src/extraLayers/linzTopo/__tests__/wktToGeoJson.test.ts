@@ -188,4 +188,36 @@ describe('wktToGeoJson', () => {
       25,
     ); // cf. original has 64
   });
+
+  it('can parse 3D points', () => {
+    expect(wktToGeoJson('POINT Z (170.6977569 -45.749434 0)')).toStrictEqual({
+      type: 'Point',
+      coordinates: [170.6977569, -45.749434],
+    });
+  });
+
+  it('can simplify MultiLineStrings with only a single member', () => {
+    expect(
+      wktToGeoJson(
+        'MULTILINESTRING Z ((184.8475468 -21.133391 0,184.8475841 -21.132725 0,184.8476105 -21.1318873 0))',
+      ),
+    ).toStrictEqual({
+      type: 'LineString',
+      coordinates: [
+        // TODO: should we deal with the antimeridian issue here or in RapiD?
+        [184.8476105, -21.1318873],
+        [184.8475841, -21.132725],
+        [184.8475468, -21.133391],
+      ],
+    });
+  });
+
+  it('can simplify MultiPoints with only a single member', () => {
+    expect(
+      wktToGeoJson('MULTIPOINT Z ((174.6767094 -56.657093 0))'),
+    ).toStrictEqual({
+      type: 'Point',
+      coordinates: [174.6767094, -56.657093],
+    });
+  });
 });

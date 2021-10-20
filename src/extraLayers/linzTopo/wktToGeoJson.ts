@@ -5,10 +5,19 @@ import { simplify } from './simplify';
 type Coord = [lng: number, lat: number];
 
 const TYPES = <const>{
+  // the maritime layers sometimes have Z
   POINT: 'Point',
+  'POINT Z': 'Point',
+  MULTIPOINT: 'MultiPoint',
+  'MULTIPOINT Z': 'MultiPoint',
   LINESTRING: 'LineString',
+  'LINESTRING Z': 'LineString',
+  MULTILINESTRING: 'MultiLineString',
+  'MULTILINESTRING Z': 'MultiLineString',
   POLYGON: 'Polygon',
+  'POLYGON Z': 'Polygon',
   MULTIPOLYGON: 'MultiPolygon',
+  'MULTIPOLYGON Z': 'MultiPolygon',
 };
 
 /** from https://api.openstreetmap.org/api/0.6/capabilities */
@@ -31,20 +40,40 @@ export const wktToGeoJson = (
   shouldSimplify?: boolean,
   dontFlipWays?: boolean,
 ): GeoJsonCoords => {
-  let type = TYPES[wkt.match(/^\w+/)![0] as keyof typeof TYPES];
+  let type = TYPES[wkt.match(/^\w+( Z)?/)![0] as keyof typeof TYPES];
 
   let coordinates = JSON.parse(
     wkt
-      .replace(/^\w+ /, '')
+      .replace(/^\w+( Z)? /, '')
       .replace(/\(/g, '[')
       .replace(/\)/g, ']')
       .replace(
-        /((\d|\.|-)+) ((\d|\.|-)+)/g, // matches `174.123 -36.456`
+        /((\d|\.|-)+) ((\d|\.|-)+)( 0)?/g, // matches `174.123 -36.456` maybe with ` 0` at the end
         (_0, lng, _1, lat) => `[${lng},${lat}]`,
       ),
   );
 
   if (type === 'Point') [coordinates] = coordinates; // fix double bracket
+
+  // simplify MultiLineStrings that only have one member
+  if (type === 'MultiLineString' && coordinates.length === 1) {
+    type = 'LineString';
+    [coordinates] = coordinates;
+  }
+
+  // simplify MultiPoints that only have one member
+  if (
+    type === 'MultiPoint' &&
+    coordinates.length === 1 &&
+    coordinates[0].length === 1
+  ) {
+    type = 'Point';
+    [[coordinates]] = coordinates;
+  }
+
+  if (type === 'MultiLineString' || type === 'MultiPoint') {
+    throw new Error(`Cannot handle complex ${type}`);
+  }
 
   // simplify multipolygons that only have one member (the outer way)
   if (

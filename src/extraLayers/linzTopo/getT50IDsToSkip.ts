@@ -19,7 +19,7 @@ async function readFromPlanet(mutableOut: IgnoreFile, fileName: string) {
     pbf2json
       .createReadStream({
         file: planetFile,
-        tags: ['ref:linz:topo50_id'],
+        tags: ['ref:linz:topo50_id,ref:linz:hydrographic_id'],
         leveldb: '/tmp',
       })
       .pipe(
@@ -27,7 +27,9 @@ async function readFromPlanet(mutableOut: IgnoreFile, fileName: string) {
           i += 1;
           if (!(i % 1000)) process.stdout.write('.');
 
-          const ref = item.tags['ref:linz:topo50_id']!;
+          // TODO: remove hydrographic ID once the maritime import is complete
+          const ref = (item.tags['ref:linz:topo50_id'] ||
+            item.tags['ref:linz:hydrographic_id'])!;
 
           // eslint-disable-next-line no-param-reassign -- we are deliberately mutating it
           mutableOut[ref] = 1;
@@ -57,6 +59,7 @@ export async function getT50IDsToSkip(): Promise<IgnoreFile> {
 
   await readFromPlanet(out, 'osm.pbf');
   // await readFromPlanet(out, 'rossdep.osm.pbf'); // disabled because antarctica is complete
+  // TODO: polynesia on both sides of the antimeridian
 
   await fs.writeFile(PATH, JSON.stringify(out));
 
