@@ -8,8 +8,12 @@ type _SeamarkTypes = {
   // fields in _generic don't need to be specified in every section
   _generic: {
     fidn: string;
-    objnam?: string;
-    inform?: string;
+    /** prefer `nobjnm` */ objnam?: string;
+    nobjnm?: string;
+    /** prefer `ninfom` */ inform?: string;
+    ninfom?: string;
+    ntxtds?: string;
+    /** prefer `ntxtds` */ txtdsc?: string;
     status?: string;
     sordat?: string;
     sorind?: string;
@@ -73,6 +77,11 @@ type _SeamarkTypes = {
   pile: {
     catple?: string;
   };
+  pilot_boarding: {
+    catpil?: string;
+    // comcha?: string;
+    // pildst?: string;
+  };
   pontoon: {};
   pylon: {
     catpyl?: string;
@@ -84,6 +93,19 @@ type _SeamarkTypes = {
     catrtb?: string;
     radwal?: string;
     siggrp?: string;
+  };
+  'calling-in_point': {
+    comcha?: string;
+    orient?: string;
+    trafic?: string;
+  };
+  radio_station: {
+    // calsgn?: string;
+    catros?: string;
+  };
+  restricted_area: {
+    catrea?: string;
+    restrn?: string;
   };
   rescue_station: {
     catrsc?: string;
@@ -166,6 +188,9 @@ type _SeamarkTypes = {
     veracc?: string; // no seamark tag
     verlen?: string;
     picrep?: string;
+  };
+  wreck: {
+    catwrk?: string;
   };
 };
 /* eslint-enable @typescript-eslint/ban-types */

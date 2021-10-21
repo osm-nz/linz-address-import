@@ -2,11 +2,14 @@ import fetch from 'node-fetch';
 import { GH } from '../types';
 import { Diags } from './generateMd';
 
+const twoMonthsAgo = new Date();
+twoMonthsAgo.setMonth(new Date().getMonth() - 2);
+
 function getUrl() {
   const { GH_BASIC_AUTH } = process.env;
   if (!GH_BASIC_AUTH) throw new Error(`No GH_BASIC_AUTH env variable set`);
 
-  return `https://${GH_BASIC_AUTH}@api.github.com/repos/osm-nz/linz-address-import/issues/3/comments`;
+  return `https://${GH_BASIC_AUTH}@api.github.com/repos/osm-nz/linz-address-import/issues/3/comments?since=${twoMonthsAgo.toISOString()}`;
 }
 
 export async function getLatestKnownVersion(): Promise<string> {

@@ -98,7 +98,7 @@ export const wktToGeoJson = (
   }
 
   if (type === 'MultiLineString' || type === 'MultiPoint') {
-    throw new Error(`Cannot handle complex ${type}`);
+    throw new Error(`Cannot handle complex ${type} in ${layerName}`);
   }
 
   // simplify multipolygons that only have one member (the outer way)

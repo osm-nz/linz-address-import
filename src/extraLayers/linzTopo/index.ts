@@ -1117,7 +1117,7 @@ export async function linzTopo(): Promise<void> {
     tagging: seamarkTagging('pylon'),
   });
 
-  const H_radar_stations = await csvToGeoJson<Seamark['radar_station']>({
+  const H_radarStations = await csvToGeoJson<Seamark['radar_station']>({
     input: [
       'sea/radar-station-points-hydro-122k-190k.csv',
       'sea/radar-station-points-hydro-14k-122k.csv',
@@ -1130,7 +1130,7 @@ export async function linzTopo(): Promise<void> {
     tagging: seamarkTagging('radar_station'),
   });
 
-  const H_radar_transponder = await csvToGeoJson<Seamark['radar_transponder']>({
+  const H_radarTransponder = await csvToGeoJson<Seamark['radar_transponder']>({
     input: [
       'sea/radar-transponder-beacon-points-hydro-1350k-11500k.csv',
       'sea/radar-transponder-beacon-points-hydro-190k-1350k.csv',
@@ -1416,6 +1416,82 @@ export async function linzTopo(): Promise<void> {
     tagging: seamarkTagging('buoy_special_purpose'),
   });
 
+  const H_pilotBoarding = await csvToGeoJson<Seamark['pilot_boarding']>({
+    input: [
+      'sea/pilot-boarding-place-points-hydro-122k-190k.csv',
+      'sea/pilot-boarding-place-points-hydro-14k-122k.csv',
+      'sea/pilot-boarding-place-points-hydro-190k-1350k.csv',
+      'sea/pilot-boarding-place-polygons-hydro-122k-190k.csv',
+      'sea/pilot-boarding-place-polygons-hydro-14k-122k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('pilot_boarding'),
+  });
+
+  const H_radioCallInPoint = await csvToGeoJson<Seamark['calling-in_point']>({
+    input: [
+      'sea/radio-calling-in-point-points-hydro-122k-190k.csv',
+      'sea/radio-calling-in-point-points-hydro-14k-122k.csv',
+      'sea/radio-calling-in-point-points-hydro-190k-1350k.csv',
+      'sea/radio-calling-in-point-polyline-hydro-122k-190k.csv',
+      'sea/radio-calling-in-point-polyline-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('calling-in_point'),
+  });
+
+  const H_radioStation = await csvToGeoJson<Seamark['radio_station']>({
+    input: [
+      'sea/radio-station-points-hydro-115mil-and-smaller.csv',
+      'sea/radio-station-points-hydro-122k-190k.csv',
+      'sea/radio-station-points-hydro-1350k-11500k.csv',
+      'sea/radio-station-points-hydro-14k-122k.csv',
+      'sea/radio-station-points-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('radio_station'),
+  });
+
+  const H_restrictedArea = await csvToGeoJson<Seamark['restricted_area']>({
+    input: [
+      'sea/restricted-area-polygons-hydro-115mil-and-smaller.csv',
+      'sea/restricted-area-polygons-hydro-122k-190k.csv',
+      'sea/restricted-area-polygons-hydro-1350k-11500k.csv',
+      'sea/restricted-area-polygons-hydro-14k-122k.csv',
+      'sea/restricted-area-polygons-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('restricted_area'),
+  });
+
+  const H_wreck = await csvToGeoJson<Seamark['wreck']>({
+    input: [
+      'sea/wreck-points-hydro-122k-190k.csv',
+      'sea/wreck-points-hydro-1350k-11500k.csv',
+      'sea/wreck-points-hydro-14k-122k.csv',
+      'sea/wreck-points-hydro-190k-1350k.csv',
+      'sea/wreck-polygons-hydro-122k-190k.csv',
+      'sea/wreck-polygons-hydro-14k-122k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    instructions: maritimeInstructions,
+    tagging: seamarkTagging('wreck'),
+  });
+
   //
   // misc
   //
@@ -1551,8 +1627,8 @@ export async function linzTopo(): Promise<void> {
     'ZZ Piles': H_piles,
     'ZZ Pontoons': H_pontoons,
     'ZZ Pylons': H_pylons,
-    'ZZ Radar Stations': H_radar_stations,
-    'ZZ Radar Transponders': H_radar_transponder,
+    'ZZ Radar Stations': H_radarStations,
+    'ZZ Radar Transponders': H_radarTransponder,
     'ZZ Rescue Stations': H_rescueStations,
     'ZZ Sand Waves': H_sandWaves,
     'ZZ Seaplane Runways': H_seaplaneRunways,
@@ -1573,6 +1649,11 @@ export async function linzTopo(): Promise<void> {
     'ZZ Buoys - Lateral': H_buoyLateral,
     'ZZ Buoys - Safe Water': H_buoySafeWater,
     'ZZ Buoys - Special Purpose': H_buoySpecialPurpose,
+    'ZZ Pilot Boarding Points': H_pilotBoarding,
+    'ZZ Radio call-in Points': H_radioCallInPoint,
+    'ZZ Radio Stations': H_radioStation,
+    'ZZ Restricted maritime area': H_restrictedArea,
+    'ZZ Wrecks': H_wreck,
 
     '❌ Facilities': facilities,
   };

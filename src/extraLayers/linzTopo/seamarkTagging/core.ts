@@ -4,8 +4,6 @@ import { AllSeamarkProps, OSMSeamarkTypes } from './types';
 
 /**
  * Seamark tags are quiet complicated. This function is used for all seamark layers.
- *
- * Some extra non-seamark tags may be added in the main file, like man_made=offshore_platform
  */
 export const seamarkTagging =
   (type: OSMSeamarkTypes) =>
@@ -14,8 +12,8 @@ export const seamarkTagging =
       //
       // standard tags on many features
       //
-      name: data.objnam, // we don't use seamark:name, see https://wiki.osm.org/Talk:Key:seamark:name
-      description: data.inform,
+      name: data.nobjnm || data.objnam, // we don't use seamark:name, see https://wiki.osm.org/Talk:Key:seamark:name
+      description: data.ninfom || data.inform || data.ntxtds || data.txtdsc,
       'ref:linz:hydrographic_id': `${+data.fidn}`,
       source: cleanSource(data.sorind),
       'source:date': cleanDate(data.sordat),
@@ -38,7 +36,10 @@ export const seamarkTagging =
       [`seamark:${type}:condition`]: MapCat('CONDTN', data.condtn),
       [`seamark:${type}:water_level`]: MapCat('WATLEV', data.watlev),
       [`seamark:${type}:reflectivity`]: MapCat('CONRAD', data.conrad),
-      [`seamark:${type}:restriction`]: MapCat('RESTRN', data.restrn),
+      [`seamark:${type}:restriction`]: data.restrn
+        ?.split(',')
+        .map((x) => MapCat('RESTRN', x))
+        .join(';'),
       [`seamark:${type}:system`]: MapCat('MARSYS', data.marsys),
       [`seamark:${type}:period_start`]: data.persta,
       [`seamark:${type}:period_end`]: data.perend,
@@ -48,7 +49,9 @@ export const seamarkTagging =
         .join(';'),
       [`seamark:${type}:visibility`]: MapCat('LITVIS', data.litvis),
       [`seamark:${type}:conspicuity`]: MapCat('CONVIS', data.convis),
+      [`seamark:${type}:channel`]: data.comcha,
       [`seamark:${type}:surface`]: MapCat('NATSUR', data.natsur),
+      [`seamark:${type}:traffic_flow`]: MapCat('TRAFIC', data.trafic),
       [`seamark:${type}:surface_qualification`]: MapCat('NATQUA', data.natqua),
       [`seamark:${type}:shape`]:
         MapCat('TOPSHP', data.topshp) ||
@@ -69,6 +72,9 @@ export const seamarkTagging =
 
       ele: data.elevat,
       [`seamark:${type}:elevation`]: data.elevat,
+
+      direction: data.orient,
+      [`seamark:${type}:orientation`]: data.orient,
 
       //
       // Sx/Lx - lights/horns/radar
@@ -113,6 +119,10 @@ export const seamarkTagging =
         MapCat('CATDIS', data.catdis) ||
         MapCat('CATLAM', data.catlam) ||
         MapCat('CATCAM', data.catcam) ||
+        MapCat('CATREA', data.catrea) ||
+        MapCat('CATROS', data.catros) ||
+        MapCat('CATPIL', data.catpil) ||
+        MapCat('CATWRK', data.catwrk) ||
         MapCat('CATFIF', data.catfif) ||
         MapCat('CATOFP', data.catofp),
 
@@ -147,6 +157,10 @@ export const seamarkTagging =
     if (type === 'cable_submarine') {
       tags.communication = 'line';
       tags.location = 'underwater';
+    }
+    if (type === 'wreck') {
+      tags.historic = 'wreck';
+      tags['wreck:type'] = 'ship';
     }
     if (type === 'platform') {
       if (MapCat('CATOFP', data.catofp) === 'fpso') {
