@@ -4,6 +4,9 @@ import { simplify } from './simplify';
 
 type Coord = [lng: number, lat: number];
 
+/** point | line | area/multipolygon-with-1-outer-way | mutlipolygon with multiple outer ways */
+type CoordArray = Coord | Coord[] | Coord[][] | Coord[][][];
+
 const TYPES = <const>{
   // the maritime layers sometimes have Z
   POINT: 'Point',
@@ -30,6 +33,29 @@ const CHUNKED_WAY_LENGTH = process.env.NODE_ENV === 'test' ? 4 : 495;
 
 /** tolerance for https://mourner.github.io/simplify-js */
 const WAY_SIMPLIFICATION = 0.00003;
+
+const correctLng = (point: Coord): Coord => {
+  // we could do `((lng + 180) % 360) - 180` but this is computationally cheaper
+  if (point[0] < 180) return point;
+  return [point[0] - 360, point[1]];
+};
+
+/** LINZ's data uses longitude values that are >180, see issue osm-nz/linz-address-import#2 */
+const fixAntiMeridian = (coords: CoordArray): CoordArray => {
+  if (typeof coords[0] === 'number') return correctLng(coords as Coord);
+  if (typeof coords[0][0] === 'number') {
+    return (coords as Coord[]).map(correctLng);
+  }
+  if (typeof coords[0][0][0] === 'number') {
+    return (coords as Coord[][]).map((ring) => ring.map(correctLng));
+  }
+  if (typeof coords[0][0][0][0] === 'number') {
+    return (coords as Coord[][][]).map((segment) =>
+      segment.map((ring) => ring.map(correctLng)),
+    );
+  }
+  return coords; // will never happen
+};
 
 /**
  * Converts {@link https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry WKT} to geojson
@@ -138,6 +164,11 @@ export const wktToGeoJson = (
     console.warn(
       `${layerName} has a MultiPolygon with >${MAX_WAY_LENGTH} nodes`,
     );
+  }
+
+  // for performance reasons, only apply this to hydrographic layers
+  if (layerName?.slice(0, 4) === 'sea/') {
+    coordinates = fixAntiMeridian(coordinates);
   }
 
   return { type, coordinates };
