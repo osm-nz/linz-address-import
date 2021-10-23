@@ -188,4 +188,101 @@ describe('wktToGeoJson', () => {
       25,
     ); // cf. original has 64
   });
+
+  it('can parse 3D points', () => {
+    expect(wktToGeoJson('POINT Z (170.6977569 -45.749434 0)')).toStrictEqual({
+      type: 'Point',
+      coordinates: [170.6977569, -45.749434],
+    });
+  });
+
+  it('can simplify MultiLineStrings with only a single member', () => {
+    expect(
+      wktToGeoJson(
+        'MULTILINESTRING Z ((184.8475468 -21.133391 0,184.8475841 -21.132725 0,184.8476105 -21.1318873 0))',
+      ),
+    ).toStrictEqual({
+      type: 'LineString',
+      coordinates: [
+        // TODO: should we deal with the antimeridian issue here or in RapiD?
+        [184.8476105, -21.1318873],
+        [184.8475841, -21.132725],
+        [184.8475468, -21.133391],
+      ],
+    });
+  });
+
+  it('can simplify MultiPoints with only a single member', () => {
+    expect(
+      wktToGeoJson('MULTIPOINT Z ((174.6767094 -56.657093 0))'),
+    ).toStrictEqual({
+      type: 'Point',
+      coordinates: [174.6767094, -56.657093],
+    });
+  });
+
+  describe('antimeridian issue', () => {
+    it('fixes longitudes for points', () => {
+      expect(wktToGeoJson('POINT (184.1 -46.2)', 'sea/')).toStrictEqual({
+        type: 'Point',
+        coordinates: [-175.9, -46.2],
+      });
+    });
+
+    it('fixes longitudes for lines', () => {
+      expect(
+        wktToGeoJson('LINESTRING (188.1 -52.4,188.2 -52.4)', 'sea/'),
+      ).toStrictEqual({
+        type: 'LineString',
+        coordinates: [
+          [-171.8, -52.4],
+          [-171.9, -52.4],
+        ],
+      });
+    });
+
+    it('fixes longitudes for polygons', () => {
+      expect(
+        wktToGeoJson(
+          'POLYGON ((188.3 -36.1,188.3 -36.2,188.3 -36.3,188.3 -36.1))',
+          'sea/',
+        ),
+      ).toStrictEqual({
+        type: 'Polygon',
+        coordinates: [
+          [
+            [-171.7, -36.1],
+            [-171.7, -36.2],
+            [-171.7, -36.3],
+            [-171.7, -36.1],
+          ],
+        ],
+      });
+    });
+
+    it('fixes longitudes for multipolygons', () => {
+      expect(
+        wktToGeoJson(
+          'MULTIPOLYGON (((190 -35,190 -35.1)),((190 -35.2,190 -35.3)))',
+          'sea/',
+        ),
+      ).toStrictEqual({
+        type: 'MultiPolygon',
+        coordinates: [
+          [
+            [
+              [-170, -35],
+              [-170, -35.1],
+            ],
+          ],
+          [
+            [
+              [-170, -35.2],
+              [-170, -35.3],
+            ],
+          ],
+        ],
+      });
+    });
+  });
 });

@@ -78,7 +78,8 @@ export function csvToGeoJsonFactory(IDsToSkip: IgnoreFile) {
       f.push(await readCsv(options, input, IDsToSkip));
     }
     const features = f.flat(1);
-    console.log(options.input, features.length);
+
+    console.log(inputs[0].split('-po')[0], features.length);
 
     return {
       size: options.size,
