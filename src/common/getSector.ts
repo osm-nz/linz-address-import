@@ -23,7 +23,7 @@ export function getSector(
   }
 
   if (lat > -33.92 || lat < -47.59 || lng < 164.75 || lng > 178.85) {
-    return 'Outer Islands';
+    return lng > 0 ? 'Outer Islands' : 'Polynesia';
   }
 
   /**

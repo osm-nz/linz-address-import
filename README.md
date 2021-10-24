@@ -9,15 +9,17 @@ Street address data from [Land Information New Zealand (LINZ)](https://linz.govt
 
 This project aims to update the address data, and set up a system to reguarly update addresses in OSM, by conflating them with [the data from LINZ](https://data.linz.govt.nz/layer/3353).
 
+> 🚩 This repository also contains the code used to import topographic and hydrographic data from LINZ. For more info, see the [the wiki page](https://wiki.osm.org/LINZ).
+
 > 🌏 For more information, please see [the wiki page](<https://wiki.openstreetmap.org/wiki/Import/New_Zealand_Street_Addresses_(2021)>) for this project. The rest of this document contains only technical detail. Continue reading if you wish to contribute to the code
 
 # The fork of RapiD
 
 This is modified version of the [RapiD editor](https://github.com/facebookincubator/rapid), which is a modified version of the [iD editor](https://github.com/openstreetmap/iD).
 
-The source code is in a separate repository ([see here](https://github.com/osm-nz/RapiD)). It is available at [linz-addr.kyle.kiwi](https://linz-addr.kyle.kiwi)
+The source code is in a separate repository ([see here](https://github.com/osm-nz/RapiD)). It is available at [osm-nz.github.io](https://osm-nz.github.io)
 
-![Sreenshot of the fork of RapiD](https://linz-addr.kyle.kiwi/img/header.png)
+![Sreenshot of the fork of RapiD](https://user-images.githubusercontent.com/16009897/138576782-df5a7223-cbee-4d3f-9a0f-f7a61d637540.png)
 
 # Setup
 
