@@ -105,7 +105,7 @@ export async function linzTopo(): Promise<void> {
     input: 'embankment_cl.csv',
     idField: 't50_fid',
     sourceLayer: '50266',
-    size: 'medium',
+    size: 'small',
     instructions: "You may need to flip these if they're facing the wrong way",
     tagging(data) {
       // embkmt_use: 2288=stopbank, 95=causeway, 558=blank
@@ -712,6 +712,258 @@ export async function linzTopo(): Promise<void> {
       return {
         man_made: 'tower',
         material: data.material,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+
+  //
+  // Geo Names
+  // see https://docs.topo.linz.govt.nz/data-dictionary/tdd-class-geographic_name.html
+  //
+  type GeoName = { t50_fid: string; name?: string };
+  // generate these files from the geo_name file using: (for WHF)
+  // `head geo_src.csv -n 1 > geo_WHF.csv && cat geo_src.csv | grep ,WHF, >> geo_WHF.csv`
+
+  const namedBridges = await csvToGeoJson<GeoName>({
+    input: 'geo_BDGE.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'large',
+    tagging(data) {
+      return {
+        man_made: 'bridge',
+        layer: '1',
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+  const namedCemeteries = await csvToGeoJson<GeoName>({
+    input: 'geo_CEM.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'large',
+    tagging(data) {
+      return {
+        amenity: 'grave_yard',
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+  const namedFarms = await csvToGeoJson<GeoName>({
+    input: 'geo_FARM.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'large',
+    tagging(data) {
+      return {
+        landuse: 'farmland',
+        place: 'farm',
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+  const homesteads = await csvToGeoJson<GeoName>({
+    input: 'geo_HSTD.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'medium',
+    tagging(data) {
+      return {
+        // TODO: or building tag?
+        place: 'farm',
+        description: 'homestead',
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+  const namedHuts = await csvToGeoJson<GeoName>({
+    input: 'geo_HUT.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'medium',
+    tagging(data) {
+      return {
+        building: 'hut',
+        tourism: 'wilderness_hut',
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+  const namedLights = await csvToGeoJson<GeoName>({
+    input: 'geo_LTH.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'large',
+    complete: true,
+    tagging(data) {
+      return {
+        'seamark:type': 'light_major',
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+  const namedCampSites = await csvToGeoJson<GeoName>({
+    input: 'geo_MCUL.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'large',
+    tagging(data) {
+      if (data.name?.toLowerCase().includes(' camp')) {
+        return {
+          tourism: 'camp_site',
+          name: data.name,
+          'ref:linz:topo50_id': data.t50_fid,
+        };
+      }
+      return null; // see MCUL below
+    },
+  });
+  const namedMiscCulturalSite = await csvToGeoJson<GeoName>({
+    input: 'geo_MCUL.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'large',
+    instructions: 'You need to choose the tagging for each one',
+    tagging(data) {
+      if (data.name?.toLowerCase().includes(' camp')) return null; // see MCUL above
+
+      return {
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+  const namedMine = await csvToGeoJson<GeoName>({
+    input: 'geo_MINE.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'medium',
+    tagging(data) {
+      return {
+        landuse: 'quarry',
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+  const pāOrMarae = await csvToGeoJson<GeoName>({
+    input: 'geo_PA.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'large',
+    complete: true,
+    tagging(data) {
+      const maraeTags = { amenity: 'marae' };
+      const paTags = { historic: 'pa', site_type: 'fortification' };
+      return {
+        // this is an unreliable check, so mappers will need to confirm each one
+        ...(data.name?.toLowerCase().includes('marae') ? maraeTags : paTags),
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+  const namedParks = await csvToGeoJson<GeoName>({
+    input: 'geo_PARK.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'medium',
+    tagging(data) {
+      return {
+        leisure: 'park',
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+  const namedPipelines = await csvToGeoJson<GeoName>({
+    input: 'geo_PPLN.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'large',
+    complete: true,
+    tagging(data) {
+      return {
+        man_made: 'pipeline',
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+  const namedRoadRelatedFeature = await csvToGeoJson<GeoName>({
+    input: 'geo_RDRF.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'large',
+    instructions: 'Some of these may not be junctions',
+    tagging(data) {
+      return {
+        junction: 'yes',
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+  const namedTunnel = await csvToGeoJson<GeoName>({
+    input: 'geo_TUNL.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'large',
+    tagging(data) {
+      return {
+        man_made: 'tunnel',
+        layer: '-1',
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+  const namedOilWell = await csvToGeoJson<GeoName>({
+    input: 'geo_WELL.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'large',
+    complete: true,
+    tagging(data) {
+      return {
+        man_made: 'petroleum_well',
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+  const namedWharf = await csvToGeoJson<GeoName>({
+    input: 'geo_WHF.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'large',
+    complete: true,
+    tagging(data) {
+      return {
+        man_made: 'pier',
+        name: data.name,
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+  const namedShipwreck = await csvToGeoJson<GeoName>({
+    input: 'geo_WRCK.csv',
+    idField: 't50_fid',
+    sourceLayer: '50280',
+    size: 'large',
+    tagging(data) {
+      return {
+        man_made: 'wreck',
+        'seamark:type': 'wreck',
+        'wreck:type': 'ship',
+        name: data.name,
         'ref:linz:topo50_id': data.t50_fid,
       };
     },
@@ -1612,6 +1864,25 @@ export async function linzTopo(): Promise<void> {
     },
     'ZZ Stations': stations,
     'Z Water Races': waterRace,
+
+    // Geo Names
+    'ZZ Named Bridges': namedBridges,
+    'ZZ Named Cemetries': namedCemeteries,
+    'ZZ Named Farms': namedFarms,
+    'ZZ Homesteads': homesteads,
+    'ZZ Named Huts': namedHuts,
+    'ZZ Named Lights': namedLights,
+    'ZZ Named Oil Wells': namedOilWell,
+    'ZZ Named Wharfs': namedWharf,
+    '❌ Named Shipwrecks': namedShipwreck, // wait for seamarks
+    'ZZ Named Pipelines': namedPipelines,
+    'ZZ Named Parks': namedParks,
+    'ZZ Pā or Marae': pāOrMarae,
+    'ZZ Named Tunnels': namedTunnel,
+    'ZZ Named Mines': namedMine,
+    'ZZ Road Junctions': namedRoadRelatedFeature,
+    'ZZ Named Campsites': namedCampSites,
+    'ZZ Named Misc. Cultural Sites': namedMiscCulturalSite,
 
     // Hydrographic
     'ZZ Anchor Berths': H_anchorBerths,

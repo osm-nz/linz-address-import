@@ -38,11 +38,14 @@ async function readCsv<T extends Record<string, string>>(
 
         if (id in IDsToSkip) return; // skip this one, it's already mapped
 
+        const tags = tagging(data, id);
+        if (!tags) return; // skip, the tagging fuction doesn't want this feature included
+
         features.push({
           type: 'Feature',
           id,
           geometry: wktToGeoJson(data[wktField], input, true, dontFlipWays),
-          properties: tagging(data, id),
+          properties: tags,
         });
       })
       .on('end', () => {
@@ -59,7 +62,7 @@ type Options<T> = {
   idField: keyof T | 'HASH_WKT';
   sourceLayer: string;
   dontFlipWays?: true;
-  tagging: (data: T, id: string) => Record<string, string | undefined>;
+  tagging: (data: T, id: string) => Record<string, string | undefined> | null;
   /** if complete: true, this function does nothing. That way the code can be preserved for historical records */
   complete?: true;
 };
