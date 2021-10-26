@@ -16,6 +16,17 @@ const correctLng = (lng: number) => {
   return lng - 360;
 };
 
+/**
+ * the format is always "1/23A" (where prefix=1, mainNum=23, suffix=A).
+ * We manually construct this instead of using full_address_number because
+ * that field uses odd values like "Flat 1, 23" and "Unit 1, 23A".
+ * count: Flat(12358), Unit(3558), Apartment(655), Villa(200), Shop(35), Suite(10)
+ */
+const convertUnit = (prefix: string, mainNumber: string, suffix: string) => {
+  if (prefix) return `${prefix}/${mainNumber}${suffix}`;
+  return mainNumber + suffix;
+};
+
 // TODO: perf baseline is 50seconds
 async function linzToJson(): Promise<LinzData> {
   console.log('Reading ignore file...');
@@ -39,7 +50,11 @@ async function linzToJson(): Promise<LinzData> {
         if (ignore[data.address_id]) return;
 
         out[data.address_id] = {
-          housenumber: data.full_address_number,
+          housenumber: convertUnit(
+            data.unit_value,
+            data.address_number,
+            data.address_number_suffix,
+          ),
           $houseNumberMsb: data.address_number,
           street: data.full_road_name,
           suburb: [

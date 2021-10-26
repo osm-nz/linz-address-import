@@ -860,7 +860,7 @@
         ]
       },
       "properties": {
-        "addr:housenumber": "Unit 1, 76",
+        "addr:housenumber": "1/76",
         "addr:street": "Example Street",
         "addr:hamlet": "Oakleigh",
         "ref:linz:address_id": "70076"
@@ -877,7 +877,7 @@
         ]
       },
       "properties": {
-        "addr:housenumber": "Unit 2, 76",
+        "addr:housenumber": "2/76",
         "addr:street": "Example Street",
         "addr:hamlet": "Oakleigh",
         "ref:linz:address_id": "70077"
@@ -894,7 +894,7 @@
         ]
       },
       "properties": {
-        "addr:housenumber": "Unit 3, 76",
+        "addr:housenumber": "3/76",
         "addr:street": "Example Street",
         "addr:hamlet": "Oakleigh",
         "ref:linz:address_id": "70078"
