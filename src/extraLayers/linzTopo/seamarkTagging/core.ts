@@ -7,7 +7,11 @@ import { AllSeamarkProps, OSMSeamarkTypes } from './types';
  */
 export const seamarkTagging =
   (type: OSMSeamarkTypes) =>
-  (data: AllSeamarkProps): Record<string, string | undefined> => {
+  (
+    data: AllSeamarkProps,
+    _id: string,
+    chartName: string | undefined,
+  ): Record<string, string | undefined> => {
     const tags = {
       //
       // standard tags on many features
@@ -15,7 +19,7 @@ export const seamarkTagging =
       name: data.nobjnm || data.objnam, // we don't use seamark:name, see https://wiki.osm.org/Talk:Key:seamark:name
       description: data.ninfom || data.inform || data.ntxtds || data.txtdsc,
       'ref:linz:hydrographic_id': `${+data.fidn}`,
-      source: cleanSource(data.sorind),
+      source: cleanSource(data.sorind, chartName),
       'source:date': cleanDate(data.sordat),
       start_date: cleanDate(data.datsta),
       end_date: cleanDate(data.datend),
@@ -155,8 +159,13 @@ export const seamarkTagging =
     if (type === 'spring') tags.natural = 'spring';
     if (type === 'rock') tags.natural = 'rock';
     if (type === 'cable_submarine') {
-      tags.communication = 'line';
+      if (MapCat('CATCBL', data.catcbl) === 'power') {
+        tags.power = 'cable';
+      } else {
+        tags.communication = 'line';
+      }
       tags.location = 'underwater';
+      tags.layer = '-1';
     }
     if (type === 'wreck') {
       tags.historic = 'wreck';

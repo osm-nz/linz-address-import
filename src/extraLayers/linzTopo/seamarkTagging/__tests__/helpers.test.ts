@@ -11,8 +11,15 @@ describe('cleanDate', () => {
 
 describe('cleanSource', () => {
   it('correct converts the source tag', () => {
-    expect(cleanSource('NZ,NZ,NZ,Abc')).toBe('LINZ;Abc');
-    expect(cleanSource('graph,NZ,Chart123')).toBe('LINZ;Chart123');
-    expect(cleanSource(undefined)).toBe('LINZ');
+    expect(cleanSource('NZ,NZ,NZ,Abc', undefined)).toBe('LINZ;Abc');
+    expect(cleanSource('graph,NZ,Chart123', undefined)).toBe('LINZ;Chart123');
+    expect(cleanSource(undefined, undefined)).toBe('LINZ');
+
+    expect(cleanSource('reprt,HITS 14600/295', 'Auckland Harbour East')).toBe(
+      'LINZ;Auckland Harbour East Chart;HITS 14600/295',
+    );
+    expect(cleanSource(undefined, 'Auckland Harbour West')).toBe(
+      'LINZ;Auckland Harbour West Chart',
+    );
   });
 });

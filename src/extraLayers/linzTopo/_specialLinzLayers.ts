@@ -5,7 +5,8 @@ import { F_OK } from 'constants';
 import { ChunkSize, ExtraLayers, GeoJsonFeature } from '../../types';
 import { wktToGeoJson } from './wktToGeoJson';
 import { IgnoreFile } from '../../preprocess/const';
-import { hash } from '../../common';
+import { getFirstCoord, hash } from '../../common';
+import { Chart, getBestChart } from './seamarkTagging';
 
 const existsAsync = (path: string) =>
   fs
@@ -17,15 +18,18 @@ async function readCsv<T extends Record<string, string>>(
   { idField, tagging, dontFlipWays }: Options<T>,
   input: string,
   IDsToSkip: IgnoreFile,
-): Promise<GeoJsonFeature[]> {
+  charts: Chart[],
+): Promise<{ features: GeoJsonFeature[]; skipped: number }> {
   const fullPath = join(__dirname, '../../../data/extra/', input);
   if (!(await existsAsync(fullPath))) {
     console.log(`Skipping ${input} because the LINZ data doesn't exist`);
-    return [];
+    return { features: [], skipped: 0 };
   }
+  const isNautical = input.startsWith('sea/');
 
   return new Promise((resolve, reject) => {
     const features: GeoJsonFeature[] = [];
+    let skipped = 0;
 
     createReadStream(fullPath)
       .pipe(csv())
@@ -35,21 +39,60 @@ async function readCsv<T extends Record<string, string>>(
 
         const id =
           idField === 'HASH_WKT' ? hash(data[wktField]) : data[idField];
+        const type = isNautical ? 'h' : 't';
 
-        if (id in IDsToSkip) return; // skip this one, it's already mapped
+        if (type + id in IDsToSkip) return; // skip this one, it's already mapped
 
-        const tags = tagging(data, id);
+        const geometry = wktToGeoJson(
+          data[wktField],
+          input,
+          true,
+          dontFlipWays,
+        );
+
+        let chartName;
+        // for seamarks, make sure we only use features from the best nautical chart for this location
+        if (isNautical) {
+          // TODO: this is unreliable because a huge feature might span multiple charts,
+          // and we don't use the centroid, we use the first coord.
+          const centroid = getFirstCoord(geometry);
+          const bestChartForThisLoc = getBestChart(
+            charts,
+            centroid[1],
+            centroid[0],
+          );
+
+          // this will never happen
+          if (!bestChartForThisLoc) {
+            console.log('NO CHART FOR', centroid);
+            return;
+          }
+
+          const isBestChartForThisLoc = fullPath.includes(
+            bestChartForThisLoc.category,
+          );
+
+          if (!isBestChartForThisLoc) {
+            // if there are more detailed charts available for this location,
+            // don't add this feature.
+            skipped += 1;
+            return;
+          }
+          chartName = bestChartForThisLoc.encChartName;
+        }
+
+        const tags = tagging(data, id, chartName);
         if (!tags) return; // skip, the tagging fuction doesn't want this feature included
 
         features.push({
           type: 'Feature',
           id,
-          geometry: wktToGeoJson(data[wktField], input, true, dontFlipWays),
+          geometry,
           properties: tags,
         });
       })
       .on('end', () => {
-        resolve(features);
+        resolve({ features, skipped });
       })
       .on('error', reject);
   });
@@ -62,12 +105,16 @@ type Options<T> = {
   idField: keyof T | 'HASH_WKT';
   sourceLayer: string;
   dontFlipWays?: true;
-  tagging: (data: T, id: string) => Record<string, string | undefined> | null;
+  tagging: (
+    data: T,
+    id: string,
+    chartName: string | undefined,
+  ) => Record<string, string | undefined> | null;
   /** if complete: true, this function does nothing. That way the code can be preserved for historical records */
   complete?: true;
 };
 
-export function csvToGeoJsonFactory(IDsToSkip: IgnoreFile) {
+export function csvToGeoJsonFactory(IDsToSkip: IgnoreFile, charts: Chart[]) {
   return async function csvToGeoJson<T extends Record<string, string>>(
     options: Options<T>,
   ): Promise<ExtraLayers[string]> {
@@ -76,13 +123,26 @@ export function csvToGeoJsonFactory(IDsToSkip: IgnoreFile) {
     const inputs =
       typeof options.input === 'string' ? [options.input] : options.input;
 
+    let totalSkipped = 0;
     const f: GeoJsonFeature[][] = [];
     for (const input of inputs) {
-      f.push(await readCsv(options, input, IDsToSkip));
+      const { features, skipped } = await readCsv(
+        options,
+        input,
+        IDsToSkip,
+        charts,
+      );
+      f.push(features);
+      totalSkipped += skipped;
     }
     const features = f.flat(1);
 
-    console.log(inputs[0].split('-po')[0], features.length);
+    console.log(
+      inputs[0].split('-po')[0],
+      features.length,
+      'skipped',
+      totalSkipped,
+    );
 
     return {
       size: options.size,

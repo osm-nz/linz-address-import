@@ -2,7 +2,11 @@ import { promises as fs } from 'fs';
 import { join } from 'path';
 import { ExtraLayers } from '../../types';
 import { getT50IDsToSkip } from './getT50IDsToSkip';
-import { seamarkTagging, Seamark } from './seamarkTagging';
+import {
+  seamarkTagging,
+  Seamark,
+  readNauticalChartIndexCsv,
+} from './seamarkTagging';
 import { csvToGeoJsonFactory } from './_specialLinzLayers';
 
 const toTitleCase = (str: string) =>
@@ -22,7 +26,8 @@ const radToDeg = (radians: number): string =>
 
 export async function linzTopo(): Promise<void> {
   const IDsToSkip = await getT50IDsToSkip();
-  const csvToGeoJson = csvToGeoJsonFactory(IDsToSkip);
+  const charts = await readNauticalChartIndexCsv();
+  const csvToGeoJson = csvToGeoJsonFactory(IDsToSkip, charts);
   console.log('Processing layers...');
 
   type CablewayCl = { t50_fid: string; mtlconveyd?: string };

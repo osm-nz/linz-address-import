@@ -1,8 +1,19 @@
 /** source tags for maritime data look like `NZ,NZ,Chart123` */
-export const cleanSource = (source: string | undefined): string => {
-  if (!source) return 'LINZ';
-  const arr = source.split(',').filter((x) => x !== 'NZ' && x !== 'graph');
-  return ['LINZ', ...new Set(arr)].join(';');
+export const cleanSource = (
+  source: string | undefined,
+  chartName: string | undefined,
+): string => {
+  const out = ['LINZ'];
+  if (chartName) {
+    out.push(`${chartName.split(' - ').reverse()[0]} Chart`);
+  }
+
+  const arr = source
+    ?.split(',')
+    .filter((x) => x !== 'NZ' && x !== 'graph' && x !== 'reprt');
+  if (arr) out.push(...new Set(arr));
+
+  return out.join(';');
 };
 
 /** dates use the `YYYYMMDD` or `YYYYMM` or `YYYY` format */

@@ -1,16 +1,9 @@
-import { chunk, getSector } from '../common';
+import { chunk, getFirstCoord, getSector } from '../common';
 import { ExtraLayers, GeoJsonFeature, HandlerReturnWithBBox } from '../types';
 import { calcBBox } from './util';
 
 const LAT_THRESHOLD = 1; // in degress of latitude
 const LNG_THRESHOLD = 1; // in degress of longitude
-
-function getFirstCoord(f: GeoJsonFeature) {
-  let firstCoord = f.geometry.coordinates;
-  while (typeof firstCoord[0] !== 'number') [firstCoord] = firstCoord;
-
-  return firstCoord as [lng: number, lat: number];
-}
 
 /**
  * Some rural hamlets exist in two places in NZ, so the bbox is huge.
@@ -42,7 +35,7 @@ export function sectorize(
       const out: Record<string, GeoJsonFeature[]> = {};
       for (let i = 0; i < features.length; i += 1) {
         const f = features[i];
-        const [lng, lat] = getFirstCoord(f);
+        const [lng, lat] = getFirstCoord(f.geometry);
         const sector = getSector({ lat, lng }, size, i);
         out[sector] ||= [];
         out[sector].push(f);
@@ -58,7 +51,9 @@ export function sectorize(
       // big latitude wise
       const midway = bbox.minLat + (bbox.maxLat - bbox.minLat) / 2;
       const out: [north: GeoJsonFeature[], south: GeoJsonFeature[]] = [[], []];
-      for (const f of features) out[+(getFirstCoord(f)[1] < midway)].push(f);
+      for (const f of features) {
+        out[+(getFirstCoord(f.geometry)[1] < midway)].push(f);
+      }
 
       newFeatures[`${suburb} - northern sector`] = {
         features: out[0],
@@ -74,7 +69,9 @@ export function sectorize(
       // big longitude wise
       const midway = bbox.minLng + (bbox.maxLng - bbox.minLng) / 2;
       const out: [east: GeoJsonFeature[], west: GeoJsonFeature[]] = [[], []];
-      for (const f of features) out[+(getFirstCoord(f)[0] < midway)].push(f);
+      for (const f of features) {
+        out[+(getFirstCoord(f.geometry)[0] < midway)].push(f);
+      }
 
       newFeatures[`${suburb} - eastern sector`] = {
         features: out[0],
