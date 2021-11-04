@@ -2,7 +2,12 @@ import { promises as fs, createReadStream } from 'fs';
 import csv from 'csv-parser';
 import { join } from 'path';
 import { F_OK } from 'constants';
-import { ChunkSize, ExtraLayers, GeoJsonFeature } from '../../types';
+import {
+  ChunkSize,
+  ExtraLayers,
+  GeoJsonCoords,
+  GeoJsonFeature,
+} from '../../types';
 import { wktToGeoJson } from './wktToGeoJson';
 import { IgnoreFile } from '../../preprocess/const';
 import { getFirstCoord, hash } from '../../common';
@@ -39,9 +44,9 @@ async function readCsv<T extends Record<string, string>>(
 
         const id =
           idField === 'HASH_WKT' ? hash(data[wktField]) : data[idField];
-        const type = isNautical ? 'h' : 't';
+        const idWithType = isNautical ? `h${+id}` : `t${id}`;
 
-        if (type + id in IDsToSkip) return; // skip this one, it's already mapped
+        if (idWithType in IDsToSkip) return; // skip this one, it's already mapped
 
         const geometry = wktToGeoJson(
           data[wktField],
@@ -81,7 +86,7 @@ async function readCsv<T extends Record<string, string>>(
           chartName = bestChartForThisLoc.encChartName;
         }
 
-        const tags = tagging(data, id, chartName);
+        const tags = tagging(data, id, chartName, geometry.type);
         if (!tags) return; // skip, the tagging fuction doesn't want this feature included
 
         features.push({
@@ -109,6 +114,7 @@ type Options<T> = {
     data: T,
     id: string,
     chartName: string | undefined,
+    geometryType: GeoJsonCoords['type'],
   ) => Record<string, string | undefined> | null;
   /** if complete: true, this function does nothing. That way the code can be preserved for historical records */
   complete?: true;
@@ -124,7 +130,9 @@ export function csvToGeoJsonFactory(IDsToSkip: IgnoreFile, charts: Chart[]) {
       typeof options.input === 'string' ? [options.input] : options.input;
 
     let totalSkipped = 0;
-    const f: GeoJsonFeature[][] = [];
+
+    // temporarily store as an object to remove any remaining duplicates
+    const f: Record<string, GeoJsonFeature> = {};
     for (const input of inputs) {
       const { features, skipped } = await readCsv(
         options,
@@ -132,10 +140,11 @@ export function csvToGeoJsonFactory(IDsToSkip: IgnoreFile, charts: Chart[]) {
         IDsToSkip,
         charts,
       );
-      f.push(features);
+      for (const feat of features) f[feat.id] = feat;
+
       totalSkipped += skipped;
     }
-    const features = f.flat(1);
+    const features = Object.values(f);
 
     console.log(
       inputs[0].split('-po')[0],

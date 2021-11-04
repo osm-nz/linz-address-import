@@ -396,6 +396,14 @@ const MAP = <const>{
     3: ['sea_grass', 'sea grass'],
     4: ['saragasso'],
   },
+  CATPIP: {
+    1: ['', 'pipeline in general'],
+    2: ['outfall', 'outfall pipe'],
+    3: ['intake', 'intake pipe'],
+    4: ['sewer', 'sewer'],
+    5: ['bubbler', 'bubbler system'],
+    6: ['supply', 'supply pipe'],
+  },
   CATLIT: {
     1: ['directional', 'directional function'],
     /** @deprecated */ 2: ['', 'rear/upper light'],
@@ -528,6 +536,17 @@ const MAP = <const>{
     8: ['whistle'],
     9: ['gong'],
     10: ['horn'],
+  },
+  CATNAV: {
+    // https://wiki.osm.org/Seamarks/Leading_Lines
+    1: ['clearing', 'clearing line'],
+    2: ['transit', 'transit line'],
+    3: ['leading', 'leading line bearing a recommended track'],
+  },
+  CATTRK: {
+    // https://wiki.osm.org/Seamarks/Leading_Lines
+    1: ['fixed_marks', 'based on a system of fixed marks'],
+    2: ['no_fixed_marks', 'not based on a system of fixed marks'],
   },
   CATMOR: {
     // https://wiki.osm.org/Seamarks/Moorings
@@ -823,12 +842,12 @@ const MAP = <const>{
     8: ['part_obscured', 'partially obscured'],
   },
   TOPSHP: {
-    // https://wii.osm.org/Seamarks/Topmarks_and_Daymarks
+    // https://wiki.osm.org/Seamarks/Topmarks_and_Daymarks
     1: ['cone, point up'],
     2: ['cone, point down'],
     3: ['sphere'],
     4: ['2 spheres'],
-    5: ['cylinder (can)'],
+    5: ['cylinder', 'cylinder (can)'],
     6: ['board'],
     7: ['x-shape', "x-shape (St. Andrew's cross)"],
     8: ['cross', "upright cross (St George's cross)"],

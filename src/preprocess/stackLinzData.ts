@@ -1,13 +1,9 @@
 import { promises as fs } from 'fs';
 import { LinzData, LinzAddr, OSMData, CouldStackData } from '../types';
-import { toStackId } from '../common';
+import { toStackId, uniq } from '../common';
 import { linzFile, linzTempFile, mock, osmFile, stackFile } from './const';
 
 const STACK_THRESHOLD = mock ? 2 : 11;
-
-function uniq<T>(value: T, index: number, self: T[]) {
-  return self.indexOf(value) === index;
-}
 
 /** the object is keyed by a `houseKey` */
 type VisitedCoords = Record<

@@ -192,6 +192,20 @@ type _SeamarkTypes = {
   wreck: {
     catwrk?: string;
   };
+  pipeline_submarine: {
+    catpip?: string;
+    burdep?: string;
+  };
+  navigation_line: {
+    catnav?: string;
+    orient?: string;
+    status?: string;
+  };
+  recommended_track: {
+    cattrk?: string;
+    trafic?: string;
+    orient?: string;
+  };
 };
 /* eslint-enable @typescript-eslint/ban-types */
 

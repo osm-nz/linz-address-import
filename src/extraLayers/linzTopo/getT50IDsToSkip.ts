@@ -63,8 +63,9 @@ export async function getT50IDsToSkip(): Promise<IgnoreFile> {
   const out: IgnoreFile = await fetchIgnoreList(1908575024, 'LINZ Topo50 ID');
 
   await readFromPlanet(out, 'osm.pbf');
-  // await readFromPlanet(out, 'rossdep.osm.pbf'); // disabled because antarctica is complete
-  // TODO: polynesia on both sides of the antimeridian
+  await readFromPlanet(out, 'ross-dep-to-mainland.osm.pbf');
+  await readFromPlanet(out, 'north-of-mainland.osm.pbf');
+  await readFromPlanet(out, 'polynesia.osm.pbf');
 
   await fs.writeFile(PATH, JSON.stringify(out));
 

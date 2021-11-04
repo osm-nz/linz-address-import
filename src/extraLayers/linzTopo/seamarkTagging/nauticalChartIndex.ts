@@ -1,9 +1,9 @@
 import { createReadStream } from 'fs';
 import csv from 'csv-parser';
 import { join } from 'path';
-
 import { BBox } from '../../../types';
 import { withinBBox } from '../../../common';
+import { fixChartName } from './helpers';
 
 const filePath = join(
   __dirname,
@@ -68,10 +68,18 @@ export async function readNauticalChartIndexCsv(): Promise<Chart[]> {
       .pipe(csv())
       .on('data', (data: ChartIndexCsv) => {
         // TODO: switch to using the WKT, not the BBOX
+        const map = MAP[data.usage];
+        if (!map) {
+          console.log('Skipped chart with invalid usage', [
+            data.usage,
+            data.enc_name,
+          ]);
+          return;
+        }
         features.push({
-          encChartName: data.enc_name,
-          category: MAP[data.usage][1],
-          rank: MAP[data.usage][0],
+          encChartName: fixChartName(data.enc_name),
+          category: map[1],
+          rank: map[0],
           bbox: {
             maxLat: +data.max_y,
             minLat: +data.min_y,
