@@ -5,6 +5,7 @@ export const fixChartName = (str: string): string =>
     .replace('Tamaki', 'Tāmaki')
     .replace('Whangarei', 'Whangārei')
     .replace('Kaikoura', 'Kaikōura')
+    .replace('Kapiti', 'Kāpiti')
     .replace('Niue', 'Niuē')
     .replace('Samoa', 'Sāmoa')
     .replace('Ohiwa', 'Ōhiwa')

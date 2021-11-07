@@ -27,15 +27,21 @@ async function readFromPlanet(mutableOut: IgnoreFile, fileName: string) {
           i += 1;
           if (!(i % 1000)) process.stdout.write('.');
 
-          const type = item.tags['ref:linz:topo50_id'] ? 't' : 'h';
-
           // TODO: remove hydrographic ID once the maritime import is complete
-          const refs = (item.tags['ref:linz:topo50_id'] ||
-            item.tags['ref:linz:hydrographic_id'])!.split(';');
+          const t = item.tags['ref:linz:topo50_id'];
+          const h = item.tags['ref:linz:hydrographic_id'];
 
-          for (const ref of refs) {
-            // eslint-disable-next-line no-param-reassign -- we are deliberately mutating it
-            mutableOut[type + ref] = 1;
+          if (t) {
+            for (const ref of t.split(';')) {
+              // eslint-disable-next-line no-param-reassign -- we are deliberately mutating it
+              mutableOut[`t${ref}`] = 1;
+            }
+          }
+          if (h) {
+            for (const ref of h.split(';')) {
+              // eslint-disable-next-line no-param-reassign -- we are deliberately mutating it
+              mutableOut[`h${ref}`] = 1;
+            }
           }
 
           next();

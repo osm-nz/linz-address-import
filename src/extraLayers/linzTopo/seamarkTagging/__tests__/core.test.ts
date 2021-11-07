@@ -74,4 +74,22 @@ describe('MapCat', () => {
       source: 'LINZ;Approaches to Waitangi Chart',
     });
   });
+
+  it('inverts the direction tag for two-way points', () => {
+    const tags = seamarkTagging('calling-in_point')(
+      { fidn: '1', trafic: 'two-way', orient: '270' },
+      '',
+      'Akaroa',
+      'Point',
+    );
+    expect(tags).toStrictEqual({
+      source: 'LINZ;Akaroa Chart',
+      'ref:linz:hydrographic_id': '1',
+      'seamark:type': 'calling-in_point',
+      'seamark:calling-in_point:traffic_flow': 'two-way',
+
+      'seamark:calling-in_point:orientation': '270',
+      direction: '270;90',
+    });
+  });
 });

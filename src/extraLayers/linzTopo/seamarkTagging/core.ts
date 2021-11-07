@@ -95,7 +95,7 @@ export const seamarkTagging =
       //
       // Sx/Lx - lights/horns/radar
       //
-      [`seamark:${type}:multiple`]: data.mltylt,
+      [`seamark:${type}:multiple`]: data.mltylt && `${+data.mltylt}`,
       [`seamark:${type}:range`]: data.valnmr && `${+data.valnmr}`,
       [`seamark:${type}:group`]: data.siggrp?.match(/\((\d+)\)/)?.[1], // format is `(123)`, we want `123`
       [`seamark:${type}:period`]: data.sigper,
@@ -155,7 +155,7 @@ export const seamarkTagging =
       [`seamark:${type}:product`]: MapCat('PRODCT', data.prodct),
       [`seamark:${type}:radius`]: data.radius,
       [`seamark:${type}:exhibition`]: MapCat('EXCLIT', data.exclit),
-      [`seamark:${type}:depth_buried`]: data.burdep,
+      [`seamark:${type}:depth_buried`]: data.burdep && `${+data.burdep}`,
     };
 
     //
@@ -168,17 +168,25 @@ export const seamarkTagging =
     if (type === 'spring') tags.natural = 'spring';
     if (type === 'rock') tags.natural = 'rock';
     // if (type === 'light') tags.man_made = 'lighthouse'; // mappers can add this manually if appropriate
+
     if (type === 'pontoon') {
       tags.man_made = 'pier';
       tags.floating = 'yes';
       if (geometryType !== 'LineString') tags.area = 'yes';
     }
+
     if (type === 'pipeline_submarine') {
       tags.man_made = 'pipeline';
-      tags.location = 'underground';
+      tags.location = 'underwater';
       tags.layer = '-1';
+      tags.oneway = 'yes'; // add by default, can remove when mapping if it's not obvious
       tags.substance = tags[`seamark:${type}:product`];
+
+      if (!tags.substance && tags[`seamark:${type}:category`] === 'sewer') {
+        tags.substance = 'sewage';
+      }
     }
+
     if (type === 'cable_submarine') {
       if (MapCat('CATCBL', data.catcbl) === 'power') {
         tags.power = 'cable';
@@ -188,10 +196,16 @@ export const seamarkTagging =
       tags.location = 'underwater';
       tags.layer = '-1';
     }
+
+    if (tags[`seamark:${type}:category`] === 'odas') {
+      tags.man_made = 'monitoring_station';
+    }
+
     if (type === 'wreck') {
       tags.historic = 'wreck';
       tags['wreck:type'] = 'ship';
     }
+
     if (type === 'platform') {
       if (MapCat('CATOFP', data.catofp) === 'fpso') {
         tags.man_made = 'floating_storage';
@@ -199,7 +213,9 @@ export const seamarkTagging =
         tags.man_made = 'offshore_platform';
       }
     }
-    if (type.startsWith('beacon_')) tags.man_made = 'beacon';
+
+    // this isn't logical. Mappers can add the tag when required
+    // if (type.startsWith('beacon_')) tags.man_made = 'beacon';
 
     if (tags['seamark:mooring:category'] === 'dolphin') {
       tags.man_made = 'dolphin';
@@ -208,6 +224,12 @@ export const seamarkTagging =
     if (tags.surface === 'coral') {
       tags.natural = 'reef';
       tags.reef = 'coral';
+    }
+
+    if (tags[`seamark:${type}:traffic_flow`] === 'two-way' && tags.direction) {
+      // for two-way points, change the direction tag to point in both directions
+      // we don't touch `seamark:*:direction`, just `direction`
+      tags.direction += `;${Math.round((+tags.direction + 180) % 360)}`;
     }
 
     //

@@ -180,6 +180,7 @@ export async function linzTopo(): Promise<void> {
     tagging(data) {
       return {
         landuse: 'aquaculture',
+        'seamark:type': 'marine_farm',
         produce: data.species || data.type,
         'ref:linz:topo50_id': data.t50_fid,
       };
@@ -310,6 +311,7 @@ export async function linzTopo(): Promise<void> {
     tagging(data) {
       return {
         landuse: 'aquaculture',
+        'seamark:type': 'marine_farm',
         produce: data.species || data.type,
         'ref:linz:topo50_id': data.t50_fid,
       };
@@ -324,6 +326,7 @@ export async function linzTopo(): Promise<void> {
     tagging(data) {
       return {
         landuse: 'aquaculture',
+        'seamark:type': 'marine_farm',
         produce: data.species || data.type,
         'ref:linz:topo50_id': data.t50_fid,
       };
@@ -756,6 +759,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50280',
     size: 'large',
+    complete: true,
     tagging(data) {
       return {
         amenity: 'grave_yard',
@@ -769,9 +773,9 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50280',
     size: 'large',
+    complete: true,
     tagging(data) {
       return {
-        landuse: 'farmland',
         place: 'farm',
         name: data.name,
         'ref:linz:topo50_id': data.t50_fid,
@@ -969,9 +973,10 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50280',
     size: 'large',
+    complete: true,
     tagging(data) {
       return {
-        man_made: 'wreck',
+        historic: 'wreck',
         'seamark:type': 'wreck',
         'wreck:type': 'ship',
         name: data.name,
@@ -1184,7 +1189,7 @@ export async function linzTopo(): Promise<void> {
   //
   // Hydrographic
   //
-  const maritimeInstructions =
+  const maritimeLinearInstructions =
     'Sometimes there are multiple features on top of each other. Be careful not to add duplicate data.';
 
   const H_anchorBerths = await csvToGeoJson<Seamark['anchor_berth']>({
@@ -1197,7 +1202,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('anchor_berth'),
   });
 
@@ -1213,7 +1218,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('anchorage'),
   });
 
@@ -1226,7 +1231,8 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    instructions: maritimeLinearInstructions,
+    complete: true,
     tagging: seamarkTagging('cable_submarine'),
   });
 
@@ -1240,7 +1246,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('daymark'),
   });
 
@@ -1254,7 +1260,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('dumping_ground'),
   });
 
@@ -1269,7 +1275,6 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     size: 'large',
     complete: true,
-    instructions: maritimeInstructions,
     tagging: seamarkTagging('fishing_facility'),
   });
 
@@ -1285,7 +1290,6 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     size: 'large',
     complete: true,
-    instructions: maritimeInstructions,
     tagging: seamarkTagging('fog_signal'),
   });
 
@@ -1302,7 +1306,6 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     size: 'large',
     complete: true,
-    instructions: maritimeInstructions,
     tagging: seamarkTagging('hulk'),
   });
 
@@ -1317,7 +1320,9 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: `${maritimeInstructions}\n\nMOST LIGHTS ARE ALREADY IMPORTED FROM THE US NGA IMPORT`,
+    instructions:
+      'MOST LIGHTS ARE ALREADY IMPORTED FROM THE US NGA IMPORT. This is a tricky layer that requires manual conflation',
+    complete: true,
     tagging: seamarkTagging('light'),
   }).then(mergeMaritimeLights);
 
@@ -1332,7 +1337,8 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    instructions: maritimeLinearInstructions,
+    complete: true,
     tagging: seamarkTagging('pipeline_submarine'),
   });
 
@@ -1347,7 +1353,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('mooring'),
   });
 
@@ -1357,7 +1363,6 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     size: 'large',
     complete: true,
-    instructions: maritimeInstructions,
     tagging: seamarkTagging('platform'),
   });
 
@@ -1370,7 +1375,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('pile'),
   });
 
@@ -1383,7 +1388,9 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    instructions: `${maritimeLinearInstructions}\n\nMake sure you import navigation lines FIRST,
+      then do this. Delete the navigation lines where they overlap with recommended tracks`,
+    complete: true,
     tagging: seamarkTagging('recommended_track'),
   });
 
@@ -1396,7 +1403,8 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    instructions: `${maritimeLinearInstructions}\n\nNavigation lines should not overlap with recommended tracks`,
+    complete: true,
     tagging: seamarkTagging('navigation_line'),
   });
 
@@ -1408,7 +1416,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('pontoon'),
   });
 
@@ -1422,7 +1430,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('pylon'),
   });
 
@@ -1436,7 +1444,6 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     size: 'large',
     complete: true,
-    instructions: maritimeInstructions,
     tagging: seamarkTagging('radar_station'),
   });
 
@@ -1449,7 +1456,6 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     size: 'large',
     complete: true,
-    instructions: maritimeInstructions,
     tagging: seamarkTagging('radar_transponder'),
   });
 
@@ -1463,7 +1469,6 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     size: 'large',
     complete: true,
-    instructions: maritimeInstructions,
     tagging: seamarkTagging('rescue_station'),
   });
 
@@ -1477,7 +1482,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('sand_waves'),
   });
 
@@ -1493,7 +1498,6 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     size: 'large',
     complete: true,
-    instructions: maritimeInstructions,
     tagging: seamarkTagging('seaplane_landing_area'),
   });
 
@@ -1507,7 +1511,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('spring'),
   });
 
@@ -1522,7 +1526,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('topmark'),
   });
 
@@ -1537,7 +1541,6 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
     tagging: seamarkTagging('rock'),
   });
 
@@ -1553,7 +1556,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('weed'),
   });
 
@@ -1563,7 +1566,6 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     size: 'large',
     complete: true,
-    instructions: maritimeInstructions,
     tagging: seamarkTagging('distance_mark'),
   });
 
@@ -1579,12 +1581,11 @@ export async function linzTopo(): Promise<void> {
       'sea/obstruction-polygons-hydro-1350k-11500k.csv',
       'sea/obstruction-polygons-hydro-14k-122k.csv',
       'sea/obstruction-polygons-hydro-190k-1350k.csv',
-      'sea/offshore-platform-points-hydro-190k-1350k.csv',
     ],
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    instructions: maritimeLinearInstructions,
     tagging: seamarkTagging('obstruction'),
   });
 
@@ -1597,7 +1598,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('beacon_cardinal'),
   });
 
@@ -1612,7 +1613,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('beacon_isolated_danger'),
   });
 
@@ -1625,7 +1626,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('beacon_lateral'),
   });
 
@@ -1639,7 +1640,6 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     size: 'large',
     complete: true,
-    instructions: maritimeInstructions,
     tagging: seamarkTagging('beacon_safe_water'),
   });
 
@@ -1656,7 +1656,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('beacon_special_purpose'),
   });
 
@@ -1669,7 +1669,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('buoy_cardinal'),
   });
 
@@ -1684,7 +1684,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('buoy_isolated_danger'),
   });
 
@@ -1697,7 +1697,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('buoy_lateral'),
   });
 
@@ -1711,7 +1711,6 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     size: 'large',
     complete: true,
-    instructions: maritimeInstructions,
     tagging: seamarkTagging('buoy_safe_water'),
   });
 
@@ -1728,7 +1727,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('buoy_special_purpose'),
   });
 
@@ -1743,7 +1742,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('pilot_boarding'),
   });
 
@@ -1758,7 +1757,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('calling-in_point'),
   });
 
@@ -1774,7 +1773,6 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     size: 'large',
     complete: true,
-    instructions: maritimeInstructions,
     tagging: seamarkTagging('radio_station'),
   });
 
@@ -1789,7 +1787,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: `${maritimeInstructions}\n\nNote: This layer contains huge multipolygons,
+    instructions: `${maritimeLinearInstructions}\n\nNote: This layer contains huge multipolygons,
       which need to be editted to use the coastline as outer ways`,
     tagging: seamarkTagging('restricted_area'),
   });
@@ -1806,7 +1804,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
-    instructions: maritimeInstructions,
+    complete: true,
     tagging: seamarkTagging('wreck'),
   });
 
@@ -1920,7 +1918,7 @@ export async function linzTopo(): Promise<void> {
     'Z Redoubts': redoubts,
     'Z Pinnacles': rockOutcrop,
     'Z Saddles': saddles,
-    'Z Tree Rows': shelterBelt,
+    '❌ Tree Rows': shelterBelt,
     'Z Sinkholes': sinkholes,
     'Z Spillways': spillwayEdges,
     'Z Towers': towerPnts,
@@ -1932,21 +1930,21 @@ export async function linzTopo(): Promise<void> {
     'Z Water Races': waterRace,
 
     // Geo Names
-    'ZZ Named Bridges': namedBridges,
-    'ZZ Named Cemetries': namedCemeteries,
+    'Z Named Bridges': namedBridges,
+    'Z Named Cemetries': namedCemeteries,
     'ZZ Named Farms': namedFarms,
     'ZZ Homesteads': homesteads,
     'ZZ Named Huts': namedHuts,
-    'ZZ Named Lights': namedLights,
-    'ZZ Named Oil Wells': namedOilWell,
-    'ZZ Named Wharfs': namedWharf,
-    '❌ Named Shipwrecks': namedShipwreck, // wait for seamarks
+    'Z Named Lights': namedLights,
+    'Z Named Oil Wells': namedOilWell,
+    'Z Named Wharfs': namedWharf,
+    'Z Named Shipwrecks': namedShipwreck,
     'ZZ Named Pipelines': namedPipelines,
     'ZZ Named Parks': namedParks,
-    'ZZ Pā or Marae': pāOrMarae,
-    'ZZ Named Tunnels': namedTunnel,
+    'Z Pā or Marae': pāOrMarae,
+    'Z Named Tunnels': namedTunnel,
     'ZZ Named Mines': namedMine,
-    'ZZ Road Junctions': namedRoadRelatedFeature,
+    'Z Road Junctions': namedRoadRelatedFeature,
     'ZZ Named Campsites': namedCampSites,
     'ZZ Named Misc. Cultural Sites': namedMiscCulturalSite,
 
@@ -1983,7 +1981,7 @@ export async function linzTopo(): Promise<void> {
     'Z Beacons - Isolated Danger': H_beaconIsolatedDanger,
     'Z Beacons - Lateral': H_beaconLateral,
     'Z Beacons - Safe Water': H_beaconSafeWater,
-    'Z Beacons - Special Purpose': H_beaconSpecialPurpose,
+    'Z Maritime Markers': H_beaconSpecialPurpose,
     'Z Buoys - Cardinal': H_buoyCardinal,
     'Z Buoys - Isolated Danger': H_buoyIsolatedDanger,
     'Z Buoys - Lateral': H_buoyLateral,
