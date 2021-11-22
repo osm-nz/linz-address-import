@@ -19,7 +19,7 @@ async function readFromPlanet(mutableOut: IgnoreFile, fileName: string) {
     pbf2json
       .createReadStream({
         file: planetFile,
-        tags: ['ref:linz:topo50_id,ref:linz:hydrographic_id'],
+        tags: ['ref:linz:topo50_id'],
         leveldb: '/tmp',
       })
       .pipe(
@@ -27,9 +27,8 @@ async function readFromPlanet(mutableOut: IgnoreFile, fileName: string) {
           i += 1;
           if (!(i % 1000)) process.stdout.write('.');
 
-          // TODO: remove hydrographic ID once the maritime import is complete
           const t = item.tags['ref:linz:topo50_id'];
-          const h = item.tags['ref:linz:hydrographic_id'];
+          // const h = item.tags['ref:linz:hydrographic_id'];
 
           if (t) {
             for (const ref of t.split(';')) {
@@ -37,12 +36,12 @@ async function readFromPlanet(mutableOut: IgnoreFile, fileName: string) {
               mutableOut[`t${ref}`] = 1;
             }
           }
-          if (h) {
-            for (const ref of h.split(';')) {
-              // eslint-disable-next-line no-param-reassign -- we are deliberately mutating it
-              mutableOut[`h${ref}`] = 1;
-            }
-          }
+          // if (h) {
+          //   for (const ref of h.split(';')) {
+          //     // eslint-disable-next-line no-param-reassign -- we are deliberately mutating it
+          //     mutableOut[`h${ref}`] = 1;
+          //   }
+          // }
 
           next();
         }),
@@ -69,9 +68,11 @@ export async function getT50IDsToSkip(): Promise<IgnoreFile> {
   const out: IgnoreFile = await fetchIgnoreList(1908575024, 'LINZ Topo50 ID');
 
   await readFromPlanet(out, 'osm.pbf');
-  await readFromPlanet(out, 'ross-dep-to-mainland.osm.pbf');
-  await readFromPlanet(out, 'north-of-mainland.osm.pbf');
-  await readFromPlanet(out, 'polynesia.osm.pbf');
+
+  // disabled since the hydro import is complete
+  // await readFromPlanet(out, 'ross-dep-to-mainland.osm.pbf');
+  // await readFromPlanet(out, 'north-of-mainland.osm.pbf');
+  // await readFromPlanet(out, 'polynesia.osm.pbf');
 
   await fs.writeFile(PATH, JSON.stringify(out));
 

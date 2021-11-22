@@ -10,6 +10,8 @@ import {
 } from './seamarkTagging';
 import { csvToGeoJsonFactory } from './_specialLinzLayers';
 
+const TODAY = new Date();
+
 const toTitleCase = (str: string) =>
   str.replace(
     /(^| )(\w)/g,
@@ -177,6 +179,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50270',
     size: 'large',
+    complete: true,
     tagging(data) {
       return {
         landuse: 'aquaculture',
@@ -212,6 +215,7 @@ export async function linzTopo(): Promise<void> {
     size: 'medium',
     instructions:
       "You must merge these nodes with the highway AND waterway if they're mapped",
+    complete: true,
     tagging(data) {
       return {
         ford: 'yes',
@@ -277,6 +281,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50283',
     size: 'large',
+    complete: true,
     tagging(data) {
       return {
         landuse: 'quarry',
@@ -323,6 +328,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50298',
     size: 'large',
+    complete: true,
     tagging(data) {
       return {
         landuse: 'aquaculture',
@@ -382,6 +388,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '',
     size: 'large',
+    complete: true,
     tagging: mineTagging,
   });
 
@@ -420,11 +427,11 @@ export async function linzTopo(): Promise<void> {
     substance?: string;
     name?: string;
   };
-  const quarrys = await csvToGeoJson<QuarryPoly>({
+  const quarries = await csvToGeoJson<QuarryPoly>({
     input: 'quarry_poly.csv',
     idField: 't50_fid',
     sourceLayer: '',
-    size: 'large',
+    size: 'medium',
     tagging(data) {
       return {
         landuse: 'quarry', // landuse=quarry is okay even on a node
@@ -567,6 +574,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50334',
     size: 'large',
+    complete: true,
     tagging(data) {
       return {
         natural: 'saddle',
@@ -739,12 +747,16 @@ export async function linzTopo(): Promise<void> {
   type GeoName = { t50_fid: string; name?: string };
   // generate these files from the geo_name file using: (for WHF)
   // `head geo_src.csv -n 1 > geo_WHF.csv && cat geo_src.csv | grep ,WHF, >> geo_WHF.csv`
+  const geoNamesInstructions =
+    'These features are nodes, but they should be merged with any existing areas. Many are already mapped in OSM.';
 
   const namedBridges = await csvToGeoJson<GeoName>({
     input: 'geo_BDGE.csv',
     idField: 't50_fid',
     sourceLayer: '50280',
     size: 'large',
+    instructions: geoNamesInstructions,
+    complete: true,
     tagging(data) {
       return {
         man_made: 'bridge',
@@ -787,6 +799,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50280',
     size: 'medium',
+    instructions: geoNamesInstructions,
     tagging(data) {
       return {
         building: 'farm',
@@ -801,6 +814,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50280',
     size: 'medium',
+    instructions: geoNamesInstructions,
     tagging(data) {
       return {
         building: 'hut',
@@ -829,6 +843,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50280',
     size: 'large',
+    instructions: geoNamesInstructions,
     tagging(data) {
       if (data.name?.toLowerCase().includes(' camp')) {
         return {
@@ -846,6 +861,7 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '50280',
     size: 'large',
     instructions: 'You need to choose the tagging for each one',
+    complete: true,
     tagging(data) {
       if (data.name?.toLowerCase().includes(' camp')) return null; // see MCUL above
 
@@ -859,7 +875,9 @@ export async function linzTopo(): Promise<void> {
     input: 'geo_MINE.csv',
     idField: 't50_fid',
     sourceLayer: '50280',
-    size: 'medium',
+    size: 'large',
+    instructions: geoNamesInstructions,
+    complete: true,
     tagging(data) {
       return {
         landuse: 'quarry',
@@ -890,6 +908,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50280',
     size: 'medium',
+    instructions: geoNamesInstructions,
     tagging(data) {
       return {
         leisure: 'park',
@@ -918,6 +937,7 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '50280',
     size: 'large',
     instructions: 'Some of these may not be junctions',
+    complete: true,
     tagging(data) {
       return {
         junction: 'yes',
@@ -931,6 +951,8 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50280',
     size: 'large',
+    instructions: geoNamesInstructions,
+    complete: true,
     tagging(data) {
       return {
         man_made: 'tunnel',
@@ -1541,6 +1563,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
+    complete: true,
     tagging: seamarkTagging('rock'),
   });
 
@@ -1585,6 +1608,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
+    complete: true,
     instructions: maritimeLinearInstructions,
     tagging: seamarkTagging('obstruction'),
   });
@@ -1789,6 +1813,7 @@ export async function linzTopo(): Promise<void> {
     size: 'large',
     instructions: `${maritimeLinearInstructions}\n\nNote: This layer contains huge multipolygons,
       which need to be editted to use the coastline as outer ways`,
+    complete: true,
     tagging: seamarkTagging('restricted_area'),
   });
 
@@ -1811,6 +1836,69 @@ export async function linzTopo(): Promise<void> {
   //
   // misc
   //
+
+  type TideStation = {
+    id: string;
+    /** the name */
+    location: string;
+    /** Reference tide gauge station for secondary tide gauge stations */
+    ref_stn?: string;
+    /** The reference benchmark to which the tide gauge has been levelled. */
+    tg_bm?: string;
+    /** The height difference from Chart Datum to the tide gauge reference benchmark */
+    cd_to_bm?: string; // number
+    mhws?: string; // number
+    mhwn?: string; // number
+    mlwn?: string; // number
+    mlws?: string; // number
+    msl?: string; // number
+    hat?: string; // number
+    lat?: string; // number
+    data_start?: string;
+    data_end?: string;
+    /** Approximate length of data record in years. */
+    data_len?: string; // number
+    owner?: string;
+    gauge_type?: string;
+    /** Website from where tide predictions can be downloaded. */
+    pred_link?: string;
+    /** Website from where tide gauge data can be downloaded. */
+    data_link?: string;
+    /** International number of the tide gauge station. */
+    int_number?: string;
+  };
+  const tideStations = await csvToGeoJson<TideStation>({
+    input: 'tide-stations.csv',
+    idField: 'id',
+    sourceLayer: '52101',
+    size: 'large',
+    complete: true,
+    tagging(data) {
+      const isOld =
+        data.data_end &&
+        new Date(data.data_end.split('/').reverse().join('-')) < TODAY;
+      if (isOld) return null; // no longer measuring, so don't map it
+
+      return {
+        'seamark:type': 'signal_station_warning',
+        'seamark:signal_station_warning:category': 'tide_gauge',
+
+        man_made: 'monitoring_station',
+        'monitoring:tide_gauge': 'yes',
+        source: 'LINZ',
+        name: data.location,
+        description: data.gauge_type, // barely used
+        operator: data.owner,
+        start_date: data.data_start?.split('/').reverse().join('-'),
+        int_ref: data.int_number,
+        'ref:linz:hydrographic_id': `tg${data.id}`,
+        website:
+          data.data_link || // prefer data_link, pred_link is a generic one
+          data.pred_link ||
+          'https://data.linz.govt.nz/layer/52101',
+      };
+    },
+  });
 
   /** see https://nz-facilities.readthedocs.io */
   type Facility = {
@@ -1908,7 +1996,7 @@ export async function linzTopo(): Promise<void> {
     'Z Mine Points': minePts,
     'Z Mine Areas': minePolys,
     'Z Ponds': ponds,
-    'Z Quarrys': quarrys,
+    'Z Quarries': quarries,
     'Z Racetracks': racetracks,
     'Z Rapids (line)': rapidLines,
     'Z Rapids (area)': rapidPolys,
@@ -1932,21 +2020,21 @@ export async function linzTopo(): Promise<void> {
     // Geo Names
     'Z Named Bridges': namedBridges,
     'Z Named Cemetries': namedCemeteries,
-    'ZZ Named Farms': namedFarms,
+    'Z Named Farms': namedFarms,
     'ZZ Homesteads': homesteads,
     'ZZ Named Huts': namedHuts,
     'Z Named Lights': namedLights,
     'Z Named Oil Wells': namedOilWell,
     'Z Named Wharfs': namedWharf,
     'Z Named Shipwrecks': namedShipwreck,
-    'ZZ Named Pipelines': namedPipelines,
-    'ZZ Named Parks': namedParks,
+    'Z Named Pipelines': namedPipelines,
+    'Z Named Parks': namedParks,
     'Z Pā or Marae': pāOrMarae,
     'Z Named Tunnels': namedTunnel,
-    'ZZ Named Mines': namedMine,
+    'Z Named Mines': namedMine,
     'Z Road Junctions': namedRoadRelatedFeature,
-    'ZZ Named Campsites': namedCampSites,
-    'ZZ Named Misc. Cultural Sites': namedMiscCulturalSite,
+    'Z Named Campsites': namedCampSites,
+    'Z Named Misc. Cultural Sites': namedMiscCulturalSite,
 
     // Hydrographic
     'Z Anchor Berths': H_anchorBerths,
@@ -1990,9 +2078,10 @@ export async function linzTopo(): Promise<void> {
     'Z Pilot Boarding Points': H_pilotBoarding,
     'Z Radio call-in Points': H_radioCallInPoint,
     'Z Radio Stations': H_radioStation,
-    'ZZ Restricted maritime areas': H_restrictedArea,
+    'Z Restricted maritime areas': H_restrictedArea,
     'Z Wrecks': H_wreck,
 
+    'Z Tide Stations': tideStations,
     '❌ Facilities': facilities,
   };
 
