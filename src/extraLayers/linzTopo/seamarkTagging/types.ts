@@ -49,6 +49,7 @@ type _SeamarkTypes = {
     radius?: string;
     restrn?: string;
   };
+  berth: {};
   daymark: {
     catspm?: string;
     topshp?: string;

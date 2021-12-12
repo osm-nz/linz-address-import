@@ -91,6 +91,7 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '',
     size: 'large',
     instructions: "You may need to flip these if they're facing the wrong way",
+    complete: true,
     tagging(data) {
       return {
         man_made: 'embankment',
@@ -120,6 +121,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50266',
     size: 'small',
+    complete: true,
     instructions: "You may need to flip these if they're facing the wrong way",
     tagging(data) {
       // embkmt_use: 2288=stopbank, 95=causeway, 558=blank
@@ -432,6 +434,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '',
     size: 'medium',
+    complete: true,
     tagging(data) {
       return {
         landuse: 'quarry', // landuse=quarry is okay even on a node
@@ -844,6 +847,7 @@ export async function linzTopo(): Promise<void> {
     sourceLayer: '50280',
     size: 'large',
     instructions: geoNamesInstructions,
+    complete: true,
     tagging(data) {
       if (data.name?.toLowerCase().includes(' camp')) {
         return {
@@ -907,8 +911,9 @@ export async function linzTopo(): Promise<void> {
     input: 'geo_PARK.csv',
     idField: 't50_fid',
     sourceLayer: '50280',
-    size: 'medium',
+    size: 'large',
     instructions: geoNamesInstructions,
+    complete: true, // won't import, better to use areas/boundaries from another dataset
     tagging(data) {
       return {
         leisure: 'park',
@@ -1242,6 +1247,15 @@ export async function linzTopo(): Promise<void> {
     size: 'large',
     complete: true,
     tagging: seamarkTagging('anchorage'),
+  });
+
+  const H_berths = await csvToGeoJson<Seamark['berth']>({
+    input: ['sea/berth-points-hydro-14k-122k.csv'],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    complete: true,
+    tagging: seamarkTagging('berth'),
   });
 
   const H_submarineCables = await csvToGeoJson<Seamark['cable_submarine']>({
@@ -2039,6 +2053,7 @@ export async function linzTopo(): Promise<void> {
     // Hydrographic
     'Z Anchor Berths': H_anchorBerths,
     'Z Anchorages': H_anchorages,
+    'Z Berths': H_berths,
     'Z Submarine Cables': H_submarineCables,
     'Z Daymarks': H_daymarks,
     'Z Dumping Ground': H_dumpingGrounds,
