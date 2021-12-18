@@ -10,3 +10,6 @@ export const chunk = <T>(list: T[], size: number): T[][] =>
 export function uniq<T>(value: T, index: number, self: T[]): boolean {
   return self.indexOf(value) === index;
 }
+
+export const timeout = (ms: number): Promise<void> =>
+  new Promise((cb) => setTimeout(cb, ms));

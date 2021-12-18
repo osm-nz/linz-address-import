@@ -1,0 +1,31 @@
+name: Changeset Watch
+
+on:
+  schedule:
+    - cron: '0 16 * * *' # at 4am (it's in UTC)
+  workflow_dispatch:
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: ⏬ Checkout code
+        uses: actions/checkout@v2
+
+      - name: 🔢 Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: ⏬ Install
+        run: |
+          npm install
+
+      - name: 🔎 Run ChangesetWatch script
+        run: |
+          npm run changesetWatch
