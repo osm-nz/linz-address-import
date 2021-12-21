@@ -46,3 +46,7 @@ The remaining steps are done automatically by the CI
 There are end-to-end tests than run based on [a mock planet file](src/__tests__/mock/planet.xml) and [a mock linz CSV file](src/__tests__/mock/linz-dump.csv).
 
 To start the test, run `npm test`. If it changes the contents of the snapshot folder, commit those changes.
+
+## Process
+
+![Flowchart](https://wiki.openstreetmap.org/w/images/5/53/LINZ_Address_Conflation_Flowchart.png)
