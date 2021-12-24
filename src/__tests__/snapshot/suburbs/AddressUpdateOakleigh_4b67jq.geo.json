@@ -1,11 +1,5 @@
 {
   "type": "FeatureCollection",
-  "crs": {
-    "type": "name",
-    "properties": {
-      "name": "EPSG:4326"
-    }
-  },
   "features": [
     {
       "type": "Feature",
@@ -38,8 +32,9 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70004",
-        "addr_housenumber": "4A"
+        "__osmId": "n4",
+        "ref:linz:address_id": "70004",
+        "addr:housenumber": "4A"
       }
     },
     {
@@ -73,8 +68,9 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70005",
-        "addr_street": "Example Street"
+        "__osmId": "n5",
+        "ref:linz:address_id": "70005",
+        "addr:street": "Example Street"
       }
     },
     {
@@ -108,8 +104,9 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70006",
-        "addr_hamlet": "Oakleigh"
+        "__osmId": "n6",
+        "ref:linz:address_id": "70006",
+        "addr:hamlet": "Oakleigh"
       }
     },
     {
@@ -143,8 +140,9 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70007",
-        "addr_hamlet": "Oakleigh"
+        "__osmId": "n7",
+        "ref:linz:address_id": "70007",
+        "addr:hamlet": "Oakleigh"
       }
     },
     {
@@ -178,9 +176,10 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70018",
-        "addr_suburb": "🗑️",
-        "addr_hamlet": "Oakleigh"
+        "__osmId": "n18",
+        "ref:linz:address_id": "70018",
+        "addr:suburb": "🗑️",
+        "addr:hamlet": "Oakleigh"
       }
     },
     {
@@ -214,8 +213,9 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70043",
-        "addr_street": "Example Street"
+        "__osmId": "n43",
+        "ref:linz:address_id": "70043",
+        "addr:street": "Example Street"
       }
     },
     {
@@ -249,9 +249,10 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70044",
-        "addr_suburb": "🗑️",
-        "addr_hamlet": "Oakleigh"
+        "__osmId": "n44",
+        "ref:linz:address_id": "70044",
+        "addr:suburb": "🗑️",
+        "addr:hamlet": "Oakleigh"
       }
     },
     {
@@ -285,9 +286,10 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70046",
-        "addr_suburb": "🗑️",
-        "addr_hamlet": "Oakleigh"
+        "__osmId": "n46",
+        "ref:linz:address_id": "70046",
+        "addr:suburb": "🗑️",
+        "addr:hamlet": "Oakleigh"
       }
     },
     {
@@ -321,10 +323,11 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70048",
-        "addr_housenumber": "48",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh"
+        "__osmId": "n48",
+        "ref:linz:address_id": "70048",
+        "addr:housenumber": "48",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh"
       }
     },
     {
@@ -358,8 +361,9 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70060",
-        "addr_type": "🗑️"
+        "__osmId": "n60",
+        "ref:linz:address_id": "70060",
+        "addr:type": "🗑️"
       }
     },
     {
@@ -393,7 +397,8 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70117",
+        "__osmId": "n117",
+        "ref:linz:address_id": "70117",
         "building:flats": "🗑️"
       }
     },
@@ -428,7 +433,8 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70118",
+        "__osmId": "n118",
+        "ref:linz:address_id": "70118",
         "building:flats": "🗑️"
       }
     },
@@ -463,7 +469,8 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70122",
+        "__osmId": "n122",
+        "ref:linz:address_id": "70122",
         "building:flats": "3"
       }
     },
@@ -498,8 +505,9 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_stack(70079-70081)",
-        "addr_hamlet": "Oakleigh"
+        "__osmId": "n79",
+        "ref:linz:address_id": "stack(70079-70081)",
+        "addr:hamlet": "Oakleigh"
       }
     },
     {
@@ -533,8 +541,9 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_stack(70082-70084)",
-        "addr_housenumber": "82"
+        "__osmId": "n82",
+        "ref:linz:address_id": "stack(70082-70084)",
+        "addr:housenumber": "82"
       }
     },
     {
@@ -568,7 +577,8 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_stack(70111-70113)",
+        "__osmId": "n111",
+        "ref:linz:address_id": "stack(70111-70113)",
         "building:flats": "3"
       }
     },
@@ -603,7 +613,8 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_stack(70114-70116)",
+        "__osmId": "n114",
+        "ref:linz:address_id": "stack(70114-70116)",
         "building:flats": "3"
       }
     },
@@ -638,10 +649,9 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70008",
-        "new_linz_ref": "70008",
-        "addr_hamlet": "Oakleigh",
-        "osm_id": "n8"
+        "__osmId": "n8",
+        "ref:linz:address_id": "70008",
+        "addr:hamlet": "Oakleigh"
       }
     },
     {
@@ -675,10 +685,9 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70009",
-        "new_linz_ref": "70009",
-        "addr_hamlet": "Oakleigh",
-        "osm_id": "n9"
+        "__osmId": "n9",
+        "ref:linz:address_id": "70009",
+        "addr:hamlet": "Oakleigh"
       }
     },
     {
@@ -712,10 +721,9 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70010",
-        "new_linz_ref": "70010",
-        "addr_hamlet": "Oakleigh",
-        "osm_id": "n10"
+        "__osmId": "n10",
+        "ref:linz:address_id": "70010",
+        "addr:hamlet": "Oakleigh"
       }
     },
     {
@@ -749,10 +757,9 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70011",
-        "new_linz_ref": "70011",
-        "addr_hamlet": "Oakleigh",
-        "osm_id": "n11"
+        "__osmId": "n11",
+        "ref:linz:address_id": "70011",
+        "addr:hamlet": "Oakleigh"
       }
     },
     {
@@ -786,10 +793,9 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70012",
-        "new_linz_ref": "70012",
-        "addr_hamlet": "Oakleigh",
-        "osm_id": "n12"
+        "__osmId": "n12",
+        "ref:linz:address_id": "70012",
+        "addr:hamlet": "Oakleigh"
       }
     },
     {
@@ -803,10 +809,10 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "54",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
-        "ref_linz_address": "70054"
+        "addr:housenumber": "54",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70054"
       }
     },
     {
@@ -820,10 +826,10 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "1/69",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
-        "ref_linz_address": "70069"
+        "addr:housenumber": "1/69",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70069"
       }
     },
     {
@@ -837,10 +843,10 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "3/69",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
-        "ref_linz_address": "70071"
+        "addr:housenumber": "3/69",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70071"
       }
     },
     {
@@ -854,10 +860,10 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "Unit 1, 76",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
-        "ref_linz_address": "70076"
+        "addr:housenumber": "Unit 1, 76",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70076"
       }
     },
     {
@@ -871,10 +877,10 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "Unit 2, 76",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
-        "ref_linz_address": "70077"
+        "addr:housenumber": "Unit 2, 76",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70077"
       }
     },
     {
@@ -888,10 +894,10 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "Unit 3, 76",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
-        "ref_linz_address": "70078"
+        "addr:housenumber": "Unit 3, 76",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70078"
       }
     },
     {
@@ -905,10 +911,10 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "103",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
-        "ref_linz_address": "70103"
+        "addr:housenumber": "103",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70103"
       }
     },
     {
@@ -922,10 +928,10 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "4B",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
-        "ref_linz_address": "70004B"
+        "addr:housenumber": "4B",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70004B"
       }
     },
     {
@@ -939,16 +945,16 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "89",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
+        "addr:housenumber": "89",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
         "building:flats": "3",
-        "ref_linz_address": "stack(70089-70091)"
+        "ref:linz:address_id": "stack(70089-70091)"
       }
     },
     {
       "type": "Feature",
-      "id": "70014",
+      "id": "SPECIAL_DELETE_70014",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -957,15 +963,16 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "14",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
-        "ref_linz_address": "SPECIAL_DELETE_70014"
+        "__osmId": "n14",
+        "addr:housenumber": "14",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70014"
       }
     },
     {
       "type": "Feature",
-      "id": "70090",
+      "id": "SPECIAL_DELETE_70090",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -974,15 +981,16 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "89B",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
-        "ref_linz_address": "SPECIAL_DELETE_70090"
+        "__osmId": "n90",
+        "addr:housenumber": "89B",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70090"
       }
     },
     {
       "type": "Feature",
-      "id": "70105",
+      "id": "SPECIAL_DELETE_70105",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -991,15 +999,16 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "104A",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
-        "ref_linz_address": "SPECIAL_DELETE_70105"
+        "__osmId": "n105",
+        "addr:housenumber": "104A",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70105"
       }
     },
     {
       "type": "Feature",
-      "id": "70106",
+      "id": "SPECIAL_DELETE_70106",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -1008,15 +1017,16 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "104B",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
-        "ref_linz_address": "SPECIAL_DELETE_70106"
+        "__osmId": "n106",
+        "addr:housenumber": "104B",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70106"
       }
     },
     {
       "type": "Feature",
-      "id": "70107",
+      "id": "SPECIAL_DELETE_70107",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -1025,15 +1035,16 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "104C",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
-        "ref_linz_address": "SPECIAL_DELETE_70107"
+        "__osmId": "n107",
+        "addr:housenumber": "104C",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70107"
       }
     },
     {
       "type": "Feature",
-      "id": "oof",
+      "id": "SPECIAL_DELETE_oof",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -1042,15 +1053,16 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "22",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
-        "ref_linz_address": "SPECIAL_DELETE_oof"
+        "__osmId": "n22",
+        "addr:housenumber": "22",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "oof"
       }
     },
     {
       "type": "Feature",
-      "id": "stack(70069-70071)",
+      "id": "SPECIAL_DELETE_stack(70069-70071)",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -1059,16 +1071,17 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "69",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
+        "__osmId": "n69",
+        "addr:housenumber": "69",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
         "building:flats": "3",
-        "ref_linz_address": "SPECIAL_DELETE_stack(70069-70071)"
+        "ref:linz:address_id": "stack(70069-70071)"
       }
     },
     {
       "type": "Feature",
-      "id": "stack(70076-70078)",
+      "id": "SPECIAL_DELETE_stack(70076-70078)",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -1077,16 +1090,17 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "76",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
+        "__osmId": "n76",
+        "addr:housenumber": "76",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
         "building:flats": "3",
-        "ref_linz_address": "SPECIAL_DELETE_stack(70076-70078)"
+        "ref:linz:address_id": "stack(70076-70078)"
       }
     },
     {
       "type": "Feature",
-      "id": "stack(70085-70087)",
+      "id": "SPECIAL_DELETE_stack(70085-70087)",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -1095,16 +1109,17 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "85",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
+        "__osmId": "n85",
+        "addr:housenumber": "85",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
         "building:flats": "3",
-        "ref_linz_address": "SPECIAL_DELETE_stack(70085-70087)"
+        "ref:linz:address_id": "stack(70085-70087)"
       }
     },
     {
       "type": "Feature",
-      "id": "stack(70119-70121)",
+      "id": "SPECIAL_DELETE_stack(70119-70121)",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -1113,11 +1128,12 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "122",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Oakleigh",
+        "__osmId": "n119",
+        "addr:housenumber": "122",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
         "building:flats": "3",
-        "ref_linz_address": "SPECIAL_DELETE_stack(70119-70121)"
+        "ref:linz:address_id": "stack(70119-70121)"
       }
     }
   ]

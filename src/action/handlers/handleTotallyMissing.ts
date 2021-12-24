@@ -3,6 +3,7 @@ import {
   GeoJsonFeature,
   HandlerReturn,
   LinzAddr,
+  OsmId,
   Status,
   StatusReport,
 } from '../../types';
@@ -11,8 +12,7 @@ type BySuburb = {
   [suburb: string]: [
     linzId: string,
     data: LinzAddr & {
-      /** symbolic. if present, tells u that it's to be deleted */
-      osmId?: symbol;
+      osmId?: OsmId;
     },
   ][];
 };
@@ -65,19 +65,20 @@ export async function handleTotallyMissing(
       ([linzId, addr]) => {
         return {
           type: 'Feature',
-          id: linzId,
+          id: (addr.osmId ? 'SPECIAL_DELETE_' : '') + linzId,
           geometry: {
             type: 'Point',
             coordinates: [addr.lng, addr.lat],
           },
           properties: {
-            addr_housenumber: addr.housenumber,
-            addr_street: addr.street,
-            addr_suburb: addr.suburb[0] === 'U' ? addr.suburb[1] : undefined,
-            addr_hamlet: addr.suburb[0] === 'R' ? addr.suburb[1] : undefined,
-            addr_type: addr.water ? 'water' : undefined,
+            __osmId: addr.osmId, // won't exist for create, only delete
+            'addr:housenumber': addr.housenumber,
+            'addr:street': addr.street,
+            'addr:suburb': addr.suburb[0] === 'U' ? addr.suburb[1] : undefined,
+            'addr:hamlet': addr.suburb[0] === 'R' ? addr.suburb[1] : undefined,
+            'addr:type': addr.water ? 'water' : undefined,
             'building:flats': addr.flatCount?.toString(),
-            ref_linz_address: (addr.osmId ? 'SPECIAL_DELETE_' : '') + linzId,
+            'ref:linz:address_id': linzId,
           },
         };
       },

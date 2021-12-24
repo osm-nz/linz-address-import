@@ -1,15 +1,9 @@
 {
   "type": "FeatureCollection",
-  "crs": {
-    "type": "name",
-    "properties": {
-      "name": "EPSG:4326"
-    }
-  },
   "features": [
     {
       "type": "Feature",
-      "id": "70049doesntExist",
+      "id": "SPECIAL_DELETE_70049doesntExist",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -18,7 +12,8 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_DELETE_70049doesntExist"
+        "__osmId": "n49",
+        "ref:linz:address_id": "70049doesntExist"
       }
     }
   ]

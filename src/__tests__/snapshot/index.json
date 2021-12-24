@@ -1,62 +1,5 @@
 {
-  "fields": [
-    {
-      "name": "addr_housenumber",
-      "type": "esriFieldTypeString",
-      "alias": "addr:housenumber",
-      "length": 10,
-      "editable": true
-    },
-    {
-      "name": "addr_street",
-      "type": "esriFieldTypeString",
-      "alias": "addr:street",
-      "length": 50,
-      "editable": true
-    },
-    {
-      "name": "addr_suburb",
-      "type": "esriFieldTypeString",
-      "alias": "addr:suburb",
-      "length": 50,
-      "editable": true
-    },
-    {
-      "name": "addr_hamlet",
-      "type": "esriFieldTypeString",
-      "alias": "addr:hamlet",
-      "length": 2,
-      "editable": true
-    },
-    {
-      "name": "addr_type",
-      "type": "esriFieldTypeString",
-      "alias": "addr:type",
-      "length": 2,
-      "editable": true
-    },
-    {
-      "name": "new_linz_ref",
-      "type": "esriFieldTypeString",
-      "alias": "new_linz_ref",
-      "length": 2,
-      "editable": true
-    },
-    {
-      "name": "osm_id",
-      "type": "esriFieldTypeString",
-      "alias": "osm_id",
-      "length": 2,
-      "editable": true
-    },
-    {
-      "name": "ref_linz_address",
-      "type": "esriFieldTypeOID",
-      "alias": "ref:linz:address_id",
-      "length": 10,
-      "editable": true
-    }
-  ],
+  "fields": [],
   "results": [
     {
       "id": "AddressUpdateAbelTasmanNationalPark_177vr3a",
@@ -76,7 +19,6 @@
           -36.899800000000006
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -99,7 +41,6 @@
           -36.900000000000006
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -122,7 +63,6 @@
           -35
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -145,7 +85,6 @@
           -36.9
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -168,7 +107,6 @@
           -36.9
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -191,7 +129,6 @@
           -36.9
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -214,7 +151,6 @@
           -35.9998
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -237,7 +173,6 @@
           -36.899800000000006
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -260,7 +195,6 @@
           -36.9
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -283,7 +217,6 @@
           -36.899800000000006
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -295,7 +228,7 @@
       "title": "Address Update - Special Location Wrong",
       "totalCount": 2,
       "source": "",
-      "snippet": "move 2",
+      "snippet": "add 2",
       "extent": [
         [
           174.903,
@@ -306,7 +239,6 @@
           -36
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -329,7 +261,6 @@
           -36.899800000000006
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -352,7 +283,6 @@
           -36.9
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -375,7 +305,6 @@
           -36.9
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]

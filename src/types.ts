@@ -228,7 +228,6 @@ export type GeoJsonFeature = {
 };
 export type GeoJson = {
   type: 'FeatureCollection';
-  crs: { type: 'name'; properties: { name: 'EPSG:4326' } };
   features: GeoJsonFeature[];
 };
 

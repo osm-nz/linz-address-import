@@ -43,8 +43,8 @@ export async function handleLinzRefChanged(
         coordinates: createDiamond(osmData),
       },
       properties: {
-        ref_linz_address: `SPECIAL_EDIT_${oldLinzId}`,
-        new_linz_ref: newLinzId,
+        __osmId: osmData.osmId,
+        'ref:linz:address_id': newLinzId,
         // if an address gets subdivided, add the building:flats tag at the same
         // time as the ID changes into a stack
         'building:flats': linzData.flatCount?.toString(),

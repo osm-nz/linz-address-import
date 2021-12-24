@@ -1,11 +1,5 @@
 {
   "type": "FeatureCollection",
-  "crs": {
-    "type": "name",
-    "properties": {
-      "name": "EPSG:4326"
-    }
-  },
   "features": [
     {
       "type": "Feature",
@@ -38,8 +32,8 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70039old",
-        "new_linz_ref": "70039new"
+        "__osmId": "n39",
+        "ref:linz:address_id": "70039new"
       }
     },
     {
@@ -73,8 +67,8 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_stack(70072-70075)",
-        "new_linz_ref": "stack(70072,70074-70075)",
+        "__osmId": "n72",
+        "ref:linz:address_id": "stack(70072,70074-70075)",
         "building:flats": "3"
       }
     },
@@ -109,8 +103,8 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_THE_OLD_ID",
-        "new_linz_ref": "stack(70123-70125)",
+        "__osmId": "n125",
+        "ref:linz:address_id": "stack(70123-70125)",
         "building:flats": "3"
       }
     }

@@ -43,7 +43,8 @@ export async function existsButDataWrong(
           coordinates: createDiamond(osmData),
         },
         properties: {
-          ref_linz_address: `SPECIAL_EDIT_${linzId}`,
+          __osmId: osmData.osmId,
+          'ref:linz:address_id': linzId,
           ...fieldsToModify(issues),
         },
       });

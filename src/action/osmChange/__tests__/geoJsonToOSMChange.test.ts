@@ -1,9 +1,8 @@
-import { GeoJson, GeoJsonFeature } from '../../types';
+import { GeoJson, GeoJsonFeature } from '../../../types';
 import { geoJsonToOSMChange } from '../geoJsonToOSMChange';
 
 const geoJson = (features: GeoJsonFeature[]): GeoJson => ({
   type: 'FeatureCollection',
-  crs: { type: 'name', properties: { name: 'EPSG:4326' } },
   features,
 });
 

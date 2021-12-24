@@ -6,18 +6,18 @@ export function fieldsToModify(issues: Issue[]): Record<string, string> {
     const [field, linzValue, osmValue] = i.split('|');
     switch (field) {
       case 'housenumber':
-        ac.addr_housenumber = linzValue;
+        ac['addr:housenumber'] = linzValue;
         break;
       case 'street':
-        ac.addr_street = linzValue;
+        ac['addr:street'] = linzValue;
         break;
       case 'suburb': {
         const [k, v] = linzValue.split('=') as [
-          'addr_hamlet' | 'addr_suburb',
+          'addr:hamlet' | 'addr:suburb',
           string,
         ];
         const [oldK] = osmValue.split('=') as [
-          'addr_hamlet' | 'addr_suburb' | '0',
+          'addr:hamlet' | 'addr:suburb' | '0',
           string,
         ];
         if (k !== oldK && oldK !== '0') {
@@ -29,10 +29,10 @@ export function fieldsToModify(issues: Issue[]): Record<string, string> {
       }
       case 'water': {
         if (linzValue === '0' && osmValue === '1') {
-          ac.addr_type = '🗑️'; // delete the tag
+          ac['addr:type'] = '🗑️'; // delete the tag
         } else {
           // this implies linzValue == 1 && osmValue == 0
-          ac.addr_type = 'water';
+          ac['addr:type'] = 'water';
         }
         break;
       }

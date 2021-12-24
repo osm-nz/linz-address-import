@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`geoJsonToOSMChange can convert files with LineString 1`] = `
+"<osmChange version=\\"0.6\\" generator=\\"LINZ Data Import\\" LINZ_title=\\"test layer\\" LINZ_count=\\"add 1\\" LINZ_generated_on=\\"DATE_GOES_HERE\\">
+  <create>
+    <node id=\\"-1\\" version=\\"0\\" changeset=\\"0\\" lat=\\"-37\\" lon=\\"174.5\\"/>
+    <node id=\\"-2\\" version=\\"0\\" changeset=\\"0\\" lat=\\"-37\\" lon=\\"174.6\\"/>
+    <way id=\\"-1\\" version=\\"0\\" changeset=\\"0\\">
+      <tag k=\\"highway\\" v=\\"footway\\"/>
+      <nd ref=\\"-1\\"/>
+      <nd ref=\\"-2\\"/>
+    </way>
+  </create>
+  <modify/>
+  <delete if-unused=\\"true\\"/>
+</osmChange>
+"
+`;
+
+exports[`geoJsonToOSMChange can convert files with MultiPolygon 1`] = `
+"<osmChange version=\\"0.6\\" generator=\\"LINZ Data Import\\" LINZ_title=\\"test layer\\" LINZ_count=\\"add 1\\" LINZ_generated_on=\\"DATE_GOES_HERE\\">
+  <create>
+    <way id=\\"-1\\" version=\\"0\\" changeset=\\"0\\">
+      <nd ref=\\"-1\\"/>
+      <nd ref=\\"-2\\"/>
+      <nd ref=\\"-3\\"/>
+      <nd ref=\\"-4\\"/>
+    </way>
+    <way id=\\"-2\\" version=\\"0\\" changeset=\\"0\\">
+      <nd ref=\\"-5\\"/>
+      <nd ref=\\"-6\\"/>
+      <nd ref=\\"-7\\"/>
+      <nd ref=\\"-8\\"/>
+    </way>
+    <way id=\\"-3\\" version=\\"0\\" changeset=\\"0\\">
+      <nd ref=\\"-9\\"/>
+      <nd ref=\\"-10\\"/>
+      <nd ref=\\"-11\\"/>
+    </way>
+    <way id=\\"-4\\" version=\\"0\\" changeset=\\"0\\">
+      <nd ref=\\"-12\\"/>
+      <nd ref=\\"-13\\"/>
+      <nd ref=\\"-14\\"/>
+    </way>
+    <relation id=\\"-1\\" version=\\"0\\" changeset=\\"0\\">
+      <tag k=\\"ref\\" v=\\"1\\"/>
+      <tag k=\\"landuse\\" v=\\"aquaculture\\"/>
+      <member type=\\"way\\" ref=\\"-1\\" role=\\"outer\\"/>
+      <member type=\\"way\\" ref=\\"-2\\" role=\\"inner\\"/>
+      <member type=\\"way\\" ref=\\"-3\\" role=\\"inner\\"/>
+      <member type=\\"way\\" ref=\\"-4\\" role=\\"outer\\"/>
+    </relation>
+  </create>
+  <modify/>
+  <delete if-unused=\\"true\\"/>
+</osmChange>
+"
+`;
+
+exports[`geoJsonToOSMChange can convert files with Point 1`] = `
+"<osmChange version=\\"0.6\\" generator=\\"LINZ Data Import\\" LINZ_title=\\"test layer\\" LINZ_count=\\"add 1\\" LINZ_generated_on=\\"DATE_GOES_HERE\\">
+  <create>
+    <node id=\\"-1\\" version=\\"0\\" changeset=\\"0\\" lat=\\"-36.9\\" lon=\\"174.7\\">
+      <tag k=\\"natural\\" v=\\"peak\\"/>
+      <tag k=\\"name\\"/>
+      <tag k=\\"description\\" v=\\"\\"/>
+    </node>
+  </create>
+  <modify/>
+  <delete if-unused=\\"true\\"/>
+</osmChange>
+"
+`;
+
+exports[`geoJsonToOSMChange can convert files with Polygon 1`] = `
+"<osmChange version=\\"0.6\\" generator=\\"LINZ Data Import\\" LINZ_title=\\"test layer\\" LINZ_count=\\"add 1\\" LINZ_generated_on=\\"DATE_GOES_HERE\\">
+  <create>
+    <node id=\\"-1\\" version=\\"0\\" changeset=\\"0\\" lat=\\"-36.9\\" lon=\\"174.8\\"/>
+    <node id=\\"-2\\" version=\\"0\\" changeset=\\"0\\" lat=\\"-36.91\\" lon=\\"174.81\\"/>
+    <node id=\\"-3\\" version=\\"0\\" changeset=\\"0\\" lat=\\"-36.92\\" lon=\\"174.82\\"/>
+    <node id=\\"-4\\" version=\\"0\\" changeset=\\"0\\" lat=\\"-36.9\\" lon=\\"174.8\\"/>
+    <way id=\\"-1\\" version=\\"0\\" changeset=\\"0\\">
+      <tag k=\\"ref\\" v=\\"1\\"/>
+      <tag k=\\"landuse\\" v=\\"aquaculture\\"/>
+      <nd ref=\\"-1\\"/>
+      <nd ref=\\"-2\\"/>
+      <nd ref=\\"-3\\"/>
+      <nd ref=\\"-4\\"/>
+    </way>
+  </create>
+  <modify/>
+  <delete if-unused=\\"true\\"/>
+</osmChange>
+"
+`;
+
+exports[`geoJsonToOSMChange can convert files with all features 1`] = `
+"<osmChange version=\\"0.6\\" generator=\\"LINZ Data Import\\" LINZ_title=\\"test layer\\" LINZ_count=\\"add 4\\" LINZ_generated_on=\\"DATE_GOES_HERE\\">
+  <create>
+    <node id=\\"-1\\" version=\\"0\\" changeset=\\"0\\" lat=\\"-36.9\\" lon=\\"174.7\\">
+      <tag k=\\"natural\\" v=\\"peak\\"/>
+      <tag k=\\"name\\"/>
+      <tag k=\\"description\\" v=\\"\\"/>
+    </node>
+    <node id=\\"-2\\" version=\\"0\\" changeset=\\"0\\" lat=\\"-37\\" lon=\\"174.5\\"/>
+    <node id=\\"-3\\" version=\\"0\\" changeset=\\"0\\" lat=\\"-37\\" lon=\\"174.6\\"/>
+    <node id=\\"-4\\" version=\\"0\\" changeset=\\"0\\" lat=\\"-36.9\\" lon=\\"174.8\\"/>
+    <node id=\\"-5\\" version=\\"0\\" changeset=\\"0\\" lat=\\"-36.91\\" lon=\\"174.81\\"/>
+    <node id=\\"-6\\" version=\\"0\\" changeset=\\"0\\" lat=\\"-36.92\\" lon=\\"174.82\\"/>
+    <node id=\\"-7\\" version=\\"0\\" changeset=\\"0\\" lat=\\"-36.9\\" lon=\\"174.8\\"/>
+    <node id=\\"-8\\" version=\\"0\\" changeset=\\"0\\" lat=\\"-37\\" lon=\\"174.5\\"/>
+    <node id=\\"-9\\" version=\\"0\\" changeset=\\"0\\" lat=\\"-37\\" lon=\\"174.6\\"/>
+    <way id=\\"-1\\" version=\\"0\\" changeset=\\"0\\">
+      <tag k=\\"highway\\" v=\\"footway\\"/>
+      <nd ref=\\"-2\\"/>
+      <nd ref=\\"-3\\"/>
+    </way>
+    <way id=\\"-2\\" version=\\"0\\" changeset=\\"0\\">
+      <tag k=\\"ref\\" v=\\"1\\"/>
+      <tag k=\\"landuse\\" v=\\"aquaculture\\"/>
+      <nd ref=\\"-4\\"/>
+      <nd ref=\\"-5\\"/>
+      <nd ref=\\"-6\\"/>
+      <nd ref=\\"-7\\"/>
+    </way>
+    <way id=\\"-3\\" version=\\"0\\" changeset=\\"0\\">
+      <tag k=\\"highway\\" v=\\"footway\\"/>
+      <nd ref=\\"-8\\"/>
+      <nd ref=\\"-9\\"/>
+    </way>
+  </create>
+  <modify/>
+  <delete if-unused=\\"true\\"/>
+</osmChange>
+"
+`;
