@@ -28,7 +28,7 @@
     "csv-parser": "^3.0.0",
     "dotenv": "^10.0.0",
     "mime-types": "^2.1.32",
-    "node-fetch": "^2.6.5",
+    "node-fetch": "^2.6.7",
     "osm-api": "^1.0.0",
     "pbf2json": "^6.9.0",
     "through2": "^4.0.2",
