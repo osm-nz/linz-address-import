@@ -1,14 +1,10 @@
 import {
   DeletionData,
   LinzData,
-  OsmAddr,
   OSMData,
   Status,
   StatusReport,
 } from '../types';
-
-const isNonTrivial = (addr: OsmAddr) =>
-  addr.osmId[0] !== 'n' || addr.isNonTrivial;
 
 export function processDeletions(
   deletionData: DeletionData,
@@ -59,13 +55,16 @@ export function processDeletions(
 
   const ret: Partial<StatusReport> = {
     [Status.NEEDS_DELETE]: normal.filter(
-      ([linzId]) => !isNonTrivial(osmData.linz[linzId]),
+      ([, [, osmAddr]]) => !osmAddr.isNonTrivial && osmAddr.osmId[0] === 'n',
     ),
     [Status.LINZ_REF_CHANGED]: sus,
 
-    // FIXME: make this simply remove the tags from buildings (new cat. Non trivial just means a business)
-    [Status.NEEDS_DELETE_NON_TRIVIAL]: normal.filter(([linzId]) =>
-      isNonTrivial(osmData.linz[linzId]),
+    [Status.NEEDS_DELETE_NON_TRIVIAL]: normal.filter(
+      ([, [, osmAddr]]) => osmAddr.isNonTrivial,
+    ),
+
+    [Status.NEEDS_DELETE_ON_BUILDING]: normal.filter(
+      ([, [, osmAddr]]) => !osmAddr.isNonTrivial && osmAddr.osmId[0] !== 'n',
     ),
   };
   return [ret, removeFromCreate];

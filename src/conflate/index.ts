@@ -62,6 +62,7 @@ export async function main(): Promise<void> {
       10: [],
       11: [],
       13: [],
+      14: [],
     };
 
   console.log('processing deleted data...');

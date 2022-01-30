@@ -204,12 +204,12 @@
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateSpecialLinzRefChanged_d7ib5h.geo.json",
       "name": "Address Update - Special Linz Ref Changed",
       "title": "Address Update - Special Linz Ref Changed",
-      "totalCount": 4,
+      "totalCount": 5,
       "source": "",
-      "snippet": "edit 4",
+      "snippet": "edit 5",
       "extent": [
         [
-          174.93880000000001,
+          174.9349667,
           -36.9005333
         ],
         [

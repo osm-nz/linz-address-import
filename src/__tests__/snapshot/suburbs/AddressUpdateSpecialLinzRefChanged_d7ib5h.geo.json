@@ -142,6 +142,47 @@
         "__osmId": "w129",
         "ref:linz:address_id": "70129new"
       }
+    },
+    {
+      "type": "Feature",
+      "id": "SPECIAL_EDIT_70035",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.9351667,
+              -36.9001333
+            ],
+            [
+              174.9353667,
+              -36.9003333
+            ],
+            [
+              174.9351667,
+              -36.9005333
+            ],
+            [
+              174.9349667,
+              -36.9003333
+            ],
+            [
+              174.9351667,
+              -36.9001333
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__osmId": "w35",
+        "addr:housenumber": "🗑️",
+        "addr:street": "🗑️",
+        "addr:suburb": "🗑️",
+        "addr:hamlet": "🗑️",
+        "addr:type": "🗑️",
+        "ref:linz:address_id": "🗑️",
+        "building:flats": "🗑️"
+      }
     }
   ]
 }

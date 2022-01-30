@@ -1,11 +1,17 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
-import { OsmAddr, Status, StatusReport } from '../../types';
-import { outFolder, toLink } from '../util';
+import {
+  GeoJsonFeature,
+  HandlerReturn,
+  OsmAddr,
+  Status,
+  StatusReport,
+} from '../../types';
+import { createDiamond, outFolder, toLink } from '../util';
 
 export async function handleDeletedOnBuilding(
-  arr: StatusReport[Status.NEEDS_DELETE_NON_TRIVIAL],
-): Promise<void> {
+  arr: StatusReport[Status.NEEDS_DELETE_ON_BUILDING],
+): Promise<HandlerReturn> {
   const bySuburb = arr.reduce((ac, [linzId, [suburb, osmAddr]]) => {
     // eslint-disable-next-line no-param-reassign -- mutation is cheap
     ac[suburb] ||= [];
@@ -17,11 +23,40 @@ export async function handleDeletedOnBuilding(
   for (const suburb in bySuburb) {
     report += `\n${suburb}\n`;
     for (const [linzId, osmAddr] of bySuburb[suburb]) {
-      report += `${linzId}\t\tneeds deleting but is on a building/business\t\t${toLink(
+      report += `${linzId}\t\tneeds deleting but is on a building\t\t${toLink(
         osmAddr.osmId,
       )}\n`;
     }
   }
 
-  await fs.writeFile(join(outFolder, 'needs-delete-non-trivial.txt'), report);
+  await fs.writeFile(join(outFolder, 'needs-delete-on-building.txt'), report);
+
+  const features: GeoJsonFeature[] = [];
+
+  for (const [linzId, [, osmAddr]] of arr) {
+    features.push({
+      type: 'Feature',
+      id: `SPECIAL_EDIT_${linzId}`,
+      geometry: {
+        type: 'Polygon',
+        coordinates: createDiamond(osmAddr),
+      },
+      properties: {
+        __osmId: osmAddr.osmId,
+
+        // delete all address-related tags
+        'addr:housenumber': '🗑️',
+        'addr:street': '🗑️',
+        'addr:suburb': '🗑️',
+        'addr:hamlet': '🗑️',
+        'addr:type': '🗑️',
+        'ref:linz:address_id': '🗑️',
+        'building:flats': '🗑️',
+      },
+    });
+  }
+
+  if (!features.length) return {};
+
+  return { 'Address Update - Special Linz Ref Changed': features };
 }
