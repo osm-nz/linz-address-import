@@ -24,13 +24,6 @@ export function processDeletions(
     linzByKey[suburb][key] = linzId;
   }
 
-  const needsDeleteTrivial = deletionData.filter(
-    ([linzId]) => !isNonTrivial(osmData.linz[linzId]),
-  );
-  const needsDeleteNonTrivial = deletionData.filter(([linzId]) =>
-    isNonTrivial(osmData.linz[linzId]),
-  );
-
   /** keep track of a list of new linzRefs that we should remove from which ever status they're in */
   const removeFromCreate: string[] = [];
 
@@ -38,7 +31,7 @@ export function processDeletions(
   const normal: StatusReport[Status.NEEDS_DELETE] = [];
   const sus: StatusReport[Status.LINZ_REF_CHANGED] = [];
 
-  for (const item of needsDeleteTrivial) {
+  for (const item of deletionData) {
     const [linzRef, suburb] = item;
     const osmAddr = osmData.linz[linzRef]!;
 
@@ -65,10 +58,14 @@ export function processDeletions(
   }
 
   const ret: Partial<StatusReport> = {
-    [Status.NEEDS_DELETE]: normal,
+    [Status.NEEDS_DELETE]: normal.filter(
+      ([linzId]) => !isNonTrivial(osmData.linz[linzId]),
+    ),
     [Status.LINZ_REF_CHANGED]: sus,
-    [Status.NEEDS_DELETE_NON_TRIVIAL]: needsDeleteNonTrivial.map(
-      ([linzId, suburb]) => [linzId, [suburb, osmData.linz[linzId]]],
+
+    // FIXME: make this simply remove the tags from buildings (new cat. Non trivial just means a business)
+    [Status.NEEDS_DELETE_NON_TRIVIAL]: normal.filter(([linzId]) =>
+      isNonTrivial(osmData.linz[linzId]),
     ),
   };
   return [ret, removeFromCreate];

@@ -107,6 +107,41 @@
         "ref:linz:address_id": "stack(70123-70125)",
         "building:flats": "3"
       }
+    },
+    {
+      "type": "Feature",
+      "id": "SPECIAL_EDIT_70129old",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              175.127,
+              -36.9001333
+            ],
+            [
+              175.12720000000002,
+              -36.9003333
+            ],
+            [
+              175.127,
+              -36.9005333
+            ],
+            [
+              175.1268,
+              -36.9003333
+            ],
+            [
+              175.127,
+              -36.9001333
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__osmId": "w129",
+        "ref:linz:address_id": "70129new"
+      }
     }
   ]
 }
