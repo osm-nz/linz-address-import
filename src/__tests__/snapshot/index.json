@@ -138,16 +138,16 @@
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateOakleigh_4b67jq.geo.json",
       "name": "Address Update - Oakleigh",
       "title": "Address Update - Oakleigh",
-      "totalCount": 41,
+      "totalCount": 42,
       "source": "",
-      "snippet": "add 9, delete 10, edit 22",
+      "snippet": "add 10, delete 10, edit 22",
       "extent": [
         [
           174.90380000000002,
           -36.9022
         ],
         [
-          175.12220000000002,
+          175.129,
           -35.9998
         ]
       ],

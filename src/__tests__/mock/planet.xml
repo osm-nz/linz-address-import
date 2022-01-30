@@ -202,7 +202,7 @@
   <node id="28" version="1" changeset="1" lat="-36.9" lon="174.931" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z" />
   <node id="29" version="1" changeset="1" lat="-36.901" lon="174.931" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z" />
   <node id="30" version="1" changeset="1" lat="-36.9" lon="174.9315" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z" />
-  <!-- THE WAY IS DEFINED AT THE END OF THE FILE -->
+  <!-- THE WAY (31) IS DEFINED AT THE END OF THE FILE -->
 
   <!-- for consistency, 32-34 Example Street do not exist -->
 
@@ -210,7 +210,7 @@
   <node id="32" version="1" changeset="1" lat="-36.9" lon="174.935" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z" />
   <node id="33" version="1" changeset="1" lat="-36.901" lon="174.935" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z" />
   <node id="34" version="1" changeset="1" lat="-36.9" lon="174.9355" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z" />
-  <!-- THE WAY IS DEFINED AT THE END OF THE FILE -->
+  <!-- THE WAY (35) IS DEFINED AT THE END OF THE FILE -->
 
   <!-- node with name= not in LINZ so it will be deleted -->
   <node id="36" version="1" changeset="1" lat="-36.9" lon="174.936" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
@@ -608,6 +608,14 @@
     <tag k="ref:linz:address_id" v="THE_OLD_ID" />
   </node>
 
+  <!-- on a building, the LINZ ref has changed, so we will update the building -->
+  <node id="126" version="1" changeset="1" lat="-36.9" lon="175.126" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z" />
+  <node id="127" version="1" changeset="1" lat="-36.901" lon="175.127" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z" />
+  <node id="128" version="1" changeset="1" lat="-36.9" lon="175.128" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z" />
+  <!-- THE WAY (129) IS DEFINED AT THE END OF THE FILE -->
+
+  <!-- for consistency, 126-128 Example Street do not exist -->
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />
@@ -637,6 +645,18 @@
       <nd ref="51" />
       <nd ref="52" />
       <nd ref="53" /> <!-- closed way (area) so first node = last node -->
+    </way>
+
+    <way id="129" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+      <nd ref="126" />
+      <nd ref="127" />
+      <nd ref="128" />
+      <nd ref="126" /> <!-- closed way (area) so first node = last node -->
+      <tag k="building" v="mansion" />
+      <tag k="addr:housenumber" v="129" />
+      <tag k="addr:street" v="Example Street" />
+      <tag k="addr:hamlet" v="Oakleigh" />
+      <tag k="ref:linz:address_id" v="70129old" />
     </way>
   <!-- </ways> -->
 

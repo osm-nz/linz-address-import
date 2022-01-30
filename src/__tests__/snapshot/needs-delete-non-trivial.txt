@@ -4,3 +4,4 @@ Oakleigh
 70036		needs deleting but is on a building/business		https://osm.org/node/36
 70037		needs deleting but is on a building/business		https://osm.org/node/37
 70038		needs deleting but is on a building/business		https://osm.org/node/38
+70129old		needs deleting but is on a building/business		https://osm.org/way/129
