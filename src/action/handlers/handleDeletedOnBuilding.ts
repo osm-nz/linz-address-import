@@ -33,16 +33,16 @@ export async function handleDeletedOnBuilding(
 
   const features: GeoJsonFeature[] = [];
 
-  for (const [linzId, [, osmAddr]] of arr) {
+  for (const [, [, osmAddr]] of arr) {
     features.push({
       type: 'Feature',
-      id: `SPECIAL_EDIT_${linzId}`,
+      id: osmAddr.osmId,
       geometry: {
         type: 'Polygon',
         coordinates: createDiamond(osmAddr),
       },
       properties: {
-        __osmId: osmAddr.osmId,
+        __action: 'edit',
 
         // delete all address-related tags
         'addr:housenumber': '🗑️',

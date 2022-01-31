@@ -10,14 +10,19 @@ export function calcCount(features: GeoJsonFeature[]): {
   let edit = 0;
 
   for (const f of features) {
-    if (f.id?.startsWith('SPECIAL_DELETE_')) {
-      minus += 1;
-    } else if (f.id?.startsWith('LOCATION_WRONG_SPECIAL_')) {
-      move += 1;
-    } else if (f.id.startsWith('SPECIAL_EDIT_')) {
-      edit += 1;
-    } else {
-      plus += 1;
+    // eslint-disable-next-line no-underscore-dangle
+    switch (f.properties.__action) {
+      case 'delete':
+        minus += 1;
+        break;
+      case 'move':
+        move += 1;
+        break;
+      case 'edit':
+        edit += 1;
+        break;
+      default:
+        plus += 1;
     }
   }
 

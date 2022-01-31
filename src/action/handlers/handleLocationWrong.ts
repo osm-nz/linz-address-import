@@ -22,7 +22,7 @@ export async function handleLocationWrong(
 
     features.push({
       type: 'Feature',
-      id: `SPECIAL_MOVE_${linzId}`,
+      id: osmId,
       geometry: {
         type: 'LineString',
         coordinates: [
@@ -31,8 +31,7 @@ export async function handleLocationWrong(
         ],
       },
       properties: {
-        __osmId: osmId,
-        'ref:linz:address_id': linzId,
+        __action: 'move',
       },
     });
   }

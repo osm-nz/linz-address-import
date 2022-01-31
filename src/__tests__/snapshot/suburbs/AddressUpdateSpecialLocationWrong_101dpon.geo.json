@@ -3,7 +3,7 @@
   "features": [
     {
       "type": "Feature",
-      "id": "SPECIAL_MOVE_70003",
+      "id": "n3",
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -18,13 +18,12 @@
         ]
       },
       "properties": {
-        "__osmId": "n3",
-        "ref:linz:address_id": "70003"
+        "__action": "move"
       }
     },
     {
       "type": "Feature",
-      "id": "SPECIAL_MOVE_70042",
+      "id": "n42",
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -39,8 +38,7 @@
         ]
       },
       "properties": {
-        "__osmId": "n42",
-        "ref:linz:address_id": "70042"
+        "__action": "move"
       }
     }
   ]

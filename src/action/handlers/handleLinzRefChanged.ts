@@ -34,16 +34,16 @@ export async function handleLinzRefChanged(
 
   const features: GeoJsonFeature[] = [];
 
-  for (const [oldLinzId, [, newLinzId, osmData, linzData]] of arr) {
+  for (const [, [, newLinzId, osmData, linzData]] of arr) {
     features.push({
       type: 'Feature',
-      id: `SPECIAL_EDIT_${oldLinzId}`,
+      id: osmData.osmId,
       geometry: {
         type: 'Polygon',
         coordinates: createDiamond(osmData),
       },
       properties: {
-        __osmId: osmData.osmId,
+        __action: 'edit',
         'ref:linz:address_id': newLinzId,
         // if an address gets subdivided, add the building:flats tag at the same
         // time as the ID changes into a stack

@@ -8,10 +8,10 @@ Other tools can generate files in the same format. Users can add their own osmPa
 {
   "type": "FeatureCollection",
   "features": [
-    // 1️⃣ to add a feature, the `id` should not start with `SPECIAL_`
+    // 1️⃣ to add a feature, do not specify the `__action` property
     {
       "type": "Feature",
-      "id": "70103",
+      "id": "abc", // for create, you don't specify an OSM ID, so this ID is just any unique string.
       "geometry": {
         // these geometrys are allowed: Point, LineString, Polygon, MulitPolygon
         // MultiPoint and MultiLineString are not supported.
@@ -19,7 +19,7 @@ Other tools can generate files in the same format. Users can add their own osmPa
         "coordinates": [175.103, -36.9]
       },
       "properties": {
-        // you do not specify __osmId here, since you are creating a new feature
+        // you do not specify __action here, since you are creating a new feature
 
         // specify the tags to add here.
         "amenity": "theatre"
@@ -28,12 +28,11 @@ Other tools can generate files in the same format. Users can add their own osmPa
       }
     },
 
-    // 2️⃣ to edit a feature, the `id` should start with `SPECIAL_EDIT_`
-    //    You can only edit the tags, not the geometry (although you can
-    //    move nodes, see example 3).
+    // 2️⃣ to edit a feature, set `__action` to `edit`. You can only edit the tags,
+    //    not the geometry (although you can move nodes, see example 3).
     {
       "type": "Feature",
-      "id": "SPECIAL_EDIT_123",
+      "id": "r123", // required - the OSM id of the feature
       "geometry": {
         // approximate current geometry is required. It could be a centroid, or
         // one of the nodes of the way, or just a rough coordinate. Or a way.
@@ -47,7 +46,7 @@ Other tools can generate files in the same format. Users can add their own osmPa
         ]
       },
       "properties": {
-        "__osmId": "r123",
+        "__action": "edit", // required
 
         // any OSM tags to add/change go here. See the section about "Tags" below
         "amenity": "theatre",
@@ -55,13 +54,13 @@ Other tools can generate files in the same format. Users can add their own osmPa
       }
     },
 
-    // 3️⃣ to move a node, the `id` should start with `SPECIAL_MOVE_`
+    // 3️⃣ to move a node, set `__action` to `move`.
     //    It's geometry must be a LineString with two points, the first
     //    point is the current location, and the second point is the new
     //    location. Only works for nodes.
     {
       "type": "Feature",
-      "id": "SPECIAL_MOVE_124",
+      "id": "n124", // required - the OSM id of the feature
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -70,17 +69,17 @@ Other tools can generate files in the same format. Users can add their own osmPa
         ]
       },
       "properties": {
-        "__osmId": "n124" // required
+        "__action": "move" // required
 
         // You can't change tags at the same time as moving a feautre. Thus,
         // there is no point in putting tags here, but you can. The system doesn't care.
       }
     },
 
-    // 4️⃣ To delete a feature, the `id` should start with `SPECIAL_EDIT_`
+    // 4️⃣ To delete a feature, set `__action` to `delete`.
     {
       "type": "Feature",
-      "id": "SPECIAL_DELETE_125",
+      "id": "w125", // required - the OSM id of the feature
       "geometry": {
         // approximate current geometry is required. It could be a centroid, or
         // one of the nodes of the way, or just a rough coordinate. Or a way.
@@ -89,7 +88,7 @@ Other tools can generate files in the same format. Users can add their own osmPa
         "coordinates": [174.922, -36.9]
       },
       "properties": {
-        "__osmId": "w125" // required
+        "__action": "delete" // required
 
         // there is no point in putting tags here, but you can. The system doesn't care.
       }
@@ -100,10 +99,10 @@ Other tools can generate files in the same format. Users can add their own osmPa
 
 # Tags
 
-The `properties` of a geojson item must contain `__osmId`, unless you are creating a new feature. All other `properties` are OSM tags.
+The `properties` of a geojson item must contain `__action`, unless you are creating a new feature. All other `properties` are OSM tags.
 
 However, the tags are a **diff**. This means:
 
-1. Any specified tags will override the tag if it exists, or add the tag if it doesn't exist
-2. Any tags that exist on the OSM feature, but not in `properties` will be retained
+1. Any tags specified in the patch file will override the tag if it exists on the OSM feature, or add the tag if it doesn't exist.
+2. Any tags that exist on the OSM feature, but not in `properties` will be retained.
 3. To remove a tag, set the value to `🗑️`

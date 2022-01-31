@@ -36,13 +36,13 @@ export async function handleExistsButNoLinzRef(
 
       features.push({
         type: 'Feature',
-        id: `SPECIAL_EDIT_${linzId}`,
+        id: osmData.osmId,
         geometry: {
           type: 'Polygon',
           coordinates: createDiamond(osmData),
         },
         properties: {
-          __osmId: osmData.osmId,
+          __action: 'edit',
           'ref:linz:address_id': linzId,
           // chances are if the ref is missing, so is the suburb/hamlet. so we may as well add it now.
           'addr:suburb': suburbType === 'U' ? suburb : undefined,

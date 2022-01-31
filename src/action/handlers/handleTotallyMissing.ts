@@ -65,13 +65,15 @@ export async function handleTotallyMissing(
       ([linzId, addr]) => {
         return {
           type: 'Feature',
-          id: (addr.osmId ? 'SPECIAL_DELETE_' : '') + linzId,
+          // for deletes, the osmId will exist. For creates, the ID is irrelevant, so it's the linzId
+          id: addr.osmId || linzId,
           geometry: {
             type: 'Point',
             coordinates: [addr.lng, addr.lat],
           },
           properties: {
-            __osmId: addr.osmId, // won't exist for create, only delete
+            __action: addr.osmId && 'delete',
+
             'addr:housenumber': addr.housenumber,
             'addr:street': addr.street,
             'addr:suburb': addr.suburb[0] === 'U' ? addr.suburb[1] : undefined,

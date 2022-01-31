@@ -3,7 +3,7 @@
   "features": [
     {
       "type": "Feature",
-      "id": "SPECIAL_DELETE_70049doesntExist",
+      "id": "n49",
       "geometry": {
         "type": "Point",
         "coordinates": [
@@ -12,7 +12,7 @@
         ]
       },
       "properties": {
-        "__osmId": "n49",
+        "__action": "delete",
         "ref:linz:address_id": "70049doesntExist"
       }
     }

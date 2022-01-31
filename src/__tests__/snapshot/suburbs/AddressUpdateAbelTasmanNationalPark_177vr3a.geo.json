@@ -3,7 +3,7 @@
   "features": [
     {
       "type": "Feature",
-      "id": "SPECIAL_EDIT_70059",
+      "id": "n59",
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -32,7 +32,7 @@
         ]
       },
       "properties": {
-        "__osmId": "n59",
+        "__action": "edit",
         "ref:linz:address_id": "70059",
         "addr:type": "water"
       }

@@ -3,7 +3,7 @@
   "features": [
     {
       "type": "Feature",
-      "id": "SPECIAL_EDIT_70110",
+      "id": "n110",
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -32,7 +32,7 @@
         ]
       },
       "properties": {
-        "__osmId": "n110",
+        "__action": "edit",
         "ref:linz:address_id": "70110",
         "addr:hamlet": "Ōpōtiki"
       }
