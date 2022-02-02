@@ -699,6 +699,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'id',
     sourceLayer: '51572',
     size: 'small',
+    complete: true,
     tagging(data) {
       return {
         landuse: 'meadow',
@@ -817,6 +818,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '50280',
     size: 'medium',
+    complete: true,
     instructions: geoNamesInstructions,
     tagging(data) {
       return {

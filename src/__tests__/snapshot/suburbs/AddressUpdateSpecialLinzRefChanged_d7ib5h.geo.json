@@ -1,15 +1,9 @@
 {
   "type": "FeatureCollection",
-  "crs": {
-    "type": "name",
-    "properties": {
-      "name": "EPSG:4326"
-    }
-  },
   "features": [
     {
       "type": "Feature",
-      "id": "SPECIAL_EDIT_70039old",
+      "id": "n39",
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -38,13 +32,13 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70039old",
-        "new_linz_ref": "70039new"
+        "__action": "edit",
+        "ref:linz:address_id": "70039new"
       }
     },
     {
       "type": "Feature",
-      "id": "SPECIAL_EDIT_stack(70072-70075)",
+      "id": "n72",
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -73,14 +67,14 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_stack(70072-70075)",
-        "new_linz_ref": "stack(70072,70074-70075)",
+        "__action": "edit",
+        "ref:linz:address_id": "stack(70072,70074-70075)",
         "building:flats": "3"
       }
     },
     {
       "type": "Feature",
-      "id": "SPECIAL_EDIT_THE_OLD_ID",
+      "id": "n125",
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -109,9 +103,85 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_THE_OLD_ID",
-        "new_linz_ref": "stack(70123-70125)",
+        "__action": "edit",
+        "ref:linz:address_id": "stack(70123-70125)",
         "building:flats": "3"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "w129",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              175.127,
+              -36.9001333
+            ],
+            [
+              175.12720000000002,
+              -36.9003333
+            ],
+            [
+              175.127,
+              -36.9005333
+            ],
+            [
+              175.1268,
+              -36.9003333
+            ],
+            [
+              175.127,
+              -36.9001333
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "ref:linz:address_id": "70129new"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "w35",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.9351667,
+              -36.9001333
+            ],
+            [
+              174.9353667,
+              -36.9003333
+            ],
+            [
+              174.9351667,
+              -36.9005333
+            ],
+            [
+              174.9349667,
+              -36.9003333
+            ],
+            [
+              174.9351667,
+              -36.9001333
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "addr:housenumber": "🗑️",
+        "addr:street": "🗑️",
+        "addr:suburb": "🗑️",
+        "addr:hamlet": "🗑️",
+        "addr:type": "🗑️",
+        "ref:linz:address_id": "🗑️",
+        "building:flats": "🗑️"
       }
     }
   ]

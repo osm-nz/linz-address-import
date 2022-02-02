@@ -10,7 +10,7 @@ const isTruthy = <T>(x: T | undefined | false | null | 0): x is T => !!x;
 /** swap suburb <=> hamlet */
 const inverse = (linz: string) => {
   const [k, v] = linz.split('=');
-  const swappedK = k === 'addr_hamlet' ? 'addr_suburb' : 'addr_hamlet';
+  const swappedK = k === 'addr:hamlet' ? 'addr:suburb' : 'addr:hamlet';
   return [swappedK, v].join('=');
 };
 
@@ -22,10 +22,10 @@ export function processWithRef(
   if (osmAddr.checked) return { status: Status.PERFECT };
 
   const linzSuburb = `${
-    linzAddr.suburb[0] === 'U' ? 'addr_suburb' : 'addr_hamlet'
+    linzAddr.suburb[0] === 'U' ? 'addr:suburb' : 'addr:hamlet'
   }=${linzAddr.suburb[1]}`;
   const osmSuburb = osmAddr.suburb
-    ? `${osmAddr.suburb[0] === 'U' ? 'addr_suburb' : 'addr_hamlet'}=${
+    ? `${osmAddr.suburb[0] === 'U' ? 'addr:suburb' : 'addr:hamlet'}=${
         osmAddr.suburb[1]
       }`
     : 0;

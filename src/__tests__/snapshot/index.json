@@ -1,62 +1,5 @@
 {
-  "fields": [
-    {
-      "name": "addr_housenumber",
-      "type": "esriFieldTypeString",
-      "alias": "addr:housenumber",
-      "length": 10,
-      "editable": true
-    },
-    {
-      "name": "addr_street",
-      "type": "esriFieldTypeString",
-      "alias": "addr:street",
-      "length": 50,
-      "editable": true
-    },
-    {
-      "name": "addr_suburb",
-      "type": "esriFieldTypeString",
-      "alias": "addr:suburb",
-      "length": 50,
-      "editable": true
-    },
-    {
-      "name": "addr_hamlet",
-      "type": "esriFieldTypeString",
-      "alias": "addr:hamlet",
-      "length": 2,
-      "editable": true
-    },
-    {
-      "name": "addr_type",
-      "type": "esriFieldTypeString",
-      "alias": "addr:type",
-      "length": 2,
-      "editable": true
-    },
-    {
-      "name": "new_linz_ref",
-      "type": "esriFieldTypeString",
-      "alias": "new_linz_ref",
-      "length": 2,
-      "editable": true
-    },
-    {
-      "name": "osm_id",
-      "type": "esriFieldTypeString",
-      "alias": "osm_id",
-      "length": 2,
-      "editable": true
-    },
-    {
-      "name": "ref_linz_address",
-      "type": "esriFieldTypeOID",
-      "alias": "ref:linz:address_id",
-      "length": 10,
-      "editable": true
-    }
-  ],
+  "fields": [],
   "results": [
     {
       "id": "AddressUpdateAbelTasmanNationalPark_177vr3a",
@@ -76,7 +19,6 @@
           -36.899800000000006
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -91,15 +33,14 @@
       "snippet": "delete 1",
       "extent": [
         [
-          174.949,
-          -36.900000000000006
+          174.9489,
+          -36.90010000000001
         ],
         [
-          174.949,
-          -36.900000000000006
+          174.94910000000002,
+          -36.8999
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -122,7 +63,6 @@
           -35
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -145,7 +85,6 @@
           -36.9
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -168,7 +107,6 @@
           -36.9
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -191,7 +129,6 @@
           -36.9
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -214,7 +151,6 @@
           -35.9998
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -237,7 +173,6 @@
           -36.899800000000006
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -260,7 +195,6 @@
           -36.9
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -270,20 +204,19 @@
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateSpecialLinzRefChanged_d7ib5h.geo.json",
       "name": "Address Update - Special Linz Ref Changed",
       "title": "Address Update - Special Linz Ref Changed",
-      "totalCount": 3,
+      "totalCount": 5,
       "source": "",
-      "snippet": "edit 3",
+      "snippet": "edit 5",
       "extent": [
         [
-          174.93880000000001,
-          -36.900200000000005
+          174.9349667,
+          -36.9005333
         ],
         [
-          175.1252,
+          175.12720000000002,
           -36.899800000000006
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -306,7 +239,6 @@
           -36
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -325,11 +257,10 @@
           -36.900200000000005
         ],
         [
-          174.964,
+          174.9641,
           -36.899800000000006
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -352,7 +283,6 @@
           -36.9
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]
@@ -375,7 +305,6 @@
           -36.9
         ]
       ],
-      "osmChangeAvailable": false,
       "groupCategories": [
         "/Categories/Addresses"
       ]

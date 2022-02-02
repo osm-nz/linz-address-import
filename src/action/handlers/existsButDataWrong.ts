@@ -37,13 +37,14 @@ export async function existsButDataWrong(
 
       features.push({
         type: 'Feature',
-        id: `SPECIAL_EDIT_${linzId}`,
+        id: osmData.osmId,
         geometry: {
           type: 'Polygon',
           coordinates: createDiamond(osmData),
         },
         properties: {
-          ref_linz_address: `SPECIAL_EDIT_${linzId}`,
+          __action: 'edit',
+          'ref:linz:address_id': linzId,
           ...fieldsToModify(issues),
         },
       });

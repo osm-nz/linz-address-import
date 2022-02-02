@@ -3,6 +3,7 @@ import { existsButDataWrong } from './existsButDataWrong';
 import { handleCorrupted } from './handleCorrupted';
 import { handleCouldBeStacked } from './handleCouldBeStacked';
 import { handleDeleted } from './handleDeleted';
+import { handleDeletedOnPOI } from './handleDeletedOnPOI';
 import { handleDeletedOnBuilding } from './handleDeletedOnBuilding';
 import { handleDuplicateLinzRef } from './handleDuplicateLinzRef';
 import { handleExistsButNoLinzRef } from './handleExistsButNoLinzRef';
@@ -26,8 +27,9 @@ export const handlers: Record<
   [Status.EXISTS_BUT_LOCATION_WRONG]: handleLocationWrong,
   [Status.TOTALLY_MISSING]: handleTotallyMissing,
   [Status.NEEDS_DELETE]: handleDeleted,
-  [Status.NEEDS_DELETE_NON_TRIVIAL]: handleDeletedOnBuilding,
+  [Status.NEEDS_DELETE_NON_TRIVIAL]: handleDeletedOnPOI,
   [Status.CORRUPT]: handleCorrupted,
   [Status.LINZ_REF_CHANGED]: handleLinzRefChanged,
   [Status.COULD_BE_STACKED]: handleCouldBeStacked,
+  [Status.NEEDS_DELETE_ON_BUILDING]: handleDeletedOnBuilding,
 };

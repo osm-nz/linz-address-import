@@ -1,11 +1,5 @@
 {
   "type": "FeatureCollection",
-  "crs": {
-    "type": "name",
-    "properties": {
-      "name": "EPSG:4326"
-    }
-  },
   "features": [
     {
       "type": "Feature",
@@ -18,10 +12,10 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "96",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Duplicate Tall Hamlet",
-        "ref_linz_address": "70096"
+        "addr:housenumber": "96",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Duplicate Tall Hamlet",
+        "ref:linz:address_id": "70096"
       }
     }
   ]

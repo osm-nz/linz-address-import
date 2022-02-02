@@ -1,11 +1,5 @@
 {
   "type": "FeatureCollection",
-  "crs": {
-    "type": "name",
-    "properties": {
-      "name": "EPSG:4326"
-    }
-  },
   "features": [
     {
       "type": "Feature",
@@ -18,10 +12,10 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "99",
-        "addr_street": "Example Street",
-        "addr_hamlet": "Duplicate Wide Hamlet",
-        "ref_linz_address": "70099"
+        "addr:housenumber": "99",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Duplicate Wide Hamlet",
+        "ref:linz:address_id": "70099"
       }
     }
   ]

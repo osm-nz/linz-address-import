@@ -1,24 +1,39 @@
 {
   "type": "FeatureCollection",
-  "crs": {
-    "type": "name",
-    "properties": {
-      "name": "EPSG:4326"
-    }
-  },
   "features": [
     {
       "type": "Feature",
-      "id": "70049doesntExist",
+      "id": "n49",
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
-          174.949,
-          -36.900000000000006
+          [
+            [
+              174.94910000000002,
+              -36.8999
+            ],
+            [
+              174.94910000000002,
+              -36.90010000000001
+            ],
+            [
+              174.9489,
+              -36.90010000000001
+            ],
+            [
+              174.9489,
+              -36.8999
+            ],
+            [
+              174.94910000000002,
+              -36.8999
+            ]
+          ]
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_DELETE_70049doesntExist"
+        "__action": "delete",
+        "ref:linz:address_id": "70049doesntExist"
       }
     }
   ]

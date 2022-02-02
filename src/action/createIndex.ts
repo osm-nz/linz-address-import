@@ -3,7 +3,7 @@ import { join } from 'path';
 import { GeoJson, HandlerReturnWithBBox } from '../types';
 import { calcCount, CDN_URL, mock, suburbsFolder } from './util';
 import { hash } from '../common';
-import { geoJsonToOSMChange } from './geoJsonToOSMChange';
+import { geoJsonToOSMChange, fetchOriginalFeatures } from './osmChange';
 
 function toId(suburb: string) {
   // macrons are url safe
@@ -17,76 +17,12 @@ export async function createIndex(
     suburb,
     bbox: v.bbox,
     instructions: v.instructions,
-    osmChangeAvailable:
-      // osmChange fails are not available for addresses, nor if there are edits/moves/deletes
-      !suburb.includes('Address Update') &&
-      !v.features.some((f) => f.id.startsWith('SPECIAL_')),
     ...calcCount(v.features),
   }));
 
   // create index.json
   const indexFile = {
-    // heritage - we could technically remove this. Requires updating geojson files too
-    fields: [
-      {
-        name: 'addr_housenumber',
-        type: 'esriFieldTypeString',
-        alias: 'addr:housenumber',
-        length: 10,
-        editable: true,
-      },
-      {
-        name: 'addr_street',
-        type: 'esriFieldTypeString',
-        alias: 'addr:street',
-        length: 50,
-        editable: true,
-      },
-      {
-        name: 'addr_suburb',
-        type: 'esriFieldTypeString',
-        alias: 'addr:suburb',
-        length: 50,
-        editable: true,
-      },
-      {
-        name: 'addr_hamlet',
-        type: 'esriFieldTypeString',
-        alias: 'addr:hamlet',
-        length: 2,
-        editable: true,
-      },
-      {
-        name: 'addr_type',
-        type: 'esriFieldTypeString',
-        alias: 'addr:type',
-        length: 2,
-        editable: true,
-      },
-      {
-        // symbolic, should NOT be added to the OSM graph
-        name: 'new_linz_ref',
-        type: 'esriFieldTypeString',
-        alias: 'new_linz_ref',
-        length: 2,
-        editable: true,
-      },
-      {
-        // symbolic, should NOT be added to the OSM graph
-        name: 'osm_id',
-        type: 'esriFieldTypeString',
-        alias: 'osm_id',
-        length: 2,
-        editable: true,
-      },
-      {
-        name: 'ref_linz_address',
-        type: 'esriFieldTypeOID',
-        alias: 'ref:linz:address_id',
-        length: 10,
-        editable: true,
-      },
-    ],
+    fields: [],
     results: meta
       .map((v) => {
         const title = v.suburb.replace('ZZ ', '').replace('Z ', '');
@@ -102,7 +38,6 @@ export async function createIndex(
             [v.bbox.minLng, v.bbox.minLat],
             [v.bbox.maxLng, v.bbox.maxLat],
           ],
-          osmChangeAvailable: v.osmChangeAvailable,
           instructions: v.instructions,
           groupCategories: [
             v.suburb.startsWith('ZZ')
@@ -118,12 +53,14 @@ export async function createIndex(
     JSON.stringify(indexFile, null, mock ? 2 : undefined),
   );
 
+  // once this func called, `geoJsonToOSMChange` function will have access to the data
+  if (false) await fetchOriginalFeatures(suburbs);
+
   // save each suburb
   for (const s of meta) {
-    const { suburb, osmChangeAvailable, count } = s;
+    const { suburb, count } = s;
     const geojson: GeoJson = {
       type: 'FeatureCollection',
-      crs: { type: 'name', properties: { name: 'EPSG:4326' } },
       features: suburbs[suburb].features,
     };
     await fs.writeFile(
@@ -131,7 +68,7 @@ export async function createIndex(
       JSON.stringify(geojson, null, mock ? 2 : undefined),
     );
 
-    if (osmChangeAvailable) {
+    if (false) {
       const { osmChange, tooBig } = geoJsonToOSMChange(geojson, suburb, count);
       await fs.writeFile(
         join(suburbsFolder, `${toId(suburb)}${tooBig ? '_tooBig' : ''}.osc`),

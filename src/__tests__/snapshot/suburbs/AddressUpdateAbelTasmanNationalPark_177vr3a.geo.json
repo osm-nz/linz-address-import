@@ -1,15 +1,9 @@
 {
   "type": "FeatureCollection",
-  "crs": {
-    "type": "name",
-    "properties": {
-      "name": "EPSG:4326"
-    }
-  },
   "features": [
     {
       "type": "Feature",
-      "id": "SPECIAL_EDIT_70059",
+      "id": "n59",
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -38,8 +32,9 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70059",
-        "addr_type": "water"
+        "__action": "edit",
+        "ref:linz:address_id": "70059",
+        "addr:type": "water"
       }
     },
     {
@@ -53,11 +48,11 @@
         ]
       },
       "properties": {
-        "addr_housenumber": "58",
-        "addr_street": "Awaroa Inlet",
-        "addr_hamlet": "Abel Tasman National Park",
-        "addr_type": "water",
-        "ref_linz_address": "70058"
+        "addr:housenumber": "58",
+        "addr:street": "Awaroa Inlet",
+        "addr:hamlet": "Abel Tasman National Park",
+        "addr:type": "water",
+        "ref:linz:address_id": "70058"
       }
     }
   ]

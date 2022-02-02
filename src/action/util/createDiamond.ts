@@ -20,3 +20,22 @@ export function createDiamond({
 
   return [diamond]; // only 1 ring since it's an area, not a multipolygon
 }
+
+/** generates a bbox around a point, but as a square not a diamond */
+export function createSquare({
+  lat,
+  lng,
+}: {
+  lat: number;
+  lng: number;
+}): [ring1: [lng: number, lat: number][]] {
+  const diamond: [lng: number, lat: number][] = [
+    [lng + RADIUS / 2, lat + RADIUS / 2], // top-right
+    [lng + RADIUS / 2, lat - RADIUS / 2], // top-left
+    [lng - RADIUS / 2, lat - RADIUS / 2], // bottom-left
+    [lng - RADIUS / 2, lat + RADIUS / 2], // bottom-right
+  ];
+  diamond.push(diamond[0]); // make it a closed way
+
+  return [diamond]; // only 1 ring since it's an area, not a multipolygon
+}

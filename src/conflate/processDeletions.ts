@@ -1,14 +1,10 @@
 import {
   DeletionData,
   LinzData,
-  OsmAddr,
   OSMData,
   Status,
   StatusReport,
 } from '../types';
-
-const isNonTrivial = (addr: OsmAddr) =>
-  addr.osmId[0] !== 'n' || addr.isNonTrivial;
 
 export function processDeletions(
   deletionData: DeletionData,
@@ -24,13 +20,6 @@ export function processDeletions(
     linzByKey[suburb][key] = linzId;
   }
 
-  const needsDeleteTrivial = deletionData.filter(
-    ([linzId]) => !isNonTrivial(osmData.linz[linzId]),
-  );
-  const needsDeleteNonTrivial = deletionData.filter(([linzId]) =>
-    isNonTrivial(osmData.linz[linzId]),
-  );
-
   /** keep track of a list of new linzRefs that we should remove from which ever status they're in */
   const removeFromCreate: string[] = [];
 
@@ -38,7 +27,7 @@ export function processDeletions(
   const normal: StatusReport[Status.NEEDS_DELETE] = [];
   const sus: StatusReport[Status.LINZ_REF_CHANGED] = [];
 
-  for (const item of needsDeleteTrivial) {
+  for (const item of deletionData) {
     const [linzRef, suburb] = item;
     const osmAddr = osmData.linz[linzRef]!;
 
@@ -65,10 +54,17 @@ export function processDeletions(
   }
 
   const ret: Partial<StatusReport> = {
-    [Status.NEEDS_DELETE]: normal,
+    [Status.NEEDS_DELETE]: normal.filter(
+      ([, [, osmAddr]]) => !osmAddr.isNonTrivial && osmAddr.osmId[0] === 'n',
+    ),
     [Status.LINZ_REF_CHANGED]: sus,
-    [Status.NEEDS_DELETE_NON_TRIVIAL]: needsDeleteNonTrivial.map(
-      ([linzId, suburb]) => [linzId, [suburb, osmData.linz[linzId]]],
+
+    [Status.NEEDS_DELETE_NON_TRIVIAL]: normal.filter(
+      ([, [, osmAddr]]) => osmAddr.isNonTrivial,
+    ),
+
+    [Status.NEEDS_DELETE_ON_BUILDING]: normal.filter(
+      ([, [, osmAddr]]) => !osmAddr.isNonTrivial && osmAddr.osmId[0] !== 'n',
     ),
   };
   return [ret, removeFromCreate];

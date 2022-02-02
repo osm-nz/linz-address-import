@@ -36,6 +36,7 @@ const includeIfWrong = (
 };
 
 /**
+ * @param code the 4 digit linz ref
  * @param linzMarker will be undefined if deleting this marker
  * @param osmMarker will be undefined if creating this marker
  */
@@ -63,10 +64,7 @@ const tagging = (
   }),
   ...((!osmMarker || osmMarker.needsWebsiteTag) &&
     linzMarker && {
-      website: `https://www.geodesy.linz.govt.nz/gdb?code=${code.replace(
-        'SPECIAL_EDIT_',
-        '',
-      )}`,
+      website: `https://www.geodesy.linz.govt.nz/gdb?code=${code}`,
     }),
 });
 
@@ -109,7 +107,7 @@ export async function conflate(
         // we are really picky about this
         move.push({
           type: 'Feature',
-          id: `LOCATION_WRONG_SPECIAL_${code}`,
+          id: osmMarker.osmId,
           geometry: {
             type: 'LineString',
             coordinates: [
@@ -117,14 +115,17 @@ export async function conflate(
               [linzMarker.lng, linzMarker.lat], // to
             ],
           },
-          properties: { ref: `LOCATION_WRONG_SPECIAL_${code}` }, // all other tags will be ignored anyway
+          properties: { __action: 'move' }, // all other tags will be ignored anyway
         });
       } else if (anyTagsWrong) {
         edit.push({
           type: 'Feature',
-          id: `SPECIAL_EDIT_${code}`,
+          id: osmMarker.osmId,
           geometry: { type: 'Polygon', coordinates: createDiamond(osmMarker) },
-          properties: tagging(`SPECIAL_EDIT_${code}`, linzMarker, osmMarker),
+          properties: {
+            __action: 'edit',
+            ...tagging(code, linzMarker, osmMarker),
+          },
         });
       } else {
         // exists in OSM, tags are perfect, location perfect. Nothing to do
@@ -160,12 +161,15 @@ export async function conflate(
       // LINZ has explicitly stated this marker is destroyed
       remove.push({
         type: 'Feature',
-        id: `SPECIAL_DELETE_${code}`,
+        id: osmMarker.osmId,
         geometry: {
           type: 'Point',
           coordinates: [osmMarker.lng, osmMarker.lat],
         },
-        properties: tagging(`SPECIAL_DELETE_${code}`, undefined, osmMarker),
+        properties: {
+          __action: 'delete',
+          ...tagging(code, undefined, osmMarker),
+        },
       });
     } else {
       // marker is NOT explicrtly marked as destroyed by LINZ
@@ -178,13 +182,12 @@ export async function conflate(
         // some tags on this pin need changing
         demote.push({
           type: 'Feature',
-          id: `SPECIAL_EDIT_${code}`,
+          id: osmMarker.osmId,
           geometry: { type: 'Polygon', coordinates: createDiamond(osmMarker) },
-          properties: tagging(
-            `SPECIAL_EDIT_${code}`,
-            out.linzMarker,
-            osmMarker,
-          ),
+          properties: {
+            __action: 'edit',
+            ...tagging(code, out.linzMarker, osmMarker),
+          },
         });
       } else {
         // nothing to do: the pin is mapped fine

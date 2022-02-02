@@ -3,3 +3,4 @@ Oakleigh
 70039old	->	70039new		https://osm.org/node/39
 stack(70072-70075)	->	stack(70072,70074-70075)		https://osm.org/node/72
 THE_OLD_ID	->	stack(70123-70125)		https://osm.org/node/125
+70129old	->	70129new		https://osm.org/way/129

@@ -54,6 +54,11 @@
       "description": "A unique ID used in the weekly street addresses update for New Zealand"
     },
     {
+      "key": "ref:linz:hydrographic_id",
+      "object_types": ["node", "way", "area", "relation"],
+      "description": "A unique ID used to conflate hydrographic data imported from LINZ"
+    },
+    {
       "key": "ref:linz:topo50_id",
       "object_types": ["node", "way", "area", "relation"],
       "description": "A unique ID used to conflate topographic data imported from LINZ"
@@ -67,6 +72,11 @@
       "key": "ref:linz:building_id",
       "object_types": ["area", "relation"],
       "description": "A unique ID used to conflate building outlines imported from LINZ"
+    },
+    {
+      "key": "ref:doc",
+      "object_types": ["node", "way", "area", "relation"],
+      "description": "A unique ID used to conflate campsites, huts, lodges, protected areas, and tracks imported from DOC"
     },
     {
       "key": "check_date",

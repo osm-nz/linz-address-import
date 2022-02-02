@@ -131,6 +131,7 @@ export enum Status {
   LINZ_REF_CHANGED = 11,
   // 12 has been repealed since it's now obsolete. It was UNKNOWN_ERROR
   COULD_BE_STACKED = 13,
+  NEEDS_DELETE_ON_BUILDING = 14,
 }
 
 export enum Confidence {
@@ -187,6 +188,7 @@ export type StatusDiagnostics = {
     linzData: LinzAddr,
   ];
   [Status.COULD_BE_STACKED]: CouldStackData[string];
+  [Status.NEEDS_DELETE_ON_BUILDING]: [suburb: string, osmData: OsmAddr];
 };
 
 export type StatusReport = {
@@ -228,7 +230,6 @@ export type GeoJsonFeature = {
 };
 export type GeoJson = {
   type: 'FeatureCollection';
-  crs: { type: 'name'; properties: { name: 'EPSG:4326' } };
   features: GeoJsonFeature[];
 };
 

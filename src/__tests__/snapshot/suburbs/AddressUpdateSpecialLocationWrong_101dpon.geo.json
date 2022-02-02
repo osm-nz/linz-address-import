@@ -1,15 +1,9 @@
 {
   "type": "FeatureCollection",
-  "crs": {
-    "type": "name",
-    "properties": {
-      "name": "EPSG:4326"
-    }
-  },
   "features": [
     {
       "type": "Feature",
-      "id": "70003",
+      "id": "n3",
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -24,12 +18,12 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "LOCATION_WRONG_SPECIAL_70003"
+        "__action": "move"
       }
     },
     {
       "type": "Feature",
-      "id": "70042",
+      "id": "n42",
       "geometry": {
         "type": "LineString",
         "coordinates": [
@@ -44,7 +38,7 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "LOCATION_WRONG_SPECIAL_70042"
+        "__action": "move"
       }
     }
   ]

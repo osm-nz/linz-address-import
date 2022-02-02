@@ -10,7 +10,7 @@ export const outFolder = join(
 );
 export const suburbsFolder = join(outFolder, './suburbs');
 
-const MAP = {
+export const MAP = <const>{
   n: 'node',
   w: 'way',
   r: 'relation',

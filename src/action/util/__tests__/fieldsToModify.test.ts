@@ -3,18 +3,18 @@ import { fieldsToModify } from '../fieldsToModify';
 describe('fieldsToModify', () => {
   it.each`
     issues                                              | output
-    ${['street|Right Street|Wrong Street']}             | ${{ addr_street: 'Right Street' }}
-    ${['housenumber|12|12typo']}                        | ${{ addr_housenumber: '12' }}
-    ${['water|1|0']}                                    | ${{ addr_type: 'water' }}
-    ${['water|0|1']}                                    | ${{ addr_type: '🗑️' }}
+    ${['street|Right Street|Wrong Street']}             | ${{ 'addr:street': 'Right Street' }}
+    ${['housenumber|12|12typo']}                        | ${{ 'addr:housenumber': '12' }}
+    ${['water|1|0']}                                    | ${{ 'addr:type': 'water' }}
+    ${['water|0|1']}                                    | ${{ 'addr:type': '🗑️' }}
     ${[]}                                               | ${{}}
-    ${['suburb|addr_hamlet=my town|0']}                 | ${{ addr_hamlet: 'my town' }}
-    ${['suburb|addr_hamlet=my town|addr_suburb=wrong']} | ${{ addr_hamlet: 'my town', addr_suburb: '🗑️' }}
-    ${['suburb|addr_hamlet=my town|addr_hamlet=wrong']} | ${{ addr_hamlet: 'my town' }}
-    ${['suburb|addr_suburb=city|addr_suburb=wrong']}    | ${{ addr_suburb: 'city' }}
-    ${['suburb|addr_suburb=city|addr_hamlet=city']}     | ${{ addr_suburb: 'city', addr_hamlet: '🗑️' }}
-    ${['suburb|addr_hamlet=rural|addr_suburb=rural']}   | ${{ addr_suburb: '🗑️', addr_hamlet: 'rural' }}
-    ${['street|A Street|B Street', 'housenumber|1|2']}  | ${{ addr_housenumber: '1', addr_street: 'A Street' }}
+    ${['suburb|addr:hamlet=my town|0']}                 | ${{ 'addr:hamlet': 'my town' }}
+    ${['suburb|addr:hamlet=my town|addr:suburb=wrong']} | ${{ 'addr:hamlet': 'my town', 'addr:suburb': '🗑️' }}
+    ${['suburb|addr:hamlet=my town|addr:hamlet=wrong']} | ${{ 'addr:hamlet': 'my town' }}
+    ${['suburb|addr:suburb=city|addr:suburb=wrong']}    | ${{ 'addr:suburb': 'city' }}
+    ${['suburb|addr:suburb=city|addr:hamlet=city']}     | ${{ 'addr:suburb': 'city', 'addr:hamlet': '🗑️' }}
+    ${['suburb|addr:hamlet=rural|addr:suburb=rural']}   | ${{ 'addr:suburb': '🗑️', 'addr:hamlet': 'rural' }}
+    ${['street|A Street|B Street', 'housenumber|1|2']}  | ${{ 'addr:housenumber': '1', 'addr:street': 'A Street' }}
   `('creates the correct out for $issues', ({ issues, output }) => {
     expect(fieldsToModify(issues)).toStrictEqual(output);
   });

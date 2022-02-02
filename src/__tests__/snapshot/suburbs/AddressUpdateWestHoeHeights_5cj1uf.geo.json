@@ -1,15 +1,9 @@
 {
   "type": "FeatureCollection",
-  "crs": {
-    "type": "name",
-    "properties": {
-      "name": "EPSG:4326"
-    }
-  },
   "features": [
     {
       "type": "Feature",
-      "id": "SPECIAL_EDIT_70019",
+      "id": "n19",
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -38,14 +32,15 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70019",
-        "addr_hamlet": "🗑️",
-        "addr_suburb": "West Hoe Heights"
+        "__action": "edit",
+        "ref:linz:address_id": "70019",
+        "addr:hamlet": "🗑️",
+        "addr:suburb": "West Hoe Heights"
       }
     },
     {
       "type": "Feature",
-      "id": "SPECIAL_EDIT_70045",
+      "id": "n45",
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -74,14 +69,15 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70045",
-        "addr_hamlet": "🗑️",
-        "addr_suburb": "West Hoe Heights"
+        "__action": "edit",
+        "ref:linz:address_id": "70045",
+        "addr:hamlet": "🗑️",
+        "addr:suburb": "West Hoe Heights"
       }
     },
     {
       "type": "Feature",
-      "id": "SPECIAL_EDIT_70047",
+      "id": "n47",
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -110,26 +106,48 @@
         ]
       },
       "properties": {
-        "ref_linz_address": "SPECIAL_EDIT_70047",
-        "addr_hamlet": "🗑️",
-        "addr_suburb": "West Hoe Heights"
+        "__action": "edit",
+        "ref:linz:address_id": "70047",
+        "addr:hamlet": "🗑️",
+        "addr:suburb": "West Hoe Heights"
       }
     },
     {
       "type": "Feature",
-      "id": "70064",
+      "id": "n64",
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
-          174.964,
-          -36.900000000000006
+          [
+            [
+              174.9641,
+              -36.8999
+            ],
+            [
+              174.9641,
+              -36.90010000000001
+            ],
+            [
+              174.9639,
+              -36.90010000000001
+            ],
+            [
+              174.9639,
+              -36.8999
+            ],
+            [
+              174.9641,
+              -36.8999
+            ]
+          ]
         ]
       },
       "properties": {
-        "addr_housenumber": "64",
-        "addr_street": "Example Street",
-        "addr_suburb": "West Hoe Heights",
-        "ref_linz_address": "SPECIAL_DELETE_70064"
+        "__action": "delete",
+        "addr:housenumber": "64",
+        "addr:street": "Example Street",
+        "addr:suburb": "West Hoe Heights",
+        "ref:linz:address_id": "70064"
       }
     }
   ]
