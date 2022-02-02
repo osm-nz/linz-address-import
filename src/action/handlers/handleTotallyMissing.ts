@@ -7,6 +7,7 @@ import {
   Status,
   StatusReport,
 } from '../../types';
+import { createSquare } from '../util';
 
 type BySuburb = {
   [suburb: string]: [
@@ -67,10 +68,9 @@ export async function handleTotallyMissing(
           type: 'Feature',
           // for deletes, the osmId will exist. For creates, the ID is irrelevant, so it's the linzId
           id: addr.osmId || linzId,
-          geometry: {
-            type: 'Point',
-            coordinates: [addr.lng, addr.lat],
-          },
+          geometry: addr.osmId
+            ? { type: 'Polygon', coordinates: createSquare(addr) }
+            : { type: 'Point', coordinates: [addr.lng, addr.lat] },
           properties: {
             __action: addr.osmId && 'delete',
 
