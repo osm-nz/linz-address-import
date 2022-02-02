@@ -73,7 +73,11 @@ export type LinzSourceAddress = {
   // https://git.nzoss.org.nz/ewblen/osmlinzaddr/-/blob/master/import-xref.sql#L156-166
 
   address_id: string;
-  full_address_number: string;
+
+  unit_value: string;
+  address_number: string;
+  address_number_suffix: string;
+
   full_road_name: string;
   /** e.g. `Shelly Park` */
   suburb_locality: string;
@@ -91,9 +95,7 @@ export type LinzSourceAddress = {
   address_type: 'Road' | 'Water';
   /** @deprecated */ WKT: string;
   /** @deprecated */ change_id: string;
-  /** @deprecated */ unit_value: string;
-  /** @deprecated */ address_number: string;
-  /** @deprecated */ address_number_suffix: string;
+  /** @deprecated */ full_address_number: string;
   /** @deprecated */ address_number_high: string;
   /** @deprecated */ water_route_name: string;
   /** @deprecated */ full_address: string;

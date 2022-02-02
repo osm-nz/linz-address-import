@@ -1,55 +1,55 @@
 ﻿WKT,address_id,change_id,address_type,unit_value,address_number,address_number_suffix,address_number_high,water_route_name,water_name,suburb_locality,town_city,full_address_number,full_road_name,full_address,road_section_id,gd2000_xcoord,gd2000_ycoord,water_route_name_ascii,water_name_ascii,suburb_locality_ascii,town_city_ascii,full_road_name_ascii,full_address_ascii,shape_X,shape_Y
-,70001,,Road,,,,,,,Oakleigh,,1,Example Street,,,,,,,,,,,174.901,-36.9
-,70002,,Road,,,,,,,Oakleigh,,2,Example Street,,,,,,,,,,,174.902,-36.9
-,70003,,Road,,,,,,,Oakleigh,,3,Example Street,,,,,,,,,,,174.903,-36.9
-,70004,,Road,,,,,,,Oakleigh,,4A,Example Street,,,,,,,,,,,174.904,-36.9
-,70004B,,Road,,,,,,,Oakleigh,,4B,Example Street,,,,,,,,,,,174.9045,-36.9
-,70005,,Road,,,,,,,Oakleigh,,5,Example Street,,,,,,,,,,,174.905,-36.9
-,70006,,Road,,,,,,,Oakleigh,,6,Example Street,,,,,,,,,,,174.906,-36.9
-,70007,,Road,,,,,,,Oakleigh,,7,Example Street,,,,,,,,,,,174.907,-36.9
-,70008,,Road,,,,,,,Oakleigh,,8,Example Street,,,,,,,,,,,174.908,-36.9
-,70009,,Road,,,,,,,Oakleigh,,9,Example Street,,,,,,,,,,,174.909,-36.9
-,70010,,Road,,,,,,,Oakleigh,,10,Example Street,,,,,,,,,,,174.91,-36.9
-,70011,,Road,,,,,,,Oakleigh,,11,Example Street,,,,,,,,,,,174.911,-36.9
-,70012,,Road,,,,,,,Oakleigh,,12,Example Street,,"note 13 is skipped. 14,16 only in delete list",,,,,,,,,174.912,-36.9
-,70018,,Road,,,,,,,Oakleigh,,18,Example Street,,,,,,,,,,,174.918,-36.9
-,70019,,Road,,,,,,,West Hoe Heights,Silverdale,19,Example Street,,"21,22,23 doesn’t exist",,,,,,,,,174.919,-36.9
-,70020,,Road,,,,,,,Oakleigh,,20,Example Street,,,,,,,,,,,174.92,-36.9
-,70023A,,Road,,,,,,,Oakleigh,,23A,Example Street,,,,,,,,,,,174.922,-36.9
-,70023B,,Road,,,,,,,Oakleigh,,23B,Example Street,,,,,,,,,,,174.923,-36.9
-,70024,,Road,,,,,,,Oakleigh,,24,Example Street,,25 doesn’t exist,,,,,,,,,174.924,-36.9
-,70026,,Road,,,,,,,Oakleigh,,26,Example Street,,"27,28,29,30 don't exist",,,,,,,,,174.926,-36.9
-,70031,,Road,,,,,,,Oakleigh,,31,Example Street,,"32,33,34,35,36,37,38 don't exist",,,,,,,,,174.931,-36.9
-,70039new,,Road,,,,,,,Oakleigh,,39,Example Street,,,,,,,,,,,174.939,-36.9
-,70040,,Road,,,,,,,Oakleigh,,40,Example Street,,,,,,,,,,,174.94,-36.9
-,70041,,Road,,,,,,,Oakleigh,,41,Example Street,,,,,,,,,,,174.941,-36.9
-,70042,,Road,,,,,,,Oakleigh,,42,Example Street,,,,,,,,,,,174.942,-36.9
-,70043,,Road,,,,,,,Oakleigh,,43,Example Street,,,,,,,,,,,174.943,-36.9
-,70044,,Road,,,,,,,Oakleigh,,44,Example Street,,,,,,,,,,,174.944,-36.9
-,70045,,Road,,,,,,,West Hoe Heights,Silverdale,45,Example Street,,,,,,,,,,,174.945,-36.9
-,70046,,Road,,,,,,,Oakleigh,,46,Example Street,,,,,,,,,,,174.946,-36.9
-,70047,,Road,,,,,,,West Hoe Heights,Silverdale,47,Example Street,,,,,,,,,,,174.947,-36.9
-,70048,,Road,,,,,,,Oakleigh,,48,Example Street,,"49,50,51,52,53 skipped",,,,,,,,,174.948,-36.9
-,70054,,Road,,,,,,,Oakleigh,,54,Example Street,,,,,,,,,,,174.954,-36.9
-,70055,,Road,,,,,,,Oakleigh,,55,Example Street,,,,,,,,,,,174.955,-36.9
-,70057,,Water,,,,,Awaroa Inlet,Abel Tasman National Park,,,57,Awaroa Inlet,,,,,,,,,,,174.957,-36.9
-,70058,,Water,,,,,Awaroa Inlet,Abel Tasman National Park,,,58,Awaroa Inlet,,,,,,,,,,,174.958,-36.9
-,70059,,Water,,,,,Awaroa Inlet,Abel Tasman National Park,,,59,Awaroa Inlet,,,,,,,,,,,174.959,-36.9
-,70060,,Road,,,,,,,Oakleigh,,60,Example Street,,,,,,,,,,,174.960,-36.9
-,70062,,Road,,,,,,,West Hoe Heights,Silverdale,62,Example Street,,,,,,,,,,,174.962,-36.9
-,70063,,Road,,,,,,,West Hoe Heights,Another Town,63,Example Street,,,,,,,,,,,174.963,-36.9
-,70065,,Road,,,,,,,Rangitāhua,,65,Example Street,,,,,,,,,,,183.965,-36.9
+,70001,,Road,,1,,,,,Oakleigh,,1,Example Street,,,,,,,,,,,174.901,-36.9
+,70002,,Road,,2,,,,,Oakleigh,,2,Example Street,,,,,,,,,,,174.902,-36.9
+,70003,,Road,,3,,,,,Oakleigh,,3,Example Street,,,,,,,,,,,174.903,-36.9
+,70004,,Road,,4,A,,,,Oakleigh,,4A,Example Street,,,,,,,,,,,174.904,-36.9
+,70004B,,Road,,4,B,,,,Oakleigh,,4B,Example Street,,,,,,,,,,,174.9045,-36.9
+,70005,,Road,,5,,,,,Oakleigh,,5,Example Street,,,,,,,,,,,174.905,-36.9
+,70006,,Road,,6,,,,,Oakleigh,,6,Example Street,,,,,,,,,,,174.906,-36.9
+,70007,,Road,,7,,,,,Oakleigh,,7,Example Street,,,,,,,,,,,174.907,-36.9
+,70008,,Road,,8,,,,,Oakleigh,,8,Example Street,,,,,,,,,,,174.908,-36.9
+,70009,,Road,,9,,,,,Oakleigh,,9,Example Street,,,,,,,,,,,174.909,-36.9
+,70010,,Road,,10,,,,,Oakleigh,,10,Example Street,,,,,,,,,,,174.91,-36.9
+,70011,,Road,,11,,,,,Oakleigh,,11,Example Street,,,,,,,,,,,174.911,-36.9
+,70012,,Road,,12,,,,,Oakleigh,,12,Example Street,,"note 13 is skipped. 14,16 only in delete list",,,,,,,,,174.912,-36.9
+,70018,,Road,,18,,,,,Oakleigh,,18,Example Street,,,,,,,,,,,174.918,-36.9
+,70019,,Road,,19,,,,,West Hoe Heights,Silverdale,19,Example Street,,"21,22,23 doesn’t exist",,,,,,,,,174.919,-36.9
+,70020,,Road,,20,,,,,Oakleigh,,20,Example Street,,,,,,,,,,,174.92,-36.9
+,70023A,,Road,,23,A,,,,Oakleigh,,23A,Example Street,,,,,,,,,,,174.922,-36.9
+,70023B,,Road,,23,B,,,,Oakleigh,,23B,Example Street,,,,,,,,,,,174.923,-36.9
+,70024,,Road,,24,,,,,Oakleigh,,24,Example Street,,25 doesn’t exist,,,,,,,,,174.924,-36.9
+,70026,,Road,,26,,,,,Oakleigh,,26,Example Street,,"27,28,29,30 don't exist",,,,,,,,,174.926,-36.9
+,70031,,Road,,31,,,,,Oakleigh,,31,Example Street,,"32,33,34,35,36,37,38 don't exist",,,,,,,,,174.931,-36.9
+,70039new,,Road,,39,,,,,Oakleigh,,39,Example Street,,,,,,,,,,,174.939,-36.9
+,70040,,Road,,40,,,,,Oakleigh,,40,Example Street,,,,,,,,,,,174.94,-36.9
+,70041,,Road,,41,,,,,Oakleigh,,41,Example Street,,,,,,,,,,,174.941,-36.9
+,70042,,Road,,42,,,,,Oakleigh,,42,Example Street,,,,,,,,,,,174.942,-36.9
+,70043,,Road,,43,,,,,Oakleigh,,43,Example Street,,,,,,,,,,,174.943,-36.9
+,70044,,Road,,44,,,,,Oakleigh,,44,Example Street,,,,,,,,,,,174.944,-36.9
+,70045,,Road,,45,,,,,West Hoe Heights,Silverdale,45,Example Street,,,,,,,,,,,174.945,-36.9
+,70046,,Road,,46,,,,,Oakleigh,,46,Example Street,,,,,,,,,,,174.946,-36.9
+,70047,,Road,,47,,,,,West Hoe Heights,Silverdale,47,Example Street,,,,,,,,,,,174.947,-36.9
+,70048,,Road,,48,,,,,Oakleigh,,48,Example Street,,"49,50,51,52,53 skipped",,,,,,,,,174.948,-36.9
+,70054,,Road,,54,,,,,Oakleigh,,54,Example Street,,,,,,,,,,,174.954,-36.9
+,70055,,Road,,55,,,,,Oakleigh,,55,Example Street,,,,,,,,,,,174.955,-36.9
+,70057,,Water,,57,,,Awaroa Inlet,Abel Tasman National Park,,,57,Awaroa Inlet,,,,,,,,,,,174.957,-36.9
+,70058,,Water,,58,,,Awaroa Inlet,Abel Tasman National Park,,,58,Awaroa Inlet,,,,,,,,,,,174.958,-36.9
+,70059,,Water,,59,,,Awaroa Inlet,Abel Tasman National Park,,,59,Awaroa Inlet,,,,,,,,,,,174.959,-36.9
+,70060,,Road,,60,,,,,Oakleigh,,60,Example Street,,,,,,,,,,,174.96,-36.9
+,70062,,Road,,62,,,,,West Hoe Heights,Silverdale,62,Example Street,,,,,,,,,,,174.962,-36.9
+,70063,,Road,,63,,,,,West Hoe Heights,Another Town,63,Example Street,,,,,,,,,,,174.963,-36.9
+,70065,,Road,,65,,,,,Rangitāhua,,65,Example Street,,,,,,,,,,,183.965,-36.9
 ,70066,,Road,,66,A,,,,Oakleigh,,66A,Example Street,,,,,,,,,,,174.966,-36.9
 ,70067,,Road,,66,B,,,,Oakleigh,,66B,Example Street,,,,,,,,,,,174.966,-36.9
 ,70068,,Road,,66,C,,,,Oakleigh,,66C,Example Street,,,,,,,,,,,174.966,-36.9
-,70069,,Road,,69,1,,,,Oakleigh,,1/69,Example Street,,,,,,,,,,,174.969,-36.9
-,70071,,Road,,69,3,,,,Oakleigh,,3/69,Example Street,,,,,,,,,,,174.969,-36.9
-,70072,,Road,,72,Flat 1,,,,Oakleigh,,"Flat 1, 72",Example Street,,,,,,,,,,,174.972,-36.9
-,70074,,Road,,72,Flat 3,,,,Oakleigh,,"Flat 3, 72",Example Street,,,,,,,,,,,174.972,-36.9
-,70075,,Road,,72,Flat 4,,,,Oakleigh,,"Flat 4, 72",Example Street,,,,,,,,,,,174.972,-36.9
-,70076,,Road,,76,Unit 1,,,,Oakleigh,,"Unit 1, 76",Example Street,,,,,,,,,,,174.976,-36.9
-,70077,,Road,,76,Unit 2,,,,Oakleigh,,"Unit 2, 76",Example Street,,,,,,,,,,,174.977,-36.9
-,70078,,Road,,76,Unit 3,,,,Oakleigh,,"Unit 3, 76",Example Street,,,,,,,,,,,174.978,-36.9
+,70069,,Road,1,69,,,,,Oakleigh,,1/69,Example Street,,,,,,,,,,,174.969,-36.9
+,70071,,Road,3,69,,,,,Oakleigh,,3/69,Example Street,,,,,,,,,,,174.969,-36.9
+,70072,,Road,1,72,,,,,Oakleigh,,"Flat 1, 72",Example Street,,,,,,,,,,,174.972,-36.9
+,70074,,Road,3,72,,,,,Oakleigh,,"Flat 3, 72",Example Street,,,,,,,,,,,174.972,-36.9
+,70075,,Road,4,72,,,,,Oakleigh,,"Flat 4, 72",Example Street,,,,,,,,,,,174.972,-36.9
+,70076,,Road,1,76,,,,,Oakleigh,,"Unit 1, 76",Example Street,,,,,,,,,,,174.976,-36.9
+,70077,,Road,2,76,,,,,Oakleigh,,"Unit 2, 76",Example Street,,,,,,,,,,,174.977,-36.9
+,70078,,Road,3,76,,,,,Oakleigh,,"Unit 3, 76",Example Street,,,,,,,,,,,174.978,-36.9
 ,70079,,Road,,79,A,,,,Oakleigh,,79A,Example Street,,,,,,,,,,,174.979,-36.9
 ,70080,,Road,,79,B,,,,Oakleigh,,79B,Example Street,,,,,,,,,,,174.979,-36.9
 ,70081,,Road,,79,C,,,,Oakleigh,,79C,Example Street,,,,,,,,,,,174.979,-36.9
@@ -63,28 +63,28 @@
 ,70093,,Road,,92,B,,,,Oakleigh,,92B,Example Street,,,,,,,,,,,174.992,-36.9
 ,70094,,Road,,92,C,,,,Oakleigh,,92C,Example Street,,,,,,,,,,,174.992,-36.9
 ,70095,,Road,,92,D,,,,Oakleigh,,92D,Example Street,,,,,,,,,,,174.995,-36.9
-,70096,,Road,,,,,,,Duplicate Tall Hamlet,,96,Example Street,,,,,,,,,,,174.996,-35
-,70097,,Road,,,,,,,Duplicate Tall Hamlet,,97,Example Street,,,,,,,,,,,174.997,-36.9
-,70098,,Road,,,,,,,Duplicate Wide Hamlet,,98,Example Street,,,,,,,,,,,172.998,-36.9
-,70099,,Road,,,,,,,Duplicate Wide Hamlet,,99,Example Street,,,,,,,,,,,174.999,-36.9
-,70100,,Road,,100,A,,,,Oakleigh,,100A,Example Street,,,,,,,,,,,175.100,-36.9
-,70101,,Road,,100,B,,,,Oakleigh,,100B,Example Street,,,,,,,,,,,175.100,-36.9
-,70102,,Road,,100,C,,,,Oakleigh,,100C,Example Street,,,,,,,,,,,175.100,-36.9
-,70103,,Road,,,,,,,Oakleigh,,103,Example Street,,,,,,,,,,,175.103,-36.9
+,70096,,Road,,96,,,,,Duplicate Tall Hamlet,,96,Example Street,,,,,,,,,,,174.996,-35
+,70097,,Road,,97,,,,,Duplicate Tall Hamlet,,97,Example Street,,,,,,,,,,,174.997,-36.9
+,70098,,Road,,98,,,,,Duplicate Wide Hamlet,,98,Example Street,,,,,,,,,,,172.998,-36.9
+,70099,,Road,,99,,,,,Duplicate Wide Hamlet,,99,Example Street,,,,,,,,,,,174.999,-36.9
+,70100,,Road,,100,A,,,,Oakleigh,,100A,Example Street,,,,,,,,,,,175.1,-36.9
+,70101,,Road,,100,B,,,,Oakleigh,,100B,Example Street,,,,,,,,,,,175.1,-36.9
+,70102,,Road,,100,C,,,,Oakleigh,,100C,Example Street,,,,,,,,,,,175.1,-36.9
+,70103,,Road,,103,,,,,Oakleigh,,103,Example Street,,,,,,,,,,,175.103,-36.9
 ,70105,,Road,,104,A,,,,Oakleigh,,104A,Example Street,,,,,,,,,,,175.105,-36.9
 ,70106,,Road,,104,B,,,,Oakleigh,,104B,Example Street,,,,,,,,,,,175.105,-36.9
 ,70107,,Road,,104,C,,,,Oakleigh,,104C,Example Street,,,,,,,,,,,175.105,-36.9
-,70108,,Road,,,,,,,Oakleigh,,108,Example Street,,,,,,,,,,,175.108,-36.9
-,70109,,Road,,,,,,,Opotiki,,109,Example Street,,,,,,,,,,,175.109,-36.9
-,70110,,Road,,,,,,,Opotiki,,110,Example Street,,,,,,,,,,,175.110,-36.9
+,70108,,Road,,108,,,,,Oakleigh,,108,Example Street,,,,,,,,,,,175.108,-36.9
+,70109,,Road,,109,,,,,Opotiki,,109,Example Street,,,,,,,,,,,175.109,-36.9
+,70110,,Road,,110,,,,,Opotiki,,110,Example Street,,,,,,,,,,,175.11,-36.9
 ,70111,,Road,,111,A,,,,Oakleigh,,111A,Example Street,,,,,,,,,,,175.111,-36.9
 ,70112,,Road,,111,B,,,,Oakleigh,,111B,Example Street,,,,,,,,,,,175.111,-36.9
 ,70113,,Road,,111,C,,,,Oakleigh,,111C,Example Street,,,,,,,,,,,175.111,-36.9
 ,70114,,Road,,114,A,,,,Oakleigh,,114A,Example Street,,,,,,,,,,,175.114,-36.9
 ,70115,,Road,,114,B,,,,Oakleigh,,114B,Example Street,,,,,,,,,,,175.114,-36.9
 ,70116,,Road,,114,C,,,,Oakleigh,,114C,Example Street,,,,,,,,,,,175.114,-36.9
-,70117,,Road,,,,,,,Oakleigh,,117,Example Street,,,,,,,,,,,175.117,-36.9
-,70118,,Road,,,,,,,Oakleigh,,118,Example Street,,,,,,,,,,,175.118,-36.9
+,70117,,Road,,117,,,,,Oakleigh,,117,Example Street,,,,,,,,,,,175.117,-36.9
+,70118,,Road,,118,,,,,Oakleigh,,118,Example Street,,,,,,,,,,,175.118,-36.9
 ,70119,,Road,,122,A,,,,Oakleigh,,122A,Example Street,,,,,,,,,,,175.119,-36.9
 ,70120,,Road,,122,B,,,,Oakleigh,,122B,Example Street,,,,,,,,,,,175.119,-36.9
 ,70121,,Road,,122,C,,,,Oakleigh,,122C,Example Street,,,,,,,,,,,175.119,-36.9
