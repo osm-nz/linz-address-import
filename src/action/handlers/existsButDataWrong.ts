@@ -44,7 +44,6 @@ export async function existsButDataWrong(
         },
         properties: {
           __action: 'edit',
-          'ref:linz:address_id': linzId,
           ...fieldsToModify(issues),
         },
       });

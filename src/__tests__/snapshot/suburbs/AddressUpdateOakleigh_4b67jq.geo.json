@@ -33,7 +33,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70004",
         "addr:housenumber": "4A"
       }
     },
@@ -69,7 +68,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70005",
         "addr:street": "Example Street"
       }
     },
@@ -105,7 +103,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70006",
         "addr:hamlet": "Oakleigh"
       }
     },
@@ -141,7 +138,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70007",
         "addr:hamlet": "Oakleigh"
       }
     },
@@ -177,7 +173,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70018",
         "addr:suburb": "🗑️",
         "addr:hamlet": "Oakleigh"
       }
@@ -214,7 +209,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70043",
         "addr:street": "Example Street"
       }
     },
@@ -250,7 +244,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70044",
         "addr:suburb": "🗑️",
         "addr:hamlet": "Oakleigh"
       }
@@ -287,7 +280,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70046",
         "addr:suburb": "🗑️",
         "addr:hamlet": "Oakleigh"
       }
@@ -324,7 +316,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70048",
         "addr:housenumber": "48",
         "addr:street": "Example Street",
         "addr:hamlet": "Oakleigh"
@@ -362,7 +353,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70060",
         "addr:type": "🗑️"
       }
     },
@@ -398,7 +388,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70117",
         "building:flats": "🗑️"
       }
     },
@@ -434,7 +423,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70118",
         "building:flats": "🗑️"
       }
     },
@@ -470,7 +458,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70122",
         "building:flats": "3"
       }
     },
@@ -506,7 +493,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "stack(70079-70081)",
         "addr:hamlet": "Oakleigh"
       }
     },
@@ -542,7 +528,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "stack(70082-70084)",
         "addr:housenumber": "82"
       }
     },
@@ -578,7 +563,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "stack(70111-70113)",
         "building:flats": "3"
       }
     },
@@ -614,7 +598,6 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "stack(70114-70116)",
         "building:flats": "3"
       }
     },
