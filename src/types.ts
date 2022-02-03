@@ -76,6 +76,7 @@ export type LinzSourceAddress = {
 
   unit_value: string;
   address_number: string;
+  address_number_high: string;
   address_number_suffix: string;
 
   full_road_name: string;
@@ -96,7 +97,6 @@ export type LinzSourceAddress = {
   /** @deprecated */ WKT: string;
   /** @deprecated */ change_id: string;
   /** @deprecated */ full_address_number: string;
-  /** @deprecated */ address_number_high: string;
   /** @deprecated */ water_route_name: string;
   /** @deprecated */ full_address: string;
   /** @deprecated */ road_section_id: string;

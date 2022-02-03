@@ -22,7 +22,16 @@ const correctLng = (lng: number) => {
  * that field uses odd values like "Flat 1, 23" and "Unit 1, 23A".
  * count: Flat(12358), Unit(3558), Apartment(655), Villa(200), Shop(35), Suite(10)
  */
-const convertUnit = (prefix: string, mainNumber: string, suffix: string) => {
+const convertUnit = (
+  prefix: string,
+  mainNumberLow: string,
+  mainNumberHigh: string,
+  suffix: string,
+) => {
+  const mainNumber = mainNumberHigh
+    ? `${mainNumberLow}-${mainNumberHigh}`
+    : mainNumberLow;
+
   if (prefix) return `${prefix}/${mainNumber}${suffix}`;
   return mainNumber + suffix;
 };
@@ -53,6 +62,7 @@ async function linzToJson(): Promise<LinzData> {
           housenumber: convertUnit(
             data.unit_value,
             data.address_number,
+            data.address_number_high,
             data.address_number_suffix,
           ),
           $houseNumberMsb: data.address_number,

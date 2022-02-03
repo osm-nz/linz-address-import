@@ -616,6 +616,14 @@
 
   <!-- for consistency, 126-128 Example Street do not exist -->
 
+  <!-- 130-131 is a heritage ranged address -->
+  <node id="130" version="1" changeset="1" lat="-36.9" lon="175.130" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="130-131" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70130" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />
