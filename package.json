@@ -32,7 +32,8 @@
     "osm-api": "^1.0.2",
     "pbf2json": "^6.9.0",
     "through2": "^4.0.2",
-    "unzipper": "^0.10.11"
+    "unzipper": "^0.10.11",
+    "which-polygon": "^2.2.0"
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",
@@ -42,6 +43,7 @@
     "@types/pbf2json": "^6.6.1",
     "@types/through2": "^2.0.36",
     "@types/unzipper": "^0.10.4",
+    "@types/which-polygon": "^2.2.0",
     "eslint": "^7.32.0",
     "eslint-config-kyle": "^3.5.1",
     "jest": "^27.2.4",

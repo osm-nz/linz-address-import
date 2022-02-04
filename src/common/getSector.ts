@@ -1,6 +1,8 @@
+import whichPolygon, { GeoJson } from 'which-polygon';
 import { ChunkSize, Coords } from '../types';
-import { sectors } from '../../static/sectors.json';
-import { withinBBox } from './geo';
+import sectors from '../../static/sectors.geo.json';
+
+const sectorQuery = whichPolygon(sectors as GeoJson<{ name: string }>);
 
 // for size=small there are 67 possible rows, A-Z, AA-ZZ, AAA-ZZZ
 const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -45,15 +47,12 @@ export function getSector(
    * medium = split NZ into 33 smaller districts
    */
   if (size === 'medium') {
-    for (const { name, bbox } of sectors) {
-      if (withinBBox(bbox, lat, lng)) {
-        return name;
-      }
-    }
+    const sector = sectorQuery([lng, lat]);
+    return sector?.name || 'Unknown Sector';
   }
 
   /**
-   * medium = split NZ into 500 chunks, each roughly 1km^2
+   * small = split NZ into 500 chunks, each roughly 1km²
    */
   if (size === 'small') {
     // the mainland spans 14 degrees of longitude (166-180) and 14 degrees of latitude (-34 to -48)
