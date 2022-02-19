@@ -1,4 +1,4 @@
-import { BBox, GeoJsonCoords } from '../types';
+import { BBox, Coord, GeoJsonCoords } from '../types';
 
 export function withinBBox(bbox: BBox, lat: number, lng: number): boolean {
   return (
@@ -9,11 +9,9 @@ export function withinBBox(bbox: BBox, lat: number, lng: number): boolean {
   );
 }
 
-export function getFirstCoord(
-  geometry: GeoJsonCoords,
-): [lng: number, lat: number] {
+export function getFirstCoord(geometry: GeoJsonCoords): Coord {
   let firstCoord = geometry.coordinates;
   while (typeof firstCoord[0] !== 'number') [firstCoord] = firstCoord;
 
-  return firstCoord as [lng: number, lat: number];
+  return firstCoord as Coord;
 }

@@ -403,7 +403,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "name": "Matamata-Piako" },
+      "properties": { "name": "Central Waikato" },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -426,7 +426,7 @@
     },
     {
       "type": "Feature",
-      "properties": { "name": "Matamata-Piako" },
+      "properties": { "name": "Central Waikato" },
       "geometry": {
         "type": "Polygon",
         "coordinates": [

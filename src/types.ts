@@ -203,21 +203,23 @@ export type StatsFile = {
   date: string;
 };
 
+export type Coord = [lng: number, lat: number];
+
 export type GeoJsonPoint = {
   type: 'Point';
-  coordinates: [lng: number, lat: number];
+  coordinates: Coord;
 };
 export type GeoJsonLine = {
   type: 'LineString';
-  coordinates: [lng: number, lat: number][];
+  coordinates: Coord[];
 };
 export type GeoJsonArea = {
   type: 'Polygon';
-  coordinates: [lng: number, lat: number][][];
+  coordinates: Coord[][];
 };
 export type GeoJsonMultiPolygon = {
   type: 'MultiPolygon';
-  coordinates: [lng: number, lat: number][][][];
+  coordinates: Coord[][][];
 };
 export type GeoJsonCoords =
   | GeoJsonPoint
@@ -265,3 +267,5 @@ export type ExtraLayers = {
     features: GeoJsonFeature[];
   };
 };
+
+export type Tags = Record<string, string | undefined>;

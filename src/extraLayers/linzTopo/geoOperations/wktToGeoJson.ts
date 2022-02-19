@@ -1,8 +1,6 @@
-import { chunk } from '../../common';
-import { GeoJsonCoords } from '../../types';
+import { chunk } from '../../../common';
+import { Coord, GeoJsonCoords } from '../../../types';
 import { simplify } from './simplify';
-
-type Coord = [lng: number, lat: number];
 
 /** point | line | area/multipolygon-with-1-outer-way | mutlipolygon with multiple outer ways */
 type CoordArray = Coord | Coord[] | Coord[][] | Coord[][][];

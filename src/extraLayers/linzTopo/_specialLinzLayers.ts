@@ -7,8 +7,9 @@ import {
   ExtraLayers,
   GeoJsonCoords,
   GeoJsonFeature,
+  Tags,
 } from '../../types';
-import { wktToGeoJson } from './wktToGeoJson';
+import { wktToGeoJson } from './geoOperations';
 import { IgnoreFile } from '../../preprocess/const';
 import { getFirstCoord, hash } from '../../common';
 import { Chart, getBestChart } from './seamarkTagging';
@@ -20,7 +21,7 @@ const existsAsync = (path: string) =>
     .catch(() => false);
 
 async function readCsv<T extends Record<string, string>>(
-  { idField, tagging, dontFlipWays }: Options<T>,
+  { idField, tagging, dontFlipWays, transformGeometry }: Options<T>,
   input: string,
   IDsToSkip: IgnoreFile,
   charts: Chart[],
@@ -48,12 +49,7 @@ async function readCsv<T extends Record<string, string>>(
 
         if (idWithType in IDsToSkip) return; // skip this one, it's already mapped
 
-        const geometry = wktToGeoJson(
-          data[wktField],
-          input,
-          true,
-          dontFlipWays,
-        );
+        let geometry = wktToGeoJson(data[wktField], input, true, dontFlipWays);
 
         let chartName;
         // for seamarks, make sure we only use features from the best nautical chart for this location
@@ -86,8 +82,14 @@ async function readCsv<T extends Record<string, string>>(
           chartName = bestChartForThisLoc.encChartName;
         }
 
-        const tags = tagging(data, id, chartName, geometry.type);
+        let tags = tagging(data, id, chartName, geometry.type);
         if (!tags) return; // skip, the tagging fuction doesn't want this feature included
+
+        if (transformGeometry) {
+          const res = transformGeometry(geometry, tags);
+          if (!res) return; // skip, the transform function doesn't want this feature included
+          [geometry, tags] = res;
+        }
 
         features.push({
           type: 'Feature',
@@ -115,9 +117,17 @@ type Options<T> = {
     id: string,
     chartName: string | undefined,
     geometryType: GeoJsonCoords['type'],
-  ) => Record<string, string | undefined> | null;
+  ) => Tags | null;
   /** if complete: true, this function does nothing. That way the code can be preserved for historical records */
   complete?: true;
+  /**
+   * an optional function to transform the geometry of every feature in this layer
+   * return null to skip this feature
+   */
+  transformGeometry?(
+    originalGeom: GeoJsonCoords,
+    tags: Tags,
+  ): null | [GeoJsonCoords, Tags];
 };
 
 export function csvToGeoJsonFactory(IDsToSkip: IgnoreFile, charts: Chart[]) {

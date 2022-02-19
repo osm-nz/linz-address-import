@@ -8,6 +8,7 @@ import {
   readNauticalChartIndexCsv,
   mergeMaritimeLights,
 } from './seamarkTagging';
+import { transformAirstrip } from './geoOperations';
 import { csvToGeoJsonFactory } from './_specialLinzLayers';
 
 const TODAY = new Date();
@@ -161,7 +162,7 @@ export async function linzTopo(): Promise<void> {
     dontFlipWays: true,
     tagging(data) {
       return {
-        waterway: 'canal',
+        waterway: 'ditch',
         usage: 'irrigation',
         description: 'water race',
         name: data.name,
@@ -347,6 +348,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '',
     size: 'medium',
+    complete: true,
     tagging(data) {
       return {
         man_made: 'mast',
@@ -564,6 +566,7 @@ export async function linzTopo(): Promise<void> {
         'ref:linz:topo50_id': data.t50_fid,
       };
     },
+    transformGeometry: transformAirstrip,
   });
 
   type SaddlePnt = {
@@ -683,6 +686,7 @@ export async function linzTopo(): Promise<void> {
     size: 'medium',
     instructions:
       'merging this layer with existing data is very tedious in some regions',
+    complete: true,
     tagging(data) {
       return {
         natural: 'cliff',
@@ -2016,7 +2020,7 @@ export async function linzTopo(): Promise<void> {
     'Z Racetracks': racetracks,
     'Z Rapids (line)': rapidLines,
     'Z Rapids (area)': rapidPolys,
-    'Z Runway Areas': runways,
+    'Z Runways': runways,
     'Z Showgrounds': showgrounds,
     'Z Landslides': slipEdges,
     'Z Redoubts': redoubts,
@@ -2038,7 +2042,7 @@ export async function linzTopo(): Promise<void> {
     'Z Named Cemetries': namedCemeteries,
     'Z Named Farms': namedFarms,
     'ZZ Homesteads': homesteads,
-    'ZZ Named Huts': namedHuts,
+    'Z Huts': namedHuts,
     'Z Named Lights': namedLights,
     'Z Named Oil Wells': namedOilWell,
     'Z Named Wharfs': namedWharf,

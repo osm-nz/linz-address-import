@@ -1,3 +1,5 @@
+import { Coord } from '../../types';
+
 /** radius of the diamond */
 const RADIUS = 0.0002;
 // 0.0002° ~= 0° 0' 0.72"
@@ -9,8 +11,8 @@ export function createDiamond({
 }: {
   lat: number;
   lng: number;
-}): [ring1: [lng: number, lat: number][]] {
-  const diamond: [lng: number, lat: number][] = [
+}): [ring1: Coord[]] {
+  const diamond: Coord[] = [
     [lng, lat + RADIUS], // top
     [lng + RADIUS, lat], // right
     [lng, lat - RADIUS], // bottom
@@ -28,8 +30,8 @@ export function createSquare({
 }: {
   lat: number;
   lng: number;
-}): [ring1: [lng: number, lat: number][]] {
-  const diamond: [lng: number, lat: number][] = [
+}): [ring1: Coord[]] {
+  const diamond: Coord[] = [
     [lng + RADIUS / 2, lat + RADIUS / 2], // top-right
     [lng + RADIUS / 2, lat - RADIUS / 2], // top-left
     [lng - RADIUS / 2, lat - RADIUS / 2], // bottom-left
