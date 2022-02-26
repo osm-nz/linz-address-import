@@ -16,6 +16,13 @@ import { processDeletions } from './processDeletions';
 const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
 
 export async function main(): Promise<void> {
+  const slow = !!mock || process.argv.includes('--full');
+  console.log(
+    slow
+      ? '🚛 Running in --full mode. This will take significantly longer.'
+      : '🚛 Running in standard mode. Use --full to run the full conflation (much slower).',
+  );
+
   console.log('Reading LINZ data into memory...');
   const linzData: LinzData = JSON.parse(
     await fs.readFile(join(__dirname, `../../data/linz${mock}.json`), 'utf-8'),
@@ -63,6 +70,7 @@ export async function main(): Promise<void> {
       11: [],
       13: [],
       14: [],
+      15: [],
     };
 
   console.log('processing deleted data...');
@@ -100,7 +108,13 @@ export async function main(): Promise<void> {
     const semi = osmData.semi[linzId];
 
     if (osmAddr) {
-      const { status, diagnostics } = processWithRef(linzId, linzAddr, osmAddr);
+      const { status, diagnostics } = processWithRef(
+        linzId,
+        linzAddr,
+        osmAddr,
+        osmData.noRef,
+        slow,
+      );
       statusReport[status].push([linzId, diagnostics]);
 
       delete osmData.linz[linzId]; // visited so we can get rid of it

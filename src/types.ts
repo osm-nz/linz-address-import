@@ -35,6 +35,8 @@ export type OsmAddr = Coords & {
   water?: true;
   /** whether this address has `addr:suburb` and `addr:hamlet` */
   doubleSuburb?: true;
+  /** whether this address is on a building AND has no linzRef */
+  isUnRefedBuilding?: true;
   /** for stacked addresse, this is the number of addresses in this stack */
   flatCount?: number;
 };
@@ -134,6 +136,7 @@ export enum Status {
   // 12 has been repealed since it's now obsolete. It was UNKNOWN_ERROR
   COULD_BE_STACKED = 13,
   NEEDS_DELETE_ON_BUILDING = 14,
+  REPLACED_BY_BUILDING = 15,
 }
 
 export enum Confidence {
@@ -191,6 +194,11 @@ export type StatusDiagnostics = {
   ];
   [Status.COULD_BE_STACKED]: CouldStackData[string];
   [Status.NEEDS_DELETE_ON_BUILDING]: [suburb: string, osmData: OsmAddr];
+  [Status.REPLACED_BY_BUILDING]: [
+    osmNode: OsmAddr,
+    osmBuilding: OsmAddr,
+    suburb: string,
+  ];
 };
 
 export type StatusReport = {

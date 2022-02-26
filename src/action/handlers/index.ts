@@ -11,6 +11,7 @@ import { handleLinzRefChanged } from './handleLinzRefChanged';
 import { handleLocationWrong } from './handleLocationWrong';
 import { handleMultipleExistButNoLinzRef } from './handleMultipleExistButNoLinzRef';
 import { handleTotallyMissing } from './handleTotallyMissing';
+import { handleReplacedByBuilding } from './handleReplacedByBuilding';
 
 export const handlers: Record<
   Status,
@@ -32,4 +33,5 @@ export const handlers: Record<
   [Status.LINZ_REF_CHANGED]: handleLinzRefChanged,
   [Status.COULD_BE_STACKED]: handleCouldBeStacked,
   [Status.NEEDS_DELETE_ON_BUILDING]: handleDeletedOnBuilding,
+  [Status.REPLACED_BY_BUILDING]: handleReplacedByBuilding,
 };

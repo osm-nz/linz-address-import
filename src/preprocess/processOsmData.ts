@@ -95,6 +95,9 @@ function osmToJson(): Promise<OSMData> {
               out.linz[linzId] = obj;
             }
           } else {
+            // there's no linzRef - let's check if this is a building
+            if ('building' in item.tags) obj.isUnRefedBuilding = true;
+
             out.noRef.push(obj);
           }
 

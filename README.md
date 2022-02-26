@@ -37,7 +37,7 @@ The remaining steps are done automatically by the CI
 6. Run `npm install`
 7. Download the planet file (for just NZ) by running `npm run download-planet`. This will create `./data/osm.pbf`
 8. Start the preprocess script by running `npm run preprocess`. This will take ca. 2.5 minutes and create `./data/osm.json` and `./data/linz.json`
-9. Start the confate script by running `npm run conflate`. This will take circa. 2 minutes and create `./data/status.json`
+9. Start the confate script by running `npm run conflate`. This will take 30 seconds and create `./data/status.json`. Some computationally expensive diagnostics are only generated if you run `npm run conflate -- --full`, which takes 20 times longer.
 10. Start the action script by running `npm run action`. This will take 20 seconds and generate a ton of files in the `./out` folder
 11. Upload the contents of the `./out` folder to the CDN by running `npm run upload`. This will take ca. 4 minutes
 

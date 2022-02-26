@@ -13,7 +13,8 @@
     "CORRUPT": 2,
     "LINZ_REF_CHANGED": 4,
     "COULD_BE_STACKED": 3,
-    "NEEDS_DELETE_ON_BUILDING": 1
+    "NEEDS_DELETE_ON_BUILDING": 1,
+    "REPLACED_BY_BUILDING": 1
   },
-  "total": 86
+  "total": 87
 }

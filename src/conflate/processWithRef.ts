@@ -1,4 +1,5 @@
 import { LinzAddr, OsmAddr, Status, StatusDiagnostics } from '../types';
+import { findPotentialOsmAddresses } from './findPotentialOsmAddresses';
 import { distanceBetween } from './helpers/geo';
 import { validate } from './helpers/validate';
 
@@ -18,6 +19,8 @@ export function processWithRef(
   _addressId: string,
   linzAddr: LinzAddr,
   osmAddr: OsmAddr,
+  allOsmAddressesWithNoRef: OsmAddr[],
+  slowMode?: boolean,
 ): { status: Status; diagnostics?: unknown } {
   if (osmAddr.checked) return { status: Status.PERFECT };
 
@@ -53,7 +56,40 @@ export function processWithRef(
       osmAddr.lng,
     );
 
-    if (offset < LOCATION_THRESHOLD) return { status: Status.PERFECT };
+    if (offset < LOCATION_THRESHOLD) {
+      // this check makes the conflation process 20 times slower, so it's
+      // only run when slowMode is enabled.
+      if (slowMode) {
+        // The node in question is perfect, but there might be other OSM features with the
+        // same address but no ref. Some common examples include:
+        // - (address node with linz ref) + (address on building) added by StreetComplete user
+        // - two shops with the same address - one has linz ref, the other doesn't
+        const duplicateAddresses = findPotentialOsmAddresses(
+          linzAddr,
+          allOsmAddressesWithNoRef,
+        );
+        if (duplicateAddresses.length === 1) {
+          // There is exactly one duplicate addresses nearby.
+
+          const duplicate = duplicateAddresses[0];
+          if (
+            osmAddr.osmId[0] === 'n' && // only perfect, ref'd nodes, which are..
+            !osmAddr.isNonTrivial && // ...trivial address nodes.
+            duplicate.isUnRefedBuilding // And the building must not have a ref.
+          ) {
+            // The only situation that we specifically handle is the
+            // straightforward StreetComplete case - where a building
+            // and a simple address node duplicate each other.
+            return validate({
+              status: Status.REPLACED_BY_BUILDING,
+              diagnostics: [osmAddr, duplicate, linzAddr.suburb[1]],
+            });
+          }
+        }
+      }
+
+      return { status: Status.PERFECT };
+    }
 
     return validate({
       status: Status.EXISTS_BUT_LOCATION_WRONG,

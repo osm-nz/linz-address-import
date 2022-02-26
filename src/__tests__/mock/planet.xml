@@ -624,6 +624,22 @@
     <tag k="ref:linz:address_id" v="70130" />
   </node>
 
+  <!-- 132 is the proper 132 address node (see 133) -->
+  <node id="132" version="1" changeset="1" lat="-36.9" lon="175.132" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="132" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70132" />
+  </node>
+
+  <!-- 133 is a building added by a StreetComplete user that duplicates the 132 address node -->
+  <node id="133" version="1" changeset="1" lat="-36.9" lon="175.133" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="132" />
+    <tag k="addr:street" v="Example Street" />
+    <!-- no address ref or suburb -->
+    <tag k="building" v="house" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />

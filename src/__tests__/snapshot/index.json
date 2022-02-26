@@ -308,6 +308,28 @@
       "groupCategories": [
         "/Categories/Addresses"
       ]
+    },
+    {
+      "id": "MergeaddressnodesandbuildingsAucklandRuralEast_1nwkk3g",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/MergeaddressnodesandbuildingsAucklandRuralEast_1nwkk3g.geo.json",
+      "name": "Merge address nodes and buildings - Auckland Rural East",
+      "title": "Merge address nodes and buildings - Auckland Rural East",
+      "totalCount": 2,
+      "source": "",
+      "snippet": "delete 1, edit 1",
+      "extent": [
+        [
+          175.1318,
+          -36.900200000000005
+        ],
+        [
+          175.13320000000002,
+          -36.899800000000006
+        ]
+      ],
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
     }
   ]
 }

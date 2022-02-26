@@ -29,7 +29,8 @@ export function sectorize(
     if (
       suburb.startsWith('ZZ ') ||
       suburb.startsWith('Z ') ||
-      suburb === 'Address Update'
+      suburb === 'Address Update' ||
+      suburb === 'Merge address nodes and buildings'
     ) {
       // special sector, split this by region
       const out: Record<string, GeoJsonFeature[]> = {};
