@@ -1,1 +1,2 @@
+70134 and 70135 and 70136		are on the same node		https://osm.org/node/134
 70023A and 70023B		are on the same node		https://osm.org/node/23

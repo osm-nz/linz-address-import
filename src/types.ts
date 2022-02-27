@@ -170,10 +170,10 @@ export type StatusDiagnostics = {
     osmData: OsmAddr,
   ];
   [Status.MULTIPLE_EXIST_BUT_NO_LINZ_REF]: [
-    confidence: Confidence,
-    osmId: OsmId,
-  ][];
-  [Status.MULTIPLE_EXIST]: OsmId[];
+    chosenOsmAddr: OsmAddr,
+    allOsmIds: OsmId[],
+  ];
+  [Status.MULTIPLE_EXIST]: [suburb: string, addrs: OsmAddr[]];
   [Status.EXISTS_BUT_LOCATION_WRONG]: [
     metres: number,
     osmId: OsmId,
@@ -185,7 +185,7 @@ export type StatusDiagnostics = {
   [Status.TOTALLY_MISSING]: LinzAddr;
   [Status.NEEDS_DELETE]: [suburb: string, osmData: OsmAddr];
   [Status.NEEDS_DELETE_NON_TRIVIAL]: [suburb: string, osmData: OsmAddr];
-  [Status.CORRUPT]: OsmAddr;
+  [Status.CORRUPT]: [osm: OsmAddr, linz: LinzAddr];
   [Status.LINZ_REF_CHANGED]: [
     suburb: string,
     newLinzId: string,

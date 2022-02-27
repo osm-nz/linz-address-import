@@ -7,7 +7,7 @@ import {
   Status,
   StatusReport,
 } from '../../types';
-import { createSquare } from '../util';
+import { createSquare, linzAddrToTags } from '../util';
 
 type BySuburb = {
   [suburb: string]: [
@@ -73,14 +73,7 @@ export async function handleTotallyMissing(
             : { type: 'Point', coordinates: [addr.lng, addr.lat] },
           properties: {
             __action: addr.osmId && 'delete',
-
-            'addr:housenumber': addr.housenumber,
-            'addr:street': addr.street,
-            'addr:suburb': addr.suburb[0] === 'U' ? addr.suburb[1] : undefined,
-            'addr:hamlet': addr.suburb[0] === 'R' ? addr.suburb[1] : undefined,
-            'addr:type': addr.water ? 'water' : undefined,
-            'building:flats': addr.flatCount?.toString(),
-            'ref:linz:address_id': linzId,
+            ...linzAddrToTags(linzId, addr),
           },
         };
       },

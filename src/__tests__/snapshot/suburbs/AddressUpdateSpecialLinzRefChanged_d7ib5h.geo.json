@@ -180,8 +180,8 @@
         "addr:suburb": "🗑️",
         "addr:hamlet": "🗑️",
         "addr:type": "🗑️",
-        "ref:linz:address_id": "🗑️",
-        "building:flats": "🗑️"
+        "building:flats": "🗑️",
+        "ref:linz:address_id": "🗑️"
       }
     }
   ]

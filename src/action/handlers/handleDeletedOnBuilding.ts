@@ -7,7 +7,12 @@ import {
   Status,
   StatusReport,
 } from '../../types';
-import { createDiamond, outFolder, toLink } from '../util';
+import {
+  createDiamond,
+  deleteAllAddressTags,
+  outFolder,
+  toLink,
+} from '../util';
 
 export async function handleDeletedOnBuilding(
   arr: StatusReport[Status.NEEDS_DELETE_ON_BUILDING],
@@ -43,15 +48,7 @@ export async function handleDeletedOnBuilding(
       },
       properties: {
         __action: 'edit',
-
-        // delete all address-related tags
-        'addr:housenumber': '🗑️',
-        'addr:street': '🗑️',
-        'addr:suburb': '🗑️',
-        'addr:hamlet': '🗑️',
-        'addr:type': '🗑️',
-        'ref:linz:address_id': '🗑️',
-        'building:flats': '🗑️',
+        ...deleteAllAddressTags(),
       },
     });
   }

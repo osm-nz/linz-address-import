@@ -640,6 +640,28 @@
     <tag k="building" v="house" />
   </node>
 
+  <!-- 134 is a business with 3 addresses (134 thru 136) accidently merged into this node -->
+  <node id="134" version="1" changeset="1" lat="-36.9" lon="175.134" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="134;135;136" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70134;70135;70136" />
+    <tag k="shop" v="stage_lights" />
+  </node>
+
+  <!-- 137 is perfect but duplicates 141 (building) -->
+  <node id="137" version="1" changeset="1" lat="-36.9" lon="175.137" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="137" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70137" />
+  </node>
+
+  <node id="138" version="1" changeset="1" lat="-36.9" lon="175.138" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z" />
+  <node id="139" version="1" changeset="1" lat="-36.901" lon="175.139" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z" />
+  <node id="140" version="1" changeset="1" lat="-36.9" lon="175.140" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z" />
+  <!-- THE WAY (141) IS DEFINED AT THE END OF THE FILE -->
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />
@@ -681,6 +703,18 @@
       <tag k="addr:street" v="Example Street" />
       <tag k="addr:hamlet" v="Oakleigh" />
       <tag k="ref:linz:address_id" v="70129old" />
+    </way>
+
+    <way id="141" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+      <nd ref="138" />
+      <nd ref="139" />
+      <nd ref="140" />
+      <nd ref="138" /> <!-- closed way (area) so first node = last node -->
+      <tag k="building" v="McMansion" />
+      <tag k="addr:housenumber" v="137" />
+      <tag k="addr:street" v="Example Street" />
+      <tag k="addr:hamlet" v="Oakleigh" />
+      <tag k="ref:linz:address_id" v="70137" />
     </way>
   <!-- </ways> -->
 

@@ -24,6 +24,28 @@
       ]
     },
     {
+      "id": "AddressUpdateaddreftag_1rlykc0",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateaddreftag_1rlykc0.geo.json",
+      "name": "Address Update - add ref tag",
+      "title": "Address Update - add ref tag",
+      "totalCount": 1,
+      "source": "",
+      "snippet": "edit 1",
+      "extent": [
+        [
+          174.9548,
+          -36.900200000000005
+        ],
+        [
+          174.95520000000002,
+          -36.899800000000006
+        ]
+      ],
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
       "id": "AddressUpdatedeletionsfromunknownsector_1szv2s9",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdatedeletionsfromunknownsector_1szv2s9.geo.json",
       "name": "Address Update - deletions from unknown sector",
@@ -127,6 +149,28 @@
         [
           172.998,
           -36.9
+        ]
+      ],
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
+      "id": "AddressUpdatefixmergedaddresses_1ttsabb",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdatefixmergedaddresses_1ttsabb.geo.json",
+      "name": "Address Update - fix merged addresses",
+      "title": "Address Update - fix merged addresses",
+      "totalCount": 7,
+      "source": "",
+      "snippet": "add 5, delete 1, edit 1",
+      "extent": [
+        [
+          174.922,
+          -36.900200000000005
+        ],
+        [
+          175.136,
+          -36.899800000000006
         ]
       ],
       "groupCategories": [
@@ -314,16 +358,16 @@
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/MergeaddressnodesandbuildingsAucklandRuralEast_1nwkk3g.geo.json",
       "name": "Merge address nodes and buildings - Auckland Rural East",
       "title": "Merge address nodes and buildings - Auckland Rural East",
-      "totalCount": 2,
+      "totalCount": 3,
       "source": "",
-      "snippet": "delete 1, edit 1",
+      "snippet": "delete 2, edit 1",
       "extent": [
         [
-          175.1318,
+          175.1319,
           -36.900200000000005
         ],
         [
-          175.13320000000002,
+          175.1371,
           -36.899800000000006
         ]
       ],

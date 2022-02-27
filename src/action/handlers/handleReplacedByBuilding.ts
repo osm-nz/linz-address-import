@@ -7,7 +7,7 @@ import {
   Status,
   StatusReport,
 } from '../../types';
-import { createDiamond, outFolder, toLink } from '../util';
+import { createDiamond, createSquare, outFolder, toLink } from '../util';
 
 export async function handleReplacedByBuilding(
   arr: StatusReport[Status.REPLACED_BY_BUILDING],
@@ -46,7 +46,7 @@ export async function handleReplacedByBuilding(
       id: osmNode.osmId,
       geometry: {
         type: 'Polygon',
-        coordinates: createDiamond(osmNode),
+        coordinates: createSquare(osmNode),
       },
       properties: { __action: 'delete' },
     });

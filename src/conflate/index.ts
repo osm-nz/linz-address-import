@@ -126,7 +126,7 @@ export async function main(): Promise<void> {
       );
       statusReport[status].push([linzId, diagnostics]);
     } else if (semi) {
-      statusReport[Status.CORRUPT].push([linzId, semi]);
+      statusReport[Status.CORRUPT].push([linzId, [semi, linzAddr]]);
     } else {
       const possibleAddresses = findPotentialOsmAddresses(
         linzAddr,

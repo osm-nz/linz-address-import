@@ -1,0 +1,165 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "n134",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              175.13400000000001,
+              -36.899800000000006
+            ],
+            [
+              175.13420000000002,
+              -36.900000000000006
+            ],
+            [
+              175.13400000000001,
+              -36.900200000000005
+            ],
+            [
+              175.1338,
+              -36.900000000000006
+            ],
+            [
+              175.13400000000001,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "addr:housenumber": "🗑️",
+        "addr:street": "🗑️",
+        "addr:suburb": "🗑️",
+        "addr:hamlet": "🗑️",
+        "addr:type": "🗑️",
+        "building:flats": "🗑️",
+        "ref:linz:address_id": "🗑️"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70134",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          175.134,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "134",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70134"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70135",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          175.135,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "135",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70135"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70136",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          175.136,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "136",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70136"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n23",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.9231,
+              -36.8999
+            ],
+            [
+              174.9231,
+              -36.90010000000001
+            ],
+            [
+              174.9229,
+              -36.90010000000001
+            ],
+            [
+              174.9229,
+              -36.8999
+            ],
+            [
+              174.9231,
+              -36.8999
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "delete"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70023A",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.922,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "23A",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70023A"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70023B",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.923,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "23B",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70023B"
+      }
+    }
+  ]
+}

@@ -1,9 +1,4 @@
-import {
-  LinzAddr,
-  OsmAddrWithConfidence,
-  Status,
-  StatusDiagnostics,
-} from '../types';
+import { LinzAddr, OsmAddrWithConfidence, Status } from '../types';
 import { validate } from './helpers/validate';
 
 export function processWithoutRef(
@@ -26,11 +21,18 @@ export function processWithoutRef(
     });
   }
 
+  // at this point confidence will always be 3 (Confidence.HIGH_BUT_MULTIPLE)
+
+  // we need to pick which one to add the address-ref to. It's not that important
+  // which one we choose. We prefer buildings or POIs. Failing that, we just pick
+  // a random one.
+  const chosenOsmAddr =
+    osmAddrs.find((o) => o.osmId[0] !== 'n' || o.isNonTrivial) || osmAddrs[0];
+
+  const allOsmIds = osmAddrs.map((o) => o.osmId);
+
   return validate({
     status: Status.MULTIPLE_EXIST_BUT_NO_LINZ_REF,
-    diagnostics: osmAddrs.map((o) => [
-      o.confidence,
-      o.osmId,
-    ]) as StatusDiagnostics[Status.MULTIPLE_EXIST_BUT_NO_LINZ_REF],
+    diagnostics: [chosenOsmAddr, allOsmIds],
   });
 }

@@ -8,6 +8,6 @@ export function processDuplicates(
 ): { status: Status; diagnostics: unknown } {
   return validate({
     status: Status.MULTIPLE_EXIST,
-    diagnostics: duplicate.map((x) => x.osmId),
+    diagnostics: [linzAddr.suburb[1], duplicate],
   });
 }

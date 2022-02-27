@@ -8,8 +8,7 @@ import {
   HandlerReturn,
   GeoJsonFeature,
 } from '../../types';
-import { createDiamond, outFolder, toLink } from '../util';
-import { fieldsToModify } from '../util/fieldsToModify';
+import { createDiamond, outFolder, toLink, fieldsToModify } from '../util';
 
 export async function existsButDataWrong(
   arr: StatusReport[Status.EXISTS_BUT_WRONG_DATA],
