@@ -158,7 +158,7 @@ export async function linzTopo(): Promise<void> {
     input: 'water_race_cl.csv',
     idField: 't50_fid',
     sourceLayer: '50369',
-    size: 'medium',
+    size: 'small',
     dontFlipWays: true,
     tagging(data) {
       return {
@@ -523,6 +523,21 @@ export async function linzTopo(): Promise<void> {
     },
   });
 
+  const streams = await csvToGeoJson<{ t50_fid: string }>({
+    input: 'river_cl.csv',
+    idField: 't50_fid',
+    sourceLayer: '50327',
+    size: 'small',
+    complete: true, // TODO: temporarily disabled since this takes longer than all other layers combined
+    tagging(data) {
+      return {
+        // TODO: merge in the name from the pilot dataset
+        waterway: 'stream',
+        'ref:linz:topo50_id': data.t50_fid,
+      };
+    },
+  });
+
   type RockOutcrop = {
     t50_fid: string;
     name?: string;
@@ -557,6 +572,7 @@ export async function linzTopo(): Promise<void> {
     idField: 't50_fid',
     sourceLayer: '',
     size: 'medium',
+    complete: true,
     tagging(data) {
       return {
         name: data.name,
@@ -2021,6 +2037,7 @@ export async function linzTopo(): Promise<void> {
     'Z Rapids (line)': rapidLines,
     'Z Rapids (area)': rapidPolys,
     'Z Runways': runways,
+    'ZZ Streams': streams,
     'Z Showgrounds': showgrounds,
     'Z Landslides': slipEdges,
     'Z Redoubts': redoubts,

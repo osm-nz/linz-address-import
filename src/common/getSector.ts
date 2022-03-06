@@ -58,7 +58,7 @@ export function getSector(
     // the mainland spans 14 degrees of longitude (166-180) and 14 degrees of latitude (-34 to -48)
     // so we create 14*SCALE rows (numbers) and 14*SCALE columns (letters)
     // this means there'll be (14*SCALE)^2 sectors
-    const SCALE = 1.75;
+    const SCALE = 4;
     const column = ROWS[Math.round(SCALE * (lng - 166))];
     const row = Math.round(SCALE * (-34 - lat));
     return `Sector ${column}${row}`;
