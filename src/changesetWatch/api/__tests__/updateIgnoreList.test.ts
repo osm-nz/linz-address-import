@@ -8,7 +8,7 @@ jest.mock('../googleAuth', () => ({
 
 describe('updateIgnoreList', () => {
   beforeEach(() => {
-    (fetch as unknown as jest.Mock).mockResolvedValue({ json: async () => 0 });
+    m(fetch).mockResolvedValue({ json: async () => 0 });
   });
 
   it('does nothing if you pass it an empty array', async () => {

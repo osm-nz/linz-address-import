@@ -8,7 +8,7 @@ describe('updateIgnoreList', () => {
     process.env.GOOGLE_REFRESH_TOKEN = 'RRR';
     process.env.GOOGLE_CLIENT_ID = 'III';
     process.env.GOOGLE_CLIENT_SECRET = 'SSS';
-    (fetch as unknown as jest.Mock).mockResolvedValue({
+    m(fetch).mockResolvedValue({
       json: async () => ({ access_token: 'ABC123' }),
     });
   });

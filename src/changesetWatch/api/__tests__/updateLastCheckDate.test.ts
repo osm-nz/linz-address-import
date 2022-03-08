@@ -8,7 +8,7 @@ jest.mock('../googleAuth', () => ({
 
 describe('updateLastCheckDate', () => {
   it('calls the google API correctly', async () => {
-    (fetch as unknown as jest.Mock).mockResolvedValue({ json: async () => 0 });
+    m(fetch).mockResolvedValue({ json: async () => 0 });
 
     jest.useFakeTimers().setSystemTime(new Date('2021-12-25').getTime());
 

@@ -5,12 +5,10 @@ jest.mock('osm-api');
 
 describe('patchOsmChange', () => {
   it('calls the OSM API and updates the osmChange', async () => {
-    (getFeatures as unknown as jest.Mock).mockImplementation(
-      async (type: string) => [
-        { type, id: 1, tag: { building: 'house' } },
-        { type, id: 2, tag: { natural: 'heather' } },
-      ],
-    );
+    m(getFeatures).mockImplementation(async (type: string) => [
+      { type, id: 1, tag: { building: 'house' } },
+      { type, id: 2, tag: { natural: 'heather' } },
+    ]);
 
     const list: CSWithDiff[] = [
       {
