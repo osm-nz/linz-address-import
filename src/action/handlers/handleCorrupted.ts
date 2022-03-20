@@ -92,5 +92,5 @@ export async function handleCorrupted(
 
   if (!features.length) return {};
 
-  return { 'Address Update - fix merged addresses': features };
+  return { 'Address Update': features };
 }

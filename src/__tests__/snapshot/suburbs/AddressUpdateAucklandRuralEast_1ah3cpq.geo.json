@@ -95,70 +95,73 @@
     },
     {
       "type": "Feature",
-      "id": "n23",
+      "id": "n125",
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              174.9231,
-              -36.8999
+              175.125,
+              -36.899800000000006
             ],
             [
-              174.9231,
-              -36.90010000000001
+              175.1252,
+              -36.900000000000006
             ],
             [
-              174.9229,
-              -36.90010000000001
+              175.125,
+              -36.900200000000005
             ],
             [
-              174.9229,
-              -36.8999
+              175.1248,
+              -36.900000000000006
             ],
             [
-              174.9231,
-              -36.8999
+              175.125,
+              -36.899800000000006
             ]
           ]
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "edit",
+        "ref:linz:address_id": "stack(70123-70125)",
+        "building:flats": "3"
       }
     },
     {
       "type": "Feature",
-      "id": "70023A",
+      "id": "w129",
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
-          174.922,
-          -36.9
+          [
+            [
+              175.127,
+              -36.9001333
+            ],
+            [
+              175.12720000000002,
+              -36.9003333
+            ],
+            [
+              175.127,
+              -36.9005333
+            ],
+            [
+              175.1268,
+              -36.9003333
+            ],
+            [
+              175.127,
+              -36.9001333
+            ]
+          ]
         ]
       },
       "properties": {
-        "addr:housenumber": "23A",
-        "addr:street": "Example Street",
-        "addr:hamlet": "Oakleigh",
-        "ref:linz:address_id": "70023A"
-      }
-    },
-    {
-      "type": "Feature",
-      "id": "70023B",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          174.923,
-          -36.9
-        ]
-      },
-      "properties": {
-        "addr:housenumber": "23B",
-        "addr:street": "Example Street",
-        "addr:hamlet": "Oakleigh",
-        "ref:linz:address_id": "70023B"
+        "__action": "edit",
+        "ref:linz:address_id": "70129new"
       }
     }
   ]

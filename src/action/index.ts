@@ -42,7 +42,7 @@ export async function main(): Promise<void> {
   }
 
   const mass = 'Address Update';
-  features[mass] = [];
+  features[mass] ||= [];
   for (const k in features) {
     if (features[k].length < 50 && !mock) {
       features[mass].push(...features[k]);

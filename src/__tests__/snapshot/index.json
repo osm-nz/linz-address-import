@@ -24,20 +24,42 @@
       ]
     },
     {
-      "id": "AddressUpdateaddreftag_1rlykc0",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateaddreftag_1rlykc0.geo.json",
-      "name": "Address Update - add ref tag",
-      "title": "Address Update - add ref tag",
-      "totalCount": 1,
+      "id": "AddressUpdateAucklandRuralEast_1ah3cpq",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateAucklandRuralEast_1ah3cpq.geo.json",
+      "name": "Address Update - Auckland Rural East",
+      "title": "Address Update - Auckland Rural East",
+      "totalCount": 6,
       "source": "",
-      "snippet": "edit 1",
+      "snippet": "add 3, edit 3",
       "extent": [
         [
-          174.9548,
-          -36.900200000000005
+          175.1248,
+          -36.9005333
         ],
         [
-          174.95520000000002,
+          175.136,
+          -36.899800000000006
+        ]
+      ],
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
+      "id": "AddressUpdateAucklandSouth_z7qxci",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateAucklandSouth_z7qxci.geo.json",
+      "name": "Address Update - Auckland South",
+      "title": "Address Update - Auckland South",
+      "totalCount": 7,
+      "source": "",
+      "snippet": "add 2, delete 1, edit 4",
+      "extent": [
+        [
+          174.922,
+          -36.9005333
+        ],
+        [
+          174.97220000000002,
           -36.899800000000006
         ]
       ],
@@ -156,28 +178,6 @@
       ]
     },
     {
-      "id": "AddressUpdatefixmergedaddresses_1ttsabb",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdatefixmergedaddresses_1ttsabb.geo.json",
-      "name": "Address Update - fix merged addresses",
-      "title": "Address Update - fix merged addresses",
-      "totalCount": 7,
-      "source": "",
-      "snippet": "add 5, delete 1, edit 1",
-      "extent": [
-        [
-          174.922,
-          -36.900200000000005
-        ],
-        [
-          175.136,
-          -36.899800000000006
-        ]
-      ],
-      "groupCategories": [
-        "/Categories/Addresses"
-      ]
-    },
-    {
       "id": "AddressUpdateOakleigh_4b67jq",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateOakleigh_4b67jq.geo.json",
       "name": "Address Update - Oakleigh",
@@ -244,32 +244,10 @@
       ]
     },
     {
-      "id": "AddressUpdateSpecialLinzRefChanged_d7ib5h",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateSpecialLinzRefChanged_d7ib5h.geo.json",
-      "name": "Address Update - Special Linz Ref Changed",
-      "title": "Address Update - Special Linz Ref Changed",
-      "totalCount": 5,
-      "source": "",
-      "snippet": "edit 5",
-      "extent": [
-        [
-          174.9349667,
-          -36.9005333
-        ],
-        [
-          175.12720000000002,
-          -36.899800000000006
-        ]
-      ],
-      "groupCategories": [
-        "/Categories/Addresses"
-      ]
-    },
-    {
-      "id": "AddressUpdateSpecialLocationWrong_101dpon",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateSpecialLocationWrong_101dpon.geo.json",
-      "name": "Address Update - Special Location Wrong",
-      "title": "Address Update - Special Location Wrong",
+      "id": "AddressUpdateUnknownSector_znbt0a",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateUnknownSector_znbt0a.geo.json",
+      "name": "Address Update - Unknown Sector",
+      "title": "Address Update - Unknown Sector",
       "totalCount": 2,
       "source": "",
       "snippet": "move 2",

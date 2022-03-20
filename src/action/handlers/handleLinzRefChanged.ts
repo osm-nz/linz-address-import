@@ -54,5 +54,5 @@ export async function handleLinzRefChanged(
 
   if (!features.length) return {};
 
-  return { 'Address Update - Special Linz Ref Changed': features };
+  return { 'Address Update': features };
 }

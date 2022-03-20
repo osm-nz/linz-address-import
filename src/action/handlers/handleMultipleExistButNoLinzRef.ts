@@ -42,5 +42,5 @@ export async function handleMultipleExistButNoLinzRef(
 
   if (!features.length) return {};
 
-  return { 'Address Update - add ref tag': features };
+  return { 'Address Update': features };
 }

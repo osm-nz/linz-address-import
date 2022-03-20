@@ -38,5 +38,5 @@ export async function handleLocationWrong(
 
   await fs.writeFile(join(outFolder, 'location-wrong.txt'), report);
 
-  return { 'Address Update - Special Location Wrong': features };
+  return { 'Address Update': features };
 }
