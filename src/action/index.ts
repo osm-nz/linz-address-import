@@ -41,6 +41,7 @@ export async function main(): Promise<void> {
     }
   }
 
+  // merge tiny address suburbs into a regional dataset
   const mass = 'Address Update';
   features[mass] ||= [];
   for (const k in features) {
@@ -53,6 +54,7 @@ export async function main(): Promise<void> {
 
   const out: ExtraLayers = {};
   for (const k in features) {
+    // addresses are always size=medium
     out[k] = { size: 'medium', features: features[k] };
   }
 

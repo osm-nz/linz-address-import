@@ -90,43 +90,21 @@
       ]
     },
     {
-      "id": "AddressUpdateDuplicateTallHamletnorthernsector_1uxdry",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateDuplicateTallHamletnorthernsector_1uxdry.geo.json",
-      "name": "Address Update - Duplicate Tall Hamlet - northern sector",
-      "title": "Address Update - Duplicate Tall Hamlet - northern sector",
-      "totalCount": 1,
+      "id": "AddressUpdateDuplicateTallHamlet_il6mtj",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateDuplicateTallHamlet_il6mtj.geo.json",
+      "name": "Address Update - Duplicate Tall Hamlet",
+      "title": "Address Update - Duplicate Tall Hamlet",
+      "totalCount": 2,
       "source": "",
-      "snippet": "add 1",
+      "snippet": "add 2",
       "extent": [
         [
           174.996,
-          -35
-        ],
-        [
-          174.996,
-          -35
-        ]
-      ],
-      "groupCategories": [
-        "/Categories/Addresses"
-      ]
-    },
-    {
-      "id": "AddressUpdateDuplicateTallHamletsouthernsector_14xjq9y",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateDuplicateTallHamletsouthernsector_14xjq9y.geo.json",
-      "name": "Address Update - Duplicate Tall Hamlet - southern sector",
-      "title": "Address Update - Duplicate Tall Hamlet - southern sector",
-      "totalCount": 1,
-      "source": "",
-      "snippet": "add 1",
-      "extent": [
-        [
-          174.997,
           -36.9
         ],
         [
           174.997,
-          -36.9
+          -35
         ]
       ],
       "groupCategories": [
@@ -134,42 +112,20 @@
       ]
     },
     {
-      "id": "AddressUpdateDuplicateWideHamleteasternsector_1f8tmpg",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateDuplicateWideHamleteasternsector_1f8tmpg.geo.json",
-      "name": "Address Update - Duplicate Wide Hamlet - eastern sector",
-      "title": "Address Update - Duplicate Wide Hamlet - eastern sector",
-      "totalCount": 1,
+      "id": "AddressUpdateDuplicateWideHamlet_bu93q9",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateDuplicateWideHamlet_bu93q9.geo.json",
+      "name": "Address Update - Duplicate Wide Hamlet",
+      "title": "Address Update - Duplicate Wide Hamlet",
+      "totalCount": 2,
       "source": "",
-      "snippet": "add 1",
-      "extent": [
-        [
-          174.999,
-          -36.9
-        ],
-        [
-          174.999,
-          -36.9
-        ]
-      ],
-      "groupCategories": [
-        "/Categories/Addresses"
-      ]
-    },
-    {
-      "id": "AddressUpdateDuplicateWideHamletwesternsector_nede92",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateDuplicateWideHamletwesternsector_nede92.geo.json",
-      "name": "Address Update - Duplicate Wide Hamlet - western sector",
-      "title": "Address Update - Duplicate Wide Hamlet - western sector",
-      "totalCount": 1,
-      "source": "",
-      "snippet": "add 1",
+      "snippet": "add 2",
       "extent": [
         [
           172.998,
           -36.9
         ],
         [
-          172.998,
+          174.999,
           -36.9
         ]
       ],

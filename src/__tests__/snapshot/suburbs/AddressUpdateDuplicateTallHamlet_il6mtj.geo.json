@@ -3,6 +3,23 @@
   "features": [
     {
       "type": "Feature",
+      "id": "70096",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.996,
+          -35
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "96",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Duplicate Tall Hamlet",
+        "ref:linz:address_id": "70096"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "70097",
       "geometry": {
         "type": "Point",
