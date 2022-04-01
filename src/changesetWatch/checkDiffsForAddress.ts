@@ -1,8 +1,15 @@
 import type { OsmFeature } from 'osm-api';
+import { Tags } from '../types';
 import type { IgnoredAddr } from './api';
 import { CSWithDiff } from './patchOsmChange';
 
-const hasAddress = (x: OsmFeature) => x.tags?.['ref:linz:address_id'];
+const addressTags = ['ref:linz:address_id', 'addr:housenumber', 'addr:steet'];
+
+const hasAddress = (x: OsmFeature) =>
+  x.tags && addressTags.some((tag) => tag in x.tags!);
+
+const tagsToKey = (tags: Tags) =>
+  `${tags['addr:housenumber']} ${tags['addr:steet']}`;
 
 export function checkDiffsForAddress(list: CSWithDiff[]): IgnoredAddr[] {
   const out: IgnoredAddr[] = [];
@@ -13,24 +20,34 @@ export function checkDiffsForAddress(list: CSWithDiff[]): IgnoredAddr[] {
 
     const deletedAddresses: Record<string, OsmFeature> = {};
 
+    /** e.g. { '12 Example St': '[LINZ ref]' } */
+    const seenAddresses: Record<string, string> = {};
+
     // add all deleted features to the list first
     for (const feat of remove) {
       const addrId = feat.tags!['ref:linz:address_id'];
       deletedAddresses[addrId] = feat;
+
+      seenAddresses[tagsToKey(feat.tags!)] = addrId;
     }
 
     // then remove all addrIds that were added back to a different feature
-    for (const feat of create) {
+    for (const feat of [...modify, ...create]) {
       const addrId = feat.tags!['ref:linz:address_id'];
-      delete deletedAddresses[addrId];
-    }
-    for (const feat of modify) {
-      const addrId = feat.tags!['ref:linz:address_id'];
-      delete deletedAddresses[addrId];
+      if (addrId) {
+        delete deletedAddresses[addrId];
+      } else {
+        // This is an address the user created or updated, which doesn't have a ref:... tag.
+        // So we check if this is this new address is identical to one that was deleted.
+        // if so, we won't add this address to the ignore-list.
+        const maybeLinzAddr = seenAddresses[tagsToKey(feat.tags!)];
+        if (maybeLinzAddr) delete deletedAddresses[maybeLinzAddr];
+      }
     }
 
-    const issues = Object.entries(deletedAddresses).map(
-      ([addrId, osmFeature]) => {
+    const issues = Object.entries(deletedAddresses)
+      .filter(([, osmFeature]) => osmFeature.tags!['ref:linz:address_id'])
+      .map(([addrId, osmFeature]) => {
         return {
           addrId,
           streetAddress: `${osmFeature.tags!['addr:housenumber']} ${
@@ -45,8 +62,7 @@ export function checkDiffsForAddress(list: CSWithDiff[]): IgnoredAddr[] {
             cs.tags.comment
           }`,
         };
-      },
-    );
+      });
     out.push(...issues);
   }
   return out;

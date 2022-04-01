@@ -28,6 +28,7 @@ const cs: Changeset = {
 // node1 -> merged into new building way1
 // node2 -> merged into existing building way2
 // way3 -> outright deleted
+// node4 -> deleted, then they recreated it as node5 but without the ref: tag
 const diff: OsmChange = {
   create: [
     {
@@ -46,6 +47,23 @@ const diff: OsmChange = {
         building: 'house',
       },
       nodes: [3, 4, 5, 6, 3],
+    },
+    {
+      type: 'node',
+      id: 5,
+      timestamp: '2021-12-16T16:57:38Z',
+      changeset: 123,
+      uid: 10140394,
+      user: 'kylenz',
+      version: 2,
+      tags: {
+        'addr:housenumber': '157',
+        'addr:street': 'North Cove',
+        'addr:suburb': 'Kawau Island',
+        // re-created but without a `ref:linz:address_id` tag
+      },
+      lat: -36,
+      lon: 174,
     },
   ],
   modify: [
@@ -118,6 +136,23 @@ const diff: OsmChange = {
         building: 'yes',
       },
       nodes: [11, 12, 13, 14, 11],
+    },
+    {
+      type: 'node',
+      id: 4,
+      timestamp: '2021-12-16T16:57:38Z',
+      changeset: 123,
+      uid: 10140394,
+      user: 'kylenz',
+      version: 2,
+      tags: {
+        'addr:housenumber': '157',
+        'addr:street': 'North Cove',
+        'addr:suburb': 'Kawau Island',
+        'ref:linz:address_id': '2166053',
+      },
+      lat: -36,
+      lon: 174,
     },
   ],
 };
