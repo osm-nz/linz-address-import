@@ -161,12 +161,14 @@ export async function linzTopo(): Promise<void> {
     size: 'small',
     dontFlipWays: true,
     tagging(data) {
+      // in this layer, "disused" seems to mean "no longer exists"
+      if (data.status === 'disused') return null;
+
       return {
         waterway: 'ditch',
         usage: 'irrigation',
         description: 'water race',
         name: data.name,
-        disused: data.status === 'disused' ? 'yes' : undefined,
         'ref:linz:topo50_id': data.t50_fid,
       };
     },
@@ -1294,6 +1296,20 @@ export async function linzTopo(): Promise<void> {
     tagging: seamarkTagging('cable_submarine'),
   });
 
+  const H_cableAreas = await csvToGeoJson<Seamark['cable_area']>({
+    input: [
+      'sea/cable-area-polygons-hydro-14k-122k.csv',
+      'sea/cable-area-polygon-hydro-122k-190k.csv',
+      'sea/cable-area-polygons-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    complete: true,
+    instructions: maritimeLinearInstructions,
+    tagging: seamarkTagging('cable_area'),
+  });
+
   const H_daymarks = await csvToGeoJson<Seamark['daymark']>({
     input: [
       'sea/daymark-points-hydro-115mil-and-smaller.csv',
@@ -1791,6 +1807,17 @@ export async function linzTopo(): Promise<void> {
     tagging: seamarkTagging('buoy_special_purpose'),
   });
 
+  const virtualAtoN = await csvToGeoJson<Seamark['virtual_aton']>({
+    input: 'sea/new-object-points-hydro-14k-122k.csv',
+    idField: 'fidn',
+    sourceLayer: '107234',
+    size: 'large',
+    complete: true,
+    instructions:
+      'You must manually add seamark:virtual_aton:category=* and seamark:virtual_aton:mmsi=*',
+    tagging: seamarkTagging('virtual_aton'),
+  });
+
   const H_pilotBoarding = await csvToGeoJson<Seamark['pilot_boarding']>({
     input: [
       'sea/pilot-boarding-place-points-hydro-122k-190k.csv',
@@ -1853,6 +1880,55 @@ export async function linzTopo(): Promise<void> {
     tagging: seamarkTagging('restricted_area'),
   });
 
+  const H_smallCraftFacility = await csvToGeoJson<
+    Seamark['small_craft_facility']
+  >({
+    input: [
+      'sea/small-craft-facility-points-hydro-14k-122k.csv',
+      'sea/small-craft-facility-points-hydro-122k-190k.csv',
+      'sea/small-craft-facility-points-hydro-190k-1350k.csv',
+      'sea/small-craft-facility-polygons-hydro-14k-122k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    complete: true,
+    tagging: seamarkTagging('small_craft_facility'),
+  });
+
+  const H_harbourFacility = await csvToGeoJson<Seamark['harbour']>({
+    input: [
+      'sea/harbour-facility-points-hydro-14k-122k.csv',
+      'sea/harbour-facility-points-hydro-122k-190k.csv',
+      'sea/harbour-facility-points-hydro-190k-1350k.csv',
+      'sea/harbour-facility-polygon-hydro-122k-190k.csv',
+      'sea/harbour-facility-polygons-hydro-14k-122k.csv',
+      'sea/harbour-facility-polygons-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    complete: true,
+    tagging: seamarkTagging('harbour'),
+  });
+
+  const H_productionStorageArea = await csvToGeoJson<
+    Seamark['production_area']
+  >({
+    input: [
+      'sea/production-storage-area-points-hydro-14k-122k.csv',
+      'sea/production-storage-area-points-hydro-122k-190k.csv',
+      'sea/production-storage-area-points-hydro-190k-1350k.csv',
+      'sea/production-storage-area-polygons-hydro-14k-122k.csv',
+      'sea/production-storage-area-polygons-hydro-122k-190k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    complete: true,
+    tagging: seamarkTagging('production_area'),
+  });
+
   const H_wreck = await csvToGeoJson<Seamark['wreck']>({
     input: [
       'sea/wreck-points-hydro-122k-190k.csv',
@@ -1867,6 +1943,29 @@ export async function linzTopo(): Promise<void> {
     size: 'large',
     complete: true,
     tagging: seamarkTagging('wreck'),
+  });
+
+  const H_waterTurbulence = await csvToGeoJson<Seamark['water_turbulence']>({
+    input: [
+      'sea/water-turbulence-points-hydro-115mil-and-smaller.csv',
+      'sea/water-turbulence-points-hydro-122k-190k.csv',
+      'sea/water-turbulence-points-hydro-1350k-11500k.csv',
+      'sea/water-turbulence-points-hydro-14k-122k.csv',
+      'sea/water-turbulence-points-hydro-190k-1350k.csv',
+      'sea/water-turbulence-polygon-hydro-115mil-and-smaller.csv',
+      'sea/water-turbulence-polygon-hydro-1350k-11500k.csv',
+      'sea/water-turbulence-polygon-hydro-190k-1350k.csv',
+      'sea/water-turbulence-polygons-hydro-122k-190k.csv',
+      'sea/water-turbulence-polygons-hydro-14k-122k.csv',
+      'sea/water-turbulence-polyline-hydro-115mil-and-smaller.csv',
+      'sea/water-turbulence-polyline-hydro-122k-190k.csv',
+      'sea/water-turbulence-polyline-hydro-14k-122k.csv',
+      'sea/water-turbulence-polyline-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    tagging: seamarkTagging('water_turbulence'),
   });
 
   //
@@ -2078,6 +2177,7 @@ export async function linzTopo(): Promise<void> {
     'Z Anchorages': H_anchorages,
     'Z Berths': H_berths,
     'Z Submarine Cables': H_submarineCables,
+    'Z Cable Areas': H_cableAreas,
     'Z Daymarks': H_daymarks,
     'Z Dumping Ground': H_dumpingGrounds,
     'Z Fishing Facilities': H_fishingFacs,
@@ -2085,12 +2185,16 @@ export async function linzTopo(): Promise<void> {
     'Z Hulks': H_hulk,
     'Z Lights': H_lights,
     'Z Moorings': H_mooring,
+    'Z Virtual AIS Navigation Aids': virtualAtoN,
     'Z Piles': H_piles,
     'Z Pontoons': H_pontoons,
     'Z Pylons': H_pylons,
     'Z Radar Stations': H_radarStations,
     'Z Radar Transponders': H_radarTransponder,
     'Z Rescue Stations': H_rescueStations,
+    'Z Small Craft Facilities': H_smallCraftFacility,
+    'Z Harbour Facilities': H_harbourFacility,
+    'Z Production/Storage Area': H_productionStorageArea,
     'Z Sand Waves': H_sandWaves,
     'Z Seaplane Runways': H_seaplaneRunways,
     'Z Springs': H_springs,
@@ -2117,6 +2221,7 @@ export async function linzTopo(): Promise<void> {
     'Z Radio call-in Points': H_radioCallInPoint,
     'Z Radio Stations': H_radioStation,
     'Z Restricted maritime areas': H_restrictedArea,
+    'Z Water Turbulence': H_waterTurbulence,
     'Z Wrecks': H_wreck,
 
     'Z Tide Stations': tideStations,

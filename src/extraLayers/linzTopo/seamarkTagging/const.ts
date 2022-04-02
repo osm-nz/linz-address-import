@@ -101,7 +101,7 @@ export const SEAMARK_TYPE = <const>{
   TWRTPT: 'two-way_route',
   UWTROC: 'rock',
   VEGATN: 'vegetation',
-  VIRATN: 'virtual_aton',
+  NEWOBJ: 'virtual_aton',
   VEHTRF: 'vehicle_transfer',
   WATTUR: 'water_turbulence',
   WTWGAG: 'waterway_gauge',
@@ -159,7 +159,7 @@ const MAP = <const>{
     16: ['watched'],
     17: ['unwatched', 'un-watched'],
     18: ['existence_doubtful', 'existence doubtful'],
-    _19: ['on_request', ' on request'],
+    _19: ['on_request', 'on request'],
     _20: ['drop_away', 'drop away'],
     _21: ['rising'],
     _22: ['increasing'],
@@ -395,6 +395,87 @@ const MAP = <const>{
     2: ['sea_weed', 'sea weed'],
     3: ['sea_grass', 'sea grass'],
     4: ['saragasso'],
+  },
+  CATWAT: {
+    1: ['breakers'],
+    2: ['eddies'],
+    3: ['overfalls'],
+    4: ['tide_rips', 'tide rips'],
+    5: ['bombora'],
+  },
+  CATSCF: {
+    1: ['visitor_berth', 'visitor’s berth'],
+    2: ['nautical_club', 'nautical club'],
+    3: ['boat_hoist', 'boat hoist'],
+    4: ['sailmaker'],
+    5: ['boatyard'],
+    6: ['public_inn', 'public inn'],
+    7: ['restaurant'],
+    8: ['chandler'],
+    9: ['provisions'],
+    10: ['doctor'],
+    11: ['pharmacy'],
+    12: ['water_tap', 'water tap'],
+    13: ['fuel_station', 'fuel station'],
+    14: ['electricity'],
+    15: ['bottle_gas', 'bottle gas'],
+    16: ['showers'],
+    17: ['launderette'],
+    18: ['toilets', 'public toilets'],
+    19: ['post_box', 'post box'],
+    20: ['telephone', 'public telephone'],
+    21: ['refuse_bin', 'refuse bin'],
+    22: ['car_park', 'car park'],
+    23: ['boat_trailers_park', 'parking for boats and trailers'],
+    24: ['caravan_site', 'caravan site'],
+    25: ['camping_site', 'camping site'],
+    26: ['pump-out', 'sewerage pump-out station'],
+    27: ['emergency_telephone', 'emergency telephone'],
+    28: ['slipway', 'landing/launching place for boats'],
+    29: ['visitors_mooring', 'visitors mooring'],
+    30: ['scrubbing_berth', 'scrubbing berth'],
+    31: ['picnic_area', 'picnic area'],
+    32: ['mechanics_workshop', 'mechanics workshop'],
+    33: ['security_service', 'guard and/ or security service'],
+  },
+  CATHAF: {
+    1: ['roro', 'RoRo-terminal'],
+    /** @deprecated */ 2: ['timber', 'timber yard'],
+    3: ['ferry', 'ferry terminal'],
+    4: ['fishing', 'fishing harbour'],
+    5: ['marina', 'yacht harbour/marina'],
+    // marina_no_facilities
+    6: ['naval', 'naval base'],
+    7: ['tanker', 'tanker terminal'],
+    8: ['passenger', 'passenger terminal'],
+    9: ['shipyard'],
+    10: ['container', 'container terminal'],
+    11: ['bulk', 'bulk terminal'],
+    12: ['syncrolift'],
+    13: ['straddle_carrier', 'straddler carrier'],
+    // lay_up
+    // service_repair
+    // quarantine
+    // seaplane
+    // cargo
+    // offshore_support
+    // port_support
+  },
+  CATPRA: {
+    1: ['quarry'],
+    2: ['mine'],
+    3: ['stockpile'],
+    4: ['power_station', 'power station area'],
+    5: ['refinery', 'refinery area'],
+    6: ['timber_yard', 'timber yard'],
+    7: ['factory', 'factory area'],
+    8: ['tank_farm', 'tank farm'],
+    9: ['wind_farm', 'wind farm'],
+    10: ['slag_heap', 'slag heaps/spoil heap'],
+    // current_farm
+    // oil
+    // gas
+    // wave_energy
   },
   CATPIP: {
     1: ['', 'pipeline in general'],
@@ -644,6 +725,21 @@ const MAP = <const>{
     62: ['causeway', 'Causeway Mark'],
     63: ['wave_recorder', 'Wave Recorder'],
     64: ['no_jetski', 'Jetski Prohibited'],
+  },
+  CLSNAM: {
+    // numbers are arbitrary
+    1: ['north_cardinal', 'Virtual AtoN, North Cardinal'],
+    2: ['south_cardinal', 'Virtual AtoN, East Cardinal'],
+    3: ['east_cardinal', 'Virtual AtoN, South Cardinal'],
+    4: ['west_cardinal', 'Virtual AtoN, West Cardinal'],
+    5: ['port_lateral', 'Virtual AtoN, Port Lateral'],
+    6: ['starboard_lateral', 'Virtual AtoN, Starboard Lateral'],
+    7: ['isolated_danger', 'Virtual AtoN, Isolated Danger'],
+    8: ['safe_water', 'Virtual AtoN, Safe Water'],
+    9: ['special_purpose', 'Virtual AtoN, Special Purpose'],
+    10: ['wreck', 'Virtual AtoN, Wreck Marking'],
+    11: ['preferred_port', 'Virtual AtoN, Preferred Channel Port'],
+    12: ['preferred_starboard', 'Virtual AtoN, Preferred Channel Starboard'],
   },
 
   //

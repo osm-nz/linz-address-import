@@ -146,6 +146,11 @@ export const seamarkTagging =
         MapCat('CATTRK', data.cattrk) ||
         MapCat('CATFIF', data.catfif) ||
         MapCat('CATPIP', data.catpip) ||
+        MapCat('CATWAT', data.catwat) ||
+        MapCat('CATSCF', data.catscf) ||
+        MapCat('CATHAF', data.cathaf) ||
+        MapCat('CATPRA', data.catpra) ||
+        MapCat('CLSNAM', data.clsnam) ||
         MapCat('CATOFP', data.catofp),
 
       //
@@ -211,6 +216,22 @@ export const seamarkTagging =
         tags.man_made = 'floating_storage';
       } else {
         tags.man_made = 'offshore_platform';
+      }
+    }
+
+    if (tags['seamark:harbour:category'] === 'marina') tags.leisure = 'marina';
+
+    if (tags['seamark:small_craft_facility:category'] === 'slipway') {
+      tags.leisure = 'slipway';
+    }
+
+    if (type === 'production_area') {
+      if (MapCat('CATPRA', data.catpra) === 'quarry') {
+        tags.landuse = 'quarry';
+        tags.resource = tags['seamark:production_area:product'];
+      } else {
+        tags.landuse = 'industrial';
+        tags.product = tags['seamark:production_area:product'];
       }
     }
 

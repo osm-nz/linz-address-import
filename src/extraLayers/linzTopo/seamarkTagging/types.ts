@@ -34,6 +34,10 @@ type _SeamarkTypes = {
   cable_submarine: {
     catcbl?: string;
   };
+  cable_area: {
+    catcbl?: string;
+    restrn?: string;
+  };
   platform: {
     verlen?: string;
     prodct?: string;
@@ -206,6 +210,22 @@ type _SeamarkTypes = {
     cattrk?: string;
     trafic?: string;
     orient?: string;
+  };
+  virtual_aton: {
+    clsnam?: string;
+  };
+  water_turbulence: {
+    catwat?: string;
+  };
+  small_craft_facility: {
+    catscf?: string;
+  };
+  harbour: {
+    cathaf?: string;
+  };
+  production_area: {
+    catpra?: string;
+    prodct?: string;
   };
 };
 /* eslint-enable @typescript-eslint/ban-types */
