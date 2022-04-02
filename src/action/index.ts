@@ -42,15 +42,14 @@ export async function main(): Promise<void> {
   }
 
   // merge tiny address suburbs into a regional dataset
-  const mass = 'Address Update';
-  features[mass] ||= [];
   for (const k in features) {
     if (features[k].length < 50 && !mock) {
-      features[mass].push(...features[k]);
+      const parentKey = k.split(' - ')[0];
+      features[parentKey] ||= [];
+      features[parentKey].push(...features[k]);
       delete features[k];
     }
   }
-  if (!features[mass]?.length) delete features[mass];
 
   const out: ExtraLayers = {};
   for (const k in features) {

@@ -1,13 +1,9 @@
 import { join } from 'path';
 import pbf2json, { Item } from 'pbf2json';
 import through from 'through2';
-import { withinBBox } from '../../common';
+import { isChecked, withinBBox } from '../../common';
 import { BBox, OsmId } from '../../types';
 import { OsmMarker } from './const';
-
-/** checks if an ISO date exists and if it it's less than 1 year old */
-const isChecked = (v: string | undefined) =>
-  !!v && (+new Date() - +new Date(v)) / 1000 / 60 / 60 / 24 < 365;
 
 export async function readFromPlanet(
   bbox: BBox,

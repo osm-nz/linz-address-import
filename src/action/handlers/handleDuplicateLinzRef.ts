@@ -65,5 +65,5 @@ export async function handleDuplicateLinzRef(
 
   if (!features.length) return {};
 
-  return { 'Merge address nodes and buildings': features };
+  return { 'Merge duplicate addresses': features };
 }

@@ -20,20 +20,23 @@ export async function handleLocationWrong(
       osmId,
     )}\t\tneeds to move ${metres}m to ${lat},${lng}\n`;
 
-    features.push({
-      type: 'Feature',
-      id: osmId,
-      geometry: {
-        type: 'LineString',
-        coordinates: [
-          [wrongLng, wrongLat],
-          [lng, lat],
-        ],
-      },
-      properties: {
-        __action: 'move',
-      },
-    });
+    if (osmId[0] === 'n') {
+      // RapiD can only move nodes.
+      features.push({
+        type: 'Feature',
+        id: osmId,
+        geometry: {
+          type: 'LineString',
+          coordinates: [
+            [wrongLng, wrongLat],
+            [lng, lat],
+          ],
+        },
+        properties: {
+          __action: 'move',
+        },
+      });
+    }
   }
 
   await fs.writeFile(join(outFolder, 'location-wrong.txt'), report);

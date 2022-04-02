@@ -2,6 +2,7 @@ import { promises as fs } from 'fs';
 import { join } from 'path';
 import pbf2json, { Item } from 'pbf2json';
 import through from 'through2';
+import { isChecked } from '../common';
 import { OsmAddr, OSMData, OsmId } from '../types';
 import { mock, osmFile } from './const';
 
@@ -11,10 +12,6 @@ const input = join(
 );
 
 const MAP = { node: 'n', way: 'w', relation: 'r' };
-
-/** checks if an ISO date exists and if it it's less than 1 year old */
-const isChecked = (v: string | undefined) =>
-  !!v && (+new Date() - +new Date(v)) / 1000 / 60 / 60 / 24 < 365;
 
 // TODO: perf baseline is 87 seconds
 function osmToJson(): Promise<OSMData> {
