@@ -22,5 +22,6 @@ export function deleteAllAddressTags(): Tags {
     'addr:type': '🗑️',
     'building:flats': '🗑️',
     'ref:linz:address_id': '🗑️',
+    check_date: '🗑️',
   };
 }

@@ -7,6 +7,7 @@ import {
   Issue,
   HandlerReturn,
   GeoJsonFeature,
+  CheckDate,
 } from '../../types';
 import { createDiamond, outFolder, toLink, fieldsToModify } from '../util';
 
@@ -44,6 +45,8 @@ export async function existsButDataWrong(
         properties: {
           __action: 'edit',
           ...fieldsToModify(issues),
+          // maybe remove the check_date tag if it's out-of-date
+          ...(osmData.checked === CheckDate.YesExpired && { check_date: '🗑️' }),
         },
       });
     }

@@ -24,13 +24,19 @@ export type LinzData = {
   [linzId: string]: LinzAddr;
 };
 
+export enum CheckDate {
+  No,
+  YesRecent, // check_date is recent (less than X years ago)
+  YesExpired, // check_date is older than X years
+}
+
 export type OsmAddr = Coords & {
   osmId: OsmId;
   housenumber?: string;
   street?: string;
   suburb?: Suburb;
   isNonTrivial: boolean;
-  checked: boolean;
+  checked: CheckDate;
   /** whether this address is a water address */
   water?: true;
   /** whether this address has `addr:suburb` and `addr:hamlet` */
@@ -176,7 +182,7 @@ export type StatusDiagnostics = {
   [Status.MULTIPLE_EXIST]: [linzAddr: LinzAddr, osmAddrs: OsmAddr[]];
   [Status.EXISTS_BUT_LOCATION_WRONG]: [
     metres: number,
-    osmId: OsmId,
+    osmAddr: OsmAddr,
     linzLat: number,
     linzLng: number,
     osmLat: number,

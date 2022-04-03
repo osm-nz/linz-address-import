@@ -38,7 +38,8 @@
         ]
       },
       "properties": {
-        "__action": "move"
+        "__action": "move",
+        "check_date": "🗑️"
       }
     }
   ]

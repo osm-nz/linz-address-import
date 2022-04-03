@@ -1,4 +1,10 @@
-import { LinzAddr, OsmAddr, Status, StatusDiagnostics } from '../types';
+import {
+  CheckDate,
+  LinzAddr,
+  OsmAddr,
+  Status,
+  StatusDiagnostics,
+} from '../types';
 import { findPotentialOsmAddresses } from './findPotentialOsmAddresses';
 import { distanceBetween } from './helpers/geo';
 import { validate } from './helpers/validate';
@@ -22,7 +28,9 @@ export function processWithRef(
   allOsmAddressesWithNoRef: OsmAddr[],
   slowMode?: boolean,
 ): { status: Status; diagnostics?: unknown } {
-  if (osmAddr.checked) return { status: Status.PERFECT };
+  if (osmAddr.checked === CheckDate.YesRecent) {
+    return { status: Status.PERFECT };
+  }
 
   const linzSuburb = `${
     linzAddr.suburb[0] === 'U' ? 'addr:suburb' : 'addr:hamlet'
@@ -95,7 +103,7 @@ export function processWithRef(
       status: Status.EXISTS_BUT_LOCATION_WRONG,
       diagnostics: [
         Math.round(offset),
-        osmAddr.osmId,
+        osmAddr,
         linzAddr.lat,
         linzAddr.lng,
         osmAddr.lat,

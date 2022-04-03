@@ -5,6 +5,7 @@ import {
   StatusReport,
   HandlerReturn,
   GeoJsonFeature,
+  CheckDate,
 } from '../../types';
 import { outFolder, toLink } from '../util';
 
@@ -15,16 +16,16 @@ export async function handleLocationWrong(
   let report = '';
 
   for (const [linzId, d] of arr) {
-    const [metres, osmId, lat, lng, wrongLat, wrongLng] = d;
+    const [metres, osmData, lat, lng, wrongLat, wrongLng] = d;
     report += `${linzId}\t\t${toLink(
-      osmId,
+      osmData.osmId,
     )}\t\tneeds to move ${metres}m to ${lat},${lng}\n`;
 
-    if (osmId[0] === 'n') {
+    if (osmData.osmId[0] === 'n') {
       // RapiD can only move nodes.
       features.push({
         type: 'Feature',
-        id: osmId,
+        id: osmData.osmId,
         geometry: {
           type: 'LineString',
           coordinates: [
@@ -34,6 +35,10 @@ export async function handleLocationWrong(
         },
         properties: {
           __action: 'move',
+
+          // maybe remove the check_date tag if it's out-of-date
+          // TODO: unfortunately RapiD can't edit tags at the same time as a move, so this won't work
+          ...(osmData.checked === CheckDate.YesExpired && { check_date: '🗑️' }),
         },
       });
     }

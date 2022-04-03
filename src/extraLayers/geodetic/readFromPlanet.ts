@@ -61,7 +61,7 @@ export async function readFromPlanet(
               'survey_point:datum_aligned'
             ] as 'yes' | 'no' | undefined,
             'survey_point:structure': item.tags['survey_point:structure'],
-            checked: isChecked(item.tags.check_date),
+            checked: !!isChecked(item.tags.check_date),
           };
 
           const website = `https://www.geodesy.linz.govt.nz/gdb?code=${ref}`;

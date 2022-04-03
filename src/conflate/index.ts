@@ -6,6 +6,7 @@ import {
   Status,
   DeletionData,
   CouldStackData,
+  CheckDate,
 } from '../types';
 import { processWithRef } from './processWithRef';
 import { processWithoutRef } from './processWithoutRef';
@@ -47,8 +48,7 @@ export async function main(): Promise<void> {
     .filter(
       ([linzId, osmAddr]) =>
         !(linzId in linzData) && // we delete every OSM node with a linzRef that does not exist in the LINZ data
-        // !linzId.startsWith('stack(') && // ...unless it is a stack
-        !osmAddr.checked, // ...or it has a recent check_date
+        osmAddr.checked !== CheckDate.YesRecent, // ...unless it has a recent check_date
     )
     .map(([linzId, osmAddr]) => [
       linzId,

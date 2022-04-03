@@ -213,7 +213,8 @@
         "addr:hamlet": "🗑️",
         "addr:type": "🗑️",
         "building:flats": "🗑️",
-        "ref:linz:address_id": "🗑️"
+        "ref:linz:address_id": "🗑️",
+        "check_date": "🗑️"
       }
     }
   ]

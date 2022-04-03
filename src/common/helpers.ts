@@ -1,3 +1,8 @@
+import { CheckDate } from '../types';
+
+/** number of years before we revisit a feature with check_date */
+const CHECK_DATE_THRESHOLD_YEARS = 2;
+
 export const chunk = <T>(list: T[], size: number): T[][] =>
   list.reduce<T[][]>(
     (r, v) =>
@@ -14,6 +19,12 @@ export function uniq<T>(value: T, index: number, self: T[]): boolean {
 export const timeout = (ms: number): Promise<void> =>
   new Promise((cb) => setTimeout(cb, ms));
 
-/** checks if an ISO date exists and if it it's less than 2 years old */
-export const isChecked = (v: string | undefined): boolean =>
-  !!v && (+new Date() - +new Date(v)) / 1000 / 60 / 60 / 24 / 365 < 2;
+/** checks if an ISO date exists and if it it's less than X years old */
+export const isChecked = (v: string | undefined): CheckDate => {
+  if (!v) return CheckDate.No;
+
+  const yearsAgo = (+new Date() - +new Date(v)) / 1000 / 60 / 60 / 24 / 365;
+  return yearsAgo < CHECK_DATE_THRESHOLD_YEARS
+    ? CheckDate.YesRecent
+    : CheckDate.YesExpired;
+};

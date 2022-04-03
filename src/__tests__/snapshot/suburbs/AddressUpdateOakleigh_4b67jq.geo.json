@@ -209,7 +209,8 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:street": "Example Street"
+        "addr:street": "Example Street",
+        "check_date": "🗑️"
       }
     },
     {
