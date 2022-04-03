@@ -330,6 +330,28 @@
       "groupCategories": [
         "/Categories/Addresses"
       ]
+    },
+    {
+      "id": "MergeduplicateaddressesAucklandSouth_1sppirm",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/MergeduplicateaddressesAucklandSouth_1sppirm.geo.json",
+      "name": "Merge duplicate addresses - Auckland South",
+      "title": "Merge duplicate addresses - Auckland South",
+      "totalCount": 1,
+      "source": "",
+      "snippet": "edit 1",
+      "extent": [
+        [
+          174.9208,
+          -36.900200000000005
+        ],
+        [
+          174.92120000000003,
+          -36.899800000000006
+        ]
+      ],
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
     }
   ]
 }

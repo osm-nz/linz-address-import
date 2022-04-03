@@ -173,7 +173,7 @@ export type StatusDiagnostics = {
     chosenOsmAddr: OsmAddr,
     allOsmIds: OsmId[],
   ];
-  [Status.MULTIPLE_EXIST]: [suburb: string, addrs: OsmAddr[]];
+  [Status.MULTIPLE_EXIST]: [linzAddr: LinzAddr, osmAddrs: OsmAddr[]];
   [Status.EXISTS_BUT_LOCATION_WRONG]: [
     metres: number,
     osmId: OsmId,
