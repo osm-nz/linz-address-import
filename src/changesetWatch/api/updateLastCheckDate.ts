@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { spreadsheetId } from '../../preprocess/fetchIgnoreList';
+import { spreadsheetId } from '../../common';
 import { googleAuth } from './googleAuth';
 
 export async function updateLastCheckDate(

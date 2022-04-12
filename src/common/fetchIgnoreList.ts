@@ -1,14 +1,14 @@
-import { promises as fs, createReadStream } from 'fs';
+import { createReadStream } from 'fs';
 import fetch from 'node-fetch';
 import csv from 'csv-parser';
 import { join } from 'path';
-import { ignoreFile, IgnoreFile, mock } from './const';
+import { IgnoreFile, mock } from '../preprocess/const';
 
 export const spreadsheetId = '1BNrUQof78t-OZlCHF3n_MKnYDARFoCRZB7xKxQPmKds';
 
 export async function fetchIgnoreList(
-  gId = 0,
-  columnName = 'LINZ Address ID',
+  gId: number,
+  columnName: string,
 ): Promise<IgnoreFile> {
   const stream = mock
     ? createReadStream(join(__dirname, '../__tests__/mock/ignore-list.csv'))
@@ -29,10 +29,3 @@ export async function fetchIgnoreList(
       .on('error', reject);
   });
 }
-
-export async function main(): Promise<void> {
-  const res = await fetchIgnoreList();
-  await fs.writeFile(ignoreFile, JSON.stringify(res));
-}
-
-if (process.env.NODE_ENV !== 'test') main();

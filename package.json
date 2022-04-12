@@ -7,7 +7,7 @@
     "download-planet": "sh src/download-planet.sh",
     "download-linz": "sh src/download-linz.sh",
     "nzgb": "ts-node -T src/preprocess/nzgb",
-    "preprocess0": "ts-node -T src/preprocess/fetchIgnoreList && npm run nzgb",
+    "preprocess0": "ts-node -T src/preprocess/fetchAndSaveAddressIgnoreList && npm run nzgb",
     "preprocess1": "ts-node -T src/preprocess/processOsmData",
     "preprocess2": "ts-node -T src/preprocess/processLinzData",
     "preprocess3": "ts-node -T src/preprocess/stackLinzData",

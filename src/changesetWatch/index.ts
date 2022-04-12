@@ -6,9 +6,8 @@ import {
 } from 'osm-api';
 import { config as dotenv } from 'dotenv';
 import { watchArea } from './constants';
-import { fetchIgnoreList } from '../preprocess/fetchIgnoreList';
 import { updateIgnoreList, updateLastCheckDate } from './api';
-import { timeout } from '../common';
+import { timeout, fetchIgnoreList } from '../common';
 import { CSWithDiff, patchOsmChange } from './patchOsmChange';
 import { checkDiffsForAddress } from './checkDiffsForAddress';
 

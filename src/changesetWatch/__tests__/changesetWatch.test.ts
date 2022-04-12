@@ -8,12 +8,10 @@ jest.mock('../api');
 jest.mock('../checkDiffsForAddress');
 jest.mock('../../common', () => ({
   timeout: async () => 0,
+  fetchIgnoreList: async () => ({ '2019-07-03': 1 }),
 }));
 jest.mock('../patchOsmChange', () => ({
   patchOsmChange: async (x: unknown) => x,
-}));
-jest.mock('../../preprocess/fetchIgnoreList', () => ({
-  fetchIgnoreList: async () => ({ '2019-07-03': 1 }),
 }));
 
 const node = {} as OsmNode;
