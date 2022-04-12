@@ -20,7 +20,11 @@ export const seamarkTagging =
       //
       name: data.nobjnm || data.objnam, // we don't use seamark:name, see https://wiki.osm.org/Talk:Key:seamark:name
       description: data.ninfom || data.inform || data.ntxtds || data.txtdsc,
-      'ref:linz:hydrographic_id': `${+data.fidn}`,
+
+      // The ID is nearly always a number, except when a feature it split at the
+      // boundary between two charts. Then LINZ gives it a 3-letter suffix like AAA.
+      'ref:linz:hydrographic_id': `${+data.fidn || data.fidn}`,
+
       source: cleanSource(data.sorind, chartName),
       'source:date': cleanDate(data.sordat),
       start_date: cleanDate(data.datsta),

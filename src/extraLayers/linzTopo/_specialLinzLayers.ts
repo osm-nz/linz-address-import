@@ -2,6 +2,7 @@ import { promises as fs, createReadStream } from 'fs';
 import csv from 'csv-parser';
 import { join } from 'path';
 import { F_OK } from 'constants';
+import { Query } from 'which-polygon';
 import {
   ChunkSize,
   ExtraLayers,
@@ -24,7 +25,7 @@ async function readCsv<T extends Record<string, string>>(
   { idField, tagging, dontFlipWays, transformGeometry }: Options<T>,
   input: string,
   IDsToSkip: IgnoreFile,
-  charts: Chart[],
+  charts: Query<Chart>,
 ): Promise<{ features: GeoJsonFeature[]; skipped: number }> {
   const fullPath = join(__dirname, '../../../data/extra/', input);
   if (!(await existsAsync(fullPath))) {
@@ -45,7 +46,7 @@ async function readCsv<T extends Record<string, string>>(
 
         const id =
           idField === 'HASH_WKT' ? hash(data[wktField]) : data[idField];
-        const idWithType = isNautical ? `h${+id}` : `t${id}`;
+        const idWithType = isNautical ? `h${+id || id}` : `t${id}`;
 
         if (idWithType in IDsToSkip) return; // skip this one, it's already mapped
 
@@ -57,7 +58,7 @@ async function readCsv<T extends Record<string, string>>(
           // TODO: this is unreliable because a huge feature might span multiple charts,
           // and we don't use the centroid, we use the first coord.
           const centroid = getFirstCoord(geometry);
-          const bestChartForThisLoc = getBestChart(
+          let bestChartForThisLoc = getBestChart(
             charts,
             centroid[1],
             centroid[0],
@@ -65,8 +66,14 @@ async function readCsv<T extends Record<string, string>>(
 
           // this will never happen
           if (!bestChartForThisLoc) {
-            console.log('NO CHART FOR', centroid);
-            return;
+            console.log('NO CHART FOR', centroid, input);
+
+            // we'll allow it through if this happens
+            bestChartForThisLoc = {
+              encChartName: 'Unknown',
+              category: '14k-122k',
+              rank: 0,
+            };
           }
 
           const isBestChartForThisLoc = fullPath.includes(
@@ -130,7 +137,10 @@ type Options<T> = {
   ): null | [GeoJsonCoords, Tags];
 };
 
-export function csvToGeoJsonFactory(IDsToSkip: IgnoreFile, charts: Chart[]) {
+export function csvToGeoJsonFactory(
+  IDsToSkip: IgnoreFile,
+  charts: Query<Chart>,
+) {
   return async function csvToGeoJson<T extends Record<string, string>>(
     options: Options<T>,
   ): Promise<ExtraLayers[string]> {

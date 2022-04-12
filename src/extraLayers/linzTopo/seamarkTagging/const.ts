@@ -171,7 +171,7 @@ const MAP = <const>{
   },
   CONDTN: {
     1: ['under_construction', 'under construction'],
-    2: ['ruinied'],
+    2: ['ruined'],
     3: ['under_reclamation', 'under reclamation'],
     4: ['wingless'],
     5: ['planned_construction', 'planned construction'],

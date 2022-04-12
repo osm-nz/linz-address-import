@@ -1,9 +1,10 @@
 import { createReadStream } from 'fs';
 import csv from 'csv-parser';
+import { Query } from 'which-polygon';
 import { join } from 'path';
-import { BBox } from '../../../types';
-import { withinBBox } from '../../../common';
+import { GeoJson, GeoJsonFeature } from '../../../types';
 import { fixChartName } from './helpers';
+import { wktToGeoJson } from '../geoOperations';
 
 const filePath = join(
   __dirname,
@@ -11,6 +12,7 @@ const filePath = join(
 );
 
 type ChartIndexCsv = {
+  WKT: string;
   product_id: string;
   version_id: string;
   usage:
@@ -45,7 +47,6 @@ export type Chart = {
     | '115mil-and-smaller';
   rank: number;
   encChartName: string; // these don't match the charts we're used to in NZ (e.g. Akl Harbour East)
-  bbox: BBox;
 };
 
 const MAP: Record<
@@ -60,14 +61,13 @@ const MAP: Record<
   Overview: [5, '115mil-and-smaller'],
 };
 
-export async function readNauticalChartIndexCsv(): Promise<Chart[]> {
+export async function readNauticalChartIndexCsv(): Promise<GeoJson<Chart>> {
   return new Promise((resolve, reject) => {
-    const features: Chart[] = [];
+    const features: GeoJsonFeature<Chart>[] = [];
 
     createReadStream(filePath)
       .pipe(csv())
       .on('data', (data: ChartIndexCsv) => {
-        // TODO: switch to using the WKT, not the BBOX
         const map = MAP[data.usage];
         if (!map) {
           console.log('Skipped chart with invalid usage', [
@@ -76,33 +76,45 @@ export async function readNauticalChartIndexCsv(): Promise<Chart[]> {
           ]);
           return;
         }
+
+        // we have to do this because of a special character at position 0,0 in every linz CSV file
+        const wktField = <'WKT'>Object.keys(data)[0];
+
+        // so not include the 'sea/' prefix in the layer name, since we don't want to
+        // mess with the antimeridian for the chart index itself.
+        const geometry = wktToGeoJson(data[wktField], 'chart-indexes');
+
+        const encChartName = fixChartName(data.enc_name);
         features.push({
-          encChartName: fixChartName(data.enc_name),
-          category: map[1],
-          rank: map[0],
-          bbox: {
-            maxLat: +data.max_y,
-            minLat: +data.min_y,
-            maxLng: +data.max_x,
-            minLng: +data.min_x,
+          type: 'Feature',
+          geometry,
+          id: encChartName,
+          properties: {
+            encChartName,
+            category: map[1],
+            rank: map[0],
           },
         });
       })
-      .on('end', () => resolve(features))
+      .on('end', () => resolve({ type: 'FeatureCollection', features }))
       .on('error', reject);
   });
 }
 
 export function getBestChart(
-  charts: Chart[],
+  query: Query<Chart>,
   lat: number,
   lng: number,
 ): Chart | undefined {
+  // we query twice in the rare case that the first query fails,
+  // because which-polygon treats -170lng as a different location to +190lng.
+  const tmp = query([lng, lat], true) || query([360 + lng, lat], true);
+
+  if (!tmp) return undefined; // will never happen
+
+  // fill it into an array based on it's rank to remove duplicates from the same rank
   const possibleCharts: Chart[] = [];
-  for (const chart of charts) {
-    if (withinBBox(chart.bbox, lat, lng)) {
-      possibleCharts[chart.rank] = chart;
-    }
-  }
+  for (const c of tmp) possibleCharts[c.rank] = c;
+
   return possibleCharts.find((x) => x); // this assumes that find() executes in a consistent order
 }
