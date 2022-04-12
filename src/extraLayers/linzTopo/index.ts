@@ -1,5 +1,6 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
+import whichPolygon from 'which-polygon';
 import { ExtraLayers } from '../../types';
 import { getT50IDsToSkip } from './getT50IDsToSkip';
 import {
@@ -29,15 +30,16 @@ const radToDeg = (radians: number): string =>
   `${(360 + 90 - Math.round((radians * 180) / Math.PI)) % 360}`;
 
 export async function linzTopo(): Promise<void> {
-  const IDsToSkip = await getT50IDsToSkip();
+  const IDsToSkip = await getT50IDsToSkip(true); // TODO: set to false once water_turbulence is imported
 
   const charts = await readNauticalChartIndexCsv();
   await fs.writeFile(
     join(__dirname, '../../../data/nautical-index.json'),
     JSON.stringify(charts, null, 2),
   );
+  const chartQuery = whichPolygon(charts);
 
-  const csvToGeoJson = csvToGeoJsonFactory(IDsToSkip, charts);
+  const csvToGeoJson = csvToGeoJsonFactory(IDsToSkip, chartQuery);
   console.log('Processing layers...');
 
   type CablewayCl = { t50_fid: string; mtlconveyd?: string };

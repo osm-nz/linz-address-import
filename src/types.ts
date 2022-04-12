@@ -240,15 +240,15 @@ export type GeoJsonCoords =
   | GeoJsonLine
   | GeoJsonArea
   | GeoJsonMultiPolygon;
-export type GeoJsonFeature = {
+export type GeoJsonFeature<T = Record<string, string | undefined>> = {
   type: 'Feature';
   id: string;
   geometry: GeoJsonCoords;
-  properties: Record<string, string | undefined>;
+  properties: T;
 };
-export type GeoJson = {
+export type GeoJson<T = Record<string, string | undefined>> = {
   type: 'FeatureCollection';
-  features: GeoJsonFeature[];
+  features: GeoJsonFeature<T>[];
 };
 
 export type BBox = {
