@@ -277,6 +277,18 @@ export const seamarkTagging =
       delete tags['depth:source_quality'];
     }
 
+    // For Virtual AtoNs, and real AtoNs with AIS, LINZ puts the mmsi in the description
+    const mmsiRegex = /AIS AtoN, MMSI (\d+)/i;
+    const [, mmsiMatch] = tags.description?.match(mmsiRegex) || [];
+    if (mmsiMatch) {
+      // always radio_station for some reason, except on virtual AtoNs
+      const radioType =
+        type === 'virtual_aton' ? 'virtual_aton' : 'radio_station';
+
+      tags[`seamark:${radioType}:mmsi`] = mmsiMatch;
+      tags.description = tags.description!.replace(mmsiRegex, '').trim();
+    }
+
     // seamark materials are different to the standard material=* tag
     if (tags.material === 'concreted') tags.material = 'concrete';
     if (tags.material === 'wooden') tags.material = 'wood';

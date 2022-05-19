@@ -7,12 +7,13 @@ describe('MapCat', () => {
         fidn: '00000123',
         nobjnm: 'Öl Rig II',
         objnam: 'Oil Rig II',
-        inform: 'ew',
+        inform: 'ew   AIS AtoN, MMSI 123456789',
         datsta: '2001',
         sordat: '20021225',
         sorind: 'NZ,NZ,graph,Chart NZ4315',
         prodct: 'Liquified petroleum gas (LPG)',
         catofp: '8',
+        quasou: 'unknown',
         verlen: '12',
       },
       '',
@@ -34,6 +35,7 @@ describe('MapCat', () => {
       'seamark:platform:height': '12',
       'seamark:platform:category': 'fpso',
       'seamark:platform:product': 'lpg',
+      'seamark:radio_station:mmsi': '123456789',
     });
   });
 

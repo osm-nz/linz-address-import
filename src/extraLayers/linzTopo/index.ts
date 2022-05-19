@@ -1967,6 +1967,7 @@ export async function linzTopo(): Promise<void> {
     idField: 'fidn',
     sourceLayer: '',
     size: 'large',
+    complete: true,
     tagging: seamarkTagging('water_turbulence'),
   });
 
