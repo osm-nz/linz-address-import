@@ -662,6 +662,20 @@
   <node id="140" version="1" changeset="1" lat="-36.9" lon="175.140" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z" />
   <!-- THE WAY (141) IS DEFINED AT THE END OF THE FILE -->
 
+  <!-- 142 & 143: someone has swapped the addr:housenumber values of these two, but didn't change the linz ref -->
+  <node id="142" version="1" changeset="1" lat="-36.9" lon="175.142" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="143" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70142" />
+  </node>
+  <node id="143" version="1" changeset="1" lat="-36.9" lon="175.143" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="142" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70143" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />

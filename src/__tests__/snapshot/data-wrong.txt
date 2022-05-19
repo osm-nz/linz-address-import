@@ -13,6 +13,8 @@ Oakleigh
 70117		https://osm.org/node/117		flatCount|0|44
 70118		https://osm.org/node/118		flatCount|0|-1
 70122		https://osm.org/node/122		flatCount|3|0
+70142		https://osm.org/node/142		(swap) housenumber|142|143
+70143		https://osm.org/node/143		(swap) housenumber|143|142
 stack(70079-70081)		https://osm.org/node/79		suburb|addr:hamlet=Oakleigh|addr:hamlet=The City of Ember
 stack(70082-70084)		https://osm.org/node/82		housenumber|82|82typo
 stack(70111-70113)		https://osm.org/node/111		flatCount|3|0

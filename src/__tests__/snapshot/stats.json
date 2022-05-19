@@ -2,7 +2,7 @@
   "date": "MOCK",
   "count": {
     "PERFECT": 12,
-    "EXISTS_BUT_WRONG_DATA": 22,
+    "EXISTS_BUT_WRONG_DATA": 24,
     "EXISTS_BUT_NO_LINZ_REF": 5,
     "MULTIPLE_EXIST_BUT_NO_LINZ_REF": 1,
     "MULTIPLE_EXIST": 2,
@@ -16,5 +16,5 @@
     "NEEDS_DELETE_ON_BUILDING": 1,
     "REPLACED_BY_BUILDING": 1
   },
-  "total": 91
+  "total": 93
 }
