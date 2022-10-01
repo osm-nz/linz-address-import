@@ -53,6 +53,11 @@ async function mergeIntoStacks(): Promise<LinzData> {
   for (const houseKey in visitedFlats) {
     const addrIds = visitedFlats[houseKey]; // a list of all flats at this MSB house number
     const stackId = toStackId(addrIds.map((x) => x[0]));
+    const singleLinzId: string | undefined = visitedNonFlats[houseKey];
+
+    const shouldBeUnstacked =
+      osmData.linz[stackId]?.shouldUnstack ||
+      osmData.linz[singleLinzId]?.shouldUnstack;
 
     // >2 because maybe someone got confused with the IDs and mapped a single one.
     const inOsm = addrIds.filter(alreadyInOsm);
@@ -71,7 +76,10 @@ async function mergeIntoStacks(): Promise<LinzData> {
     if (addrIds.length > STACK_THRESHOLD && flatsMostlyStacked) {
       const housenumberMsb = houseKey.split('|')[0];
 
-      if (alreadyMappedSeparatelyInOsm) {
+      if (shouldBeUnstacked) {
+        // a mapper has requested that this stack be split up into separate addresses
+        // so we do nothing.
+      } else if (alreadyMappedSeparatelyInOsm) {
         // the 2017 import generated a lot of these, so we won't suggest undoing all
         // that hard work. But we generate a diagnostic for them.
         for (const [linzId] of inOsm) {
@@ -97,10 +105,9 @@ async function mergeIntoStacks(): Promise<LinzData> {
         // delete the individual addresses
         for (const [linzId] of addrIds) delete linzData[linzId];
 
-        if (houseKey in visitedNonFlats) {
+        if (singleLinzId) {
           // if we're creating a stack that would duplicate the property (see osm-nz/linz-address-import#8)
           // don't actually create the stack, but add the flatCount to the parent
-          const singleLinzId = visitedNonFlats[houseKey];
           linzData[singleLinzId].flatCount = addrIds.length;
         } else {
           // add the stacked address

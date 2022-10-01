@@ -10,6 +10,7 @@ stack(70069-70071)		needs deleting		https://osm.org/node/69
 stack(70076-70078)		needs deleting		https://osm.org/node/76
 stack(70085-70087)		needs deleting		https://osm.org/node/85
 stack(70119-70121)		needs deleting		https://osm.org/node/119
+stack(70144-70146)		needs deleting		https://osm.org/node/144
 
 West Hoe Heights
 70064		needs deleting		https://osm.org/node/64

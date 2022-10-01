@@ -82,6 +82,11 @@
       "key": "check_date",
       "object_types": ["node", "way", "area", "relation"],
       "description": "Added to street addresses in New Zealand if a mapper believes that the government data is wrong and should be skipped by the address update project"
+    },
+    {
+      "key": "linz:unstack",
+      "object_types": ["node", "way", "area", "relation"],
+      "description": "Temporarily added to street addresses in New Zealand if a mapper would like the script to unstack the address when it runs next"
     }
   ]
 }

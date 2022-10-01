@@ -49,4 +49,4 @@ To start the test, run `npm test`. If it changes the contents of the snapshot fo
 
 ## Process
 
-![Flowchart](https://wiki.openstreetmap.org/w/images/5/53/LINZ_Address_Conflation_Flowchart.png)
+![Flowchart](https://wiki.openstreetmap.org/wiki/Special:FilePath/LINZ_Address_Conflation_Flowchart.png)
