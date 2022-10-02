@@ -973,6 +973,57 @@
     },
     {
       "type": "Feature",
+      "id": "70144",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.144,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "144A",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70144"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70145",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.145,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "144B",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70145"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70146",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.146,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "144C",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70146"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "70004B",
       "geometry": {
         "type": "Point",
@@ -1388,6 +1439,45 @@
         "addr:hamlet": "Oakleigh",
         "building:flats": "3",
         "ref:linz:address_id": "stack(70119-70121)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n144",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              175.1441,
+              -36.8999
+            ],
+            [
+              175.1441,
+              -36.90010000000001
+            ],
+            [
+              175.1439,
+              -36.90010000000001
+            ],
+            [
+              175.1439,
+              -36.8999
+            ],
+            [
+              175.1441,
+              -36.8999
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "delete",
+        "addr:housenumber": "144",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "building:flats": "3",
+        "ref:linz:address_id": "stack(70144-70146)"
       }
     }
   ]

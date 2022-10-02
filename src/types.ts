@@ -45,6 +45,8 @@ export type OsmAddr = Coords & {
   isUnRefedBuilding?: true;
   /** for stacked addresse, this is the number of addresses in this stack */
   flatCount?: number;
+  /** true if someone has added the tag `linz:unstack=*` to the address */
+  shouldUnstack?: true;
 };
 export type OsmAddrWithConfidence = OsmAddr & {
   /** distance in metres away from expected location */

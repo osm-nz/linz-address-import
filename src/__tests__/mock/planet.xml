@@ -676,6 +676,16 @@
     <tag k="ref:linz:address_id" v="70143" />
   </node>
 
+  <!-- 144-146 are stacked into one node in OSM. They are 144A, 144B, 144C BUT they have a linz:unstack tag -->
+  <node id="144" version="1" changeset="1" lat="-36.9" lon="175.144" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="144" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="building:flats" v="3" />
+    <tag k="ref:linz:address_id" v="stack(70144-70146)" />
+    <tag k="linz:unstack" v="yeah" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />
