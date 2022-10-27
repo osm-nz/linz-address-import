@@ -1,4 +1,9 @@
+✅ = issue can be autofixed
+⚠️ = issue can be partially autofixed
+❌ = issue cannot be autofixed
 
 Oakleigh
-70020		exists on https://osm.org/node/20 and https://osm.org/node/21
-70137		exists on https://osm.org/node/137 and https://osm.org/way/141
+70020	✅	exists on https://osm.org/node/20 and https://osm.org/node/21
+70137	✅	exists on https://osm.org/node/137 and https://osm.org/way/141
+70147	❌	exists on https://osm.org/node/147 and https://osm.org/node/148
+70149	⚠️	exists on https://osm.org/node/149 and https://osm.org/node/150 and https://osm.org/node/151

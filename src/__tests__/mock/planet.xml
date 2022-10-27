@@ -686,6 +686,46 @@
     <tag k="linz:unstack" v="yeah" />
   </node>
 
+  <!-- 147 & 148 have the same address & ref and are both non-trivial -->
+  <node id="147" version="1" changeset="1" lat="-36.9" lon="174.146" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="147" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70147" />
+    <tag k="shop" v="pest_control" />
+  </node>
+  <node id="148" version="1" changeset="1" lat="-36.9" lon="174.147" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="147" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70147" />
+    <tag k="craft" v="hvac" />
+  </node>
+
+  <!-- 149-151 have the same address & ref, but 2 of 3 are non-trivial -->
+  <node id="149" version="1" changeset="1" lat="-36.9" lon="174.149" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="149" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70149" />
+    <tag k="shop" v="rental" />
+    <tag k="rental" v="event" />
+  </node>
+  <node id="150" version="1" changeset="1" lat="-36.9" lon="174.150" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="149" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70149" />
+    <tag k="shop" v="sushi" />
+  </node>
+  <node id="151" version="1" changeset="1" lat="-36.9" lon="174.151" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="149" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70149" />
+    <!-- this one is trivial -->
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />

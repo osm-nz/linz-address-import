@@ -352,6 +352,28 @@
       "groupCategories": [
         "/Categories/Addresses"
       ]
+    },
+    {
+      "id": "MergeduplicateaddressesUnknownSector_1t5aefe",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/MergeduplicateaddressesUnknownSector_1t5aefe.geo.json",
+      "name": "Merge duplicate addresses - Unknown Sector",
+      "title": "Merge duplicate addresses - Unknown Sector",
+      "totalCount": 1,
+      "source": "",
+      "snippet": "delete 1",
+      "extent": [
+        [
+          174.1509,
+          -36.90010000000001
+        ],
+        [
+          174.1511,
+          -36.8999
+        ]
+      ],
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
     }
   ]
 }
