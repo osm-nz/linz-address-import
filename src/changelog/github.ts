@@ -26,9 +26,13 @@ export async function getLatestKnownVersion(): Promise<string> {
 }
 
 export async function addComment(body: string): Promise<void> {
-  await fetch(getUrl(), {
+  const result = await fetch(getUrl(), {
     method: 'post',
     headers: { Accept: 'application/vnd.github.v3+json' },
     body: JSON.stringify({ body }),
   }).then((r) => r.json());
+
+  if (!result.url) {
+    throw new Error(`Failed to leave comment: ${JSON.stringify(result)}`);
+  }
 }

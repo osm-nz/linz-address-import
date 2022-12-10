@@ -137,6 +137,7 @@ describe('wktToGeoJson', () => {
       ],
     });
   });
+
   it('converts huge Polygons with huge holes into MultiPolygons with small outer ways', () => {
     expect(
       wktToGeoJson(

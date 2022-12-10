@@ -24,7 +24,7 @@ describe('generateMd', () => {
       <li>Taupō (2)</li><li>West Hoe Heights (1)</li>
       <ul></details>
 
-      <!-- DO NOT EDIT THIS COMMENT 🌏{\\"version\\":\\"123\\"}🌏 -->
+      <!-- DO NOT EDIT THIS COMMENT 🌏{"version":"123"}🌏 -->
       "
     `);
   });

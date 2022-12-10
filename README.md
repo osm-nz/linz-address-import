@@ -27,7 +27,7 @@ The source code is in a separate repository ([see here](https://github.com/osm-n
 If you want to contribute to the code, the following needs to be done manually:
 
 1. Clone this repository
-2. Download [nodejs v15](https://nodejs.org) or later
+2. Download [nodejs v18](https://nodejs.org) or later
 3. Go to https://data.linz.govt.nz/layer/3353
 4. Select & download that layer as CSV, using projection "NZGD2000 (EPSG:4167 Geographic)"
 5. Save the file to the CDN, or save it in the folder in this repository called `./data`. Name the file `linz.csv`

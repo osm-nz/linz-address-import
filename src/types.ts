@@ -170,7 +170,7 @@ export type StatusDiagnostics = {
   [Status.EXISTS_BUT_WRONG_DATA]: [
     osmAddr: OsmAddr,
     Suburb: string,
-    ...issues: Issue[]
+    ...issues: Issue[],
   ];
   [Status.EXISTS_BUT_NO_LINZ_REF]: [
     suburb: Suburb,

@@ -1,19 +1,21 @@
 import { processChangelog } from '../processChangelog';
 
+process.env.LINZ_API_KEY = 'mock value';
+
 describe('processChangelog', () => {
   it('returns the correct JSON', async () => {
     expect(await processChangelog('245')).toMatchInlineSnapshot(`
-      Object {
+      {
         "date": "2021-03-12T13:37:56.287567Z",
-        "json": Object {
-          "add": Object {
+        "json": {
+          "add": {
             "Oakleigh": 1,
           },
-          "delete": Object {
+          "delete": {
             "Oakleigh": 2,
             "West Hoe Heights": 1,
           },
-          "update": Object {
+          "update": {
             "Oakleigh": 1,
           },
         },
