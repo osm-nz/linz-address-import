@@ -1,7 +1,7 @@
 import { promises as fs, createReadStream } from 'fs';
 import csv from 'csv-parser';
 import { join } from 'path';
-import { nzgbFile } from './const';
+import { mock, nzgbFile } from './const';
 
 type FireBrigadeFile = {
   locality_id: number;
@@ -28,7 +28,10 @@ function consumeStream<T>(path: string, callback: (item: T) => void) {
  * Fire & Emergency table is missing some (e.g. Wānaka).
  */
 export async function processNZGBList(): Promise<Record<string, string>> {
-  const nzgbTableFile = join(__dirname, '../../static/nzgb-table.csv');
+  const nzgbTableFile = join(
+    __dirname,
+    mock ? '../__tests__/mock/nzgb-table.csv' : '../../static/nzgb-table.csv',
+  );
 
   const fireBrigadeFile = join(
     __dirname,
