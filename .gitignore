@@ -5,4 +5,3 @@ out
 data
 src/__tests__/mock/planet.pbf
 src/__tests__/bin/osmconvert2
-static/nzgb-table.csv
