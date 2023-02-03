@@ -1,6 +1,6 @@
 //
 // modified from npm.im/simplify-js
-// example: https://gist.github.com/k-yle/2beb0c4e796c469de76163a0f6ce3da7
+// example: https://github.com/osm-nz/linz-address-import/blob/main/src/extraLayers/linzTopo/geoOperations/__tests__/simplify.geo.json
 //
 
 type Coord = [x: number, y: number];

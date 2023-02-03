@@ -7,12 +7,18 @@ export function splitUntilSmallEnough(
   name: string,
   instructions: string | undefined,
   features: GeoJsonFeature[],
+  depth = 0,
 ): HandlerReturnWithBBox {
   if (!features.length) return {};
 
   const bbox = calcBBox(features);
 
-  if (features.length <= MAX_ITEMS_PER_DATASET) {
+  const recursionLimit = depth > 10;
+  if (recursionLimit) {
+    console.log(`(!) Couldn't split ${name} (${features.length} left)`);
+  }
+
+  if (features.length <= MAX_ITEMS_PER_DATASET || recursionLimit) {
     // yay, it's small enough
     return { [name]: { features, bbox, instructions } };
   }
@@ -29,8 +35,8 @@ export function splitUntilSmallEnough(
     const [north, south] = out;
 
     return {
-      ...splitUntilSmallEnough(`${name}^N`, instructions, north),
-      ...splitUntilSmallEnough(`${name}^S`, instructions, south),
+      ...splitUntilSmallEnough(`${name}^N`, instructions, north, depth + 1),
+      ...splitUntilSmallEnough(`${name}^S`, instructions, south, depth + 1),
     };
   }
 
@@ -44,8 +50,8 @@ export function splitUntilSmallEnough(
   const [east, west] = out;
 
   return {
-    ...splitUntilSmallEnough(`${name}^E`, instructions, east),
-    ...splitUntilSmallEnough(`${name}^W`, instructions, west),
+    ...splitUntilSmallEnough(`${name}^E`, instructions, east, depth + 1),
+    ...splitUntilSmallEnough(`${name}^W`, instructions, west, depth + 1),
   };
 }
 

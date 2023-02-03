@@ -74,6 +74,11 @@
       "description": "A unique ID used to conflate building outlines imported from LINZ"
     },
     {
+      "key": "ref:linz:place_id",
+      "object_types": ["node", "way", "area", "relation"],
+      "description": "The ID of a place in the New Zealand Gazetteer. Used to conflate place names around New Zealand & Antarctica"
+    },
+    {
       "key": "ref:doc",
       "object_types": ["node", "way", "area", "relation"],
       "description": "A unique ID used to conflate campsites, huts, lodges, protected areas, and tracks imported from DOC"
