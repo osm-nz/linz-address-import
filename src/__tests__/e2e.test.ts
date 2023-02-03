@@ -1,7 +1,6 @@
 import { execSync } from 'child_process';
 import { join } from 'path';
 import { main as fetchAndSaveAddressIgnoreList } from '../preprocess/fetchAndSaveAddressIgnoreList';
-import { main as processNZGBList } from '../preprocess/nzgb';
 import { main as preprocessLinz } from '../preprocess/processLinzData';
 import { main as preprocessOsm } from '../preprocess/processOsmData';
 import { main as stackLinzData } from '../preprocess/stackLinzData';
@@ -32,8 +31,6 @@ describe('end-to-end test', () => {
 
   it('works', async () => {
     expect(await time(fetchAndSaveAddressIgnoreList)).toBeLessThan(0.5);
-
-    expect(await time(processNZGBList)).toBeLessThan(0.5);
 
     expect(await time(preprocessOsm)).toBeLessThan(0.5);
 

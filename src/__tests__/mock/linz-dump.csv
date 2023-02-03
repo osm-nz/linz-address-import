@@ -1,4 +1,4 @@
-﻿WKT,address_id,change_id,address_type,unit_value,address_number,address_number_suffix,address_number_high,water_route_name,water_name,suburb_locality,town_city,full_address_number,full_road_name,full_address,road_section_id,gd2000_xcoord,gd2000_ycoord,water_route_name_ascii,water_name_ascii,suburb_locality_ascii,town_city_ascii,full_road_name_ascii,full_address_ascii,shape_X,shape_Y
+﻿WKT,address_id,change_id,address_class,unit_value,address_number,address_number_suffix,address_number_high,water_route_name,water_name,suburb_locality,town_city,full_address_number,full_road_name,full_address,road_section_id,gd2000_xcoord,gd2000_ycoord,water_route_name_ascii,water_name_ascii,suburb_locality_ascii,town_city_ascii,full_road_name_ascii,full_address_ascii,shape_X,shape_Y,level_value
 ,70001,,Road,,1,,,,,Oakleigh,,1,Example Street,,,,,,,,,,,174.901,-36.9
 ,70002,,Road,,2,,,,,Oakleigh,,2,Example Street,,,,,,,,,,,174.902,-36.9
 ,70003,,Road,,3,,,,,Oakleigh,,3,Example Street,,,,,,,,,,,174.903,-36.9
@@ -106,3 +106,7 @@
 ,70146,,Road,,144,C,,,,Oakleigh,,144C,Example Street,,,,,,,,,,,174.146,-36.9
 ,70147,,Road,,147,,,,,Oakleigh,,147,Example Street,,,,,,,,,,,174.147,-36.9
 ,70149,,Road,,149,,,,,Oakleigh,,149,Example Street,,,,,,,,,,,174.149,-36.9
+,70152,,Road,,152,,,,,Oakleigh,,152,Example Street,,,,,,,,,,,174.152,-36.9,B1
+,70153,,Road,,153,,,,,Oakleigh,,153,Example Street,,,,,,,,,,,174.153,-36.9,10
+,70154,,Road,,154,,,,,Oakleigh,,154,Example Street,,,,,,,,,,,174.154,-36.9,10
+,70155,,Road,,155,,,,,Oakleigh,,155,Example Street,,,,,,,,,,,174.155,-36.9,

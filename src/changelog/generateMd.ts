@@ -1,5 +1,4 @@
-import { promises as fs } from 'fs';
-import { nzgbFile } from '../preprocess/const';
+import { nzgbNamesTable as nzgb } from '../common/nzgbFile';
 import { ChangelogJson } from '../types';
 
 /** this gets stringified and stuck in the issue comment */
@@ -7,11 +6,7 @@ export type Diags = {
   version: string;
 };
 
-function section(
-  name: string,
-  sectors: Record<string, number>,
-  nzgb: Record<string, string>,
-) {
+function section(name: string, sectors: Record<string, number>) {
   const count = Object.values(sectors).reduce((ac, t) => ac + t, 0);
   if (!count) return '';
 
@@ -32,10 +27,6 @@ export async function generateMd({
   date: string;
   json: ChangelogJson;
 }): Promise<string> {
-  const nzgb: Record<string, string> = JSON.parse(
-    await fs.readFile(nzgbFile, 'utf-8'),
-  );
-
   const diags: Diags = { version };
   const niceDate = new Date(date).toLocaleDateString('en-nz', {
     day: 'numeric',
@@ -47,9 +38,9 @@ export async function generateMd({
 
 - [ ] available to import
 
-${section('Added', json.add, nzgb)}
-${section('Updated', json.update, nzgb)}
-${section('Deleted', json.delete, nzgb)}
+${section('Added', json.add)}
+${section('Updated', json.update)}
+${section('Deleted', json.delete)}
 
 <!-- DO NOT EDIT THIS COMMENT 🌏${JSON.stringify(diags)}🌏 -->
 `;

@@ -3,7 +3,8 @@ import { LinzData, LinzAddr, OSMData, CouldStackData } from '../types';
 import { toStackId, uniq } from '../common';
 import { linzFile, linzTempFile, mock, osmFile, stackFile } from './const';
 
-const STACK_THRESHOLD = mock ? 2 : 11;
+// the threshold was 11 until Feb 2023, when LINZ added 100k new addresses...
+const STACK_THRESHOLD = mock ? 2 : 9;
 
 /** the object is keyed by a `houseKey` */
 type VisitedCoords = Record<
@@ -101,6 +102,7 @@ async function mergeIntoStacks(): Promise<LinzData> {
           housenumber: housenumberMsb, // replace `62A` or `Flat 1, 62` with `62`
           flatCount: addrIds.length,
         };
+        delete stackedAddr.level; // because the stack will have multiple levels merged together
 
         // delete the individual addresses
         for (const [linzId] of addrIds) delete linzData[linzId];

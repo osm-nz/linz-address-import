@@ -1,18 +1,10 @@
-import {
-  CheckDate,
-  LinzAddr,
-  OsmAddr,
-  Status,
-  StatusDiagnostics,
-} from '../types';
+import { CheckDate, Issue, LinzAddr, OsmAddr, Status } from '../types';
 import { findPotentialOsmAddresses } from './findPotentialOsmAddresses';
 import { distanceBetween } from './helpers/geo';
 import { validate } from './helpers/validate';
 
 /** distance in metres beyond which we classify the address as `EXISTS_BUT_LOCATION_WRONG` */
 const LOCATION_THRESHOLD = 300;
-
-const isTruthy = <T>(x: T | undefined | false | null | 0): x is T => !!x;
 
 /** swap suburb <=> hamlet */
 const inverse = (linz: string) => {
@@ -46,6 +38,7 @@ export function processWithRef(
   const suburbOk = linzSuburb === osmSuburb;
   const waterOk = linzAddr.water === osmAddr.water;
   const flatCountOk = linzAddr.flatCount === osmAddr.flatCount;
+  const levelOk = !linzAddr.level || linzAddr.level === osmAddr.level;
 
   if (
     houseOk &&
@@ -53,6 +46,7 @@ export function processWithRef(
     suburbOk &&
     waterOk &&
     flatCountOk &&
+    levelOk &&
     !osmAddr.doubleSuburb
   ) {
     // looks perfect - last check is if location is correct
@@ -114,24 +108,29 @@ export function processWithRef(
 
   // something is wrong in the data
 
+  const issues: (Issue | false | undefined)[] = [
+    !houseOk && `housenumber|${linzAddr.housenumber}|${osmAddr.housenumber}`,
+    !streetOk && `street|${linzAddr.street}|${osmAddr.street}`,
+    !suburbOk && `suburb|${linzSuburb}|${osmSuburb}`,
+    !flatCountOk &&
+      `flatCount|${linzAddr.flatCount || 0}|${osmAddr.flatCount || 0}`,
+    !levelOk && `level|${linzAddr.level || ''}|${osmAddr.level || ''}`,
+
+    // this is the buggy one (see #7) if it's a double suburb, the system may think `suburbOk` but it's wrong
+    suburbOk &&
+      osmAddr.doubleSuburb &&
+      `suburb|${linzSuburb}|${inverse(linzSuburb)}`, // we want the wrong one to be in the diagnostic
+
+    !waterOk &&
+      `water|${+(linzAddr.water || false)}|${+(osmAddr.water || false)}`,
+  ];
+
   return validate({
     status: Status.EXISTS_BUT_WRONG_DATA,
     diagnostics: [
       osmAddr,
       linzAddr.suburb[1],
-      !houseOk && `housenumber|${linzAddr.housenumber}|${osmAddr.housenumber}`,
-      !streetOk && `street|${linzAddr.street}|${osmAddr.street}`,
-      !suburbOk && `suburb|${linzSuburb}|${osmSuburb}`,
-      !flatCountOk &&
-        `flatCount|${linzAddr.flatCount || 0}|${osmAddr.flatCount || 0}`,
-
-      // this is the buggy one (see #7) if it's a double suburb, the system may think `suburbOk` but it's wrong
-      suburbOk &&
-        osmAddr.doubleSuburb &&
-        `suburb|${linzSuburb}|${inverse(linzSuburb)}`, // we want the wrong one to be in the diagnostic
-
-      !waterOk &&
-        `water|${+(linzAddr.water || false)}|${+(osmAddr.water || false)}`,
-    ].filter(isTruthy) as StatusDiagnostics[Status.EXISTS_BUT_WRONG_DATA],
+      ...issues.filter((x): x is Issue => !!x),
+    ],
   });
 }

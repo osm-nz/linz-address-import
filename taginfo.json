@@ -49,6 +49,11 @@
       "description": "Added to street addresses in New Zealand when one address node is used to represent multiple flats"
     },
     {
+      "key": "level",
+      "object_types": ["node", "area", "relation"],
+      "description": "Added to a very small number of street addresses in New Zealand"
+    },
+    {
       "key": "ref:linz:address_id",
       "object_types": ["node", "area", "relation"],
       "description": "A unique ID used in the weekly street addresses update for New Zealand"

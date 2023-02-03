@@ -7,7 +7,7 @@ describe('generateMd', () => {
       version: '123',
       json: {
         add: { Oakleigh: 1 },
-        delete: { 'West Hoe Heights': 1, Taupo: 2 },
+        delete: { 'West Hoe Heights': 1, Opotiki: 2 },
         update: {},
       },
     };
@@ -21,7 +21,7 @@ describe('generateMd', () => {
       <ul></details>
 
       <details><summary>Deleted (3)</summary><ul>
-      <li>Taupō (2)</li><li>West Hoe Heights (1)</li>
+      <li>Ōpōtiki (2)</li><li>West Hoe Heights (1)</li>
       <ul></details>
 
       <!-- DO NOT EDIT THIS COMMENT 🌏{"version":"123"}🌏 -->

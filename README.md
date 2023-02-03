@@ -9,7 +9,7 @@
 
 Street address data from [Land Information New Zealand (LINZ)](https://linz.govt.nz) was [first imported into OpenStreetMap in 2017](https://wiki.openstreetmap.org/wiki/LINZ/Address_Import). Since then, the imported data has become out of date.
 
-This project aims to update the address data, and set up a system to reguarly update addresses in OSM, by conflating them with [the data from LINZ](https://data.linz.govt.nz/layer/3353).
+This project aims to update the address data, and set up a system to reguarly update addresses in OSM, by conflating them with [the data from LINZ](https://data.linz.govt.nz/layer/105689).
 
 > 🚩 This repository also contains the code used to import topographic and hydrographic data from LINZ. For more info, see the [the wiki page](https://wiki.osm.org/LINZ).
 
@@ -29,7 +29,7 @@ If you want to contribute to the code, the following needs to be done manually:
 
 1. Clone this repository
 2. Download [nodejs v18](https://nodejs.org) or later
-3. Go to https://data.linz.govt.nz/layer/3353
+3. Go to https://data.linz.govt.nz/layer/105689
 4. Select & download that layer as CSV, using projection "NZGD2000 (EPSG:4167 Geographic)"
 5. Save the file to the CDN, or save it in the folder in this repository called `./data`. Name the file `linz.csv`
 

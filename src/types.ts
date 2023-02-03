@@ -19,6 +19,8 @@ export type LinzAddr = Coords & {
   water?: true;
   /** for stacked addresse, this is the number of addresses in this stack */
   flatCount?: number;
+  /** for non-stacked addresses, this is the building level of this flat */
+  level: string | undefined;
 };
 export type LinzData = {
   [linzId: string]: LinzAddr;
@@ -47,6 +49,8 @@ export type OsmAddr = Coords & {
   flatCount?: number;
   /** true if someone has added the tag `linz:unstack=*` to the address */
   shouldUnstack?: true;
+  /** value of the `level` tag */
+  level: string | undefined;
 };
 export type OsmAddrWithConfidence = OsmAddr & {
   /** distance in metres away from expected location */
@@ -79,9 +83,6 @@ export type CouldStackData = {
 };
 
 export type LinzSourceAddress = {
-  // we should be careful to use the same fields as the original import
-  // https://git.nzoss.org.nz/ewblen/osmlinzaddr/-/blob/master/import-xref.sql#L156-166
-
   address_id: string;
 
   unit_value: string;
@@ -100,10 +101,13 @@ export type LinzSourceAddress = {
   shape_Y: string;
   /** if a water address, this field will have the "suburb" instead of `suburb_locality` */
   water_name: string;
+  /** e.g. B1 or 15 */
+  level_value: string;
 
   // redundant information. don't use
 
-  address_type: 'Road' | 'Water';
+  /** @deprecated */ address_class: 'Thoroughfare' | 'Water';
+  /** @deprecated */ address_lifecycle: 'Current' | 'Proposed';
   /** @deprecated */ WKT: string;
   /** @deprecated */ change_id: string;
   /** @deprecated */ full_address_number: string;
@@ -118,6 +122,18 @@ export type LinzSourceAddress = {
   /** @deprecated */ town_city_ascii: string;
   /** @deprecated */ full_road_name_ascii: string;
   /** @deprecated */ full_address_ascii: string;
+  /** @deprecated */ source_dataset: 'AIMS' | 'CADS';
+  /** @deprecated */ territorial_authority: string;
+  /** @deprecated */ unit_type: string; // e.g. Shop, Flat, Unit, Villa, etc.
+  /** @deprecated */ level_type: 'LEVEL' | 'LOWER GROUND' | '';
+  /** @deprecated */ address_number_prefix: string;
+  /** @deprecated */ road_name_prefix: string;
+  /** @deprecated */ road_name: string;
+  /** @deprecated */ road_name_ascii: string;
+  /** @deprecated */ road_type_name: string;
+  /** @deprecated */ road_suffix: string;
+  /** @deprecated */ water_body_name: string;
+  /** @deprecated */ water_body_name_ascii: string;
 };
 
 export type LinzChangelog = LinzSourceAddress & {
@@ -159,11 +175,14 @@ export enum Confidence {
   CERTAIN = 4,
 }
 
-export type Issue = `${
+export type IssueType =
   | 'housenumber'
   | 'street'
   | 'suburb'
-  | 'water'}|${string}|${string}`; // `field|linzValue|osmValue`;
+  | 'flatCount'
+  | 'level'
+  | 'water';
+export type Issue = `${IssueType}|${string}|${string}`; // `field|linzValue|osmValue`;
 
 export type StatusDiagnostics = {
   [Status.PERFECT]: void;

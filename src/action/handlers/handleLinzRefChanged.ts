@@ -12,14 +12,14 @@ import { createDiamond, outFolder, toLink } from '../util';
 export async function handleLinzRefChanged(
   arr: StatusReport[Status.LINZ_REF_CHANGED],
 ): Promise<HandlerReturn> {
-  const bySuburb = arr.reduce(
+  const bySuburb = arr.reduce<Record<string, [string, string, OsmAddr][]>>(
     (ac, [oldLinzId, [suburb, newLinzId, osmAddr]]) => {
       // eslint-disable-next-line no-param-reassign -- mutation is cheap
       ac[suburb] ||= [];
       ac[suburb].push([oldLinzId, newLinzId, osmAddr]);
       return ac;
     },
-    {} as Record<string, [string, string, OsmAddr][]>,
+    {},
   );
 
   let report = '';

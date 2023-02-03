@@ -61,6 +61,7 @@ function osmToJson(): Promise<OSMData> {
               'building:flats' in item.tags
                 ? +item.tags['building:flats']! || -1
                 : undefined,
+            level: item.tags.level,
           };
           if (isWater) obj.water = true;
           if (suburbU && suburbR) obj.doubleSuburb = true;

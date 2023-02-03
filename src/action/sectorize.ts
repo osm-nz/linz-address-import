@@ -33,12 +33,12 @@ export function sectorize(
         out[sector].push(f);
       }
       for (const sector in out) {
-        const thisSector = splitUntilSmallEnough(
+        const newSectors = splitUntilSmallEnough(
           `${suburb} - ${sector}`,
           instructions,
           out[sector],
         );
-        Object.assign(newFeatures, thisSector);
+        Object.assign(newFeatures, newSectors);
       }
     } else if (suburb.includes('Antarctic')) {
       const chunked = chunk(features, 100);
@@ -50,12 +50,9 @@ export function sectorize(
         };
       }
     } else {
-      // not big
-      newFeatures[suburb] = {
-        features,
-        bbox: calcBBox(features),
-        instructions,
-      };
+      // address dataset
+      const newSectors = splitUntilSmallEnough(suburb, instructions, features);
+      Object.assign(newFeatures, newSectors);
     }
   }
 

@@ -1,9 +1,13 @@
-import { Issue } from '../../types';
+import { Issue, IssueType } from '../../types';
 
 export function fieldsToModify(issues: Issue[]): Record<string, string> {
   const ac: Record<string, string> = {};
   for (const i of issues) {
-    const [field, linzValue, osmValue] = i.split('|');
+    const [field, linzValue, osmValue] = i.split('|') as [
+      IssueType,
+      string,
+      string,
+    ];
     switch (field) {
       case 'housenumber':
         ac['addr:housenumber'] = linzValue;
@@ -45,8 +49,15 @@ export function fieldsToModify(issues: Issue[]): Record<string, string> {
         }
         break;
       }
-      default:
-        throw new Error('Unexpected field type');
+      case 'level': {
+        ac.level = linzValue;
+        break;
+      }
+      default: {
+        const exhaustiveCheck: never = field; // if TS errors here, a case statement is missing
+
+        throw new Error(`Unexpected field type: ${exhaustiveCheck}`);
+      }
     }
   }
   return ac;

@@ -726,6 +726,41 @@
     <!-- this one is trivial -->
   </node>
 
+  <!-- has `level=B1` in OSM and LINZ (perfect) -->
+  <node id="152" version="1" changeset="1" lat="-36.9" lon="174.152" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="152" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="level" v="B1" />
+    <tag k="ref:linz:address_id" v="70152" />
+  </node>
+
+  <!-- has no level tag in OSM, but LINZ has `level=10` -->
+  <node id="153" version="1" changeset="1" lat="-36.9" lon="174.153" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="153" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70153" />
+  </node>
+
+  <!-- has `level=MyCustomValue` in OSM but LINZ has `level=10` -->
+  <node id="154" version="1" changeset="1" lat="-36.9" lon="174.154" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="154" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="level" v="MyCustomValue" />
+    <tag k="ref:linz:address_id" v="70154" />
+  </node>
+
+  <!-- has `level=AnotherCustomValue` in OSM but LINZ has no level -->
+  <node id="155" version="1" changeset="1" lat="-36.9" lon="174.155" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="155" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="level" v="AnotherCustomValue" />
+    <tag k="ref:linz:address_id" v="70155" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />
