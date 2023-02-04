@@ -57,7 +57,7 @@ export async function main(): Promise<void> {
     out[k] = { size: 'medium', features: features[k] };
   }
 
-  console.log('handling extra layers...');
+  console.log('reading extra layers...');
 
   // we do this after generating the 'small places' layer, beacuse we only want to include addresses
   try {
@@ -74,6 +74,7 @@ export async function main(): Promise<void> {
     console.log('(!) Failed to include extra layers');
   }
 
+  console.log('sectorizing...');
   await createIndex(sectorize(out));
 }
 

@@ -3,7 +3,6 @@ import { join } from 'path';
 import { GeoJson, HandlerReturnWithBBox } from '../types';
 import { calcCount, CDN_URL, mock, suburbsFolder } from './util';
 import { hash } from '../common';
-import { geoJsonToOSMChange, fetchOriginalFeatures } from './osmChange';
 
 function toId(suburb: string) {
   // macrons are url safe
@@ -53,12 +52,9 @@ export async function createIndex(
     JSON.stringify(indexFile, null, mock ? 2 : undefined),
   );
 
-  // once this func called, `geoJsonToOSMChange` function will have access to the data
-  if (false) await fetchOriginalFeatures(suburbs);
-
   // save each suburb
   for (const s of meta) {
-    const { suburb, count } = s;
+    const { suburb } = s;
     const geojson: GeoJson = {
       type: 'FeatureCollection',
       features: suburbs[suburb].features,
@@ -67,13 +63,5 @@ export async function createIndex(
       join(suburbsFolder, `${toId(suburb)}.geo.json`),
       JSON.stringify(geojson, null, mock ? 2 : undefined),
     );
-
-    if (false) {
-      const { osmChange, tooBig } = geoJsonToOSMChange(geojson, suburb, count);
-      await fs.writeFile(
-        join(suburbsFolder, `${toId(suburb)}${tooBig ? '_tooBig' : ''}.osc`),
-        osmChange,
-      );
-    }
   }
 }
