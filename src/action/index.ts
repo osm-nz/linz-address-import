@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
 import { ExtraLayers, HandlerReturn, Status, StatusReport } from '../types';
-import { outFolder, mock, suburbsFolder } from './util';
+import { outFolder, mock, suburbsFolder, shiftOverlappingPoints } from './util';
 import { generateStats } from './generateStats';
 import { handlers } from './handlers';
 import { createIndex } from './createIndex';
@@ -75,7 +75,7 @@ export async function main(): Promise<void> {
   }
 
   console.log('sectorizing...');
-  await createIndex(sectorize(out));
+  await createIndex(shiftOverlappingPoints(sectorize(out)));
 }
 
 if (process.env.NODE_ENV !== 'test') main();

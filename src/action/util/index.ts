@@ -4,3 +4,4 @@ export * from './const';
 export * from './createDiamond';
 export * from './fieldsToModify';
 export * from './linzAddrToTags';
+export * from './spreadToGrid';
