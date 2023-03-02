@@ -1971,6 +1971,22 @@ export async function linzTopo(): Promise<void> {
     tagging: seamarkTagging('water_turbulence'),
   });
 
+  const H_bridges = await csvToGeoJson<Seamark['bridge']>({
+    input: [
+      'sea/bridge-polygon-hydro-122k-190k.csv',
+      'sea/bridge-polygon-hydro-14k-122k.csv',
+      'sea/bridge-polygon-hydro-190k-1350k.csv',
+      'sea/bridge-polyline-hydro-122k-190k.csv',
+      'sea/bridge-polyline-hydro-14k-122k.csv',
+      'sea/bridge-polyline-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    complete: true,
+    tagging: seamarkTagging('bridge'),
+  });
+
   //
   // misc
   //
@@ -2074,7 +2090,6 @@ export async function linzTopo(): Promise<void> {
         healthcare: 'hospital',
         name: data.name,
         'operator:type':
-          // eslint-disable-next-line no-nested-ternary
           data.use_type === 'Public Hospital'
             ? 'public'
             : data.use_type === 'NGO Hospital'
@@ -2226,6 +2241,7 @@ export async function linzTopo(): Promise<void> {
     'Z Restricted maritime areas': H_restrictedArea,
     'Z Water Turbulence': H_waterTurbulence,
     'Z Wrecks': H_wreck,
+    'Z Bridges': H_bridges,
 
     'Z Tide Stations': tideStations,
     '❌ Facilities': facilities,

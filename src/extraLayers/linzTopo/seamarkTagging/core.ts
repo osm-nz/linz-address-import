@@ -77,6 +77,7 @@ export const seamarkTagging =
 
       height: data.verlen || data.height,
       'height:accuracy': data.veracc,
+      'width:accuracy': data.horacc,
 
       material: data.natcon
         ?.split(',')
@@ -143,6 +144,7 @@ export const seamarkTagging =
         MapCat('CATLAM', data.catlam) ||
         MapCat('CATCAM', data.catcam) ||
         MapCat('CATREA', data.catrea) ||
+        MapCat('CATBRG', data.catbrg) ||
         MapCat('CATROS', data.catros) ||
         MapCat('CATPIL', data.catpil) ||
         MapCat('CATWRK', data.catwrk) ||
@@ -165,6 +167,14 @@ export const seamarkTagging =
       [`seamark:${type}:radius`]: data.radius,
       [`seamark:${type}:exhibition`]: MapCat('EXCLIT', data.exclit),
       [`seamark:${type}:depth_buried`]: data.burdep && `${+data.burdep}`,
+
+      // bridges
+      [`seamark:${type}:clearance_width`]: data.horclr && `${+data.horclr}`,
+      [`seamark:${type}:clearance_height`]: data.verclr && `${+data.verclr}`,
+      [`seamark:${type}:clearance_height_closed`]:
+        data.verccl && `${+data.verccl}`,
+      [`seamark:${type}:clearance_height_open`]:
+        data.vercop && `${+data.vercop}`,
     };
 
     //

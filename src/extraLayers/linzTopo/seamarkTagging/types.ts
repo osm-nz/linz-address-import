@@ -54,6 +54,14 @@ type _SeamarkTypes = {
     restrn?: string;
   };
   berth: {};
+  bridge: {
+    catbrg?: string;
+    verclr?: string;
+    verccl?: string;
+    vercop?: string;
+    horclr?: string;
+    horacc?: string;
+  };
   daymark: {
     catspm?: string;
     topshp?: string;
