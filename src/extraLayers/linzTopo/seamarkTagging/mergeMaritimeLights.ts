@@ -41,7 +41,7 @@ export function mergeMaritimeLights({
         };
       } else {
         // simple, unsectored light
-        flatNewFeatures[coordKey] = lights[0]; // eslint-disable-line prefer-destructuring
+        flatNewFeatures[coordKey] = lights[0];
       }
     } else {
       // more complex. There are multiple lights here.
@@ -50,7 +50,7 @@ export function mergeMaritimeLights({
         const lx = lights[i];
         for (const key in lx.properties) {
           const value = lx.properties[key];
-          if (!value) continue; // eslint-disable-line no-continue
+          if (!value) continue;
 
           if (key.startsWith('seamark:light:')) {
             // 1️⃣ seamark:light:XX=* tags get merged in a special way

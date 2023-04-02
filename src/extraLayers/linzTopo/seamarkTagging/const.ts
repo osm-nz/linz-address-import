@@ -1014,7 +1014,7 @@ for (const attribute in MAP) {
 }
 
 // @ts-expect-error -- TS is mad but it works
-type OSMValuesFor<K extends Cat> = typeof MAP[K][keyof typeof MAP[K]][0];
+type OSMValuesFor<K extends Cat> = (typeof MAP)[K][keyof (typeof MAP)[K]][0];
 
 /** maps an enum property from S57 to the osm seamark value */
 export function MapCat<K extends Cat>(

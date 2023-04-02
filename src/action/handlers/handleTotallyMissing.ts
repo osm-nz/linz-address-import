@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import {
   GeoJsonFeature,
   HandlerReturn,
@@ -84,4 +83,3 @@ export async function handleTotallyMissing(
 
   return index;
 }
-/* eslint-enable no-param-reassign */

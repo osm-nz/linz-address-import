@@ -41,13 +41,11 @@ async function readFromPlanet(
 
           if (t) {
             for (const ref of t.split(';')) {
-              // eslint-disable-next-line no-param-reassign -- we are deliberately mutating it
               mutableOut[`t${ref}`] = 1;
             }
           }
           if (h) {
             for (const ref of h.split(';')) {
-              // eslint-disable-next-line no-param-reassign -- we are deliberately mutating it
               mutableOut[`h${ref}`] = 1;
             }
           }

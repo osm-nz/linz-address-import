@@ -92,14 +92,14 @@ export async function main(): Promise<void> {
   // TODO: perf baseline: 300seconds
   for (const linzId in linzData) {
     // skip this one if it's a LINZ_REF_CHANGED
-    if (doNotCreate.includes(linzId)) continue; // eslint-disable-line no-continue
+    if (doNotCreate.includes(linzId)) continue;
 
     if (couldBeStacked[linzId]) {
       statusReport[Status.COULD_BE_STACKED].push([
         linzId,
         couldBeStacked[linzId],
       ]);
-      continue; // eslint-disable-line no-continue
+      continue;
     }
 
     const osmAddr = osmData.linz[linzId];

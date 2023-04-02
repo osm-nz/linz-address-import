@@ -55,7 +55,8 @@ export const findPotentialOsmAddresses = (
 
   if (almostPerfect.length) {
     // marginally faster than [...spread]
-    return Array.prototype.concat.apply(
+    return Reflect.apply(
+      Array.prototype.concat,
       perfectMatches.map(withC(Confidence.HIGH_BUT_MULTIPLE)),
       almostPerfect,
     );

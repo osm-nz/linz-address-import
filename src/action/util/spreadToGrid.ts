@@ -27,7 +27,6 @@ export function shiftOverlappingPoints(
   sectors: HandlerReturnWithBBox,
 ): HandlerReturnWithBBox {
   for (const sectorName in sectors) {
-    // eslint-disable-next-line no-continue
     if (!sectorName.startsWith('Address Update - ')) continue;
 
     const sector = sectors[sectorName];

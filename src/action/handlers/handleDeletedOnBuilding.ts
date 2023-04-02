@@ -18,7 +18,6 @@ export async function handleDeletedOnBuilding(
   arr: StatusReport[Status.NEEDS_DELETE_ON_BUILDING],
 ): Promise<HandlerReturn> {
   const bySuburb = arr.reduce((ac, [linzId, [suburb, osmAddr]]) => {
-    // eslint-disable-next-line no-param-reassign -- mutation is cheap
     ac[suburb] ||= [];
     ac[suburb].push([linzId, osmAddr]);
     return ac;

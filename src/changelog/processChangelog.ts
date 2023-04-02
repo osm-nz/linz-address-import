@@ -71,7 +71,7 @@ async function processLinzChangelogCsv(
     stream
       .pipe(csv())
       .on('data', (data: LinzChangelog) => {
-        const type = MAP[data.__change__]; // eslint-disable-line no-underscore-dangle
+        const type = MAP[data.__change__];
         out[type][data.suburb_locality] ??= 0;
         out[type][data.suburb_locality] += 1;
       })

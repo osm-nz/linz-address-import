@@ -14,7 +14,6 @@ export async function handleLinzRefChanged(
 ): Promise<HandlerReturn> {
   const bySuburb = arr.reduce<Record<string, [string, string, OsmAddr][]>>(
     (ac, [oldLinzId, [suburb, newLinzId, osmAddr]]) => {
-      // eslint-disable-next-line no-param-reassign -- mutation is cheap
       ac[suburb] ||= [];
       ac[suburb].push([oldLinzId, newLinzId, osmAddr]);
       return ac;

@@ -1,7 +1,7 @@
 import { SEAMARK_TYPE } from './const';
 
 export type IHOTypes = keyof typeof SEAMARK_TYPE;
-export type OSMSeamarkTypes = typeof SEAMARK_TYPE[IHOTypes];
+export type OSMSeamarkTypes = (typeof SEAMARK_TYPE)[IHOTypes];
 
 /* eslint-disable @typescript-eslint/ban-types -- {} is okay */
 type _SeamarkTypes = {

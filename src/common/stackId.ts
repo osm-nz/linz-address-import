@@ -3,8 +3,8 @@ export const hash = (str: string): string => {
   for (let i = 0; i < str.length; i += 1) {
     const char = str.charCodeAt(i);
 
-    h = (h << 5) - h + char; // eslint-disable-line no-bitwise
-    h &= h; // eslint-disable-line no-bitwise -- convert to 32bit int
+    h = (h << 5) - h + char;
+    h &= h; // convert to 32bit integer
   }
   return new Uint32Array([h])[0].toString(36);
 };

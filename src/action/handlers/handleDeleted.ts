@@ -7,7 +7,6 @@ export async function handleDeleted(
   arr: StatusReport[Status.NEEDS_DELETE],
 ): Promise<void> {
   const bySuburb = arr.reduce((ac, [linzId, [suburb, osmAddr]]) => {
-    // eslint-disable-next-line no-param-reassign -- mutation is cheap
     ac[suburb] ||= [];
     ac[suburb].push([linzId, osmAddr]);
     return ac;

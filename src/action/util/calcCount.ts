@@ -10,7 +10,6 @@ export function calcCount(features: GeoJsonFeature[]): {
   let edit = 0;
 
   for (const f of features) {
-    // eslint-disable-next-line no-underscore-dangle
     switch (f.properties.__action) {
       case 'delete':
         minus += 1;

@@ -50,7 +50,7 @@ export async function main(): Promise<void> {
 
       if (diff.delete.length > TOO_BIG_THRESHOLD) {
         console.log(`Skipping changeset ${cs.id} which deleted >1000 features`);
-        continue; // eslint-disable-line no-continue
+        continue;
       }
 
       diffs.push({ cs, diff });

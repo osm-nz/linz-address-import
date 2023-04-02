@@ -2,7 +2,6 @@
 // copied from https://npm.im/@id-sdk/vector since that package is ESM-only :(
 //
 
-/* eslint-disable no-param-reassign */
 export type Vec2 = [number, number];
 export type Vec3 = [number, number, number];
 
@@ -42,7 +41,7 @@ export function vecInterp(a: Vec2, b: Vec2, t: number): Vec2 {
 // Length of a vector
 // http://jsperf.com/id-dist-optimization
 export function vecLength(a: Vec2, b?: Vec2): number {
-  b = b || [0, 0];
+  b ||= [0, 0];
   const x: number = a[0] - b[0];
   const y: number = a[1] - b[1];
   return Math.sqrt(x * x + y * y);
@@ -70,7 +69,7 @@ export function vecAngle(a: Vec2, b: Vec2): number {
 
 // Dot Product
 export function vecDot(a: Vec2, b: Vec2, origin?: Vec2): number {
-  origin = origin || [0, 0];
+  origin ||= [0, 0];
   const p: Vec2 = vecSubtract(a, origin);
   const q: Vec2 = vecSubtract(b, origin);
   return p[0] * q[0] + p[1] * q[1];
@@ -134,4 +133,3 @@ export function vecProject(a: Vec2, points: Vec2[]): Edge | null {
   }
   return null;
 }
-/* eslint-enable no-param-reassign */

@@ -147,8 +147,8 @@ export const wktToGeoJson = (
 
     const newOuterWays: Coord[][] = chunk<Coord>(outer, CHUNKED_WAY_LENGTH);
     const newInnerWays: Coord[][] = [];
-    for (let i = 0; i < inner.length; i += 1) {
-      newInnerWays.push(...chunk<Coord>(inner[i], CHUNKED_WAY_LENGTH));
+    for (const ring of inner) {
+      newInnerWays.push(...chunk<Coord>(ring, CHUNKED_WAY_LENGTH));
     }
     coordinates = newOuterWays.map((C) => [C]);
     coordinates[0].push(...newInnerWays);

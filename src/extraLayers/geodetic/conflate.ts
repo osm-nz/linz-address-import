@@ -90,7 +90,7 @@ export async function conflate(
       if (osmMarker.checked) {
         // skip if recent check_date
         delete osm[code];
-        continue; // eslint-disable-line no-continue
+        continue;
       }
 
       const anyTagsWrong = MUTAL_TAGS.some(
@@ -153,7 +153,7 @@ export async function conflate(
   for (const [code, osmMarker] of Object.entries(osm)) {
     if (osmMarker.checked) {
       // skip if recent check_date
-      continue; // eslint-disable-line no-continue
+      continue;
     }
 
     const out = await checkStatus(code);

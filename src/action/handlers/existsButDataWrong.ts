@@ -18,7 +18,6 @@ export async function existsButDataWrong(
   arr: StatusReport[Status.EXISTS_BUT_WRONG_DATA],
 ): Promise<HandlerReturn> {
   const bySuburb = arr.reduce((ac, [linzId, [osmAddr, suburb, ...issues]]) => {
-    // eslint-disable-next-line no-param-reassign -- mutation is cheap
     ac[suburb] ||= [];
     ac[suburb].push([linzId, osmAddr, issues]);
     return ac;
@@ -104,7 +103,7 @@ export async function existsButDataWrong(
       }${issues.join('\tand\t')}\n`;
 
       // we'll deal with this one later
-      if (swap) continue; // eslint-disable-line no-continue
+      if (swap) continue;
 
       features.push({
         type: 'Feature',

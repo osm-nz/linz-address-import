@@ -74,7 +74,7 @@ export function geoOrthoCalcScore(
       lowerThreshold,
       upperThreshold,
     );
-    // eslint-disable-next-line no-continue
+
     if (dotp === null) continue; // ignore vertex
     score +=
       2.0 *

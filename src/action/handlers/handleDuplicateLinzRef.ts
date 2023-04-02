@@ -76,7 +76,6 @@ export async function handleDuplicateLinzRef(
 
   const bySuburb = arr.reduce((ac, [linzId, [linzAddr, osmAddrList]]) => {
     const suburb = linzAddr.suburb[1];
-    // eslint-disable-next-line no-param-reassign -- mutation is cheap
     ac[suburb] ||= [];
     ac[suburb].push([linzId, linzAddr, osmAddrList]);
     return ac;

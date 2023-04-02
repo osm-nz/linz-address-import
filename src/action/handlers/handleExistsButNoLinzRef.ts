@@ -15,7 +15,6 @@ export async function handleExistsButNoLinzRef(
 ): Promise<HandlerReturn> {
   const bySuburb = arr.reduce((ac, [linzId, [s, confidence, osmAddr]]) => {
     const [suburbType, suburb] = s;
-    // eslint-disable-next-line no-param-reassign -- mutation is cheap
     ac[suburb] ||= [];
     ac[suburb].push([linzId, suburbType, confidence, osmAddr]);
     return ac;

@@ -29,7 +29,6 @@ export async function handleCorrupted(
 ): Promise<HandlerReturn> {
   let report = '';
   const byOsmId = arr.reduce<ByOsmId>((ac, [linzId, [osmAddr, linzAddr]]) => {
-    // eslint-disable-next-line no-param-reassign -- mutation is cheaper
     ac[osmAddr.osmId] ||= { osm: osmAddr, linz: [] };
     ac[osmAddr.osmId].linz.push([linzId, linzAddr]);
     return ac;

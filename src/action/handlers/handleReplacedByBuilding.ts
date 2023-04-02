@@ -14,7 +14,6 @@ export async function handleReplacedByBuilding(
 ): Promise<HandlerReturn> {
   const bySuburb = arr.reduce(
     (ac, [linzId, [osmNode, osmBuilding, suburb]]) => {
-      // eslint-disable-next-line no-param-reassign -- mutation is cheap
       ac[suburb] ||= [];
       ac[suburb].push([linzId, osmNode, osmBuilding]);
       return ac;
