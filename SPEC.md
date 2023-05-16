@@ -13,8 +13,6 @@ Other tools can generate files in the same format. Users can add their own osmPa
       "type": "Feature",
       "id": "abc", // for create, you don't specify an OSM ID, so this ID is just any unique string.
       "geometry": {
-        // these geometrys are allowed: Point, LineString, Polygon, MulitPolygon
-        // MultiPoint and MultiLineString are not supported.
         "type": "Point",
         "coordinates": [175.103, -36.9]
       },
@@ -92,17 +90,240 @@ Other tools can generate files in the same format. Users can add their own osmPa
 
         // there is no point in putting tags here, but you can. The system doesn't care.
       }
+    },
+
+    // 5️⃣ To create a complex relation, set the geometry to an empty GeometryCollection
+    //    array, and use a special property called __members
+    //    In most cases, you won't need this, since type=multipolygon,
+    //    type=multilinestring, and type=site can be created using
+    //    standard geojson geometries.
+    {
+      "type": "Feature",
+      "id": "abc", // for create, you don't specify an OSM ID, so this ID is just any unique string.
+      "geometry": {
+        "type": "GeometryCollection",
+        "geometries": []
+      },
+      "properties": {
+        "type": "route",
+        "route": "bus",
+
+        "__members": [
+          { "type": "node", "ref": 123, "role": "stop" },
+          { "type": "node", "ref": 456, "role": "stop_exit_only" }
+        ]
+      }
+    },
+
+    // 6️⃣ To edit a complex relation, set the geometry to an empty GeometryCollection
+    //    array, and use a special property called __members along with __action=edit
+    //    In most cases, you won't need this, since type=multipolygon,
+    //    type=multilinestring, and type=site can be created using
+    //    standard geojson geometries.
+    {
+      "type": "Feature",
+      "id": "abc", // for create, you don't specify an OSM ID, so this ID is just any unique string.
+      "geometry": {
+        "type": "GeometryCollection",
+        "geometries": []
+      },
+      "properties": {
+        "route": "bus", // only include the tags you want to edit
+
+        "__action": "edit",
+        "__members": [
+          // only include the members you want to add/edit/delete.
+          // this format does not allow members to be listed twice in the same relation
+          { "type": "node", "ref": 123, "role": "stop" },
+
+          // to delete a member, set the role to the 🗑️ emoji
+          { "type": "node", "ref": 456, "role": "🗑️" }
+        ]
+      }
     }
-  ]
+  ],
+  // you can optionally specify tags which are added to the changeset
+  "changesetTags": {
+    "comment": "Updating speed limits",
+    "created_by": "My Tool"
+  }
 }
 ```
 
 # Tags
 
-The `properties` of a geojson item must contain `__action`, unless you are creating a new feature. All other `properties` are OSM tags.
+The `properties` of a geojson item must contain `__action`, unless you are creating a new feature. All other `properties` are OSM tags, except `__members` for complex relations.
 
 However, the tags are a **diff**. This means:
 
 1. Any tags specified in the patch file will override the tag if it exists on the OSM feature, or add the tag if it doesn't exist.
 2. Any tags that exist on the OSM feature, but not in `properties` will be retained.
 3. To remove a tag, set the value to `🗑️`
+4. The three points above also apply to relation `__members`
+
+# Editor Support
+
+<table>
+  <thead>
+    <tr>
+      <th>Geometry</th>
+      <th>Operation</th>
+      <th><a href="https://osm-nz.github.io/RapiD">Fork of RapiD</a></th>
+      <th><a href="https://osm-nz.github.io/#/upload">Upload Wizard</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan=4>Point<br /><em>(node)</em></td>
+      <td>Create</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Edit Tags</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Edit Geometry</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Delete</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td rowspan=4>LineString<br /><em>(way)</em></td>
+      <td>Create</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Edit Tags</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Edit Geometry</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Delete</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td rowspan=5>Polygon<br /><em>(way or <code>type=multipolygon</code>)</em></td>
+      <td>Create</td>
+      <td>✅</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td>Edit Tags</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Edit Geometry</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Edit Members</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Delete</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td rowspan=4>MultiPolygon<br /><em>(<code>type=multipolygon</code>)</em></td>
+      <td>Create</td>
+      <td>✅</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td>Edit Tags</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Edit Members</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Delete</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td rowspan=4>MultiLineString<br /><em>(<code>type=multilinestring</code>)</em></td>
+      <td>Create</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Edit Tags</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Edit Members</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Delete</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td rowspan=4>MultiPoint<br /><em>(<code>type=site</code>)</em></td>
+      <td>Create</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Edit Tags</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Edit Members</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Delete</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td rowspan=4>GeometryCollection<br /><em>(<code>type=*</code>)</em></td>
+      <td>Create</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Edit Tags</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Edit Members</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Delete</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+  </tbody>
+</table>
