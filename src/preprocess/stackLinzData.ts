@@ -1,10 +1,24 @@
-import { promises as fs } from 'fs';
-import { LinzData, LinzAddr, OSMData, CouldStackData } from '../types';
+import { promises as fs, readFileSync } from 'fs';
+import whichPolygon from 'which-polygon';
+import { join } from 'node:path';
+import { LinzData, LinzAddr, OSMData, CouldStackData, GeoJson } from '../types';
 import { toStackId, uniq } from '../common';
 import { linzFile, linzTempFile, mock, osmFile, stackFile } from './const';
 
+const lowerStackTresholds: GeoJson<{ name: string; threshold: number }> =
+  JSON.parse(
+    readFileSync(
+      join(__dirname, '../../static/lower-stack-threshold.geo.json'),
+      'utf8',
+    ),
+  );
+
 // the threshold was 11 until Feb 2023, when LINZ added 100k new addresses...
+// in dense urban areas, this limit is further redued
+// (see lower-stack-threshold.geo.json)
 const STACK_THRESHOLD = mock ? 2 : 9;
+
+const stackTresholdQuery = whichPolygon(lowerStackTresholds);
 
 /** the object is keyed by a `houseKey` */
 type VisitedCoords = Record<
@@ -74,7 +88,13 @@ async function mergeIntoStacks(): Promise<LinzData> {
      */
     const flatsMostlyStacked = uniqLoc / addrIds.length <= 0.5;
 
-    if (addrIds.length > STACK_THRESHOLD && flatsMostlyStacked) {
+    const { lat, lng } = linzData[addrIds[0][0]];
+
+    // use a custom stack threshold if there is one defined for this area
+    const stackThreshold =
+      stackTresholdQuery([lng, lat])?.threshold ?? STACK_THRESHOLD;
+
+    if (addrIds.length > stackThreshold && flatsMostlyStacked) {
       const housenumberMsb = houseKey.split('|')[0];
 
       if (shouldBeUnstacked) {
