@@ -24,6 +24,8 @@ export const nzgbNamesTable: Record<string, string> = {
   Ngatapa: 'Ngātapa', // https://gazetteer.linz.govt.nz/place/32504
   Patutahi: 'Pātūtahi', // https://gazetteer.linz.govt.nz/place/35756
   'Te Mahia': 'Te Māhia', // https://gazetteer.linz.govt.nz/place/42665
+  Orewa: 'Ōrewa', // https://gazetteer.linz.govt.nz/place/34087
+  Whangaparaoa: 'Whangaparāoa', // https://gazetteer.linz.govt.nz/place/48115
 
   Opotiki: 'Ōpōtiki', // // only included here for unit tests. It's correct in the LINZ dataset
 };

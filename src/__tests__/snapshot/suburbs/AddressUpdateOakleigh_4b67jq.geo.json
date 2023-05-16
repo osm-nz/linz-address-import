@@ -1094,6 +1094,24 @@
     },
     {
       "type": "Feature",
+      "id": "70156",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          175.156,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "156",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "building:flats": "3",
+        "ref:linz:address_id": "70156"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "70004B",
       "geometry": {
         "type": "Point",
