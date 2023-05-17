@@ -761,6 +761,28 @@
     <tag k="ref:linz:address_id" v="70155" />
   </node>
 
+  <!-- 156 is missing, it's a stack which should have the level tag removed -->
+
+  <!-- 160 is missing an addr:city tag - that's okay, no action required -->
+  <node id="160" version="1" changeset="1" lat="-36.9" lon="174.160" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="160" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:suburb" v="Oakleigh" />
+    <tag k="level" v="AnotherCustomValue" />
+    <tag k="ref:linz:address_id" v="70160" />
+  </node>
+
+  <!-- 161 has an incorrect addr:city tag - this will be fixed -->
+  <node id="161" version="1" changeset="1" lat="-36.9" lon="174.161" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="161" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:suburb" v="Oakleigh" />
+    <tag k="addr:city" v="São Manoël" />
+    <tag k="level" v="AnotherCustomValue" />
+    <tag k="ref:linz:address_id" v="70161" />
+  </node>
+
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />

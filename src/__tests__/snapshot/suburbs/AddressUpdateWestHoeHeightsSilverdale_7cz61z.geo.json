@@ -15,6 +15,7 @@
         "addr:housenumber": "62",
         "addr:street": "Example Street",
         "addr:suburb": "West Hoe Heights",
+        "addr:city": "Silverdale",
         "ref:linz:address_id": "70062"
       }
     }

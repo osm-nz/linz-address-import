@@ -36,6 +36,8 @@ export function processWithRef(
   const houseOk = linzAddr.housenumber === osmAddr.housenumber;
   const streetOk = linzAddr.street === osmAddr.street;
   const suburbOk = linzSuburb === osmSuburb;
+  const townOk = // addr:city is only conflated if the tag already exists
+    !osmAddr.town || !linzAddr.town || linzAddr.town === osmAddr.town;
   const waterOk = linzAddr.water === osmAddr.water;
   const flatCountOk = linzAddr.flatCount === osmAddr.flatCount;
   const levelOk = !linzAddr.level || linzAddr.level === osmAddr.level;
@@ -44,6 +46,7 @@ export function processWithRef(
     houseOk &&
     streetOk &&
     suburbOk &&
+    townOk &&
     waterOk &&
     flatCountOk &&
     levelOk &&
@@ -112,6 +115,7 @@ export function processWithRef(
     !houseOk && `housenumber|${linzAddr.housenumber}|${osmAddr.housenumber}`,
     !streetOk && `street|${linzAddr.street}|${osmAddr.street}`,
     !suburbOk && `suburb|${linzSuburb}|${osmSuburb}`,
+    !townOk && `town|${linzAddr.town}|${osmAddr.town}`,
     !flatCountOk &&
       `flatCount|${linzAddr.flatCount || 0}|${osmAddr.flatCount || 0}`,
     !levelOk && `level|${linzAddr.level || ''}|${osmAddr.level || ''}`,

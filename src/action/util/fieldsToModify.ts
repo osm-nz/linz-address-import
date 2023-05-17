@@ -12,9 +12,11 @@ export function fieldsToModify(issues: Issue[]): Record<string, string> {
       case 'housenumber':
         ac['addr:housenumber'] = linzValue;
         break;
+
       case 'street':
         ac['addr:street'] = linzValue;
         break;
+
       case 'suburb': {
         const [k, v] = linzValue.split('=') as [
           'addr:hamlet' | 'addr:suburb',
@@ -31,6 +33,11 @@ export function fieldsToModify(issues: Issue[]): Record<string, string> {
         ac[k] = v;
         break;
       }
+
+      case 'town':
+        ac['addr:city'] = linzValue;
+        break;
+
       case 'water': {
         if (linzValue === '0' && osmValue === '1') {
           ac['addr:type'] = '🗑️'; // delete the tag
@@ -40,6 +47,7 @@ export function fieldsToModify(issues: Issue[]): Record<string, string> {
         }
         break;
       }
+
       case 'flatCount': {
         if (linzValue === '0' && osmValue !== '0') {
           ac['building:flats'] = '🗑️'; // delete the tag
@@ -49,10 +57,12 @@ export function fieldsToModify(issues: Issue[]): Record<string, string> {
         }
         break;
       }
+
       case 'level': {
         ac.level = linzValue;
         break;
       }
+
       default: {
         const exhaustiveCheck: never = field; // if TS errors here, a case statement is missing
 

@@ -49,6 +49,7 @@ function osmToJson(): Promise<OSMData> {
             housenumber: item.tags['addr:housenumber'],
             street: item.tags['addr:street'],
             suburb: suburb ? [suburbU ? 'U' : 'R', suburb] : undefined,
+            town: item.tags['addr:city'],
             // this is an expensive check :(
             isNonTrivial:
               'name' in item.tags ||

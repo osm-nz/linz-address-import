@@ -211,6 +211,7 @@
         "addr:street": "🗑️",
         "addr:suburb": "🗑️",
         "addr:hamlet": "🗑️",
+        "addr:city": "🗑️",
         "addr:type": "🗑️",
         "building:flats": "🗑️",
         "ref:linz:address_id": "🗑️",

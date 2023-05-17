@@ -37,6 +37,7 @@ export type OsmAddr = Coords & {
   housenumber?: string;
   street?: string;
   suburb?: Suburb;
+  town?: string;
   isNonTrivial: boolean;
   checked: CheckDate;
   /** whether this address is a water address */
@@ -179,6 +180,7 @@ export type IssueType =
   | 'housenumber'
   | 'street'
   | 'suburb'
+  | 'town'
   | 'flatCount'
   | 'level'
   | 'water';
