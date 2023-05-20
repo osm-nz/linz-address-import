@@ -1,0 +1,22 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "70162",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.162,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "162",
+        "addr:street": "Example Street",
+        "addr:suburb": "Jericho",
+        "ref:linz:address_id": "70162"
+      }
+    }
+  ]
+}

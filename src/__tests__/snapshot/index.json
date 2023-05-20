@@ -134,6 +134,28 @@
       ]
     },
     {
+      "id": "AddressUpdateJericho_1rxrbwa",
+      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateJericho_1rxrbwa.geo.json",
+      "name": "Address Update - Jericho",
+      "title": "Address Update - Jericho",
+      "totalCount": 1,
+      "source": "",
+      "snippet": "add 1",
+      "extent": [
+        [
+          174.162,
+          -36.9
+        ],
+        [
+          174.162,
+          -36.9
+        ]
+      ],
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
+    },
+    {
       "id": "AddressUpdateOakleigh_4b67jq",
       "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateOakleigh_4b67jq.geo.json",
       "name": "Address Update - Oakleigh",
