@@ -18,23 +18,28 @@ type BySuburb = {
 };
 
 export async function handleTotallyMissing(
-  arr: StatusReport[Status.TOTALLY_MISSING],
-  needsDeleteArr: StatusReport[Status.NEEDS_DELETE],
+  array: StatusReport[Status.TOTALLY_MISSING],
+  needsDeleteArray: StatusReport[Status.NEEDS_DELETE],
 ): Promise<HandlerReturn> {
-  const tmp = arr.reduce((ac, [, data]) => {
-    const suburb = data.suburb[1];
-    if (!ac[suburb]) {
-      ac[suburb] = [data.town];
-    } else if (!ac[suburb].includes(data.town)) {
-      ac[suburb].push(data.town);
-    }
-    return ac;
-  }, {} as Record<string, string[]>);
-  const duplicates = Object.keys(tmp).filter((k) => tmp[k].length > 1);
+  const temp = array.reduce(
+    (ac, [, data]) => {
+      const suburb = data.suburb[1];
+      if (!ac[suburb]) {
+        ac[suburb] = [data.town];
+      } else if (!ac[suburb].includes(data.town)) {
+        ac[suburb].push(data.town);
+      }
+      return ac;
+    },
+    {} as Record<string, string[]>,
+  );
+  const duplicates = new Set(
+    Object.keys(temp).filter((k) => temp[k].length > 1),
+  );
 
-  const bySuburb = arr.reduce<BySuburb>((ac, [linzId, data]) => {
+  const bySuburb = array.reduce<BySuburb>((ac, [linzId, data]) => {
     const suburb = data.suburb[1];
-    const key = duplicates.includes(suburb)
+    const key = duplicates.has(suburb)
       ? `${suburb} (${data.town || 'Rural'})`
       : suburb;
 
@@ -43,7 +48,7 @@ export async function handleTotallyMissing(
     return ac;
   }, {});
 
-  for (const [linzId, [suburb, osmAddr]] of needsDeleteArr) {
+  for (const [linzId, [suburb, osmAddr]] of needsDeleteArray) {
     // ideally we would deduce which town this deletion belongs to,
     // but there is no trivial way of doing that, so we create a third suburb (Deletions)
     const key = suburb;

@@ -17,17 +17,34 @@ export function calcBBox(features: GeoJsonFeature[]): BBox {
     if (lng > bbox.maxLng) bbox.maxLng = lng;
   }
 
+  /* eslint-disable unicorn/no-array-for-each -- deliberate */
+
   for (const f of features) {
-    if (f.geometry.type === 'Point') {
-      visit(f.geometry.coordinates);
-    } else if (f.geometry.type === 'LineString') {
-      f.geometry.coordinates.forEach(visit);
-    } else if (f.geometry.type === 'Polygon') {
-      f.geometry.coordinates.forEach((ring) => ring.forEach(visit));
-    } else if (f.geometry.type === 'MultiPolygon') {
-      f.geometry.coordinates.forEach((member) =>
-        member.forEach((ring) => ring.forEach(visit)),
-      );
+    switch (f.geometry.type) {
+      case 'Point': {
+        visit(f.geometry.coordinates);
+
+        break;
+      }
+      case 'LineString': {
+        f.geometry.coordinates.forEach(visit);
+
+        break;
+      }
+      case 'Polygon': {
+        for (const ring of f.geometry.coordinates) ring.forEach(visit);
+
+        break;
+      }
+      case 'MultiPolygon': {
+        for (const member of f.geometry.coordinates) {
+          for (const ring of member) ring.forEach(visit);
+        }
+        break;
+      }
+      default: {
+        throw new Error('Unexpected geometry type');
+      }
     }
   }
   return bbox;

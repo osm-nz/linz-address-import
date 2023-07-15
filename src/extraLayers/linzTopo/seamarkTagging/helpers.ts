@@ -11,7 +11,7 @@ export const fixChartName = (str: string): string =>
     .replace('Ohiwa', 'Ōhiwa')
     .replace('Whakatane', 'Whakatāne')
     .replace('Wanganui', 'Whanganui')
-    .replace(/Taupo/g, 'Taupō')
+    .replaceAll('Taupo', 'Taupō')
     .replace('Tutukaka', 'Tutukākā');
 
 /** source tags for maritime data look like `NZ,NZ,Chart123` */
@@ -22,7 +22,7 @@ export const cleanSource = (
   const out = ['LINZ'];
   if (chartName) {
     const chunks = chartName.split(' - ');
-    let chart = chunks.slice(-1)[0];
+    let chart = chunks.at(-1);
     if (chart === 'West' || chart === 'East') {
       const [c1, c2] = chunks.slice(-2);
       chart = `${c1} (${c2})`;
@@ -30,24 +30,26 @@ export const cleanSource = (
     out.push(`${chart} Chart`);
   }
 
-  const arr = source
+  const array = source
     ?.split(',')
     .filter(
       (x) => x !== 'NZ' && x !== 'graph' && x !== 'reprt' && x !== 'publn',
     );
-  if (arr) out.push(...new Set(arr));
+  if (array) out.push(...new Set(array));
 
-  return out.filter((x) => x).join(';');
+  return out.filter(Boolean).join(';');
 };
 
 /** dates use the `YYYYMMDD` or `YYYYMM` or `YYYY` format */
 export const cleanDate = (date: string | undefined): string | undefined => {
   if (!date) return undefined;
   return [date.slice(0, 4), date.slice(4, 6), date.slice(6, 8)]
-    .filter((x) => x)
+    .filter(Boolean)
     .join('-');
 };
 
 // see unit tests
 export const cleanSequence = (input: string): string =>
-  input.replace(/(^|\(|\+)0+(\d)/g, (_, ch, d) => ch + d).replace(/\.0/g, '');
+  input
+    .replaceAll(/(^|\(|\+)0+(\d)/g, (_, ch, d) => ch + d)
+    .replaceAll('.0', '');

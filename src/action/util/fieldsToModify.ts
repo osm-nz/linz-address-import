@@ -2,20 +2,22 @@ import { Issue, IssueType } from '../../types';
 
 export function fieldsToModify(issues: Issue[]): Record<string, string> {
   const ac: Record<string, string> = {};
-  for (const i of issues) {
-    const [field, linzValue, osmValue] = i.split('|') as [
+  for (const issue of issues) {
+    const [field, linzValue, osmValue] = issue.split('|') as [
       IssueType,
       string,
       string,
     ];
     switch (field) {
-      case 'housenumber':
+      case 'housenumber': {
         ac['addr:housenumber'] = linzValue;
         break;
+      }
 
-      case 'street':
+      case 'street': {
         ac['addr:street'] = linzValue;
         break;
+      }
 
       case 'suburb': {
         const [k, v] = linzValue.split('=') as [
@@ -34,11 +36,13 @@ export function fieldsToModify(issues: Issue[]): Record<string, string> {
         break;
       }
 
-      case 'town':
+      case 'town': {
         ac['addr:city'] = linzValue;
         break;
+      }
 
       case 'water': {
+        // eslint-disable-next-line unicorn/prefer-ternary -- more readable like this
         if (linzValue === '0' && osmValue === '1') {
           ac['addr:type'] = '🗑️'; // delete the tag
         } else {
@@ -49,6 +53,7 @@ export function fieldsToModify(issues: Issue[]): Record<string, string> {
       }
 
       case 'flatCount': {
+        // eslint-disable-next-line unicorn/prefer-ternary -- more readable like this
         if (linzValue === '0' && osmValue !== '0') {
           ac['building:flats'] = '🗑️'; // delete the tag
         } else {

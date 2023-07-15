@@ -249,7 +249,7 @@
 
   <!-- location off a lot but has a recent check_date -->
   <node id="40" version="1" changeset="1" lat="-36" lon="174.940" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
-    <tag k="check_date" v="2021-06-06" />
+    <tag k="check_date" v="2027-06-06" />
     <tag k="addr:housenumber" v="40" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
@@ -258,7 +258,7 @@
 
   <!-- street name wrong but has a recent check_date -->
   <node id="41" version="1" changeset="1" lat="-36.9" lon="174.941" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
-    <tag k="check_date" v="2021-06-06" />
+    <tag k="check_date" v="2027-06-06" />
     <tag k="addr:housenumber" v="41" />
     <tag k="addr:street" v="Example Lane" />
     <tag k="addr:hamlet" v="Oakleigh" />

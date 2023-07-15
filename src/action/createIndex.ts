@@ -1,12 +1,12 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import { GeoJson, HandlerReturnWithBBox } from '../types';
 import { calcCount, CDN_URL, mock, suburbsFolder } from './util';
 import { hash } from '../common';
 
 function toId(suburb: string) {
   // macrons are url safe
-  return `${suburb.replace(/[^a-zA-ZāēīōūĀĒĪŌŪ0-9]/g, '')}_${hash(suburb)}`;
+  return `${suburb.replaceAll(/[^\dA-Za-zĀāĒēĪīŌōŪū]/g, '')}_${hash(suburb)}`;
 }
 
 export async function createIndex(

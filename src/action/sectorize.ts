@@ -25,10 +25,10 @@ export function sectorize(
     if (!suburb.includes('Address Update - ')) {
       // not antarctic and not an address suburb, so split this by region
       const out: Record<string, GeoJsonFeature[]> = {};
-      for (let i = 0; i < features.length; i += 1) {
-        const f = features[i];
+      for (let index = 0; index < features.length; index += 1) {
+        const f = features[index];
         const [lng, lat] = getFirstCoord(f.geometry);
-        const sector = getSector({ lat, lng }, size, i);
+        const sector = getSector({ lat, lng }, size, index);
         out[sector] ||= [];
         out[sector].push(f);
       }
@@ -42,10 +42,10 @@ export function sectorize(
       }
     } else if (suburb.includes('Antarctic')) {
       const chunked = chunk(features, 100);
-      for (let i = 0; i < chunked.length; i += 1) {
-        newFeatures[`${suburb} ${i + 1}`] = {
-          features: chunked[i],
-          bbox: calcBBox(chunked[i]),
+      for (let index = 0; index < chunked.length; index += 1) {
+        newFeatures[`${suburb} ${index + 1}`] = {
+          features: chunked[index],
+          bbox: calcBBox(chunked[index]),
           instructions,
         };
       }

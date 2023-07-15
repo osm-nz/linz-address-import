@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
-import { promises as fs, createReadStream } from 'fs';
-import { join } from 'path';
+import { promises as fs, createReadStream } from 'node:fs';
+import { join } from 'node:path';
 import csv from 'csv-parser';
 import { ChangelogJson, LinzChangelog } from '../types';
 

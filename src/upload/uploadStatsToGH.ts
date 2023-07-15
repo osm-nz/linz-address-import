@@ -1,11 +1,11 @@
-import { promises as fs } from 'fs';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import fetch from 'node-fetch';
-import { join } from 'path';
 import { StatsFile, GH } from '../types';
 
 export async function uploadStatsToGH(): Promise<void> {
   const stats: StatsFile = JSON.parse(
-    await fs.readFile(join(__dirname, `../../out/stats.json`), 'utf-8'),
+    await fs.readFile(join(__dirname, `../../out/stats.json`), 'utf8'),
   );
 
   const { GH_BASIC_AUTH } = process.env;

@@ -1,16 +1,19 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import { OsmAddr, Status, StatusReport } from '../../types';
 import { outFolder, toLink } from '../util';
 
 export async function handleDeleted(
-  arr: StatusReport[Status.NEEDS_DELETE],
+  array: StatusReport[Status.NEEDS_DELETE],
 ): Promise<void> {
-  const bySuburb = arr.reduce((ac, [linzId, [suburb, osmAddr]]) => {
-    ac[suburb] ||= [];
-    ac[suburb].push([linzId, osmAddr]);
-    return ac;
-  }, {} as Record<string, [string, OsmAddr][]>);
+  const bySuburb = array.reduce(
+    (ac, [linzId, [suburb, osmAddr]]) => {
+      ac[suburb] ||= [];
+      ac[suburb].push([linzId, osmAddr]);
+      return ac;
+    },
+    {} as Record<string, [string, OsmAddr][]>,
+  );
 
   let report = '';
   for (const suburb in bySuburb) {

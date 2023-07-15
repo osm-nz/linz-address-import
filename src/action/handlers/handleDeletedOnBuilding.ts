@@ -1,5 +1,5 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import {
   GeoJsonFeature,
   HandlerReturn,
@@ -15,13 +15,16 @@ import {
 } from '../util';
 
 export async function handleDeletedOnBuilding(
-  arr: StatusReport[Status.NEEDS_DELETE_ON_BUILDING],
+  array: StatusReport[Status.NEEDS_DELETE_ON_BUILDING],
 ): Promise<HandlerReturn> {
-  const bySuburb = arr.reduce((ac, [linzId, [suburb, osmAddr]]) => {
-    ac[suburb] ||= [];
-    ac[suburb].push([linzId, osmAddr]);
-    return ac;
-  }, {} as Record<string, [string, OsmAddr][]>);
+  const bySuburb = array.reduce(
+    (ac, [linzId, [suburb, osmAddr]]) => {
+      ac[suburb] ||= [];
+      ac[suburb].push([linzId, osmAddr]);
+      return ac;
+    },
+    {} as Record<string, [string, OsmAddr][]>,
+  );
 
   let report = '';
   for (const suburb in bySuburb) {
@@ -37,7 +40,7 @@ export async function handleDeletedOnBuilding(
 
   const features: GeoJsonFeature[] = [];
 
-  for (const [, [, osmAddr]] of arr) {
+  for (const [, [, osmAddr]] of array) {
     features.push({
       type: 'Feature',
       id: osmAddr.osmId,

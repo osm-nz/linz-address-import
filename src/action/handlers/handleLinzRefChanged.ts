@@ -1,5 +1,5 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import {
   GeoJsonFeature,
   HandlerReturn,
@@ -10,9 +10,9 @@ import {
 import { createDiamond, outFolder, toLink } from '../util';
 
 export async function handleLinzRefChanged(
-  arr: StatusReport[Status.LINZ_REF_CHANGED],
+  array: StatusReport[Status.LINZ_REF_CHANGED],
 ): Promise<HandlerReturn> {
-  const bySuburb = arr.reduce<Record<string, [string, string, OsmAddr][]>>(
+  const bySuburb = array.reduce<Record<string, [string, string, OsmAddr][]>>(
     (ac, [oldLinzId, [suburb, newLinzId, osmAddr]]) => {
       ac[suburb] ||= [];
       ac[suburb].push([oldLinzId, newLinzId, osmAddr]);
@@ -33,7 +33,7 @@ export async function handleLinzRefChanged(
 
   const features: GeoJsonFeature[] = [];
 
-  for (const [, [, newLinzId, osmData, linzData]] of arr) {
+  for (const [, [, newLinzId, osmData, linzData]] of array) {
     features.push({
       type: 'Feature',
       id: osmData.osmId,

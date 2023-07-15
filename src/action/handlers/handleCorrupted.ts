@@ -1,5 +1,5 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import {
   GeoJsonFeature,
   HandlerReturn,
@@ -25,10 +25,10 @@ type ByOsmId = {
 };
 
 export async function handleCorrupted(
-  arr: StatusReport[Status.CORRUPT],
+  array: StatusReport[Status.CORRUPT],
 ): Promise<HandlerReturn> {
   let report = '';
-  const byOsmId = arr.reduce<ByOsmId>((ac, [linzId, [osmAddr, linzAddr]]) => {
+  const byOsmId = array.reduce<ByOsmId>((ac, [linzId, [osmAddr, linzAddr]]) => {
     ac[osmAddr.osmId] ||= { osm: osmAddr, linz: [] };
     ac[osmAddr.osmId].linz.push([linzId, linzAddr]);
     return ac;

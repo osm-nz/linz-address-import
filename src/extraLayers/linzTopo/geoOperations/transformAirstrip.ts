@@ -23,7 +23,7 @@ export function transformAirstrip(
 
   let coords = areaGeom.coordinates[0];
 
-  if (coords[0].join(',') !== coords[coords.length - 1].join(',')) {
+  if (coords[0].join(',') !== coords.at(-1)!.join(',')) {
     return [areaGeom, tags]; // assert that it's a closed way
   }
 
@@ -55,10 +55,10 @@ export function transformAirstrip(
     return [areaGeom, tags]; // it's not reactangular
   }
 
-  const ABxCDavgLen = (AB + CD) / 2;
-  const BCxDAavgLen = (BC + DA) / 2;
+  const ABxCDavgLength = (AB + CD) / 2;
+  const BCxDAavgLength = (BC + DA) / 2;
 
-  const ABxCDIsShortSide = ABxCDavgLen < BCxDAavgLen;
+  const ABxCDIsShortSide = ABxCDavgLength < BCxDAavgLength;
 
   const pnt1 = ABxCDIsShortSide ? midpoint(A, B) : midpoint(B, C);
   const pnt2 = ABxCDIsShortSide ? midpoint(C, D) : midpoint(D, A);
@@ -69,7 +69,9 @@ export function transformAirstrip(
   };
   const newTags: Tags = {
     ...tags,
-    width: Math.round(ABxCDIsShortSide ? ABxCDavgLen : BCxDAavgLen).toString(),
+    width: Math.round(
+      ABxCDIsShortSide ? ABxCDavgLength : BCxDAavgLength,
+    ).toString(),
   };
   delete newTags.area; // delete area=yes tag
 

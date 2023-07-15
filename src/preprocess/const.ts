@@ -1,4 +1,4 @@
-import { join } from 'path';
+import { join } from 'node:path';
 
 export const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
 

@@ -1,4 +1,4 @@
-import { join } from 'path';
+import { join } from 'node:path';
 
 export const CDN_URL = 'https://linz-addr-cdn.kyle.kiwi';
 

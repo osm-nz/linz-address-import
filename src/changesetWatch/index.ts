@@ -43,7 +43,7 @@ export async function main(): Promise<void> {
   const diffs: CSWithDiff[] = [];
 
   // check each changeset
-  for (const [i, cs] of csToInspect.entries()) {
+  for (const [index, cs] of csToInspect.entries()) {
     console.log(cs.hasRetried ? 'Retrying...' : 'Fetching...', cs.id);
     try {
       const diff = await getChangesetDiff(cs.id);
@@ -59,21 +59,21 @@ export async function main(): Promise<void> {
       console.log(`Failed to fetch cs${cs.id}. Waiting...`);
 
       // if we haven't retried this one yet, add it back to the end of the list
-      if (!cs.hasRetried) {
+      if (cs.hasRetried) {
+        console.log("\t second failure, won't retry");
+      } else {
         console.log('\t first failure, will retry');
         csToInspect.push({ ...cs, hasRetried: true });
-      } else {
-        console.log("\t second failure, won't retry");
       }
 
       // wait for ages to give the API some time
       await timeout(20_000);
     }
 
-    if (!(i % 10)) {
+    if (!(index % 10)) {
       // we don't want to spam the OSM api, so every 10 API requets we wait a bit.
       console.log('Waiting...');
-      await timeout(7_000);
+      await timeout(7000);
     }
   }
 

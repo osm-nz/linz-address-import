@@ -102,12 +102,12 @@ export interface Edge {
 // Find closest orthogonal projection of point onto points array
 export function vecProject(a: Vec2, points: Vec2[]): Edge | null {
   let min = Infinity;
-  let idx: number | undefined;
+  let targetsIndex: number | undefined;
   let target: Vec2 | undefined;
 
-  for (let i = 0; i < points.length - 1; i += 1) {
-    const o: Vec2 = points[i];
-    const s: Vec2 = vecSubtract(points[i + 1], o);
+  for (let index = 0; index < points.length - 1; index += 1) {
+    const o: Vec2 = points[index];
+    const s: Vec2 = vecSubtract(points[index + 1], o);
     const v: Vec2 = vecSubtract(a, o);
     const proj: number = vecDot(v, s) / vecDot(s, s);
     let p: Vec2;
@@ -115,21 +115,21 @@ export function vecProject(a: Vec2, points: Vec2[]): Edge | null {
     if (proj < 0) {
       p = o;
     } else if (proj > 1) {
-      p = points[i + 1];
+      p = points[index + 1];
     } else {
       p = [o[0] + proj * s[0], o[1] + proj * s[1]];
     }
 
-    const dist: number = vecLength(p, a);
-    if (dist < min) {
-      min = dist;
-      idx = i + 1;
+    const distance: number = vecLength(p, a);
+    if (distance < min) {
+      min = distance;
+      targetsIndex = index + 1;
       target = p;
     }
   }
 
-  if (idx !== undefined && target !== undefined) {
-    return { index: idx, distance: min, target };
+  if (targetsIndex !== undefined && target !== undefined) {
+    return { index: targetsIndex, distance: min, target };
   }
   return null;
 }

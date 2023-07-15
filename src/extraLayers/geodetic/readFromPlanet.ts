@@ -1,4 +1,4 @@
-import { join } from 'path';
+import { join } from 'node:path';
 import pbf2json, { Item } from 'pbf2json';
 import through from 'through2';
 import { isChecked, withinBBox } from '../../common';
@@ -11,7 +11,7 @@ export async function readFromPlanet(
   return new Promise((resolve, reject) => {
     console.log('Extracting markers from OSM Planet...');
     const out: Record<string, OsmMarker> = {};
-    let i = 0;
+    let index = 0;
     let skipped = 0;
     const duplicates: Record<string, OsmId[]> = {};
 
@@ -24,9 +24,9 @@ export async function readFromPlanet(
         leveldb: '/tmp',
       })
       .pipe(
-        through.obj((item: Item, _e, next) => {
-          i += 1;
-          if (!(i % 100)) process.stdout.write('.');
+        through.obj((item: Item, _, next) => {
+          index += 1;
+          if (!(index % 100)) process.stdout.write('.');
 
           if (item.type !== 'node') {
             console.warn('\t(!) skipping a non-node');
@@ -42,7 +42,7 @@ export async function readFromPlanet(
 
           const ref = item.tags.ref!;
 
-          const obj: OsmMarker = {
+          const object: OsmMarker = {
             osmId: <OsmId>`n${item.id}`,
             lat: +item.lat,
             lng: +item.lon,
@@ -67,19 +67,21 @@ export async function readFromPlanet(
           const website = `https://www.geodesy.linz.govt.nz/gdb?code=${ref}`;
 
           if (item.tags.operator !== 'Land Information New Zealand') {
-            obj.needsOperatorTag = true;
+            object.needsOperatorTag = true;
           }
           if (item.tags.website !== website) {
-            obj.needsWebsiteTag = true;
+            object.needsWebsiteTag = true;
           }
 
           if (ref in out) {
-            if (!duplicates[ref]) {
-              duplicates[ref] = [out[ref].osmId, obj.osmId];
-            } else duplicates[ref].push(obj.osmId);
+            if (duplicates[ref]) {
+              duplicates[ref].push(object.osmId);
+            } else {
+              duplicates[ref] = [out[ref].osmId, object.osmId];
+            }
           }
 
-          out[ref] = obj;
+          out[ref] = object;
 
           next();
         }),

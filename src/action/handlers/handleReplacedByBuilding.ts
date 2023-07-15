@@ -1,5 +1,5 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import {
   GeoJsonFeature,
   HandlerReturn,
@@ -10,9 +10,9 @@ import {
 import { createDiamond, createSquare, outFolder, toLink } from '../util';
 
 export async function handleReplacedByBuilding(
-  arr: StatusReport[Status.REPLACED_BY_BUILDING],
+  array: StatusReport[Status.REPLACED_BY_BUILDING],
 ): Promise<HandlerReturn> {
-  const bySuburb = arr.reduce(
+  const bySuburb = array.reduce(
     (ac, [linzId, [osmNode, osmBuilding, suburb]]) => {
       ac[suburb] ||= [];
       ac[suburb].push([linzId, osmNode, osmBuilding]);
@@ -38,7 +38,7 @@ export async function handleReplacedByBuilding(
 
   const features: GeoJsonFeature[] = [];
 
-  for (const [linzId, [osmNode, osmBuilding, suburb]] of arr) {
+  for (const [linzId, [osmNode, osmBuilding, suburb]] of array) {
     // two step process - delete the node, and edit the building to add the missing tags
     features.push({
       type: 'Feature',

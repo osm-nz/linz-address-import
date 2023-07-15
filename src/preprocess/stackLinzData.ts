@@ -1,4 +1,4 @@
-import { promises as fs, readFileSync } from 'fs';
+import { promises as fs, readFileSync } from 'node:fs';
 import whichPolygon from 'which-polygon';
 import { join } from 'node:path';
 import { LinzData, LinzAddr, OSMData, CouldStackData, GeoJson } from '../types';
@@ -45,17 +45,17 @@ async function mergeIntoStacks(): Promise<LinzData> {
     const houseKey = `${a.$houseNumberMsb!}|${a.street}${a.suburb}`;
 
     // if this is a flat
-    if (a.$houseNumberMsb !== a.housenumber) {
+    if (a.$houseNumberMsb === a.housenumber) {
+      // this is not a flat
+      visitedNonFlats[houseKey] = linzId;
+    } else {
       /** a uniq key to identify this *house* (which may have multiple flats) */
       visitedFlats[houseKey] ||= [];
       visitedFlats[houseKey].push([
         linzId,
         // round to nearest 0.05seconds of latitude/longitude in case the points are slightly off
-        <`${number},${number}`>`${a.lat.toFixed(4)},${a.lng.toFixed(4)}`,
+        `${a.lat.toFixed(4)},${a.lng.toFixed(4)}` as `${number},${number}`,
       ]);
-    } else {
-      // this is not a flat
-      visitedNonFlats[houseKey] = linzId;
     }
 
     // ideally we would delete this prop, but it OOMs since it basically creates a clone of `out` in memory
@@ -110,7 +110,9 @@ async function mergeIntoStacks(): Promise<LinzData> {
             osmData.linz[linzId].osmId,
             a.suburb[1],
             `${housenumberMsb} ${a.street}`,
-            inOsmL === totalL ? inOsmL : <const>`${inOsmL}+${totalL - inOsmL}`,
+            inOsmL === totalL
+              ? inOsmL
+              : (`${inOsmL}+${totalL - inOsmL}` as const),
           ];
         }
       } else {
@@ -146,9 +148,9 @@ async function mergeIntoStacks(): Promise<LinzData> {
 }
 
 export async function main(): Promise<void> {
-  const res = await mergeIntoStacks();
+  const result = await mergeIntoStacks();
   console.log('saving new linz file...');
-  await fs.writeFile(linzFile, JSON.stringify(res));
+  await fs.writeFile(linzFile, JSON.stringify(result));
 }
 
 if (process.env.NODE_ENV !== 'test') main();

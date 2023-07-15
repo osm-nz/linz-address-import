@@ -13,13 +13,12 @@ import { handleMultipleExistButNoLinzRef } from './handleMultipleExistButNoLinzR
 import { handleTotallyMissing } from './handleTotallyMissing';
 import { handleReplacedByBuilding } from './handleReplacedByBuilding';
 
-export const handlers: Record<
-  Status,
-  (
-    data: any,
+export const handlers: {
+  [T in Status]: (
+    data: StatusReport[T],
     needsDeleteData: StatusReport[Status.NEEDS_DELETE],
-  ) => Promise<void | HandlerReturn>
-> = {
+  ) => Promise<void> | Promise<HandlerReturn>;
+} = {
   [Status.PERFECT]: async () => undefined,
   [Status.EXISTS_BUT_WRONG_DATA]: existsButDataWrong,
   [Status.EXISTS_BUT_NO_LINZ_REF]: handleExistsButNoLinzRef,

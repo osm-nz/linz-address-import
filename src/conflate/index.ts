@@ -1,5 +1,5 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import {
   OSMData,
   LinzData,
@@ -26,20 +26,20 @@ export async function main(): Promise<void> {
 
   console.log('Reading LINZ data into memory...');
   const linzData: LinzData = JSON.parse(
-    await fs.readFile(join(__dirname, `../../data/linz${mock}.json`), 'utf-8'),
+    await fs.readFile(join(__dirname, `../../data/linz${mock}.json`), 'utf8'),
   );
   const { length } = Object.keys(linzData);
 
   console.log('Reading OSM data into memory...');
   const osmData: OSMData = JSON.parse(
-    await fs.readFile(join(__dirname, `../../data/osm${mock}.json`), 'utf-8'),
+    await fs.readFile(join(__dirname, `../../data/osm${mock}.json`), 'utf8'),
   );
 
   console.log('Reading could-stack data into memory...');
   const couldBeStacked: CouldStackData = JSON.parse(
     await fs.readFile(
       join(__dirname, `../../data/linzCouldStack${mock}.json`),
-      'utf-8',
+      'utf8',
     ),
   );
 
@@ -86,7 +86,7 @@ export async function main(): Promise<void> {
   console.timeEnd('conflateDeletions');
 
   console.log('Processing data...');
-  let i = 0;
+  let index = 0;
   console.time('conflate');
 
   // TODO: perf baseline: 300seconds
@@ -140,10 +140,10 @@ export async function main(): Promise<void> {
       statusReport[status].push([linzId, diagnostics]);
     }
 
-    i += 1;
-    if (!(i % 1000)) {
+    index += 1;
+    if (!(index % 1000)) {
       /* istanbul ignore next */
-      process.stdout.write(`${((i / length) * 100).toFixed(1)}% `);
+      process.stdout.write(`${((index / length) * 100).toFixed(1)}% `);
     }
   }
 

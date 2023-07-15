@@ -1,6 +1,6 @@
-import { createReadStream } from 'fs';
+import { createReadStream } from 'node:fs';
 import csv from 'csv-parser';
-import { join } from 'path';
+import { join } from 'node:path';
 import { beaconTypes, LINZCSVItem, LINZMarker, markConditions } from './const';
 import { BBox } from '../../types';
 import { withinBBox } from '../../common';
@@ -28,7 +28,7 @@ export function csvToMarker(
     lng: +marker.longitude,
     description:
       // make all multi-spaces/tabs/newlines into single space
-      marker.description.replace(/\s\s+/g, ' ').slice(0, 255).trim() ||
+      marker.description.replaceAll(/\s\s+/g, ' ').slice(0, 255).trim() ||
       undefined,
     ele: marker.ellipsoidal_height || undefined,
     name: marker.current_mark_name?.trim(),

@@ -46,8 +46,8 @@ export function mergeMaritimeLights({
     } else {
       // more complex. There are multiple lights here.
       const newTags: Record<string, string> = {};
-      for (let i = 0; i < lights.length; i += 1) {
-        const lx = lights[i];
+      for (let index = 0; index < lights.length; index += 1) {
+        const lx = lights[index];
         for (const key in lx.properties) {
           const value = lx.properties[key];
           if (!value) continue;
@@ -56,13 +56,13 @@ export function mergeMaritimeLights({
             // 1️⃣ seamark:light:XX=* tags get merged in a special way
             // they end up as seamark:light:1:XX=* and seamark:light:2:XX=*
             const keySuffix = key.split(':')[2];
-            newTags[`seamark:light:${i + 1}:${keySuffix}`] = value;
+            newTags[`seamark:light:${index + 1}:${keySuffix}`] = value;
           } else if (key in newTags && newTags[key] !== value) {
             // 2️⃣ conflicting values for a non seamark:light tag - so merge normally with a semi
-            const newVal = [...newTags[key].split(';'), value]
+            const newValue = [...newTags[key].split(';'), value]
               .filter(uniq)
               .join(';');
-            newTags[key] = newVal;
+            newTags[key] = newValue;
           } else {
             // 3️⃣ values do not conflict or value not in survivor yet
             newTags[key] = value;

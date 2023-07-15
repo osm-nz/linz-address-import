@@ -1,5 +1,5 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import {
   Status,
   StatusReport,
@@ -10,12 +10,12 @@ import {
 import { outFolder, toLink } from '../util';
 
 export async function handleLocationWrong(
-  arr: StatusReport[Status.EXISTS_BUT_LOCATION_WRONG],
+  array: StatusReport[Status.EXISTS_BUT_LOCATION_WRONG],
 ): Promise<HandlerReturn> {
   const features: GeoJsonFeature[] = [];
   let report = '';
 
-  for (const [linzId, d] of arr) {
+  for (const [linzId, d] of array) {
     const [metres, osmData, lat, lng, wrongLat, wrongLng] = d;
     report += `${linzId}\t\t${toLink(
       osmData.osmId,

@@ -187,7 +187,7 @@ export type IssueType =
 export type Issue = `${IssueType}|${string}|${string}`; // `field|linzValue|osmValue`;
 
 export type StatusDiagnostics = {
-  [Status.PERFECT]: void;
+  [Status.PERFECT]: never;
   [Status.EXISTS_BUT_WRONG_DATA]: [
     osmAddr: OsmAddr,
     Suburb: string,

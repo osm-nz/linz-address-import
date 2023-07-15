@@ -4,7 +4,9 @@ import { shiftOverlappingPoints, toFormation } from '../spreadToGrid';
 describe('toFormation', () => {
   it('has a working formula', () => {
     expect(
-      new Array(30).fill(null).map((_, i) => toFormation(i)),
+      Array.from({ length: 30 })
+        .fill(null)
+        .map((_, index) => toFormation(index)),
     ).toStrictEqual([
       [0, 0],
       [1, 0],

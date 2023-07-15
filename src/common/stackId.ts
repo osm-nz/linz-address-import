@@ -1,7 +1,8 @@
 export const hash = (str: string): string => {
   let h = 0;
-  for (let i = 0; i < str.length; i += 1) {
-    const char = str.charCodeAt(i);
+  for (let index = 0; index < str.length; index += 1) {
+    // eslint-disable-next-line unicorn/prefer-code-point -- TODO: review this suggestion
+    const char = str.charCodeAt(index);
 
     h = (h << 5) - h + char;
     h &= h; // convert to 32bit integer
@@ -12,13 +13,13 @@ export const hash = (str: string): string => {
 export function toStackId(ids: string[]): string {
   const stack = ids
     .sort((a, b) => +a - +b) // sort may not even be required
-    .reduce<string[]>((newArr, id, i, oldArr) => {
-      newArr.push(
-        !i || +oldArr[i - 1] - +id + 1
+    .reduce<string[]>((newArray, id, index, oldArray) => {
+      newArray.push(
+        !index || +oldArray[index - 1] - +id + 1
           ? id
-          : `${newArr.pop()!.split('-')[0]}-${id}`,
+          : `${newArray.pop()!.split('-')[0]}-${id}`,
       );
-      return newArr;
+      return newArray;
     }, [])
     .join(',');
 
@@ -49,6 +50,8 @@ export function fromStackId(
       if (!x.includes('-')) return [x];
 
       const [from, to] = x.split('-').map(Number);
-      return new Array(to - from + 1).fill(0).map((_, i) => `${from + i}`);
+      return Array.from({ length: to - from + 1 })
+        .fill(0)
+        .map((_, index) => `${from + index}`);
     });
 }

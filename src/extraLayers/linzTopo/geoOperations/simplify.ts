@@ -9,7 +9,7 @@ type Coord = [x: number, y: number];
 // for 3D version, see 3d branch (configurability would draw significant performance overhead)
 
 // square distance between 2 points
-function getSqDist(p1: Coord, p2: Coord) {
+function getSqDistance(p1: Coord, p2: Coord) {
   const dx = p1[0] - p2[0];
   const dy = p1[1] - p2[1];
 
@@ -17,7 +17,7 @@ function getSqDist(p1: Coord, p2: Coord) {
 }
 
 // square distance from a point to a segment
-function getSqSegDist(p: Coord, p1: Coord, p2: Coord) {
+function getSqSegDistance(p: Coord, p1: Coord, p2: Coord) {
   let [x, y] = p1;
   let dx = p2[0] - x;
   let dy = p2[1] - y;
@@ -41,21 +41,21 @@ function getSqSegDist(p: Coord, p1: Coord, p2: Coord) {
 // rest of the code doesn't care about point format
 
 // basic distance-based simplification
-function simplifyRadialDist(points: Coord[], sqTolerance: number) {
-  let prevPoint = points[0];
-  const newPoints = [prevPoint];
+function simplifyRadialDistance(points: Coord[], sqTolerance: number) {
+  let previousPoint = points[0];
+  const newPoints = [previousPoint];
   let point: Coord | undefined;
 
-  for (let i = 1, len = points.length; i < len; i += 1) {
-    point = points[i];
+  for (let index = 1, length_ = points.length; index < length_; index += 1) {
+    point = points[index];
 
-    if (getSqDist(point, prevPoint) > sqTolerance) {
+    if (getSqDistance(point, previousPoint) > sqTolerance) {
       newPoints.push(point);
-      prevPoint = point;
+      previousPoint = point;
     }
   }
 
-  if (prevPoint !== point) newPoints.push(point!);
+  if (previousPoint !== point) newPoints.push(point!);
 
   return newPoints;
 }
@@ -67,19 +67,23 @@ function simplifyDPStep(
   sqTolerance: number,
   simplified: Coord[],
 ) {
-  let maxSqDist = sqTolerance;
+  let maxSqDistance = sqTolerance;
   let index: number;
 
-  for (let i = first + 1; i < last; i += 1) {
-    const sqDist = getSqSegDist(points[i], points[first], points[last]);
+  for (let index_ = first + 1; index_ < last; index_ += 1) {
+    const sqDistance = getSqSegDistance(
+      points[index_],
+      points[first],
+      points[last],
+    );
 
-    if (sqDist > maxSqDist) {
-      index = i;
-      maxSqDist = sqDist;
+    if (sqDistance > maxSqDistance) {
+      index = index_;
+      maxSqDistance = sqDistance;
     }
   }
 
-  if (maxSqDist > sqTolerance) {
+  if (maxSqDistance > sqTolerance) {
     if (index! - first > 1) {
       simplifyDPStep(points, first, index!, sqTolerance, simplified);
     }
@@ -109,10 +113,10 @@ export function simplify(
 ): Coord[] {
   if (points.length <= 2) return points;
 
-  const sqTolerance = tolerance !== undefined ? tolerance * tolerance : 1;
+  const sqTolerance = tolerance === undefined ? 1 : tolerance * tolerance;
 
   return simplifyDouglasPeucker(
-    highestQuality ? points : simplifyRadialDist(points, sqTolerance),
+    highestQuality ? points : simplifyRadialDistance(points, sqTolerance),
     sqTolerance,
   );
 }

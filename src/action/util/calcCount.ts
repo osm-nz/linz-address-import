@@ -11,17 +11,21 @@ export function calcCount(features: GeoJsonFeature[]): {
 
   for (const f of features) {
     switch (f.properties.__action) {
-      case 'delete':
+      case 'delete': {
         minus += 1;
         break;
-      case 'move':
+      }
+      case 'move': {
         move += 1;
         break;
-      case 'edit':
+      }
+      case 'edit': {
         edit += 1;
         break;
-      default:
+      }
+      default: {
         plus += 1;
+      }
     }
   }
 

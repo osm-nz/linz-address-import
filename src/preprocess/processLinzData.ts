@@ -1,5 +1,5 @@
-import { promises as fs, createReadStream } from 'fs';
-import { join } from 'path';
+import { promises as fs, createReadStream } from 'node:fs';
+import { join } from 'node:path';
 import csv from 'csv-parser';
 import { LinzSourceAddress, LinzData } from '../types';
 import { linzTempFile, mock, ignoreFile, IgnoreFile } from './const';
@@ -37,17 +37,17 @@ const convertUnit = (
   return mainNumber + suffix;
 };
 
+const useOfficialName = (name: string) => nzgbNamesTable[name] || name;
+
 // TODO: perf baseline is 50seconds
 async function linzToJson(): Promise<LinzData> {
   console.log('Reading ignore file...');
-  const ignore: IgnoreFile = JSON.parse(await fs.readFile(ignoreFile, 'utf-8'));
-
-  const useOfficialName = (name: string) => nzgbNamesTable[name] || name;
+  const ignore: IgnoreFile = JSON.parse(await fs.readFile(ignoreFile, 'utf8'));
 
   console.log('Starting preprocess of LINZ data...');
   return new Promise((resolve, reject) => {
     const out: LinzData = {};
-    let i = 0;
+    let index = 0;
 
     createReadStream(input)
       .pipe(csv())
@@ -75,8 +75,8 @@ async function linzToJson(): Promise<LinzData> {
         };
         if (data.water_name) out[data.address_id].water = true;
 
-        i += 1;
-        if (!(i % 1000)) process.stdout.write('.');
+        index += 1;
+        if (!(index % 1000)) process.stdout.write('.');
       })
       .on('end', () => resolve(out))
       .on('error', reject);
@@ -84,8 +84,8 @@ async function linzToJson(): Promise<LinzData> {
 }
 
 export async function main(): Promise<void> {
-  const res = await linzToJson();
-  await fs.writeFile(linzTempFile, JSON.stringify(res));
+  const result = await linzToJson();
+  await fs.writeFile(linzTempFile, JSON.stringify(result));
 }
 
 if (process.env.NODE_ENV !== 'test') main();

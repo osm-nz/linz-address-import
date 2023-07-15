@@ -1,7 +1,7 @@
+import { join, relative, extname } from 'node:path';
+import { promises as fs } from 'node:fs';
 import { BlobServiceClient, ContainerClient } from '@azure/storage-blob';
 import { config as dotenv } from 'dotenv';
-import { join, relative, extname } from 'path';
-import { promises as fs } from 'fs';
 import { lookup } from 'mime-types';
 import fetch from 'node-fetch';
 import { uploadStatsToGH } from './uploadStatsToGH';
@@ -17,7 +17,7 @@ async function getFilesDeep(folder: string): Promise<string[]> {
   for (const file of files) {
     const filePath = join(folder, file);
 
-    if ((await fs.stat(filePath)).isDirectory()) {
+    if (await fs.stat(filePath).then((f) => f.isDirectory())) {
       out.push(...(await getFilesDeep(filePath)));
     } else {
       out.push(filePath);
@@ -39,17 +39,17 @@ async function upload(
   const files = await getFilesDeep(base);
 
   console.log(`\nUploading ${files.length} files from ${folder}...`);
-  for (const [i, file] of files.entries()) {
-    const relPath = join(
+  for (const [index, file] of files.entries()) {
+    const relativePath = join(
       prefix || '',
-      relative(base, file).replace(/\\/g, '/'),
+      relative(base, file).replaceAll('\\', '/'),
     );
-    const fileClient = azContainer.getBlockBlobClient(relPath);
+    const fileClient = azContainer.getBlockBlobClient(relativePath);
     await fileClient.uploadFile(file);
     await fileClient.setHTTPHeaders({
       blobContentType: lookup(extname(file)) || 'text/plain',
     });
-    if (!(i % 10)) process.stdout.write('.');
+    if (!(index % 10)) process.stdout.write('.');
   }
 }
 

@@ -1,5 +1,5 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import {
   GeoJsonFeature,
   HandlerReturn,
@@ -9,10 +9,10 @@ import {
 import { createDiamond, outFolder, toLink } from '../util';
 
 export async function handleMultipleExistButNoLinzRef(
-  arr: StatusReport[Status.MULTIPLE_EXIST_BUT_NO_LINZ_REF],
+  array: StatusReport[Status.MULTIPLE_EXIST_BUT_NO_LINZ_REF],
 ): Promise<HandlerReturn> {
   let report = '';
-  for (const [linzId, [, osmIds]] of arr) {
+  for (const [linzId, [, osmIds]] of array) {
     report += `ref:linz:address_id=${linzId}\t\tneeds to be added to\t\t${osmIds
       .map(toLink)
       .join(' or ')}\n`;
@@ -25,7 +25,7 @@ export async function handleMultipleExistButNoLinzRef(
 
   const features: GeoJsonFeature[] = [];
 
-  for (const [linzId, [chosenOsmAddr]] of arr) {
+  for (const [linzId, [chosenOsmAddr]] of array) {
     features.push({
       type: 'Feature',
       id: chosenOsmAddr.osmId,

@@ -5,7 +5,7 @@ import sectors from '../../static/sectors.geo.json';
 const sectorQuery = whichPolygon(sectors as GeoJson<{ name: string }>);
 
 // for size=small there are 67 possible rows, A-Z, AA-ZZ, AAA-ZZZ
-const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const LETTERS = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'];
 const ROWS = [
   ...LETTERS,
   ...LETTERS.map((X) => X + X),

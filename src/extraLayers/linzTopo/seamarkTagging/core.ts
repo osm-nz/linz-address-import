@@ -226,11 +226,10 @@ export const seamarkTagging =
     }
 
     if (type === 'platform') {
-      if (MapCat('CATOFP', data.catofp) === 'fpso') {
-        tags.man_made = 'floating_storage';
-      } else {
-        tags.man_made = 'offshore_platform';
-      }
+      tags.man_made =
+        MapCat('CATOFP', data.catofp) === 'fpso'
+          ? 'floating_storage'
+          : 'offshore_platform';
     }
 
     if (tags['seamark:harbour:category'] === 'marina') tags.leisure = 'marina';
@@ -288,7 +287,7 @@ export const seamarkTagging =
     }
 
     // For Virtual AtoNs, and real AtoNs with AIS, LINZ puts the mmsi in the description
-    const mmsiRegex = /AIS AtoN, MMSI (\d+)/i;
+    const mmsiRegex = /ais aton, mmsi (\d+)/i;
     const [, mmsiMatch] = tags.description?.match(mmsiRegex) || [];
     if (mmsiMatch) {
       // always radio_station for some reason, except on virtual AtoNs

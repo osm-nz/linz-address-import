@@ -1,5 +1,5 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import pbf2json, { Item } from 'pbf2json';
 import through from 'through2';
 import { isChecked } from '../common';
@@ -23,7 +23,7 @@ function osmToJson(): Promise<OSMData> {
       duplicateLinzIds: {},
       semi: {},
     };
-    let i = 0;
+    let index = 0;
 
     pbf2json
       .createReadStream({
@@ -32,7 +32,7 @@ function osmToJson(): Promise<OSMData> {
         leveldb: '/tmp',
       })
       .pipe(
-        through.obj((item: Item, _e, next) => {
+        through.obj((item: Item, _, next) => {
           const type = MAP[item.type];
 
           const isWater = item.tags['addr:type'] === 'water';
@@ -42,7 +42,7 @@ function osmToJson(): Promise<OSMData> {
 
           const coords = item.type === 'node' ? item : item.centroid;
 
-          const obj: OsmAddr = {
+          const object: OsmAddr = {
             osmId: (type + item.id) as OsmId,
             lat: +coords.lat,
             lng: +coords.lon,
@@ -64,9 +64,9 @@ function osmToJson(): Promise<OSMData> {
                 : undefined,
             level: item.tags.level,
           };
-          if (isWater) obj.water = true;
-          if (suburbU && suburbR) obj.doubleSuburb = true;
-          if (item.tags['linz:unstack']) obj.shouldUnstack = true;
+          if (isWater) object.water = true;
+          if (suburbU && suburbR) object.doubleSuburb = true;
+          if (item.tags['linz:unstack']) object.shouldUnstack = true;
 
           const linzId = item.tags['ref:linz:address_id'];
           if (linzId) {
@@ -74,35 +74,35 @@ function osmToJson(): Promise<OSMData> {
 
             // this node is 3rd+ one with this linzId
             if (out.duplicateLinzIds[linzId]) {
-              out.duplicateLinzIds[linzId].push(obj);
+              out.duplicateLinzIds[linzId].push(object);
             }
 
             // this node is 2nd one with this linzId
             else if (out.linz[linzId]) {
-              out.duplicateLinzIds[linzId] = [out.linz[linzId], obj];
+              out.duplicateLinzIds[linzId] = [out.linz[linzId], object];
               delete out.linz[linzId];
             }
 
             // the linz id has a semicolon in it - we don't like this
             else if (linzId.includes(';')) {
               for (const maybeLinzId of linzId.split(';')) {
-                out.semi[maybeLinzId] = obj;
+                out.semi[maybeLinzId] = object;
               }
             }
 
             // not a duplicate
             else {
-              out.linz[linzId] = obj;
+              out.linz[linzId] = object;
             }
           } else {
             // there's no linzRef - let's check if this is a building
-            if ('building' in item.tags) obj.isUnRefedBuilding = true;
+            if ('building' in item.tags) object.isUnRefedBuilding = true;
 
-            out.noRef.push(obj);
+            out.noRef.push(object);
           }
 
-          i += 1;
-          if (!(i % 1000)) process.stdout.write('.');
+          index += 1;
+          if (!(index % 1000)) process.stdout.write('.');
 
           next();
         }),
@@ -113,8 +113,8 @@ function osmToJson(): Promise<OSMData> {
 }
 
 export async function main(): Promise<void> {
-  const res = await osmToJson();
-  await fs.writeFile(osmFile, JSON.stringify(res));
+  const result = await osmToJson();
+  await fs.writeFile(osmFile, JSON.stringify(result));
 }
 
 if (process.env.NODE_ENV !== 'test') main();

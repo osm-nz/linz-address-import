@@ -4,4 +4,4 @@ import { Status, StatusDiagnostics } from '../../types';
 export const validate = <T extends Status>(x: {
   status: T;
   diagnostics: StatusDiagnostics[T];
-}): any => x;
+}) => x;

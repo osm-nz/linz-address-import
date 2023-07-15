@@ -1,7 +1,7 @@
-import { createReadStream } from 'fs';
+import { createReadStream } from 'node:fs';
 import fetch from 'node-fetch';
 import csv from 'csv-parser';
-import { join } from 'path';
+import { join } from 'node:path';
 import { IgnoreFile, mock } from '../preprocess/const';
 
 export const spreadsheetId = '1BNrUQof78t-OZlCHF3n_MKnYDARFoCRZB7xKxQPmKds';

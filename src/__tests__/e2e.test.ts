@@ -1,5 +1,5 @@
-import { execSync } from 'child_process';
-import { join } from 'path';
+import { execSync } from 'node:child_process';
+import { join } from 'node:path';
 import { main as fetchAndSaveAddressIgnoreList } from '../preprocess/fetchAndSaveAddressIgnoreList';
 import { main as preprocessLinz } from '../preprocess/processLinzData';
 import { main as preprocessOsm } from '../preprocess/processOsmData';
@@ -7,7 +7,7 @@ import { main as stackLinzData } from '../preprocess/stackLinzData';
 import { main as conflate } from '../conflate';
 import { main as action } from '../action';
 
-const j = (...files: string[]) => join(__dirname, ...files);
+const joinPath = (...files: string[]) => join(__dirname, ...files);
 
 async function time(f: () => unknown) {
   const start = Date.now();
@@ -15,7 +15,7 @@ async function time(f: () => unknown) {
   return (Date.now() - start) / 1000 / 60;
 }
 
-const exe = j(
+const exe = joinPath(
   'bin',
   process.platform === 'win32' ? 'osmconvert.exe' : 'osmconvert2',
 );
@@ -24,7 +24,7 @@ describe('end-to-end test', () => {
   // convert the mock.xml file into mock.pbf
   beforeAll(() => {
     const std = execSync(
-      `${exe} ${j('mock/planet.xml')} -o=${j('mock/planet.pbf')}`,
+      `${exe} ${joinPath('mock/planet.xml')} -o=${joinPath('mock/planet.pbf')}`,
     );
     process.stdout.write(std);
   });

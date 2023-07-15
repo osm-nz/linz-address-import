@@ -53,7 +53,7 @@ export function processDeletions(
     }
   }
 
-  const ret: Partial<StatusReport> = {
+  const returnValue: Partial<StatusReport> = {
     [Status.NEEDS_DELETE]: normal.filter(
       ([, [, osmAddr]]) => !osmAddr.isNonTrivial && osmAddr.osmId[0] === 'n',
     ),
@@ -67,5 +67,5 @@ export function processDeletions(
       ([, [, osmAddr]]) => !osmAddr.isNonTrivial && osmAddr.osmId[0] !== 'n',
     ),
   };
-  return [ret, removeFromCreate];
+  return [returnValue, removeFromCreate];
 }

@@ -1,5 +1,5 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import {
   GeoJsonFeature,
   HandlerReturn,
@@ -14,12 +14,12 @@ const toKey = (addr: LinzAddr | OsmAddr) =>
   `${addr.housenumber} ${addr.street}${addr.suburb?.[0]}${addr.suburb?.[1]}`;
 
 export async function handleDuplicateLinzRef(
-  arr: StatusReport[Status.MULTIPLE_EXIST],
+  array: StatusReport[Status.MULTIPLE_EXIST],
 ): Promise<HandlerReturn> {
   const autofixable: Record<string, '✅' | '⚠️'> = {};
   const features: GeoJsonFeature[] = [];
 
-  for (const [linzId, [linzAddr, osmAddrList]] of arr) {
+  for (const [linzId, [linzAddr, osmAddrList]] of array) {
     const simpleNodes = osmAddrList.filter(
       (x) => x.osmId[0] === 'n' && !x.isNonTrivial,
     );
@@ -74,12 +74,18 @@ export async function handleDuplicateLinzRef(
     }
   }
 
-  const bySuburb = arr.reduce((ac, [linzId, [linzAddr, osmAddrList]]) => {
-    const suburb = linzAddr.suburb[1];
-    ac[suburb] ||= [];
-    ac[suburb].push([linzId, linzAddr, osmAddrList]);
-    return ac;
-  }, {} as Record<string, [linzId: string, linzAddr: LinzAddr, osmAddrList: OsmAddr[]][]>);
+  const bySuburb = array.reduce(
+    (ac, [linzId, [linzAddr, osmAddrList]]) => {
+      const suburb = linzAddr.suburb[1];
+      ac[suburb] ||= [];
+      ac[suburb].push([linzId, linzAddr, osmAddrList]);
+      return ac;
+    },
+    {} as Record<
+      string,
+      [linzId: string, linzAddr: LinzAddr, osmAddrList: OsmAddr[]][]
+    >,
+  );
 
   let report = [
     '✅ = issue can be autofixed',

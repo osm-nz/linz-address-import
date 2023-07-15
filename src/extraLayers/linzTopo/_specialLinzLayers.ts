@@ -1,7 +1,7 @@
-import { promises as fs, createReadStream } from 'fs';
+import { promises as fs, createReadStream } from 'node:fs';
 import csv from 'csv-parser';
-import { join } from 'path';
-import { F_OK } from 'constants';
+import { join } from 'node:path';
+import { F_OK } from 'node:constants';
 import { Query } from 'which-polygon';
 import {
   ChunkSize,
@@ -93,9 +93,9 @@ async function readCsv<T extends Record<string, string>>(
         if (!tags) return; // skip, the tagging fuction doesn't want this feature included
 
         if (transformGeometry) {
-          const res = transformGeometry(geometry, tags);
-          if (!res) return; // skip, the transform function doesn't want this feature included
-          [geometry, tags] = res;
+          const result = transformGeometry(geometry, tags);
+          if (!result) return; // skip, the transform function doesn't want this feature included
+          [geometry, tags] = result;
         }
 
         features.push({

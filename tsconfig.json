@@ -4,8 +4,8 @@
     "resolveJsonModule": true,
     "strict": true,
     "moduleResolution": "node",
-    "lib": ["es2020"],
-    "target": "es2019",
+    "lib": ["es2021"],
+    "target": "es2021",
     "noEmit": true
   },
   "include": ["src"]

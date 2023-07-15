@@ -3,7 +3,7 @@ import { spreadsheetId } from '../../common';
 import { googleAuth } from './googleAuth';
 
 export async function updateLastCheckDate(
-  prevLastCheck: string,
+  previousLastCheck: string,
 ): Promise<void> {
   const newLastCheck = new Date().toISOString();
 
@@ -22,7 +22,7 @@ export async function updateLastCheckDate(
       body: JSON.stringify({
         range,
         majorDimension: 'ROWS',
-        values: [[newLastCheck, prevLastCheck, 'C']],
+        values: [[newLastCheck, previousLastCheck, 'C']],
       }),
     },
   ).then((r) => r.json());

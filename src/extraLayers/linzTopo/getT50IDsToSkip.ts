@@ -1,5 +1,5 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import pbf2json, { Item } from 'pbf2json';
 import through from 'through2';
 import { fetchIgnoreList } from '../../common';
@@ -16,7 +16,7 @@ async function readFromPlanet(
     `Extracting ref:linz:topo50_ids from the OSM Planet (${fileName})...`,
   );
   await new Promise<void>((resolve, reject) => {
-    let i = 0;
+    let index = 0;
 
     const planetFile = join(__dirname, `../../../data/${fileName}`);
 
@@ -31,9 +31,9 @@ async function readFromPlanet(
         leveldb: '/tmp',
       })
       .pipe(
-        through.obj((item: Item, _e, next) => {
-          i += 1;
-          if (!(i % 1000)) process.stdout.write('.');
+        through.obj((item: Item, _, next) => {
+          index += 1;
+          if (!(index % 1000)) process.stdout.write('.');
 
           // a feature could have both a topo ID & a hydro ID
           const t = item.tags['ref:linz:topo50_id'];
@@ -54,7 +54,7 @@ async function readFromPlanet(
         }),
       )
       .on('finish', () => {
-        console.log(`Read ${i} IDs from OSM`);
+        console.log(`Read ${index} IDs from OSM`);
         resolve();
       })
       .on('error', reject);

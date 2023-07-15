@@ -1,5 +1,5 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import {
   Confidence,
   GeoJsonFeature,
@@ -11,14 +11,17 @@ import {
 import { createDiamond, outFolder, toLink } from '../util';
 
 export async function handleExistsButNoLinzRef(
-  arr: StatusReport[Status.EXISTS_BUT_NO_LINZ_REF],
+  array: StatusReport[Status.EXISTS_BUT_NO_LINZ_REF],
 ): Promise<HandlerReturn> {
-  const bySuburb = arr.reduce((ac, [linzId, [s, confidence, osmAddr]]) => {
-    const [suburbType, suburb] = s;
-    ac[suburb] ||= [];
-    ac[suburb].push([linzId, suburbType, confidence, osmAddr]);
-    return ac;
-  }, {} as Record<string, [string, string, Confidence, OsmAddr][]>);
+  const bySuburb = array.reduce(
+    (ac, [linzId, [s, confidence, osmAddr]]) => {
+      const [suburbType, suburb] = s;
+      ac[suburb] ||= [];
+      ac[suburb].push([linzId, suburbType, confidence, osmAddr]);
+      return ac;
+    },
+    {} as Record<string, [string, string, Confidence, OsmAddr][]>,
+  );
 
   let report = '';
   const index: HandlerReturn = {};

@@ -69,10 +69,10 @@ export const wktToGeoJson = (
   let coordinates = JSON.parse(
     wkt
       .replace(/^\w+( Z)? /, '')
-      .replace(/\(/g, '[')
-      .replace(/\)/g, ']')
-      .replace(
-        /((\d|\.|-)+) ((\d|\.|-)+)( 0)?/g, // matches `174.123 -36.456` maybe with ` 0` at the end
+      .replaceAll('(', '[')
+      .replaceAll(')', ']')
+      .replaceAll(
+        /(([\d.-])+) (([\d.-])+)( 0)?/g, // matches `174.123 -36.456` maybe with ` 0` at the end
         (_0, lng, _1, lat) => `[${lng},${lat}]`,
       ),
   );
@@ -110,18 +110,34 @@ export const wktToGeoJson = (
   }
 
   if (shouldSimplify) {
-    if (typeof coordinates[0] === 'number') {
-      // point, nothing to do
-    } else if (typeof coordinates[0][0] === 'number') {
-      coordinates = simplify(coordinates, WAY_SIMPLIFICATION);
-    } else if (typeof coordinates[0][0][0] === 'number') {
-      coordinates = coordinates.map((c: Coord[]) =>
-        simplify(c, WAY_SIMPLIFICATION),
-      );
-    } else if (typeof coordinates[0][0][0][0] === 'number') {
-      coordinates = coordinates.map((c1: Coord[][]) =>
-        c1.map((c2) => simplify(c2, WAY_SIMPLIFICATION)),
-      );
+    switch ('number') {
+      case typeof coordinates[0]: {
+        // point, nothing to do
+
+        break;
+      }
+      case typeof coordinates[0][0]: {
+        coordinates = simplify(coordinates, WAY_SIMPLIFICATION);
+
+        break;
+      }
+      case typeof coordinates[0][0][0]: {
+        coordinates = coordinates.map((c: Coord[]) =>
+          simplify(c, WAY_SIMPLIFICATION),
+        );
+
+        break;
+      }
+      case typeof coordinates[0][0][0][0]: {
+        coordinates = coordinates.map((c1: Coord[][]) =>
+          c1.map((c2) => simplify(c2, WAY_SIMPLIFICATION)),
+        );
+
+        break;
+      }
+      default: {
+        throw new Error('impossible');
+      }
     }
   }
 

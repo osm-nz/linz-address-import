@@ -1,5 +1,5 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import whichPolygon from 'which-polygon';
 import { ExtraLayers } from '../../types';
 import { getT50IDsToSkip } from './getT50IDsToSkip';
@@ -15,7 +15,7 @@ import { csvToGeoJsonFactory } from './_specialLinzLayers';
 const TODAY = new Date();
 
 const toTitleCase = (str: string) =>
-  str.replace(
+  str.replaceAll(
     /(^| )(\w)/g,
     (_, spaceOrEmpty, letter) => spaceOrEmpty + letter.toUpperCase(),
   );
@@ -370,7 +370,7 @@ export async function linzTopo(): Promise<void> {
     name?: string;
   };
   function mineTagging(data: Mine) {
-    const obj: Record<string, string | undefined> = {
+    const object: Record<string, string | undefined> = {
       disused: data.status === 'disused' ? 'yes' : undefined,
       resource: data.substance,
       name: data.name,
@@ -378,10 +378,10 @@ export async function linzTopo(): Promise<void> {
     };
 
     // landuse=quarry is okay even on a node
-    if (data.visibility === 'opencast') obj.landuse = 'quarry';
-    else obj.man_made = 'mineshaft'; // TODO: mineshaft may not be correct
+    if (data.visibility === 'opencast') object.landuse = 'quarry';
+    else object.man_made = 'mineshaft'; // TODO: mineshaft may not be correct
 
-    return obj;
+    return object;
   }
   const minePts = await csvToGeoJson<Mine>({
     input: 'mine_pnt.csv',
@@ -655,6 +655,7 @@ export async function linzTopo(): Promise<void> {
     },
   });
 
+  // eslint-disable-next-line unicorn/consistent-function-scoping -- to keep git blame history
   function siphonTagging() {
     // discussions on the tagging mailing list weren't able to decide on a tag
     // culvert=inverted_siphon is in use and was the only suggestion on the mailing list

@@ -45,10 +45,10 @@ export function shiftOverlappingPoints(
     for (const nodes of Object.values(nodeByCoord)) {
       if (nodes.length > 1) {
         // multiple features in the same place, so offset the coordinates
-        for (let i = 0; i < nodes.length; i += 1) {
-          const [offsetX, offsetY] = toFormation(i);
-          const [lng, lat] = nodes[i].geometry.coordinates as Vec2;
-          nodes[i].geometry = {
+        for (let index = 0; index < nodes.length; index += 1) {
+          const [offsetX, offsetY] = toFormation(index);
+          const [lng, lat] = nodes[index].geometry.coordinates as Vec2;
+          nodes[index].geometry = {
             type: 'Point',
             coordinates: [lng + 0.000004 * offsetX, lat + 0.000004 * offsetY],
           };

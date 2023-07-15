@@ -1,7 +1,7 @@
-import { createReadStream } from 'fs';
+import { createReadStream } from 'node:fs';
 import csv from 'csv-parser';
 import { Query } from 'which-polygon';
-import { join } from 'path';
+import { join } from 'node:path';
 import { GeoJson, GeoJsonFeature } from '../../../types';
 import { fixChartName } from './helpers';
 import { wktToGeoJson } from '../geoOperations';
@@ -108,13 +108,13 @@ export function getBestChart(
 ): Chart | undefined {
   // we query twice in the rare case that the first query fails,
   // because which-polygon treats -170lng as a different location to +190lng.
-  const tmp = query([lng, lat], true) || query([360 + lng, lat], true);
+  const temp = query([lng, lat], true) || query([360 + lng, lat], true);
 
-  if (!tmp) return undefined; // will never happen
+  if (!temp) return undefined; // will never happen
 
   // fill it into an array based on it's rank to remove duplicates from the same rank
   const possibleCharts: Chart[] = [];
-  for (const c of tmp) possibleCharts[c.rank] = c;
+  for (const c of temp) possibleCharts[c.rank] = c;
 
-  return possibleCharts.find((x) => x); // this assumes that find() executes in a consistent order
+  return possibleCharts.find(Boolean); // this assumes that find() executes in a consistent order
 }

@@ -1,7 +1,7 @@
-import { exec } from 'child_process';
-import { promisify } from 'util';
+import { exec } from 'node:child_process';
+import { promisify } from 'node:util';
 import csv from 'csv-parser';
-import { Readable } from 'stream';
+import { Readable } from 'node:stream';
 import { LINZCSVItem, LINZMarker } from './const';
 import { csvToMarker } from './readLINZData';
 

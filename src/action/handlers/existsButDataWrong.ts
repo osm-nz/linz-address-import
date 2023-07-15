@@ -1,5 +1,5 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import {
   Status,
   StatusReport,
@@ -15,13 +15,19 @@ const toKey = (right: string, wrong: string, osmData: OsmAddr) =>
   `${[right, wrong].sort().join('__')}__${osmData.street}`;
 
 export async function existsButDataWrong(
-  arr: StatusReport[Status.EXISTS_BUT_WRONG_DATA],
+  array: StatusReport[Status.EXISTS_BUT_WRONG_DATA],
 ): Promise<HandlerReturn> {
-  const bySuburb = arr.reduce((ac, [linzId, [osmAddr, suburb, ...issues]]) => {
-    ac[suburb] ||= [];
-    ac[suburb].push([linzId, osmAddr, issues]);
-    return ac;
-  }, {} as Record<string, [linzId: string, osmAddr: OsmAddr, issues: Issue[], swap?: boolean][]>);
+  const bySuburb = array.reduce(
+    (ac, [linzId, [osmAddr, suburb, ...issues]]) => {
+      ac[suburb] ||= [];
+      ac[suburb].push([linzId, osmAddr, issues]);
+      return ac;
+    },
+    {} as Record<
+      string,
+      [linzId: string, osmAddr: OsmAddr, issues: Issue[], swap?: boolean][]
+    >,
+  );
 
   let report = '';
   const out: HandlerReturn = {};
@@ -38,14 +44,14 @@ export async function existsButDataWrong(
       string,
       { index: number; linzId: string; osmData: OsmAddr }[]
     > = {};
-    for (let i = 0; i < bySuburb[suburb].length; i += 1) {
-      const [linzId, osmData, issues] = bySuburb[suburb][i];
+    for (let index = 0; index < bySuburb[suburb].length; index += 1) {
+      const [linzId, osmData, issues] = bySuburb[suburb][index];
 
       const [type, right, wrong] = issues[0].split('|');
       if (issues.length === 1 && type === 'housenumber') {
         const key = toKey(right, wrong, osmData);
         maybeSwappablePairs[key] ||= [];
-        maybeSwappablePairs[key].push({ index: i, linzId, osmData });
+        maybeSwappablePairs[key].push({ index, linzId, osmData });
       }
     }
 
@@ -72,6 +78,8 @@ export async function existsButDataWrong(
             }),
           },
         });
+
+        // eslint-disable-next-line unicorn/no-array-push-push -- to avoid destroying the git blame
         features.push({
           type: 'Feature',
           id: b.osmData.osmId,

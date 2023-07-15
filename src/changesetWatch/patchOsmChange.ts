@@ -7,7 +7,7 @@ import {
 } from 'osm-api';
 import { chunk } from '../common';
 
-type IDObj = Record<OsmFeatureType, `${number}v${number}`[]>;
+type IDObject = Record<OsmFeatureType, `${number}v${number}`[]>;
 
 export type CSWithDiff = { cs: Changeset; diff: OsmChange };
 
@@ -23,7 +23,7 @@ export async function patchOsmChange(
 ): Promise<CSWithDiff[]> {
   const toFetch = diffs
     .flatMap((d) => d.diff.delete)
-    .reduce<IDObj>(
+    .reduce<IDObject>(
       (ac, f) => {
         return { ...ac, [f.type]: [...ac[f.type], `${f.id}v${f.version - 1}`] };
       },
@@ -42,8 +42,8 @@ export async function patchOsmChange(
     // the OSM API can cope with 600ish at a time
     const chunks = chunk(toFetch[type], 500);
 
-    for (const [i, chonk] of chunks.entries()) {
-      console.log(`\tFetching ${type}s (${i + 1}/${chunks.length})...`);
+    for (const [index, chonk] of chunks.entries()) {
+      console.log(`\tFetching ${type}s (${index + 1}/${chunks.length})...`);
       const result = await getFeatures(type, chonk);
       for (const feature of result) {
         withTags[type][feature.id] = feature;

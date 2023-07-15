@@ -1,5 +1,5 @@
-import { promises as fs } from 'fs';
-import { join } from 'path';
+import { promises as fs } from 'node:fs';
+import { join } from 'node:path';
 import { ExtraLayers, HandlerReturn, Status, StatusReport } from '../types';
 import { outFolder, mock, suburbsFolder, shiftOverlappingPoints } from './util';
 import { generateStats } from './generateStats';
@@ -10,10 +10,7 @@ import { sectorize } from './sectorize';
 export async function main(): Promise<void> {
   console.log('Reading status file into memory...');
   const status: StatusReport = JSON.parse(
-    await fs.readFile(
-      join(__dirname, `../../data/status${mock}.json`),
-      'utf-8',
-    ),
+    await fs.readFile(join(__dirname, `../../data/status${mock}.json`), 'utf8'),
   );
 
   console.log('Clearing output folder...');
@@ -29,14 +26,14 @@ export async function main(): Promise<void> {
     const state = +$state as Status;
     console.log(`handling status ${Status[state]} ...`);
     // always pass in NEEDS_DELETE data for handlers that need it
-    const res = await handlers[+state as Status](
-      status[state],
+    const result = await handlers[state](
+      status[state] as never,
       status[Status.NEEDS_DELETE],
     );
-    if (res) {
-      for (const k in res) {
+    if (result) {
+      for (const k in result) {
         features[k] ||= [];
-        features[k].push(...res[k]);
+        features[k].push(...result[k]);
       }
     }
   }
@@ -65,7 +62,7 @@ export async function main(): Promise<void> {
       const extraLayers: ExtraLayers = JSON.parse(
         await fs.readFile(
           join(__dirname, '../../data/extra-layers.geo.json'),
-          'utf-8',
+          'utf8',
         ),
       );
       Object.assign(out, extraLayers);

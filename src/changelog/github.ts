@@ -17,7 +17,7 @@ export async function getLatestKnownVersion(): Promise<string> {
     headers: { Accept: 'application/vnd.github.v3+json' },
   }).then((r) => r.json())) as GH.IssueComment[];
 
-  const { body: latestCommentBody } = comments[comments.length - 1];
+  const { body: latestCommentBody } = comments.at(-1)!;
 
   const diags: Diags = JSON.parse(latestCommentBody.split('🌏')[1]);
   console.log('Found diagnostics', diags);
