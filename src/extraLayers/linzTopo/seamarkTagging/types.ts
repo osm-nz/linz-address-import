@@ -62,6 +62,11 @@ type _SeamarkTypes = {
     horclr?: string;
     horacc?: string;
   };
+  cable_overhead: {
+    catcbl?: string;
+    vercsa?: string;
+    verclr?: string;
+  };
   daymark: {
     catspm?: string;
     topshp?: string;

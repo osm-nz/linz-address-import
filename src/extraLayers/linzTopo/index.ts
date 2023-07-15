@@ -1988,6 +1988,19 @@ export async function linzTopo(): Promise<void> {
     tagging: seamarkTagging('bridge'),
   });
 
+  const H_overheadCable = await csvToGeoJson<Seamark['cable_overhead']>({
+    input: [
+      'sea/cable-overhead-polyline-122k-190k.csv',
+      'sea/cable-overhead-polyline-hydro-14k-122k.csv',
+      'sea/cable-overhead-polyline-hydro-190k-1350k.csv',
+    ],
+    idField: 'fidn',
+    sourceLayer: '',
+    size: 'large',
+    complete: true,
+    tagging: seamarkTagging('cable_overhead'),
+  });
+
   //
   // misc
   //
@@ -2243,6 +2256,7 @@ export async function linzTopo(): Promise<void> {
     'Z Water Turbulence': H_waterTurbulence,
     'Z Wrecks': H_wreck,
     'Z Bridges': H_bridges,
+    'Z Overhead Cable': H_overheadCable,
 
     'Z Tide Stations': tideStations,
     '❌ Facilities': facilities,

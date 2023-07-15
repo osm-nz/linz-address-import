@@ -175,6 +175,10 @@ export const seamarkTagging =
         data.verccl && `${+data.verccl}`,
       [`seamark:${type}:clearance_height_open`]:
         data.vercop && `${+data.vercop}`,
+
+      // overhead cables/pipelines
+      [`seamark:${type}:clearance_height_safe`]:
+        data.vercsa && `${+data.vercsa}`,
     };
 
     //
