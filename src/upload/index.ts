@@ -4,8 +4,8 @@ import { BlobServiceClient, ContainerClient } from '@azure/storage-blob';
 import { config as dotenv } from 'dotenv';
 import { lookup } from 'mime-types';
 import fetch from 'node-fetch';
-import { uploadStatsToGH } from './uploadStatsToGH';
 import { CDN_URL } from '../action/util';
+import { uploadStatsToGH } from './uploadStatsToGH';
 
 dotenv();
 

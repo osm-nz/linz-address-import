@@ -5,9 +5,9 @@ import {
   listChangesets,
 } from 'osm-api';
 import { config as dotenv } from 'dotenv';
+import { timeout, fetchIgnoreList } from '../common';
 import { watchArea } from './constants';
 import { updateIgnoreList, updateLastCheckDate } from './api';
-import { timeout, fetchIgnoreList } from '../common';
 import { CSWithDiff, patchOsmChange } from './patchOsmChange';
 import { checkDiffsForAddress } from './checkDiffsForAddress';
 

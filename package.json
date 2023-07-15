@@ -18,7 +18,7 @@
     "all": "npm run preprocess && npm run conflate && npm run action && npm run upload",
     "changelog": "ts-node src/changelog",
     "changesetWatch": "ts-node src/changesetWatch",
-    "lint": "eslint --fix --ignore-path .gitignore . && tsc",
+    "lint": "eslint --ignore-path .gitignore . && tsc",
     "pretest": "cp src/__tests__/bin/osmconvert src/__tests__/bin/osmconvert2 && chmod u+x src/__tests__/bin/osmconvert2",
     "test": "jest"
   },

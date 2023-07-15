@@ -1,7 +1,7 @@
 import { promises as fs, createReadStream } from 'node:fs';
-import csv from 'csv-parser';
 import { join } from 'node:path';
 import { F_OK } from 'node:constants';
+import csv from 'csv-parser';
 import { Query } from 'which-polygon';
 import {
   ChunkSize,
@@ -10,9 +10,9 @@ import {
   GeoJsonFeature,
   Tags,
 } from '../../types';
-import { wktToGeoJson } from './geoOperations';
 import { IgnoreFile } from '../../preprocess/const';
 import { getFirstCoord, hash } from '../../common';
+import { wktToGeoJson } from './geoOperations';
 import { Chart, getBestChart } from './seamarkTagging';
 
 const existsAsync = (path: string) =>

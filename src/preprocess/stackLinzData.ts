@@ -1,6 +1,6 @@
 import { promises as fs, readFileSync } from 'node:fs';
-import whichPolygon from 'which-polygon';
 import { join } from 'node:path';
+import whichPolygon from 'which-polygon';
 import { LinzData, LinzAddr, OSMData, CouldStackData, GeoJson } from '../types';
 import { toStackId, uniq } from '../common';
 import { linzFile, linzTempFile, mock, osmFile, stackFile } from './const';

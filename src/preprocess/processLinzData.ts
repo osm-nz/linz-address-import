@@ -2,8 +2,8 @@ import { promises as fs, createReadStream } from 'node:fs';
 import { join } from 'node:path';
 import csv from 'csv-parser';
 import { LinzSourceAddress, LinzData } from '../types';
-import { linzTempFile, mock, ignoreFile, IgnoreFile } from './const';
 import { nzgbNamesTable } from '../common/nzgbFile';
+import { linzTempFile, mock, ignoreFile, IgnoreFile } from './const';
 
 const input = join(
   __dirname,

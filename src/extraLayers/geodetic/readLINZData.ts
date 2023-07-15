@@ -1,9 +1,9 @@
 import { createReadStream } from 'node:fs';
-import csv from 'csv-parser';
 import { join } from 'node:path';
-import { beaconTypes, LINZCSVItem, LINZMarker, markConditions } from './const';
+import csv from 'csv-parser';
 import { BBox } from '../../types';
 import { withinBBox } from '../../common';
+import { beaconTypes, LINZCSVItem, LINZMarker, markConditions } from './const';
 
 type Structure = false | [string, string?, string?];
 
