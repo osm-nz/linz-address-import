@@ -1234,6 +1234,40 @@
     },
     {
       "type": "Feature",
+      "id": "70168",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.167,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "167B",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70168"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70169",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.167004,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "167C",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70169"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "70004B",
       "geometry": {
         "type": "Point",

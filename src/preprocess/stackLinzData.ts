@@ -74,6 +74,11 @@ async function mergeIntoStacks(): Promise<LinzData> {
       osmData.linz[stackId]?.shouldUnstack ||
       osmData.linz[singleLinzId]?.shouldUnstack;
 
+    /** check if any of the existing nodes (if any) have `linz:stack=no` */
+    const shouldPreserveStack = addrIds.some(
+      ([addrId]) => osmData.linz[addrId]?.shouldUnstack,
+    );
+
     // >2 because maybe someone got confused with the IDs and mapped a single one.
     const inOsm = addrIds.filter(alreadyInOsm);
     const alreadyMappedSeparatelyInOsm =
@@ -100,7 +105,7 @@ async function mergeIntoStacks(): Promise<LinzData> {
       if (shouldBeUnstacked) {
         // a mapper has requested that this stack be split up into separate addresses
         // so we do nothing.
-      } else if (alreadyMappedSeparatelyInOsm) {
+      } else if (alreadyMappedSeparatelyInOsm || shouldPreserveStack) {
         // the 2017 import generated a lot of these, so we won't suggest undoing all
         // that hard work. But we generate a diagnostic for them.
         for (const [linzId] of inOsm) {
