@@ -782,6 +782,21 @@
     <tag k="ref:linz:address_id" v="70161" />
   </node>
 
+  
+  <!-- 
+    163-166 are stacked into one node in OSM. They are 163, 1/163, 2/163, 3/163 BUT they have a linz:stack=no tag.
+    Different to the test case for 144 because linz has an entry for 163, but not for 144. 
+    Therefore the root address is being edited in this case, not deleted. Also the ref tag is different.
+  -->
+  <node id="163" version="1" changeset="1" lat="-36.9" lon="175.163" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="163" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="building:flats" v="3" />
+    <tag k="ref:linz:address_id" v="70163" />
+    <tag k="linz:stack" v="no" />
+  </node>
+
   <!-- 162 is missing, it's an address where suburb=city, so it shouldn't add addr:city -->
 
   <!-- <ways> -->

@@ -18,6 +18,7 @@ Oakleigh
 70153		https://osm.org/node/153		level|10|
 70154		https://osm.org/node/154		level|10|MyCustomValue
 70161		https://osm.org/node/161		town|Jericho|São Manoël
+70163		https://osm.org/node/163		flatCount|0|3	and	stack||no
 stack(70079-70081)		https://osm.org/node/79		suburb|addr:hamlet=Oakleigh|addr:hamlet=The City of Ember
 stack(70082-70084)		https://osm.org/node/82		housenumber|82|82typo
 stack(70111-70113)		https://osm.org/node/111		flatCount|3|0

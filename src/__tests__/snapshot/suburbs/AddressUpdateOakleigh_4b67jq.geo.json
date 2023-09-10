@@ -639,6 +639,42 @@
     },
     {
       "type": "Feature",
+      "id": "n163",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              175.163,
+              -36.899800000000006
+            ],
+            [
+              175.16320000000002,
+              -36.900000000000006
+            ],
+            [
+              175.163,
+              -36.900200000000005
+            ],
+            [
+              175.1628,
+              -36.900000000000006
+            ],
+            [
+              175.163,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "building:flats": "🗑️",
+        "linz:stack": "🗑️"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "n79",
       "geometry": {
         "type": "Polygon",
@@ -1147,6 +1183,57 @@
     },
     {
       "type": "Feature",
+      "id": "70164",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.163,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "1/163",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70164"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70165",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.163004,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "2/163",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70165"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70166",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.16300284000002,
+          -36.89999716
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "3/163",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70166"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "70004B",
       "geometry": {
         "type": "Point",
@@ -1608,7 +1695,7 @@
     "minLat": -36.9022,
     "minLng": 174.144,
     "maxLat": -35.9998,
-    "maxLng": 175.156
+    "maxLng": 175.16320000000002
   },
   "changesetTags": {
     "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
