@@ -48,7 +48,7 @@ export type OsmAddr = Coords & {
   isUnRefedBuilding?: true;
   /** for stacked addresse, this is the number of addresses in this stack */
   flatCount?: number;
-  /** true if someone has added the tag `linz:unstack=*` to the address */
+  /** true if someone has added the tag `linz:stack=no` to the address */
   shouldUnstack?: true;
   /** value of the `level` tag */
   level: string | undefined;
@@ -183,6 +183,7 @@ export type IssueType =
   | 'town'
   | 'flatCount'
   | 'level'
+  | 'stack'
   | 'water';
 export type Issue = `${IssueType}|${string}|${string}`; // `field|linzValue|osmValue`;
 

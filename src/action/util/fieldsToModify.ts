@@ -68,6 +68,11 @@ export function fieldsToModify(issues: Issue[]): Record<string, string> {
         break;
       }
 
+      case 'stack': {
+        ac['linz:stack'] = '🗑️';
+        break;
+      }
+
       default: {
         const exhaustiveCheck: never = field; // if TS errors here, a case statement is missing
 
