@@ -25,10 +25,9 @@ export function sectorize(
     if (!suburb.includes('Address Update - ')) {
       // not antarctic and not an address suburb, so split this by region
       const out: Record<string, GeoJsonFeature[]> = {};
-      for (let index = 0; index < features.length; index += 1) {
-        const f = features[index];
+      for (const f of features) {
         const [lng, lat] = getFirstCoord(f.geometry);
-        const sector = getSector({ lat, lng }, size, index);
+        const sector = getSector({ lat, lng }, size);
         out[sector] ||= [];
         out[sector].push(f);
       }
@@ -41,6 +40,8 @@ export function sectorize(
         Object.assign(newFeatures, newSectors);
       }
     } else if (suburb.includes('Antarctic')) {
+      // NOTE: this only applies to legacy Antarctic datasets,
+      // nowadays we use the same logic for all non-address layers.
       const chunked = chunk(features, 100);
       for (let index = 0; index < chunked.length; index += 1) {
         newFeatures[`${suburb} ${index + 1}`] = {

@@ -12,18 +12,16 @@ const ROWS = [
   ...LETTERS.map((X) => X + X + X),
 ];
 
-const ANT_SIZE = 50;
-
-export function getSector(
-  { lat, lng }: Coords,
-  size: ChunkSize,
-  index: number,
-): string {
+export function getSector({ lat, lng }: Coords, size: ChunkSize): string {
   // for Antarctica, chunk into datasets with ANT_SIZE features each
   if (lat < -63.929) {
-    const antPrefix = lng > 0 ? 'E' : 'W'; // avoid changesets spanning 360deg of longitude
-
-    return `${antPrefix}${Math.floor(index / ANT_SIZE) + 1}`.padStart(2, '0');
+    // the ross dependcy spans 360° of longitude and 25° of latitude (-65° to -90°)
+    // so we create (90-65)/8 rows (letters) and 360/36 columns (numbers)
+    // this means there'll be (25/8 * 360/36) sectors
+    const row = ROWS[Math.floor(-lat / 8) * 8];
+    const positiveLng = (lng + 360) % 360; // e.g. to convert -178° to 182°
+    const column = Math.floor(positiveLng / 36) * 36;
+    return `Sector ${row}${column}`;
   }
 
   if (lat > -33.92 || lat < -47.59 || lng < 164.75 || lng > 178.85) {

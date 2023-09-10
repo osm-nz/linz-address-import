@@ -15,10 +15,10 @@ describe('getSector', () => {
     ${-29.190532} | ${182.043457} | ${'Outer Islands'} | ${'Outer Islands'}      | ${'Outer Islands'}
     ${-18.531}    | ${-169.37}    | ${'Polynesia'}     | ${'Polynesia'}          | ${'Polynesia'}
     ${-40.807}    | ${-171.402}   | ${'Chatham Is.'}   | ${'Chatham Is.'}        | ${'Chatham Is.'}
-    ${-77.8466}   | ${166.7489}   | ${'E1'}            | ${'E1'}                 | ${'E1' /* antarctic is chunked by index */}
+    ${-77.8466}   | ${166.7489}   | ${'Sector UUU144'} | ${'Sector UUU144'}      | ${'Sector UUU144'}
   `('works for $lat,$lng ($small)', ({ lat, lng, small, medium, large }) => {
-    expect(getSector({ lat, lng }, 'small', 0)).toStrictEqual(small);
-    expect(getSector({ lat, lng }, 'medium', 0)).toStrictEqual(medium);
-    expect(getSector({ lat, lng }, 'large', 0)).toStrictEqual(large);
+    expect(getSector({ lat, lng }, 'small')).toStrictEqual(small);
+    expect(getSector({ lat, lng }, 'medium')).toStrictEqual(medium);
+    expect(getSector({ lat, lng }, 'large')).toStrictEqual(large);
   });
 });

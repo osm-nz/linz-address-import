@@ -15,12 +15,13 @@ async function main() {
     console.log('Running', selection);
     await extraLayers[selection as keyof typeof extraLayers]();
   } else {
-    console.log(
+    console.error(
       'You need to run `yarn extraLayers CMD` where CMD is one of:',
       Object.keys(extraLayers).join(', '),
       'You entered:',
       selection,
     );
+    process.exit(1);
   }
 }
 

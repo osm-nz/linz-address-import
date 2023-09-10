@@ -42,9 +42,10 @@ export function calcBBox(features: GeoJsonFeature[]): BBox {
         }
         break;
       }
-      default: {
-        throw new Error('Unexpected geometry type');
-      }
+
+      default:
+      // other geometry types are allowed, they just won't
+      // count towards the bbox
     }
   }
   return bbox;
