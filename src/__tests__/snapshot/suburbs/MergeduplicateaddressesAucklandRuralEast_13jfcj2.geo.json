@@ -35,5 +35,18 @@
         "__action": "delete"
       }
     }
-  ]
+  ],
+  "bbox": {
+    "minLat": -36.90010000000001,
+    "minLng": 175.1369,
+    "maxLat": -36.8999,
+    "maxLng": 175.1371
+  },
+  "changesetTags": {
+    "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+    "created_by": "LINZ Data Import 2.0.0",
+    "locale": "en-NZ",
+    "source": "https://wiki.osm.org/LINZ",
+    "comment": "Merge duplicate addresses - Auckland Rural East"
+  }
 }

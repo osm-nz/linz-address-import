@@ -147,5 +147,18 @@
         "ref:linz:address_id": "70064"
       }
     }
-  ]
+  ],
+  "bbox": {
+    "minLat": -36.900200000000005,
+    "minLng": 174.9188,
+    "maxLat": -36.899800000000006,
+    "maxLng": 174.9641
+  },
+  "changesetTags": {
+    "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+    "created_by": "LINZ Data Import 2.0.0",
+    "locale": "en-NZ",
+    "source": "https://wiki.osm.org/LINZ",
+    "comment": "Address Update - West Hoe Heights"
+  }
 }

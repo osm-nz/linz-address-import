@@ -1603,5 +1603,18 @@
         "ref:linz:address_id": "stack(70144-70146)"
       }
     }
-  ]
+  ],
+  "bbox": {
+    "minLat": -36.9022,
+    "minLng": 174.144,
+    "maxLat": -35.9998,
+    "maxLng": 175.156
+  },
+  "changesetTags": {
+    "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+    "created_by": "LINZ Data Import 2.0.0",
+    "locale": "en-NZ",
+    "source": "https://wiki.osm.org/LINZ",
+    "comment": "Address Update - Oakleigh"
+  }
 }

@@ -272,6 +272,8 @@ export type GeoJsonFeature<T = Record<string, string | undefined>> = {
 export type GeoJson<T = Record<string, string | undefined>> = {
   type: 'FeatureCollection';
   features: GeoJsonFeature<T>[];
+  instructions?: string;
+  changesetTags?: Tags;
 };
 
 export type BBox = {

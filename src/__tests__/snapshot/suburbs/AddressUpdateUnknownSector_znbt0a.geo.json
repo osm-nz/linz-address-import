@@ -42,5 +42,18 @@
         "check_date": "🗑️"
       }
     }
-  ]
+  ],
+  "bbox": {
+    "minLat": -36.9,
+    "minLng": 174.903,
+    "maxLat": -36,
+    "maxLng": 174.942
+  },
+  "changesetTags": {
+    "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+    "created_by": "LINZ Data Import 2.0.0",
+    "locale": "en-NZ",
+    "source": "https://wiki.osm.org/LINZ",
+    "comment": "Address Update - Unknown Sector"
+  }
 }

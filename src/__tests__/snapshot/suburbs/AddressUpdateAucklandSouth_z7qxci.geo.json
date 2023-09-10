@@ -218,5 +218,18 @@
         "check_date": "🗑️"
       }
     }
-  ]
+  ],
+  "bbox": {
+    "minLat": -36.9005333,
+    "minLng": 174.922,
+    "maxLat": -36.899800000000006,
+    "maxLng": 174.97220000000002
+  },
+  "changesetTags": {
+    "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+    "created_by": "LINZ Data Import 2.0.0",
+    "locale": "en-NZ",
+    "source": "https://wiki.osm.org/LINZ",
+    "comment": "Address Update - Auckland South"
+  }
 }

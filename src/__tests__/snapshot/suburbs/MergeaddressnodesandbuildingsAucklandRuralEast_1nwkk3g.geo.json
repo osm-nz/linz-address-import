@@ -71,5 +71,18 @@
         "addr:hamlet": "Oakleigh"
       }
     }
-  ]
+  ],
+  "bbox": {
+    "minLat": -36.900200000000005,
+    "minLng": 175.1319,
+    "maxLat": -36.899800000000006,
+    "maxLng": 175.13320000000002
+  },
+  "changesetTags": {
+    "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+    "created_by": "LINZ Data Import 2.0.0",
+    "locale": "en-NZ",
+    "source": "https://wiki.osm.org/LINZ",
+    "comment": "Merge address nodes and buildings - Auckland Rural East"
+  }
 }

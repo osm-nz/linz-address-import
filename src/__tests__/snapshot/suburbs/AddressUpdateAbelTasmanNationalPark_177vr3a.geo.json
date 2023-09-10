@@ -54,5 +54,18 @@
         "ref:linz:address_id": "70058"
       }
     }
-  ]
+  ],
+  "bbox": {
+    "minLat": -36.900200000000005,
+    "minLng": 174.958,
+    "maxLat": -36.899800000000006,
+    "maxLng": 174.9592
+  },
+  "changesetTags": {
+    "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+    "created_by": "LINZ Data Import 2.0.0",
+    "locale": "en-NZ",
+    "source": "https://wiki.osm.org/LINZ",
+    "comment": "Address Update - Abel Tasman National Park"
+  }
 }

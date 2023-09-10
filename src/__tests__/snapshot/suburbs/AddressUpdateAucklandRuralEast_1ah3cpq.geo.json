@@ -166,5 +166,18 @@
         "ref:linz:address_id": "70129new"
       }
     }
-  ]
+  ],
+  "bbox": {
+    "minLat": -36.9005333,
+    "minLng": 175.1248,
+    "maxLat": -36.899800000000006,
+    "maxLng": 175.136
+  },
+  "changesetTags": {
+    "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+    "created_by": "LINZ Data Import 2.0.0",
+    "locale": "en-NZ",
+    "source": "https://wiki.osm.org/LINZ",
+    "comment": "Address Update - Auckland Rural East"
+  }
 }
