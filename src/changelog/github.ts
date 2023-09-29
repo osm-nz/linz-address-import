@@ -9,7 +9,14 @@ function getUrl() {
   const { GH_BASIC_AUTH } = process.env;
   if (!GH_BASIC_AUTH) throw new Error(`No GH_BASIC_AUTH env variable set`);
 
-  return `https://${GH_BASIC_AUTH}@api.github.com/repos/osm-nz/linz-address-import/issues/3/comments?since=${twoMonthsAgo.toISOString()}`;
+  const options = {
+    since: twoMonthsAgo.toISOString(),
+    sort: 'created',
+    direction: 'asc',
+    per_page: '100',
+  };
+  const qs = new URLSearchParams(options).toString();
+  return `https://${GH_BASIC_AUTH}@api.github.com/repos/osm-nz/linz-address-import/issues/3/comments?${qs}`;
 }
 
 export async function getLatestKnownVersion(): Promise<string> {
