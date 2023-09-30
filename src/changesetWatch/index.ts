@@ -34,7 +34,7 @@ export async function main(): Promise<void> {
   });
 
   const csToInspect: ChangesetWithRetried[] = allChangesets.filter(
-    (c) => !c.user.endsWith('_linz'),
+    (cs) => !cs.user.endsWith('_linz') && !cs.user.endsWith('_import'),
   );
   console.log(
     `Going to inspect ${csToInspect.length}/${allChangesets.length} changesets`,

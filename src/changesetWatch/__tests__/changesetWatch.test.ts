@@ -54,6 +54,7 @@ describe('patchOsmChange', () => {
       { id: 90_002, user: 'Maël' }, // this one will error the first time, but succeed on retry
       { id: 90_003, user: 'Maël' }, // this one is fine
       { id: 90_004, user: 'Maël_linz' }, // this one will be skipped beacuse it's an import account
+      { id: 90_005, user: 'Maël_import' }, // this one will be skipped beacuse it's an import account
     ]);
   });
 

@@ -24,7 +24,6 @@ export async function uploadStatsToGH(): Promise<void> {
 
   const newLine = `|${[
     date,
-    '?',
     ...numbers, // multiple columns,
     stats.total,
     '', // comment column
