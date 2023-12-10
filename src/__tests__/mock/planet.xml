@@ -764,7 +764,7 @@
   <!-- 156 is missing, it's a stack which should have the level tag removed -->
 
   <!-- 160 is missing an addr:city tag - that's okay, no action required -->
-  <node id="160" version="1" changeset="1" lat="-36.9" lon="174.160" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+  <node id="160" version="1" changeset="1" lat="-36.9" lon="176.160" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="160" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:suburb" v="Oakleigh" />

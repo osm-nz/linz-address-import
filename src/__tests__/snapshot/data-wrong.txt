@@ -25,7 +25,7 @@ stack(70111-70113)		https://osm.org/node/111		flatCount|3|0
 stack(70114-70116)		https://osm.org/node/114		flatCount|3|123
 
 West Hoe Heights
-70019		https://osm.org/node/19		suburb|addr:suburb=West Hoe Heights|addr:hamlet=West Hoe Heights
+70019		https://osm.org/node/19		suburb|addr:suburb=West Hoe Heights|addr:hamlet=West Hoe Heights	and	town|Silverdale|
 70045		https://osm.org/node/45		suburb|addr:suburb=West Hoe Heights|addr:hamlet=West Hoe Heights
 70047		https://osm.org/node/47		suburb|addr:suburb=West Hoe Heights|addr:hamlet=West Hoe Heights
 

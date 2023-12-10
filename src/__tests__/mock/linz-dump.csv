@@ -13,7 +13,7 @@
 ,70011,,Road,,11,,,,,Oakleigh,,11,Example Street,,,,,,,,,,,174.911,-36.9
 ,70012,,Road,,12,,,,,Oakleigh,,12,Example Street,,"note 13 is skipped. 14,16 only in delete list",,,,,,,,,174.912,-36.9
 ,70018,,Road,,18,,,,,Oakleigh,,18,Example Street,,,,,,,,,,,174.918,-36.9
-,70019,,Road,,19,,,,,West Hoe Heights,Silverdale,19,Example Street,,"21,22,23 doesn’t exist",,,,,,,,,174.919,-36.9
+,70019,,Road,,19,,,,,West Hoe Heights,Silverdale,19,Example Street,,"21,22,23 doesn’t exist",,,,,,,,,176.919,-36.9
 ,70020,,Road,,20,,,,,Oakleigh,,20,Example Street,,,,,,,,,,,174.92,-36.9
 ,70023A,,Road,,23,A,,,,Oakleigh,,23A,Example Street,,,,,,,,,,,174.922,-36.9
 ,70023B,,Road,,23,B,,,,Oakleigh,,23B,Example Street,,,,,,,,,,,174.923,-36.9
@@ -26,9 +26,9 @@
 ,70042,,Road,,42,,,,,Oakleigh,,42,Example Street,,,,,,,,,,,174.942,-36.9
 ,70043,,Road,,43,,,,,Oakleigh,,43,Example Street,,,,,,,,,,,174.943,-36.9
 ,70044,,Road,,44,,,,,Oakleigh,,44,Example Street,,,,,,,,,,,174.944,-36.9
-,70045,,Road,,45,,,,,West Hoe Heights,Silverdale,45,Example Street,,,,,,,,,,,174.945,-36.9
+,70045,,Road,,45,,,,,West Hoe Heights,Silverdale,45,Example Street,,,,,,,,,,,176.945,-36.9
 ,70046,,Road,,46,,,,,Oakleigh,,46,Example Street,,,,,,,,,,,174.946,-36.9
-,70047,,Road,,47,,,,,West Hoe Heights,Silverdale,47,Example Street,,,,,,,,,,,174.947,-36.9
+,70047,,Road,,47,,,,,West Hoe Heights,Silverdale,47,Example Street,,,,,,,,,,,176.947,-36.9
 ,70048,,Road,,48,,,,,Oakleigh,,48,Example Street,,"49,50,51,52,53 skipped",,,,,,,,,174.948,-36.9
 ,70054,,Road,,54,,,,,Oakleigh,,54,Example Street,,,,,,,,,,,174.954,-36.9
 ,70055,,Road,,55,,,,,Oakleigh,,55,Example Street,,,,,,,,,,,174.955,-36.9
@@ -36,8 +36,8 @@
 ,70058,,Water,,58,,,Awaroa Inlet,Abel Tasman National Park,,,58,Awaroa Inlet,,,,,,,,,,,174.958,-36.9
 ,70059,,Water,,59,,,Awaroa Inlet,Abel Tasman National Park,,,59,Awaroa Inlet,,,,,,,,,,,174.959,-36.9
 ,70060,,Road,,60,,,,,Oakleigh,,60,Example Street,,,,,,,,,,,174.96,-36.9
-,70062,,Road,,62,,,,,West Hoe Heights,Silverdale,62,Example Street,,,,,,,,,,,174.962,-36.9
-,70063,,Road,,63,,,,,West Hoe Heights,Another Town,63,Example Street,,,,,,,,,,,174.963,-36.9
+,70062,,Road,,62,,,,,West Hoe Heights,Silverdale,62,Example Street,,,,,,,,,,,176.962,-36.9
+,70063,,Road,,63,,,,,West Hoe Heights,Another Town,63,Example Street,,,,,,,,,,,176.963,-36.9
 ,70065,,Road,,65,,,,,Rangitāhua,,65,Example Street,,,,,,,,,,,183.965,-36.9
 ,70066,,Road,,66,A,,,,Oakleigh,,66A,Example Street,,,,,,,,,,,174.966,-36.9
 ,70067,,Road,,66,B,,,,Oakleigh,,66B,Example Street,,,,,,,,,,,174.966,-36.9
@@ -114,9 +114,9 @@
 ,70157,,Road,,156,A,,,,Oakleigh,,156A,Example Street,,,,,,,,,,,175.156,-36.9,G
 ,70158,,Road,,156,B,,,,Oakleigh,,156B,Example Street,,,,,,,,,,,175.156,-36.9,1
 ,70159,,Road,,156,C,,,,Oakleigh,,156C,Example Street,,,,,,,,,,,175.156,-36.9,1M
-,70160,,Road,,160,,,,,Oakleigh,Jericho,160,Example Street,,,,,,,,,,,174.160,-36.9
-,70161,,Road,,161,,,,,Oakleigh,Jericho,161,Example Street,,,,,,,,,,,174.161,-36.9
-,70162,,Road,,162,,,,,Jericho,Jericho,162,Example Street,,,,,,,,,,,174.162,-36.9
+,70160,,Road,,160,,,,,Oakleigh,Jericho,160,Example Street,,,,,,,,,,,176.160,-36.9
+,70161,,Road,,161,,,,,Oakleigh,Jericho,161,Example Street,,,,,,,,,,,176.161,-36.9
+,70162,,Road,,162,,,,,Jericho,Jericho,162,Example Street,,,,,,,,,,,176.162,-36.9
 ,70163,,Road,,163,,,,,Oakleigh,,163,Example Street,,,,,,,,,,,174.163,-36.9
 ,70164,,Road,1,163,,,,,Oakleigh,,1/163,Example Street,,,,,,,,,,,174.163,-36.9
 ,70165,,Road,2,163,,,,,Oakleigh,,2/163,Example Street,,,,,,,,,,,174.163,-36.9

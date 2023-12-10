@@ -37,7 +37,10 @@ export function processWithRef(
   const streetOk = linzAddr.street === osmAddr.street;
   const suburbOk = linzSuburb === osmSuburb;
   const townOk = // addr:city is only conflated if the tag already exists
-    !osmAddr.town || !linzAddr.town || linzAddr.town === osmAddr.town;
+    !osmAddr.town ||
+    !linzAddr.town ||
+    linzAddr.town === linzAddr.suburb[1] || // don't add addr:city if it duplicates addr:suburb
+    linzAddr.town === osmAddr.town;
   const waterOk = linzAddr.water === osmAddr.water;
   const flatCountOk = linzAddr.flatCount === osmAddr.flatCount;
   const levelOk = !linzAddr.level || linzAddr.level === osmAddr.level;
@@ -111,13 +114,19 @@ export function processWithRef(
     });
   }
 
-  // something is wrong in the data
+  const townNeedsChangingBcSuburbChanged =
+    !suburbOk && // if suburb is not okay,
+    !!(linzAddr.town || osmAddr.town) && // and there is a town, or there is meant to be a town,
+    linzAddr.town !== linzAddr.suburb[1]; // but don't add addr:city if it duplicates addr:suburb
 
+  // something is wrong in the data
   const issues: (Issue | false | undefined)[] = [
     !houseOk && `housenumber|${linzAddr.housenumber}|${osmAddr.housenumber}`,
     !streetOk && `street|${linzAddr.street}|${osmAddr.street}`,
     !suburbOk && `suburb|${linzSuburb}|${osmSuburb}`,
-    !townOk && `town|${linzAddr.town}|${osmAddr.town}`,
+    // if the `suburb` is changing, also conflate `town`
+    (!townOk || townNeedsChangingBcSuburbChanged) &&
+      `town|${linzAddr.town}|${osmAddr.town || ''}`,
     !flatCountOk &&
       `flatCount|${linzAddr.flatCount || 0}|${osmAddr.flatCount || 0}`,
     !levelOk && `level|${linzAddr.level || ''}|${osmAddr.level || ''}`,

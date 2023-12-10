@@ -63,6 +63,7 @@ export const wktToGeoJson = (
   layerName?: string,
   shouldSimplify?: boolean,
   dontFlipWays?: boolean,
+  silenceWarnings?: boolean,
 ): GeoJsonCoords => {
   let type = TYPES[wkt.match(/^\w+( Z)?/)![0] as keyof typeof TYPES];
 
@@ -172,7 +173,8 @@ export const wktToGeoJson = (
     type === 'MultiPolygon' &&
     coordinates.some((c: number[][]) =>
       c.some((cc) => cc.length > MAX_WAY_LENGTH),
-    )
+    ) &&
+    !silenceWarnings
   ) {
     // this is non trivial to fix
     console.warn(

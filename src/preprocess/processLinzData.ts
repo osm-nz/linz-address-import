@@ -1,9 +1,11 @@
 import { promises as fs, createReadStream } from 'node:fs';
 import { join } from 'node:path';
 import csv from 'csv-parser';
+import whichPolygon from 'which-polygon';
 import { LinzSourceAddress, LinzData } from '../types';
-import { nzgbNamesTable } from '../common/nzgbFile';
+import { LEGACY_URBAN_LOCALITIES, nzgbNamesTable } from '../common/nzgbFile';
 import { linzTempFile, mock, ignoreFile, IgnoreFile } from './const';
+import { readRuralUrbanBoundaryFile } from './ruralUrbanBoundary';
 
 const input = join(
   __dirname,
@@ -44,6 +46,14 @@ async function linzToJson(): Promise<LinzData> {
   console.log('Reading ignore file...');
   const ignore: IgnoreFile = JSON.parse(await fs.readFile(ignoreFile, 'utf8'));
 
+  console.log('Reading rural/urban boundary...');
+  const ruralUrbanBoundary = await readRuralUrbanBoundaryFile();
+  await fs.writeFile(
+    join(__dirname, '../../data/urban-areas.geo.json'),
+    JSON.stringify(ruralUrbanBoundary),
+  );
+  const determineIfRuralOrUrban = whichPolygon(ruralUrbanBoundary);
+
   console.log('Starting preprocess of LINZ data...');
   return new Promise((resolve, reject) => {
     const out: LinzData = {};
@@ -55,6 +65,13 @@ async function linzToJson(): Promise<LinzData> {
         // skip addresses where mappers clicked ignore
         if (ignore[data.address_id]) return;
 
+        const lat = +data.shape_Y;
+        const lng = correctLng(+data.shape_X);
+
+        const isUrban =
+          determineIfRuralOrUrban([lng, lat])?.type === 'U' ||
+          LEGACY_URBAN_LOCALITIES.has(data.suburb_locality);
+
         out[data.address_id] = {
           housenumber: convertUnit(
             data.unit_value,
@@ -65,12 +82,12 @@ async function linzToJson(): Promise<LinzData> {
           $houseNumberMsb: data.address_number,
           street: data.full_road_name,
           suburb: [
-            data.town_city ? 'U' : 'R',
+            isUrban ? 'U' : 'R',
             useOfficialName(data.water_name || data.suburb_locality),
           ],
-          town: useOfficialName(data.town_city),
-          lat: +data.shape_Y,
-          lng: correctLng(+data.shape_X),
+          town: isUrban ? useOfficialName(data.town_city) : '',
+          lat,
+          lng,
           level: data.level_value || undefined,
         };
         if (data.water_name) out[data.address_id].water = true;

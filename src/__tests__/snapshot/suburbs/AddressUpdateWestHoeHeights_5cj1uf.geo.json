@@ -34,7 +34,8 @@
       "properties": {
         "__action": "edit",
         "addr:hamlet": "🗑️",
-        "addr:suburb": "West Hoe Heights"
+        "addr:suburb": "West Hoe Heights",
+        "addr:city": "Silverdale"
       }
     },
     {
