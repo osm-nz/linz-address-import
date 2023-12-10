@@ -58,14 +58,15 @@ export async function createIndex(
     const geojson: GeoJson = {
       type: 'FeatureCollection',
       ...suburbs[suburb],
-      changesetTags: {
-        attribution: 'https://wiki.openstreetmap.org/wiki/Contributors#LINZ',
-        created_by: 'LINZ Data Import 2.0.0',
-        locale: 'en-NZ',
-        source: 'https://wiki.osm.org/LINZ',
-        comment: suburb,
-      },
     };
+    geojson.changesetTags ||= {
+      attribution: 'https://wiki.openstreetmap.org/wiki/Contributors#LINZ',
+      created_by: 'LINZ Data Import 2.0.0',
+      locale: 'en-NZ',
+      source: 'https://wiki.osm.org/LINZ',
+      comment: suburb,
+    };
+
     await fs.writeFile(
       join(suburbsFolder, `${toId(suburb)}.geo.json`),
       JSON.stringify(geojson, null, mock ? 2 : undefined),

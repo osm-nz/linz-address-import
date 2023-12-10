@@ -1,11 +1,12 @@
 import { getFirstCoord } from '../../common';
-import { GeoJsonFeature, HandlerReturnWithBBox } from '../../types';
+import { GeoJsonFeature, HandlerReturnWithBBox, Tags } from '../../types';
 import { calcBBox } from './calcBBox';
 import { MAX_ITEMS_PER_DATASET } from './const';
 
 export function splitUntilSmallEnough(
   name: string,
   instructions: string | undefined,
+  changesetTags: Tags | undefined,
   features: GeoJsonFeature[],
   depth = 0,
 ): HandlerReturnWithBBox {
@@ -20,7 +21,7 @@ export function splitUntilSmallEnough(
 
   if (features.length <= MAX_ITEMS_PER_DATASET || recursionLimit) {
     // yay, it's small enough
-    return { [name]: { features, bbox, instructions } };
+    return { [name]: { features, bbox, instructions, changesetTags } };
   }
 
   // it's not small enough
@@ -35,8 +36,20 @@ export function splitUntilSmallEnough(
     const [north, south] = out;
 
     return {
-      ...splitUntilSmallEnough(`${name}^N`, instructions, north, depth + 1),
-      ...splitUntilSmallEnough(`${name}^S`, instructions, south, depth + 1),
+      ...splitUntilSmallEnough(
+        `${name}^N`,
+        instructions,
+        changesetTags,
+        north,
+        depth + 1,
+      ),
+      ...splitUntilSmallEnough(
+        `${name}^S`,
+        instructions,
+        changesetTags,
+        south,
+        depth + 1,
+      ),
     };
   }
 
@@ -50,8 +63,20 @@ export function splitUntilSmallEnough(
   const [east, west] = out;
 
   return {
-    ...splitUntilSmallEnough(`${name}^E`, instructions, east, depth + 1),
-    ...splitUntilSmallEnough(`${name}^W`, instructions, west, depth + 1),
+    ...splitUntilSmallEnough(
+      `${name}^E`,
+      instructions,
+      changesetTags,
+      east,
+      depth + 1,
+    ),
+    ...splitUntilSmallEnough(
+      `${name}^W`,
+      instructions,
+      changesetTags,
+      west,
+      depth + 1,
+    ),
   };
 }
 

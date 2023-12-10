@@ -13,6 +13,8 @@ const point = (lat: number, lng: number): GeoJsonFeature => ({
   properties: {},
 });
 
+const changesetTags = { comment: 'hi' };
+
 const taka = point(-36.78766, 174.77309);
 const kumeū = point(-36.77705, 174.55489);
 const drury = point(-37.10182, 174.95275);
@@ -20,41 +22,53 @@ const drury = point(-37.10182, 174.95275);
 describe('splitUntilSmallEnough', () => {
   it('correctly splits N-S', () => {
     expect(
-      splitUntilSmallEnough('Import geysers', 'a', [taka, taka, drury]),
+      splitUntilSmallEnough('Import geysers', 'a', changesetTags, [
+        taka,
+        taka,
+        drury,
+      ]),
     ).toStrictEqual({
       'Import geysers^N': {
         bbox: expect.any(Object),
         instructions: 'a',
         features: [taka, taka],
+        changesetTags,
       },
       'Import geysers^S': {
         bbox: expect.any(Object),
         instructions: 'a',
         features: [drury],
+        changesetTags,
       },
     });
   });
 
   it('correctly splits E-W', () => {
     expect(
-      splitUntilSmallEnough('Import geysers', 'a', [taka, kumeū, kumeū]),
+      splitUntilSmallEnough('Import geysers', 'a', changesetTags, [
+        taka,
+        kumeū,
+        kumeū,
+      ]),
     ).toStrictEqual({
       'Import geysers^E': {
         bbox: expect.any(Object),
         instructions: 'a',
         features: [taka],
+        changesetTags,
       },
       'Import geysers^W': {
         bbox: expect.any(Object),
         instructions: 'a',
         features: [kumeū, kumeū],
+        changesetTags,
       },
     });
   });
 
   it('can recursively split', () => {
     expect(
-      splitUntilSmallEnough('Import geysers', 'a', [
+      splitUntilSmallEnough('Import geysers', 'a', changesetTags, [
         taka,
         taka,
         kumeū,
@@ -67,16 +81,19 @@ describe('splitUntilSmallEnough', () => {
         bbox: expect.any(Object),
         instructions: 'a',
         features: [taka, taka],
+        changesetTags,
       },
       'Import geysers^E^S': {
         bbox: expect.any(Object),
         instructions: 'a',
         features: [drury, drury],
+        changesetTags,
       },
       'Import geysers^W': {
         bbox: expect.any(Object),
         instructions: 'a',
         features: [kumeū],
+        changesetTags,
       },
     });
   });

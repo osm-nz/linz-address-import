@@ -20,7 +20,8 @@ export function sectorize(
 ): HandlerReturnWithBBox {
   const newFeatures: HandlerReturnWithBBox = {};
   for (const suburb in originalFeatures) {
-    const { size, features, instructions } = originalFeatures[suburb];
+    const { size, features, instructions, changesetTags } =
+      originalFeatures[suburb];
 
     if (!suburb.includes('Address Update - ')) {
       // not antarctic and not an address suburb, so split this by region
@@ -35,6 +36,7 @@ export function sectorize(
         const newSectors = splitUntilSmallEnough(
           `${suburb} - ${sector}`,
           instructions,
+          changesetTags,
           out[sector],
         );
         Object.assign(newFeatures, newSectors);
@@ -52,7 +54,12 @@ export function sectorize(
       }
     } else {
       // address dataset
-      const newSectors = splitUntilSmallEnough(suburb, instructions, features);
+      const newSectors = splitUntilSmallEnough(
+        suburb,
+        instructions,
+        changesetTags,
+        features,
+      );
       Object.assign(newFeatures, newSectors);
     }
   }

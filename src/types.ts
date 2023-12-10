@@ -290,6 +290,7 @@ export type HandlerReturnWithBBox = {
     features: GeoJsonFeature[];
     bbox: BBox;
     instructions?: string;
+    changesetTags?: Tags;
   };
 };
 
@@ -305,6 +306,7 @@ export type ExtraLayers = {
     size: ChunkSize;
     instructions?: string;
     features: GeoJsonFeature[];
+    changesetTags?: Tags;
   };
 };
 
