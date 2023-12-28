@@ -83,7 +83,11 @@ async function mergeIntoStacks(): Promise<LinzData> {
     const inOsm = addrIds.filter(alreadyInOsm);
     const alreadyMappedSeparatelyInOsm =
       inOsm.length > 2 &&
-      inOsm.length > addrIds.length / 2 && // if more than half are mapped in OSM, keep it
+      inOsm.length + 1 > addrIds.length / 2 && // if more than half are mapped in OSM, keep it.
+      // we add 1 in the equation above to handle the case where there are X already mapped,
+      // and X+1 missing, where +1 is a single node for the whole apartment complex. In this case,
+      // effectively half are mapped. That single node for the whole complex shouldn't be the
+      // deciding factor when it comes to deleting a bunch of existing addresses.
       !(stackId in osmData.linz); // if it's mapped a stack, favour the stack over any number of addresses mapped separately
 
     const uniqLoc = addrIds.map(([, pos]) => pos).filter(uniq).length;
