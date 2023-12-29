@@ -1,7 +1,7 @@
 import { CheckDate } from '../types';
 
 /** number of years before we revisit a feature with check_date */
-const CHECK_DATE_THRESHOLD_YEARS = 2;
+const CHECK_DATE_THRESHOLD_YEARS = 4;
 
 export const chunk = <T>(list: T[], size: number): T[][] =>
   list.reduce<T[][]>(
