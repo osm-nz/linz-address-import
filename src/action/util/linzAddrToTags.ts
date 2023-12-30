@@ -23,6 +23,8 @@ export function deleteAllAddressTags(): Tags {
     'addr:suburb': '🗑️',
     'addr:hamlet': '🗑️',
     'addr:city': '🗑️',
+    'addr:country': '🗑️',
+    'addr:postcode': '🗑️',
     'addr:type': '🗑️',
     'building:flats': '🗑️',
     // level is deliberately not included

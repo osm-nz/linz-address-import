@@ -183,7 +183,6 @@ export type IssueType =
   | 'town'
   | 'flatCount'
   | 'level'
-  | 'stack'
   | 'water';
 export type Issue = `${IssueType}|${string}|${string}`; // `field|linzValue|osmValue`;
 

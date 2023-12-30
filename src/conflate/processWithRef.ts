@@ -44,7 +44,6 @@ export function processWithRef(
   const waterOk = linzAddr.water === osmAddr.water;
   const flatCountOk = linzAddr.flatCount === osmAddr.flatCount;
   const levelOk = !linzAddr.level || linzAddr.level === osmAddr.level;
-  const stackOk = !osmAddr.shouldUnstack;
 
   if (
     houseOk &&
@@ -54,7 +53,6 @@ export function processWithRef(
     waterOk &&
     flatCountOk &&
     levelOk &&
-    stackOk &&
     !osmAddr.doubleSuburb
   ) {
     // looks perfect - last check is if location is correct
@@ -130,7 +128,6 @@ export function processWithRef(
     !flatCountOk &&
       `flatCount|${linzAddr.flatCount || 0}|${osmAddr.flatCount || 0}`,
     !levelOk && `level|${linzAddr.level || ''}|${osmAddr.level || ''}`,
-    !stackOk && `stack||no`,
 
     // this is the buggy one (see #7) if it's a double suburb, the system may think `suburbOk` but it's wrong
     suburbOk &&
