@@ -27,7 +27,7 @@ export async function createIndex(
         const title = v.suburb.replace('ZZ ', '').replace('Z ', '');
         return {
           id: toId(v.suburb),
-          url: `${CDN_URL}/suburbs/${toId(v.suburb)}.geo.json`,
+          url: `${CDN_URL}/suburbs/${toId(v.suburb)}.osmPatch.geo.json`,
           name: title,
           title,
           totalCount: v.totalCount,
@@ -68,7 +68,7 @@ export async function createIndex(
     };
 
     await fs.writeFile(
-      join(suburbsFolder, `${toId(suburb)}.geo.json`),
+      join(suburbsFolder, `${toId(suburb)}.osmPatch.geo.json`),
       JSON.stringify(geojson, null, mock ? 2 : undefined),
     );
   }
