@@ -38,6 +38,8 @@
         "addr:suburb": "🗑️",
         "addr:hamlet": "🗑️",
         "addr:city": "🗑️",
+        "addr:country": "🗑️",
+        "addr:postcode": "🗑️",
         "addr:type": "🗑️",
         "building:flats": "🗑️",
         "ref:linz:address_id": "🗑️",

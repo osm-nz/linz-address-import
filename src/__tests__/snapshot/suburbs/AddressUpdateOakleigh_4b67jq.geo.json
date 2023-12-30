@@ -669,8 +669,7 @@
       },
       "properties": {
         "__action": "edit",
-        "building:flats": "🗑️",
-        "linz:stack": "🗑️"
+        "building:flats": "🗑️"
       }
     },
     {
