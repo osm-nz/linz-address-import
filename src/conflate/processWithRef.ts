@@ -34,6 +34,7 @@ export function processWithRef(
     : 0;
 
   const houseOk = linzAddr.housenumber === osmAddr.housenumber;
+  const altHouseOk = linzAddr.housenumberAlt === osmAddr.housenumberAlt;
   const streetOk = linzAddr.street === osmAddr.street;
   const suburbOk = linzSuburb === osmSuburb;
   const townOk = // addr:city is only conflated if the tag already exists
@@ -47,6 +48,7 @@ export function processWithRef(
 
   if (
     houseOk &&
+    altHouseOk &&
     streetOk &&
     suburbOk &&
     townOk &&
@@ -120,6 +122,10 @@ export function processWithRef(
   // something is wrong in the data
   const issues: (Issue | false | undefined)[] = [
     !houseOk && `housenumber|${linzAddr.housenumber}|${osmAddr.housenumber}`,
+    !altHouseOk &&
+      `housenumberAlt|${linzAddr.housenumberAlt || ''}|${
+        osmAddr.housenumberAlt || ''
+      }`,
     !streetOk && `street|${linzAddr.street}|${osmAddr.street}`,
     !suburbOk && `suburb|${linzSuburb}|${osmSuburb}`,
     // if the `suburb` is changing, also conflate `town`

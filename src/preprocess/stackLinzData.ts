@@ -4,6 +4,7 @@ import whichPolygon from 'which-polygon';
 import { LinzData, LinzAddr, OSMData, CouldStackData, GeoJson } from '../types';
 import { toStackId, uniq } from '../common';
 import { linzFile, linzTempFile, mock, osmFile, stackFile } from './const';
+import { matchAlternativeAddrs } from './matchAlternativeAddrs';
 
 const lowerStackTresholds: GeoJson<{ name: string; threshold: number }> =
   JSON.parse(
@@ -21,7 +22,7 @@ const STACK_THRESHOLD = mock ? 2 : 9;
 const stackTresholdQuery = whichPolygon(lowerStackTresholds);
 
 /** the object is keyed by a `houseKey` */
-type VisitedCoords = Record<
+export type VisitedCoords = Record<
   string,
   [linzId: string, pos: `${number},${number}`][]
 >;
@@ -66,9 +67,31 @@ async function mergeIntoStacks(): Promise<LinzData> {
     linzId in osmData.linz;
 
   for (const houseKey in visitedFlats) {
-    const addrIds = visitedFlats[houseKey]; // a list of all flats at this MSB house number
-    const stackId = toStackId(addrIds.map((x) => x[0]));
+    const rawAddrIds = visitedFlats[houseKey]; // a list of all flats at this MSB house number
+    const stackId = toStackId(rawAddrIds.map((x) => x[0]));
     const singleLinzId: string | undefined = visitedNonFlats[houseKey];
+
+    const altAddresses = matchAlternativeAddrs(
+      linzData,
+      osmData,
+      singleLinzId,
+      rawAddrIds,
+    );
+
+    // if there are alternatives, filter out the duplicates
+    const addrIds = altAddresses
+      ? rawAddrIds.filter(([id]) => !altAddresses.addrIdsToSkip.has(id))
+      : rawAddrIds;
+
+    if (altAddresses) {
+      for (const addrId in altAddresses.duplicateMap) {
+        // delete the duplicate one, and add the duplicate's housenumber
+        // as an alt to the main address.
+        const otherId = altAddresses.duplicateMap[addrId];
+        linzData[addrId].housenumberAlt = linzData[otherId].housenumber;
+        delete linzData[otherId];
+      }
+    }
 
     const shouldBeUnstacked =
       osmData.linz[stackId]?.shouldUnstack ||

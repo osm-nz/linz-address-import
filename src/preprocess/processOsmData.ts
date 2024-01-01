@@ -47,6 +47,7 @@ function osmToJson(): Promise<OSMData> {
             lat: +coords.lat,
             lng: +coords.lon,
             housenumber: item.tags['addr:housenumber'],
+            housenumberAlt: item.tags['alt_addr:housenumber'],
             street: item.tags['addr:street'],
             suburb: suburb ? [suburbU ? 'U' : 'R', suburb] : undefined,
             town: item.tags['addr:city'],

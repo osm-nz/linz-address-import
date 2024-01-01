@@ -207,6 +207,7 @@
       },
       "properties": {
         "__action": "edit",
+        "alt_addr:housenumber": "🗑️",
         "addr:housenumber": "🗑️",
         "addr:street": "🗑️",
         "addr:suburb": "🗑️",

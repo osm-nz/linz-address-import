@@ -784,9 +784,9 @@
 
   <!-- 162 is missing, it's an address where suburb=city, so it shouldn't add addr:city -->
 
-  <!-- 
+  <!--
     163-166 are stacked into one node in OSM. They are 163, 1/163, 2/163, 3/163 BUT they have a linz:stack=no tag.
-    Different to the test case for 144 because linz has an entry for 163, but not for 144. 
+    Different to the test case for 144 because linz has an entry for 163, but not for 144.
     Therefore the root address is being edited in this case, not deleted. Also the ref tag is different.
   -->
   <node id="163" version="1" changeset="1" lat="-36.9" lon="175.163" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
@@ -798,7 +798,7 @@
     <tag k="linz:stack" v="no" />
   </node>
 
-  <!-- 
+  <!--
     167-169 would normally be deleted and stacked (since under 50% are mapped individually), but a
     mapper has added linz:stack=no to one of the nodes so we will keep this node.
   -->
@@ -808,6 +808,81 @@
     <tag k="addr:suburb" v="Oakleigh" />
     <tag k="ref:linz:address_id" v="70167" />
     <tag k="linz:stack" v="no" />
+  </node>
+
+  <!--
+    170A-B-C is completely missing, as are its duplicates 1-2-3/170.
+    They'll be stacked, since they're in the same location. The key part
+    is that building:flats is 3, not 6.
+  -->
+
+  <!--
+    176A-B-C is completely missing, as are its duplicates 1-2-3/176.
+    The system will propose adding 3 nodes with alt_addr:housenumber.
+  -->
+
+  <!-- 182A-B-C are mapped, but without alt_addr:housenumber for 1-2-3/182 -->
+  <node id="182" version="1" changeset="1" lat="-36.9" lon="174.182" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="182A" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70182" />
+  </node>
+  <node id="183" version="1" changeset="1" lat="-36.9" lon="174.183" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="182B" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70183" />
+  </node>
+  <node id="184" version="1" changeset="1" lat="-36.9" lon="174.184" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="182C" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70184" />
+  </node>
+
+  <!--
+    1-2/188 are mapped, but without alt_addr:housenumber for 188A-B, 
+    and the root (188) is missing.
+  -->
+  <node id="188" version="1" changeset="1" lat="-36.9" lon="174.188" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="1/188" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70188" />
+  </node>
+  <node id="189" version="1" changeset="1" lat="-36.9" lon="174.189" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="2/188" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70189" />
+  </node>
+
+  <!-- 1-2/193 and 193A-B are mapped -->
+  <node id="193" version="1" changeset="1" lat="-36.9" lon="174.193" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="1/193" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70193" />
+    <tag k="linz:stack" v="no" />
+  </node>
+  <node id="194" version="1" changeset="1" lat="-36.9" lon="174.194" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="2/193" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70194" />
+  </node>
+    <node id="195" version="1" changeset="1" lat="-36.9" lon="174.195" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="193A" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="3000195" />
+  </node>
+  <node id="196" version="1" changeset="1" lat="-36.9" lon="174.196" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="193B" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="3000196" />
   </node>
 
   <!-- <ways> -->

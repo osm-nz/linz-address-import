@@ -3,6 +3,7 @@ import { LinzAddr, Tags } from '../../types';
 export function linzAddrToTags(linzId: string, addr: LinzAddr): Tags {
   return {
     'addr:housenumber': addr.housenumber,
+    'alt_addr:housenumber': addr.housenumberAlt,
     'addr:street': addr.street,
     'addr:suburb': addr.suburb[0] === 'U' ? addr.suburb[1] : undefined,
     'addr:hamlet': addr.suburb[0] === 'R' ? addr.suburb[1] : undefined,
@@ -18,6 +19,7 @@ export function linzAddrToTags(linzId: string, addr: LinzAddr): Tags {
 export function deleteAllAddressTags(): Tags {
   return {
     // delete all address-related tags
+    'alt_addr:housenumber': '🗑️',
     'addr:housenumber': '🗑️',
     'addr:street': '🗑️',
     'addr:suburb': '🗑️',

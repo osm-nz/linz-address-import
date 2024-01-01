@@ -14,6 +14,11 @@ export function fieldsToModify(issues: Issue[]): Record<string, string> {
         break;
       }
 
+      case 'housenumberAlt': {
+        ac['alt_addr:housenumber'] = linzValue;
+        break;
+      }
+
       case 'street': {
         ac['addr:street'] = linzValue;
         break;

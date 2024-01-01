@@ -10,6 +10,8 @@ export type Coords = {
 
 export type LinzAddr = Coords & {
   housenumber: string;
+  /** for alternate addresses, the other house number */
+  housenumberAlt?: string;
   /** @deprecated don't use, for internal use in pre-process only */
   $houseNumberMsb?: string;
   street: string;
@@ -35,6 +37,8 @@ export enum CheckDate {
 export type OsmAddr = Coords & {
   osmId: OsmId;
   housenumber?: string;
+  /** for alternate addresses, the other house number */
+  housenumberAlt?: string;
   street?: string;
   suburb?: Suburb;
   town?: string;
@@ -178,6 +182,7 @@ export enum Confidence {
 
 export type IssueType =
   | 'housenumber'
+  | 'housenumberAlt'
   | 'street'
   | 'suburb'
   | 'town'
