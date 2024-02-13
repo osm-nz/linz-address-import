@@ -56,6 +56,10 @@ export type OsmAddr = Coords & {
   shouldUnstack?: true;
   /** value of the `level` tag */
   level: string | undefined;
+  /** if the feature has been recently edited */
+  recentlyChanged?: true;
+  /** if the last user to edit this feature was an importer */
+  lastEditedByImporter?: true;
 };
 export type OsmAddrWithConfidence = OsmAddr & {
   /** distance in metres away from expected location */
