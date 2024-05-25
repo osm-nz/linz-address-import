@@ -25,7 +25,7 @@ export function getSector({ lat, lng }: Coords, size: ChunkSize): string {
   }
 
   if (lat > -33.92 || lat < -47.59 || lng < 164.75 || lng > 178.85) {
-    if (lng > 0) return 'Outer Islands';
+    if (lng > 0) return lat < -33 ? 'Outer Islands' : 'Outer Islands (North)';
     return lat < -33 ? 'Chatham Is.' : 'Polynesia';
   }
 

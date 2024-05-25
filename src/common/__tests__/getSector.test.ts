@@ -1,6 +1,8 @@
 import { getSector } from '../getSector';
 
 describe('getSector', () => {
+  const outerIslands2 = 'Outer Islands (North)'; // hack to stop mass-refornat
+
   it.each`
     lat           | lng           | small              | medium                  | large
     ${-47.025206} | ${167.915039} | ${'Sector I52'}    | ${'Stewart Island'}     | ${'Southland / Otago / Stewart Is'}
@@ -12,7 +14,7 @@ describe('getSector', () => {
     ${-39.13006}  | ${177.099609} | ${'Sector SS21'}   | ${'Hawkes Bay North'}   | ${'Central NI'}
     ${-36.93233}  | ${174.902343} | ${'Sector KK12'}   | ${'Auckland South'}     | ${'Auckland'}
     ${-35.137879} | ${173.408203} | ${'Sector EE5'}    | ${'Far North'}          | ${'Northland'}
-    ${-29.190532} | ${182.043457} | ${'Outer Islands'} | ${'Outer Islands'}      | ${'Outer Islands'}
+    ${-29.190532} | ${182.043457} | ${outerIslands2}   | ${outerIslands2}        | ${outerIslands2}
     ${-18.531}    | ${-169.37}    | ${'Polynesia'}     | ${'Polynesia'}          | ${'Polynesia'}
     ${-40.807}    | ${-171.402}   | ${'Chatham Is.'}   | ${'Chatham Is.'}        | ${'Chatham Is.'}
     ${-77.8466}   | ${166.7489}   | ${'Sector UUU144'} | ${'Sector UUU144'}      | ${'Sector UUU144'}
