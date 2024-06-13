@@ -36,7 +36,7 @@ export async function generateMd({
   });
   return `## \`v${version}\` - ${niceDate}
 
-- [ ] available to import
+- [x] available to import
 
 ${section('Added', json.add)}
 ${section('Updated', json.update)}

@@ -1,17 +1,9 @@
 import { createReadStream } from 'node:fs';
-import { join } from 'node:path';
 import csv from 'csv-parser';
 import type { GeoJson } from 'which-polygon';
 import { wktToGeoJson } from '../extraLayers/linzTopo/geoOperations';
 import { GeoJsonFeature } from '../types';
-import { mock } from './const';
-
-const filePath = join(
-  __dirname,
-  mock
-    ? '../__tests__/mock/linz-rural-urban-boundary.csv'
-    : '../../data/rural-urban-boundary.csv',
-);
+import { ruralUrbanCsvFile } from './const';
 
 type BoundaryCsv = {
   '\uFEFFWKT': string;
@@ -40,7 +32,7 @@ export async function readRuralUrbanBoundaryFile(): Promise<GeoJson<Boundary>> {
   return new Promise((resolve, reject) => {
     const features: GeoJsonFeature<Boundary>[] = [];
 
-    createReadStream(filePath)
+    createReadStream(ruralUrbanCsvFile)
       .pipe(csv())
       .on('data', (data: BoundaryCsv) => {
         const {

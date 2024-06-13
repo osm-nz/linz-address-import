@@ -14,7 +14,7 @@ export async function main(): Promise<void> {
   );
 
   console.log('Clearing output folder...');
-  await fs.rm(outFolder, { recursive: true });
+  await fs.rm(outFolder, { recursive: true, force: true });
   await fs.mkdir(suburbsFolder, { recursive: true });
 
   console.log('generating stats...');

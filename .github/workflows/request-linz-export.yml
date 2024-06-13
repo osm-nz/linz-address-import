@@ -1,0 +1,33 @@
+name: Request LINZ Export
+
+on:
+  schedule:
+    - cron: '1 16 * * 5' # at 01:06am on Friday NZST
+  workflow_dispatch:
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - name: ⏬ Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🔢 Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: ⏬ Install
+        run: |
+          yarn
+      - name: 0️⃣ Request data export from LDS
+        run: |
+          yarn request-linz-export
+        env:
+          LINZ_API_KEY: ${{ secrets.LINZ_API_KEY }}
+          STATS_NZ_API_KEY: ${{ secrests.STATS_NZ_API_KEY }}

@@ -4,8 +4,9 @@
   "author": "Kyle Hensel",
   "license": "MIT",
   "scripts": {
-    "download-planet": "sh src/download-planet.sh",
-    "download-linz": "sh src/download-linz.sh",
+    "request-linz-export": "ts-node -T src/download/requestLinzExport",
+    "download-linz": "ts-node -T src/download/downloadLinzExport",
+    "download-planet": "sh src/download/download-planet.sh",
     "preprocess0": "ts-node -T src/preprocess/fetchAndSaveAddressIgnoreList",
     "preprocess1": "ts-node -T src/preprocess/processOsmData",
     "preprocess2": "ts-node -T src/preprocess/processLinzData",
@@ -15,7 +16,6 @@
     "extralayers": "ts-node src/extraLayers",
     "action": "ts-node src/action",
     "upload": "ts-node src/upload",
-    "all": "npm run preprocess && npm run conflate && npm run action && npm run upload",
     "changelog": "ts-node src/changelog",
     "changesetWatch": "ts-node src/changesetWatch",
     "lint": "eslint --ignore-path .gitignore . && tsc",
@@ -24,8 +24,10 @@
   },
   "dependencies": {
     "@azure/storage-blob": "^12.13.0",
+    "adm-zip": "^0.5.14",
     "csv-parser": "^3.0.0",
     "dotenv": "^16.0.3",
+    "koordinates-api": "^0.0.1",
     "mime-types": "^2.1.35",
     "node-fetch": "^2.6.7",
     "osm-api": "^1.0.5",
@@ -35,6 +37,7 @@
     "which-polygon": "^2.2.0"
   },
   "devDependencies": {
+    "@types/adm-zip": "^0.5.5",
     "@types/jest": "^29.2.4",
     "@types/mime-types": "^2.1.1",
     "@types/node": "^18.11.12",

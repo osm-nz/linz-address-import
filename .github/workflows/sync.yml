@@ -1,9 +1,8 @@
 name: Sync
 
 on:
-  # temporarily disabled during topo50 import
-  # schedule:
-  #   - cron: '0 16 * * 1,5' # at 4pm on mon & fri UTC = at 4am on tue & sat NZST
+  schedule:
+    - cron: '5 16 * * 5' # at 05:06am on Friday NZST
   workflow_dispatch:
 
 jobs:
@@ -34,6 +33,9 @@ jobs:
       - name: 🥝 Download LINZ csv file
         run: |
           yarn download-linz
+        env:
+          LINZ_API_KEY: ${{ secrets.LINZ_API_KEY }}
+          STATS_NZ_API_KEY: ${{ secrests.STATS_NZ_API_KEY }}
 
       - name: ⏩ Download list of addresses to ignore
         run: |
@@ -41,27 +43,27 @@ jobs:
 
       - name: 🚚 Preprocess the .osm.pbf file
         run: |
-          yarn preprocess1 --max-old-space-size=6144
+          yarn preprocess1
 
       - name: 🚚 Preprocess the .csv file
         run: |
-          yarn preprocess2 --max-old-space-size=6144
+          yarn preprocess2
 
       - name: 🚚 Creates stacks from LINZ data
         run: |
-          yarn preprocess3 --max-old-space-size=6144
+          yarn preprocess3
 
       - name: 🔁 Conflate LINZ data with OSM
         run: |
-          yarn conflate --max-old-space-size=6144
+          yarn conflate
 
       - name: 🏡 Generate geojson and reports
         run: |
-          yarn action --max-old-space-size=6144
+          yarn action
 
       - name: ⛅ Upload geojson and reports to CDN
         run: |
-          yarn upload --max-old-space-size=6144
+          yarn upload
         env:
           GH_BASIC_AUTH: ${{ secrets.GH_BASIC_AUTH }}
           AZ_CON: ${{ secrets.AZ_CON }}

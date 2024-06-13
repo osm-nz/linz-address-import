@@ -2,6 +2,7 @@
 
 [![Test](https://github.com/osm-nz/linz-address-import/actions/workflows/ci.yml/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/ci.yml)
 [![Changelog](https://github.com/osm-nz/linz-address-import/actions/workflows/changelog.yml/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/changelog.yml)
+[![Request LINZ Export](https://github.com/osm-nz/linz-address-import/workflows/Request%20LINZ%20Export/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/request-linz-export.yml)
 [![Sync](https://github.com/osm-nz/linz-address-import/actions/workflows/sync.yml/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/sync.yml)
 [![Changeset Watch](https://github.com/osm-nz/linz-address-import/actions/workflows/changesetWatch.yml/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/changesetWatch.yml)
 [![Coverage Status](https://coveralls.io/repos/github/osm-nz/linz-address-import/badge.svg?branch=main)](https://coveralls.io/github/osm-nz/linz-address-import?branch=main)
@@ -23,19 +24,22 @@ The source code is in a separate repository ([see here](https://github.com/osm-n
 
 ![Sreenshot of the fork of RapiD](https://user-images.githubusercontent.com/16009897/138576782-df5a7223-cbee-4d3f-9a0f-f7a61d637540.png)
 
+# Operation
+
+If all five status badges at the top of this document are green, then the script is automatically running once a week (on Friday morning NZ time). The results can be viewed and actioned from [osm-nz.github.io](https://osm-nz.github.io)
+
 # Setup
 
-If you want to contribute to the code, the following needs to be done manually:
+If you want to use the code to manually run the process, follow these steps:
 
 1. Clone this repository
 2. Download [nodejs v18](https://nodejs.org) or later
-3. Go to https://data.linz.govt.nz/layer/105689
-4. Select & download that layer as CSV, using projection "NZGD2000 (EPSG:4167 Geographic)"
-5. Save the file to the CDN, or save it in the folder in this repository called `./data`. Name the file `linz.csv`
-
-The remaining steps are done automatically by the CI
-
-6. Run `npm install`
+3. Generate an API from https://data.linz.govt.nz/my/api with "Full access to Exports Access"
+   a. Then create a file called `.env` in this folder, and add `LINZ_API_KEY=XXXXX`, where `XXXXX` is the token you just generated.
+   b. Then repeat this step for https://datafinder.stats.govt.nz/my/api and save it as `STATS_NZ_API_KEY`. This is required for the rural urban boundaries
+4. Run `npm install`
+5. Run `npm run request-linz-export` to request an export from the LDS, and wait for it to be generated
+6. Run `npm run download-linz` to download the requested export
 7. Download the planet file (for just NZ) by running `npm run download-planet`. This will create `./data/osm.pbf`
 8. Start the preprocess script by running `npm run preprocess`. This will take ca. 2.5 minutes and create `./data/osm.json` and `./data/linz.json`
 9. Start the confate script by running `npm run conflate`. This will take 30 seconds and create `./data/status.json`. Some computationally expensive diagnostics are only generated if you run `npm run conflate -- --full`, which takes 20 times longer.

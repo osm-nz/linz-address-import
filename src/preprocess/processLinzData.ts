@@ -4,13 +4,8 @@ import csv from 'csv-parser';
 import whichPolygon from 'which-polygon';
 import { LinzSourceAddress, LinzData } from '../types';
 import { LEGACY_URBAN_LOCALITIES, nzgbNamesTable } from '../common/nzgbFile';
-import { linzTempFile, mock, ignoreFile, IgnoreFile } from './const';
+import { linzTempFile, ignoreFile, IgnoreFile, linzCsvFile } from './const';
 import { readRuralUrbanBoundaryFile } from './ruralUrbanBoundary';
-
-const input = join(
-  __dirname,
-  mock ? '../__tests__/mock/linz-dump.csv' : '../../data/linz.csv',
-);
 
 /** LINZ's longitude values go >180 e.g. 183deg which is invalid. It should be -177 */
 const correctLng = (lng: number) => {
@@ -59,7 +54,7 @@ async function linzToJson(): Promise<LinzData> {
     const out: LinzData = {};
     let index = 0;
 
-    createReadStream(input)
+    createReadStream(linzCsvFile)
       .pipe(csv())
       .on('data', (data: LinzSourceAddress) => {
         // skip addresses where mappers clicked ignore

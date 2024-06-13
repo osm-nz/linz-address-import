@@ -14,7 +14,7 @@ describe('generateMd', () => {
     expect(await generateMd(input)).toMatchInlineSnapshot(`
       "## \`v123\` - 2 March 2021
 
-      - [ ] available to import
+      - [x] available to import
 
       <details><summary>Added (1)</summary><ul>
       <li>Oakleigh (1)</li>
