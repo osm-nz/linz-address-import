@@ -30,4 +30,4 @@ jobs:
           yarn request-linz-export
         env:
           LINZ_API_KEY: ${{ secrets.LINZ_API_KEY }}
-          STATS_NZ_API_KEY: ${{ secrests.STATS_NZ_API_KEY }}
+          STATS_NZ_API_KEY: ${{ secrets.STATS_NZ_API_KEY }}
