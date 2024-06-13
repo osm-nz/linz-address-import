@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  changelog:
+  changesetWatch:
     runs-on: ubuntu-latest
 
     strategy:
