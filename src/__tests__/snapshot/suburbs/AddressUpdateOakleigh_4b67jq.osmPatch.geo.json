@@ -849,6 +849,42 @@
     },
     {
       "type": "Feature",
+      "id": "n197",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              176.197,
+              -36.899800000000006
+            ],
+            [
+              176.1972,
+              -36.900000000000006
+            ],
+            [
+              176.197,
+              -36.900200000000005
+            ],
+            [
+              176.1968,
+              -36.900000000000006
+            ],
+            [
+              176.197,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "addr:suburb": "Oakleigh",
+        "addr:city": "Jericho"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "n79",
       "geometry": {
         "type": "Polygon",
@@ -1993,7 +2029,7 @@
     "minLat": -36.9022,
     "minLng": 174.144,
     "maxLat": -35.9998,
-    "maxLng": 175.16320000000002
+    "maxLng": 176.1972
   },
   "changesetTags": {
     "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
