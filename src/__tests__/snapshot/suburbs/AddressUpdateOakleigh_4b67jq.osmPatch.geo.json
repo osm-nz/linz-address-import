@@ -879,8 +879,7 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:suburb": "Oakleigh",
-        "addr:city": "Jericho"
+        "addr:suburb": "Oakleigh"
       }
     },
     {

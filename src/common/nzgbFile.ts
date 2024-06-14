@@ -13,6 +13,14 @@ export const nzgbNamesTable: Record<string, string> = {
   'Saint Heliers': 'St Heliers',
   'St Andrews': 'Saint Andrews',
 
+  // recently gazetted & not in the address dataset yet
+  Ranui: 'Rānui', // https://gazetteer.linz.govt.nz/place/59450
+  Otaua: 'Ōtaua', // https://gazetteer.linz.govt.nz/place/34462
+  'Lake Rotoma': 'Lake Rotomā', // https://gazetteer.linz.govt.nz/place/7431
+  'Lake Okareka': 'Lake Okareka', // https://gazetteer.linz.govt.nz/place/7385
+  Ngahape: 'Ngāhape', // https://gazetteer.linz.govt.nz/place/32282
+  Peketa: 'Peketā', // https://gazetteer.linz.govt.nz/place/57309
+
   Opotiki: 'Ōpōtiki', // // only included here for unit tests. It's correct in the LINZ dataset
 };
 

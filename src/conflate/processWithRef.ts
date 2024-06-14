@@ -117,7 +117,8 @@ export function processWithRef(
   const townNeedsChangingBcSuburbChanged =
     !suburbOk && // if suburb is not okay,
     !!(linzAddr.town || osmAddr.town) && // and there is a town, or there is meant to be a town,
-    linzAddr.town !== linzAddr.suburb[1]; // but don't add addr:city if it duplicates addr:suburb
+    linzAddr.town !== linzAddr.suburb[1] && // but don't add addr:city if it duplicates addr:suburb
+    linzAddr.town !== osmAddr.town; // and don't do anything if osm already has the correct value
 
   // something is wrong in the data
   const issues: (Issue | false | undefined)[] = [
