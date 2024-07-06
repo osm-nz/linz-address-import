@@ -19,4 +19,6 @@ export const MAP = <const>{
 export const toLink = (osmId: string): string =>
   `https://osm.org/${MAP[osmId[0] as keyof typeof MAP]}/${osmId.slice(1)}`;
 
-export const MAX_ITEMS_PER_DATASET = 110;
+export const MAX_ITEMS_PER_DATASET = +(
+  process.env.MAX_ITEMS_PER_DATASET || 110
+);

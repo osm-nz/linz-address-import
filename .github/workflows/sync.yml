@@ -60,6 +60,8 @@ jobs:
       - name: 🏡 Generate geojson and reports
         run: |
           yarn action
+        env:
+          MAX_ITEMS_PER_DATASET: ${{ secrets.MAX_ITEMS_PER_DATASET }}
 
       - name: ⛅ Upload geojson and reports to CDN
         run: |
