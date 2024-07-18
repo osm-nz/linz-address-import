@@ -20,6 +20,7 @@ export const nzgbNamesTable: Record<string, string> = {
   'Lake Okareka': 'Lake Okareka', // https://gazetteer.linz.govt.nz/place/7385
   Ngahape: 'Ngāhape', // https://gazetteer.linz.govt.nz/place/32282
   Peketa: 'Peketā', // https://gazetteer.linz.govt.nz/place/57309
+  Orakei: 'Ōrākei', // https://gazetteer.linz.govt.nz/place/33996
 
   Opotiki: 'Ōpōtiki', // // only included here for unit tests. It's correct in the LINZ dataset
 };
