@@ -34,7 +34,9 @@ export function processWithRef(
     : 0;
 
   const houseOk = linzAddr.housenumber === osmAddr.housenumber;
-  const altHouseOk = linzAddr.housenumberAlt === osmAddr.housenumberAlt;
+  const altHouseOk = linzAddr.housenumberAlt
+    ? linzAddr.housenumberAlt === osmAddr.housenumberAlt
+    : true; // if LINZ has no data, respect the existing tag value in OSM
   const streetOk = linzAddr.street === osmAddr.street;
   const suburbOk = linzSuburb === osmSuburb;
   const townOk = // addr:city is only conflated if the tag already exists

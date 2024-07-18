@@ -894,6 +894,15 @@
     <tag k="ref:linz:address_id" v="70197" />
   </node>
 
+  <!-- unexpected `alt_addr:housenumber` tag -->
+  <node id="198" version="1" changeset="1" lat="-36.9" lon="174.198" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="198A" />
+    <tag k="alt_addr:housenumber" v="1/198" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70198" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />
