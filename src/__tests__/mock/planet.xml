@@ -902,6 +902,31 @@
     <tag k="addr:hamlet" v="Oakleigh" />
     <tag k="ref:linz:address_id" v="70198" />
   </node>
+  
+  <!-- 2 addresses mapped separately, but one has `linz:stack=yes` -->
+  <node id="199" version="1" changeset="1" lat="-36.9" lon="174.199" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="199A" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70199" />
+    <tag k="linz:stack" v="yes" />
+  </node>
+  <node id="200" version="1" changeset="1" lat="-36.9" lon="174.200" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="199B" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70200" />
+  </node>
+
+  <!-- 2 addresses stacked into 1, because someone request it with `linz:stack=yes` -->
+  <node id="201" version="1" changeset="1" lat="-36.9" lon="174.201" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="201" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="stack(70201-70202)" />
+    <tag k="building:flats" v="2" />
+    <tag k="linz:stack" v="yes" />
+  </node>
 
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">

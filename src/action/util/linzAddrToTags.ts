@@ -13,6 +13,7 @@ export function linzAddrToTags(linzId: string, addr: LinzAddr): Tags {
     'building:flats': addr.flatCount?.toString(),
     level: addr.level,
     'ref:linz:address_id': linzId,
+    'linz:stack': addr.isManualStackRequest ? 'yes' : undefined,
   };
 }
 
@@ -30,6 +31,7 @@ export function deleteAllAddressTags(): Tags {
     'addr:type': '🗑️',
     'building:flats': '🗑️',
     // level is deliberately not included
+    'linz:stack': '🗑️',
     'ref:linz:address_id': '🗑️',
     check_date: '🗑️',
   };

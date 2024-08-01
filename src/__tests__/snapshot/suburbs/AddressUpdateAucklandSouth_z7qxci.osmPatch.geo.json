@@ -217,6 +217,7 @@
         "addr:postcode": "🗑️",
         "addr:type": "🗑️",
         "building:flats": "🗑️",
+        "linz:stack": "🗑️",
         "ref:linz:address_id": "🗑️",
         "check_date": "🗑️"
       }

@@ -67,7 +67,8 @@ function osmToJson(): Promise<OSMData> {
           };
           if (isWater) object.water = true;
           if (suburbU && suburbR) object.doubleSuburb = true;
-          if (item.tags['linz:stack'] === 'no') object.shouldUnstack = true;
+          if (item.tags['linz:stack'] === 'yes') object.stackRequest = true;
+          if (item.tags['linz:stack'] === 'no') object.stackRequest = false;
 
           const linzId = item.tags['ref:linz:address_id'];
           if (linzId) {

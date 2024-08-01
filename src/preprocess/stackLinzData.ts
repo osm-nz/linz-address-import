@@ -94,12 +94,17 @@ async function mergeIntoStacks(): Promise<LinzData> {
     }
 
     const shouldBeUnstacked =
-      osmData.linz[stackId]?.shouldUnstack ||
-      osmData.linz[singleLinzId]?.shouldUnstack;
+      osmData.linz[stackId]?.stackRequest === false ||
+      osmData.linz[singleLinzId]?.stackRequest === false;
+
+    const shouldBeStacked =
+      osmData.linz[stackId]?.stackRequest ||
+      osmData.linz[singleLinzId]?.stackRequest ||
+      addrIds.some(([addrId]) => osmData.linz[addrId]?.stackRequest);
 
     /** check if any of the existing nodes (if any) have `linz:stack=no` */
     const shouldPreserveSeperateNodes = addrIds.some(
-      ([addrId]) => osmData.linz[addrId]?.shouldUnstack,
+      ([addrId]) => osmData.linz[addrId]?.stackRequest === false,
     );
 
     // >2 because maybe someone got confused with the IDs and mapped a single one.
@@ -126,13 +131,19 @@ async function mergeIntoStacks(): Promise<LinzData> {
     const stackThreshold =
       stackTresholdQuery([lng, lat])?.threshold ?? STACK_THRESHOLD;
 
-    if (addrIds.length > stackThreshold && flatsMostlyStacked) {
+    if (
+      (addrIds.length > stackThreshold && flatsMostlyStacked) ||
+      shouldBeStacked
+    ) {
       const housenumberMsb = houseKey.split('|')[0];
 
       if (shouldBeUnstacked) {
         // a mapper has requested that this stack be split up into separate addresses
         // so we do nothing.
-      } else if (alreadyMappedSeparatelyInOsm || shouldPreserveSeperateNodes) {
+      } else if (
+        (alreadyMappedSeparatelyInOsm || shouldPreserveSeperateNodes) &&
+        !shouldBeStacked
+      ) {
         // the 2017 import generated a lot of these, so we won't suggest undoing all
         // that hard work. But we generate a diagnostic for them.
         for (const [linzId] of inOsm) {
@@ -156,6 +167,10 @@ async function mergeIntoStacks(): Promise<LinzData> {
           housenumber: housenumberMsb, // replace `62A` or `Flat 1, 62` with `62`
           flatCount: addrIds.length,
         };
+        // we need to preserve linz:stack=yes, otherwise it will
+        // be unstacked next time the script runs.
+        if (shouldBeStacked) stackedAddr.isManualStackRequest = true;
+
         delete stackedAddr.level; // because the stack will have multiple levels merged together
 
         // delete the individual addresses

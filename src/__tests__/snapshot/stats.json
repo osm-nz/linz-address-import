@@ -1,14 +1,14 @@
 {
   "date": "MOCK",
   "count": {
-    "PERFECT": 20,
+    "PERFECT": 21,
     "EXISTS_BUT_WRONG_DATA": 34,
     "EXISTS_BUT_NO_LINZ_REF": 5,
     "MULTIPLE_EXIST_BUT_NO_LINZ_REF": 1,
     "MULTIPLE_EXIST": 4,
     "EXISTS_BUT_LOCATION_WRONG": 2,
-    "TOTALLY_MISSING": 33,
-    "NEEDS_DELETE": 13,
+    "TOTALLY_MISSING": 34,
+    "NEEDS_DELETE": 15,
     "NEEDS_DELETE_NON_TRIVIAL": 3,
     "CORRUPT": 5,
     "LINZ_REF_CHANGED": 4,
@@ -16,5 +16,5 @@
     "NEEDS_DELETE_ON_BUILDING": 1,
     "REPLACED_BY_BUILDING": 1
   },
-  "total": 130
+  "total": 134
 }

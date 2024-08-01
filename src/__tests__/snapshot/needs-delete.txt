@@ -5,6 +5,8 @@ Oakleigh
 70105		needs deleting		https://osm.org/node/105
 70106		needs deleting		https://osm.org/node/106
 70107		needs deleting		https://osm.org/node/107
+70199		needs deleting		https://osm.org/node/199
+70200		needs deleting		https://osm.org/node/200
 oof		needs deleting		https://osm.org/node/22
 stack(70069-70071)		needs deleting		https://osm.org/node/69
 stack(70076-70078)		needs deleting		https://osm.org/node/76

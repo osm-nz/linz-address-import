@@ -103,6 +103,12 @@
       "value": "no",
       "object_types": ["node", "way", "area", "relation"],
       "description": "Temporarily added to street addresses in New Zealand if a mapper would like the script to unstack the address when it runs next, or preserve existing unstacked addresses"
+    },
+    {
+      "key": "linz:stack",
+      "value": "yes",
+      "object_types": ["node", "way", "area", "relation"],
+      "description": "Added to street addresses in New Zealand if a mapper would like the script to stack multiple flats into a single address node"
     }
   ]
 }

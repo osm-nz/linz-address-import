@@ -36,7 +36,7 @@ export function matchAlternativeAddrs(
   // if any have linz:stack=no, then abort. That means
   // someone deliberately doesn't want these to be consolidated.
   const anyHavePerserveTag = addrIds.some(
-    ([addrId]) => osmData.linz[addrId]?.shouldUnstack,
+    ([addrId]) => osmData.linz[addrId]?.stackRequest === false,
   );
   if (anyHavePerserveTag) return undefined;
 

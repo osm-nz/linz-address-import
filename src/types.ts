@@ -23,6 +23,11 @@ export type LinzAddr = Coords & {
   flatCount?: number;
   /** for non-stacked addresses, this is the building level of this flat */
   level: string | undefined;
+  /**
+   * whether this stack was generated purely because someone requested
+   * it (using the tag `linz:stack=yes`)
+   */
+  isManualStackRequest?: true;
 };
 export type LinzData = {
   [linzId: string]: LinzAddr;
@@ -52,8 +57,11 @@ export type OsmAddr = Coords & {
   isUnRefedBuilding?: true;
   /** for stacked addresse, this is the number of addresses in this stack */
   flatCount?: number;
-  /** true if someone has added the tag `linz:stack=no` to the address */
-  shouldUnstack?: true;
+  /**
+   * mappers can request that the system stacks or unstacks
+   * certain addresses using the tag `linz:stack=yes/no`
+   */
+  stackRequest?: boolean;
   /** value of the `level` tag */
   level: string | undefined;
 };

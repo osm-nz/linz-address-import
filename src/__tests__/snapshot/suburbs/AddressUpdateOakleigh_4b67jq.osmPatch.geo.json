@@ -1602,6 +1602,25 @@
     },
     {
       "type": "Feature",
+      "id": "stack(70199-70200)",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.199,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "199",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "building:flats": "2",
+        "ref:linz:address_id": "stack(70199-70200)",
+        "linz:stack": "yes"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "n14",
       "geometry": {
         "type": "Polygon",
@@ -1788,6 +1807,82 @@
         "addr:street": "Example Street",
         "addr:hamlet": "Oakleigh",
         "ref:linz:address_id": "70107"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n199",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.19910000000002,
+              -36.8999
+            ],
+            [
+              174.19910000000002,
+              -36.90010000000001
+            ],
+            [
+              174.1989,
+              -36.90010000000001
+            ],
+            [
+              174.1989,
+              -36.8999
+            ],
+            [
+              174.19910000000002,
+              -36.8999
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "delete",
+        "addr:housenumber": "199A",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70199"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n200",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.20010000000002,
+              -36.8999
+            ],
+            [
+              174.20010000000002,
+              -36.90010000000001
+            ],
+            [
+              174.1999,
+              -36.90010000000001
+            ],
+            [
+              174.1999,
+              -36.8999
+            ],
+            [
+              174.20010000000002,
+              -36.8999
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "delete",
+        "addr:housenumber": "199B",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70200"
       }
     },
     {
