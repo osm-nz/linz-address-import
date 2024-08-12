@@ -1,8 +1,15 @@
-# osmPatchFile format
+# osmPatch File format
 
-This tool generates `osmPatchFile`s, which are geojson files that [our fork of RapiD](https://github.com/osm-nz/RapiD) uses to `add`, `edit`, `move`, or `delete` OSM feaures.
+This tool generates _osmPatch_ files, which are GeoJson files that can be loaded into an OSM editor, to `add`, `edit`, `move`, or `delete` OSM feaures.
 
-Other tools can generate files in the same format. Users can add their own osmPatchFile files in the editor.
+_osmPatch_ is designed to be simpler than the _osmChange_ format:
+
+- You only specify the tags that you want to edit, which prevents conflict errors.
+- You can specify the geometry using GeoJson, instead of raw nodes/ways/relations.
+
+As an analogy, an _osmChange_ file is equivilant to full dump of a file, whereas _osmPatch_ is more like a git patch file; it only specifies the lines that should be changed.
+
+A full example is shown below:
 
 ```jsonc
 {
@@ -11,7 +18,7 @@ Other tools can generate files in the same format. Users can add their own osmPa
     // 1️⃣ to add a feature, do not specify the `__action` property
     {
       "type": "Feature",
-      "id": "abc", // for create, you don't specify an OSM ID, so this ID is just any unique string.
+      "id": "n-1", // for create, you don't specify an OSM ID, so this ID is just any unique string.
       "geometry": {
         "type": "Point",
         "coordinates": [175.103, -36.9]
@@ -99,7 +106,7 @@ Other tools can generate files in the same format. Users can add their own osmPa
     //    standard geojson geometries.
     {
       "type": "Feature",
-      "id": "abc", // for create, you don't specify an OSM ID, so this ID is just any unique string.
+      "id": "r-1", // for create, you don't specify an OSM ID, so this ID is just any unique string.
       "geometry": {
         "type": "GeometryCollection",
         "geometries": []
@@ -122,7 +129,7 @@ Other tools can generate files in the same format. Users can add their own osmPa
     //    standard geojson geometries.
     {
       "type": "Feature",
-      "id": "abc", // for create, you don't specify an OSM ID, so this ID is just any unique string.
+      "id": "w125", // required - the OSM id of the feature
       "geometry": {
         "type": "GeometryCollection",
         "geometries": []
@@ -168,6 +175,8 @@ However, the tags are a **diff**. This means:
     <tr>
       <th>Geometry</th>
       <th>Operation</th>
+      <th><a href="https://kyle.kiwi/iD">Fork of iD</a><sup><a href=
+      "https://github.com/openstreetmap/iD/pull/10407">[1]</a></sup></th>
       <th><a href="https://osm-nz.github.io/RapiD">Fork of RapiD</a></th>
       <th><a href="https://osm-nz.github.io/#/upload">Upload Wizard</a></th>
     </tr>
@@ -178,9 +187,11 @@ However, the tags are a **diff**. This means:
       <td>Create</td>
       <td>✅</td>
       <td>✅</td>
+      <td>✅</td>
     </tr>
     <tr>
       <td>Edit Tags</td>
+      <td>✅</td>
       <td>✅</td>
       <td>✅</td>
     </tr>
@@ -188,9 +199,11 @@ However, the tags are a **diff**. This means:
       <td>Edit Geometry</td>
       <td>✅</td>
       <td>✅</td>
+      <td>✅</td>
     </tr>
     <tr>
       <td>Delete</td>
+      <td>✅</td>
       <td>✅</td>
       <td>✅</td>
     </tr>
@@ -199,19 +212,23 @@ However, the tags are a **diff**. This means:
       <td>Create</td>
       <td>✅</td>
       <td>✅</td>
+      <td>✅</td>
     </tr>
     <tr>
       <td>Edit Tags</td>
       <td>✅</td>
       <td>✅</td>
+      <td>✅</td>
     </tr>
     <tr>
       <td>Edit Geometry</td>
+      <td>✅</td>
       <td>❌</td>
       <td>✅</td>
     </tr>
     <tr>
       <td>Delete</td>
+      <td>✅</td>
       <td>✅</td>
       <td>✅</td>
     </tr>
@@ -219,25 +236,30 @@ However, the tags are a **diff**. This means:
       <td rowspan=5>Polygon<br /><em>(way or <code>type=multipolygon</code>)</em></td>
       <td>Create</td>
       <td>✅</td>
-      <td>❌</td>
+      <td>✅</td>
+      <td>✅</td>
     </tr>
     <tr>
       <td>Edit Tags</td>
       <td>✅</td>
       <td>✅</td>
+      <td>✅</td>
     </tr>
     <tr>
       <td>Edit Geometry</td>
+      <td>✅</td>
       <td>❌</td>
       <td>✅</td>
     </tr>
     <tr>
       <td>Edit Members</td>
+      <td>✅</td>
       <td>❌</td>
       <td>✅</td>
     </tr>
     <tr>
       <td>Delete</td>
+      <td>✅</td>
       <td>✅</td>
       <td>✅</td>
     </tr>
@@ -245,83 +267,106 @@ However, the tags are a **diff**. This means:
       <td rowspan=4>MultiPolygon<br /><em>(<code>type=multipolygon</code>)</em></td>
       <td>Create</td>
       <td>✅</td>
-      <td>❌</td>
+      <td>✅</td>
+      <td>✅</td>
     </tr>
     <tr>
       <td>Edit Tags</td>
       <td>✅</td>
       <td>✅</td>
+      <td>✅</td>
     </tr>
     <tr>
       <td>Edit Members</td>
+      <td>✅</td>
       <td>❌</td>
       <td>✅</td>
     </tr>
     <tr>
       <td>Delete</td>
+      <td>✅</td>
       <td>✅</td>
       <td>✅</td>
     </tr>
     <tr>
       <td rowspan=4>MultiLineString<br /><em>(<code>type=multilinestring</code>)</em></td>
       <td>Create</td>
+      <td>✅</td>
       <td>❌</td>
       <td>✅</td>
     </tr>
     <tr>
       <td>Edit Tags</td>
+      <td>✅</td>
       <td>❌</td>
       <td>✅</td>
     </tr>
     <tr>
       <td>Edit Members</td>
+      <td>✅</td>
       <td>❌</td>
       <td>✅</td>
     </tr>
     <tr>
       <td>Delete</td>
+      <td>✅</td>
       <td>❌</td>
       <td>✅</td>
     </tr>
     <tr>
       <td rowspan=4>MultiPoint<br /><em>(<code>type=site</code>)</em></td>
       <td>Create</td>
+      <td>✅</td>
       <td>❌</td>
       <td>✅</td>
     </tr>
     <tr>
       <td>Edit Tags</td>
+      <td>✅</td>
       <td>❌</td>
       <td>✅</td>
     </tr>
     <tr>
       <td>Edit Members</td>
+      <td>✅</td>
       <td>❌</td>
       <td>✅</td>
     </tr>
     <tr>
       <td>Delete</td>
+      <td>✅</td>
       <td>❌</td>
       <td>✅</td>
     </tr>
     <tr>
       <td rowspan=4>GeometryCollection<br /><em>(<code>type=*</code>)</em></td>
       <td>Create</td>
+      <td>✅</td>
       <td>❌</td>
       <td>✅</td>
     </tr>
     <tr>
       <td>Edit Tags</td>
+      <td>✅</td>
       <td>❌</td>
       <td>✅</td>
     </tr>
     <tr>
       <td>Edit Members</td>
+      <td>✅</td>
       <td>❌</td>
       <td>✅</td>
     </tr>
     <tr>
       <td>Delete</td>
+      <td>✅</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Changeset Tags</td>
+      <td></td>
+      <td>✅</td>
       <td>❌</td>
       <td>✅</td>
     </tr>
