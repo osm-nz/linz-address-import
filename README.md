@@ -35,8 +35,8 @@ If you want to use the code to manually run the process, follow these steps:
 1. Clone this repository
 2. Download [nodejs v18](https://nodejs.org) or later
 3. Generate an API from https://data.linz.govt.nz/my/api with "Full access to Exports Access"
-   a. Then create a file called `.env` in this folder, and add `LINZ_API_KEY=XXXXX`, where `XXXXX` is the token you just generated.
-   b. Then repeat this step for https://datafinder.stats.govt.nz/my/api and save it as `STATS_NZ_API_KEY`. This is required for the rural urban boundaries
+   1. Then create a file called `.env` in this folder, and add `LINZ_API_KEY=XXXXX`, where `XXXXX` is the token you just generated.
+   2. Then repeat this step for https://datafinder.stats.govt.nz/my/api and save it as `STATS_NZ_API_KEY`. This is required for the rural urban boundaries
 4. Run `npm install`
 5. Run `npm run request-linz-export` to request an export from the LDS, and wait for it to be generated
 6. Run `npm run download-linz` to download the requested export
