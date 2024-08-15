@@ -3,7 +3,7 @@ import { SEAMARK_TYPE } from './const';
 export type IHOTypes = keyof typeof SEAMARK_TYPE;
 export type OSMSeamarkTypes = (typeof SEAMARK_TYPE)[IHOTypes];
 
-/* eslint-disable @typescript-eslint/ban-types -- {} is okay */
+/* eslint-disable @typescript-eslint/no-empty-object-type -- it's used in a union so it's safe */
 type _SeamarkTypes = {
   // fields in _generic don't need to be specified in every section
   _generic: {
@@ -241,7 +241,6 @@ type _SeamarkTypes = {
     prodct?: string;
   };
 };
-/* eslint-enable @typescript-eslint/ban-types */
 
 // if this fails, one of the keys in the map above is invalid
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

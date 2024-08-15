@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 //
 // copied from https://npm.im/@id-sdk/vector since that package is ESM-only :(
 //
@@ -44,7 +45,7 @@ export function vecLength(a: Vec2, b?: Vec2): number {
   b ||= [0, 0];
   const x: number = a[0] - b[0];
   const y: number = a[1] - b[1];
-  return Math.sqrt(x * x + y * y);
+  return Math.hypot(x, y);
 }
 
 // length of vector raised to the power two
@@ -54,7 +55,7 @@ export function vecLengthSquare(a: Vec2, b: Vec2 = [0, 0]): number {
 
 // Normalize a vector (return a unit vector)
 export function vecNormalize(a: Vec2): Vec2 {
-  const length: number = Math.sqrt(a[0] * a[0] + a[1] * a[1]);
+  const length: number = Math.hypot(a[0], a[1]);
   if (length !== 0) {
     return vecScale(a, 1 / length);
   }

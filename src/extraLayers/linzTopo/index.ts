@@ -2107,8 +2107,8 @@ export async function linzTopo(): Promise<void> {
           data.use_type === 'Public Hospital'
             ? 'public'
             : data.use_type === 'NGO Hospital'
-            ? 'private'
-            : undefined,
+              ? 'private'
+              : undefined,
         beds: data.estimated_occupancy,
         'healthcare:speciality': data.use_subtype
           ?.replace(/, /g, ';')
