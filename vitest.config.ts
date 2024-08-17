@@ -6,6 +6,7 @@ export default defineConfig({
     testTimeout: 15_000,
     globals: true,
     coverage: {
+      reporter: ['lcov', 'html'],
       exclude: [
         '*.config.*',
         'src/download',
