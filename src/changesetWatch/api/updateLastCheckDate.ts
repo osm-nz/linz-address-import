@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { spreadsheetId } from '../../common/index.js';
 import { googleAuth } from './googleAuth.js';
 

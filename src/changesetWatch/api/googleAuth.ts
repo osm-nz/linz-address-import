@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 /** cache the access_token while this script is running */
 let cache: string;
 
@@ -25,7 +23,7 @@ export async function googleAuth(): Promise<string> {
         grant_type: 'refresh_token',
       }),
     },
-  ).then((r) => r.json());
+  ).then((r) => r.json() as Promise<{ access_token: string }>);
 
   cache = access_token;
 

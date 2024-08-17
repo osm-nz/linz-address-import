@@ -1,14 +1,12 @@
-import fetch from 'node-fetch';
 import { updateIgnoreList } from '../updateIgnoreList.js';
 
-vi.mock('node-fetch');
 vi.mock('../googleAuth', () => ({
   googleAuth: async () => 'MY_ACCESS_TOKEN',
 }));
 
 describe('updateIgnoreList', () => {
   beforeEach(() => {
-    m(fetch).mockResolvedValue({ json: async () => 0 });
+    vi.spyOn(global, 'fetch').mockResolvedValue(<never>{ json: async () => 0 });
   });
 
   it('does nothing if you pass it an empty array', async () => {

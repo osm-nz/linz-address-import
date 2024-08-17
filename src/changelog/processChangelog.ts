@@ -1,6 +1,6 @@
 import { createReadStream, promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import fetch from 'node-fetch';
+import { Readable } from 'node:stream';
 import csv from 'csv-parser';
 import type { ChangelogJson, LinzChangelog } from '../types.js';
 import { LINZ_LAYER } from '../common/const.js';
@@ -60,7 +60,9 @@ async function processLinzChangelogCsv(
     ? createReadStream(join(__dirname, '../__tests__/mock/linz-changelog.csv'))
     : await fetch(
         `https://data.linz.govt.nz/services;key=${LINZ_API_KEY}/wfs/layer-${LINZ_LAYER}-changeset?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&typeNames=layer-${LINZ_LAYER}-changeset&viewparams=from:${from};to:${to}&outputFormat=csv`,
-      ).then((r) => r.body!);
+      )
+        .then((r) => r.body!)
+        .then(Readable.fromWeb);
 
   return new Promise((resolve, reject) => {
     const out: ChangelogJson = {

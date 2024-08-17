@@ -1,6 +1,6 @@
 import { createReadStream } from 'node:fs';
 import { join } from 'node:path';
-import fetch from 'node-fetch';
+import { Readable } from 'node:stream';
 import csv from 'csv-parser';
 import { type IgnoreFile, mock } from '../preprocess/const.js';
 
@@ -14,7 +14,9 @@ export async function fetchIgnoreList(
     ? createReadStream(join(__dirname, '../__tests__/mock/ignore-list.csv'))
     : await fetch(
         `https://docs.google.com/spreadsheets/d/${spreadsheetId}/export?format=csv&gid=${gId}`,
-      ).then((r) => r.body!);
+      )
+        .then((r) => r.body!)
+        .then(Readable.fromWeb);
 
   return new Promise((resolve, reject) => {
     /** list of LINZ refs */

@@ -1,14 +1,11 @@
-import fetch from 'node-fetch';
 import { googleAuth } from '../googleAuth.js';
-
-vi.mock('node-fetch');
 
 describe('updateIgnoreList', () => {
   beforeEach(() => {
     process.env.GOOGLE_REFRESH_TOKEN = 'RRR';
     process.env.GOOGLE_CLIENT_ID = 'III';
     process.env.GOOGLE_CLIENT_SECRET = 'SSS';
-    m(fetch).mockResolvedValue({
+    vi.spyOn(global, 'fetch').mockResolvedValue(<never>{
       json: async () => ({ access_token: 'ABC123' }),
     });
   });

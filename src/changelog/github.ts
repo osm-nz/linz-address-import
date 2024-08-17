@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import type { GH } from '../types.js';
 import type { Diags } from './generateMd.js';
 
@@ -37,7 +36,7 @@ export async function addComment(body: string): Promise<void> {
     method: 'post',
     headers: { Accept: 'application/vnd.github.v3+json' },
     body: JSON.stringify({ body }),
-  }).then((r) => r.json());
+  }).then((r) => r.json() as Promise<{ url: string }>);
 
   if (!result.url) {
     throw new Error(`Failed to leave comment: ${JSON.stringify(result)}`);

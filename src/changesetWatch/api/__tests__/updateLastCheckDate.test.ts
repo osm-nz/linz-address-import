@@ -1,14 +1,12 @@
-import fetch from 'node-fetch';
 import { updateLastCheckDate } from '../updateLastCheckDate.js';
 
-vi.mock('node-fetch');
 vi.mock('../googleAuth', () => ({
   googleAuth: async () => 'MY_ACCESS_TOKEN',
 }));
 
 describe('updateLastCheckDate', () => {
   it('calls the google API correctly', async () => {
-    m(fetch).mockResolvedValue({ json: async () => 0 });
+    vi.spyOn(global, 'fetch').mockResolvedValue(<never>{ json: async () => 0 });
 
     vi.useFakeTimers().setSystemTime(new Date('2021-12-25').getTime());
 
