@@ -1,14 +1,19 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import {
+import type {
   GeoJsonFeature,
   HandlerReturn,
   LinzAddr,
   OsmAddr,
   Status,
   StatusReport,
-} from '../../types';
-import { createDiamond, createSquare, outFolder, toLink } from '../util';
+} from '../../types.js';
+import {
+  createDiamond,
+  createSquare,
+  outFolder,
+  toLink,
+} from '../util/index.js';
 
 const toKey = (addr: LinzAddr | OsmAddr) =>
   `${addr.housenumber} ${addr.street}${addr.suburb?.[0]}${addr.suburb?.[1]}`;

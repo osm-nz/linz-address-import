@@ -1,13 +1,18 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import {
+import type {
   GeoJsonFeature,
   HandlerReturn,
   OsmAddr,
   Status,
   StatusReport,
-} from '../../types';
-import { createDiamond, createSquare, outFolder, toLink } from '../util';
+} from '../../types.js';
+import {
+  createDiamond,
+  createSquare,
+  outFolder,
+  toLink,
+} from '../util/index.js';
 
 export async function handleReplacedByBuilding(
   array: StatusReport[Status.REPLACED_BY_BUILDING],

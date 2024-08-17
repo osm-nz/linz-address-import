@@ -1,4 +1,4 @@
-import { BBox, GeoJsonFeature } from '../../types';
+import type { BBox, GeoJsonFeature } from '../../types.js';
 
 export function calcBBox(features: GeoJsonFeature[]): BBox {
   const bbox: BBox = {

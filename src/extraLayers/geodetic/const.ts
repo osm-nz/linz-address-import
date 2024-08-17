@@ -1,4 +1,4 @@
-import { OsmId } from '../../types';
+import type { OsmId } from '../../types.js';
 
 export const MAP = { node: 'n', way: 'w', relation: 'r' };
 

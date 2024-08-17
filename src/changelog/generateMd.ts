@@ -1,5 +1,5 @@
-import { nzgbNamesTable as nzgb } from '../common/nzgbFile';
-import { ChangelogJson } from '../types';
+import { nzgbNamesTable as nzgb } from '../common/nzgbFile.js';
+import type { ChangelogJson } from '../types.js';
 
 /** this gets stringified and stuck in the issue comment */
 export type Diags = {

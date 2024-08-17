@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
-import { spreadsheetId } from '../../common';
-import { googleAuth } from './googleAuth';
+import { spreadsheetId } from '../../common/index.js';
+import { googleAuth } from './googleAuth.js';
 
 export async function updateLastCheckDate(
   previousLastCheck: string,

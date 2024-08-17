@@ -1,15 +1,15 @@
 import {
-  Changeset,
+  type Changeset,
   configure,
   getChangesetDiff,
   listChangesets,
 } from 'osm-api';
 import { config as dotenv } from 'dotenv';
-import { timeout, fetchIgnoreList } from '../common';
-import { watchArea } from './constants';
-import { updateIgnoreList, updateLastCheckDate } from './api';
-import { CSWithDiff, patchOsmChange } from './patchOsmChange';
-import { checkDiffsForAddress } from './checkDiffsForAddress';
+import { fetchIgnoreList, timeout } from '../common/index.js';
+import { watchArea } from './constants.js';
+import { updateIgnoreList, updateLastCheckDate } from './api/index.js';
+import { type CSWithDiff, patchOsmChange } from './patchOsmChange.js';
+import { checkDiffsForAddress } from './checkDiffsForAddress.js';
 
 type ChangesetWithRetried = Changeset & { hasRetried?: true };
 

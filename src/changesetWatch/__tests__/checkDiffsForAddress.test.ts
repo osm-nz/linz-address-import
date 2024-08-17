@@ -1,5 +1,5 @@
-import { Changeset, OsmChange } from 'osm-api';
-import { checkDiffsForAddress } from '../checkDiffsForAddress';
+import type { Changeset, OsmChange } from 'osm-api';
+import { checkDiffsForAddress } from '../checkDiffsForAddress.js';
 
 const cs: Changeset = {
   id: 123456,

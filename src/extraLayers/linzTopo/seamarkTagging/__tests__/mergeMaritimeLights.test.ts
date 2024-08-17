@@ -1,5 +1,5 @@
-import { GeoJsonFeature } from '../../../../types';
-import { mergeMaritimeLights } from '../mergeMaritimeLights';
+import type { GeoJsonFeature } from '../../../../types.js';
+import { mergeMaritimeLights } from '../mergeMaritimeLights.js';
 
 describe('mergeMaritimeLights', () => {
   it('can merge lights', () => {

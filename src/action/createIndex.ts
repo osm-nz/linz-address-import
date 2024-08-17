@@ -1,8 +1,8 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import { GeoJson, HandlerReturnWithBBox } from '../types';
-import { hash } from '../common';
-import { calcCount, CDN_URL, mock, suburbsFolder } from './util';
+import type { GeoJson, HandlerReturnWithBBox } from '../types.js';
+import { hash } from '../common/index.js';
+import { CDN_URL, calcCount, mock, suburbsFolder } from './util/index.js';
 
 function toId(suburb: string) {
   // macrons are url safe

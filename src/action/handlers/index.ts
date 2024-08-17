@@ -1,17 +1,17 @@
-import { HandlerReturn, Status, StatusReport } from '../../types';
-import { existsButDataWrong } from './existsButDataWrong';
-import { handleCorrupted } from './handleCorrupted';
-import { handleCouldBeStacked } from './handleCouldBeStacked';
-import { handleDeleted } from './handleDeleted';
-import { handleDeletedOnPOI } from './handleDeletedOnPOI';
-import { handleDeletedOnBuilding } from './handleDeletedOnBuilding';
-import { handleDuplicateLinzRef } from './handleDuplicateLinzRef';
-import { handleExistsButNoLinzRef } from './handleExistsButNoLinzRef';
-import { handleLinzRefChanged } from './handleLinzRefChanged';
-import { handleLocationWrong } from './handleLocationWrong';
-import { handleMultipleExistButNoLinzRef } from './handleMultipleExistButNoLinzRef';
-import { handleTotallyMissing } from './handleTotallyMissing';
-import { handleReplacedByBuilding } from './handleReplacedByBuilding';
+import { type HandlerReturn, Status, type StatusReport } from '../../types.js';
+import { existsButDataWrong } from './existsButDataWrong.js';
+import { handleCorrupted } from './handleCorrupted.js';
+import { handleCouldBeStacked } from './handleCouldBeStacked.js';
+import { handleDeleted } from './handleDeleted.js';
+import { handleDeletedOnPOI } from './handleDeletedOnPOI.js';
+import { handleDeletedOnBuilding } from './handleDeletedOnBuilding.js';
+import { handleDuplicateLinzRef } from './handleDuplicateLinzRef.js';
+import { handleExistsButNoLinzRef } from './handleExistsButNoLinzRef.js';
+import { handleLinzRefChanged } from './handleLinzRefChanged.js';
+import { handleLocationWrong } from './handleLocationWrong.js';
+import { handleMultipleExistButNoLinzRef } from './handleMultipleExistButNoLinzRef.js';
+import { handleTotallyMissing } from './handleTotallyMissing.js';
+import { handleReplacedByBuilding } from './handleReplacedByBuilding.js';
 
 export const handlers: {
   [T in Status]: (

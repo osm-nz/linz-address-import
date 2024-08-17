@@ -1,14 +1,14 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import {
+import type {
   Confidence,
   GeoJsonFeature,
   HandlerReturn,
   OsmAddr,
   Status,
   StatusReport,
-} from '../../types';
-import { createDiamond, outFolder, toLink } from '../util';
+} from '../../types.js';
+import { createDiamond, outFolder, toLink } from '../util/index.js';
 
 export async function handleExistsButNoLinzRef(
   array: StatusReport[Status.EXISTS_BUT_NO_LINZ_REF],

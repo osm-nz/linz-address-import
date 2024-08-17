@@ -1,13 +1,13 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import {
+import type {
   GeoJsonFeature,
   HandlerReturn,
   OsmAddr,
   Status,
   StatusReport,
-} from '../../types';
-import { createDiamond, outFolder, toLink } from '../util';
+} from '../../types.js';
+import { createDiamond, outFolder, toLink } from '../util/index.js';
 
 export async function handleLinzRefChanged(
   array: StatusReport[Status.LINZ_REF_CHANGED],

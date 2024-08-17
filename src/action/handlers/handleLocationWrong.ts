@@ -1,13 +1,13 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import {
-  Status,
-  StatusReport,
-  HandlerReturn,
-  GeoJsonFeature,
   CheckDate,
-} from '../../types';
-import { outFolder, toLink } from '../util';
+  type GeoJsonFeature,
+  type HandlerReturn,
+  type Status,
+  type StatusReport,
+} from '../../types.js';
+import { outFolder, toLink } from '../util/index.js';
 
 export async function handleLocationWrong(
   array: StatusReport[Status.EXISTS_BUT_LOCATION_WRONG],

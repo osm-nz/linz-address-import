@@ -1,9 +1,14 @@
 import { createReadStream } from 'node:fs';
 import { join } from 'node:path';
 import csv from 'csv-parser';
-import { BBox } from '../../types';
-import { withinBBox } from '../../common';
-import { beaconTypes, LINZCSVItem, LINZMarker, markConditions } from './const';
+import type { BBox } from '../../types.js';
+import { withinBBox } from '../../common/index.js';
+import {
+  type LINZCSVItem,
+  type LINZMarker,
+  beaconTypes,
+  markConditions,
+} from './const.js';
 
 type Structure = false | [string, string?, string?];
 

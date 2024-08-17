@@ -1,10 +1,14 @@
-import { chunk, getFirstCoord, getSector } from '../common';
-import { ExtraLayers, GeoJsonFeature, HandlerReturnWithBBox } from '../types';
-import { calcBBox } from './util';
+import { chunk, getFirstCoord, getSector } from '../common/index.js';
+import type {
+  ExtraLayers,
+  GeoJsonFeature,
+  HandlerReturnWithBBox,
+} from '../types.js';
+import { calcBBox } from './util/index.js';
 import {
   normalizeName,
   splitUntilSmallEnough,
-} from './util/splitUntilSmallEnough';
+} from './util/splitUntilSmallEnough.js';
 
 /**
  * Some rural hamlets exist in two places in NZ, so the bbox is huge.

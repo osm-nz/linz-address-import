@@ -1,13 +1,13 @@
 import {
+  type Vec2,
   vecAdd,
+  vecEqual,
   vecLength,
   vecNormalize,
-  vecScale,
-  vecEqual,
-  vecSubtract,
   vecNormalizedDot,
-  Vec2,
-} from './vector';
+  vecScale,
+  vecSubtract,
+} from './vector.js';
 
 //
 // copied from https://github.com/openstreetmap/iD/blob/develop/modules/geo/ortho.js

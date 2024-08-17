@@ -1,4 +1,4 @@
-import { getSector } from '../getSector';
+import { getSector } from '../getSector.js';
 
 describe('getSector', () => {
   const outerIslands2 = 'Outer Islands (North)'; // hack to stop mass-refornat

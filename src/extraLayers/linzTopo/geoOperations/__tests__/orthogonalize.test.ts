@@ -1,5 +1,5 @@
-import { Coord, GeoJson } from '../../../../types';
-import { orthogonalize } from '../orthogonalize';
+import type { Coord, GeoJson } from '../../../../types.js';
+import { orthogonalize } from '../orthogonalize.js';
 import _testCases from './orthogonalize.geo.json';
 
 const testCases = _testCases as unknown as GeoJson;

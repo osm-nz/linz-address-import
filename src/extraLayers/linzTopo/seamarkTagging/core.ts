@@ -1,7 +1,7 @@
-import { GeoJsonCoords } from '../../../types';
-import { MapCat } from './const';
-import { cleanSource, cleanDate, cleanSequence } from './helpers';
-import { AllSeamarkProps, OSMSeamarkTypes } from './types';
+import type { GeoJsonCoords } from '../../../types.js';
+import { MapCat } from './const.js';
+import { cleanDate, cleanSequence, cleanSource } from './helpers.js';
+import type { AllSeamarkProps, OSMSeamarkTypes } from './types.js';
 
 /**
  * Seamark tags are quiet complicated. This function is used for all seamark layers.

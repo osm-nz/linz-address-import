@@ -1,12 +1,12 @@
-import {
+import type {
   GeoJsonFeature,
   HandlerReturn,
   LinzAddr,
   OsmId,
   Status,
   StatusReport,
-} from '../../types';
-import { createSquare, linzAddrToTags } from '../util';
+} from '../../types.js';
+import { createSquare, linzAddrToTags } from '../util/index.js';
 
 type BySuburb = {
   [suburb: string]: [

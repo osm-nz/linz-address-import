@@ -1,3 +1,3 @@
-export * from './simplify';
-export * from './transformAirstrip';
-export * from './wktToGeoJson';
+export * from './simplify.js';
+export * from './transformAirstrip.js';
+export * from './wktToGeoJson.js';

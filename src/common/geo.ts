@@ -1,4 +1,4 @@
-import { BBox, Coord, GeoJsonCoords } from '../types';
+import type { BBox, Coord, GeoJsonCoords } from '../types.js';
 
 export function withinBBox(bbox: BBox, lat: number, lng: number): boolean {
   return (

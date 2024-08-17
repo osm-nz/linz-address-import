@@ -1,5 +1,5 @@
-import { Coord, GeoJson } from '../../../../types';
-import { simplify } from '../simplify';
+import type { Coord, GeoJson } from '../../../../types.js';
+import { simplify } from '../simplify.js';
 import _testCases from './simplify.geo.json';
 
 const testCases = _testCases as unknown as GeoJson;

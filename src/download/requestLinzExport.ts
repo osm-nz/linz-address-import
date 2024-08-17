@@ -1,5 +1,5 @@
-import { LINZ_LAYER, RURAL_URBAN_LAYER } from '../common/const';
-import { linzApi, statsNzApi } from './util';
+import { LINZ_LAYER, RURAL_URBAN_LAYER } from '../common/const.js';
+import { linzApi, statsNzApi } from './util.js';
 
 async function main() {
   const linzResponse = await linzApi.generateExport(LINZ_LAYER);

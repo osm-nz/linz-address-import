@@ -1,4 +1,4 @@
-import { distanceBetween } from '../geo';
+import { distanceBetween } from '../geo.js';
 
 describe('distanceBetween', () => {
   it.each`

@@ -1,5 +1,5 @@
-import { cleanSequence } from '..';
-import { cleanDate, cleanSource } from '../helpers';
+import { cleanSequence } from '../index.js';
+import { cleanDate, cleanSource } from '../helpers.js';
 
 describe('cleanDate', () => {
   it('correct converts the date format', () => {

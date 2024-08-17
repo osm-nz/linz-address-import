@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
-import { GH } from '../types';
-import { Diags } from './generateMd';
+import type { GH } from '../types.js';
+import type { Diags } from './generateMd.js';
 
 const twoMonthsAgo = new Date();
 twoMonthsAgo.setMonth(new Date().getMonth() - 2);

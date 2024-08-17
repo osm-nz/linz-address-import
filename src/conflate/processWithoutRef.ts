@@ -1,5 +1,5 @@
-import { LinzAddr, OsmAddrWithConfidence, Status } from '../types';
-import { validate } from './helpers/validate';
+import { type LinzAddr, type OsmAddrWithConfidence, Status } from '../types.js';
+import { validate } from './helpers/validate.js';
 
 export function processWithoutRef(
   addressId: string,

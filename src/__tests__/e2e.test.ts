@@ -1,11 +1,11 @@
 import { execSync } from 'node:child_process';
 import { join } from 'node:path';
-import { main as fetchAndSaveAddressIgnoreList } from '../preprocess/fetchAndSaveAddressIgnoreList';
-import { main as preprocessLinz } from '../preprocess/processLinzData';
-import { main as preprocessOsm } from '../preprocess/processOsmData';
-import { main as stackLinzData } from '../preprocess/stackLinzData';
-import { main as conflate } from '../conflate';
-import { main as action } from '../action';
+import { main as fetchAndSaveAddressIgnoreList } from '../preprocess/fetchAndSaveAddressIgnoreList.js';
+import { main as preprocessLinz } from '../preprocess/processLinzData.js';
+import { main as preprocessOsm } from '../preprocess/processOsmData.js';
+import { main as stackLinzData } from '../preprocess/stackLinzData.js';
+import { main as conflate } from '../conflate/index.js';
+import { main as action } from '../action/index.js';
 
 const joinPath = (...files: string[]) => join(__dirname, ...files);
 

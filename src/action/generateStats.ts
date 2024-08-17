@@ -1,7 +1,7 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import { Status, StatusReport, StatsFile } from '../types';
-import { mock, outFolder } from './util';
+import { type StatsFile, Status, type StatusReport } from '../types.js';
+import { mock, outFolder } from './util/index.js';
 
 export async function generateStats(data: StatusReport): Promise<void> {
   const count: Record<string, number> = {};

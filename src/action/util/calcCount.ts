@@ -1,4 +1,4 @@
-import { GeoJsonFeature } from '../../types';
+import type { GeoJsonFeature } from '../../types.js';
 
 export function calcCount(features: GeoJsonFeature[]): {
   count: string;

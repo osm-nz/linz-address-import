@@ -1,10 +1,10 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import pbf2json, { Item } from 'pbf2json';
+import pbf2json, { type Item } from 'pbf2json';
 import through from 'through2';
-import { isChecked } from '../common';
-import { OsmAddr, OSMData, OsmId } from '../types';
-import { mock, osmFile } from './const';
+import { isChecked } from '../common/index.js';
+import type { OSMData, OsmAddr, OsmId } from '../types.js';
+import { mock, osmFile } from './const.js';
 
 const input = join(
   __dirname,

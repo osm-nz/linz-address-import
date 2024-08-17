@@ -1,6 +1,6 @@
 import whichPolygon from 'which-polygon';
-import { Chart, getBestChart } from '..';
-import { GeoJson } from '../../../../types';
+import { type Chart, getBestChart } from '../index.js';
+import type { GeoJson } from '../../../../types.js';
 import mockChartIndex from './mockChartIndex.geo.json';
 
 const query = whichPolygon(mockChartIndex as GeoJson<Chart>);

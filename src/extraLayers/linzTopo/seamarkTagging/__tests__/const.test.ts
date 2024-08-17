@@ -1,4 +1,4 @@
-import { MapCat } from '../const';
+import { MapCat } from '../const.js';
 
 describe('MapCat', () => {
   it('maps seamark properties', () => {

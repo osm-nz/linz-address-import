@@ -1,4 +1,4 @@
-import { Coord } from '../../types';
+import type { Coord } from '../../types.js';
 
 /** radius of the diamond */
 const RADIUS = 0.0002;

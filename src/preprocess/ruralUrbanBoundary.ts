@@ -1,9 +1,9 @@
 import { createReadStream } from 'node:fs';
 import csv from 'csv-parser';
 import type { GeoJson } from 'which-polygon';
-import { wktToGeoJson } from '../extraLayers/linzTopo/geoOperations';
-import { GeoJsonFeature } from '../types';
-import { ruralUrbanCsvFile } from './const';
+import { wktToGeoJson } from '../extraLayers/linzTopo/geoOperations/index.js';
+import type { GeoJsonFeature } from '../types.js';
+import { ruralUrbanCsvFile } from './const.js';
 
 type BoundaryCsv = {
   '\uFEFFWKT': string;

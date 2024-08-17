@@ -1,18 +1,18 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import {
-  OSMData,
-  LinzData,
-  Status,
-  DeletionData,
-  CouldStackData,
   CheckDate,
-} from '../types';
-import { processWithRef } from './processWithRef';
-import { processWithoutRef } from './processWithoutRef';
-import { findPotentialOsmAddresses } from './findPotentialOsmAddresses';
-import { processDuplicates } from './processDuplicates';
-import { processDeletions } from './processDeletions';
+  type CouldStackData,
+  type DeletionData,
+  type LinzData,
+  type OSMData,
+  Status,
+} from '../types.js';
+import { processWithRef } from './processWithRef.js';
+import { processWithoutRef } from './processWithoutRef.js';
+import { findPotentialOsmAddresses } from './findPotentialOsmAddresses.js';
+import { processDuplicates } from './processDuplicates.js';
+import { processDeletions } from './processDeletions.js';
 
 const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
 

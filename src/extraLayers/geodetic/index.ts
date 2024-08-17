@@ -1,8 +1,8 @@
 import { config as dotenv } from 'dotenv';
-import { BBox } from '../../types';
-import { conflate } from './conflate';
-import { readFromPlanet } from './readFromPlanet';
-import { readLINZData } from './readLINZData';
+import type { BBox } from '../../types.js';
+import { conflate } from './conflate.js';
+import { readFromPlanet } from './readFromPlanet.js';
+import { readLINZData } from './readLINZData.js';
 
 dotenv();
 

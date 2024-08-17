@@ -1,5 +1,5 @@
-import whichPolygon, { GeoJson } from 'which-polygon';
-import { ChunkSize, Coords } from '../types';
+import whichPolygon, { type GeoJson } from 'which-polygon';
+import type { ChunkSize, Coords } from '../types.js';
 import sectors from '../../static/sectors.geo.json';
 
 const sectorQuery = whichPolygon(sectors as GeoJson<{ name: string }>);

@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { updateLastCheckDate } from '../updateLastCheckDate';
+import { updateLastCheckDate } from '../updateLastCheckDate.js';
 
 vi.mock('node-fetch');
 vi.mock('../googleAuth', () => ({

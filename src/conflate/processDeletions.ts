@@ -1,10 +1,10 @@
 import {
-  DeletionData,
-  LinzData,
-  OSMData,
+  type DeletionData,
+  type LinzData,
+  type OSMData,
   Status,
-  StatusReport,
-} from '../types';
+  type StatusReport,
+} from '../types.js';
 
 export function processDeletions(
   deletionData: DeletionData,

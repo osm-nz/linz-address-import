@@ -1,16 +1,16 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import whichPolygon from 'which-polygon';
-import { ExtraLayers } from '../../types';
-import { getT50IDsToSkip } from './getT50IDsToSkip';
+import type { ExtraLayers } from '../../types.js';
+import { getT50IDsToSkip } from './getT50IDsToSkip.js';
 import {
-  seamarkTagging,
-  Seamark,
-  readNauticalChartIndexCsv,
+  type Seamark,
   mergeMaritimeLights,
-} from './seamarkTagging';
-import { transformAirstrip } from './geoOperations';
-import { csvToGeoJsonFactory } from './_specialLinzLayers';
+  readNauticalChartIndexCsv,
+  seamarkTagging,
+} from './seamarkTagging/index.js';
+import { transformAirstrip } from './geoOperations/index.js';
+import { csvToGeoJsonFactory } from './_specialLinzLayers.js';
 
 const TODAY = new Date();
 

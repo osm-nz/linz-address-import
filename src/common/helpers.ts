@@ -1,4 +1,4 @@
-import { CheckDate } from '../types';
+import { CheckDate } from '../types.js';
 
 /** number of years before we revisit a feature with check_date */
 const CHECK_DATE_THRESHOLD_YEARS = 4;

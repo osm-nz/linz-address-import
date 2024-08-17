@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { updateIgnoreList } from '../updateIgnoreList';
+import { updateIgnoreList } from '../updateIgnoreList.js';
 
 vi.mock('node-fetch');
 vi.mock('../googleAuth', () => ({

@@ -1,10 +1,10 @@
 import { createReadStream } from 'node:fs';
 import { join } from 'node:path';
 import csv from 'csv-parser';
-import { Query } from 'which-polygon';
-import { GeoJson, GeoJsonFeature } from '../../../types';
-import { wktToGeoJson } from '../geoOperations';
-import { fixChartName } from './helpers';
+import type { Query } from 'which-polygon';
+import type { GeoJson, GeoJsonFeature } from '../../../types.js';
+import { wktToGeoJson } from '../geoOperations/index.js';
+import { fixChartName } from './helpers.js';
 
 const filePath = join(
   __dirname,

@@ -1,7 +1,7 @@
 import type { OsmFeature } from 'osm-api';
-import { Tags } from '../types';
-import type { IgnoredAddr } from './api';
-import { CSWithDiff } from './patchOsmChange';
+import type { Tags } from '../types.js';
+import type { IgnoredAddr } from './api/index.js';
+import type { CSWithDiff } from './patchOsmChange.js';
 
 const addressTags = ['ref:linz:address_id', 'addr:housenumber', 'addr:steet'];
 

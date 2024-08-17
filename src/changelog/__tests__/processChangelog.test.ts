@@ -1,4 +1,4 @@
-import { processChangelog } from '../processChangelog';
+import { processChangelog } from '../processChangelog.js';
 
 process.env.LINZ_API_KEY = 'mock value';
 

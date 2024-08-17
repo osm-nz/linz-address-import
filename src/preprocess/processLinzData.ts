@@ -1,11 +1,16 @@
-import { promises as fs, createReadStream } from 'node:fs';
+import { createReadStream, promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import csv from 'csv-parser';
 import whichPolygon from 'which-polygon';
-import { LinzSourceAddress, LinzData } from '../types';
-import { LEGACY_URBAN_LOCALITIES, nzgbNamesTable } from '../common/nzgbFile';
-import { linzTempFile, ignoreFile, IgnoreFile, linzCsvFile } from './const';
-import { readRuralUrbanBoundaryFile } from './ruralUrbanBoundary';
+import type { LinzData, LinzSourceAddress } from '../types.js';
+import { LEGACY_URBAN_LOCALITIES, nzgbNamesTable } from '../common/nzgbFile.js';
+import {
+  type IgnoreFile,
+  ignoreFile,
+  linzCsvFile,
+  linzTempFile,
+} from './const.js';
+import { readRuralUrbanBoundaryFile } from './ruralUrbanBoundary.js';
 
 /** LINZ's longitude values go >180 e.g. 183deg which is invalid. It should be -177 */
 const correctLng = (lng: number) => {

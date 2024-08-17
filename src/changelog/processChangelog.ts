@@ -1,9 +1,9 @@
-import { promises as fs, createReadStream } from 'node:fs';
+import { createReadStream, promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import fetch from 'node-fetch';
 import csv from 'csv-parser';
-import { ChangelogJson, LinzChangelog } from '../types';
-import { LINZ_LAYER } from '../common/const';
+import type { ChangelogJson, LinzChangelog } from '../types.js';
+import { LINZ_LAYER } from '../common/const.js';
 
 const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
 

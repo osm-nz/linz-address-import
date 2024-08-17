@@ -1,12 +1,12 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import {
+import type {
   GeoJsonFeature,
   HandlerReturn,
   Status,
   StatusReport,
-} from '../../types';
-import { createDiamond, outFolder, toLink } from '../util';
+} from '../../types.js';
+import { createDiamond, outFolder, toLink } from '../util/index.js';
 
 export async function handleMultipleExistButNoLinzRef(
   array: StatusReport[Status.MULTIPLE_EXIST_BUT_NO_LINZ_REF],

@@ -1,7 +1,12 @@
-import { getChangesetDiff, listChangesets, OsmChange, OsmNode } from 'osm-api';
-import { updateIgnoreList, updateLastCheckDate } from '../api';
-import { checkDiffsForAddress } from '../checkDiffsForAddress';
-import { main as changesetWatch } from '../index';
+import {
+  type OsmChange,
+  type OsmNode,
+  getChangesetDiff,
+  listChangesets,
+} from 'osm-api';
+import { updateIgnoreList, updateLastCheckDate } from '../api/index.js';
+import { checkDiffsForAddress } from '../checkDiffsForAddress.js';
+import { main as changesetWatch } from '../index.js';
 
 vi.mock('osm-api');
 vi.mock('../api');

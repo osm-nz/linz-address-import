@@ -1,5 +1,5 @@
-import { uniq } from '../../../common';
-import { ExtraLayers, GeoJsonFeature } from '../../../types';
+import { uniq } from '../../../common/index.js';
+import type { ExtraLayers, GeoJsonFeature } from '../../../types.js';
 
 export function mergeMaritimeLights({
   features,

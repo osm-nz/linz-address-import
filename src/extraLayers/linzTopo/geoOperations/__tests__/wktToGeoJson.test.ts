@@ -1,4 +1,4 @@
-import { wktToGeoJson } from '../wktToGeoJson';
+import { wktToGeoJson } from '../wktToGeoJson.js';
 
 describe('wktToGeoJson', () => {
   it('can parse Points', () => {

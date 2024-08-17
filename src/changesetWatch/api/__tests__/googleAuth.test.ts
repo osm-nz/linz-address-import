@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { googleAuth } from '../googleAuth';
+import { googleAuth } from '../googleAuth.js';
 
 vi.mock('node-fetch');
 

@@ -1,11 +1,21 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import { ExtraLayers, HandlerReturn, Status, StatusReport } from '../types';
-import { outFolder, mock, suburbsFolder, shiftOverlappingPoints } from './util';
-import { generateStats } from './generateStats';
-import { handlers } from './handlers';
-import { createIndex } from './createIndex';
-import { sectorize } from './sectorize';
+import {
+  type ExtraLayers,
+  type HandlerReturn,
+  Status,
+  type StatusReport,
+} from '../types.js';
+import {
+  mock,
+  outFolder,
+  shiftOverlappingPoints,
+  suburbsFolder,
+} from './util/index.js';
+import { generateStats } from './generateStats.js';
+import { handlers } from './handlers/index.js';
+import { createIndex } from './createIndex.js';
+import { sectorize } from './sectorize.js';
 
 export async function main(): Promise<void> {
   console.log('Reading status file into memory...');

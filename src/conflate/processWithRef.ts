@@ -1,7 +1,13 @@
-import { CheckDate, Issue, LinzAddr, OsmAddr, Status } from '../types';
-import { findPotentialOsmAddresses } from './findPotentialOsmAddresses';
-import { distanceBetween } from './helpers/geo';
-import { validate } from './helpers/validate';
+import {
+  CheckDate,
+  type Issue,
+  type LinzAddr,
+  type OsmAddr,
+  Status,
+} from '../types.js';
+import { findPotentialOsmAddresses } from './findPotentialOsmAddresses.js';
+import { distanceBetween } from './helpers/geo.js';
+import { validate } from './helpers/validate.js';
 
 /** distance in metres beyond which we classify the address as `EXISTS_BUT_LOCATION_WRONG` */
 const LOCATION_THRESHOLD = 300;

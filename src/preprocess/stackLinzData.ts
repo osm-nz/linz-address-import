@@ -1,10 +1,16 @@
 import { promises as fs, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import whichPolygon from 'which-polygon';
-import { LinzData, LinzAddr, OSMData, CouldStackData, GeoJson } from '../types';
-import { toStackId, uniq } from '../common';
-import { linzFile, linzTempFile, mock, osmFile, stackFile } from './const';
-import { matchAlternativeAddrs } from './matchAlternativeAddrs';
+import type {
+  CouldStackData,
+  GeoJson,
+  LinzAddr,
+  LinzData,
+  OSMData,
+} from '../types.js';
+import { toStackId, uniq } from '../common/index.js';
+import { linzFile, linzTempFile, mock, osmFile, stackFile } from './const.js';
+import { matchAlternativeAddrs } from './matchAlternativeAddrs.js';
 
 const lowerStackTresholds: GeoJson<{ name: string; threshold: number }> =
   JSON.parse(

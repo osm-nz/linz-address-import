@@ -1,8 +1,8 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import { toStackId } from '../../common';
-import { OsmId, Status, StatusReport } from '../../types';
-import { outFolder } from '../util';
+import { toStackId } from '../../common/index.js';
+import type { OsmId, Status, StatusReport } from '../../types.js';
+import { outFolder } from '../util/index.js';
 
 type BySuburb = {
   [suburb: string]: {

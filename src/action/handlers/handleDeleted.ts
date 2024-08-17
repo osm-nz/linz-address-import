@@ -1,7 +1,7 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import { OsmAddr, Status, StatusReport } from '../../types';
-import { outFolder, toLink } from '../util';
+import type { OsmAddr, Status, StatusReport } from '../../types.js';
+import { outFolder, toLink } from '../util/index.js';
 
 export async function handleDeleted(
   array: StatusReport[Status.NEEDS_DELETE],

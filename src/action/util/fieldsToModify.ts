@@ -1,4 +1,4 @@
-import { Issue, IssueType } from '../../types';
+import type { Issue, IssueType } from '../../types.js';
 
 export function fieldsToModify(issues: Issue[]): Record<string, string> {
   const ac: Record<string, string> = {};

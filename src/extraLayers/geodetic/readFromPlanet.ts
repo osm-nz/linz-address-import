@@ -1,9 +1,9 @@
 import { join } from 'node:path';
-import pbf2json, { Item } from 'pbf2json';
+import pbf2json, { type Item } from 'pbf2json';
 import through from 'through2';
-import { isChecked, withinBBox } from '../../common';
-import { BBox, OsmId } from '../../types';
-import { OsmMarker } from './const';
+import { isChecked, withinBBox } from '../../common/index.js';
+import type { BBox, OsmId } from '../../types.js';
+import type { OsmMarker } from './const.js';
 
 export async function readFromPlanet(
   bbox: BBox,

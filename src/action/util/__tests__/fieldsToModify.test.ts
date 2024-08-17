@@ -1,4 +1,4 @@
-import { fieldsToModify } from '../fieldsToModify';
+import { fieldsToModify } from '../fieldsToModify.js';
 
 describe('fieldsToModify', () => {
   it.each`

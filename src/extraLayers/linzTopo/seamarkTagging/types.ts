@@ -1,4 +1,4 @@
-import { SEAMARK_TYPE } from './const';
+import type { SEAMARK_TYPE } from './const.js';
 
 export type IHOTypes = keyof typeof SEAMARK_TYPE;
 export type OSMSeamarkTypes = (typeof SEAMARK_TYPE)[IHOTypes];

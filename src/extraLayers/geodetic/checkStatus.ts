@@ -2,8 +2,8 @@ import { exec } from 'node:child_process';
 import { promisify } from 'node:util';
 import { Readable } from 'node:stream';
 import csv from 'csv-parser';
-import { LINZCSVItem, LINZMarker } from './const';
-import { csvToMarker } from './readLINZData';
+import type { LINZCSVItem, LINZMarker } from './const.js';
+import { csvToMarker } from './readLINZData.js';
 
 const execAsync = promisify(exec);
 

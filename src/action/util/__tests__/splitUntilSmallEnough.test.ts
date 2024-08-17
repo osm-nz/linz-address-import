@@ -1,5 +1,8 @@
-import { GeoJsonFeature } from '../../../types';
-import { splitUntilSmallEnough, normalizeName } from '../splitUntilSmallEnough';
+import type { GeoJsonFeature } from '../../../types.js';
+import {
+  normalizeName,
+  splitUntilSmallEnough,
+} from '../splitUntilSmallEnough.js';
 
 vi.mock('../const', async () => ({
   ...(await vi.importActual('../const')),

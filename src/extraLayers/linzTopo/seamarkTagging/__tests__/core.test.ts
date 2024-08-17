@@ -1,4 +1,4 @@
-import { seamarkTagging } from '../core';
+import { seamarkTagging } from '../core.js';
 
 describe('MapCat', () => {
   it('maps seamark properties', () => {

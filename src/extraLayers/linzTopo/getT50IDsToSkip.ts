@@ -1,9 +1,9 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import pbf2json, { Item } from 'pbf2json';
+import pbf2json, { type Item } from 'pbf2json';
 import through from 'through2';
-import { fetchIgnoreList } from '../../common';
-import { IgnoreFile } from '../../preprocess/const';
+import { fetchIgnoreList } from '../../common/index.js';
+import type { IgnoreFile } from '../../preprocess/const.js';
 
 const PATH = join(__dirname, '../../../data/t50ids.json');
 

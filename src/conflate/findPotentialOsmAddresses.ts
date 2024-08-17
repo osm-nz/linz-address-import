@@ -1,5 +1,10 @@
-import { Confidence, LinzAddr, OsmAddr, OsmAddrWithConfidence } from '../types';
-import { distanceBetween } from './helpers/geo';
+import {
+  Confidence,
+  type LinzAddr,
+  type OsmAddr,
+  type OsmAddrWithConfidence,
+} from '../types.js';
+import { distanceBetween } from './helpers/geo.js';
 
 // using the mutating Object.assign because it's computationally cheaper than object spread
 const withC =

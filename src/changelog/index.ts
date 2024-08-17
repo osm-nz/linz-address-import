@@ -1,7 +1,7 @@
 import { config as dotenv } from 'dotenv';
-import { generateMd } from './generateMd';
-import { getLatestKnownVersion, addComment } from './github';
-import { processChangelog } from './processChangelog';
+import { generateMd } from './generateMd.js';
+import { addComment, getLatestKnownVersion } from './github.js';
+import { processChangelog } from './processChangelog.js';
 
 dotenv();
 

@@ -1,5 +1,5 @@
-import { geodetic } from './geodetic';
-import { linzTopo } from './linzTopo';
+import { geodetic } from './geodetic/index.js';
+import { linzTopo } from './linzTopo/index.js';
 
 const extraLayers = <const>{ geodetic, linzTopo };
 

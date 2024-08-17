@@ -1,11 +1,11 @@
-import { join, relative, extname } from 'node:path';
+import { extname, join, relative } from 'node:path';
 import { promises as fs } from 'node:fs';
-import { BlobServiceClient, ContainerClient } from '@azure/storage-blob';
+import { BlobServiceClient, type ContainerClient } from '@azure/storage-blob';
 import { config as dotenv } from 'dotenv';
 import { lookup } from 'mime-types';
 import fetch from 'node-fetch';
-import { CDN_URL } from '../action/util';
-import { uploadStatsToGH } from './uploadStatsToGH';
+import { CDN_URL } from '../action/util/index.js';
+import { uploadStatsToGH } from './uploadStatsToGH.js';
 
 dotenv();
 

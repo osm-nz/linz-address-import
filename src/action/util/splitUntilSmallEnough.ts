@@ -1,7 +1,11 @@
-import { getFirstCoord } from '../../common';
-import { GeoJsonFeature, HandlerReturnWithBBox, Tags } from '../../types';
-import { calcBBox } from './calcBBox';
-import { MAX_ITEMS_PER_DATASET } from './const';
+import { getFirstCoord } from '../../common/index.js';
+import type {
+  GeoJsonFeature,
+  HandlerReturnWithBBox,
+  Tags,
+} from '../../types.js';
+import { calcBBox } from './calcBBox.js';
+import { MAX_ITEMS_PER_DATASET } from './const.js';
 
 export function splitUntilSmallEnough(
   name: string,

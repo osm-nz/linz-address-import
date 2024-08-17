@@ -1,18 +1,18 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import {
+import type {
   GeoJsonFeature,
   HandlerReturn,
   OsmAddr,
   Status,
   StatusReport,
-} from '../../types';
+} from '../../types.js';
 import {
   createDiamond,
   deleteAllAddressTags,
   outFolder,
   toLink,
-} from '../util';
+} from '../util/index.js';
 
 export async function handleDeletedOnBuilding(
   array: StatusReport[Status.NEEDS_DELETE_ON_BUILDING],

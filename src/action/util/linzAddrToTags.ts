@@ -1,4 +1,4 @@
-import { LinzAddr, Tags } from '../../types';
+import type { LinzAddr, Tags } from '../../types.js';
 
 export function linzAddrToTags(linzId: string, addr: LinzAddr): Tags {
   return {

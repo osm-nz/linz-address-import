@@ -1,5 +1,5 @@
-import { GeoJson, Tags } from '../../../../types';
-import { transformAirstrip } from '../transformAirstrip';
+import type { GeoJson, Tags } from '../../../../types.js';
+import { transformAirstrip } from '../transformAirstrip.js';
 import _testCases from './transformAirstrip.geo.json';
 
 const testCases = _testCases as unknown as GeoJson;

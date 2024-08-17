@@ -1,5 +1,5 @@
-import { HandlerReturnWithBBox } from '../../../types';
-import { shiftOverlappingPoints, toFormation } from '../spreadToGrid';
+import type { HandlerReturnWithBBox } from '../../../types.js';
+import { shiftOverlappingPoints, toFormation } from '../spreadToGrid.js';
 
 describe('toFormation', () => {
   it('has a working formula', () => {

@@ -1,11 +1,11 @@
 import {
-  Changeset,
+  type Changeset,
+  type OsmChange,
+  type OsmFeature,
+  type OsmFeatureType,
   getFeatures,
-  OsmChange,
-  OsmFeature,
-  OsmFeatureType,
 } from 'osm-api';
-import { chunk } from '../common';
+import { chunk } from '../common/index.js';
 
 type IDObject = Record<OsmFeatureType, `${number}v${number}`[]>;
 

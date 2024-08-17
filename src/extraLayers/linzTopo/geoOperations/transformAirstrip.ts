@@ -1,6 +1,6 @@
-import { distanceBetween } from '../../../conflate/helpers/geo';
-import { Coord, GeoJsonCoords, Tags } from '../../../types';
-import { orthogonalize } from './orthogonalize';
+import { distanceBetween } from '../../../conflate/helpers/geo.js';
+import type { Coord, GeoJsonCoords, Tags } from '../../../types.js';
+import { orthogonalize } from './orthogonalize.js';
 
 const midpoint = ([lng1, lat1]: Coord, [lng2, lat2]: Coord): Coord => [
   (lng1 + lng2) / 2,

@@ -2,12 +2,12 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import Unzip from 'adm-zip';
 import type { Koordinates } from 'koordinates-api';
-import { linzCsvFile, ruralUrbanCsvFile } from '../preprocess/const';
+import { linzCsvFile, ruralUrbanCsvFile } from '../preprocess/const.js';
 import {
   LINZ_LAYER_NAME_SUBSTR,
   RURAL_URBAN_LAYER_SUBSTR,
-} from '../common/const';
-import { linzApi, statsNzApi } from './util';
+} from '../common/const.js';
+import { linzApi, statsNzApi } from './util.js';
 
 async function downloadExport(
   outputFilePath: string,

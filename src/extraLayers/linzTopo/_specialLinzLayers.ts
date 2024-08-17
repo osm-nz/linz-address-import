@@ -1,19 +1,19 @@
-import { promises as fs, createReadStream } from 'node:fs';
+import { createReadStream, promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import { F_OK } from 'node:constants';
 import csv from 'csv-parser';
-import { Query } from 'which-polygon';
-import {
+import type { Query } from 'which-polygon';
+import type {
   ChunkSize,
   ExtraLayers,
   GeoJsonCoords,
   GeoJsonFeature,
   Tags,
-} from '../../types';
-import { IgnoreFile } from '../../preprocess/const';
-import { getFirstCoord, hash } from '../../common';
-import { wktToGeoJson } from './geoOperations';
-import { Chart, getBestChart } from './seamarkTagging';
+} from '../../types.js';
+import type { IgnoreFile } from '../../preprocess/const.js';
+import { getFirstCoord, hash } from '../../common/index.js';
+import { wktToGeoJson } from './geoOperations/index.js';
+import { type Chart, getBestChart } from './seamarkTagging/index.js';
 
 const existsAsync = (path: string) =>
   fs

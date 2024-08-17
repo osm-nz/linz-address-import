@@ -1,9 +1,9 @@
 import {
-  fromStackId,
-  toStackId,
   HASHED_STACK,
   INVALID_STACK,
-} from '../stackId';
+  fromStackId,
+  toStackId,
+} from '../stackId.js';
 
 const hugeList = [
   '1000000000000001',

@@ -1,4 +1,4 @@
-import { generateMd } from '../generateMd';
+import { generateMd } from '../generateMd.js';
 
 describe('generateMd', () => {
   it('generates nice markdown', async () => {

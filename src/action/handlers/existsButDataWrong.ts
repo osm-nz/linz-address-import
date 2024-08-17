@@ -1,15 +1,20 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import {
-  Status,
-  StatusReport,
-  OsmAddr,
-  Issue,
-  HandlerReturn,
-  GeoJsonFeature,
   CheckDate,
-} from '../../types';
-import { createDiamond, outFolder, toLink, fieldsToModify } from '../util';
+  type GeoJsonFeature,
+  type HandlerReturn,
+  type Issue,
+  type OsmAddr,
+  type Status,
+  type StatusReport,
+} from '../../types.js';
+import {
+  createDiamond,
+  fieldsToModify,
+  outFolder,
+  toLink,
+} from '../util/index.js';
 
 const toKey = (right: string, wrong: string, osmData: OsmAddr) =>
   `${[right, wrong].sort().join('__')}__${osmData.street}`;

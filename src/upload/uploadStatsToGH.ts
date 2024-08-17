@@ -1,7 +1,7 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import fetch from 'node-fetch';
-import { StatsFile, GH } from '../types';
+import type { GH, StatsFile } from '../types.js';
 
 export async function uploadStatsToGH(): Promise<void> {
   const stats: StatsFile = JSON.parse(

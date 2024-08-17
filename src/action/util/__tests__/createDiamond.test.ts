@@ -1,5 +1,5 @@
-import { createSquare } from '..';
-import { createDiamond } from '../createDiamond';
+import { createSquare } from '../index.js';
+import { createDiamond } from '../createDiamond.js';
 
 describe('createDiamond', () => {
   it('generates the correct bbox diamond for a point', () => {

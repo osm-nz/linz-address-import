@@ -1,13 +1,13 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import {
+import type {
   GeoJsonFeature,
   HandlerReturn,
   LinzAddr,
   OsmAddr,
   Status,
   StatusReport,
-} from '../../types';
+} from '../../types.js';
 import {
   createDiamond,
   createSquare,
@@ -15,7 +15,7 @@ import {
   linzAddrToTags,
   outFolder,
   toLink,
-} from '../util';
+} from '../util/index.js';
 
 type ByOsmId = {
   [osmId: string]: {

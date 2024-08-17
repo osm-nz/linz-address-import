@@ -1,5 +1,5 @@
-import { Changeset, getFeatures, OsmFeature } from 'osm-api';
-import { CSWithDiff, patchOsmChange } from '../patchOsmChange';
+import { type Changeset, type OsmFeature, getFeatures } from 'osm-api';
+import { type CSWithDiff, patchOsmChange } from '../patchOsmChange.js';
 
 vi.mock('osm-api');
 

@@ -1,5 +1,5 @@
-import type { LinzData, OSMData } from '../types';
-import type { VisitedCoords } from './stackLinzData';
+import type { LinzData, OSMData } from '../types.js';
+import type { VisitedCoords } from './stackLinzData.js';
 
 /**
  * a “duplicate” = an “alternative address”, e.g. when
