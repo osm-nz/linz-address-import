@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import { googleAuth } from '../googleAuth';
 
-jest.mock('node-fetch');
+vi.mock('node-fetch');
 
 describe('updateIgnoreList', () => {
   beforeEach(() => {

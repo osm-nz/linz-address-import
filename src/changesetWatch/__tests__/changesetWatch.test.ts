@@ -3,14 +3,14 @@ import { updateIgnoreList, updateLastCheckDate } from '../api';
 import { checkDiffsForAddress } from '../checkDiffsForAddress';
 import { main as changesetWatch } from '../index';
 
-jest.mock('osm-api');
-jest.mock('../api');
-jest.mock('../checkDiffsForAddress');
-jest.mock('../../common', () => ({
+vi.mock('osm-api');
+vi.mock('../api');
+vi.mock('../checkDiffsForAddress');
+vi.mock('../../common', () => ({
   timeout: async () => 0,
   fetchIgnoreList: async () => ({ '2019-07-03': 1 }),
 }));
-jest.mock('../patchOsmChange', () => ({
+vi.mock('../patchOsmChange', () => ({
   patchOsmChange: async (x: unknown) => x,
 }));
 

@@ -1,8 +1,8 @@
 import fetch from 'node-fetch';
 import { updateIgnoreList } from '../updateIgnoreList';
 
-jest.mock('node-fetch');
-jest.mock('../googleAuth', () => ({
+vi.mock('node-fetch');
+vi.mock('../googleAuth', () => ({
   googleAuth: async () => 'MY_ACCESS_TOKEN',
 }));
 

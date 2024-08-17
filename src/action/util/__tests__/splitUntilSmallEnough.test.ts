@@ -1,8 +1,8 @@
 import { GeoJsonFeature } from '../../../types';
 import { splitUntilSmallEnough, normalizeName } from '../splitUntilSmallEnough';
 
-jest.mock('../const', () => ({
-  ...jest.requireActual('../const'),
+vi.mock('../const', async () => ({
+  ...(await vi.importActual('../const')),
   MAX_ITEMS_PER_DATASET: 2,
 }));
 

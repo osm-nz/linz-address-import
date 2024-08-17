@@ -1,8 +1,8 @@
 import fetch from 'node-fetch';
 import { updateLastCheckDate } from '../updateLastCheckDate';
 
-jest.mock('node-fetch');
-jest.mock('../googleAuth', () => ({
+vi.mock('node-fetch');
+vi.mock('../googleAuth', () => ({
   googleAuth: async () => 'MY_ACCESS_TOKEN',
 }));
 
@@ -10,7 +10,7 @@ describe('updateLastCheckDate', () => {
   it('calls the google API correctly', async () => {
     m(fetch).mockResolvedValue({ json: async () => 0 });
 
-    jest.useFakeTimers().setSystemTime(new Date('2021-12-25').getTime());
+    vi.useFakeTimers().setSystemTime(new Date('2021-12-25').getTime());
 
     await updateLastCheckDate('2021-12-24');
     expect(fetch).toHaveBeenCalledWith(

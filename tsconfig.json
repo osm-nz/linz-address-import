@@ -4,6 +4,8 @@
     "resolveJsonModule": true,
     "strict": true,
     "moduleResolution": "node",
+    "skipLibCheck": true,
+    "types": ["vitest/globals"],
     "lib": ["es2021"],
     "target": "es2021",
     "noEmit": true

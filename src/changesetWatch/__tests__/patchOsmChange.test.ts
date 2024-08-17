@@ -1,7 +1,7 @@
 import { Changeset, getFeatures, OsmFeature } from 'osm-api';
 import { CSWithDiff, patchOsmChange } from '../patchOsmChange';
 
-jest.mock('osm-api');
+vi.mock('osm-api');
 
 describe('patchOsmChange', () => {
   it('calls the OSM API and updates the osmChange', async () => {
