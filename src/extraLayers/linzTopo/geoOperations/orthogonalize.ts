@@ -7,7 +7,7 @@ import {
   vecNormalizedDot,
   vecScale,
   vecSubtract,
-} from './vector.js';
+} from '@id-sdk/vector';
 
 //
 // copied from https://github.com/openstreetmap/iD/blob/develop/modules/geo/ortho.js

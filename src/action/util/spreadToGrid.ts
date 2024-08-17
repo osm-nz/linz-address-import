@@ -1,4 +1,4 @@
-import type { Vec2 } from '../../extraLayers/linzTopo/geoOperations/vector.js';
+import type { Vec2 } from '@id-sdk/vector';
 import type { GeoJsonFeature, HandlerReturnWithBBox } from '../../types.js';
 
 const { sin, cos, floor, sqrt, PI: π } = Math;
