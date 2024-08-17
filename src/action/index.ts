@@ -20,7 +20,10 @@ import { sectorize } from './sectorize.js';
 export async function main(): Promise<void> {
   console.log('Reading status file into memory...');
   const status: StatusReport = JSON.parse(
-    await fs.readFile(join(__dirname, `../../data/status${mock}.json`), 'utf8'),
+    await fs.readFile(
+      join(import.meta.dirname, `../../data/status${mock}.json`),
+      'utf8',
+    ),
   );
 
   console.log('Clearing output folder...');
@@ -71,7 +74,7 @@ export async function main(): Promise<void> {
     if (process.env.NODE_ENV !== 'test') {
       const extraLayers: ExtraLayers = JSON.parse(
         await fs.readFile(
-          join(__dirname, '../../data/extra-layers.geo.json'),
+          join(import.meta.dirname, '../../data/extra-layers.geo.json'),
           'utf8',
         ),
       );

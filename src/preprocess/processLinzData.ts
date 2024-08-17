@@ -49,7 +49,7 @@ async function linzToJson(): Promise<LinzData> {
   console.log('Reading rural/urban boundary...');
   const ruralUrbanBoundary = await readRuralUrbanBoundaryFile();
   await fs.writeFile(
-    join(__dirname, '../../data/urban-areas.geo.json'),
+    join(import.meta.dirname, '../../data/urban-areas.geo.json'),
     JSON.stringify(ruralUrbanBoundary),
   );
   const determineIfRuralOrUrban = whichPolygon(ruralUrbanBoundary);

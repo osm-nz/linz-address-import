@@ -24,7 +24,7 @@ async function fetchLinzChangelogRss(LINZ_API_KEY: string) {
   const json: LinzChangelogRss = mock
     ? JSON.parse(
         await fs.readFile(
-          join(__dirname, '../__tests__/mock/linz-changelog.json'),
+          join(import.meta.dirname, '../__tests__/mock/linz-changelog.json'),
           'utf8',
         ),
       )
@@ -57,7 +57,9 @@ async function processLinzChangelogCsv(
   { from, to }: { from: string; to: string },
 ): Promise<ChangelogJson> {
   const stream = mock
-    ? createReadStream(join(__dirname, '../__tests__/mock/linz-changelog.csv'))
+    ? createReadStream(
+        join(import.meta.dirname, '../__tests__/mock/linz-changelog.csv'),
+      )
     : await fetch(
         `https://data.linz.govt.nz/services;key=${LINZ_API_KEY}/wfs/layer-${LINZ_LAYER}-changeset?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&typeNames=layer-${LINZ_LAYER}-changeset&viewparams=from:${from};to:${to}&outputFormat=csv`,
       )

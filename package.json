@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "author": "Kyle Hensel",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "request-linz-export": "tsx src/download/requestLinzExport",
     "download-linz": "tsx src/download/downloadLinzExport",

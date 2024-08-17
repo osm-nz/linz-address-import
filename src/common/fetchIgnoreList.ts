@@ -11,7 +11,9 @@ export async function fetchIgnoreList(
   columnName: string,
 ): Promise<IgnoreFile> {
   const stream = mock
-    ? createReadStream(join(__dirname, '../__tests__/mock/ignore-list.csv'))
+    ? createReadStream(
+        join(import.meta.dirname, '../__tests__/mock/ignore-list.csv'),
+      )
     : await fetch(
         `https://docs.google.com/spreadsheets/d/${spreadsheetId}/export?format=csv&gid=${gId}`,
       )

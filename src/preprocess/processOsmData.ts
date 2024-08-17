@@ -7,7 +7,7 @@ import type { OSMData, OsmAddr, OsmId } from '../types.js';
 import { mock, osmFile } from './const.js';
 
 const input = join(
-  __dirname,
+  import.meta.dirname,
   mock ? '../__tests__/mock/planet.pbf' : '../../data/osm.pbf',
 );
 

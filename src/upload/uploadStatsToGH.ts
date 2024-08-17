@@ -4,7 +4,10 @@ import type { GH, StatsFile } from '../types.js';
 
 export async function uploadStatsToGH(): Promise<void> {
   const stats: StatsFile = JSON.parse(
-    await fs.readFile(join(__dirname, `../../out/stats.json`), 'utf8'),
+    await fs.readFile(
+      join(import.meta.dirname, `../../out/stats.json`),
+      'utf8',
+    ),
   );
 
   const { GH_BASIC_AUTH } = process.env;

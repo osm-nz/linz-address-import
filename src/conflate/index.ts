@@ -26,19 +26,25 @@ export async function main(): Promise<void> {
 
   console.log('Reading LINZ data into memory...');
   const linzData: LinzData = JSON.parse(
-    await fs.readFile(join(__dirname, `../../data/linz${mock}.json`), 'utf8'),
+    await fs.readFile(
+      join(import.meta.dirname, `../../data/linz${mock}.json`),
+      'utf8',
+    ),
   );
   const { length } = Object.keys(linzData);
 
   console.log('Reading OSM data into memory...');
   const osmData: OSMData = JSON.parse(
-    await fs.readFile(join(__dirname, `../../data/osm${mock}.json`), 'utf8'),
+    await fs.readFile(
+      join(import.meta.dirname, `../../data/osm${mock}.json`),
+      'utf8',
+    ),
   );
 
   console.log('Reading could-stack data into memory...');
   const couldBeStacked: CouldStackData = JSON.parse(
     await fs.readFile(
-      join(__dirname, `../../data/linzCouldStack${mock}.json`),
+      join(import.meta.dirname, `../../data/linzCouldStack${mock}.json`),
       'utf8',
     ),
   );
@@ -150,7 +156,7 @@ export async function main(): Promise<void> {
   console.timeEnd('conflate');
 
   await fs.writeFile(
-    join(__dirname, `../../data/status${mock}.json`),
+    join(import.meta.dirname, `../../data/status${mock}.json`),
     JSON.stringify(statusReport, null, mock ? 2 : undefined),
   );
 }

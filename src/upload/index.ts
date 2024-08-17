@@ -25,7 +25,7 @@ async function getFilesDeep(folder: string): Promise<string[]> {
   return out;
 }
 
-const root = join(__dirname, '../..');
+const root = join(import.meta.dirname, '../..');
 
 async function upload(
   azContainer: ContainerClient,

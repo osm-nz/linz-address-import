@@ -15,7 +15,7 @@ import { matchAlternativeAddrs } from './matchAlternativeAddrs.js';
 const lowerStackTresholds: GeoJson<{ name: string; threshold: number }> =
   JSON.parse(
     readFileSync(
-      join(__dirname, '../../static/lower-stack-threshold.geo.json'),
+      join(import.meta.dirname, '../../static/lower-stack-threshold.geo.json'),
       'utf8',
     ),
   );

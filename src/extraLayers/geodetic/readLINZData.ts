@@ -54,7 +54,7 @@ export async function readLINZData(
   const alreadyWarnedAbout1: Record<string, true> = {};
   const alreadyWarnedAbout2: Record<string, true> = {};
 
-  const csvFile = join(__dirname, '../../../data/geodetic-marks.csv');
+  const csvFile = join(import.meta.dirname, '../../../data/geodetic-marks.csv');
 
   let skipped = 0;
 

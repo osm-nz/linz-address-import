@@ -205,7 +205,7 @@ export async function conflate(
   };
 
   await fs.writeFile(
-    join(__dirname, `../../../data/extra-layers.geo.json`),
+    join(import.meta.dirname, `../../../data/extra-layers.geo.json`),
     JSON.stringify(out),
   );
 }

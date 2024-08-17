@@ -15,7 +15,7 @@ export async function readFromPlanet(
     let skipped = 0;
     const duplicates: Record<string, OsmId[]> = {};
 
-    const planetFile = join(__dirname, '../../../data/osm.pbf');
+    const planetFile = join(import.meta.dirname, '../../../data/osm.pbf');
 
     pbf2json
       .createReadStream({

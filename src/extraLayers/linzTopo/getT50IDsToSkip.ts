@@ -5,7 +5,7 @@ import through from 'through2';
 import { fetchIgnoreList } from '../../common/index.js';
 import type { IgnoreFile } from '../../preprocess/const.js';
 
-const PATH = join(__dirname, '../../../data/t50ids.json');
+const PATH = join(import.meta.dirname, '../../../data/t50ids.json');
 
 async function readFromPlanet(
   mutableOut: IgnoreFile,
@@ -18,7 +18,7 @@ async function readFromPlanet(
   await new Promise<void>((resolve, reject) => {
     let index = 0;
 
-    const planetFile = join(__dirname, `../../../data/${fileName}`);
+    const planetFile = join(import.meta.dirname, `../../../data/${fileName}`);
 
     pbf2json
       .createReadStream({

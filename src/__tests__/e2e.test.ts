@@ -7,7 +7,7 @@ import { main as stackLinzData } from '../preprocess/stackLinzData.js';
 import { main as conflate } from '../conflate/index.js';
 import { main as action } from '../action/index.js';
 
-const joinPath = (...files: string[]) => join(__dirname, ...files);
+const joinPath = (...files: string[]) => join(import.meta.dirname, ...files);
 
 async function time(f: () => unknown) {
   const start = Date.now();

@@ -34,7 +34,7 @@ export async function linzTopo(): Promise<void> {
 
   const charts = await readNauticalChartIndexCsv();
   await fs.writeFile(
-    join(__dirname, '../../../data/nautical-index.json'),
+    join(import.meta.dirname, '../../../data/nautical-index.json'),
     JSON.stringify(charts, null, 2),
   );
   const chartQuery = whichPolygon(charts);
@@ -2267,7 +2267,7 @@ export async function linzTopo(): Promise<void> {
   }
 
   await fs.writeFile(
-    join(__dirname, `../../../data/extra-layers.geo.json`),
+    join(import.meta.dirname, `../../../data/extra-layers.geo.json`),
     JSON.stringify(out),
   );
 }

@@ -5,7 +5,7 @@ export const CDN_URL = 'https://linz-addr-cdn.kyle.kiwi';
 export const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
 
 export const outFolder = join(
-  __dirname,
+  import.meta.dirname,
   mock ? '../../__tests__/snapshot' : '../../../out',
 );
 export const suburbsFolder = join(outFolder, './suburbs');

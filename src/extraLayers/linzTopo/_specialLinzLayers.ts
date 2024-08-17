@@ -27,7 +27,7 @@ async function readCsv<T extends Record<string, string>>(
   IDsToSkip: IgnoreFile,
   charts: Query<Chart>,
 ): Promise<{ features: GeoJsonFeature[]; skipped: number }> {
-  const fullPath = join(__dirname, '../../../data/extra/', input);
+  const fullPath = join(import.meta.dirname, '../../../data/extra/', input);
   if (!(await existsAsync(fullPath))) {
     console.log(`Skipping ${input} because the LINZ data doesn't exist`);
     return { features: [], skipped: 0 };

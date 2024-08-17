@@ -7,7 +7,7 @@ import { wktToGeoJson } from '../geoOperations/index.js';
 import { fixChartName } from './helpers.js';
 
 const filePath = join(
-  __dirname,
+  import.meta.dirname,
   '../../../../data/extra/nz-electronic-navigational-chart-enc-index.csv',
 );
 
