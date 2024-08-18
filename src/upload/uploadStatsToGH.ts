@@ -13,7 +13,8 @@ export async function uploadStatsToGH(): Promise<void> {
   const { GH_BASIC_AUTH } = process.env;
   if (!GH_BASIC_AUTH) throw new Error(`No GH_BASIC_AUTH env variable set`);
 
-  const url = `https://${GH_BASIC_AUTH}@api.github.com/repos/osm-nz/linz-address-import/issues/1`;
+  const url =
+    'https://api.github.com/repos/osm-nz/linz-address-import/issues/1';
 
   const { body } = (await fetch(url, {
     headers: { Accept: 'application/vnd.github.v3+json' },
@@ -41,7 +42,10 @@ export async function uploadStatsToGH(): Promise<void> {
 
   const { status } = await fetch(url, {
     method: 'PATCH',
-    headers: { Accept: 'application/vnd.github.v3+json' },
+    headers: {
+      Accept: 'application/vnd.github.v3+json',
+      Authorization: `Basic ${btoa(GH_BASIC_AUTH)}`,
+    },
     body: JSON.stringify({ body: updatedBody }),
   });
   if (status !== 200) throw new Error(`HTTP ${status} from PATCH`);

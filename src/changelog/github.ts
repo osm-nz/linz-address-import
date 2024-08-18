@@ -5,9 +5,6 @@ const twoMonthsAgo = new Date();
 twoMonthsAgo.setMonth(new Date().getMonth() - 2);
 
 function getUrl() {
-  const { GH_BASIC_AUTH } = process.env;
-  if (!GH_BASIC_AUTH) throw new Error(`No GH_BASIC_AUTH env variable set`);
-
   const options = {
     since: twoMonthsAgo.toISOString(),
     sort: 'created',
@@ -15,7 +12,7 @@ function getUrl() {
     per_page: '100',
   };
   const qs = new URLSearchParams(options).toString();
-  return `https://${GH_BASIC_AUTH}@api.github.com/repos/osm-nz/linz-address-import/issues/3/comments?${qs}`;
+  return `https://api.github.com/repos/osm-nz/linz-address-import/issues/3/comments?${qs}`;
 }
 
 export async function getLatestKnownVersion(): Promise<string> {
@@ -32,9 +29,15 @@ export async function getLatestKnownVersion(): Promise<string> {
 }
 
 export async function addComment(body: string): Promise<void> {
+  const { GH_BASIC_AUTH } = process.env;
+  if (!GH_BASIC_AUTH) throw new Error(`No GH_BASIC_AUTH env variable set`);
+
   const result = await fetch(getUrl(), {
     method: 'post',
-    headers: { Accept: 'application/vnd.github.v3+json' },
+    headers: {
+      Accept: 'application/vnd.github.v3+json',
+      Authorization: `Basic ${btoa(GH_BASIC_AUTH)}`,
+    },
     body: JSON.stringify({ body }),
   }).then((r) => r.json() as Promise<{ url: string }>);
 
