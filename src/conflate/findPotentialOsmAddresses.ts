@@ -1,10 +1,10 @@
+import { geoSphericalDistance } from '@id-sdk/geo';
 import {
   Confidence,
   type LinzAddr,
   type OsmAddr,
   type OsmAddrWithConfidence,
 } from '../types.js';
-import { distanceBetween } from './helpers/geo.js';
 
 // using the mutating Object.assign because it's computationally cheaper than object spread
 const withC =
@@ -39,11 +39,9 @@ export const findPotentialOsmAddresses = (
   // street (but not suburb). sort by closest to the correct location
   const almostPerfect = f1
     .map((osmAddr) => {
-      const offset = distanceBetween(
-        osmAddr.lat,
-        osmAddr.lng,
-        linzAddr.lat,
-        linzAddr.lng,
+      const offset = geoSphericalDistance(
+        [osmAddr.lng, osmAddr.lat],
+        [linzAddr.lng, linzAddr.lat],
       );
 
       // if our best guess is more than 200m from the gazetted location, it's definitely wrong

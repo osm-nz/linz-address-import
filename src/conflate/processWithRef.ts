@@ -1,3 +1,4 @@
+import { geoSphericalDistance } from '@id-sdk/geo';
 import {
   CheckDate,
   type Issue,
@@ -6,7 +7,6 @@ import {
   Status,
 } from '../types.js';
 import { findPotentialOsmAddresses } from './findPotentialOsmAddresses.js';
-import { distanceBetween } from './helpers/geo.js';
 import { validate } from './helpers/validate.js';
 
 /** distance in metres beyond which we classify the address as `EXISTS_BUT_LOCATION_WRONG` */
@@ -67,11 +67,9 @@ export function processWithRef(
   ) {
     // looks perfect - last check is if location is correct
 
-    const offset = distanceBetween(
-      linzAddr.lat,
-      linzAddr.lng,
-      osmAddr.lat,
-      osmAddr.lng,
+    const offset = geoSphericalDistance(
+      [linzAddr.lng, linzAddr.lat],
+      [osmAddr.lng, osmAddr.lat],
     );
 
     if (offset < LOCATION_THRESHOLD) {

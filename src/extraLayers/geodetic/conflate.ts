@@ -1,7 +1,7 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
+import { geoSphericalDistance } from '@id-sdk/geo';
 import type { GeoJsonFeature, HandlerReturn } from '../../types.js';
-import { distanceBetween } from '../../conflate/helpers/geo.js';
 import { createDiamond } from '../../action/util/index.js';
 import type { LINZMarker, OsmMarker } from './const.js';
 import { checkStatus } from './checkStatus.js';
@@ -97,11 +97,9 @@ export async function conflate(
         (tag) => linzMarker[tag] !== osmMarker[tag],
       );
 
-      const distanceApart = distanceBetween(
-        linzMarker.lat,
-        linzMarker.lng,
-        osmMarker.lat,
-        osmMarker.lng,
+      const distanceApart = geoSphericalDistance(
+        [linzMarker.lng, linzMarker.lat],
+        [osmMarker.lng, osmMarker.lat],
       );
       if (distanceApart > 1 /* metres */) {
         // we are really picky about this

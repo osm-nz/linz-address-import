@@ -1,4 +1,4 @@
-import { distanceBetween } from '../../../conflate/helpers/geo.js';
+import { geoSphericalDistance } from '@id-sdk/geo';
 import type { Coord, GeoJsonCoords, Tags } from '../../../types.js';
 import { orthogonalize } from './orthogonalize.js';
 
@@ -45,10 +45,10 @@ export function transformAirstrip(
   // figure out long vs short edge
   // either A-B and C-D are short, or B-C and D-A are short
 
-  const AB = distanceBetween(A[1], A[0], B[1], B[0]);
-  const BC = distanceBetween(B[1], B[0], C[1], C[0]);
-  const CD = distanceBetween(C[1], C[0], D[1], D[0]);
-  const DA = distanceBetween(D[1], D[0], A[1], A[0]);
+  const AB = geoSphericalDistance(A, B);
+  const BC = geoSphericalDistance(B, C);
+  const CD = geoSphericalDistance(C, D);
+  const DA = geoSphericalDistance(D, A);
 
   // assert that AB-CD and BC-DA are similar length (within 300 metres)
   if (Math.abs(AB - CD) > 300 || Math.abs(BC - DA) > 300) {

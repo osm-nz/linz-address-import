@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@azure/storage-blob": "^12.13.0",
+    "@id-sdk/geo": "^3.0.0-pre.10",
     "@id-sdk/vector": "^3.0.0-pre.10",
     "adm-zip": "^0.5.14",
     "csv-parser": "^3.0.0",
