@@ -928,6 +928,34 @@
     <tag k="linz:stack" v="yes" />
   </node>
 
+  <!-- someone has manually added alt_addr:housenumber, which we respect -->
+  <node id="203" version="1" changeset="1" lat="-36.9" lon="174.203" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="203A" />
+    <tag k="alt_addr:housenumber" v="1/203" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70203" />
+  </node>
+  <node id="205" version="1" changeset="1" lat="-36.9" lon="174.205" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="203B" />
+    <tag k="alt_addr:housenumber" v="2/203" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70205" />
+  </node>
+  <node id="207" version="1" changeset="1" lat="-36.9" lon="174.207" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="203C" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70207" />
+  </node>
+  <node id="209" version="1" changeset="1" lat="-36.9" lon="174.209" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="203D" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70209" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />

@@ -98,7 +98,13 @@ export function matchAlternativeAddrs(
     return addrIdsToSkip.has(addrId) || duplicateMap[addrId] || isRoot;
   });
 
-  if (seenEverything) {
+  // if someone has manually added alt_addr:housenumber, then
+  // we respect that.
+  const someAlreadyHaveAltTag = addrIds.some(
+    ([addrId]) => osmData.linz[addrId]?.housenumberAlt,
+  );
+
+  if (seenEverything || someAlreadyHaveAltTag) {
     return { duplicateMap, addrIdsToSkip };
   }
   return undefined;
