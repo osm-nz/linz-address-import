@@ -1,6 +1,6 @@
 import { join } from 'node:path';
 
-export const CDN_URL = 'https://linz-addr-cdn.kyle.kiwi';
+export const CDN_URL = 'https://osm-nz.github.io/linz-address-import';
 
 export const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
 

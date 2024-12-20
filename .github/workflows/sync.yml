@@ -5,6 +5,11 @@ on:
     - cron: '5 15 * * 5' # at 05:05am on Saturday NZST
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -63,9 +68,25 @@ jobs:
         env:
           MAX_ITEMS_PER_DATASET: ${{ secrets.MAX_ITEMS_PER_DATASET }}
 
-      - name: ⛅ Upload geojson and reports to CDN
+      - name: ⛅ Upload stats to GitHub
         run: |
           yarn upload
         env:
           GH_BASIC_AUTH: ${{ secrets.GH_BASIC_AUTH }}
-          AZ_CON: ${{ secrets.AZ_CON }}
+
+      - name: ⛅ Upload dist folder
+        id: deployment
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out/
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: sync
+    steps:
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

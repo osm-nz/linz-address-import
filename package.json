@@ -17,7 +17,7 @@
     "conflate": "tsx src/conflate",
     "extralayers": "tsx src/extraLayers",
     "action": "tsx src/action",
-    "upload": "tsx src/upload",
+    "upload": "tsx src/upload/uploadStatsToGH",
     "changelog": "tsx src/changelog",
     "changesetWatch": "tsx src/changesetWatch",
     "lint": "eslint . && tsc",
@@ -25,14 +25,12 @@
     "test:ci": "vitest run --coverage"
   },
   "dependencies": {
-    "@azure/storage-blob": "^12.13.0",
     "@id-sdk/geo": "^3.0.0-pre.10",
     "@id-sdk/vector": "^3.0.0-pre.10",
     "adm-zip": "^0.5.14",
     "csv-parser": "^3.0.0",
     "dotenv": "^16.0.3",
     "koordinates-api": "^0.0.1",
-    "mime-types": "^2.1.35",
     "osm-api": "^1.0.5",
     "pbf2json": "^6.10.0",
     "through2": "^4.0.2",
@@ -41,7 +39,6 @@
   },
   "devDependencies": {
     "@types/adm-zip": "^0.5.5",
-    "@types/mime-types": "^2.1.1",
     "@types/node": "^22.4.0",
     "@types/pbf2json": "^6.6.1",
     "@types/through2": "^2.0.38",

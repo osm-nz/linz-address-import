@@ -3,7 +3,7 @@
   "results": [
     {
       "id": "AddressUpdateAbelTasmanNationalPark_177vr3a",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateAbelTasmanNationalPark_177vr3a.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateAbelTasmanNationalPark_177vr3a.osmPatch.geo.json",
       "name": "Address Update - Abel Tasman National Park",
       "title": "Address Update - Abel Tasman National Park",
       "totalCount": 2,
@@ -25,7 +25,7 @@
     },
     {
       "id": "AddressUpdateAucklandRuralEast_1ah3cpq",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateAucklandRuralEast_1ah3cpq.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateAucklandRuralEast_1ah3cpq.osmPatch.geo.json",
       "name": "Address Update - Auckland Rural East",
       "title": "Address Update - Auckland Rural East",
       "totalCount": 6,
@@ -47,7 +47,7 @@
     },
     {
       "id": "AddressUpdateAucklandSouth_z7qxci",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateAucklandSouth_z7qxci.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateAucklandSouth_z7qxci.osmPatch.geo.json",
       "name": "Address Update - Auckland South",
       "title": "Address Update - Auckland South",
       "totalCount": 7,
@@ -69,7 +69,7 @@
     },
     {
       "id": "AddressUpdatedeletionsfromunknownsector_1szv2s9",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdatedeletionsfromunknownsector_1szv2s9.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdatedeletionsfromunknownsector_1szv2s9.osmPatch.geo.json",
       "name": "Address Update - deletions from unknown sector",
       "title": "Address Update - deletions from unknown sector",
       "totalCount": 1,
@@ -91,7 +91,7 @@
     },
     {
       "id": "AddressUpdateDuplicateTallHamlet_il6mtj",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateDuplicateTallHamlet_il6mtj.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateDuplicateTallHamlet_il6mtj.osmPatch.geo.json",
       "name": "Address Update - Duplicate Tall Hamlet",
       "title": "Address Update - Duplicate Tall Hamlet",
       "totalCount": 2,
@@ -113,7 +113,7 @@
     },
     {
       "id": "AddressUpdateDuplicateWideHamlet_bu93q9",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateDuplicateWideHamlet_bu93q9.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateDuplicateWideHamlet_bu93q9.osmPatch.geo.json",
       "name": "Address Update - Duplicate Wide Hamlet",
       "title": "Address Update - Duplicate Wide Hamlet",
       "totalCount": 2,
@@ -135,7 +135,7 @@
     },
     {
       "id": "AddressUpdateJericho_1rxrbwa",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateJericho_1rxrbwa.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateJericho_1rxrbwa.osmPatch.geo.json",
       "name": "Address Update - Jericho",
       "title": "Address Update - Jericho",
       "totalCount": 1,
@@ -157,7 +157,7 @@
     },
     {
       "id": "AddressUpdateOakleigh_4b67jq",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateOakleigh_4b67jq.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateOakleigh_4b67jq.osmPatch.geo.json",
       "name": "Address Update - Oakleigh",
       "title": "Address Update - Oakleigh",
       "totalCount": 72,
@@ -179,7 +179,7 @@
     },
     {
       "id": "AddressUpdateŌpōtiki_no5kf2",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateŌpōtiki_no5kf2.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateŌpōtiki_no5kf2.osmPatch.geo.json",
       "name": "Address Update - Ōpōtiki",
       "title": "Address Update - Ōpōtiki",
       "totalCount": 2,
@@ -201,7 +201,7 @@
     },
     {
       "id": "AddressUpdateRangitāhua_rx31k4",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateRangitāhua_rx31k4.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateRangitāhua_rx31k4.osmPatch.geo.json",
       "name": "Address Update - Rangitāhua",
       "title": "Address Update - Rangitāhua",
       "totalCount": 1,
@@ -223,7 +223,7 @@
     },
     {
       "id": "AddressUpdateUnknownSector_znbt0a",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateUnknownSector_znbt0a.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateUnknownSector_znbt0a.osmPatch.geo.json",
       "name": "Address Update - Unknown Sector",
       "title": "Address Update - Unknown Sector",
       "totalCount": 2,
@@ -245,7 +245,7 @@
     },
     {
       "id": "AddressUpdateWestHoeHeights_5cj1uf",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateWestHoeHeights_5cj1uf.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateWestHoeHeights_5cj1uf.osmPatch.geo.json",
       "name": "Address Update - West Hoe Heights",
       "title": "Address Update - West Hoe Heights",
       "totalCount": 4,
@@ -267,7 +267,7 @@
     },
     {
       "id": "AddressUpdateWestHoeHeightsAnotherTown_1etb0hn",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateWestHoeHeightsAnotherTown_1etb0hn.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateWestHoeHeightsAnotherTown_1etb0hn.osmPatch.geo.json",
       "name": "Address Update - West Hoe Heights (Another Town)",
       "title": "Address Update - West Hoe Heights (Another Town)",
       "totalCount": 1,
@@ -289,7 +289,7 @@
     },
     {
       "id": "AddressUpdateWestHoeHeightsSilverdale_7cz61z",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/AddressUpdateWestHoeHeightsSilverdale_7cz61z.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateWestHoeHeightsSilverdale_7cz61z.osmPatch.geo.json",
       "name": "Address Update - West Hoe Heights (Silverdale)",
       "title": "Address Update - West Hoe Heights (Silverdale)",
       "totalCount": 1,
@@ -311,7 +311,7 @@
     },
     {
       "id": "MergeaddressnodesandbuildingsAucklandRuralEast_1nwkk3g",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/MergeaddressnodesandbuildingsAucklandRuralEast_1nwkk3g.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/MergeaddressnodesandbuildingsAucklandRuralEast_1nwkk3g.osmPatch.geo.json",
       "name": "Merge address nodes and buildings - Auckland Rural East",
       "title": "Merge address nodes and buildings - Auckland Rural East",
       "totalCount": 2,
@@ -333,7 +333,7 @@
     },
     {
       "id": "MergeduplicateaddressesAucklandRuralEast_13jfcj2",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/MergeduplicateaddressesAucklandRuralEast_13jfcj2.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/MergeduplicateaddressesAucklandRuralEast_13jfcj2.osmPatch.geo.json",
       "name": "Merge duplicate addresses - Auckland Rural East",
       "title": "Merge duplicate addresses - Auckland Rural East",
       "totalCount": 1,
@@ -355,7 +355,7 @@
     },
     {
       "id": "MergeduplicateaddressesAucklandSouth_1sppirm",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/MergeduplicateaddressesAucklandSouth_1sppirm.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/MergeduplicateaddressesAucklandSouth_1sppirm.osmPatch.geo.json",
       "name": "Merge duplicate addresses - Auckland South",
       "title": "Merge duplicate addresses - Auckland South",
       "totalCount": 1,
@@ -377,7 +377,7 @@
     },
     {
       "id": "MergeduplicateaddressesUnknownSector_1t5aefe",
-      "url": "https://linz-addr-cdn.kyle.kiwi/suburbs/MergeduplicateaddressesUnknownSector_1t5aefe.osmPatch.geo.json",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/MergeduplicateaddressesUnknownSector_1t5aefe.osmPatch.geo.json",
       "name": "Merge duplicate addresses - Unknown Sector",
       "title": "Merge duplicate addresses - Unknown Sector",
       "totalCount": 1,

@@ -39,7 +39,6 @@ jobs:
           npm run test:ci
         env:
           FORCE_COLOR: 1
-          AZ_CON: ${{ secrets.AZ_CON }}
           LINZ_API_KEY: ${{ secrets.LINZ_API_KEY }}
 
       - name: 😥 Print snapshot diff on failure

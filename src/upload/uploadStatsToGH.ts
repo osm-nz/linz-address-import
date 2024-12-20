@@ -1,8 +1,12 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
+import { config as dotenv } from 'dotenv';
 import type { GH, StatsFile } from '../types.js';
 
+dotenv();
+
 export async function uploadStatsToGH(): Promise<void> {
+  console.log('Updating stats to GitHub...');
   const stats: StatsFile = JSON.parse(
     await fs.readFile(
       join(import.meta.dirname, `../../out/stats.json`),
@@ -49,4 +53,11 @@ export async function uploadStatsToGH(): Promise<void> {
     body: JSON.stringify({ body: updatedBody }),
   });
   if (status !== 200) throw new Error(`HTTP ${status} from PATCH`);
+
+  console.log('\nUpload complete!');
 }
+
+uploadStatsToGH().catch((ex) => {
+  console.error(ex);
+  process.exit(1);
+});
