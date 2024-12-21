@@ -4,4 +4,4 @@ out
 .env
 data
 src/__tests__/mock/planet.pbf
-src/__tests__/bin/osmconvert2
+src/__tests__/bin/osmconvert-macos

@@ -36,7 +36,6 @@ jobs:
       - name: 🧪 Test
         run: |
           mkdir -p data
-          npm run pretest
           npm run test:ci
         env:
           FORCE_COLOR: 1

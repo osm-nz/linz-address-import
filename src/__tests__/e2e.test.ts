@@ -17,7 +17,11 @@ async function time(f: () => unknown) {
 
 const exe = joinPath(
   'bin',
-  process.platform === 'win32' ? 'osmconvert.exe' : 'osmconvert2',
+  process.platform === 'win32'
+    ? 'osmconvert.exe'
+    : process.platform === 'darwin'
+      ? 'osmconvert-macos'
+      : 'osmconvert-linux',
 );
 
 describe('end-to-end test', () => {

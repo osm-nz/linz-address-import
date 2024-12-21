@@ -5,6 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "postinstall": "if [[ \"$OSTYPE\" == \"darwin\"* ]]; then curl http://m.m.i24.cc/osmconvert.c | cc -x c - -lz -O3 -o src/__tests__/bin/osmconvert-macos; fi",
     "request-linz-export": "tsx src/download/requestLinzExport",
     "download-linz": "tsx src/download/downloadLinzExport",
     "download-planet": "sh src/download/download-planet.sh",
@@ -20,7 +21,6 @@
     "changelog": "tsx src/changelog",
     "changesetWatch": "tsx src/changesetWatch",
     "lint": "eslint . && tsc",
-    "pretest": "cp src/__tests__/bin/osmconvert src/__tests__/bin/osmconvert2 && chmod u+x src/__tests__/bin/osmconvert2",
     "test": "vitest",
     "test:ci": "vitest run --coverage"
   },
