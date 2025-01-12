@@ -12,6 +12,7 @@ export const nzgbNamesTable: Record<string, string> = {
   // to avoid changing them due to the unnecessary disruption.
   'Saint Heliers': 'St Heliers',
   'St Andrews': 'Saint Andrews',
+  'St Johns': 'Saint Johns',
 
   // recently gazetted & not in the address dataset yet
   Ranui: 'Rānui', // https://gazetteer.linz.govt.nz/place/59450
