@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04 # ubuntu 24 is missing libz.so, so osmconvert can't execute
 
     strategy:
       matrix:
