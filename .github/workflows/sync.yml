@@ -12,7 +12,8 @@ permissions:
 
 jobs:
   sync:
-    runs-on: ubuntu-latest
+    # see comments in ./ci.yml which explain why we use windows
+    runs-on: windows-latest
 
     strategy:
       matrix:

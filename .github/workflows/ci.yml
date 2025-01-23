@@ -4,13 +4,20 @@ on: [push]
 
 jobs:
   test:
-    runs-on: ubuntu-22.04 # ubuntu 24 is missing libz.so, so osmconvert can't execute
+    # we run the CI on windows for 2 reasons:
+    #  1. ubuntu-latest doesn't support osmconvert without installing libz.so
+    #  2. our fork of pbf2json only has pre-build bindaries for windows & macos
+    runs-on: windows-latest
 
     strategy:
       matrix:
         node-version: [20.x]
 
     steps:
+      - name: ⏬ switch off autocrlf
+        # see https://github.com/actions/checkout/issues/135
+        run: git config --global core.autocrlf false
+
       - name: ⏬ Checkout code
         uses: actions/checkout@v3
 
