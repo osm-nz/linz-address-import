@@ -54,6 +54,9 @@ export function processWithRef(
   const flatCountOk = linzAddr.flatCount === osmAddr.flatCount;
   const levelOk = !linzAddr.level || linzAddr.level === osmAddr.level;
 
+  const needsSpecialReview =
+    !!osmAddr.recentlyChanged && !osmAddr.lastEditedByImporter;
+
   if (
     houseOk &&
     altHouseOk &&
@@ -156,6 +159,7 @@ export function processWithRef(
     diagnostics: [
       osmAddr,
       linzAddr.suburb[1],
+      needsSpecialReview,
       ...issues.filter((x): x is Issue => !!x),
     ],
   });

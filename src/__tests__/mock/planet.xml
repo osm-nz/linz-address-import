@@ -36,7 +36,7 @@
   </node>
 
   <!-- house number 4A in LINZ -->
-  <node id="4" version="1" changeset="1" lat="-36.9" lon="174.904" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+  <node id="4" version="2" changeset="2" lat="-36.9" lon="174.904" user="" uid="0" visible="true" timestamp="2042-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="4" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
@@ -842,7 +842,7 @@
   </node>
 
   <!--
-    1-2/188 are mapped, but without alt_addr:housenumber for 188A-B, 
+    1-2/188 are mapped, but without alt_addr:housenumber for 188A-B,
     and the root (188) is missing.
   -->
   <node id="188" version="1" changeset="1" lat="-36.9" lon="174.188" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
@@ -902,7 +902,7 @@
     <tag k="addr:hamlet" v="Oakleigh" />
     <tag k="ref:linz:address_id" v="70198" />
   </node>
-  
+
   <!-- 2 addresses mapped separately, but one has `linz:stack=yes` -->
   <node id="199" version="1" changeset="1" lat="-36.9" lon="174.199" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="199A" />

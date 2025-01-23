@@ -1,0 +1,53 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "n4",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.90400000000002,
+              -36.899800000000006
+            ],
+            [
+              174.90420000000003,
+              -36.900000000000006
+            ],
+            [
+              174.90400000000002,
+              -36.900200000000005
+            ],
+            [
+              174.90380000000002,
+              -36.900000000000006
+            ],
+            [
+              174.90400000000002,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "addr:housenumber": "4A"
+      }
+    }
+  ],
+  "bbox": {
+    "minLat": -36.900200000000005,
+    "minLng": 174.90380000000002,
+    "maxLat": -36.899800000000006,
+    "maxLng": 174.90420000000003
+  },
+  "changesetTags": {
+    "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+    "created_by": "LINZ Data Import 2.0.0",
+    "locale": "en-NZ",
+    "source": "https://wiki.osm.org/LINZ",
+    "comment": "Recently Edited Addresses - Auckland South"
+  }
+}

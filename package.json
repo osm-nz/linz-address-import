@@ -32,7 +32,7 @@
     "dotenv": "^16.0.3",
     "koordinates-api": "^0.0.1",
     "osm-api": "^1.0.5",
-    "pbf2json": "^6.10.0",
+    "pbf2json": "https://github.com/osm-nz/pbf2json",
     "through2": "^4.0.2",
     "unzipper": "^0.10.11",
     "which-polygon": "^2.2.0"

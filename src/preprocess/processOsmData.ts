@@ -2,6 +2,7 @@ import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import pbf2json, { type Item } from 'pbf2json';
 import through from 'through2';
+import type { OsmFeature } from 'osm-api';
 import { isChecked } from '../common/index.js';
 import type { OSMData, OsmAddr, OsmId } from '../types.js';
 import { mock, osmFile } from './const.js';
@@ -12,6 +13,23 @@ const input = join(
 );
 
 const MAP = { node: 'n', way: 'w', relation: 'r' };
+
+/** if a feature was last edited within this many DAYS, then it's "recently edited" */
+const RECENT_THRESHOLD = 90;
+
+const THRESHOLD_DATE = ((d) => {
+  d.setDate(d.getDate() - RECENT_THRESHOLD);
+  return +d / 1000;
+})(new Date());
+
+const isImportUser = (username: string | undefined) =>
+  username?.endsWith('_import') || username?.endsWith('_linz');
+
+type PbfMetadata = Partial<
+  Pick<OsmFeature, 'changeset' | 'version' | 'user'> & {
+    timestamp?: number; // unlike the API, the golang code returns a number
+  }
+>;
 
 // TODO: perf baseline is 87 seconds
 function osmToJson(): Promise<OSMData> {
@@ -30,6 +48,9 @@ function osmToJson(): Promise<OSMData> {
         file: input,
         tags: ['addr:housenumber+addr:street,ref:linz:address_id'], // (houseNumber & street) | linzId
         leveldb: '/tmp',
+        // @ts-expect-error -- missing from typedefs since we
+        //                     added this option in our fork.
+        metadata: true,
       })
       .pipe(
         through.obj((item: Item, _, next) => {
@@ -41,6 +62,9 @@ function osmToJson(): Promise<OSMData> {
           const suburb = suburbU || suburbR;
 
           const coords = item.type === 'node' ? item : item.centroid;
+          // @ts-expect-error -- missing from typedefs since we
+          //                     added this option in our fork.
+          const metadata: PbfMetadata | undefined = item.meta;
 
           const object: OsmAddr = {
             osmId: (type + item.id) as OsmId,
@@ -65,6 +89,12 @@ function osmToJson(): Promise<OSMData> {
                 : undefined,
             level: item.tags.level,
           };
+          if ((metadata?.timestamp ?? 0) > THRESHOLD_DATE) {
+            object.recentlyChanged = true;
+          }
+          if (metadata?.version === 1 || isImportUser(metadata?.user)) {
+            object.lastEditedByImporter = true;
+          }
           if (isWater) object.water = true;
           if (suburbU && suburbR) object.doubleSuburb = true;
           if (item.tags['linz:stack'] === 'yes') object.stackRequest = true;

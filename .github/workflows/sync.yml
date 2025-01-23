@@ -20,6 +20,10 @@ jobs:
         node-version: [20.x]
 
     steps:
+      - name: ⏬ switch off autocrlf
+        # see https://github.com/actions/checkout/issues/135
+        run: git config --global core.autocrlf false
+
       - name: ⏬ Checkout code
         uses: actions/checkout@v3
 
@@ -31,6 +35,8 @@ jobs:
       - name: ⏬ Install
         run: |
           npm install
+          git reset --hard
+        # ^ if the lockfile changed, remove it from the git diff
 
       - name: 🌏 Download planet file extract
         run: |

@@ -19,11 +19,14 @@ import {
 const toKey = (right: string, wrong: string, osmData: OsmAddr) =>
   `${[right, wrong].sort().join('__')}__${osmData.street}`;
 
+const SPECIAL_REVIEW = 'Recently Edited Addresses';
+
 export async function existsButDataWrong(
   array: StatusReport[Status.EXISTS_BUT_WRONG_DATA],
 ): Promise<HandlerReturn> {
   const bySuburb = array.reduce(
-    (ac, [linzId, [osmAddr, suburb, ...issues]]) => {
+    (ac, [linzId, [osmAddr, _suburb, needsSpecialReview, ...issues]]) => {
+      const suburb = needsSpecialReview ? SPECIAL_REVIEW : _suburb;
       ac[suburb] ||= [];
       ac[suburb].push([linzId, osmAddr, issues]);
       return ac;
@@ -134,7 +137,9 @@ export async function existsButDataWrong(
       });
     }
 
-    out[`Address Update - ${suburb}`] = features;
+    const layerName =
+      suburb === SPECIAL_REVIEW ? suburb : `Address Update - ${suburb}`;
+    out[layerName] = features;
   }
 
   await fs.writeFile(join(outFolder, 'data-wrong.txt'), report);
