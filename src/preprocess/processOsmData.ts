@@ -43,6 +43,8 @@ function osmToJson(): Promise<OSMData> {
     };
     let index = 0;
 
+    let anyMetadata = false;
+
     pbf2json
       .createReadStream({
         file: input,
@@ -65,6 +67,8 @@ function osmToJson(): Promise<OSMData> {
           // @ts-expect-error -- missing from typedefs since we
           //                     added this option in our fork.
           const metadata: PbfMetadata | undefined = item.meta;
+
+          if (metadata) anyMetadata = true;
 
           const object: OsmAddr = {
             osmId: (type + item.id) as OsmId,
@@ -139,7 +143,12 @@ function osmToJson(): Promise<OSMData> {
           next();
         }),
       )
-      .on('finish', () => resolve(out))
+      .on('finish', () => {
+        if (!anyMetadata) {
+          console.warn('No metadata extracted from the planet file!');
+        }
+        resolve(out);
+      })
       .on('error', reject);
   });
 }
