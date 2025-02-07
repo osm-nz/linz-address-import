@@ -2,28 +2,28 @@ import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import {
   CheckDate,
-  type GeoJsonFeature,
   type HandlerReturn,
   type Status,
   type StatusReport,
 } from '../../types.js';
-import { outFolder, toLink } from '../util/index.js';
+import { LAYER_PREFIX, outFolder, toLink } from '../util/index.js';
 
 export async function handleLocationWrong(
   array: StatusReport[Status.EXISTS_BUT_LOCATION_WRONG],
 ): Promise<HandlerReturn> {
-  const features: GeoJsonFeature[] = [];
+  const features: HandlerReturn = {};
   let report = '';
 
   for (const [linzId, d] of array) {
-    const [metres, osmData, lat, lng, wrongLat, wrongLng] = d;
+    const [suburb, metres, osmData, lat, lng, wrongLat, wrongLng] = d;
     report += `${linzId}\t\t${toLink(
       osmData.osmId,
     )}\t\tneeds to move ${metres}m to ${lat},${lng}\n`;
 
     if (osmData.osmId[0] === 'n') {
       // RapiD can only move nodes.
-      features.push({
+      features[LAYER_PREFIX + suburb] ||= [];
+      features[LAYER_PREFIX + suburb].push({
         type: 'Feature',
         id: osmData.osmId,
         geometry: {
@@ -46,5 +46,5 @@ export async function handleLocationWrong(
 
   await fs.writeFile(join(outFolder, 'location-wrong.txt'), report);
 
-  return { 'Address Update': features };
+  return features;
 }

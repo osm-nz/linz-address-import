@@ -24,50 +24,6 @@
       ]
     },
     {
-      "id": "AddressUpdateAucklandRuralEast_1ah3cpq",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateAucklandRuralEast_1ah3cpq.osmPatch.geo.json",
-      "name": "Address Update - Auckland Rural East",
-      "title": "Address Update - Auckland Rural East",
-      "totalCount": 6,
-      "source": "",
-      "snippet": "add 3, edit 3",
-      "extent": [
-        [
-          175.1248,
-          -36.9005333
-        ],
-        [
-          175.136,
-          -36.899800000000006
-        ]
-      ],
-      "groupCategories": [
-        "/Categories/Addresses"
-      ]
-    },
-    {
-      "id": "AddressUpdateAucklandSouth_z7qxci",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateAucklandSouth_z7qxci.osmPatch.geo.json",
-      "name": "Address Update - Auckland South",
-      "title": "Address Update - Auckland South",
-      "totalCount": 7,
-      "source": "",
-      "snippet": "add 2, delete 1, edit 4",
-      "extent": [
-        [
-          174.922,
-          -36.9005333
-        ],
-        [
-          174.97220000000002,
-          -36.899800000000006
-        ]
-      ],
-      "groupCategories": [
-        "/Categories/Addresses"
-      ]
-    },
-    {
       "id": "AddressUpdatedeletionsfromunknownsector_1szv2s9",
       "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdatedeletionsfromunknownsector_1szv2s9.osmPatch.geo.json",
       "name": "Address Update - deletions from unknown sector",
@@ -160,9 +116,9 @@
       "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateOakleigh_4b67jq.osmPatch.geo.json",
       "name": "Address Update - Oakleigh",
       "title": "Address Update - Oakleigh",
-      "totalCount": 71,
+      "totalCount": 86,
       "source": "",
-      "snippet": "add 24, delete 13, edit 34",
+      "snippet": "add 29, delete 14, move 2, edit 41",
       "extent": [
         [
           174.144,
@@ -215,28 +171,6 @@
         [
           -176.035,
           -36.9
-        ]
-      ],
-      "groupCategories": [
-        "/Categories/Addresses"
-      ]
-    },
-    {
-      "id": "AddressUpdateUnknownSector_znbt0a",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateUnknownSector_znbt0a.osmPatch.geo.json",
-      "name": "Address Update - Unknown Sector",
-      "title": "Address Update - Unknown Sector",
-      "totalCount": 2,
-      "source": "",
-      "snippet": "move 2",
-      "extent": [
-        [
-          174.903,
-          -36.9
-        ],
-        [
-          174.942,
-          -36
         ]
       ],
       "groupCategories": [

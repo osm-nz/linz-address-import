@@ -1,18 +1,19 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import type {
-  GeoJsonFeature,
-  HandlerReturn,
-  Status,
-  StatusReport,
-} from '../../types.js';
-import { createDiamond, outFolder, toLink } from '../util/index.js';
+import type { HandlerReturn, Status, StatusReport } from '../../types.js';
+import {
+  LAYER_PREFIX,
+  createDiamond,
+  outFolder,
+  toLink,
+} from '../util/index.js';
 
 export async function handleMultipleExistButNoLinzRef(
   array: StatusReport[Status.MULTIPLE_EXIST_BUT_NO_LINZ_REF],
 ): Promise<HandlerReturn> {
   let report = '';
-  for (const [linzId, [, osmIds]] of array) {
+  // eslint-disable-next-line unicorn/no-unreadable-array-destructuring
+  for (const [linzId, [, , osmIds]] of array) {
     report += `ref:linz:address_id=${linzId}\t\tneeds to be added to\t\t${osmIds
       .map(toLink)
       .join(' or ')}\n`;
@@ -23,10 +24,11 @@ export async function handleMultipleExistButNoLinzRef(
     report,
   );
 
-  const features: GeoJsonFeature[] = [];
+  const features: HandlerReturn = {};
 
-  for (const [linzId, [chosenOsmAddr]] of array) {
-    features.push({
+  for (const [linzId, [suburb, chosenOsmAddr]] of array) {
+    features[LAYER_PREFIX + suburb] ||= [];
+    features[LAYER_PREFIX + suburb].push({
       type: 'Feature',
       id: chosenOsmAddr.osmId,
       geometry: {
@@ -40,7 +42,5 @@ export async function handleMultipleExistButNoLinzRef(
     });
   }
 
-  if (!features.length) return {};
-
-  return { 'Address Update': features };
+  return features;
 }

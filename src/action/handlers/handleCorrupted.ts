@@ -1,7 +1,6 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import type {
-  GeoJsonFeature,
   HandlerReturn,
   LinzAddr,
   OsmAddr,
@@ -9,6 +8,7 @@ import type {
   StatusReport,
 } from '../../types.js';
 import {
+  LAYER_PREFIX,
   createDiamond,
   createSquare,
   deleteAllAddressTags,
@@ -42,15 +42,19 @@ export async function handleCorrupted(
 
   await fs.writeFile(join(outFolder, 'corrupt.txt'), report);
 
-  const features: GeoJsonFeature[] = [];
+  const features: HandlerReturn = {};
 
   for (const osmId in byOsmId) {
     const osmAddr = byOsmId[osmId].osm;
 
+    // pick the suburb from the first node
+    const suburb = byOsmId[osmId].linz[0][1].suburb?.[1];
+
     // 1️⃣ delete or edit the corrupted feature
     if (osmId[0] === 'n' && !osmAddr.isNonTrivial) {
       // 1️⃣🅰️ it's an insignificant node, so we delete it
-      features.push({
+      features[LAYER_PREFIX + suburb] ||= [];
+      features[LAYER_PREFIX + suburb].push({
         type: 'Feature',
         id: osmAddr.osmId,
         geometry: {
@@ -61,7 +65,8 @@ export async function handleCorrupted(
       });
     } else {
       // 1️⃣🅱️ it's a building or a buisness, so we edit it to remove the address tags
-      features.push({
+      features[LAYER_PREFIX + suburb] ||= [];
+      features[LAYER_PREFIX + suburb].push({
         type: 'Feature',
         id: osmAddr.osmId,
         geometry: {
@@ -77,7 +82,8 @@ export async function handleCorrupted(
 
     // 2️⃣ create replacement nodes for the ones that were merged together
     for (const [linzId, linzAddr] of byOsmId[osmId].linz) {
-      features.push({
+      features[LAYER_PREFIX + suburb] ||= [];
+      features[LAYER_PREFIX + suburb].push({
         type: 'Feature',
         id: linzId,
         geometry: {
@@ -89,7 +95,5 @@ export async function handleCorrupted(
     }
   }
 
-  if (!features.length) return {};
-
-  return { 'Address Update': features };
+  return features;
 }

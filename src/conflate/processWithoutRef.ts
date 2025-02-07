@@ -33,6 +33,6 @@ export function processWithoutRef(
 
   return validate({
     status: Status.MULTIPLE_EXIST_BUT_NO_LINZ_REF,
-    diagnostics: [chosenOsmAddr, allOsmIds],
+    diagnostics: [linzData.suburb[1], chosenOsmAddr, allOsmIds],
   });
 }

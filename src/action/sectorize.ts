@@ -4,7 +4,7 @@ import type {
   GeoJsonFeature,
   HandlerReturnWithBBox,
 } from '../types.js';
-import { calcBBox } from './util/index.js';
+import { LAYER_PREFIX, calcBBox } from './util/index.js';
 import {
   normalizeName,
   splitUntilSmallEnough,
@@ -27,7 +27,7 @@ export function sectorize(
     const { size, features, instructions, changesetTags } =
       originalFeatures[suburb];
 
-    if (!suburb.includes('Address Update - ')) {
+    if (!suburb.includes(LAYER_PREFIX)) {
       // not antarctic and not an address suburb, so split this by region
       const out: Record<string, GeoJsonFeature[]> = {};
       for (const f of features) {

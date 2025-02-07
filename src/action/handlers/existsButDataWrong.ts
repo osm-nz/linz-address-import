@@ -10,6 +10,7 @@ import {
   type StatusReport,
 } from '../../types.js';
 import {
+  LAYER_PREFIX,
   createDiamond,
   fieldsToModify,
   outFolder,
@@ -137,8 +138,7 @@ export async function existsButDataWrong(
       });
     }
 
-    const layerName =
-      suburb === SPECIAL_REVIEW ? suburb : `Address Update - ${suburb}`;
+    const layerName = (suburb === SPECIAL_REVIEW ? '' : LAYER_PREFIX) + suburb;
     out[layerName] = features;
   }
 

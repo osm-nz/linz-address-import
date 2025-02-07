@@ -1,13 +1,13 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import type {
-  GeoJsonFeature,
   HandlerReturn,
   OsmAddr,
   Status,
   StatusReport,
 } from '../../types.js';
 import {
+  LAYER_PREFIX,
   createDiamond,
   deleteAllAddressTags,
   outFolder,
@@ -38,10 +38,11 @@ export async function handleDeletedOnBuilding(
 
   await fs.writeFile(join(outFolder, 'needs-delete-on-building.txt'), report);
 
-  const features: GeoJsonFeature[] = [];
+  const features: HandlerReturn = {};
 
-  for (const [, [, osmAddr]] of array) {
-    features.push({
+  for (const [, [suburb, osmAddr]] of array) {
+    features[LAYER_PREFIX + suburb] ||= [];
+    features[LAYER_PREFIX + suburb].push({
       type: 'Feature',
       id: osmAddr.osmId,
       geometry: {
@@ -55,7 +56,5 @@ export async function handleDeletedOnBuilding(
     });
   }
 
-  if (!features.length) return {};
-
-  return { 'Address Update': features };
+  return features;
 }

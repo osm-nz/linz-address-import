@@ -8,7 +8,12 @@ import type {
   Status,
   StatusReport,
 } from '../../types.js';
-import { createDiamond, outFolder, toLink } from '../util/index.js';
+import {
+  LAYER_PREFIX,
+  createDiamond,
+  outFolder,
+  toLink,
+} from '../util/index.js';
 
 export async function handleExistsButNoLinzRef(
   array: StatusReport[Status.EXISTS_BUT_NO_LINZ_REF],
@@ -56,7 +61,7 @@ export async function handleExistsButNoLinzRef(
         },
       });
     }
-    index[`Address Update - ${suburb}`] = features;
+    index[LAYER_PREFIX + suburb] = features;
   }
 
   await fs.writeFile(join(outFolder, 'needs-linz-ref.txt'), report);

@@ -113,6 +113,7 @@ export function processWithRef(
     return validate({
       status: Status.EXISTS_BUT_LOCATION_WRONG,
       diagnostics: [
+        linzAddr.suburb[1],
         Math.round(offset),
         osmAddr,
         linzAddr.lat,

@@ -1,13 +1,17 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import type {
-  GeoJsonFeature,
   HandlerReturn,
   OsmAddr,
   Status,
   StatusReport,
 } from '../../types.js';
-import { createDiamond, outFolder, toLink } from '../util/index.js';
+import {
+  LAYER_PREFIX,
+  createDiamond,
+  outFolder,
+  toLink,
+} from '../util/index.js';
 
 export async function handleLinzRefChanged(
   array: StatusReport[Status.LINZ_REF_CHANGED],
@@ -31,10 +35,11 @@ export async function handleLinzRefChanged(
 
   await fs.writeFile(join(outFolder, 'linz-ref-changed.txt'), report);
 
-  const features: GeoJsonFeature[] = [];
+  const features: HandlerReturn = {};
 
-  for (const [, [, newLinzId, osmData, linzData]] of array) {
-    features.push({
+  for (const [, [suburb, newLinzId, osmData, linzData]] of array) {
+    features[LAYER_PREFIX + suburb] ||= [];
+    features[LAYER_PREFIX + suburb].push({
       type: 'Feature',
       id: osmData.osmId,
       geometry: {
@@ -51,7 +56,5 @@ export async function handleLinzRefChanged(
     });
   }
 
-  if (!features.length) return {};
-
-  return { 'Address Update': features };
+  return features;
 }

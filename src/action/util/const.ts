@@ -22,3 +22,5 @@ export const toLink = (osmId: string): string =>
 export const MAX_ITEMS_PER_DATASET = +(
   process.env.MAX_ITEMS_PER_DATASET || 110
 );
+
+export const LAYER_PREFIX = 'Address Update - ';

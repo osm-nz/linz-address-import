@@ -6,7 +6,7 @@ import type {
   Status,
   StatusReport,
 } from '../../types.js';
-import { createSquare, linzAddrToTags } from '../util/index.js';
+import { LAYER_PREFIX, createSquare, linzAddrToTags } from '../util/index.js';
 
 type BySuburb = {
   [suburb: string]: [
@@ -83,7 +83,7 @@ export async function handleTotallyMissing(
       },
     );
 
-    index[`Address Update - ${suburb}`] = features;
+    index[LAYER_PREFIX + suburb] = features;
   }
 
   return index;

@@ -217,11 +217,13 @@ export type StatusDiagnostics = {
     osmData: OsmAddr,
   ];
   [Status.MULTIPLE_EXIST_BUT_NO_LINZ_REF]: [
+    suburb: string,
     chosenOsmAddr: OsmAddr,
     allOsmIds: OsmId[],
   ];
   [Status.MULTIPLE_EXIST]: [linzAddr: LinzAddr, osmAddrs: OsmAddr[]];
   [Status.EXISTS_BUT_LOCATION_WRONG]: [
+    suburb: string,
     metres: number,
     osmAddr: OsmAddr,
     linzLat: number,

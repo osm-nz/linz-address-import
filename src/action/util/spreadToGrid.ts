@@ -1,5 +1,6 @@
 import type { Vec2 } from '@id-sdk/vector';
 import type { GeoJsonFeature, HandlerReturnWithBBox } from '../../types.js';
+import { LAYER_PREFIX } from './const.js';
 
 const { sin, cos, floor, sqrt, PI: π } = Math;
 
@@ -27,7 +28,7 @@ export function shiftOverlappingPoints(
   sectors: HandlerReturnWithBBox,
 ): HandlerReturnWithBBox {
   for (const sectorName in sectors) {
-    if (!sectorName.startsWith('Address Update - ')) continue;
+    if (!sectorName.startsWith(LAYER_PREFIX)) continue;
 
     const sector = sectors[sectorName];
     const nodeByCoord: Record<string, GeoJsonFeature[]> = {};
