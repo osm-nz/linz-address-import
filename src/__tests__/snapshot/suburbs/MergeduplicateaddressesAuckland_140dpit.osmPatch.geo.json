@@ -1,0 +1,121 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "n21",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.92100000000002,
+              -36.899800000000006
+            ],
+            [
+              174.92120000000003,
+              -36.900000000000006
+            ],
+            [
+              174.92100000000002,
+              -36.900200000000005
+            ],
+            [
+              174.9208,
+              -36.900000000000006
+            ],
+            [
+              174.92100000000002,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "ref:linz:address_id": "🗑️"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n137",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              175.1371,
+              -36.8999
+            ],
+            [
+              175.1371,
+              -36.90010000000001
+            ],
+            [
+              175.1369,
+              -36.90010000000001
+            ],
+            [
+              175.1369,
+              -36.8999
+            ],
+            [
+              175.1371,
+              -36.8999
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "delete"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n151",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.1511,
+              -36.8999
+            ],
+            [
+              174.1511,
+              -36.90010000000001
+            ],
+            [
+              174.1509,
+              -36.90010000000001
+            ],
+            [
+              174.1509,
+              -36.8999
+            ],
+            [
+              174.1511,
+              -36.8999
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "delete"
+      }
+    }
+  ],
+  "bbox": {
+    "minLat": -36.900200000000005,
+    "minLng": 174.1509,
+    "maxLat": -36.899800000000006,
+    "maxLng": 175.1371
+  },
+  "changesetTags": {
+    "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+    "created_by": "LINZ Data Import 2.0.0",
+    "locale": "en-NZ",
+    "source": "https://wiki.osm.org/LINZ",
+    "comment": "Merge duplicate addresses - Auckland"
+  }
+}

@@ -83,6 +83,6 @@
     "created_by": "LINZ Data Import 2.0.0",
     "locale": "en-NZ",
     "source": "https://wiki.osm.org/LINZ",
-    "comment": "Merge address nodes and buildings - Auckland Rural East"
+    "comment": "Merge address nodes and buildings - Auckland"
   }
 }
