@@ -55,6 +55,10 @@ export async function main(): Promise<void> {
   for (const k in features) {
     if (features[k].length < 50 && !mock) {
       const parentKey = k.split(' - ')[0];
+
+      // can't be merged (e.g. special layers)
+      if (k === parentKey) continue;
+
       features[parentKey] ||= [];
       features[parentKey].push(...features[k]);
       delete features[k];
