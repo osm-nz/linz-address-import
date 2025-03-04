@@ -8,7 +8,7 @@
     "postinstall": "if [[ \"$OSTYPE\" == \"darwin\"* ]]; then curl http://m.m.i24.cc/osmconvert.c | cc -x c - -lz -O3 -o src/__tests__/bin/osmconvert-macos; fi",
     "request-linz-export": "tsx src/download/requestLinzExport",
     "download-linz": "tsx src/download/downloadLinzExport",
-    "download-planet": "sh src/download/download-planet.sh",
+    "download-planet": "tsx src/download/downloadPlanet",
     "preprocess0": "tsx src/preprocess/fetchAndSaveAddressIgnoreList",
     "preprocess1": "tsx src/preprocess/processOsmData",
     "preprocess2": "tsx src/preprocess/processLinzData",

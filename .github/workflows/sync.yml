@@ -41,6 +41,8 @@ jobs:
       - name: 🌏 Download planet file extract
         run: |
           yarn download-planet
+        env:
+          OSM_AUTH: ${{ secrets.OSM_AUTH }}
 
       - name: 🥝 Download LINZ csv file
         run: |

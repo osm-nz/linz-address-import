@@ -13,6 +13,10 @@ export const ruralUrbanCsvFile = join(
     : '../../data/rural-urban-boundary.csv',
 );
 
+export const planetFile = join(
+  import.meta.dirname,
+  mock ? '../__tests__/mock/planet.pbf' : '../../data/osm.pbf',
+);
 export const osmFile = join(import.meta.dirname, `../../data/osm${mock}.json`);
 export const linzTempFile = join(
   import.meta.dirname,

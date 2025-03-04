@@ -1,16 +1,10 @@
 import { promises as fs } from 'node:fs';
-import { join } from 'node:path';
 import pbf2json, { type Item } from 'pbf2json';
 import through from 'through2';
 import type { OsmFeature } from 'osm-api';
 import { isChecked } from '../common/index.js';
 import type { OSMData, OsmAddr, OsmId } from '../types.js';
-import { mock, osmFile } from './const.js';
-
-const input = join(
-  import.meta.dirname,
-  mock ? '../__tests__/mock/planet.pbf' : '../../data/osm.pbf',
-);
+import { osmFile, planetFile } from './const.js';
 
 const MAP = { node: 'n', way: 'w', relation: 'r' };
 
@@ -47,7 +41,7 @@ function osmToJson(): Promise<OSMData> {
 
     pbf2json
       .createReadStream({
-        file: input,
+        file: planetFile,
         tags: ['addr:housenumber+addr:street,ref:linz:address_id'], // (houseNumber & street) | linzId
         leveldb: '/tmp',
         // @ts-expect-error -- missing from typedefs since we
