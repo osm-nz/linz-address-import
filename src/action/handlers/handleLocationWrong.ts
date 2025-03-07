@@ -12,18 +12,42 @@ export async function handleLocationWrong(
   array: StatusReport[Status.EXISTS_BUT_LOCATION_WRONG],
 ): Promise<HandlerReturn> {
   const features: HandlerReturn = {};
+
+  const bySuburb = array.reduce(
+    (ac, [linzId, [suburb, ...other]]) => {
+      ac[suburb] ||= [];
+      ac[suburb].push([linzId, ...other]);
+      return ac;
+    },
+    {} as {
+      [
+        suburb: string
+      ]: StatusReport[Status.EXISTS_BUT_LOCATION_WRONG][number][1][];
+    },
+  );
+
   let report = '';
+  for (const suburb in bySuburb) {
+    report += `\n${suburb}\n`;
+    // eslint-disable-next-line unicorn/no-unreadable-array-destructuring
+    for (const [linzId, metres, osmData, lat, lng, , , isMinorMove] of bySuburb[
+      suburb
+    ]) {
+      report += `${linzId}\t\t${toLink(
+        osmData.osmId,
+      )}\t\tneeds to move ${metres}m to ${lat},${lng}${isMinorMove ? ' *' : ''}\n`;
+    }
+  }
 
-  for (const [linzId, d] of array) {
-    const [suburb, metres, osmData, lat, lng, wrongLat, wrongLng] = d;
-    report += `${linzId}\t\t${toLink(
-      osmData.osmId,
-    )}\t\tneeds to move ${metres}m to ${lat},${lng}\n`;
-
+  for (const [, d] of array) {
+    const [suburb, , osmData, lat, lng, wrongLat, wrongLng, isMinorMove] = d;
     if (osmData.osmId[0] === 'n') {
       // RapiD can only move nodes.
-      features[LAYER_PREFIX + suburb] ||= [];
-      features[LAYER_PREFIX + suburb].push({
+      const layer = isMinorMove
+        ? 'Slighly shift addresses'
+        : LAYER_PREFIX + suburb;
+      features[layer] ||= [];
+      features[layer].push({
         type: 'Feature',
         id: osmData.osmId,
         geometry: {

@@ -1,0 +1,58 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "n2",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            174.90200000000002,
+            -36.902
+          ],
+          [
+            174.902,
+            -36.9
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "move"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n212",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            174.21290000000002,
+            -36.900000000000006
+          ],
+          [
+            174.212,
+            -36.9
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "move"
+      }
+    }
+  ],
+  "bbox": {
+    "minLat": -36.902,
+    "minLng": 174.212,
+    "maxLat": -36.9,
+    "maxLng": 174.90200000000002
+  },
+  "changesetTags": {
+    "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+    "created_by": "LINZ Data Import 2.0.0",
+    "locale": "en-NZ",
+    "source": "https://wiki.osm.org/LINZ",
+    "comment": "Slighly shift addresses - Auckland"
+  }
+}

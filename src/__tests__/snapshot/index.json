@@ -308,6 +308,28 @@
       "groupCategories": [
         "/Categories/Addresses"
       ]
+    },
+    {
+      "id": "SlighlyshiftaddressesAuckland_q483nc",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/SlighlyshiftaddressesAuckland_q483nc.osmPatch.geo.json",
+      "name": "Slighly shift addresses - Auckland",
+      "title": "Slighly shift addresses - Auckland",
+      "totalCount": 2,
+      "source": "",
+      "snippet": "move 2",
+      "extent": [
+        [
+          174.212,
+          -36.902
+        ],
+        [
+          174.90200000000002,
+          -36.9
+        ]
+      ],
+      "groupCategories": [
+        "/Categories/Addresses"
+      ]
     }
   ]
 }

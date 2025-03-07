@@ -10,7 +10,7 @@ import { findPotentialOsmAddresses } from './findPotentialOsmAddresses.js';
 import { validate } from './helpers/validate.js';
 
 /** distance in metres beyond which we classify the address as `EXISTS_BUT_LOCATION_WRONG` */
-const LOCATION_THRESHOLD = 300;
+const LOCATION_THRESHOLD = { MAJOR: 300, MINOR: 10 };
 
 /** swap suburb <=> hamlet */
 const inverse = (linz: string) => {
@@ -20,7 +20,7 @@ const inverse = (linz: string) => {
 };
 
 export function processWithRef(
-  _addressId: string,
+  addressId: string,
   linzAddr: LinzAddr,
   osmAddr: OsmAddr,
   allOsmAddressesWithNoRef: OsmAddr[],
@@ -75,7 +75,24 @@ export function processWithRef(
       [osmAddr.lng, osmAddr.lat],
     );
 
-    if (offset < LOCATION_THRESHOLD) {
+    // If a feature was moved by a mapper, that's great. But if it's never
+    // been touched since the original import, then we should move it when
+    // LINZ updates the location. Therefore, use a much lower threshold.
+    const isVeryFarOff = offset > LOCATION_THRESHOLD.MAJOR;
+    const isSlightlyOff =
+      offset > LOCATION_THRESHOLD.MINOR &&
+      !osmAddr.isNonTrivial && // skip nonTrivial addresses (e.g. a business)
+      osmAddr.osmId[0] === 'n' && // skip areas
+      addressId[0] !== '3' && // skip addresses from CADs
+      !linzAddr.flatCount; // skip stacked addresses
+
+    const isLocationOff = osmAddr.lastEditedByImporter
+      ? isSlightlyOff
+      : isVeryFarOff;
+    const isMinorMove =
+      !!osmAddr.lastEditedByImporter && isSlightlyOff && !isVeryFarOff;
+
+    if (!isLocationOff) {
       // this check makes the conflation process 20 times slower, so it's
       // only run when slowMode is enabled.
       if (slowMode) {
@@ -120,6 +137,7 @@ export function processWithRef(
         linzAddr.lng,
         osmAddr.lat,
         osmAddr.lng,
+        isMinorMove,
       ],
     });
   }

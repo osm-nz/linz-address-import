@@ -956,6 +956,31 @@
     <tag k="ref:linz:address_id" v="70209" />
   </node>
 
+  <!-- location off a tiny bit. last editted by a normie -->
+  <node id="210" version="56" changeset="1" lat="-36.9" lon="174.2109" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="210" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70210" />
+  </node>
+
+  <!-- location off a tiny bit. last editted by an importer, >v1 -->
+  <!-- TODO: this test is failing because osmconvert doesn't convert the `user` field. However, it works in prod -->
+  <node id="211" version="56" changeset="1" lat="-36.9" lon="174.2119" user="example_import" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="211" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70211" />
+  </node>
+
+  <!-- location off a tiny bit. still on v1 -->
+  <node id="212" version="1" changeset="1" lat="-36.9" lon="174.2129" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="212" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70212" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />

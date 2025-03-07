@@ -230,6 +230,7 @@ export type StatusDiagnostics = {
     linzLng: number,
     osmLat: number,
     osmLng: number,
+    isMinorMove: boolean,
   ];
   [Status.TOTALLY_MISSING]: LinzAddr;
   [Status.NEEDS_DELETE]: [suburb: string, osmData: OsmAddr];
