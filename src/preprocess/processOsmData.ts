@@ -77,6 +77,7 @@ function osmToJson(): Promise<OSMData> {
             isNonTrivial:
               'name' in item.tags ||
               'craft' in item.tags ||
+              'tourism' in item.tags ||
               'shop' in item.tags,
             checked: isChecked(item.tags.check_date),
             // safe to use || instead of ?? because the tag value will never be 0
