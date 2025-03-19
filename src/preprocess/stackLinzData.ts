@@ -2,13 +2,14 @@ import { promises as fs, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import whichPolygon from 'which-polygon';
 import type {
+  CoordKey,
   CouldStackData,
   GeoJson,
   LinzAddr,
   LinzData,
   OSMData,
 } from '../types.js';
-import { toStackId, uniq } from '../common/index.js';
+import { getCoordKey, toStackId, uniq } from '../common/index.js';
 import { linzFile, linzTempFile, mock, osmFile, stackFile } from './const.js';
 import { matchAlternativeAddrs } from './matchAlternativeAddrs.js';
 
@@ -30,7 +31,8 @@ const stackTresholdQuery = whichPolygon(lowerStackTresholds);
 /** the object is keyed by a `houseKey` */
 export type VisitedCoords = Record<
   string,
-  [linzId: string, pos: `${number},${number}`][]
+  //
+  [linzId: string, pos: CoordKey][]
 >;
 
 async function mergeIntoStacks(): Promise<LinzData> {
@@ -61,7 +63,7 @@ async function mergeIntoStacks(): Promise<LinzData> {
       visitedFlats[houseKey].push([
         linzId,
         // round to nearest 0.05seconds of latitude/longitude in case the points are slightly off
-        `${a.lat.toFixed(4)},${a.lng.toFixed(4)}` as `${number},${number}`,
+        getCoordKey(a.lat, a.lng, 4),
       ]);
     }
 

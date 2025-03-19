@@ -1,4 +1,4 @@
-import type { BBox, Coord, GeoJsonCoords } from '../types.js';
+import type { BBox, Coord, CoordKey, GeoJsonCoords } from '../types.js';
 
 export function withinBBox(bbox: BBox, lat: number, lng: number): boolean {
   return (
@@ -15,3 +15,11 @@ export function getFirstCoord(geometry: GeoJsonCoords): Coord {
 
   return firstCoord as Coord;
 }
+
+/**
+ * converts a coordinate into a string key, for more performant
+ * deduplication. 5dp = accurate to the nearest 1m, see
+ * https://osm.wiki/Precision_of_coordinates
+ */
+export const getCoordKey = (lat: number, lon: number, accuraryDp = 5) =>
+  <CoordKey>`${lat.toFixed(accuraryDp)},${lon.toFixed(accuraryDp)}`;

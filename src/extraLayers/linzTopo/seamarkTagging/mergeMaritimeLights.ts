@@ -1,4 +1,4 @@
-import { uniq } from '../../../common/index.js';
+import { getCoordKey, uniq } from '../../../common/index.js';
 import type { ExtraLayers, GeoJsonFeature } from '../../../types.js';
 
 export function mergeMaritimeLights({
@@ -11,7 +11,7 @@ export function mergeMaritimeLights({
 
     // round to nearest 0.05seconds of latitude/longitude in case the points are slightly off
     // same logic as in stackLinzData.ts
-    const key = `${lat.toFixed(4)},${lng.toFixed(4)}`;
+    const key = getCoordKey(lat, lng, 4);
 
     tempFeatures[key] ||= [];
     tempFeatures[key].push(f);

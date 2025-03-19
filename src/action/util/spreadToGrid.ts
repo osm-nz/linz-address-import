@@ -1,5 +1,6 @@
 import type { Vec2 } from '@id-sdk/vector';
 import type { GeoJsonFeature, HandlerReturnWithBBox } from '../../types.js';
+import { getCoordKey } from '../../common/geo.js';
 import { LAYER_PREFIX } from './const.js';
 
 const { sin, cos, floor, sqrt, PI: π } = Math;
@@ -37,7 +38,7 @@ export function shiftOverlappingPoints(
         const [lng, lat] = feature.geometry.coordinates;
         // round to nearest 0.05seconds of latitude/longitude in case the points are slightly off
         // same logic as in stackLinzData.ts
-        const key = `${lat.toFixed(4)},${lng.toFixed(4)}`;
+        const key = getCoordKey(lat, lng, 4);
 
         nodeByCoord[key] ||= [];
         nodeByCoord[key].push(feature);

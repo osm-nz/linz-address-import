@@ -330,3 +330,7 @@ export type ExtraLayers = {
 };
 
 export type Tags = Record<string, string | undefined>;
+
+export type CoordKey = `${number},${number}`;
+/** a map of how many addresses at each coordinate in the LINZ dataset */
+export type Overlapping = { [coordKey: CoordKey]: number };
