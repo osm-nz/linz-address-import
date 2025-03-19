@@ -4,8 +4,10 @@ import {
   type Issue,
   type LinzAddr,
   type OsmAddr,
+  type Overlapping,
   Status,
 } from '../types.js';
+import { getCoordKey } from '../common/geo.js';
 import { findPotentialOsmAddresses } from './findPotentialOsmAddresses.js';
 import { validate } from './helpers/validate.js';
 
@@ -24,6 +26,7 @@ export function processWithRef(
   linzAddr: LinzAddr,
   osmAddr: OsmAddr,
   allOsmAddressesWithNoRef: OsmAddr[],
+  overlapping: Overlapping,
   slowMode?: boolean,
 ): { status: Status; diagnostics?: unknown } {
   if (osmAddr.checked === CheckDate.YesRecent) {
@@ -82,6 +85,7 @@ export function processWithRef(
     const isSlightlyOff =
       offset > LOCATION_THRESHOLD.MINOR &&
       !osmAddr.isNonTrivial && // skip nonTrivial addresses (e.g. a business)
+      !overlapping[getCoordKey(linzAddr.lat, linzAddr.lng)] && // respect manually unstacked clumps
       osmAddr.osmId[0] === 'n' && // skip areas
       addressId[0] !== '3' && // skip addresses from CADs
       !linzAddr.flatCount; // skip stacked addresses

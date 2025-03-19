@@ -981,6 +981,22 @@
     <tag k="ref:linz:address_id" v="70212" />
   </node>
 
+  <!-- location unstacked by the importer in v1, same pos as 214 -->
+  <node id="213" version="1" changeset="1" lat="-36.9" lon="174.2139" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="213A" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70213" />
+  </node>
+
+  <!-- location unstacked by the importer in v1, same pos as 213 -->
+  <node id="214" version="1" changeset="1" lat="-36.9" lon="174.2139" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="213B" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70214" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />

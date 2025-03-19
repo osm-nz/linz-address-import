@@ -2,12 +2,15 @@ import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import {
   CheckDate,
+  type CoordKey,
   type CouldStackData,
   type DeletionData,
   type LinzData,
   type OSMData,
+  type Overlapping,
   Status,
 } from '../types.js';
+import { getCoordKey } from '../common/geo.js';
 import { processWithRef } from './processWithRef.js';
 import { processWithoutRef } from './processWithoutRef.js';
 import { findPotentialOsmAddresses } from './findPotentialOsmAddresses.js';
@@ -91,6 +94,19 @@ export async function main(): Promise<void> {
   Object.assign(statusReport, extraStatusReportSections);
   console.timeEnd('conflateDeletions');
 
+  console.log('Identifying overlapping points...');
+  const overlapping: Overlapping = {};
+  for (const linzRef in linzData) {
+    const key = getCoordKey(linzData[linzRef].lat, linzData[linzRef].lng);
+    overlapping[key] ||= 0;
+    overlapping[key]++;
+  }
+  // slim down the object, to only keep points which are overlapping
+  for (const _key in overlapping) {
+    const key = <CoordKey>_key;
+    if (overlapping[key] === 1) delete overlapping[key];
+  }
+
   console.log('Processing data...');
   let index = 0;
   console.time('conflate');
@@ -119,6 +135,7 @@ export async function main(): Promise<void> {
         linzAddr,
         osmAddr,
         osmData.noRef,
+        overlapping,
         slow,
       );
       statusReport[status].push([linzId, diagnostics]);
