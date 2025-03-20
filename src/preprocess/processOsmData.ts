@@ -115,9 +115,19 @@ function osmToJson(): Promise<OSMData> {
             }
 
             // the linz id has a semicolon in it - we don't like this
+            // unless the address has alt_addr:* tags.
             else if (linzId.includes(';')) {
-              for (const maybeLinzId of linzId.split(';')) {
-                out.semi[maybeLinzId] = object;
+              const mergedIds = linzId.split(';');
+              if (object.housenumberAlt && mergedIds.length === 2) {
+                // has alt_addr:* tags and has expect exactly 2 refs, so this
+                // could be acceptable.
+                out.linz[mergedIds[0]] = object;
+                object.altRef = mergedIds[1];
+              } else {
+                // no alt_addr:* tags or length>2. Definitely not valid.
+                for (const maybeLinzId of linzId.split(';')) {
+                  out.semi[maybeLinzId] = object;
+                }
               }
             }
 

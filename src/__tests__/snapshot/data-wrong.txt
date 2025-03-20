@@ -28,6 +28,9 @@ Oakleigh
 70189		https://osm.org/node/189		housenumberAlt|188B|
 70197		https://osm.org/node/197		suburb|addr:suburb=Oakleigh|addr:suburb=Oakleigh!*@typo
 70207		https://osm.org/node/207		housenumberAlt|3/203|
+70215		https://osm.org/node/215		housenumberAlt|1/215|nonense value
+70217		https://osm.org/node/217		altRef||nonsens	and	housenumberAlt|🗑️|1/217
+70220		https://osm.org/node/219		housenumber|1/219|219A	and	housenumberAlt|219A|1/219
 stack(70079-70081)		https://osm.org/node/79		suburb|addr:hamlet=Oakleigh|addr:hamlet=The City of Ember
 stack(70082-70084)		https://osm.org/node/82		housenumber|82|82typo
 stack(70111-70113)		https://osm.org/node/111		flatCount|3|0

@@ -1,6 +1,7 @@
+import type { Tags } from 'osm-api';
 import type { Issue, IssueType } from '../../types.js';
 
-export function fieldsToModify(issues: Issue[]): Record<string, string> {
+export function fieldsToModify(issues: Issue[], linzId: string): Tags {
   const ac: Record<string, string> = {};
   for (const issue of issues) {
     const [field, linzValue, osmValue] = issue.split('|') as [
@@ -70,6 +71,12 @@ export function fieldsToModify(issues: Issue[]): Record<string, string> {
 
       case 'level': {
         ac.level = linzValue;
+        break;
+      }
+
+      case 'altRef': {
+        // remove any altRefs from the ref tag
+        ac['ref:linz:address_id'] = linzId;
         break;
       }
 

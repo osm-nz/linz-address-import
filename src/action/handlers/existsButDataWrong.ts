@@ -131,7 +131,7 @@ export async function existsButDataWrong(
         },
         properties: {
           __action: 'edit',
-          ...fieldsToModify(issues),
+          ...fieldsToModify(issues, linzId),
           // maybe remove the check_date tag if it's out-of-date
           ...(osmData.checked === CheckDate.YesExpired && { check_date: '🗑️' }),
         },

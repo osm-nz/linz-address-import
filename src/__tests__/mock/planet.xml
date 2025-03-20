@@ -997,6 +997,42 @@
     <tag k="ref:linz:address_id" v="70214" />
   </node>
 
+  <!-- manually merged using alt_addr:housenumber and a merged ref tag, but alt_addr is wrong -->
+  <node id="215" version="1" changeset="1" lat="-36.9" lon="174.215" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="215A" />
+    <tag k="alt_addr:housenumber" v="nonense value" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70215;70216" />
+  </node>
+
+  <!-- manually merged using alt_addr:housenumber and a merged ref tag, but the ref is wrong -->
+  <node id="217" version="1" changeset="1" lat="-36.9" lon="174.217" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="217A" />
+    <tag k="alt_addr:housenumber" v="1/217" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70217;nonsens" />
+  </node>
+
+  <!-- manually merged using alt_addr:housenumber and a merged ref tag, but the ref order is wrong -->
+  <node id="219" version="1" changeset="1" lat="-36.9" lon="174.219" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="219A" />
+    <tag k="alt_addr:housenumber" v="1/219" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70220;70219" />
+  </node>
+
+  <!-- manually merged using alt_addr:housenumber and a merged ref tag -->
+  <node id="221" version="1" changeset="1" lat="-36.9" lon="174.221" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="221A" />
+    <tag k="alt_addr:housenumber" v="1/221" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70221;70222" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />
