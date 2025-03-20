@@ -111,6 +111,12 @@ export async function main(): Promise<void> {
   let index = 0;
   console.time('conflate');
 
+  // see comments at `altRef`'s defintion
+  for (const mainRef in osmData.linz) {
+    const altRef = osmData.linz[mainRef].altRef;
+    if (altRef) doNotCreate.push(altRef);
+  }
+
   // TODO: perf baseline: 300seconds
   for (const linzId in linzData) {
     // skip this one if it's a LINZ_REF_CHANGED
@@ -126,6 +132,7 @@ export async function main(): Promise<void> {
 
     const osmAddr = osmData.linz[linzId];
     const linzAddr = linzData[linzId];
+    const linzAddrAlt = osmAddr?.altRef ? linzData[osmAddr.altRef] : undefined;
     const duplicate = osmData.duplicateLinzIds[linzId];
     const semi = osmData.semi[linzId];
 
@@ -137,6 +144,7 @@ export async function main(): Promise<void> {
         osmData.noRef,
         overlapping,
         slow,
+        linzAddrAlt,
       );
       statusReport[status].push([linzId, diagnostics]);
 

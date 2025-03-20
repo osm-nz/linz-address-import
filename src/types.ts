@@ -68,6 +68,8 @@ export type OsmAddr = Coords & {
   recentlyChanged?: true;
   /** if the last user to edit this feature was an importer */
   lastEditedByImporter?: true;
+  /** for manually-merged alternate addresses, the linzRef of the other address */
+  altRef?: string;
 };
 export type OsmAddrWithConfidence = OsmAddr & {
   /** distance in metres away from expected location */
@@ -200,6 +202,7 @@ export type IssueType =
   | 'town'
   | 'flatCount'
   | 'level'
+  | 'altRef'
   | 'water';
 export type Issue = `${IssueType}|${string}|${string}`; // `field|linzValue|osmValue`;
 

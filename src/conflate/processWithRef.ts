@@ -28,6 +28,7 @@ export function processWithRef(
   allOsmAddressesWithNoRef: OsmAddr[],
   overlapping: Overlapping,
   slowMode?: boolean,
+  linzAddrAlt?: LinzAddr | undefined,
 ): { status: Status; diagnostics?: unknown } {
   if (osmAddr.checked === CheckDate.YesRecent) {
     return { status: Status.PERFECT };
@@ -42,9 +43,12 @@ export function processWithRef(
       }`
     : 0;
 
+  const linzAltHousenumber =
+    linzAddr.housenumberAlt || linzAddrAlt?.housenumber;
+
   const houseOk = linzAddr.housenumber === osmAddr.housenumber;
-  const altHouseOk = linzAddr.housenumberAlt
-    ? linzAddr.housenumberAlt === osmAddr.housenumberAlt
+  const altHouseOk = linzAltHousenumber
+    ? linzAltHousenumber === osmAddr.housenumberAlt
     : true; // if LINZ has no data, respect the existing tag value in OSM
   const streetOk = linzAddr.street === osmAddr.street;
   const suburbOk = linzSuburb === osmSuburb;
@@ -56,6 +60,7 @@ export function processWithRef(
   const waterOk = linzAddr.water === osmAddr.water;
   const flatCountOk = linzAddr.flatCount === osmAddr.flatCount;
   const levelOk = !linzAddr.level || linzAddr.level === osmAddr.level;
+  const altRefOk = !(osmAddr.altRef && !linzAddrAlt);
 
   const needsSpecialReview =
     !!osmAddr.recentlyChanged && !osmAddr.lastEditedByImporter;
@@ -69,6 +74,7 @@ export function processWithRef(
     waterOk &&
     flatCountOk &&
     levelOk &&
+    altRefOk &&
     !osmAddr.doubleSuburb
   ) {
     // looks perfect - last check is if location is correct
@@ -156,7 +162,7 @@ export function processWithRef(
   const issues: (Issue | false | undefined)[] = [
     !houseOk && `housenumber|${linzAddr.housenumber}|${osmAddr.housenumber}`,
     !altHouseOk &&
-      `housenumberAlt|${linzAddr.housenumberAlt || ''}|${
+      `housenumberAlt|${linzAltHousenumber || ''}|${
         osmAddr.housenumberAlt || ''
       }`,
     !streetOk && `street|${linzAddr.street}|${osmAddr.street}`,
@@ -167,6 +173,8 @@ export function processWithRef(
     !flatCountOk &&
       `flatCount|${linzAddr.flatCount || 0}|${osmAddr.flatCount || 0}`,
     !levelOk && `level|${linzAddr.level || ''}|${osmAddr.level || ''}`,
+    !altRefOk && `altRef||${osmAddr.altRef}`,
+    !altRefOk && `housenumberAlt|🗑️|${osmAddr.housenumberAlt || ''}`,
 
     // this is the buggy one (see #7) if it's a double suburb, the system may think `suburbOk` but it's wrong
     suburbOk &&

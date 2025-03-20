@@ -884,6 +884,113 @@
     },
     {
       "type": "Feature",
+      "id": "n215",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.215,
+              -36.899800000000006
+            ],
+            [
+              174.2152,
+              -36.900000000000006
+            ],
+            [
+              174.215,
+              -36.900200000000005
+            ],
+            [
+              174.2148,
+              -36.900000000000006
+            ],
+            [
+              174.215,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "alt_addr:housenumber": "1/215"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n217",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.217,
+              -36.899800000000006
+            ],
+            [
+              174.21720000000002,
+              -36.900000000000006
+            ],
+            [
+              174.217,
+              -36.900200000000005
+            ],
+            [
+              174.2168,
+              -36.900000000000006
+            ],
+            [
+              174.217,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "ref:linz:address_id": "70217",
+        "alt_addr:housenumber": "🗑️"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n219",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.21900000000002,
+              -36.899800000000006
+            ],
+            [
+              174.21920000000003,
+              -36.900000000000006
+            ],
+            [
+              174.21900000000002,
+              -36.900200000000005
+            ],
+            [
+              174.21880000000002,
+              -36.900000000000006
+            ],
+            [
+              174.21900000000002,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "addr:housenumber": "1/219",
+        "alt_addr:housenumber": "219A"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "n79",
       "geometry": {
         "type": "Polygon",
@@ -1603,6 +1710,23 @@
         "addr:street": "Example Street",
         "addr:hamlet": "Oakleigh",
         "ref:linz:address_id": "70178"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70218",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.218,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "1/218",
+        "addr:street": "Example Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70218"
       }
     },
     {
