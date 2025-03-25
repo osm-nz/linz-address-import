@@ -2,6 +2,7 @@ import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import whichPolygon from 'which-polygon';
 import type { ExtraLayers } from '../../types.js';
+import { hash } from '../../common/stackId.js';
 import { getT50IDsToSkip } from './getT50IDsToSkip.js';
 import {
   type Seamark,
@@ -11,6 +12,7 @@ import {
 } from './seamarkTagging/index.js';
 import { transformAirstrip } from './geoOperations/index.js';
 import { csvToGeoJsonFactory } from './_specialLinzLayers.js';
+import { PROTECT_CLASS, type ProtectClass } from './doc.js';
 
 const TODAY = new Date();
 
@@ -30,7 +32,7 @@ const radToDeg = (radians: number): string =>
   `${(360 + 90 - Math.round((radians * 180) / Math.PI)) % 360}`;
 
 export async function linzTopo(): Promise<void> {
-  const IDsToSkip = await getT50IDsToSkip(true); // TODO: set to false once water_turbulence is imported
+  const IDsToSkip = await getT50IDsToSkip(false);
 
   const charts = await readNauticalChartIndexCsv();
   await fs.writeFile(
@@ -2119,6 +2121,77 @@ export async function linzTopo(): Promise<void> {
     },
   });
 
+  type ProtectedArea = {
+    '\uFEFFWKT': string;
+    napalis_id: string;
+    start_date: string;
+    name: string;
+    recorded_area: string;
+    overlays: 'No' | 'Yes';
+    type:
+      | 'RESERVE'
+      | 'NATIONAL_PARK'
+      | 'WILDLIFE_AREA'
+      | 'MARINE_AREA'
+      | 'MARGINAL_STRIP'
+      | 'CONSERVATION_AREA';
+    legislation: string;
+    section: ProtectClass;
+    reserve_purpose: string;
+    ctrl_mg_vst: string;
+  };
+  const publicConservationLand = await csvToGeoJson<ProtectedArea>({
+    input: 'protected-areas.csv',
+    idField: 'napalis_id',
+    sourceLayer: '53564',
+    size: 'large',
+    complete: true,
+    tagging(data) {
+      if (!(data.section in PROTECT_CLASS)) {
+        console.warn(`No protect_class entry for “${data.section}”`);
+      }
+
+      // skip if we don't support this PROTECT_CLASS
+      const protectClass = PROTECT_CLASS[data.section];
+      if (!protectClass) return null;
+
+      // skip any areas within larger conservation areas
+      if (data.overlays === 'Yes') return null;
+
+      // skip anything that's not maintained by DOC (e.g. a local council)
+      if (data.ctrl_mg_vst !== 'NULL') return null;
+
+      const SKIP = new Set([
+        'Marine Mammal Sanctuary',
+        'Local Purpose Reserve', // TODO: reconsider
+        'Stewardship Area',
+        'Marginal Strip',
+      ]);
+      if (SKIP.has(protectClass[0])) return null;
+
+      return {
+        type: 'boundary',
+        boundary: 'protected_area',
+        protection_title: protectClass[0],
+        'protection_title:wikidata': protectClass[1],
+        protect_class: protectClass[2],
+
+        ...(protectClass[1] === 'Q113576158' || protectClass[1] === 'Q106571205'
+          ? {}
+          : {
+              operator: 'Department of Conservation',
+              'operator:wikidata': 'Q1191417',
+            }),
+
+        // we use a hash of the WKT geometry, so that the ID will change if
+        // LINZ/DOC updates the geometry. The napalis_id will remain fixed.
+        'ref:linz:topo50_id': hash(data['\uFEFFWKT']),
+        'ref:linz:napalis_id': data.napalis_id,
+        name: data.name,
+      };
+    },
+  });
+
   //
   // the first character of the name is significant:
   //   ❌ means it won't be published yet
@@ -2260,6 +2333,7 @@ export async function linzTopo(): Promise<void> {
 
     'Z Tide Stations': tideStations,
     '❌ Facilities': facilities,
+    'Z Public Conservation Land': publicConservationLand,
   };
 
   for (const key in out) {

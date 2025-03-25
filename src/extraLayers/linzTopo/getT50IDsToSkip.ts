@@ -38,6 +38,7 @@ async function readFromPlanet(
           // a feature could have both a topo ID & a hydro ID
           const t = item.tags['ref:linz:topo50_id'];
           const h = item.tags['ref:linz:hydrographic_id'];
+          const n = item.tags['ref:linz:napalis_id'];
 
           if (t) {
             for (const ref of t.split(';')) {
@@ -47,6 +48,11 @@ async function readFromPlanet(
           if (h) {
             for (const ref of h.split(';')) {
               mutableOut[`h${ref}`] = 1;
+            }
+          }
+          if (n) {
+            for (const ref of n.split(';')) {
+              mutableOut[`t${ref}`] = 1;
             }
           }
 

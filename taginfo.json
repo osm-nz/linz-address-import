@@ -74,6 +74,11 @@
       "description": "A unique ID used to conflate topographic data imported from LINZ"
     },
     {
+      "key": "ref:linz:napalis_id",
+      "object_types": ["area", "relation"],
+      "description": "A unique ID used to conflate protected areas imported from LINZ"
+    },
+    {
       "key": "ref:linz:pastoral_lease_id",
       "object_types": ["area", "relation"],
       "description": "A unique ID used to conflate pastoral lease data imported from LINZ"
