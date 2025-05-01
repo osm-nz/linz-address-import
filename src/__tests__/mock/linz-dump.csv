@@ -177,3 +177,5 @@ WKT,address_id,change_id,address_class,unit_value,address_number,address_number_
 ,70220,,Road,1,219,,,,,Oakleigh,,1/219,Example Street,,,,,,,,,,,174.220,-36.9
 ,70221,,Road,,221,A,,,,Oakleigh,,221A,Example Street,,,,,,,,,,,174.221,-36.9
 ,70222,,Road,1,221,,,,,Oakleigh,,1/221,Example Street,,,,,,,,,,,174.222,-36.9
+,70223,,Road,,223,,,,,Oakleigh,,223,Saint Erasmus Street,,,,,,,,,,,174.223,-36.9
+,70224,,Road,,224,,,,,Oakleigh,,224,St Erasmus Street,,,,,,,,,,,174.224,-36.9
