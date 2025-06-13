@@ -3,7 +3,7 @@ import pbf2json, { type Item } from 'pbf2json';
 import through from 'through2';
 import type { OsmFeature } from 'osm-api';
 import { isChecked } from '../common/index.js';
-import type { OSMData, OsmAddr, OsmId } from '../types.js';
+import type { AddressId, OSMData, OsmAddr, OsmId } from '../types.js';
 import { osmFile, planetFile } from './const.js';
 
 const MAP = { node: 'n', way: 'w', relation: 'r' };
@@ -99,7 +99,9 @@ function osmToJson(): Promise<OSMData> {
           if (item.tags['linz:stack'] === 'yes') object.stackRequest = true;
           if (item.tags['linz:stack'] === 'no') object.stackRequest = false;
 
-          const linzId = item.tags['ref:linz:address_id'];
+          const linzId = <AddressId | undefined>(
+            item.tags['ref:linz:address_id']
+          );
           if (linzId) {
             // check if there is already an OSM object with the same linz ID
 
@@ -117,7 +119,7 @@ function osmToJson(): Promise<OSMData> {
             // the linz id has a semicolon in it - we don't like this
             // unless the address has alt_addr:* tags.
             else if (linzId.includes(';')) {
-              const mergedIds = linzId.split(';');
+              const mergedIds = <AddressId[]>linzId.split(';');
               if (object.housenumberAlt && mergedIds.length === 2) {
                 // has alt_addr:* tags and has expect exactly 2 refs, so this
                 // could be acceptable.
@@ -125,7 +127,7 @@ function osmToJson(): Promise<OSMData> {
                 object.altRef = mergedIds[1];
               } else {
                 // no alt_addr:* tags or length>2. Definitely not valid.
-                for (const maybeLinzId of linzId.split(';')) {
+                for (const maybeLinzId of mergedIds) {
                   out.semi[maybeLinzId] = object;
                 }
               }

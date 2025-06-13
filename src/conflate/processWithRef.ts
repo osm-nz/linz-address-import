@@ -1,5 +1,6 @@
 import { geoSphericalDistance } from '@id-sdk/geo';
 import {
+  type AddressId,
   CheckDate,
   type Issue,
   type LinzAddr,
@@ -24,7 +25,7 @@ const inverse = (linz: string) => {
 };
 
 export function processWithRef(
-  addressId: string,
+  addressId: AddressId,
   linzAddr: LinzAddr,
   osmAddr: OsmAddr,
   allOsmAddressesWithNoRef: OsmAddr[],

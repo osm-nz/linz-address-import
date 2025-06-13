@@ -1,4 +1,5 @@
 import type {
+  AddressId,
   GeoJsonFeature,
   HandlerReturn,
   LinzAddr,
@@ -10,7 +11,7 @@ import { LAYER_PREFIX, createSquare, linzAddrToTags } from '../util/index.js';
 
 type BySuburb = {
   [suburb: string]: [
-    linzId: string,
+    linzId: AddressId,
     data: LinzAddr & {
       osmId?: OsmId;
     },

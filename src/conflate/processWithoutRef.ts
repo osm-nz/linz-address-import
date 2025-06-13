@@ -1,8 +1,13 @@
-import { type LinzAddr, type OsmAddrWithConfidence, Status } from '../types.js';
+import {
+  type AddressId,
+  type LinzAddr,
+  type OsmAddrWithConfidence,
+  Status,
+} from '../types.js';
 import { validate } from './helpers/validate.js';
 
 export function processWithoutRef(
-  addressId: string,
+  addressId: AddressId,
   linzData: LinzAddr,
   osmAddrs: OsmAddrWithConfidence[],
 ): { status: Status; diagnostics?: unknown } {

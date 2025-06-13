@@ -1,6 +1,7 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import {
+  type AddressId,
   CheckDate,
   type GeoJsonFeature,
   type HandlerReturn,
@@ -45,7 +46,7 @@ export async function existsButDataWrong(
     },
     {} as Record<
       string,
-      [linzId: string, osmAddr: OsmAddr, issues: Issue[], swap?: boolean][]
+      [linzId: AddressId, osmAddr: OsmAddr, issues: Issue[], swap?: boolean][]
     >,
   );
 
@@ -62,7 +63,7 @@ export async function existsButDataWrong(
     // but doesn't change the linzref
     const maybeSwappablePairs: Record<
       string,
-      { index: number; linzId: string; osmData: OsmAddr }[]
+      { index: number; linzId: AddressId; osmData: OsmAddr }[]
     > = {};
     for (let index = 0; index < bySuburb[suburb].length; index += 1) {
       const [linzId, osmData, issues] = bySuburb[suburb][index];

@@ -1,8 +1,13 @@
-import { type LinzAddr, type OsmAddr, Status } from '../types.js';
+import {
+  type AddressId,
+  type LinzAddr,
+  type OsmAddr,
+  Status,
+} from '../types.js';
 import { validate } from './helpers/validate.js';
 
 export function processDuplicates(
-  linzId: string,
+  linzId: AddressId,
   linzAddr: LinzAddr,
   duplicate: OsmAddr[],
 ): { status: Status; diagnostics: unknown } {

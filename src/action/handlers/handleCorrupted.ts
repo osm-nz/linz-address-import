@@ -1,6 +1,7 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import type {
+  AddressId,
   HandlerReturn,
   LinzAddr,
   OsmAddr,
@@ -20,7 +21,7 @@ import {
 type ByOsmId = {
   [osmId: string]: {
     osm: OsmAddr;
-    linz: [linzId: string, linzAddr: LinzAddr][];
+    linz: [linzId: AddressId, linzAddr: LinzAddr][];
   };
 };
 

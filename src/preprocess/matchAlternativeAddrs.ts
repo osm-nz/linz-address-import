@@ -1,4 +1,4 @@
-import type { LinzData, OSMData } from '../types.js';
+import type { AddressId, LinzData, OSMData } from '../types.js';
 import type { VisitedCoords } from './stackLinzData.js';
 
 /**
@@ -21,7 +21,7 @@ import type { VisitedCoords } from './stackLinzData.js';
 export function matchAlternativeAddrs(
   linzData: LinzData,
   osmData: OSMData,
-  singleLinzId: string | undefined,
+  singleLinzId: AddressId | undefined,
   addrIds: VisitedCoords[string],
 ) {
   // less than 2 units, so skip, because:
@@ -40,7 +40,7 @@ export function matchAlternativeAddrs(
   );
   if (anyHavePerserveTag) return undefined;
 
-  const duplicateMap: Record<string, string> = {};
+  const duplicateMap: Record<AddressId, AddressId> = {};
 
   const houseNumberMsb = linzData[addrIds[0][0]].$houseNumberMsb;
 

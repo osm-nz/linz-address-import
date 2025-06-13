@@ -1,6 +1,7 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import type {
+  AddressId,
   GeoJsonFeature,
   HandlerReturn,
   OsmAddr,
@@ -25,7 +26,7 @@ export async function handleReplacedByBuilding(
     },
     {} as Record<
       string,
-      [linzId: string, osmNode: OsmAddr, osmBuilding: OsmAddr][]
+      [linzId: AddressId, osmNode: OsmAddr, osmBuilding: OsmAddr][]
     >,
   );
 

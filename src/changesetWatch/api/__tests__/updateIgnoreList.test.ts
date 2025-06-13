@@ -1,3 +1,4 @@
+import type { AddressId } from '../../../types.js';
 import { updateIgnoreList } from '../updateIgnoreList.js';
 
 vi.mock('../googleAuth', () => ({
@@ -17,7 +18,7 @@ describe('updateIgnoreList', () => {
   it('calls the google API correctly', async () => {
     await updateIgnoreList([
       {
-        addrId: '123',
+        addrId: <AddressId>'123',
         comment: 'map parking spaces',
         date: new Date('2019-03-03'),
         isDataError: true,

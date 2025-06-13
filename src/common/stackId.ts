@@ -1,3 +1,5 @@
+import type { AddressId } from '../types.js';
+
 export const hash = (str: string): string => {
   let h = 0;
   for (let index = 0; index < str.length; index += 1) {
@@ -10,7 +12,7 @@ export const hash = (str: string): string => {
   return new Uint32Array([h])[0].toString(36);
 };
 
-export function toStackId(ids: string[]): string {
+export function toStackId(ids: string[]) {
   const stack = ids
     .sort((a, b) => +a - +b) // sort may not even be required
     .reduce<string[]>((newArray, id, index, oldArray) => {
@@ -23,11 +25,11 @@ export function toStackId(ids: string[]): string {
     }, [])
     .join(',');
 
-  if (stack.length < 248) return `stack(${stack})`;
+  if (stack.length < 248) return <AddressId>`stack(${stack})`;
 
   // if it's too big, it won't fit in a OSM field which has maxlength=255
   // so we replace it with a hash, which is much less useful but sadly the only option
-  return `stack[${hash(stack)}]`;
+  return <AddressId>`stack[${hash(stack)}]`;
 }
 
 export const INVALID_STACK = Symbol('INVALID_STACK');

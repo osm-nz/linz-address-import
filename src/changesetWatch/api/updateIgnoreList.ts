@@ -1,8 +1,9 @@
 import { spreadsheetId } from '../../common/index.js';
+import type { AddressId } from '../../types.js';
 import { googleAuth } from './googleAuth.js';
 
 export type IgnoredAddr = {
-  addrId: string;
+  addrId: AddressId;
   streetAddress: string;
   suburb: string;
   user: string;

@@ -1,6 +1,6 @@
-import type { LinzAddr, Tags } from '../../types.js';
+import type { AddressId, LinzAddr, Tags } from '../../types.js';
 
-export function linzAddrToTags(linzId: string, addr: LinzAddr): Tags {
+export function linzAddrToTags(linzId: AddressId, addr: LinzAddr): Tags {
   return {
     'addr:housenumber': addr.housenumber,
     'alt_addr:housenumber': addr.housenumberAlt,

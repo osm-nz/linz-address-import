@@ -1,6 +1,7 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import {
+  type AddressId,
   CheckDate,
   type CoordKey,
   type CouldStackData,
@@ -60,27 +61,29 @@ export async function main(): Promise<void> {
         osmAddr.checked !== CheckDate.YesRecent, // ...unless it has a recent check_date
     )
     .map(([linzId, osmAddr]) => [
-      linzId,
+      <AddressId>linzId,
       osmAddr.suburb?.[1] || 'deletions from unknown sector',
     ]);
 
-  const statusReport: Record<Status, [linzId: string, diagnostics: unknown][]> =
-    {
-      1: [],
-      2: [],
-      3: [],
-      4: [],
-      5: [],
-      6: [],
-      7: [],
-      8: [],
-      9: [],
-      10: [],
-      11: [],
-      13: [],
-      14: [],
-      15: [],
-    };
+  const statusReport: Record<
+    Status,
+    [linzId: AddressId, diagnostics: unknown][]
+  > = {
+    [Status.PERFECT]: [],
+    [Status.EXISTS_BUT_WRONG_DATA]: [],
+    [Status.EXISTS_BUT_NO_LINZ_REF]: [],
+    [Status.MULTIPLE_EXIST_BUT_NO_LINZ_REF]: [],
+    [Status.MULTIPLE_EXIST]: [],
+    [Status.EXISTS_BUT_LOCATION_WRONG]: [],
+    [Status.TOTALLY_MISSING]: [],
+    [Status.NEEDS_DELETE]: [],
+    [Status.NEEDS_DELETE_NON_TRIVIAL]: [],
+    [Status.CORRUPT]: [],
+    [Status.LINZ_REF_CHANGED]: [],
+    [Status.COULD_BE_STACKED]: [],
+    [Status.NEEDS_DELETE_ON_BUILDING]: [],
+    [Status.REPLACED_BY_BUILDING]: [],
+  };
 
   console.log('processing deleted data...');
   console.time('conflateDeletions');
@@ -96,7 +99,8 @@ export async function main(): Promise<void> {
 
   console.log('Identifying overlapping points...');
   const overlapping: Overlapping = {};
-  for (const linzRef in linzData) {
+  for (const _linzRef in linzData) {
+    const linzRef = <AddressId>_linzRef;
     const key = getCoordKey(linzData[linzRef].lat, linzData[linzRef].lng);
     overlapping[key] ||= 0;
     overlapping[key]++;
@@ -112,13 +116,16 @@ export async function main(): Promise<void> {
   console.time('conflate');
 
   // see comments at `altRef`'s defintion
-  for (const mainRef in osmData.linz) {
+  for (const _mainRef in osmData.linz) {
+    const mainRef = <AddressId>_mainRef;
     const altRef = osmData.linz[mainRef].altRef;
     if (altRef) doNotCreate.push(altRef);
   }
 
   // TODO: perf baseline: 300seconds
-  for (const linzId in linzData) {
+  for (const _linzId in linzData) {
+    const linzId = <AddressId>_linzId;
+
     // skip this one if it's a LINZ_REF_CHANGED
     if (doNotCreate.includes(linzId)) continue;
 

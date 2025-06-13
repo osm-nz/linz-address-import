@@ -1,7 +1,11 @@
+/** see microsoft/TypeScript#202 */
+export type Identity<out T> = { _: T; readonly __: unique symbol };
+
 /** U=Urban (`addr:suburb`), R=Rural (`addr:hamlet`) */
 type Suburb = [type: 'U' | 'R', suburb: string];
 
 export type OsmId = `${'n' | 'w' | 'r'}${string}`;
+export type AddressId = string & Identity<'AddressId'>;
 
 export type Coords = {
   lat: number;
@@ -30,7 +34,7 @@ export type LinzAddr = Coords & {
   isManualStackRequest?: true;
 };
 export type LinzData = {
-  [linzId: string]: LinzAddr;
+  [linzId: AddressId]: LinzAddr;
 };
 
 export enum CheckDate {
@@ -69,7 +73,7 @@ export type OsmAddr = Coords & {
   /** if the last user to edit this feature was an importer */
   lastEditedByImporter?: true;
   /** for manually-merged alternate addresses, the linzRef of the other address */
-  altRef?: string;
+  altRef?: AddressId;
 };
 export type OsmAddrWithConfidence = OsmAddr & {
   /** distance in metres away from expected location */
@@ -78,22 +82,22 @@ export type OsmAddrWithConfidence = OsmAddr & {
 }; // 4=highest, 1=lowest
 export type OSMData = {
   linz: {
-    [linzId: string]: OsmAddr;
+    [linzId: AddressId]: OsmAddr;
   };
   duplicateLinzIds: {
-    [linzId: string]: OsmAddr[];
+    [linzId: AddressId]: OsmAddr[];
   };
   /** if an OSM node has mutliple values for the linz ref, seperated by a semicolon */
   semi: {
-    [linzId: string]: OsmAddr;
+    [linzId: AddressId]: OsmAddr;
   };
   noRef: OsmAddr[];
 };
 
-export type DeletionData = [linzId: string, suburb: string][];
+export type DeletionData = [linzId: AddressId, suburb: string][];
 
 export type CouldStackData = {
-  [linzId: string]: [
+  [linzId: AddressId]: [
     osmId: OsmId,
     suburb: string,
     readableAddr: string,
@@ -102,7 +106,7 @@ export type CouldStackData = {
 };
 
 export type LinzSourceAddress = {
-  address_id: string;
+  address_id: AddressId;
 
   unit_value: string;
   address_number: string;
@@ -241,11 +245,11 @@ export type StatusDiagnostics = {
   [Status.CORRUPT]: [osm: OsmAddr, linz: LinzAddr];
   [Status.LINZ_REF_CHANGED]: [
     suburb: string,
-    newLinzId: string,
+    newLinzId: AddressId,
     osmData: OsmAddr,
     linzData: LinzAddr,
   ];
-  [Status.COULD_BE_STACKED]: CouldStackData[string];
+  [Status.COULD_BE_STACKED]: CouldStackData[AddressId];
   [Status.NEEDS_DELETE_ON_BUILDING]: [suburb: string, osmData: OsmAddr];
   [Status.REPLACED_BY_BUILDING]: [
     osmNode: OsmAddr,
@@ -255,7 +259,7 @@ export type StatusDiagnostics = {
 };
 
 export type StatusReport = {
-  [S in Status]: [linzId: string, diagnostics: StatusDiagnostics[S]][];
+  [S in Status]: [linzId: AddressId, diagnostics: StatusDiagnostics[S]][];
 };
 
 export type StatsFile = {

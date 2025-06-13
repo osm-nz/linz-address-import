@@ -1,6 +1,7 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import type {
+  AddressId,
   GeoJsonFeature,
   HandlerReturn,
   LinzAddr,
@@ -88,7 +89,7 @@ export async function handleDuplicateLinzRef(
     },
     {} as Record<
       string,
-      [linzId: string, linzAddr: LinzAddr, osmAddrList: OsmAddr[]][]
+      [linzId: AddressId, linzAddr: LinzAddr, osmAddrList: OsmAddr[]][]
     >,
   );
 

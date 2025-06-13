@@ -1,6 +1,6 @@
-import type { Issue, IssueType, Tags } from '../../types.js';
+import type { AddressId, Issue, IssueType, Tags } from '../../types.js';
 
-export function fieldsToModify(issues: Issue[], linzId: string): Tags {
+export function fieldsToModify(issues: Issue[], linzId: AddressId): Tags {
   const ac: Record<string, string> = {};
   for (const issue of issues) {
     const [field, linzValue, osmValue] = issue.split('|') as [

@@ -1,4 +1,5 @@
 import {
+  type AddressId,
   type DeletionData,
   type LinzData,
   type OSMData,
@@ -11,8 +12,9 @@ export function processDeletions(
   osmData: OSMData,
   linzData: LinzData,
 ): [ret: Partial<StatusReport>, removeFromCreate: string[]] {
-  const linzByKey: Record<string, Record<string, string>> = {};
-  for (const linzId in linzData) {
+  const linzByKey: Record<string, Record<string, AddressId>> = {};
+  for (const _linzId in linzData) {
+    const linzId = <AddressId>_linzId;
     const a = linzData[linzId];
     const suburb = a.suburb[1];
     linzByKey[suburb] ||= {};

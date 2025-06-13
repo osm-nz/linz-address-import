@@ -2,6 +2,7 @@ import { promises as fs, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import whichPolygon from 'which-polygon';
 import type {
+  AddressId,
   CoordKey,
   CouldStackData,
   GeoJson,
@@ -32,7 +33,7 @@ const stackTresholdQuery = whichPolygon(lowerStackTresholds);
 export type VisitedCoords = Record<
   string,
   //
-  [linzId: string, pos: CoordKey][]
+  [linzId: AddressId, pos: CoordKey][]
 >;
 
 async function mergeIntoStacks(): Promise<LinzData> {
@@ -45,10 +46,11 @@ async function mergeIntoStacks(): Promise<LinzData> {
 
   console.log('merging some addresses into stacks...');
   const visitedFlats: VisitedCoords = {};
-  const visitedNonFlats: Record<string, string> = {};
+  const visitedNonFlats: Record<string, AddressId> = {};
   const couldBeStacked: CouldStackData = {};
 
-  for (const linzId in linzData) {
+  for (const _linzId in linzData) {
+    const linzId = <AddressId>_linzId;
     const a = linzData[linzId];
 
     const houseKey = `${a.$houseNumberMsb!}|${a.street}${a.suburb}`;
@@ -77,7 +79,7 @@ async function mergeIntoStacks(): Promise<LinzData> {
   for (const houseKey in visitedFlats) {
     const rawAddrIds = visitedFlats[houseKey]; // a list of all flats at this MSB house number
     const stackId = toStackId(rawAddrIds.map((x) => x[0]));
-    const singleLinzId: string | undefined = visitedNonFlats[houseKey];
+    const singleLinzId = visitedNonFlats[houseKey];
 
     const altAddresses = matchAlternativeAddrs(
       linzData,
@@ -92,7 +94,8 @@ async function mergeIntoStacks(): Promise<LinzData> {
       : rawAddrIds;
 
     if (altAddresses) {
-      for (const addrId in altAddresses.duplicateMap) {
+      for (const _addrId in altAddresses.duplicateMap) {
+        const addrId = <AddressId>_addrId;
         // delete the duplicate one, and add the duplicate's housenumber
         // as an alt to the main address.
         const otherId = altAddresses.duplicateMap[addrId];
