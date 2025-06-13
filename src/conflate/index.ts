@@ -154,8 +154,6 @@ export async function main(): Promise<void> {
         linzAddrAlt,
       );
       statusReport[status].push([linzId, diagnostics]);
-
-      delete osmData.linz[linzId]; // visited so we can get rid of it
     } else if (duplicate) {
       const { status, diagnostics } = processDuplicates(
         linzId,
