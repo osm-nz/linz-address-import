@@ -43,6 +43,7 @@
     "maxLat": -36.899800000000006,
     "maxLng": 174.90420000000003
   },
+  "instructions": "These addresses were recently edited by a non-importer. The suggestions from the import tool may be wrong; so this layer is the most time consuming, the history of every feature needs to be carefully checked. If someone has manually edited ref:linz:address_id, the best solution may be to delete the mismatched ref tags, and wait for the next time that the import / conflation system runs.",
   "changesetTags": {
     "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
     "created_by": "LINZ Data Import 2.0.0",

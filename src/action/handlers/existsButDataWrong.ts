@@ -20,7 +20,18 @@ import {
 const toKey = (right: string, wrong: string, osmData: OsmAddr) =>
   `${[right, wrong].sort().join('__')}__${osmData.street}`;
 
-const SPECIAL_REVIEW = 'Recently Edited Addresses';
+export const SPECIAL_REVIEW = 'Recently Edited Addresses';
+export const SPECIAL_REVIEW_INFO = `
+  These addresses were recently edited by a non-importer. The suggestions
+  from the import tool may be wrong; so this layer is the most time consuming,
+  the history of every feature needs to be carefully checked. If someone has
+  manually edited ref:linz:address_id, the best solution may be to delete
+  the mismatched ref tags, and wait for the next time that the import /
+  conflation system runs.
+`
+  .replaceAll('\n', '')
+  .replaceAll(/ +/g, ' ')
+  .trim();
 
 export async function existsButDataWrong(
   array: StatusReport[Status.EXISTS_BUT_WRONG_DATA],

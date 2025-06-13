@@ -305,6 +305,7 @@
           -36.899800000000006
         ]
       ],
+      "instructions": "These addresses were recently edited by a non-importer. The suggestions from the import tool may be wrong; so this layer is the most time consuming, the history of every feature needs to be carefully checked. If someone has manually edited ref:linz:address_id, the best solution may be to delete the mismatched ref tags, and wait for the next time that the import / conflation system runs.",
       "groupCategories": [
         "/Categories/Addresses"
       ]

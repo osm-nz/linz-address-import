@@ -17,6 +17,10 @@ import { generateStats } from './generateStats.js';
 import { handlers } from './handlers/index.js';
 import { createIndex } from './createIndex.js';
 import { sectorize } from './sectorize.js';
+import {
+  SPECIAL_REVIEW,
+  SPECIAL_REVIEW_INFO,
+} from './handlers/existsButDataWrong.js';
 
 export async function main(): Promise<void> {
   console.log('Reading status file into memory...');
@@ -73,6 +77,9 @@ export async function main(): Promise<void> {
     out[k] = {
       size: k.startsWith(LAYER_PREFIX.split(' - ')[0]) ? 'medium' : 'large',
       features: features[k],
+      instructions: k.startsWith(SPECIAL_REVIEW)
+        ? SPECIAL_REVIEW_INFO
+        : undefined,
     };
   }
 
