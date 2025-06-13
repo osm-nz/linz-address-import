@@ -11,6 +11,7 @@ import { getCoordKey } from '../common/geo.js';
 import { findPotentialOsmAddresses } from './findPotentialOsmAddresses.js';
 import { validate } from './helpers/validate.js';
 import { normaliseStreet } from './helpers/normaliseStreet.js';
+import { compareWithMacrons } from './helpers/diacritics.js';
 
 /** distance in metres beyond which we classify the address as `EXISTS_BUT_LOCATION_WRONG` */
 const LOCATION_THRESHOLD = { MAJOR: 300, MINOR: 10 };
@@ -51,8 +52,10 @@ export function processWithRef(
   const altHouseOk = linzAltHousenumber
     ? linzAltHousenumber === osmAddr.housenumberAlt
     : true; // if LINZ has no data, respect the existing tag value in OSM
-  const streetOk =
-    normaliseStreet(linzAddr.street) === normaliseStreet(osmAddr.street);
+  const streetOk = compareWithMacrons(
+    normaliseStreet(linzAddr.street),
+    normaliseStreet(osmAddr.street || ''),
+  );
   const suburbOk = linzSuburb === osmSuburb;
   const townOk = // addr:city is only conflated if the tag already exists
     !osmAddr.town ||

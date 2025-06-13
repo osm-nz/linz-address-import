@@ -179,3 +179,5 @@ WKT,address_id,change_id,address_class,unit_value,address_number,address_number_
 ,70222,,Road,1,221,,,,,Oakleigh,,1/221,Example Street,,,,,,,,,,,174.222,-36.9
 ,70223,,Road,,223,,,,,Oakleigh,,223,Saint Erasmus Street,,,,,,,,,,,174.223,-36.9
 ,70224,,Road,,224,,,,,Oakleigh,,224,St Erasmus Street,,,,,,,,,,,174.224,-36.9
+,70225,,Road,,225,,,,,Oakleigh,,225,Pukeko Place,,,,,,,,,,,174.225,-36.9
+,70226,,Road,,226,,,,,Oakleigh,,226,Whānau Way,,,,,,,,,,,174.226,-36.9

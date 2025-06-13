@@ -5,5 +5,5 @@
  * This list should be kept to an absolute minimum, ideally we don't
  * allow any exceptions.
  */
-export const normaliseStreet = (street: string | undefined) =>
+export const normaliseStreet = (street: string) =>
   street?.replace(/\bSaint\b/, 'St');

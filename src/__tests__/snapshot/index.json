@@ -116,9 +116,9 @@
       "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateOakleigh_4b67jq.osmPatch.geo.json",
       "name": "Address Update - Oakleigh",
       "title": "Address Update - Oakleigh",
-      "totalCount": 90,
+      "totalCount": 91,
       "source": "",
-      "snippet": "add 30, delete 14, move 2, edit 44",
+      "snippet": "add 30, delete 14, move 2, edit 45",
       "extent": [
         [
           174.144,

@@ -1049,6 +1049,22 @@
     <tag k="ref:linz:address_id" v="70224" />
   </node>
 
+  <!-- OSM has a macron, LINZ does not -->
+  <node id="225" version="1" changeset="1" lat="-36.9" lon="174.225" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="225" />
+    <tag k="addr:street" v="Pūkeko Place" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70225" />
+  </node>
+
+  <!-- LINZ has a macron, OSM does not -->
+  <node id="226" version="1" changeset="1" lat="-36.9" lon="174.226" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="226" />
+    <tag k="addr:street" v="Whanau Way" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70226" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />
