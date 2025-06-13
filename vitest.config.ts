@@ -15,5 +15,6 @@ export default defineConfig({
         'src/extraLayers/linzTopo/*.ts',
       ],
     },
+    onConsoleLog: (log) => !log.includes('Mock Error'),
   },
 });
