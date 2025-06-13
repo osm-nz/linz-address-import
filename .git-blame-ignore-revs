@@ -3,3 +3,6 @@
 
 # replace CRLF with LF
 6f9b2c96af4f3cfeb277b97107896e778a2f0658
+
+# use nominal types for `AddressId`
+bdc75a1ddcc2dacac1bd1904a6e9487945d2fdb1
