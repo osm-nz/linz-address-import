@@ -179,7 +179,7 @@ export function processWithRef(
     !flatCountOk &&
       `flatCount|${linzAddr.flatCount || 0}|${osmAddr.flatCount || 0}`,
     !levelOk && `level|${linzAddr.level || ''}|${osmAddr.level || ''}`,
-    !altRefOk && `altRef||${osmAddr.altRef}`,
+    !altRefOk && `altRef|${addressId}|${osmAddr.altRef}`,
     !altRefOk && `housenumberAlt|🗑️|${osmAddr.housenumberAlt || ''}`,
 
     // this is the buggy one (see #7) if it's a double suburb, the system may think `suburbOk` but it's wrong

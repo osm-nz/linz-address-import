@@ -1,4 +1,3 @@
-import type { AddressId } from '../../../types.js';
 import { fieldsToModify } from '../fieldsToModify.js';
 
 describe('fieldsToModify', () => {
@@ -17,6 +16,6 @@ describe('fieldsToModify', () => {
     ${['suburb|addr:hamlet=rural|addr:suburb=rural']}   | ${{ 'addr:suburb': '🗑️', 'addr:hamlet': 'rural' }}
     ${['street|A Street|B Street', 'housenumber|1|2']}  | ${{ 'addr:housenumber': '1', 'addr:street': 'A Street' }}
   `('creates the correct out for $issues', ({ issues, output }) => {
-    expect(fieldsToModify(issues, <AddressId>'')).toStrictEqual(output);
+    expect(fieldsToModify(issues)).toStrictEqual(output);
   });
 });
