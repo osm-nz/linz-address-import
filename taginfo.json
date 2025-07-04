@@ -49,6 +49,11 @@
       "description": "Added to addresses in New Zealand that have two housenumbers. These are officially called “Alternative Addresses”."
     },
     {
+      "key": "alt_addr:street",
+      "object_types": ["node", "area", "relation"],
+      "description": "Added to addresses in New Zealand that have two housenumbers. These are officially called “Alternative Addresses”."
+    },
+    {
       "key": "building:flats",
       "object_types": ["node", "area", "relation"],
       "description": "Added to street addresses in New Zealand when one address node is used to represent multiple flats"

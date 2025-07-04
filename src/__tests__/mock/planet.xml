@@ -1065,6 +1065,90 @@
     <tag k="ref:linz:address_id" v="70226" />
   </node>
 
+  <!-- (corner section) manually merged using alt_addr:housenumber, alt_addr:street, and a merged ref tag -->
+  <node id="227" version="1" changeset="1" lat="-36.9" lon="174.227" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="227" />
+    <tag k="alt_addr:housenumber" v="1" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="alt_addr:street" v="Side Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70227;70228" />
+  </node>
+
+  <!-- (corner section) manually merged using alt_addr:housenumber, alt_addr:street, but missing the ref tag -->
+  <node id="229" version="1" changeset="1" lat="-36.9" lon="174.229" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="229" />
+    <tag k="alt_addr:housenumber" v="2" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="alt_addr:street" v="Side Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70229" />
+  </node>
+
+  <!-- (corner section) manually merged using alt_addr:housenumber, and a merged ref tag, but alt_addr:street is missing -->
+  <node id="231" version="1" changeset="1" lat="-36.9" lon="174.231" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="231" />
+    <tag k="alt_addr:housenumber" v="3" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70231;70232" />
+  </node>
+
+  <!-- (corner section) manually merged using alt_addr:street, and a merged ref tag, but alt_addr:housenumber is missing -->
+  <node id="233" version="1" changeset="1" lat="-36.9" lon="174.233" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="233" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="alt_addr:street" v="Side Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70233;70234" />
+  </node>
+
+  <!-- (corner section) manually merged using alt_addr:housenumber, and a merged ref tag, but alt_addr:street is wrong -->
+  <node id="235" version="1" changeset="1" lat="-36.9" lon="174.235" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="235" />
+    <tag k="alt_addr:housenumber" v="5" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="alt_addr:street" v="wrong value" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70235;70236" />
+  </node>
+
+  <!-- (corner section) manually merged using alt_addr:street, and a merged ref tag, but alt_addr:housenumber is wrong -->
+  <node id="237" version="1" changeset="1" lat="-36.9" lon="174.237" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="237" />
+    <tag k="alt_addr:housenumber" v="wrong value" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="alt_addr:street" v="Side Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70237;70238" />
+  </node>
+
+  <!-- (corner section) manually merged using a merged ref tag, but both alt_addr:housenumber and alt_addr:street are wrong -->
+  <node id="239" version="1" changeset="1" lat="-36.9" lon="174.239" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="239" />
+    <tag k="alt_addr:housenumber" v="wrong value" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="alt_addr:street" v="wrong value" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70239;70240" />
+  </node>
+
+  <!--
+    no test for "(corner section) manually merged using a merged ref tag, but all alt_addr:*tags are missing"
+    because that case would be considered as Status.CORRUPT
+  -->
+
+  <!-- (corner section) one standalone address exists in OSM as a *node*, the other does not exist in OSM -->
+  <!-- suggestion is to just add a second node. this one will be untouched -->
+  <node id="241" version="1" changeset="1" lat="-36.9" lon="174.241" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="241" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70241" />
+  </node>
+
+  <!-- see ways for test case 243, which is the same as the above, but for a building -->
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />
@@ -1118,6 +1202,19 @@
       <tag k="addr:street" v="Example Street" />
       <tag k="addr:hamlet" v="Oakleigh" />
       <tag k="ref:linz:address_id" v="70137" />
+    </way>
+
+    <way id="243" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+      <!-- we're reusing the nodes from a previous test case, so who cares -->
+      <nd ref="28" />
+      <nd ref="29" />
+      <nd ref="30" />
+      <nd ref="28" /> <!-- closed way (area) so first node = last node -->
+      <tag k="building" v="yes" />
+      <tag k="addr:housenumber" v="243" />
+      <tag k="addr:street" v="Example Street" />
+      <tag k="addr:hamlet" v="Oakleigh" />
+      <tag k="ref:linz:address_id" v="70243" />
     </way>
   <!-- </ways> -->
 

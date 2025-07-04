@@ -1026,6 +1026,254 @@
     },
     {
       "type": "Feature",
+      "id": "n229",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.229,
+              -36.899800000000006
+            ],
+            [
+              174.22920000000002,
+              -36.900000000000006
+            ],
+            [
+              174.229,
+              -36.900200000000005
+            ],
+            [
+              174.2288,
+              -36.900000000000006
+            ],
+            [
+              174.229,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "ref:linz:address_id": "70229;70230"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n231",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.23100000000002,
+              -36.899800000000006
+            ],
+            [
+              174.23120000000003,
+              -36.900000000000006
+            ],
+            [
+              174.23100000000002,
+              -36.900200000000005
+            ],
+            [
+              174.23080000000002,
+              -36.900000000000006
+            ],
+            [
+              174.23100000000002,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "alt_addr:street": "Side Street"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n233",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.233,
+              -36.899800000000006
+            ],
+            [
+              174.2332,
+              -36.900000000000006
+            ],
+            [
+              174.233,
+              -36.900200000000005
+            ],
+            [
+              174.2328,
+              -36.900000000000006
+            ],
+            [
+              174.233,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "alt_addr:housenumber": "4"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n235",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.235,
+              -36.899800000000006
+            ],
+            [
+              174.23520000000002,
+              -36.900000000000006
+            ],
+            [
+              174.235,
+              -36.900200000000005
+            ],
+            [
+              174.2348,
+              -36.900000000000006
+            ],
+            [
+              174.235,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "alt_addr:street": "Side Street"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n237",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.23700000000002,
+              -36.899800000000006
+            ],
+            [
+              174.23720000000003,
+              -36.900000000000006
+            ],
+            [
+              174.23700000000002,
+              -36.900200000000005
+            ],
+            [
+              174.23680000000002,
+              -36.900000000000006
+            ],
+            [
+              174.23700000000002,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "alt_addr:housenumber": "6"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n239",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.239,
+              -36.899800000000006
+            ],
+            [
+              174.2392,
+              -36.900000000000006
+            ],
+            [
+              174.239,
+              -36.900200000000005
+            ],
+            [
+              174.2388,
+              -36.900000000000006
+            ],
+            [
+              174.239,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "alt_addr:housenumber": "7",
+        "alt_addr:street": "Side Street"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "w243",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.9311667,
+              -36.9001333
+            ],
+            [
+              174.9313667,
+              -36.9003333
+            ],
+            [
+              174.9311667,
+              -36.9005333
+            ],
+            [
+              174.9309667,
+              -36.9003333
+            ],
+            [
+              174.9311667,
+              -36.9001333
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "ref:linz:address_id": "70243;70244",
+        "alt_addr:housenumber": "9",
+        "alt_addr:street": "Side Street"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "n79",
       "geometry": {
         "type": "Polygon",
@@ -1762,6 +2010,57 @@
         "addr:street": "Example Street",
         "addr:hamlet": "Oakleigh",
         "ref:linz:address_id": "70218"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70230",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.23,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "2",
+        "addr:street": "Side Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70230"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70242",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.242,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "8",
+        "addr:street": "Side Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70242"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70244",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.244,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "9",
+        "addr:street": "Side Street",
+        "addr:hamlet": "Oakleigh",
+        "ref:linz:address_id": "70244"
       }
     },
     {

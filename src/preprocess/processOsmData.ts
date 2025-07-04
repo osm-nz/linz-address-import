@@ -71,6 +71,7 @@ function osmToJson(): Promise<OSMData> {
             housenumber: item.tags['addr:housenumber'],
             housenumberAlt: item.tags['alt_addr:housenumber'],
             street: item.tags['addr:street'],
+            streetAlt: item.tags['alt_addr:street'],
             suburb: suburb ? [suburbU ? 'U' : 'R', suburb] : undefined,
             town: item.tags['addr:city'],
             // this is an expensive check :(
@@ -120,7 +121,10 @@ function osmToJson(): Promise<OSMData> {
             // unless the address has alt_addr:* tags.
             else if (linzId.includes(';')) {
               const mergedIds = <AddressId[]>linzId.split(';');
-              if (object.housenumberAlt && mergedIds.length === 2) {
+              if (
+                (object.housenumberAlt || object.streetAlt) &&
+                mergedIds.length === 2
+              ) {
                 // has alt_addr:* tags and has expect exactly 2 refs, so this
                 // could be acceptable.
                 out.linz[mergedIds[0]] = object;

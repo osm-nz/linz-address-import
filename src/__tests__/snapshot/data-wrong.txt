@@ -32,6 +32,13 @@ Oakleigh
 70217		https://osm.org/node/217		altRef|70217|nonsens	and	housenumberAlt|🗑️|1/217
 70220		https://osm.org/node/219		housenumber|1/219|219A	and	housenumberAlt|219A|1/219
 70226		https://osm.org/node/226		street|Whānau Way|Whanau Way
+70230		https://osm.org/node/229		altRef|70229;70230|70229
+70231		https://osm.org/node/231		streetAlt|Side Street|
+70233		https://osm.org/node/233		housenumberAlt|4|
+70235		https://osm.org/node/235		streetAlt|Side Street|wrong value
+70237		https://osm.org/node/237		housenumberAlt|6|wrong value
+70239		https://osm.org/node/239		housenumberAlt|7|wrong value	and	streetAlt|Side Street|wrong value
+70244		https://osm.org/way/243		altRef|70243;70244|70243	and	housenumberAlt|9|	and	streetAlt|Side Street|
 stack(70079-70081)		https://osm.org/node/79		suburb|addr:hamlet=Oakleigh|addr:hamlet=The City of Ember
 stack(70082-70084)		https://osm.org/node/82		housenumber|82|82typo
 stack(70111-70113)		https://osm.org/node/111		flatCount|3|0

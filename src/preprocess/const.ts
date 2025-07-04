@@ -6,6 +6,10 @@ export const linzCsvFile = join(
   import.meta.dirname,
   mock ? '../__tests__/mock/linz-dump.csv' : '../../data/linz.csv',
 );
+export const aimCsvFile = join(
+  import.meta.dirname,
+  mock ? '../__tests__/mock/aim-dump.csv' : '../../data/aim.csv',
+);
 export const ruralUrbanCsvFile = join(
   import.meta.dirname,
   mock

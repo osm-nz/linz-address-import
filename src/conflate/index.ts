@@ -9,6 +9,7 @@ import {
   type LinzData,
   type OSMData,
   type Overlapping,
+  type ParcelToAddress,
   Status,
 } from '../types.js';
 import { getCoordKey } from '../common/geo.js';
@@ -17,6 +18,7 @@ import { processWithoutRef } from './processWithoutRef.js';
 import { findPotentialOsmAddresses } from './findPotentialOsmAddresses.js';
 import { processDuplicates } from './processDuplicates.js';
 import { processDeletions } from './processDeletions.js';
+import { isCornerSection } from './isCornerSection.js';
 
 const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
 
@@ -36,6 +38,16 @@ export async function main(): Promise<void> {
     ),
   );
   const { length } = Object.keys(linzData);
+
+  const parcelToAddress: ParcelToAddress = {};
+  for (const _addrId in linzData) {
+    const addrId = <AddressId>_addrId;
+    const { parcelId } = linzData[addrId];
+    if (parcelId) {
+      parcelToAddress[parcelId] ||= []; // cheaper than a set for 2 million instances
+      parcelToAddress[parcelId].push(addrId);
+    }
+  }
 
   console.log('Reading OSM data into memory...');
   const osmData: OSMData = JSON.parse(
@@ -168,6 +180,23 @@ export async function main(): Promise<void> {
         linzAddr,
         osmData.noRef,
       );
+
+      const cornerSection = isCornerSection(
+        linzId,
+        linzAddr,
+        linzData,
+        parcelToAddress,
+        osmData,
+      );
+      if (!possibleAddresses.length && cornerSection) {
+        // the address doesn't exist in OSM, but there is a corner
+        // section which we could merge this address into.
+        statusReport[cornerSection.status].push([
+          linzId,
+          cornerSection.diagnostics,
+        ]);
+      }
+
       const { status, diagnostics } = processWithoutRef(
         linzId,
         linzAddr,
