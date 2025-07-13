@@ -48,10 +48,15 @@ export function processWithRef(
 
   const linzAltHousenumber =
     linzAddr.housenumberAlt || linzAddrAlt?.housenumber;
+  const linzAltStreet =
+    linzAddrAlt?.street === linzAddr.street ? undefined : linzAddrAlt?.street;
 
   const houseOk = linzAddr.housenumber === osmAddr.housenumber;
   const altHouseOk = linzAltHousenumber
     ? linzAltHousenumber === osmAddr.housenumberAlt
+    : true; // if LINZ has no data, respect the existing tag value in OSM
+  const altStreetOk = linzAltStreet
+    ? linzAltStreet === osmAddr.streetAlt
     : true; // if LINZ has no data, respect the existing tag value in OSM
   const streetOk = compareWithMacrons(
     normaliseStreet(linzAddr.street),
@@ -75,6 +80,7 @@ export function processWithRef(
     houseOk &&
     altHouseOk &&
     streetOk &&
+    altStreetOk &&
     suburbOk &&
     townOk &&
     waterOk &&
@@ -172,6 +178,8 @@ export function processWithRef(
         osmAddr.housenumberAlt || ''
       }`,
     !streetOk && `street|${linzAddr.street}|${osmAddr.street}`,
+    !altStreetOk &&
+      `streetAlt|${linzAltStreet || ''}|${osmAddr.streetAlt || ''}`,
     !suburbOk && `suburb|${linzSuburb}|${osmSuburb}`,
     // if the `suburb` is changing, also conflate `town`
     (!townOk || townNeedsChangingBcSuburbChanged) &&

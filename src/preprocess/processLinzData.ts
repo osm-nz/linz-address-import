@@ -2,10 +2,17 @@ import { createReadStream, promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import csv from 'csv-parser';
 import whichPolygon from 'which-polygon';
-import type { LinzData, LinzSourceAddress } from '../types.js';
+import type {
+  AddressId,
+  AimAddress,
+  LinzData,
+  LinzSourceAddress,
+  ParcelId,
+} from '../types.js';
 import { LEGACY_URBAN_LOCALITIES, nzgbNamesTable } from '../common/nzgbFile.js';
 import {
   type IgnoreFile,
+  aimCsvFile,
   ignoreFile,
   linzCsvFile,
   linzTempFile,
@@ -41,6 +48,25 @@ const convertUnit = (
 
 const useOfficialName = (name: string) => nzgbNamesTable[name] || name;
 
+async function aimToJson() {
+  console.log('Starting preprocess of AIM data...');
+  let index = 0;
+  const out: Record<AddressId, ParcelId> = {};
+
+  return new Promise<typeof out>((resolve, reject) => {
+    createReadStream(aimCsvFile)
+      .pipe(csv())
+      .on('data', (data: AimAddress) => {
+        out[data.address_id] = data.parcel_id;
+
+        index += 1;
+        if (!(index % 1000)) process.stdout.write('.');
+      })
+      .on('end', () => resolve(out))
+      .on('error', reject);
+  });
+}
+
 // TODO: perf baseline is 50seconds
 async function linzToJson(): Promise<LinzData> {
   console.log('Reading ignore file...');
@@ -53,6 +79,9 @@ async function linzToJson(): Promise<LinzData> {
     JSON.stringify(ruralUrbanBoundary),
   );
   const determineIfRuralOrUrban = whichPolygon(ruralUrbanBoundary);
+
+  console.log('Starting preprocess of AIM data...');
+  const addrToParcel = await aimToJson();
 
   console.log('Starting preprocess of LINZ data...');
   return new Promise((resolve, reject) => {
@@ -89,6 +118,7 @@ async function linzToJson(): Promise<LinzData> {
           lat,
           lng,
           level: data.level_value || undefined,
+          parcelId: addrToParcel[data.address_id],
         };
         if (data.water_name) out[data.address_id].water = true;
 

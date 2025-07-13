@@ -24,6 +24,11 @@ export function fieldsToModify(issues: Issue[]): Tags {
         break;
       }
 
+      case 'streetAlt': {
+        ac['alt_addr:street'] = linzValue;
+        break;
+      }
+
       case 'suburb': {
         const [k, v] = linzValue.split('=') as [
           'addr:hamlet' | 'addr:suburb',

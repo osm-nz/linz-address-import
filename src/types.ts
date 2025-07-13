@@ -6,6 +6,7 @@ type Suburb = [type: 'U' | 'R', suburb: string];
 
 export type OsmId = `${'n' | 'w' | 'r'}${string}`;
 export type AddressId = string & Identity<'AddressId'>;
+export type ParcelId = string & Identity<'ParcelId'>;
 
 export type Coords = {
   lat: number;
@@ -27,6 +28,8 @@ export type LinzAddr = Coords & {
   flatCount?: number;
   /** for non-stacked addresses, this is the building level of this flat */
   level: string | undefined;
+  /** the `parcel_id` merged from the {@link AimAddress} dataset */
+  parcelId?: ParcelId;
   /**
    * whether this stack was generated purely because someone requested
    * it (using the tag `linz:stack=yes`)
@@ -36,6 +39,8 @@ export type LinzAddr = Coords & {
 export type LinzData = {
   [linzId: AddressId]: LinzAddr;
 };
+
+export type ParcelToAddress = Record<ParcelId, AddressId[]>;
 
 export enum CheckDate {
   No,
@@ -49,6 +54,8 @@ export type OsmAddr = Coords & {
   /** for alternate addresses, the other house number */
   housenumberAlt?: string;
   street?: string;
+  /** for alternate addresses, the other street name */
+  streetAlt?: string;
   suburb?: Suburb;
   town?: string;
   isNonTrivial: boolean;
@@ -159,6 +166,31 @@ export type LinzSourceAddress = {
   /** @deprecated */ water_body_name_ascii: string;
 };
 
+/**
+ * Describes {@link https://data.linz.govt.nz/table/53324 53324}, JSDoc comments
+ * from {@link https://data.linz.govt.nz/document/24489 24489}.
+ */
+export interface AimAddress {
+  /** AIMS unique ID for an address. */
+  address_id: AddressId;
+  /** AIMS unique identifier for the address version */
+  change_id: string;
+  /** Please note this ID is not currently populated, but this field is intended to store the primary address ID for any sub address. */
+  primary_address_id: AddressId;
+  /** The life cycle status for an address. */
+  address_lifecycle_stage: 'Current' | 'Retired' | 'Proposed';
+  /** The organisation that protects or maintains the address */
+  address_provider: 'LINZ';
+  /** The organisation that manages the address. */
+  address_manager: 'LINZ';
+  /**  AIMS Unique Identifier for an addressable object. */
+  addressable_object_id: string;
+  /** The type of address. */
+  address_class: 'Road' | 'Water';
+  /** LINZ Landonline Parcel ID (PRIM) that the address position is located in via point in polygon. */
+  parcel_id: ParcelId;
+}
+
 export type LinzChangelog = LinzSourceAddress & {
   __change__: 'INSERT' | 'UPDATE' | 'DELETE';
 };
@@ -202,6 +234,7 @@ export type IssueType =
   | 'housenumber'
   | 'housenumberAlt'
   | 'street'
+  | 'streetAlt'
   | 'suburb'
   | 'town'
   | 'flatCount'
