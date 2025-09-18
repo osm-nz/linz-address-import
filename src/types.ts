@@ -1,9 +1,6 @@
 /** see microsoft/TypeScript#202 */
 export type Identity<out T> = { _: T; readonly __: unique symbol };
 
-/** U=Urban (`addr:suburb`), R=Rural (`addr:hamlet`) */
-type Suburb = [type: 'U' | 'R', suburb: string];
-
 export type OsmId = `${'n' | 'w' | 'r'}${string}`;
 export type AddressId = string & Identity<'AddressId'>;
 export type ParcelId = string & Identity<'ParcelId'>;
@@ -20,7 +17,7 @@ export type LinzAddr = Coords & {
   /** @deprecated don't use, for internal use in pre-process only */
   $houseNumberMsb?: string;
   street: string;
-  suburb: Suburb;
+  suburb: string;
   town: string;
   /** whether this address is a water address */
   water?: true;
@@ -56,7 +53,7 @@ export type OsmAddr = Coords & {
   street?: string;
   /** for alternate addresses, the other street name */
   streetAlt?: string;
-  suburb?: Suburb;
+  suburb?: string;
   town?: string;
   isNonTrivial: boolean;
   checked: CheckDate;
@@ -64,6 +61,8 @@ export type OsmAddr = Coords & {
   water?: true;
   /** whether this address has `addr:suburb` and `addr:hamlet` */
   doubleSuburb?: true;
+  /** whether this address has `addr:hamlet` */
+  hasHamlet?: true;
   /** whether this address is on a building AND has no linzRef */
   isUnRefedBuilding?: true;
   /** for stacked addresse, this is the number of addresses in this stack */
@@ -236,6 +235,7 @@ export type IssueType =
   | 'street'
   | 'streetAlt'
   | 'suburb'
+  | 'doubleSuburb'
   | 'town'
   | 'flatCount'
   | 'level'
@@ -252,7 +252,7 @@ export type StatusDiagnostics = {
     ...issues: Issue[],
   ];
   [Status.EXISTS_BUT_NO_LINZ_REF]: [
-    suburb: Suburb,
+    suburb: string,
     confidence: Confidence,
     osmData: OsmAddr,
   ];

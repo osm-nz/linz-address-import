@@ -16,7 +16,7 @@ export function processDeletions(
   for (const _linzId in linzData) {
     const linzId = <AddressId>_linzId;
     const a = linzData[linzId];
-    const suburb = a.suburb[1];
+    const suburb = a.suburb;
     linzByKey[suburb] ||= {};
     const key = a.housenumber! + a.street!;
     linzByKey[suburb][key] = linzId;

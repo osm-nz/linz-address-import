@@ -17,13 +17,6 @@ import { compareWithMacrons } from './helpers/diacritics.js';
 /** distance in metres beyond which we classify the address as `EXISTS_BUT_LOCATION_WRONG` */
 const LOCATION_THRESHOLD = { MAJOR: 300, MINOR: 10 };
 
-/** swap suburb <=> hamlet */
-const inverse = (linz: string) => {
-  const [k, v] = linz.split('=');
-  const swappedK = k === 'addr:hamlet' ? 'addr:suburb' : 'addr:hamlet';
-  return [swappedK, v].join('=');
-};
-
 export function processWithRef(
   addressId: AddressId,
   linzAddr: LinzAddr,
@@ -36,15 +29,6 @@ export function processWithRef(
   if (osmAddr.checked === CheckDate.YesRecent) {
     return { status: Status.PERFECT };
   }
-
-  const linzSuburb = `${
-    linzAddr.suburb[0] === 'U' ? 'addr:suburb' : 'addr:hamlet'
-  }=${linzAddr.suburb[1]}`;
-  const osmSuburb = osmAddr.suburb
-    ? `${osmAddr.suburb[0] === 'U' ? 'addr:suburb' : 'addr:hamlet'}=${
-        osmAddr.suburb[1]
-      }`
-    : 0;
 
   const linzAltHousenumber =
     linzAddr.housenumberAlt || linzAddrAlt?.housenumber;
@@ -62,11 +46,11 @@ export function processWithRef(
     normaliseStreet(linzAddr.street),
     normaliseStreet(osmAddr.street || ''),
   );
-  const suburbOk = linzSuburb === osmSuburb;
+  const suburbOk = linzAddr.suburb === osmAddr.suburb;
   const townOk = // addr:city is only conflated if the tag already exists
     !osmAddr.town ||
     !linzAddr.town ||
-    linzAddr.town === linzAddr.suburb[1] || // don't add addr:city if it duplicates addr:suburb
+    linzAddr.town === linzAddr.suburb || // don't add addr:city if it duplicates addr:suburb
     linzAddr.town === osmAddr.town;
   const waterOk = linzAddr.water === osmAddr.water;
   const flatCountOk = linzAddr.flatCount === osmAddr.flatCount;
@@ -140,7 +124,7 @@ export function processWithRef(
             // and a simple address node duplicate each other.
             return validate({
               status: Status.REPLACED_BY_BUILDING,
-              diagnostics: [osmAddr, duplicate, linzAddr.suburb[1]],
+              diagnostics: [osmAddr, duplicate, linzAddr.suburb],
             });
           }
         }
@@ -152,7 +136,7 @@ export function processWithRef(
     return validate({
       status: Status.EXISTS_BUT_LOCATION_WRONG,
       diagnostics: [
-        linzAddr.suburb[1],
+        linzAddr.suburb,
         Math.round(offset),
         osmAddr,
         linzAddr.lat,
@@ -166,8 +150,8 @@ export function processWithRef(
 
   const townNeedsChangingBcSuburbChanged =
     !suburbOk && // if suburb is not okay,
-    !!(linzAddr.town || osmAddr.town) && // and there is a town, or there is meant to be a town,
-    linzAddr.town !== linzAddr.suburb[1] && // but don't add addr:city if it duplicates addr:suburb
+    !!osmAddr.town && // and there is a town
+    linzAddr.town !== linzAddr.suburb && // but don't add addr:city if it duplicates addr:suburb
     linzAddr.town !== osmAddr.town; // and don't do anything if osm already has the correct value
 
   // something is wrong in the data
@@ -180,7 +164,7 @@ export function processWithRef(
     !streetOk && `street|${linzAddr.street}|${osmAddr.street}`,
     !altStreetOk &&
       `streetAlt|${linzAltStreet || ''}|${osmAddr.streetAlt || ''}`,
-    !suburbOk && `suburb|${linzSuburb}|${osmSuburb}`,
+    !suburbOk && `suburb|${linzAddr.suburb || ''}|${osmAddr.suburb || ''}`,
     // if the `suburb` is changing, also conflate `town`
     (!townOk || townNeedsChangingBcSuburbChanged) &&
       `town|${linzAddr.town}|${osmAddr.town || ''}`,
@@ -191,9 +175,8 @@ export function processWithRef(
     !altRefOk && `housenumberAlt|🗑️|${osmAddr.housenumberAlt || ''}`,
 
     // this is the buggy one (see #7) if it's a double suburb, the system may think `suburbOk` but it's wrong
-    suburbOk &&
-      osmAddr.doubleSuburb &&
-      `suburb|${linzSuburb}|${inverse(linzSuburb)}`, // we want the wrong one to be in the diagnostic
+    (osmAddr.doubleSuburb || (!suburbOk && osmAddr.hasHamlet)) &&
+      'doubleSuburb||',
 
     !waterOk &&
       `water|${+(linzAddr.water || false)}|${+(osmAddr.water || false)}`,
@@ -203,7 +186,7 @@ export function processWithRef(
     status: Status.EXISTS_BUT_WRONG_DATA,
     diagnostics: [
       osmAddr,
-      linzAddr.suburb[1],
+      linzAddr.suburb,
       needsSpecialReview,
       ...issues.filter((x): x is Issue => !!x),
     ],

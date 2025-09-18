@@ -13,7 +13,7 @@ WKT,address_id,change_id,address_class,unit_value,address_number,address_number_
 ,70011,,Road,,11,,,,,Oakleigh,,11,Example Street,,,,,,,,,,,174.911,-36.9
 ,70012,,Road,,12,,,,,Oakleigh,,12,Example Street,,"note 13 is skipped. 14,16 only in delete list",,,,,,,,,174.912,-36.9
 ,70018,,Road,,18,,,,,Oakleigh,,18,Example Street,,,,,,,,,,,174.918,-36.9
-,70019,,Road,,19,,,,,West Hoe Heights,Silverdale,19,Example Street,,"21,22,23 doesn’t exist",,,,,,,,,176.919,-36.9
+,70019,,Road,,19,,,,,West Hoe Heights,Silverdale,19,Example Street,,"21,22,23 doesn’t exist",,,,,,,,,174.919,-36.9
 ,70020,,Road,,20,,,,,Oakleigh,,20,Example Street,,,,,,,,,,,174.92,-36.9
 ,70023A,,Road,,23,A,,,,Oakleigh,,23A,Example Street,,,,,,,,,,,174.922,-36.9
 ,70023B,,Road,,23,B,,,,Oakleigh,,23B,Example Street,,,,,,,,,,,174.923,-36.9

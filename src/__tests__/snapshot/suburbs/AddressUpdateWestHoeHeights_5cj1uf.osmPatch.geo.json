@@ -3,43 +3,6 @@
   "features": [
     {
       "type": "Feature",
-      "id": "n19",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              174.919,
-              -36.899800000000006
-            ],
-            [
-              174.91920000000002,
-              -36.900000000000006
-            ],
-            [
-              174.919,
-              -36.900200000000005
-            ],
-            [
-              174.9188,
-              -36.900000000000006
-            ],
-            [
-              174.919,
-              -36.899800000000006
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "__action": "edit",
-        "addr:hamlet": "🗑️",
-        "addr:suburb": "West Hoe Heights",
-        "addr:city": "Silverdale"
-      }
-    },
-    {
-      "type": "Feature",
       "id": "n45",
       "geometry": {
         "type": "Polygon",
@@ -70,8 +33,7 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:hamlet": "🗑️",
-        "addr:suburb": "West Hoe Heights"
+        "addr:hamlet": "🗑️"
       }
     },
     {
@@ -106,8 +68,7 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:hamlet": "🗑️",
-        "addr:suburb": "West Hoe Heights"
+        "addr:hamlet": "🗑️"
       }
     },
     {
@@ -141,17 +102,13 @@
         ]
       },
       "properties": {
-        "__action": "delete",
-        "addr:housenumber": "64",
-        "addr:street": "Example Street",
-        "addr:suburb": "West Hoe Heights",
-        "ref:linz:address_id": "70064"
+        "__action": "delete"
       }
     }
   ],
   "bbox": {
     "minLat": -36.900200000000005,
-    "minLng": 174.9188,
+    "minLng": 174.94480000000001,
     "maxLat": -36.899800000000006,
     "maxLng": 174.9641
   },

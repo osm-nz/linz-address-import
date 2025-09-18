@@ -49,7 +49,7 @@ export async function handleCorrupted(
     const osmAddr = byOsmId[osmId].osm;
 
     // pick the suburb from the first node
-    const suburb = byOsmId[osmId].linz[0][1].suburb?.[1];
+    const suburb = byOsmId[osmId].linz[0][1].suburb;
 
     // 1️⃣ delete or edit the corrupted feature
     if (osmId[0] === 'n' && !osmAddr.isNonTrivial) {

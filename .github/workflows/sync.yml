@@ -49,7 +49,6 @@ jobs:
           yarn download-linz
         env:
           LINZ_API_KEY: ${{ secrets.LINZ_API_KEY }}
-          STATS_NZ_API_KEY: ${{ secrets.STATS_NZ_API_KEY }}
 
       - name: ⏩ Download list of addresses to ignore
         run: |

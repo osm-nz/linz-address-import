@@ -67,8 +67,7 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70132",
-        "addr:hamlet": "Oakleigh"
+        "ref:linz:address_id": "70132"
       }
     }
   ],

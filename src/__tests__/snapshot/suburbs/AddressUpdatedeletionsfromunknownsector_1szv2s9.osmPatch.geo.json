@@ -32,8 +32,7 @@
         ]
       },
       "properties": {
-        "__action": "delete",
-        "ref:linz:address_id": "70049doesntExist"
+        "__action": "delete"
       }
     }
   ],

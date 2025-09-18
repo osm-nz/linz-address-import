@@ -24,7 +24,7 @@ export async function handleTotallyMissing(
 ): Promise<HandlerReturn> {
   const temp = array.reduce(
     (ac, [, data]) => {
-      const suburb = data.suburb[1];
+      const suburb = data.suburb;
       if (!ac[suburb]) {
         ac[suburb] = [data.town];
       } else if (!ac[suburb].includes(data.town)) {
@@ -39,7 +39,7 @@ export async function handleTotallyMissing(
   );
 
   const bySuburb = array.reduce<BySuburb>((ac, [linzId, data]) => {
-    const suburb = data.suburb[1];
+    const suburb = data.suburb;
     const key = duplicates.has(suburb)
       ? `${suburb} (${data.town || 'Rural'})`
       : suburb;
@@ -59,7 +59,7 @@ export async function handleTotallyMissing(
     // because we are deleting the node, if the data is incorrect in osm we don't care so
     // use the OSM data. We identify it as a node to delete if it has the osmId `prop`.
     const fakeLinzAddr = Object.assign(osmAddr, { town: '' }) as LinzAddr;
-    fakeLinzAddr.suburb ||= ['' as 'U', suburb]; // sneaky
+    fakeLinzAddr.suburb ||= suburb; // sneaky
 
     bySuburb[key].push([linzId, fakeLinzAddr]);
   }
@@ -69,18 +69,22 @@ export async function handleTotallyMissing(
   for (const suburb in bySuburb) {
     const features: GeoJsonFeature[] = bySuburb[suburb].map(
       ([linzId, addr]) => {
-        return {
-          type: 'Feature',
-          // for deletes, the osmId will exist. For creates, the ID is irrelevant, so it's the linzId
-          id: addr.osmId || linzId,
-          geometry: addr.osmId
-            ? { type: 'Polygon', coordinates: createSquare(addr) }
-            : { type: 'Point', coordinates: [addr.lng, addr.lat] },
-          properties: {
-            __action: addr.osmId && 'delete',
-            ...linzAddrToTags(linzId, addr),
-          },
-        };
+        return addr.osmId
+          ? {
+              // delete
+              type: 'Feature',
+              id: addr.osmId,
+              geometry: { type: 'Polygon', coordinates: createSquare(addr) },
+              properties: { __action: 'delete' },
+            }
+          : {
+              // create
+              type: 'Feature',
+              // For creates, the ID is irrelevant, so it's the linzId
+              id: linzId,
+              geometry: { type: 'Point', coordinates: [addr.lng, addr.lat] },
+              properties: linzAddrToTags(linzId, addr),
+            };
       },
     );
 

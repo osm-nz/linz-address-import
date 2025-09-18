@@ -14,7 +14,7 @@
       "properties": {
         "addr:housenumber": "96",
         "addr:street": "Example Street",
-        "addr:hamlet": "Duplicate Tall Hamlet",
+        "addr:suburb": "Duplicate Tall Hamlet",
         "ref:linz:address_id": "70096"
       }
     },
@@ -31,7 +31,7 @@
       "properties": {
         "addr:housenumber": "97",
         "addr:street": "Example Street",
-        "addr:hamlet": "Duplicate Tall Hamlet",
+        "addr:suburb": "Duplicate Tall Hamlet",
         "ref:linz:address_id": "70097"
       }
     }

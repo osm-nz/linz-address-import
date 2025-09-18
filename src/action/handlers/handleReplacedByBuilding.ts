@@ -44,7 +44,7 @@ export async function handleReplacedByBuilding(
 
   const features: GeoJsonFeature[] = [];
 
-  for (const [linzId, [osmNode, osmBuilding, suburb]] of array) {
+  for (const [linzId, [osmNode, osmBuilding]] of array) {
     // two step process - delete the node, and edit the building to add the missing tags
     features.push({
       type: 'Feature',
@@ -55,8 +55,8 @@ export async function handleReplacedByBuilding(
       },
       properties: { __action: 'delete' },
     });
-    const suburbType = osmNode.suburb?.[0];
 
+    // eslint-disable-next-line unicorn/no-array-push-push -- to avoid destroying the git blame
     features.push({
       type: 'Feature',
       id: osmBuilding.osmId,
@@ -67,13 +67,6 @@ export async function handleReplacedByBuilding(
       properties: {
         __action: 'edit',
         'ref:linz:address_id': linzId,
-
-        // we can assume the conflation service would never have found this if the
-        // housenumber or street was wrong. So the only tag we bother to add is suburb.
-        ...(suburbType &&
-          (suburbType === 'U'
-            ? { 'addr:suburb': suburb }
-            : { 'addr:hamlet': suburb })),
       },
     });
   }

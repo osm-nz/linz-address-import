@@ -8,12 +8,8 @@ describe('fieldsToModify', () => {
     ${['water|1|0']}                                    | ${{ 'addr:type': 'water' }}
     ${['water|0|1']}                                    | ${{ 'addr:type': '🗑️' }}
     ${[]}                                               | ${{}}
-    ${['suburb|addr:hamlet=my town|0']}                 | ${{ 'addr:hamlet': 'my town' }}
-    ${['suburb|addr:hamlet=my town|addr:suburb=wrong']} | ${{ 'addr:hamlet': 'my town', 'addr:suburb': '🗑️' }}
-    ${['suburb|addr:hamlet=my town|addr:hamlet=wrong']} | ${{ 'addr:hamlet': 'my town' }}
-    ${['suburb|addr:suburb=city|addr:suburb=wrong']}    | ${{ 'addr:suburb': 'city' }}
-    ${['suburb|addr:suburb=city|addr:hamlet=city']}     | ${{ 'addr:suburb': 'city', 'addr:hamlet': '🗑️' }}
-    ${['suburb|addr:hamlet=rural|addr:suburb=rural']}   | ${{ 'addr:suburb': '🗑️', 'addr:hamlet': 'rural' }}
+    ${['suburb|my town|                             ']} | ${{ 'addr:suburb': 'my town' }}
+    ${['doubleSuburb||']}                               | ${{ 'addr:hamlet': '🗑️' }}
     ${['street|A Street|B Street', 'housenumber|1|2']}  | ${{ 'addr:housenumber': '1', 'addr:street': 'A Street' }}
   `('creates the correct out for $issues', ({ issues, output }) => {
     expect(fieldsToModify(issues)).toStrictEqual(output);

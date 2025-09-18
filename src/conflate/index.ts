@@ -74,7 +74,7 @@ export async function main(): Promise<void> {
     )
     .map(([linzId, osmAddr]) => [
       <AddressId>linzId,
-      osmAddr.suburb?.[1] || 'deletions from unknown sector',
+      osmAddr.suburb || 'deletions from unknown sector',
     ]);
 
   const statusReport: Record<

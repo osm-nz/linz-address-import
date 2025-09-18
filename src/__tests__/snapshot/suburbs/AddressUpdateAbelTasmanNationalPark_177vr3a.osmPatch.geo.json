@@ -49,7 +49,7 @@
       "properties": {
         "addr:housenumber": "58",
         "addr:street": "Awaroa Inlet",
-        "addr:hamlet": "Abel Tasman National Park",
+        "addr:suburb": "Abel Tasman National Park",
         "addr:type": "water",
         "ref:linz:address_id": "70058"
       }

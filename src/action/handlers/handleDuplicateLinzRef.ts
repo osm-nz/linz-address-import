@@ -17,7 +17,7 @@ import {
 } from '../util/index.js';
 
 const toKey = (addr: LinzAddr | OsmAddr) =>
-  `${addr.housenumber} ${addr.street}${addr.suburb?.[0]}${addr.suburb?.[1]}`;
+  `${addr.housenumber} ${addr.street}${addr.suburb}`;
 
 export async function handleDuplicateLinzRef(
   array: StatusReport[Status.MULTIPLE_EXIST],
@@ -82,7 +82,7 @@ export async function handleDuplicateLinzRef(
 
   const bySuburb = array.reduce(
     (ac, [linzId, [linzAddr, osmAddrList]]) => {
-      const suburb = linzAddr.suburb[1];
+      const suburb = linzAddr.suburb;
       ac[suburb] ||= [];
       ac[suburb].push([linzId, linzAddr, osmAddrList]);
       return ac;

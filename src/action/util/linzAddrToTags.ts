@@ -5,10 +5,8 @@ export function linzAddrToTags(linzId: AddressId, addr: LinzAddr): Tags {
     'addr:housenumber': addr.housenumber,
     'alt_addr:housenumber': addr.housenumberAlt,
     'addr:street': addr.street,
-    'addr:suburb': addr.suburb[0] === 'U' ? addr.suburb[1] : undefined,
-    'addr:hamlet': addr.suburb[0] === 'R' ? addr.suburb[1] : undefined,
-    'addr:city':
-      addr.town && addr.town !== addr.suburb[1] ? addr.town : undefined,
+    'addr:suburb': addr.suburb,
+    // we don't add `addr:city`
     'addr:type': addr.water ? 'water' : undefined,
     'building:flats': addr.flatCount?.toString(),
     level: addr.level,

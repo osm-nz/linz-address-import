@@ -72,7 +72,7 @@ function osmToJson(): Promise<OSMData> {
             housenumberAlt: item.tags['alt_addr:housenumber'],
             street: item.tags['addr:street'],
             streetAlt: item.tags['alt_addr:street'],
-            suburb: suburb ? [suburbU ? 'U' : 'R', suburb] : undefined,
+            suburb,
             town: item.tags['addr:city'],
             // this is an expensive check :(
             isNonTrivial:
@@ -96,6 +96,7 @@ function osmToJson(): Promise<OSMData> {
             object.lastEditedByImporter = true;
           }
           if (isWater) object.water = true;
+          if (suburbR) object.hasHamlet = true;
           if (suburbU && suburbR) object.doubleSuburb = true;
           if (item.tags['linz:stack'] === 'yes') object.stackRequest = true;
           if (item.tags['linz:stack'] === 'no') object.stackRequest = false;

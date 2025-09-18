@@ -162,7 +162,7 @@ async function mergeIntoStacks(): Promise<LinzData> {
           const [inOsmL, totalL] = [inOsm.length, addrIds.length];
           couldBeStacked[linzId] = [
             osmData.linz[linzId].osmId,
-            a.suburb[1],
+            a.suburb,
             `${housenumberMsb} ${a.street}`,
             inOsmL === totalL
               ? inOsmL

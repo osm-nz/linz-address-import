@@ -24,10 +24,7 @@ export const findPotentialOsmAddresses = (
   );
 
   const perfectMatches = f1.filter(
-    (osmAddr) =>
-      osmAddr.suburb &&
-      osmAddr.suburb[0] === linzAddr.suburb[0] &&
-      osmAddr.suburb[1] === linzAddr.suburb[1],
+    (osmAddr) => osmAddr.suburb === linzAddr.suburb,
   );
   // simplest case if the housenumber, street, AND suburb are all intract.
   // Someone probably just deleted the ref tag

@@ -87,6 +87,6 @@ export function isCornerSection(
 
   return validate({
     status: Status.EXISTS_BUT_WRONG_DATA,
-    diagnostics: [otherAddressOsm, linzAddr.suburb[1], false, ...issues],
+    diagnostics: [otherAddressOsm, linzAddr.suburb, false, ...issues],
   });
 }

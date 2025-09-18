@@ -14,7 +14,7 @@
       "properties": {
         "addr:housenumber": "65",
         "addr:street": "Example Street",
-        "addr:hamlet": "Rangitāhua",
+        "addr:suburb": "Rangitāhua",
         "ref:linz:address_id": "70065"
       }
     }

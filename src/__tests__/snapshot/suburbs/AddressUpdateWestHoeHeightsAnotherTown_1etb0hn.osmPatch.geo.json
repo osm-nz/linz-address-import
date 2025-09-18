@@ -15,7 +15,6 @@
         "addr:housenumber": "63",
         "addr:street": "Example Street",
         "addr:suburb": "West Hoe Heights",
-        "addr:city": "Another Town",
         "ref:linz:address_id": "70063"
       }
     }

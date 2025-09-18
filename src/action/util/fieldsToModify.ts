@@ -30,19 +30,12 @@ export function fieldsToModify(issues: Issue[]): Tags {
       }
 
       case 'suburb': {
-        const [k, v] = linzValue.split('=') as [
-          'addr:hamlet' | 'addr:suburb',
-          string,
-        ];
-        const [oldK] = osmValue.split('=') as [
-          'addr:hamlet' | 'addr:suburb' | '0',
-          string,
-        ];
-        if (k !== oldK && oldK !== '0') {
-          // hamlet changed to suburb or vica-versa
-          ac[oldK] = '🗑️'; // delete the tag
-        }
-        ac[k] = v;
+        ac['addr:suburb'] = linzValue;
+        break;
+      }
+
+      case 'doubleSuburb': {
+        ac['addr:hamlet'] = '🗑️'; // delete the tag
         break;
       }
 

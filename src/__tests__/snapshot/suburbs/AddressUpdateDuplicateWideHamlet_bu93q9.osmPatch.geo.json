@@ -14,7 +14,7 @@
       "properties": {
         "addr:housenumber": "98",
         "addr:street": "Example Street",
-        "addr:hamlet": "Duplicate Wide Hamlet",
+        "addr:suburb": "Duplicate Wide Hamlet",
         "ref:linz:address_id": "70098"
       }
     },
@@ -31,7 +31,7 @@
       "properties": {
         "addr:housenumber": "99",
         "addr:street": "Example Street",
-        "addr:hamlet": "Duplicate Wide Hamlet",
+        "addr:suburb": "Duplicate Wide Hamlet",
         "ref:linz:address_id": "70099"
       }
     }

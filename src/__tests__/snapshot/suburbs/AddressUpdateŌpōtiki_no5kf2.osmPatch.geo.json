@@ -33,7 +33,8 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:hamlet": "Ōpōtiki"
+        "addr:suburb": "Ōpōtiki",
+        "addr:hamlet": "🗑️"
       }
     },
     {
@@ -49,7 +50,7 @@
       "properties": {
         "addr:housenumber": "109",
         "addr:street": "Example Street",
-        "addr:hamlet": "Ōpōtiki",
+        "addr:suburb": "Ōpōtiki",
         "ref:linz:address_id": "70109"
       }
     }

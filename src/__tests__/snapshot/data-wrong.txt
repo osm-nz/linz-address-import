@@ -4,13 +4,12 @@ Recently Edited Addresses
 
 Oakleigh
 70005		https://osm.org/node/5		street|Example Street|Example Lane
-70006		https://osm.org/node/6		suburb|addr:hamlet=Oakleigh|addr:hamlet=Yeetville
-70007		https://osm.org/node/7		suburb|addr:hamlet=Oakleigh|0
-70018		https://osm.org/node/18		suburb|addr:hamlet=Oakleigh|addr:suburb=Oakleigh
+70006		https://osm.org/node/6		suburb|Oakleigh|Yeetville	and	doubleSuburb||
+70007		https://osm.org/node/7		suburb|Oakleigh|
 70043		https://osm.org/node/43		street|Example Street|Example Lane
-70044		https://osm.org/node/44		suburb|addr:hamlet=Oakleigh|addr:suburb=Oakleigh
-70046		https://osm.org/node/46		suburb|addr:hamlet=Oakleigh|addr:suburb=West Hoe Heights
-70048		https://osm.org/node/48		housenumber|48|undefined	and	street|Example Street|undefined	and	suburb|addr:hamlet=Oakleigh|0
+70044		https://osm.org/node/44		doubleSuburb||
+70046		https://osm.org/node/46		suburb|Oakleigh|West Hoe Heights	and	doubleSuburb||
+70048		https://osm.org/node/48		housenumber|48|undefined	and	street|Example Street|undefined	and	suburb|Oakleigh|
 70060		https://osm.org/node/60		water|0|1
 70117		https://osm.org/node/117		flatCount|0|44
 70118		https://osm.org/node/118		flatCount|0|-1
@@ -26,7 +25,7 @@ Oakleigh
 70184		https://osm.org/node/184		housenumberAlt|3/182|
 70188		https://osm.org/node/188		housenumberAlt|188A|
 70189		https://osm.org/node/189		housenumberAlt|188B|
-70197		https://osm.org/node/197		suburb|addr:suburb=Oakleigh|addr:suburb=Oakleigh!*@typo
+70197		https://osm.org/node/197		suburb|Oakleigh|Oakleigh!*@typo
 70207		https://osm.org/node/207		housenumberAlt|3/203|
 70215		https://osm.org/node/215		housenumberAlt|1/215|nonense value
 70217		https://osm.org/node/217		altRef|70217|nonsens	and	housenumberAlt|🗑️|1/217
@@ -39,18 +38,17 @@ Oakleigh
 70237		https://osm.org/node/237		housenumberAlt|6|wrong value
 70239		https://osm.org/node/239		housenumberAlt|7|wrong value	and	streetAlt|Side Street|wrong value
 70244		https://osm.org/way/243		altRef|70243;70244|70243	and	housenumberAlt|9|	and	streetAlt|Side Street|
-stack(70079-70081)		https://osm.org/node/79		suburb|addr:hamlet=Oakleigh|addr:hamlet=The City of Ember
+stack(70079-70081)		https://osm.org/node/79		suburb|Oakleigh|The City of Ember	and	doubleSuburb||
 stack(70082-70084)		https://osm.org/node/82		housenumber|82|82typo
 stack(70111-70113)		https://osm.org/node/111		flatCount|3|0
 stack(70114-70116)		https://osm.org/node/114		flatCount|3|123
 
 West Hoe Heights
-70019		https://osm.org/node/19		suburb|addr:suburb=West Hoe Heights|addr:hamlet=West Hoe Heights	and	town|Silverdale|
-70045		https://osm.org/node/45		suburb|addr:suburb=West Hoe Heights|addr:hamlet=West Hoe Heights
-70047		https://osm.org/node/47		suburb|addr:suburb=West Hoe Heights|addr:hamlet=West Hoe Heights
+70045		https://osm.org/node/45		doubleSuburb||
+70047		https://osm.org/node/47		doubleSuburb||
 
 Abel Tasman National Park
 70059		https://osm.org/node/59		water|1|0
 
 Ōpōtiki
-70110		https://osm.org/node/110		suburb|addr:hamlet=Ōpōtiki|addr:hamlet=Opotiki
+70110		https://osm.org/node/110		suburb|Ōpōtiki|Opotiki	and	doubleSuburb||

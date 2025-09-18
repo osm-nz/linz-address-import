@@ -1,7 +1,5 @@
 import { createReadStream, promises as fs } from 'node:fs';
-import { join } from 'node:path';
 import csv from 'csv-parser';
-import whichPolygon from 'which-polygon';
 import type {
   AddressId,
   AimAddress,
@@ -9,7 +7,7 @@ import type {
   LinzSourceAddress,
   ParcelId,
 } from '../types.js';
-import { LEGACY_URBAN_LOCALITIES, nzgbNamesTable } from '../common/nzgbFile.js';
+import { nzgbNamesTable } from '../common/nzgbFile.js';
 import {
   type IgnoreFile,
   aimCsvFile,
@@ -17,7 +15,6 @@ import {
   linzCsvFile,
   linzTempFile,
 } from './const.js';
-import { readRuralUrbanBoundaryFile } from './ruralUrbanBoundary.js';
 
 /** LINZ's longitude values go >180 e.g. 183deg which is invalid. It should be -177 */
 const correctLng = (lng: number) => {
@@ -72,14 +69,6 @@ async function linzToJson(): Promise<LinzData> {
   console.log('Reading ignore file...');
   const ignore: IgnoreFile = JSON.parse(await fs.readFile(ignoreFile, 'utf8'));
 
-  console.log('Reading rural/urban boundary...');
-  const ruralUrbanBoundary = await readRuralUrbanBoundaryFile();
-  await fs.writeFile(
-    join(import.meta.dirname, '../../data/urban-areas.geo.json'),
-    JSON.stringify(ruralUrbanBoundary),
-  );
-  const determineIfRuralOrUrban = whichPolygon(ruralUrbanBoundary);
-
   console.log('Starting preprocess of AIM data...');
   const addrToParcel = await aimToJson();
 
@@ -97,10 +86,6 @@ async function linzToJson(): Promise<LinzData> {
         const lat = +data.shape_Y;
         const lng = correctLng(+data.shape_X);
 
-        const isUrban =
-          determineIfRuralOrUrban([lng, lat])?.type === 'U' ||
-          LEGACY_URBAN_LOCALITIES.has(data.suburb_locality);
-
         out[data.address_id] = {
           housenumber: convertUnit(
             data.unit_value,
@@ -110,11 +95,8 @@ async function linzToJson(): Promise<LinzData> {
           ),
           $houseNumberMsb: data.address_number,
           street: data.full_road_name,
-          suburb: [
-            isUrban ? 'U' : 'R',
-            useOfficialName(data.water_name || data.suburb_locality),
-          ],
-          town: isUrban ? useOfficialName(data.town_city) : '',
+          suburb: useOfficialName(data.water_name || data.suburb_locality),
+          town: useOfficialName(data.town_city),
           lat,
           lng,
           level: data.level_value || undefined,
