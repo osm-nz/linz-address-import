@@ -23,6 +23,26 @@
     },
     {
       "type": "Feature",
+      "id": "n211",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            174.2119,
+            -36.900000000000006
+          ],
+          [
+            174.211,
+            -36.9
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "move"
+      }
+    },
+    {
+      "type": "Feature",
       "id": "n212",
       "geometry": {
         "type": "LineString",
@@ -44,7 +64,7 @@
   ],
   "bbox": {
     "minLat": -36.902,
-    "minLng": 174.212,
+    "minLng": 174.211,
     "maxLat": -36.9,
     "maxLng": 174.90200000000002
   },

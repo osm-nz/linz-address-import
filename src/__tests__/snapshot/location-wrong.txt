@@ -3,4 +3,5 @@ Oakleigh
 70002		https://osm.org/node/2		needs to move 223m to -36.9,174.902 *
 70003		https://osm.org/node/3		needs to move 100188m to -36.9,174.903
 70042		https://osm.org/node/42		needs to move 100188m to -36.9,174.942
+70211		https://osm.org/node/211		needs to move 80m to -36.9,174.211 *
 70212		https://osm.org/node/212		needs to move 80m to -36.9,174.212 *

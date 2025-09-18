@@ -49,6 +49,8 @@ If you want to use the code to manually run the process, follow these steps:
 
 There are end-to-end tests than run based on [a mock planet file](src/__tests__/mock/planet.xml) and [a mock linz CSV file](src/__tests__/mock/linz-dump.csv).
 
+You need to install [osmium-tool](https://osmcode.org/osmium-tool/) globally before you can run unit tests.
+
 To start the test, run `npm test`. If it changes the contents of the snapshot folder, commit those changes.
 
 ## Process

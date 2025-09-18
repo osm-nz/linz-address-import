@@ -5,7 +5,6 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "postinstall": "if [[ \"$OSTYPE\" == \"darwin\"* ]]; then curl http://m.m.i24.cc/osmconvert.c | cc -x c - -lz -O3 -o src/__tests__/bin/osmconvert-macos; fi",
     "request-linz-export": "tsx src/download/requestLinzExport",
     "download-linz": "tsx src/download/downloadLinzExport",
     "download-planet": "tsx src/download/downloadPlanet",

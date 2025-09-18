@@ -15,20 +15,11 @@ async function time(f: () => unknown) {
   return (Date.now() - start) / 1000 / 60;
 }
 
-const exe = joinPath(
-  'bin',
-  process.platform === 'win32'
-    ? 'osmconvert.exe'
-    : process.platform === 'darwin'
-      ? 'osmconvert-macos'
-      : 'osmconvert-linux',
-);
-
 describe('end-to-end test', () => {
   // convert the mock.xml file into mock.pbf
   beforeAll(() => {
     const std = execSync(
-      `${exe} ${joinPath('mock/planet.xml')} -o=${joinPath('mock/planet.pbf')}`,
+      `osmium cat ${joinPath('mock/planet.xml')} -o ${joinPath('mock/planet.pbf')}`,
     );
     process.stdout.write(std);
   });
