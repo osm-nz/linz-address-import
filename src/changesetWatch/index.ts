@@ -6,6 +6,7 @@ import {
 } from 'osm-api';
 import { config as dotenv } from 'dotenv';
 import { fetchIgnoreList, timeout } from '../common/index.js';
+import { isImportUser } from '../common/accounts.js';
 import { watchArea } from './constants.js';
 import { updateIgnoreList, updateLastCheckDate } from './api/index.js';
 import { type CSWithDiff, patchOsmChange } from './patchOsmChange.js';
@@ -34,7 +35,7 @@ export async function main(): Promise<void> {
   });
 
   const csToInspect: ChangesetWithRetried[] = allChangesets.filter(
-    (cs) => !cs.user.endsWith('_linz') && !cs.user.endsWith('_import'),
+    (cs) => !isImportUser(cs.user),
   );
   console.log(
     `Going to inspect ${csToInspect.length}/${allChangesets.length} changesets`,

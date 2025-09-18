@@ -4,6 +4,7 @@ import through from 'through2';
 import type { OsmFeature } from 'osm-api';
 import { isChecked } from '../common/index.js';
 import type { AddressId, OSMData, OsmAddr, OsmId } from '../types.js';
+import { isImportUser } from '../common/accounts.js';
 import { osmFile, planetFile } from './const.js';
 
 const MAP = { node: 'n', way: 'w', relation: 'r' };
@@ -15,9 +16,6 @@ const THRESHOLD_DATE = ((d) => {
   d.setDate(d.getDate() - RECENT_THRESHOLD);
   return +d / 1000;
 })(new Date());
-
-const isImportUser = (username: string | undefined) =>
-  username?.endsWith('_import') || username?.endsWith('_linz');
 
 type PbfMetadata = Partial<
   Pick<OsmFeature, 'changeset' | 'version' | 'user'> & {
