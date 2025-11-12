@@ -19,7 +19,7 @@ describe('end-to-end test', () => {
   // convert the mock.xml file into mock.pbf
   beforeAll(() => {
     const std = execSync(
-      `osmium cat ${joinPath('mock/planet.xml')} -o ${joinPath('mock/planet.pbf')}`,
+      `osmium cat ${joinPath('mock/planet.xml')} -o ${joinPath('mock/planet.pbf')} --overwrite`,
     );
     process.stdout.write(std);
   });
