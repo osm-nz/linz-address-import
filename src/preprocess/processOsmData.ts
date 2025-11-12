@@ -85,7 +85,6 @@ function osmToJson(): Promise<OSMData> {
               'building:flats' in item.tags
                 ? +item.tags['building:flats']! || -1
                 : undefined,
-            level: item.tags.level,
           };
           if ((metadata?.timestamp ?? 0) > THRESHOLD_DATE) {
             object.recentlyChanged = true;

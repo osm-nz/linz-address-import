@@ -23,8 +23,6 @@ export type LinzAddr = Coords & {
   water?: true;
   /** for stacked addresse, this is the number of addresses in this stack */
   flatCount?: number;
-  /** for non-stacked addresses, this is the building level of this flat */
-  level: string | undefined;
   /** the `parcel_id` merged from the {@link AimAddress} dataset */
   parcelId?: ParcelId;
   /**
@@ -72,8 +70,6 @@ export type OsmAddr = Coords & {
    * certain addresses using the tag `linz:stack=yes/no`
    */
   stackRequest?: boolean;
-  /** value of the `level` tag */
-  level: string | undefined;
   /** if the feature has been recently edited */
   recentlyChanged?: true;
   /** if the last user to edit this feature was an importer */
@@ -114,7 +110,7 @@ export type CouldStackData = {
 export type LinzSourceAddress = {
   address_id: AddressId;
 
-  unit_value: string;
+  unit: string;
   address_number: string;
   address_number_high: string;
   address_number_suffix: string;
@@ -128,41 +124,21 @@ export type LinzSourceAddress = {
   shape_X: string;
   /** stringified number (lat) */
   shape_Y: string;
-  /** if a water address, this field will have the "suburb" instead of `suburb_locality` */
-  water_name: string;
-  /** e.g. B1 or 15 */
-  level_value: string;
+  /** no = water address */
+  is_land: 'T' | 'F';
 
   // redundant information. don't use
 
-  /** @deprecated */ address_class: 'Thoroughfare' | 'Water';
   /** @deprecated */ address_lifecycle: 'Current' | 'Proposed';
   /** @deprecated */ WKT: string;
-  /** @deprecated */ change_id: string;
   /** @deprecated */ full_address_number: string;
   /** @deprecated */ water_route_name: string;
   /** @deprecated */ full_address: string;
   /** @deprecated */ road_section_id: string;
-  /** @deprecated */ gd2000_xcoord: string;
-  /** @deprecated */ gd2000_ycoord: string;
-  /** @deprecated */ water_route_name_ascii: string;
-  /** @deprecated */ water_name_ascii: string;
-  /** @deprecated */ suburb_locality_ascii: string;
-  /** @deprecated */ town_city_ascii: string;
-  /** @deprecated */ full_road_name_ascii: string;
-  /** @deprecated */ full_address_ascii: string;
-  /** @deprecated */ source_dataset: 'AIMS' | 'CADS';
   /** @deprecated */ territorial_authority: string;
-  /** @deprecated */ unit_type: string; // e.g. Shop, Flat, Unit, Villa, etc.
-  /** @deprecated */ level_type: 'LEVEL' | 'LOWER GROUND' | '';
-  /** @deprecated */ address_number_prefix: string;
-  /** @deprecated */ road_name_prefix: string;
   /** @deprecated */ road_name: string;
-  /** @deprecated */ road_name_ascii: string;
-  /** @deprecated */ road_type_name: string;
-  /** @deprecated */ road_suffix: string;
-  /** @deprecated */ water_body_name: string;
-  /** @deprecated */ water_body_name_ascii: string;
+  /** @deprecated */ road_name_type: string;
+  /** @deprecated */ road_name_suffix: string;
 };
 
 /**
@@ -238,7 +214,6 @@ export type IssueType =
   | 'doubleSuburb'
   | 'town'
   | 'flatCount'
-  | 'level'
   | 'altRef'
   | 'water';
 export type Issue = `${IssueType}|${string}|${string}`; // `field|linzValue|osmValue`;

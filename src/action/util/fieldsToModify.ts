@@ -66,11 +66,6 @@ export function fieldsToModify(issues: Issue[]): Tags {
         break;
       }
 
-      case 'level': {
-        ac.level = linzValue;
-        break;
-      }
-
       case 'altRef': {
         // remove any altRefs from the ref tag
         ac['ref:linz:address_id'] = linzValue;

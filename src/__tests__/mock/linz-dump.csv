@@ -1,4 +1,4 @@
-WKT,address_id,change_id,address_class,unit_value,address_number,address_number_suffix,address_number_high,water_route_name,water_name,suburb_locality,town_city,full_address_number,full_road_name,full_address,road_section_id,gd2000_xcoord,gd2000_ycoord,water_route_name_ascii,water_name_ascii,suburb_locality_ascii,town_city_ascii,full_road_name_ascii,full_address_ascii,shape_X,shape_Y,level_value
+WKT,address_id,change_id,is_land,unit,address_number,address_number_suffix,address_number_high,water_route_name,water_name,suburb_locality,town_city,full_address_number,full_road_name,full_address,road_section_id,gd2000_xcoord,gd2000_ycoord,water_route_name_ascii,water_name_ascii,suburb_locality_ascii,town_city_ascii,full_road_name_ascii,full_address_ascii,shape_X,shape_Y,level_value
 ,70001,,Road,,1,,,,,Oakleigh,,1,Example Street,,,,,,,,,,,174.901,-36.9
 ,70002,,Road,,2,,,,,Oakleigh,,2,Example Street,,,,,,,,,,,174.902,-36.9
 ,70003,,Road,,3,,,,,Oakleigh,,3,Example Street,,,,,,,,,,,174.903,-36.9
@@ -32,9 +32,9 @@ WKT,address_id,change_id,address_class,unit_value,address_number,address_number_
 ,70048,,Road,,48,,,,,Oakleigh,,48,Example Street,,"49,50,51,52,53 skipped",,,,,,,,,174.948,-36.9
 ,70054,,Road,,54,,,,,Oakleigh,,54,Example Street,,,,,,,,,,,174.954,-36.9
 ,70055,,Road,,55,,,,,Oakleigh,,55,Example Street,,,,,,,,,,,174.955,-36.9
-,70057,,Water,,57,,,Awaroa Inlet,Abel Tasman National Park,,,57,Awaroa Inlet,,,,,,,,,,,174.957,-36.9
-,70058,,Water,,58,,,Awaroa Inlet,Abel Tasman National Park,,,58,Awaroa Inlet,,,,,,,,,,,174.958,-36.9
-,70059,,Water,,59,,,Awaroa Inlet,Abel Tasman National Park,,,59,Awaroa Inlet,,,,,,,,,,,174.959,-36.9
+,70057,,F,,57,,,,,Abel Tasman National Park,,57,Awaroa Inlet,,,,,,,,,,,174.957,-36.9
+,70058,,F,,58,,,,,Abel Tasman National Park,,58,Awaroa Inlet,,,,,,,,,,,174.958,-36.9
+,70059,,F,,59,,,,,Abel Tasman National Park,,59,Awaroa Inlet,,,,,,,,,,,174.959,-36.9
 ,70060,,Road,,60,,,,,Oakleigh,,60,Example Street,,,,,,,,,,,174.96,-36.9
 ,70062,,Road,,62,,,,,West Hoe Heights,Silverdale,62,Example Street,,,,,,,,,,,176.962,-36.9
 ,70063,,Road,,63,,,,,West Hoe Heights,Another Town,63,Example Street,,,,,,,,,,,176.963,-36.9

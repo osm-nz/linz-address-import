@@ -88,21 +88,20 @@ async function linzToJson(): Promise<LinzData> {
 
         out[data.address_id] = {
           housenumber: convertUnit(
-            data.unit_value,
+            data.unit,
             data.address_number,
             data.address_number_high,
             data.address_number_suffix,
           ),
           $houseNumberMsb: data.address_number,
           street: data.full_road_name,
-          suburb: useOfficialName(data.water_name || data.suburb_locality),
+          suburb: useOfficialName(data.suburb_locality),
           town: useOfficialName(data.town_city),
           lat,
           lng,
-          level: data.level_value || undefined,
           parcelId: addrToParcel[data.address_id],
         };
-        if (data.water_name) out[data.address_id].water = true;
+        if (data.is_land === 'F') out[data.address_id].water = true;
 
         index += 1;
         if (!(index % 1000)) process.stdout.write('.');

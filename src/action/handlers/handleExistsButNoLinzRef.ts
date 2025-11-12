@@ -53,7 +53,7 @@ export async function handleExistsButNoLinzRef(
           // chances are if the ref is missing, so is the suburb/hamlet.
           // this logic also applies to other tags like building:flats, but for
           // performance reasons we don't pass those tags all the way through to this
-          // function. TODO: also conflate building:flats, level, addr:city etc in
+          // function. TODO: also conflate building:flats, addr:city etc in
           // this function, to avoid editing the same node twice.
         },
       });

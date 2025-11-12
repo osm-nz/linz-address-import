@@ -182,8 +182,6 @@ async function mergeIntoStacks(): Promise<LinzData> {
         // be unstacked next time the script runs.
         if (shouldBeStacked) stackedAddr.isManualStackRequest = true;
 
-        delete stackedAddr.level; // because the stack will have multiple levels merged together
-
         // delete the individual addresses
         for (const [linzId] of addrIds) delete linzData[linzId];
 
@@ -191,7 +189,6 @@ async function mergeIntoStacks(): Promise<LinzData> {
           // if we're creating a stack that would duplicate the property (see osm-nz/linz-address-import#8)
           // don't actually create the stack, but add the flatCount to the parent
           linzData[singleLinzId].flatCount = addrIds.length;
-          delete linzData[singleLinzId].level; // because the stack will have multiple levels merged together
         } else {
           // add the stacked address
           linzData[stackId] = stackedAddr;

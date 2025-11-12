@@ -54,7 +54,6 @@ export function processWithRef(
     linzAddr.town === osmAddr.town;
   const waterOk = linzAddr.water === osmAddr.water;
   const flatCountOk = linzAddr.flatCount === osmAddr.flatCount;
-  const levelOk = !linzAddr.level || linzAddr.level === osmAddr.level;
   const altRefOk = !(osmAddr.altRef && !linzAddrAlt);
 
   const needsSpecialReview =
@@ -69,7 +68,6 @@ export function processWithRef(
     townOk &&
     waterOk &&
     flatCountOk &&
-    levelOk &&
     altRefOk &&
     !osmAddr.doubleSuburb
   ) {
@@ -170,7 +168,6 @@ export function processWithRef(
       `town|${linzAddr.town}|${osmAddr.town || ''}`,
     !flatCountOk &&
       `flatCount|${linzAddr.flatCount || 0}|${osmAddr.flatCount || 0}`,
-    !levelOk && `level|${linzAddr.level || ''}|${osmAddr.level || ''}`,
     !altRefOk && `altRef|${addressId}|${osmAddr.altRef}`,
     !altRefOk && `housenumberAlt|🗑️|${osmAddr.housenumberAlt || ''}`,
 

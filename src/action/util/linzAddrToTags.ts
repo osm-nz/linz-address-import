@@ -9,7 +9,6 @@ export function linzAddrToTags(linzId: AddressId, addr: LinzAddr): Tags {
     // we don't add `addr:city`
     'addr:type': addr.water ? 'water' : undefined,
     'building:flats': addr.flatCount?.toString(),
-    level: addr.level,
     'ref:linz:address_id': linzId,
     'linz:stack': addr.isManualStackRequest ? 'yes' : undefined,
   };
@@ -28,7 +27,6 @@ export function deleteAllAddressTags(): Tags {
     'addr:postcode': '🗑️',
     'addr:type': '🗑️',
     'building:flats': '🗑️',
-    // level is deliberately not included
     'linz:stack': '🗑️',
     'ref:linz:address_id': '🗑️',
     check_date: '🗑️',
