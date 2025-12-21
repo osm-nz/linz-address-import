@@ -1148,6 +1148,20 @@
 
   <!-- see ways for test case 243, which is the same as the above, but for a building -->
 
+  <!-- 2 nodes, exact duplicates. 246 is newer (i.e. the node ID is larger), so it should be deleted -->
+  <node id="245" version="1" changeset="1" lat="-36.9" lon="174.245" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="245" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70245" />
+  </node>
+  <node id="246" version="1" changeset="1" lat="-36.9" lon="174.246" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="245" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70245" />
+  </node>
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />

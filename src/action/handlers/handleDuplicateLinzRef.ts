@@ -26,9 +26,10 @@ export async function handleDuplicateLinzRef(
   const features: GeoJsonFeature[] = [];
 
   for (const [linzId, [linzAddr, osmAddrList]] of array) {
-    const simpleNodes = osmAddrList.filter(
-      (x) => x.osmId[0] === 'n' && !x.isNonTrivial,
-    );
+    const simpleNodes = osmAddrList
+      .filter((x) => x.osmId[0] === 'n' && !x.isNonTrivial)
+      // if there are duplicates, keep the oldest node (determined by the node ID)
+      .sort((a, b) => +a.osmId.slice(1) - +b.osmId.slice(1));
 
     // we can autofix this if some of the duplicates are simple nodes
 
@@ -55,7 +56,7 @@ export async function handleDuplicateLinzRef(
         autofixable[linzId] = '✅';
       }
     } else if (simpleNodes.length) {
-      // Either (a) all nodes are simple. Arbitrarily pick 1 to keep and delete the rest.
+      // Either (a) all nodes are simple. Pick the oldest 1 to keep and delete the rest.
       // Or     ( b) notall of the addresses are simple, so delete only the simple ones.
       const toDelete =
         simpleNodes.length === osmAddrList.length
