@@ -386,7 +386,7 @@
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />
     <tag k="ref:linz:address_id" v="70061" />
-    <tag k="check_date" v="2022-02-02" />
+    <tag k="check_date" v="2030-02-02" />
   </node>
 
   <!-- 62 doesn't exist in OSM. it has the same suburb, but is in a different town -->
