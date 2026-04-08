@@ -7,7 +7,7 @@
  * is allowed under GDPR??? hardcoding the numeric userid wouldn't be
  * much better… See https://osm.wiki/File:GDPR_Position_Paper.pdf
  */
-const UNDECLARED_ACCOUNTS = new Set(['catgirlseraid']);
+const UNDECLARED_ACCOUNTS = new Set(['catgirlseraid', 'lcmortensen']);
 
 export const isImportUser = (username: string | undefined) =>
   username?.endsWith('_import') ||
