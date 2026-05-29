@@ -16,7 +16,6 @@
     "conflate": "tsx src/conflate",
     "extralayers": "tsx src/extraLayers",
     "action": "tsx src/action",
-    "upload": "tsx src/upload/uploadStatsToGH",
     "changelog": "tsx src/changelog",
     "changesetWatch": "tsx src/changesetWatch",
     "lint": "eslint . && tsc",

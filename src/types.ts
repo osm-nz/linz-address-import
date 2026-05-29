@@ -272,9 +272,15 @@ export type StatusReport = {
 
 export type StatsFile = {
   total: number;
-  count: Record<number, number>;
+  count: Record<Status, number>;
   date: string;
+  comment?: string;
 };
+
+export interface HistoryFile {
+  lastUpdated: string;
+  rows: StatsFile[];
+}
 
 export type Coord = [lng: number, lat: number];
 
@@ -330,8 +336,6 @@ export type HandlerReturnWithBBox = {
 };
 
 export namespace GH {
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  export type Issue = { body: string };
   export type IssueComment = { body: string };
 }
 

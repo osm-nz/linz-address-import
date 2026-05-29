@@ -1,20 +1,20 @@
 {
   "date": "MOCK",
   "count": {
-    "PERFECT": 38,
-    "EXISTS_BUT_WRONG_DATA": 42,
-    "EXISTS_BUT_NO_LINZ_REF": 5,
-    "MULTIPLE_EXIST_BUT_NO_LINZ_REF": 1,
-    "MULTIPLE_EXIST": 5,
-    "EXISTS_BUT_LOCATION_WRONG": 5,
-    "TOTALLY_MISSING": 38,
-    "NEEDS_DELETE": 15,
-    "NEEDS_DELETE_NON_TRIVIAL": 3,
-    "CORRUPT": 5,
-    "LINZ_REF_CHANGED": 4,
-    "COULD_BE_STACKED": 4,
-    "NEEDS_DELETE_ON_BUILDING": 1,
-    "REPLACED_BY_BUILDING": 1
+    "1": 38,
+    "2": 42,
+    "3": 5,
+    "4": 1,
+    "5": 5,
+    "6": 5,
+    "7": 38,
+    "8": 15,
+    "9": 3,
+    "10": 5,
+    "11": 4,
+    "13": 4,
+    "14": 1,
+    "15": 1
   },
   "total": 167
 }
