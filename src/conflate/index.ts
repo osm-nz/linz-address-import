@@ -6,6 +6,7 @@ import {
   type CoordKey,
   type CouldStackData,
   type DeletionData,
+  type LinzAddr,
   type LinzData,
   type OSMData,
   type Overlapping,
@@ -131,7 +132,7 @@ export async function main(): Promise<void> {
   for (const _mainRef in osmData.linz) {
     const mainRef = <AddressId>_mainRef;
     const altRef = osmData.linz[mainRef].altRef;
-    if (altRef) doNotCreate.push(altRef);
+    if (altRef) doNotCreate.push(...altRef);
   }
 
   // TODO: perf baseline: 300seconds
@@ -151,7 +152,12 @@ export async function main(): Promise<void> {
 
     const osmAddr = osmData.linz[linzId];
     const linzAddr = linzData[linzId];
-    const linzAddrAlt = osmAddr?.altRef ? linzData[osmAddr.altRef] : undefined;
+    const linzAddrAlts = Object.fromEntries(
+      osmAddr?.altRef?.map((id) => [
+        id,
+        linzData[id] as LinzAddr | undefined,
+      ]) || [],
+    );
     const duplicate = osmData.duplicateLinzIds[linzId];
     const semi = osmData.semi[linzId];
 
@@ -163,7 +169,7 @@ export async function main(): Promise<void> {
         osmData.noRef,
         overlapping,
         slow,
-        linzAddrAlt,
+        linzAddrAlts,
       );
       statusReport[status].push([linzId, diagnostics]);
     } else if (duplicate) {

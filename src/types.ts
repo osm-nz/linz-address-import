@@ -43,14 +43,19 @@ export enum CheckDate {
   YesExpired, // check_date is older than X years
 }
 
+export type AltAddrKeyPrefix = `alt_addr` | `addr${number}`;
+
 export type OsmAddr = Coords & {
   osmId: OsmId;
   housenumber?: string;
-  /** for alternate addresses, the other house number */
-  housenumberAlt?: string;
+  /** for alternate addresses, a list of housenumber+street pairs */
+  alts?: (Pick<OsmAddr, 'housenumber' | 'street'> & {
+    /** the prefix where this tag-pair came from */
+    sourceKeyPrefix: AltAddrKeyPrefix;
+    /** the index where this tag-pair came from (if the value is semicolon-delimited) */
+    sourceValueIndex: number;
+  })[];
   street?: string;
-  /** for alternate addresses, the other street name */
-  streetAlt?: string;
   suburb?: string;
   town?: string;
   isNonTrivial: boolean;
@@ -74,8 +79,8 @@ export type OsmAddr = Coords & {
   recentlyChanged?: true;
   /** if the last user to edit this feature was an importer */
   lastEditedByImporter?: true;
-  /** for manually-merged alternate addresses, the linzRef of the other address */
-  altRef?: AddressId;
+  /** for manually-merged alternate addresses, the linzRef of the other addresses */
+  altRef?: AddressId[];
 };
 export type OsmAddrWithConfidence = OsmAddr & {
   /** distance in metres away from expected location */

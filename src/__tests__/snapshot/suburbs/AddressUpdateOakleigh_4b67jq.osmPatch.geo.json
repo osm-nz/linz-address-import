@@ -843,8 +843,7 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70217",
-        "alt_addr:housenumber": "🗑️"
+        "ref:linz:address_id": "70217"
       }
     },
     {
@@ -2518,6 +2517,13 @@
       "properties": {
         "__action": "edit",
         "alt_addr:housenumber": "🗑️",
+        "alt_addr:street": "🗑️",
+        "addr2:housenumber": "🗑️",
+        "addr2:street": "🗑️",
+        "addr3:housenumber": "🗑️",
+        "addr3:street": "🗑️",
+        "addr4:housenumber": "🗑️",
+        "addr4:street": "🗑️",
         "addr:housenumber": "🗑️",
         "addr:street": "🗑️",
         "addr:suburb": "🗑️",
@@ -2826,6 +2832,13 @@
       "properties": {
         "__action": "edit",
         "alt_addr:housenumber": "🗑️",
+        "alt_addr:street": "🗑️",
+        "addr2:housenumber": "🗑️",
+        "addr2:street": "🗑️",
+        "addr3:housenumber": "🗑️",
+        "addr3:street": "🗑️",
+        "addr4:housenumber": "🗑️",
+        "addr4:street": "🗑️",
         "addr:housenumber": "🗑️",
         "addr:street": "🗑️",
         "addr:suburb": "🗑️",

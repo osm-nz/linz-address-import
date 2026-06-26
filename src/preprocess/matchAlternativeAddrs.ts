@@ -101,7 +101,7 @@ export function matchAlternativeAddrs(
   // if someone has manually added alt_addr:housenumber, then
   // we respect that.
   const someAlreadyHaveAltTag = addrIds.some(
-    ([addrId]) => osmData.linz[addrId]?.housenumberAlt,
+    ([addrId]) => osmData.linz[addrId]?.alts?.length,
   );
 
   if (seenEverything || someAlreadyHaveAltTag) {

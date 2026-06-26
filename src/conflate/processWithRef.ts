@@ -23,25 +23,55 @@ export function processWithRef(
   osmAddr: OsmAddr,
   allOsmAddressesWithNoRef: OsmAddr[],
   overlapping: Overlapping,
-  slowMode?: boolean,
-  linzAddrAlt?: LinzAddr | undefined,
+  slowMode: boolean,
+  linzAddrAlts: Record<AddressId, LinzAddr | undefined>,
 ): { status: Status; diagnostics?: unknown } {
   if (osmAddr.checked === CheckDate.YesRecent) {
     return { status: Status.PERFECT };
   }
 
-  const linzAltHousenumber =
-    linzAddr.housenumberAlt || linzAddrAlt?.housenumber;
-  const linzAltStreet =
-    linzAddrAlt?.street === linzAddr.street ? undefined : linzAddrAlt?.street;
+  const altIssues: (Issue | false | undefined)[] = [];
+  if (linzAddr.housenumberAlt) {
+    const isValid = osmAddr.alts?.some(
+      (a) => a.housenumber === linzAddr.housenumberAlt,
+    );
+    if (!isValid) {
+      // need to append the alt_housenumber (no street in this case)
+      altIssues.push(
+        `housenumberAlt|${linzAddr.housenumberAlt}|${osmAddr.alts?.map((a) => a.housenumber).join(';') || ''}`,
+      );
+    }
+  }
+
+  for (const id of osmAddr.altRef || []) {
+    const linzAlt = linzAddrAlts[id];
+    if (!linzAlt) {
+      // this ref is invalid, so remove it
+      altIssues.push(`altRef|${addressId}|${id}`);
+      continue;
+    }
+
+    const isStreetDifferent = linzAlt.street !== linzAddr.street;
+    const alreadyExists = osmAddr.alts?.find(
+      (a) =>
+        a.housenumber === linzAlt.housenumber &&
+        (isStreetDifferent ? a.street === linzAlt.street : true),
+    );
+    if (!alreadyExists) {
+      const currentHouse =
+        osmAddr.alts?.map((a) => a.housenumber).join(';') || '';
+      const currentStreet = osmAddr.alts?.map((a) => a.street).join(';') || '';
+
+      if (linzAlt.housenumber !== currentHouse) {
+        altIssues.push(`housenumberAlt|${linzAlt.housenumber}|${currentHouse}`);
+      }
+      if (isStreetDifferent && linzAlt.street !== currentStreet) {
+        altIssues.push(`streetAlt|${linzAlt.street}|${currentStreet}`);
+      }
+    }
+  }
 
   const houseOk = linzAddr.housenumber === osmAddr.housenumber;
-  const altHouseOk = linzAltHousenumber
-    ? linzAltHousenumber === osmAddr.housenumberAlt
-    : true; // if LINZ has no data, respect the existing tag value in OSM
-  const altStreetOk = linzAltStreet
-    ? linzAltStreet === osmAddr.streetAlt
-    : true; // if LINZ has no data, respect the existing tag value in OSM
   const streetOk = compareWithMacrons(
     normaliseStreet(linzAddr.street),
     normaliseStreet(osmAddr.street || ''),
@@ -54,21 +84,18 @@ export function processWithRef(
     linzAddr.town === osmAddr.town;
   const waterOk = linzAddr.water === osmAddr.water;
   const flatCountOk = linzAddr.flatCount === osmAddr.flatCount;
-  const altRefOk = !(osmAddr.altRef && !linzAddrAlt);
 
   const needsSpecialReview =
     !!osmAddr.recentlyChanged && !osmAddr.lastEditedByImporter;
 
   if (
     houseOk &&
-    altHouseOk &&
     streetOk &&
-    altStreetOk &&
     suburbOk &&
     townOk &&
     waterOk &&
     flatCountOk &&
-    altRefOk &&
+    !altIssues.length &&
     !osmAddr.doubleSuburb
   ) {
     // looks perfect - last check is if location is correct
@@ -155,21 +182,14 @@ export function processWithRef(
   // something is wrong in the data
   const issues: (Issue | false | undefined)[] = [
     !houseOk && `housenumber|${linzAddr.housenumber}|${osmAddr.housenumber}`,
-    !altHouseOk &&
-      `housenumberAlt|${linzAltHousenumber || ''}|${
-        osmAddr.housenumberAlt || ''
-      }`,
     !streetOk && `street|${linzAddr.street}|${osmAddr.street}`,
-    !altStreetOk &&
-      `streetAlt|${linzAltStreet || ''}|${osmAddr.streetAlt || ''}`,
     !suburbOk && `suburb|${linzAddr.suburb || ''}|${osmAddr.suburb || ''}`,
     // if the `suburb` is changing, also conflate `town`
     (!townOk || townNeedsChangingBcSuburbChanged) &&
       `town|${linzAddr.town}|${osmAddr.town || ''}`,
     !flatCountOk &&
       `flatCount|${linzAddr.flatCount || 0}|${osmAddr.flatCount || 0}`,
-    !altRefOk && `altRef|${addressId}|${osmAddr.altRef}`,
-    !altRefOk && `housenumberAlt|🗑️|${osmAddr.housenumberAlt || ''}`,
+    ...altIssues,
 
     // this is the buggy one (see #7) if it's a double suburb, the system may think `suburbOk` but it's wrong
     (osmAddr.doubleSuburb || (!suburbOk && osmAddr.hasHamlet)) &&

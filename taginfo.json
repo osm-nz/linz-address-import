@@ -46,12 +46,42 @@
     {
       "key": "alt_addr:housenumber",
       "object_types": ["node", "area", "relation"],
-      "description": "Added to addresses in New Zealand that have two housenumbers. These are officially called “Alternative Addresses”."
+      "description": "Added to addresses in New Zealand that have multiple housenumbers. These are officially called “Alternative Addresses”. The tool also recognises addr2:*, addr3:*, … tags."
     },
     {
       "key": "alt_addr:street",
       "object_types": ["node", "area", "relation"],
-      "description": "Added to addresses in New Zealand that have two housenumbers. These are officially called “Alternative Addresses”."
+      "description": "Added to addresses in New Zealand that have multiple housenumbers. These are officially called “Alternative Addresses”. The tool also recognises addr2:*, addr3:*, … tags."
+    },
+    {
+      "key": "addr2:housenumber",
+      "object_types": ["node", "area", "relation"],
+      "description": "Added to addresses in New Zealand that have multiple housenumbers. These are officially called “Alternative Addresses”. The tool also recognises alt_addr:* tags."
+    },
+    {
+      "key": "addr2:street",
+      "object_types": ["node", "area", "relation"],
+      "description": "Added to addresses in New Zealand that have multiple housenumbers. These are officially called “Alternative Addresses”. The tool also recognises alt_addr:* tags."
+    },
+    {
+      "key": "addr3:housenumber",
+      "object_types": ["node", "area", "relation"],
+      "description": "Added to addresses in New Zealand that have multiple housenumbers. These are officially called “Alternative Addresses”. The tool also recognises alt_addr:* tags."
+    },
+    {
+      "key": "addr3:street",
+      "object_types": ["node", "area", "relation"],
+      "description": "Added to addresses in New Zealand that have multiple housenumbers. These are officially called “Alternative Addresses”. The tool also recognises alt_addr:* tags."
+    },
+    {
+      "key": "addr4:housenumber",
+      "object_types": ["node", "area", "relation"],
+      "description": "Added to addresses in New Zealand that have multiple housenumbers. These are officially called “Alternative Addresses”. The tool also recognises alt_addr:* tags."
+    },
+    {
+      "key": "addr4:street",
+      "object_types": ["node", "area", "relation"],
+      "description": "Added to addresses in New Zealand that have multiple housenumbers. These are officially called “Alternative Addresses”. The tool also recognises alt_addr:* tags."
     },
     {
       "key": "building:flats",

@@ -3,7 +3,13 @@ import pbf2json, { type Item } from 'pbf2json';
 import through from 'through2';
 import type { OsmFeature } from 'osm-api';
 import { isChecked } from '../common/index.js';
-import type { AddressId, OSMData, OsmAddr, OsmId } from '../types.js';
+import type {
+  AddressId,
+  AltAddrKeyPrefix,
+  OSMData,
+  OsmAddr,
+  OsmId,
+} from '../types.js';
 import { isImportUser } from '../common/accounts.js';
 import { osmFile, planetFile } from './const.js';
 
@@ -67,9 +73,7 @@ function osmToJson(): Promise<OSMData> {
             lat: +coords.lat,
             lng: +coords.lon,
             housenumber: item.tags['addr:housenumber'],
-            housenumberAlt: item.tags['alt_addr:housenumber'],
             street: item.tags['addr:street'],
-            streetAlt: item.tags['alt_addr:street'],
             suburb,
             town: item.tags['addr:city'],
             // this is an expensive check :(
@@ -86,6 +90,35 @@ function osmToJson(): Promise<OSMData> {
                 ? +item.tags['building:flats']! || -1
                 : undefined,
           };
+
+          // check if there are any alt_addr:* or addr{n}:* tags
+          for (const key in item.tags) {
+            if (
+              (key.endsWith(':housenumber') || key.endsWith(':street')) &&
+              /^(alt_addr|addr\d+):/.test(key)
+            ) {
+              const prefix = <AltAddrKeyPrefix>key.split(':')[0];
+
+              // the value can have semicolons, which are tabularly associated
+              const altH = item.tags[`${prefix}:housenumber`]?.split(';') || [];
+              const altS = item.tags[`${prefix}:street`]?.split(';') || [];
+
+              for (let I = 0; I < Math.max(altH.length, altS.length); I++) {
+                const alreadyExists = object.alts?.some(
+                  (v) => v.housenumber === altH[I] && v.street === altS[I],
+                );
+                if (alreadyExists) continue;
+                object.alts ||= [];
+                object.alts.push({
+                  housenumber: altH[I],
+                  street: altS[I],
+                  sourceKeyPrefix: prefix,
+                  sourceValueIndex: I,
+                });
+              }
+            }
+          }
+
           if ((metadata?.timestamp ?? 0) > THRESHOLD_DATE) {
             object.recentlyChanged = true;
           }
@@ -119,16 +152,14 @@ function osmToJson(): Promise<OSMData> {
             // unless the address has alt_addr:* tags.
             else if (linzId.includes(';')) {
               const mergedIds = <AddressId[]>linzId.split(';');
-              if (
-                (object.housenumberAlt || object.streetAlt) &&
-                mergedIds.length === 2
-              ) {
-                // has alt_addr:* tags and has expect exactly 2 refs, so this
+              if (object.alts?.length) {
+                // has alt_addr:* or addr{n}:* tags, so this
                 // could be acceptable.
-                out.linz[mergedIds[0]] = object;
-                object.altRef = mergedIds[1];
+                const [mainId, ...otherIds] = mergedIds;
+                out.linz[mainId] = object;
+                object.altRef = otherIds;
               } else {
-                // no alt_addr:* tags or length>2. Definitely not valid.
+                // no alt_addr:* tags. Definitely not valid.
                 for (const maybeLinzId of mergedIds) {
                   out.semi[maybeLinzId] = object;
                 }

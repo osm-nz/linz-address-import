@@ -26,7 +26,7 @@ Oakleigh
 70197		https://osm.org/node/197		suburb|Oakleigh|Oakleigh!*@typo
 70207		https://osm.org/node/207		housenumberAlt|3/203|
 70215		https://osm.org/node/215		housenumberAlt|1/215|nonense value
-70217		https://osm.org/node/217		altRef|70217|nonsens	and	housenumberAlt|🗑️|1/217
+70217		https://osm.org/node/217		altRef|70217|nonsens
 70220		https://osm.org/node/219		housenumber|1/219|219A	and	housenumberAlt|219A|1/219
 70226		https://osm.org/node/226		street|Whānau Way|Whanau Way
 70230		https://osm.org/node/229		altRef|70229;70230|70229

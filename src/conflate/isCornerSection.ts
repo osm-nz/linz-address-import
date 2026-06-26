@@ -60,9 +60,7 @@ export function isCornerSection(
   // has some alt_ tags
   const isNode = otherAddressOsm.osmId[0] === 'n';
   const hasAnyAltTags = !!(
-    otherAddressOsm.altRef ||
-    otherAddressOsm.housenumberAlt ||
-    otherAddressOsm.streetAlt
+    otherAddressOsm.altRef || otherAddressOsm.alts?.length
   );
 
   if (isNode && !hasAnyAltTags) return undefined;
@@ -74,15 +72,21 @@ export function isCornerSection(
 
   const issues: Issue[] = [`altRef|${newMergedRef}|${existingRef}`];
 
-  if (linzAddr.housenumber !== otherAddressOsm.housenumberAlt) {
+  if (
+    !otherAddressOsm.alts?.some((a) => a.housenumber === linzAddr.housenumber)
+  ) {
+    const expectedAltNumbers = otherAddressOsm.alts
+      ?.map((a) => a.housenumber)
+      .join(';');
     issues.push(
-      `housenumberAlt|${linzAddr.housenumber}|${otherAddressOsm.housenumberAlt || ''}`,
+      `housenumberAlt|${linzAddr.housenumber}|${expectedAltNumbers || ''}`,
     );
   }
-  if (linzAddr.street !== otherAddressOsm.streetAlt) {
-    issues.push(
-      `streetAlt|${linzAddr.street}|${otherAddressOsm.streetAlt || ''}`,
-    );
+  if (!otherAddressOsm.alts?.some((a) => a.street === linzAddr.street)) {
+    const expectedAltStreets = otherAddressOsm.alts
+      ?.map((a) => a.street)
+      .join(';');
+    issues.push(`streetAlt|${linzAddr.street}|${expectedAltStreets || ''}`);
   }
 
   return validate({

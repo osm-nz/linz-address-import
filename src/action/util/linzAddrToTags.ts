@@ -18,6 +18,13 @@ export function deleteAllAddressTags(): Tags {
   return {
     // delete all address-related tags
     'alt_addr:housenumber': '🗑️',
+    'alt_addr:street': '🗑️',
+    'addr2:housenumber': '🗑️',
+    'addr2:street': '🗑️',
+    'addr3:housenumber': '🗑️',
+    'addr3:street': '🗑️',
+    'addr4:housenumber': '🗑️',
+    'addr4:street': '🗑️',
     'addr:housenumber': '🗑️',
     'addr:street': '🗑️',
     'addr:suburb': '🗑️',
