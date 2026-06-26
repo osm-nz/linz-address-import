@@ -11,8 +11,7 @@ export default defineConfig({
         '*.config.*',
         'src/download',
         'src/upload',
-        'src/extraLayers/geodetic',
-        'src/extraLayers/linzTopo/*.ts',
+        //
       ],
     },
     onConsoleLog: (log) => !log.includes('Mock Error'),

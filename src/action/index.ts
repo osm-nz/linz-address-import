@@ -83,23 +83,6 @@ export async function main(): Promise<void> {
     };
   }
 
-  console.log('reading extra layers...');
-
-  // we do this after generating the 'small places' layer, beacuse we only want to include addresses
-  try {
-    if (process.env.NODE_ENV !== 'test') {
-      const extraLayers: ExtraLayers = JSON.parse(
-        await fs.readFile(
-          join(import.meta.dirname, '../../data/extra-layers.geo.json'),
-          'utf8',
-        ),
-      );
-      Object.assign(out, extraLayers);
-    }
-  } catch {
-    console.log('(!) Failed to include extra layers');
-  }
-
   console.log('sectorizing...');
   await createIndex(shiftOverlappingPoints(sectorize(out)));
 }

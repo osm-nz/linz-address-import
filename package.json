@@ -14,7 +14,6 @@
     "preprocess3": "tsx src/preprocess/stackLinzData",
     "preprocess": "npm run preprocess0 && npm run preprocess1 && npm run preprocess2 && npm run preprocess3",
     "conflate": "tsx src/conflate",
-    "extralayers": "tsx src/extraLayers",
     "action": "tsx src/action",
     "changelog": "tsx src/changelog",
     "changesetWatch": "tsx src/changesetWatch",
