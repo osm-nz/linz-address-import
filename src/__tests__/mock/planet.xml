@@ -1170,6 +1170,44 @@
     <tag k="ref:linz:address_id" v="70245" />
   </node>
 
+
+  <!-- (same as 215, but using addr2:*) manually merged using alt_addr:housenumber and a merged ref tag, but alt_addr is wrong -->
+  <node id="247" version="1" changeset="1" lat="-36.9" lon="174.247" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="247A" />
+    <tag k="addr2:housenumber" v="nonense value" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70247;70248" />
+  </node>
+
+  <!-- (same as 217, but using addr2:*) manually merged using alt_addr:housenumber and a merged ref tag, but the ref is wrong -->
+  <node id="249" version="1" changeset="1" lat="-36.9" lon="174.249" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="249A" />
+    <tag k="addr2:housenumber" v="1/249" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70249;nonsens" />
+  </node>
+
+  <!-- (same as 219, but using addr2:*) manually merged using alt_addr:housenumber and a merged ref tag, but the ref order is wrong -->
+  <node id="251" version="1" changeset="1" lat="-36.9" lon="174.251" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="251A" />
+    <tag k="addr2:housenumber" v="1/251" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70252;70251" />
+  </node>
+
+  <!-- (same as "221", but using addr2:*) manually merged using alt_addr:housenumber and a merged ref tag -->
+  <node id="253" version="1" changeset="1" lat="-36.9" lon="174.253" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+    <tag k="addr:housenumber" v="253A" />
+    <tag k="addr2:housenumber" v="1/253" />
+    <tag k="addr:street" v="Example Street" />
+    <tag k="addr:hamlet" v="Oakleigh" />
+    <tag k="ref:linz:address_id" v="70253;70254" />
+  </node>
+
+
   <!-- <ways> -->
     <way id="31" version="1" changeset="1" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
       <nd ref="28" />

@@ -200,3 +200,11 @@ WKT,address_id,change_id,is_land,unit,address_number,address_number_suffix,addre
 ,70243,,Road,,243,,,,,Oakleigh,,243,Example Street,,,,,,,,,,,174.243,-36.9
 ,70244,,Road,,9,,,,,Oakleigh,,9,Side Street,,,,,,,,,,,174.244,-36.9
 ,70245,,Road,,245,,,,,Oakleigh,,245,Example Street,,,,,,,,,,,174.245,-36.9
+,70247,,Road,,247,A,,,,Oakleigh,,247A,Example Street,,,,,,,,,,,174.247,-36.9
+,70248,,Road,1,247,,,,,Oakleigh,,1/247,Example Street,,,,,,,,,,,174.248,-36.9
+,70249,,Road,,249,A,,,,Oakleigh,,249A,Example Street,,,,,,,,,,,174.249,-36.9
+,70250,,Road,1,249,,,,,Oakleigh,,1/249,Example Street,,,,,,,,,,,174.250,-36.9
+,70251,,Road,,251,A,,,,Oakleigh,,251A,Example Street,,,,,,,,,,,174.251,-36.9
+,70252,,Road,1,251,,,,,Oakleigh,,1/251,Example Street,,,,,,,,,,,174.252,-36.9
+,70253,,Road,,253,A,,,,Oakleigh,,253A,Example Street,,,,,,,,,,,174.253,-36.9
+,70254,,Road,1,253,,,,,Oakleigh,,1/253,Example Street,,,,,,,,,,,174.254,-36.9

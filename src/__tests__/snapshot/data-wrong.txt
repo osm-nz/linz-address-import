@@ -34,6 +34,9 @@ Oakleigh
 70235		https://osm.org/node/235		streetAlt|Side Street|wrong value
 70237		https://osm.org/node/237		housenumberAlt|6|wrong value
 70239		https://osm.org/node/239		housenumberAlt|7|wrong value	and	streetAlt|Side Street|wrong value
+70247		https://osm.org/node/247		housenumberAlt|1/247|nonense value
+70249		https://osm.org/node/249		altRef|70249|nonsens
+70252		https://osm.org/node/251		housenumber|1/251|251A	and	housenumberAlt|251A|1/251
 stack(70079-70081)		https://osm.org/node/79		suburb|Oakleigh|The City of Ember	and	doubleSuburb||
 stack(70082-70084)		https://osm.org/node/82		housenumber|82|82typo
 stack(70111-70113)		https://osm.org/node/111		flatCount|3|0
