@@ -919,41 +919,6 @@
     },
     {
       "type": "Feature",
-      "id": "n229",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              174.229,
-              -36.899800000000006
-            ],
-            [
-              174.22920000000002,
-              -36.900000000000006
-            ],
-            [
-              174.229,
-              -36.900200000000005
-            ],
-            [
-              174.2288,
-              -36.900000000000006
-            ],
-            [
-              174.229,
-              -36.899800000000006
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "__action": "edit",
-        "ref:linz:address_id": "70229;70230"
-      }
-    },
-    {
-      "type": "Feature",
       "id": "n231",
       "geometry": {
         "type": "Polygon",
@@ -1125,43 +1090,6 @@
       "properties": {
         "__action": "edit",
         "alt_addr:housenumber": "7",
-        "alt_addr:street": "Side Street"
-      }
-    },
-    {
-      "type": "Feature",
-      "id": "w243",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              174.9311667,
-              -36.9001333
-            ],
-            [
-              174.9313667,
-              -36.9003333
-            ],
-            [
-              174.9311667,
-              -36.9005333
-            ],
-            [
-              174.9309667,
-              -36.9003333
-            ],
-            [
-              174.9311667,
-              -36.9001333
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "__action": "edit",
-        "ref:linz:address_id": "70243;70244",
-        "alt_addr:housenumber": "9",
         "alt_addr:street": "Side Street"
       }
     },

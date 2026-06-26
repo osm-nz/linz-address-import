@@ -2,11 +2,8 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import Unzip from 'adm-zip';
 import type { Koordinates } from 'koordinates-api';
-import { aimCsvFile, linzCsvFile } from '../preprocess/const.js';
-import {
-  AIM_LAYER_NAME_SUBSTR,
-  LINZ_LAYER_NAME_SUBSTR,
-} from '../common/const.js';
+import { linzCsvFile } from '../preprocess/const.js';
+import { LINZ_LAYER_NAME_SUBSTR } from '../common/const.js';
 import { linzApi } from './util.js';
 
 async function downloadExport(
@@ -75,6 +72,5 @@ async function downloadExport(
 
 async function main() {
   await downloadExport(linzCsvFile, LINZ_LAYER_NAME_SUBSTR, linzApi);
-  await downloadExport(aimCsvFile, AIM_LAYER_NAME_SUBSTR, linzApi);
 }
 main();

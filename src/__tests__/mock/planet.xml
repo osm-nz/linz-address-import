@@ -1065,6 +1065,7 @@
   </node>
 
   <!-- (corner section) manually merged using alt_addr:housenumber, alt_addr:street, and a merged ref tag -->
+  <!-- edit June 2026: this is no longer supported, thanks to LINZ deprecating the addressId->parcelId dataset -->
   <node id="227" version="1" changeset="1" lat="-36.9" lon="174.227" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="227" />
     <tag k="alt_addr:housenumber" v="1" />
@@ -1075,6 +1076,7 @@
   </node>
 
   <!-- (corner section) manually merged using alt_addr:housenumber, alt_addr:street, but missing the ref tag -->
+  <!-- edit June 2026: this is no longer supported, thanks to LINZ deprecating the addressId->parcelId dataset -->
   <node id="229" version="1" changeset="1" lat="-36.9" lon="174.229" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="229" />
     <tag k="alt_addr:housenumber" v="2" />
@@ -1085,6 +1087,7 @@
   </node>
 
   <!-- (corner section) manually merged using alt_addr:housenumber, and a merged ref tag, but alt_addr:street is missing -->
+  <!-- edit June 2026: this is no longer supported, thanks to LINZ deprecating the addressId->parcelId dataset -->
   <node id="231" version="1" changeset="1" lat="-36.9" lon="174.231" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="231" />
     <tag k="alt_addr:housenumber" v="3" />
@@ -1094,6 +1097,7 @@
   </node>
 
   <!-- (corner section) manually merged using alt_addr:street, and a merged ref tag, but alt_addr:housenumber is missing -->
+  <!-- edit June 2026: this is no longer supported, thanks to LINZ deprecating the addressId->parcelId dataset -->
   <node id="233" version="1" changeset="1" lat="-36.9" lon="174.233" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="233" />
     <tag k="addr:street" v="Example Street" />
@@ -1103,6 +1107,7 @@
   </node>
 
   <!-- (corner section) manually merged using alt_addr:housenumber, and a merged ref tag, but alt_addr:street is wrong -->
+  <!-- edit June 2026: this is no longer supported, thanks to LINZ deprecating the addressId->parcelId dataset -->
   <node id="235" version="1" changeset="1" lat="-36.9" lon="174.235" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="235" />
     <tag k="alt_addr:housenumber" v="5" />
@@ -1113,6 +1118,7 @@
   </node>
 
   <!-- (corner section) manually merged using alt_addr:street, and a merged ref tag, but alt_addr:housenumber is wrong -->
+  <!-- edit June 2026: this is no longer supported, thanks to LINZ deprecating the addressId->parcelId dataset -->
   <node id="237" version="1" changeset="1" lat="-36.9" lon="174.237" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="237" />
     <tag k="alt_addr:housenumber" v="wrong value" />
@@ -1123,6 +1129,7 @@
   </node>
 
   <!-- (corner section) manually merged using a merged ref tag, but both alt_addr:housenumber and alt_addr:street are wrong -->
+  <!-- edit June 2026: this is no longer supported, thanks to LINZ deprecating the addressId->parcelId dataset -->
   <node id="239" version="1" changeset="1" lat="-36.9" lon="174.239" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="239" />
     <tag k="alt_addr:housenumber" v="wrong value" />
@@ -1139,6 +1146,7 @@
 
   <!-- (corner section) one standalone address exists in OSM as a *node*, the other does not exist in OSM -->
   <!-- suggestion is to just add a second node. this one will be untouched -->
+  <!-- edit June 2026: this is no longer supported, thanks to LINZ deprecating the addressId->parcelId dataset -->
   <node id="241" version="1" changeset="1" lat="-36.9" lon="174.241" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="241" />
     <tag k="addr:street" v="Example Street" />

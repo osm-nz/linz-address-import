@@ -1,16 +1,9 @@
 import { createReadStream, promises as fs } from 'node:fs';
 import csv from 'csv-parser';
-import type {
-  AddressId,
-  AimAddress,
-  LinzData,
-  LinzSourceAddress,
-  ParcelId,
-} from '../types.js';
+import type { LinzData, LinzSourceAddress } from '../types.js';
 import { nzgbNamesTable } from '../common/nzgbFile.js';
 import {
   type IgnoreFile,
-  aimCsvFile,
   ignoreFile,
   linzCsvFile,
   linzTempFile,
@@ -45,32 +38,10 @@ const convertUnit = (
 
 const useOfficialName = (name: string) => nzgbNamesTable[name] || name;
 
-async function aimToJson() {
-  console.log('Starting preprocess of AIM data...');
-  let index = 0;
-  const out: Record<AddressId, ParcelId> = {};
-
-  return new Promise<typeof out>((resolve, reject) => {
-    createReadStream(aimCsvFile)
-      .pipe(csv())
-      .on('data', (data: AimAddress) => {
-        out[data.address_id] = data.parcel_id;
-
-        index += 1;
-        if (!(index % 1000)) process.stdout.write('.');
-      })
-      .on('end', () => resolve(out))
-      .on('error', reject);
-  });
-}
-
 // TODO: perf baseline is 50seconds
 async function linzToJson(): Promise<LinzData> {
   console.log('Reading ignore file...');
   const ignore: IgnoreFile = JSON.parse(await fs.readFile(ignoreFile, 'utf8'));
-
-  console.log('Starting preprocess of AIM data...');
-  const addrToParcel = await aimToJson();
 
   console.log('Starting preprocess of LINZ data...');
   return new Promise((resolve, reject) => {
@@ -99,7 +70,6 @@ async function linzToJson(): Promise<LinzData> {
           town: useOfficialName(data.town_city),
           lat,
           lng,
-          parcelId: addrToParcel[data.address_id],
         };
         if (data.is_land === 'F') out[data.address_id].water = true;
 
