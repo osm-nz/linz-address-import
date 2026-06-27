@@ -7,7 +7,6 @@ import {
   type StatusReport,
 } from '../types.js';
 import {
-  LAYER_PREFIX,
   mock,
   outFolder,
   shiftOverlappingPoints,
@@ -72,10 +71,7 @@ export async function main(): Promise<void> {
 
   const out: ExtraLayers = {};
   for (const k in features) {
-    // addresses are always size=medium
-    // special layers are always size=large
     out[k] = {
-      size: k.startsWith(LAYER_PREFIX.split(' - ')[0]) ? 'medium' : 'large',
       features: features[k],
       instructions: k.startsWith(SPECIAL_REVIEW)
         ? SPECIAL_REVIEW_INFO

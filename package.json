@@ -24,6 +24,7 @@
     "@id-sdk/geo": "^3.0.0-pre.10",
     "adm-zip": "^0.5.14",
     "csv-parser": "^3.0.0",
+    "h3-js": "^4.4.0",
     "koordinates-api": "^0.0.2",
     "osm-api": "^4.0.0",
     "pbf2json": "https://github.com/osm-nz/pbf2json",

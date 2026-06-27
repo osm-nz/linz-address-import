@@ -275,10 +275,8 @@ export namespace GH {
   export type IssueComment = { body: string };
 }
 
-export type ChunkSize = 'small' | 'medium' | 'large';
 export type ExtraLayers = {
   [layerId: string]: {
-    size: ChunkSize;
     instructions?: string;
     features: OsmPatchFeature[];
     changesetTags?: Tags;

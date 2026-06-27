@@ -1,10 +1,10 @@
-import { chunk, getFirstCoord, getSector } from '../common/index.js';
+import { getFirstCoord, getSector } from '../common/index.js';
 import type {
   ExtraLayers,
   GeoJsonFeature,
   HandlerReturnWithBBox,
 } from '../types.js';
-import { LAYER_PREFIX, calcBBox } from './util/index.js';
+import { LAYER_PREFIX } from './util/index.js';
 import {
   normalizeName,
   splitUntilSmallEnough,
@@ -24,15 +24,15 @@ export function sectorize(
 ): HandlerReturnWithBBox {
   const newFeatures: HandlerReturnWithBBox = {};
   for (const suburb in originalFeatures) {
-    const { size, features, instructions, changesetTags } =
-      originalFeatures[suburb];
+    const { features, instructions, changesetTags } = originalFeatures[suburb];
 
+    // eslint-disable-next-line unicorn/no-negated-condition -- to avoid destroying the git blame
     if (!suburb.includes(LAYER_PREFIX)) {
       // not antarctic and not an address suburb, so split this by region
       const out: Record<string, GeoJsonFeature[]> = {};
       for (const f of features) {
         const [lng, lat] = getFirstCoord(f.geometry);
-        const sector = getSector({ lat, lng }, size);
+        const sector = getSector({ lat, lng });
         out[sector] ||= [];
         out[sector].push(f);
       }
@@ -44,17 +44,6 @@ export function sectorize(
           out[sector],
         );
         Object.assign(newFeatures, newSectors);
-      }
-    } else if (suburb.includes('Antarctic')) {
-      // NOTE: this only applies to legacy Antarctic datasets,
-      // nowadays we use the same logic for all non-address layers.
-      const chunked = chunk(features, 100);
-      for (let index = 0; index < chunked.length; index += 1) {
-        newFeatures[`${suburb} ${index + 1}`] = {
-          features: chunked[index],
-          bbox: calcBBox(chunked[index]),
-          instructions,
-        };
       }
     } else {
       // address dataset

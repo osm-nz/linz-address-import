@@ -244,10 +244,10 @@
       ]
     },
     {
-      "id": "MergeaddressnodesandbuildingsAuckland_wn2hlz",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/MergeaddressnodesandbuildingsAuckland_wn2hlz.osmPatch.geo.json",
-      "name": "Merge address nodes and buildings - Auckland",
-      "title": "Merge address nodes and buildings - Auckland",
+      "id": "Mergeaddressnodesandbuildings83bb50_1341avq",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/Mergeaddressnodesandbuildings83bb50_1341avq.osmPatch.geo.json",
+      "name": "Merge address nodes and buildings - 83bb50",
+      "title": "Merge address nodes and buildings - 83bb50",
       "totalCount": 2,
       "source": "",
       "snippet": "delete 1, edit 1",
@@ -266,10 +266,10 @@
       ]
     },
     {
-      "id": "MergeduplicateaddressesAuckland_140dpit",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/MergeduplicateaddressesAuckland_140dpit.osmPatch.geo.json",
-      "name": "Merge duplicate addresses - Auckland",
-      "title": "Merge duplicate addresses - Auckland",
+      "id": "Mergeduplicateaddresses83bb50_kv2mqs",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/Mergeduplicateaddresses83bb50_kv2mqs.osmPatch.geo.json",
+      "name": "Merge duplicate addresses - 83bb50",
+      "title": "Merge duplicate addresses - 83bb50",
       "totalCount": 4,
       "source": "",
       "snippet": "delete 3, edit 1",
@@ -288,10 +288,10 @@
       ]
     },
     {
-      "id": "RecentlyEditedAddressesAuckland_123aomv",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/RecentlyEditedAddressesAuckland_123aomv.osmPatch.geo.json",
-      "name": "Recently Edited Addresses - Auckland",
-      "title": "Recently Edited Addresses - Auckland",
+      "id": "RecentlyEditedAddresses83bb50_fbfnc6",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/RecentlyEditedAddresses83bb50_fbfnc6.osmPatch.geo.json",
+      "name": "Recently Edited Addresses - 83bb50",
+      "title": "Recently Edited Addresses - 83bb50",
       "totalCount": 1,
       "source": "",
       "snippet": "edit 1",
@@ -311,10 +311,10 @@
       ]
     },
     {
-      "id": "SlighlyshiftaddressesAuckland_q483nc",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/SlighlyshiftaddressesAuckland_q483nc.osmPatch.geo.json",
-      "name": "Slighly shift addresses - Auckland",
-      "title": "Slighly shift addresses - Auckland",
+      "id": "Slighlyshiftaddresses83bb50_167jrl3",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/Slighlyshiftaddresses83bb50_167jrl3.osmPatch.geo.json",
+      "name": "Slighly shift addresses - 83bb50",
+      "title": "Slighly shift addresses - 83bb50",
       "totalCount": 3,
       "source": "",
       "snippet": "move 3",
