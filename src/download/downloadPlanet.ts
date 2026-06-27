@@ -2,10 +2,7 @@ import { setTimeout } from 'node:timers/promises';
 import { spawn } from 'node:child_process';
 import { promises as fs } from 'node:fs';
 import { basename, dirname } from 'node:path';
-import { config as dotenv } from 'dotenv';
 import { planetFile } from '../preprocess/const.js';
-
-dotenv();
 
 const DOWNLOAD_SERVER = 'https://osm-internal.download.geofabrik.de';
 const OSM_SERVER = 'https://www.openstreetmap.org';

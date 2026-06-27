@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "request-linz-export": "tsx src/download/requestLinzExport",
-    "download-linz": "tsx src/download/downloadLinzExport",
-    "download-planet": "tsx src/download/downloadPlanet",
+    "download-linz": "tsx --env-file-if-exists=.env src/download/downloadLinzExport",
+    "download-planet": "tsx --env-file-if-exists=.env src/download/downloadPlanet",
     "preprocess0": "tsx src/preprocess/fetchAndSaveAddressIgnoreList",
     "preprocess1": "tsx src/preprocess/processOsmData",
     "preprocess2": "tsx src/preprocess/processLinzData",
@@ -15,7 +15,7 @@
     "preprocess": "npm run preprocess0 && npm run preprocess1 && npm run preprocess2 && npm run preprocess3",
     "conflate": "tsx src/conflate",
     "action": "tsx src/action",
-    "changesetWatch": "tsx src/changesetWatch",
+    "changesetWatch": "tsx --env-file-if-exists=.env src/changesetWatch",
     "lint": "eslint . && tsc",
     "test": "vitest",
     "test:ci": "vitest run --coverage"
@@ -24,7 +24,6 @@
     "@id-sdk/geo": "^3.0.0-pre.10",
     "adm-zip": "^0.5.14",
     "csv-parser": "^3.0.0",
-    "dotenv": "^16.0.3",
     "koordinates-api": "^0.0.2",
     "osm-api": "^4.0.0",
     "pbf2json": "https://github.com/osm-nz/pbf2json",

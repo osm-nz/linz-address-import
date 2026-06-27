@@ -1,7 +1,4 @@
-import { config as dotenv } from 'dotenv';
 import type { Mock } from 'vitest';
-
-dotenv();
 
 // @ts-expect-error -- it works
 globalThis.m = <T>(x: T) => x as never as Mock<T>;

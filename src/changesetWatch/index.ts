@@ -4,7 +4,6 @@ import {
   getChangesetDiff,
   listChangesets,
 } from 'osm-api';
-import { config as dotenv } from 'dotenv';
 import { fetchIgnoreList, timeout } from '../common/index.js';
 import { isImportUser } from '../common/accounts.js';
 import { watchArea } from './constants.js';
@@ -13,8 +12,6 @@ import { type CSWithDiff, patchOsmChange } from './patchOsmChange.js';
 import { checkDiffsForAddress } from './checkDiffsForAddress.js';
 
 type ChangesetWithRetried = Changeset & { hasRetried?: true };
-
-dotenv();
 
 configure({
   userAgent: 'LINZ Address Import (https://wiki.osm.org/LINZ)',
