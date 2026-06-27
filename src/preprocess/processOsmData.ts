@@ -1,6 +1,5 @@
 import { promises as fs } from 'node:fs';
 import pbf2json, { type Item } from 'pbf2json';
-import through from 'through2';
 import type { OsmFeature } from 'osm-api';
 import { isChecked } from '../common/index.js';
 import type {
@@ -52,8 +51,10 @@ function osmToJson(): Promise<OSMData> {
         //                     added this option in our fork.
         metadata: true,
       })
-      .pipe(
-        through.obj((item: Item, _, next) => {
+      .on(
+        'data',
+        //
+        (item: Item) => {
           const type = MAP[item.type];
 
           const isWater = item.tags['addr:type'] === 'water';
@@ -179,9 +180,7 @@ function osmToJson(): Promise<OSMData> {
 
           index += 1;
           if (!(index % 1000)) process.stdout.write('.');
-
-          next();
-        }),
+        },
       )
       .on('finish', () => {
         if (!anyMetadata) {

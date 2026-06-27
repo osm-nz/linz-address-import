@@ -28,7 +28,6 @@
     "koordinates-api": "^0.0.2",
     "osm-api": "^4.0.0",
     "pbf2json": "https://github.com/osm-nz/pbf2json",
-    "through2": "^4.0.2",
     "unzipper": "^0.10.11",
     "which-polygon": "^2.2.0"
   },
@@ -37,7 +36,6 @@
     "@types/geojson": "^7946.0.16",
     "@types/node": "^22.4.0",
     "@types/pbf2json": "^6.6.1",
-    "@types/through2": "^2.0.38",
     "@types/unzipper": "^0.10.5",
     "@types/which-polygon": "^2.2.0",
     "@vitest/coverage-v8": "^2.0.5",
