@@ -1,7 +1,5 @@
-import { promises as fs, readFileSync } from 'node:fs';
-import { join } from 'node:path';
-import whichPolygon from 'which-polygon';
-import type { FeatureCollection, Polygon } from 'geojson';
+import { promises as fs } from 'node:fs';
+import { getResolution, latLngToCell } from 'h3-js';
 import type {
   AddressId,
   CoordKey,
@@ -14,22 +12,23 @@ import { getCoordKey, toStackId, uniq } from '../common/index.js';
 import { linzFile, linzTempFile, mock, osmFile, stackFile } from './const.js';
 import { matchAlternativeAddrs } from './matchAlternativeAddrs.js';
 
-const lowerStackTresholds: FeatureCollection<
-  Polygon,
-  { name: string; threshold: number }
-> = JSON.parse(
-  readFileSync(
-    join(import.meta.dirname, '../../static/lower-stack-threshold.geo.json'),
-    'utf8',
-  ),
-);
-
 // the threshold was 11 until Feb 2023, when LINZ added 100k new addresses...
 // in dense urban areas, this limit is further redued
-// (see lower-stack-threshold.geo.json)
 const STACK_THRESHOLD = mock ? 2 : 9;
+const LOWER_STACK_THRESHOLD: Record<string, number> = {
+  // lookup these IDs using https://h3geo.org/#hex=…
+  '87bb50005ffffff': 5, // NZ-Auckland CBD
+  '87bb2955affffff': 5, // NZ-Wellington CBD
+  '87da94b41ffffff': 5, // NZ-Christchurch CBD
+};
+const LOWER_STACK_THRESHOLD_RES = 7;
 
-const stackTresholdQuery = whichPolygon(lowerStackTresholds);
+// sanity check
+for (const value of Object.keys(LOWER_STACK_THRESHOLD)) {
+  if (getResolution(value) !== LOWER_STACK_THRESHOLD_RES) {
+    throw new Error(`${value} must be resolution ${LOWER_STACK_THRESHOLD_RES}`);
+  }
+}
 
 /** the object is keyed by a `houseKey` */
 export type VisitedCoords = Record<
@@ -142,7 +141,9 @@ async function mergeIntoStacks(): Promise<LinzData> {
 
     // use a custom stack threshold if there is one defined for this area
     const stackThreshold =
-      stackTresholdQuery([lng, lat])?.threshold ?? STACK_THRESHOLD;
+      LOWER_STACK_THRESHOLD[
+        latLngToCell(lat, lng, LOWER_STACK_THRESHOLD_RES)
+      ] ?? STACK_THRESHOLD;
 
     if (
       (addrIds.length > stackThreshold && flatsMostlyStacked) ||
