@@ -15,7 +15,6 @@
     "preprocess": "npm run preprocess0 && npm run preprocess1 && npm run preprocess2 && npm run preprocess3",
     "conflate": "tsx src/conflate",
     "action": "tsx src/action",
-    "changelog": "tsx src/changelog",
     "changesetWatch": "tsx src/changesetWatch",
     "lint": "eslint . && tsc",
     "test": "vitest",

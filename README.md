@@ -1,7 +1,6 @@
 # LINZ to OSM Street Address Import (2021 update)
 
 [![Test](https://github.com/osm-nz/linz-address-import/actions/workflows/ci.yml/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/ci.yml)
-[![Changelog](https://github.com/osm-nz/linz-address-import/actions/workflows/changelog.yml/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/changelog.yml)
 [![Request LINZ Export](https://github.com/osm-nz/linz-address-import/workflows/Request%20LINZ%20Export/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/request-linz-export.yml)
 [![Sync](https://github.com/osm-nz/linz-address-import/actions/workflows/sync.yml/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/sync.yml)
 [![Changeset Watch](https://github.com/osm-nz/linz-address-import/actions/workflows/changesetWatch.yml/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/changesetWatch.yml)

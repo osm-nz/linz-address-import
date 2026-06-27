@@ -145,15 +145,6 @@ export type LinzSourceAddress = {
   /** @deprecated */ road_name_suffix: string;
 };
 
-export type LinzChangelog = LinzSourceAddress & {
-  __change__: 'INSERT' | 'UPDATE' | 'DELETE';
-};
-export type ChangelogJson = {
-  add: { [suburb: string]: number };
-  update: { [suburb: string]: number };
-  delete: { [suburb: string]: number };
-};
-
 export enum Status {
   PERFECT = 1, // processWithRef
   EXISTS_BUT_WRONG_DATA = 2, // processWithRef
