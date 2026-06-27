@@ -50,6 +50,6 @@
   "prettier": "eslint-config-kyle/prettier",
   "engineStrict": true,
   "engines": {
-    "node": ">=v20.11.0"
+    "node": ">=v26"
   }
 }
