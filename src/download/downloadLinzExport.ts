@@ -24,7 +24,7 @@ async function downloadExport(
         item.state !== 'cancelled' &&
         item.name.includes(layerNameSubstr),
     )
-    .sort((a, b) => +new Date(b.created_at!) - +new Date(a.created_at!));
+    .toSorted((a, b) => +new Date(b.created_at!) - +new Date(a.created_at!));
 
   const mostRecent = recentExports[0];
   if (!mostRecent) {

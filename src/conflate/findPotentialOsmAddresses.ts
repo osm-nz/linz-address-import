@@ -51,7 +51,7 @@ export const findPotentialOsmAddresses = (
       });
     })
     .filter(<T>(x: T | undefined): x is T => !!x)
-    .sort((a, b) => a.offset - b.offset);
+    .toSorted((a, b) => a.offset - b.offset);
 
   if (almostPerfect.length) {
     // marginally faster than [...spread]

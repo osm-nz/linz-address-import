@@ -1,6 +1,6 @@
 import { getSector } from '../getSector.js';
 
-describe('getSector', () => {
+describe(getSector, () => {
   it.each`
     lat           | lng           | result
     ${-47.025206} | ${167.915039} | ${'83daaa'}

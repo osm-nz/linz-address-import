@@ -7,7 +7,7 @@
     "moduleResolution": "node16",
     "skipLibCheck": true,
     "types": ["vitest/globals"],
-    "lib": ["es2021"],
+    "lib": ["esnext"],
     "target": "es2021",
     "noEmit": true
   },

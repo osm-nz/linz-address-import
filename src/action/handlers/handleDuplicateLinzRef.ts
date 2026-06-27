@@ -29,7 +29,7 @@ export async function handleDuplicateLinzRef(
     const simpleNodes = osmAddrList
       .filter((x) => x.osmId[0] === 'n' && !x.isNonTrivial)
       // if there are duplicates, keep the oldest node (determined by the node ID)
-      .sort((a, b) => +a.osmId.slice(1) - +b.osmId.slice(1));
+      .toSorted((a, b) => +a.osmId.slice(1) - +b.osmId.slice(1));
 
     // we can autofix this if some of the duplicates are simple nodes
 

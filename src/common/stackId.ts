@@ -14,12 +14,12 @@ export const hash = (str: string): string => {
 
 export function toStackId(ids: string[]) {
   const stack = ids
-    .sort((a, b) => +a - +b) // sort may not even be required
+    .toSorted((a, b) => +a - +b) // sort may not even be required
     .reduce<string[]>((newArray, id, index, oldArray) => {
       newArray.push(
         !index || +oldArray[index - 1] - +id + 1
           ? id
-          : `${newArray.pop()!.split('-')[0]}-${id}`,
+          : `${newArray.pop()!.split('-', 1)[0]}-${id}`,
       );
       return newArray;
     }, [])
@@ -52,8 +52,9 @@ export function fromStackId(
       if (!x.includes('-')) return [x];
 
       const [from, to] = x.split('-').map(Number);
-      return Array.from({ length: to - from + 1 })
-        .fill(0)
-        .map((_, index) => `${from + index}`);
+      return Array.from(
+        { length: to - from + 1 },
+        (_, index) => `${from + index}`,
+      );
     });
 }

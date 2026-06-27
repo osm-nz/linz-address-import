@@ -42,7 +42,7 @@ export enum CheckDate {
   YesExpired, // check_date is older than X years
 }
 
-export type AltAddrKeyPrefix = `alt_addr` | `addr${number}`;
+export type AltAddrKeyPrefix = 'alt_addr' | `addr${number}`;
 
 export type OsmAddr = Coords & {
   osmId: OsmId;

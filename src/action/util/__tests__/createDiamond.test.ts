@@ -1,7 +1,7 @@
 import { createSquare } from '../index.js';
 import { createDiamond } from '../createDiamond.js';
 
-describe('createDiamond', () => {
+describe(createDiamond, () => {
   it('generates the correct bbox diamond for a point', () => {
     expect(createDiamond({ lat: -36, lng: 174 })).toStrictEqual([
       [
@@ -15,7 +15,7 @@ describe('createDiamond', () => {
   });
 });
 
-describe('createSquare', () => {
+describe(createSquare, () => {
   it('generates the correct bbox square for a point', () => {
     expect(createSquare({ lat: -36, lng: 174 })).toStrictEqual([
       [

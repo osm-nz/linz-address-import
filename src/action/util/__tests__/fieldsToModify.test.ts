@@ -1,6 +1,6 @@
 import { fieldsToModify } from '../fieldsToModify.js';
 
-describe('fieldsToModify', () => {
+describe(fieldsToModify, () => {
   it.each`
     issues                                              | output
     ${['street|Right Street|Wrong Street']}             | ${{ 'addr:street': 'Right Street' }}

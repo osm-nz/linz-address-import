@@ -148,7 +148,7 @@ async function mergeIntoStacks(): Promise<LinzData> {
       (addrIds.length > stackThreshold && flatsMostlyStacked) ||
       shouldBeStacked
     ) {
-      const housenumberMsb = houseKey.split('|')[0];
+      const housenumberMsb = houseKey.split('|', 1)[0];
 
       if (shouldBeUnstacked) {
         // a mapper has requested that this stack be split up into separate addresses

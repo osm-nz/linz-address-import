@@ -3,7 +3,7 @@ import { type CSWithDiff, patchOsmChange } from '../patchOsmChange.js';
 
 vi.mock('osm-api');
 
-describe('patchOsmChange', () => {
+describe(patchOsmChange, () => {
   it('calls the OSM API and updates the osmChange', async () => {
     m(getFeatures).mockImplementation(async (type: string) => [
       { type, id: 1, tag: { building: 'house' } },

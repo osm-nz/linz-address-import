@@ -1,10 +1,8 @@
 import { updateLastCheckDate } from '../updateLastCheckDate.js';
 
-vi.mock('../googleAuth', () => ({
-  googleAuth: async () => 'MY_ACCESS_TOKEN',
-}));
+vi.mock('../googleAuth', () => ({ googleAuth: async () => 'MY_ACCESS_TOKEN' }));
 
-describe('updateLastCheckDate', () => {
+describe(updateLastCheckDate, () => {
   it('calls the google API correctly', async () => {
     vi.spyOn(global, 'fetch').mockResolvedValue(<never>{ json: async () => 0 });
 

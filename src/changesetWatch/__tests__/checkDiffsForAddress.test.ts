@@ -160,7 +160,7 @@ const diff: OsmChange = {
   ],
 };
 
-describe('checkDiffsForAddress', () => {
+describe(checkDiffsForAddress, () => {
   it('can figure out if any addresses were deleted', () => {
     expect(checkDiffsForAddress([{ cs, diff }])).toStrictEqual([
       {

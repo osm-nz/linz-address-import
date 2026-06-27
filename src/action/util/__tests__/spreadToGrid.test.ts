@@ -1,12 +1,10 @@
 import type { HandlerReturnWithBBox } from '../../../types.js';
 import { shiftOverlappingPoints, toFormation } from '../spreadToGrid.js';
 
-describe('toFormation', () => {
+describe(toFormation, () => {
   it('has a working formula', () => {
     expect(
-      Array.from({ length: 30 })
-        .fill(null)
-        .map((_, index) => toFormation(index)),
+      Array.from({ length: 30 }, (_, index) => toFormation(index)),
     ).toStrictEqual([
       [0, 0],
       [1, 0],
@@ -42,7 +40,7 @@ describe('toFormation', () => {
   });
 });
 
-describe('shiftOverlappingPoints', () => {
+describe(shiftOverlappingPoints, () => {
   const features = [
     {
       properties: { name: 'A' },
@@ -58,10 +56,7 @@ describe('shiftOverlappingPoints', () => {
     },
     {
       properties: { name: 'D' },
-      geometry: {
-        type: 'MultiLineString',
-        coordinates: [[174.456, -36.456]],
-      },
+      geometry: { type: 'MultiLineString', coordinates: [[174.456, -36.456]] },
     },
   ];
 
@@ -108,8 +103,6 @@ describe('shiftOverlappingPoints', () => {
       shiftOverlappingPoints({
         'Import topmarks - Akl City': { features },
       } as never as HandlerReturnWithBBox),
-    ).toStrictEqual({
-      'Import topmarks - Akl City': { features },
-    });
+    ).toStrictEqual({ 'Import topmarks - Akl City': { features } });
   });
 });

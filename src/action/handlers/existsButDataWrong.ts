@@ -19,7 +19,7 @@ import {
 } from '../util/index.js';
 
 const toKey = (right: string, wrong: string, osmData: OsmAddr) =>
-  `${[right, wrong].sort().join('__')}__${osmData.street}`;
+  `${[right, wrong].toSorted().join('__')}__${osmData.street}`;
 
 export const SPECIAL_REVIEW = 'Recently Edited Addresses';
 export const SPECIAL_REVIEW_INFO = `
@@ -100,7 +100,7 @@ export async function existsButDataWrong(
           },
         });
 
-        // eslint-disable-next-line unicorn/no-array-push-push -- to avoid destroying the git blame
+        // eslint-disable-next-line unicorn/prefer-single-call -- to avoid destroying the git blame
         features.push({
           type: 'Feature',
           id: b.osmData.osmId,

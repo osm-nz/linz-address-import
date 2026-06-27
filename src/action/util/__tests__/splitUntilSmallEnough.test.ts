@@ -22,7 +22,7 @@ const taka = point(-36.78766, 174.77309);
 const kumeū = point(-36.77705, 174.55489);
 const drury = point(-37.10182, 174.95275);
 
-describe('splitUntilSmallEnough', () => {
+describe(splitUntilSmallEnough, () => {
   it('correctly splits N-S', () => {
     expect(
       splitUntilSmallEnough('Import geysers', 'a', changesetTags, [
@@ -102,7 +102,7 @@ describe('splitUntilSmallEnough', () => {
   });
 });
 
-describe('normalizeName', () => {
+describe(normalizeName, () => {
   it.each`
     inKeys                                                   | outKeys
     ${['a^N^S']}                                             | ${['a 1']}

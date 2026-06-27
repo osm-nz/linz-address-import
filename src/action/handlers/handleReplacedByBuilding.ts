@@ -56,7 +56,7 @@ export async function handleReplacedByBuilding(
       properties: { __action: 'delete' },
     });
 
-    // eslint-disable-next-line unicorn/no-array-push-push -- to avoid destroying the git blame
+    // eslint-disable-next-line unicorn/prefer-single-call -- to avoid destroying the git blame
     features.push({
       type: 'Feature',
       id: osmBuilding.osmId,

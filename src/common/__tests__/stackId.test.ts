@@ -24,7 +24,7 @@ const hugeList = [
   '8000000000000002',
 ];
 
-describe('toStackId', () => {
+describe(toStackId, () => {
   it.each`
     input                             | out
     ${[]}                             | ${'stack()'}
@@ -41,7 +41,7 @@ describe('toStackId', () => {
   });
 });
 
-describe('fromStackId', () => {
+describe(fromStackId, () => {
   it.each`
     input                  | out
     ${'stack(1)'}          | ${['1']}

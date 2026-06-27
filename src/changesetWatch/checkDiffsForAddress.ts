@@ -58,7 +58,7 @@ export function checkDiffsForAddress(list: CSWithDiff[]): IgnoredAddr[] {
           user: cs.user,
           date: new Date(cs.closed_at!),
           isDataError: false,
-          comment: `cs${cs.id} (${cs.tags.created_by?.split(' ')[0]}): ${
+          comment: `cs${cs.id} (${cs.tags.created_by?.split(' ', 1)[0]}): ${
             cs.tags.comment
           }`,
         };

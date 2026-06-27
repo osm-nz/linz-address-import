@@ -1,11 +1,9 @@
 import type { AddressId } from '../../../types.js';
 import { updateIgnoreList } from '../updateIgnoreList.js';
 
-vi.mock('../googleAuth', () => ({
-  googleAuth: async () => 'MY_ACCESS_TOKEN',
-}));
+vi.mock('../googleAuth', () => ({ googleAuth: async () => 'MY_ACCESS_TOKEN' }));
 
-describe('updateIgnoreList', () => {
+describe(updateIgnoreList, () => {
   beforeEach(() => {
     vi.spyOn(global, 'fetch').mockResolvedValue(<never>{ json: async () => 0 });
   });

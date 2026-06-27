@@ -36,7 +36,7 @@ const convertUnit = (
   return mainNumber + suffix;
 };
 
-const useOfficialName = (name: string) => nzgbNamesTable[name] || name;
+const preferOfficialName = (name: string) => nzgbNamesTable[name] || name;
 
 // TODO: perf baseline is 50seconds
 async function linzToJson(): Promise<LinzData> {
@@ -66,8 +66,8 @@ async function linzToJson(): Promise<LinzData> {
           ),
           $houseNumberMsb: data.address_number,
           street: data.full_road_name,
-          suburb: useOfficialName(data.suburb_locality),
-          town: useOfficialName(data.town_city),
+          suburb: preferOfficialName(data.suburb_locality),
+          town: preferOfficialName(data.town_city),
           lat,
           lng,
         };

@@ -23,7 +23,7 @@
   "dependencies": {
     "@id-sdk/geo": "^3.0.0-pre.10",
     "adm-zip": "^0.5.14",
-    "csv-parser": "^3.0.0",
+    "csv-parser": "^3.2.1",
     "h3-js": "^4.4.0",
     "koordinates-api": "^0.0.2",
     "osm-api": "^4.0.0",
@@ -34,16 +34,16 @@
   "devDependencies": {
     "@types/adm-zip": "^0.5.5",
     "@types/geojson": "^7946.0.16",
-    "@types/node": "^22.4.0",
-    "@types/pbf2json": "^6.6.1",
+    "@types/node": "^26.0.1",
+    "@types/pbf2json": "^6.6.4",
     "@types/unzipper": "^0.10.5",
     "@types/which-polygon": "^2.2.0",
-    "@vitest/coverage-v8": "^2.0.5",
-    "eslint": "^9.9.0",
-    "eslint-config-kyle": "^25.0.0-beta2",
-    "tsx": "^4.17.0",
-    "typescript": "^4.9.4",
-    "vitest": "^2.0.5"
+    "@vitest/coverage-v8": "^4.1.9",
+    "eslint": "^10.6.0",
+    "eslint-config-kyle": "^29.0.1",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
   },
   "prettier": "eslint-config-kyle/prettier",
   "engineStrict": true,

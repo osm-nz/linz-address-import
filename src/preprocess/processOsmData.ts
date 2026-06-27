@@ -98,7 +98,7 @@ function osmToJson(): Promise<OSMData> {
               (key.endsWith(':housenumber') || key.endsWith(':street')) &&
               /^(alt_addr|addr\d+):/.test(key)
             ) {
-              const prefix = <AltAddrKeyPrefix>key.split(':')[0];
+              const prefix = <AltAddrKeyPrefix>key.split(':', 1)[0];
 
               // the value can have semicolons, which are tabularly associated
               const altH = item.tags[`${prefix}:housenumber`]?.split(';') || [];

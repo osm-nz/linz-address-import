@@ -58,7 +58,7 @@ export async function main(): Promise<void> {
   // merge tiny address suburbs into a regional dataset
   for (const k in features) {
     if (features[k].length < 50 && !mock) {
-      const parentKey = k.split(' - ')[0];
+      const parentKey = k.split(' - ', 1)[0];
 
       // can't be merged (e.g. special layers)
       if (k === parentKey) continue;
