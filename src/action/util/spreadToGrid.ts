@@ -1,5 +1,9 @@
-import type { Vec2 } from '@id-sdk/vector';
-import type { GeoJsonFeature, HandlerReturnWithBBox } from '../../types.js';
+import type { Point } from 'geojson';
+import type {
+  Coord,
+  GeoJsonFeature,
+  HandlerReturnWithBBox,
+} from '../../types.js';
 import { getCoordKey } from '../../common/geo.js';
 import { LAYER_PREFIX } from './const.js';
 
@@ -11,7 +15,7 @@ const { sin, cos, floor, sqrt, PI: π } = Math;
  *
  * See https://desmos.com/calculator/nunxdg7x9b
  */
-export function toFormation(n: number): Vec2 {
+export function toFormation(n: number): Coord {
   const r = floor(sqrt(n));
   const θ = ((n - r ** 2) * π) / (2 * ((r + 1) ** 2 - r ** 2 - 1)) || 0;
 
@@ -49,7 +53,7 @@ export function shiftOverlappingPoints(
         // multiple features in the same place, so offset the coordinates
         for (let index = 0; index < nodes.length; index += 1) {
           const [offsetX, offsetY] = toFormation(index);
-          const [lng, lat] = nodes[index].geometry.coordinates as Vec2;
+          const [lng, lat] = (nodes[index].geometry as Point).coordinates;
           nodes[index].geometry = {
             type: 'Point',
             coordinates: [lng + 0.000004 * offsetX, lat + 0.000004 * offsetY],

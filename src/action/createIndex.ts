@@ -1,6 +1,7 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import type { GeoJson, HandlerReturnWithBBox } from '../types.js';
+import type { OsmPatch } from 'osm-api';
+import type { HandlerReturnWithBBox } from '../types.js';
 import { hash } from '../common/index.js';
 import { CDN_URL, calcCount, mock, suburbsFolder } from './util/index.js';
 
@@ -55,7 +56,7 @@ export async function createIndex(
   // save each suburb
   for (const s of meta) {
     const { suburb } = s;
-    const geojson: GeoJson = {
+    const geojson: OsmPatch = {
       type: 'FeatureCollection',
       ...suburbs[suburb],
     };

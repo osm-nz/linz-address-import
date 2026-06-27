@@ -1,9 +1,6 @@
+import type { Tags } from 'osm-api';
 import { getFirstCoord } from '../../common/index.js';
-import type {
-  GeoJsonFeature,
-  HandlerReturnWithBBox,
-  Tags,
-} from '../../types.js';
+import type { GeoJsonFeature, HandlerReturnWithBBox } from '../../types.js';
 import { calcBBox } from './calcBBox.js';
 import { MAX_ITEMS_PER_DATASET } from './const.js';
 

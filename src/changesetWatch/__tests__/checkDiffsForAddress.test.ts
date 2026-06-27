@@ -3,11 +3,14 @@ import { checkDiffsForAddress } from '../checkDiffsForAddress.js';
 
 const cs: Changeset = {
   id: 123456,
-  created_at: new Date('2021-12-01T00:11:33.000Z'),
-  closed_at: new Date('2021-12-01T00:11:34.000Z'),
+  created_at: '2021-12-01T00:11:33.000Z',
+  closed_at: '2021-12-01T00:11:34.000Z',
   open: false,
   comments_count: 0,
   changes_count: 1,
+  created_count: 1,
+  modified_count: 0,
+  deleted_count: 0,
   min_lat: -36.8036373,
   min_lon: 174.7845216,
   max_lat: -36.8030968,

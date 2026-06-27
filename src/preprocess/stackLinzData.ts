@@ -1,11 +1,11 @@
 import { promises as fs, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import whichPolygon from 'which-polygon';
+import type { FeatureCollection, Polygon } from 'geojson';
 import type {
   AddressId,
   CoordKey,
   CouldStackData,
-  GeoJson,
   LinzAddr,
   LinzData,
   OSMData,
@@ -14,13 +14,15 @@ import { getCoordKey, toStackId, uniq } from '../common/index.js';
 import { linzFile, linzTempFile, mock, osmFile, stackFile } from './const.js';
 import { matchAlternativeAddrs } from './matchAlternativeAddrs.js';
 
-const lowerStackTresholds: GeoJson<{ name: string; threshold: number }> =
-  JSON.parse(
-    readFileSync(
-      join(import.meta.dirname, '../../static/lower-stack-threshold.geo.json'),
-      'utf8',
-    ),
-  );
+const lowerStackTresholds: FeatureCollection<
+  Polygon,
+  { name: string; threshold: number }
+> = JSON.parse(
+  readFileSync(
+    join(import.meta.dirname, '../../static/lower-stack-threshold.geo.json'),
+    'utf8',
+  ),
+);
 
 // the threshold was 11 until Feb 2023, when LINZ added 100k new addresses...
 // in dense urban areas, this limit is further redued

@@ -1,5 +1,5 @@
-import type { OsmFeature } from 'osm-api';
-import type { AddressId, Tags } from '../types.js';
+import type { OsmFeature, Tags } from 'osm-api';
+import type { AddressId } from '../types.js';
 import type { IgnoredAddr } from './api/index.js';
 import type { CSWithDiff } from './patchOsmChange.js';
 
@@ -56,7 +56,7 @@ export function checkDiffsForAddress(list: CSWithDiff[]): IgnoredAddr[] {
           suburb:
             osmFeature.tags!['addr:suburb'] || osmFeature.tags!['addr:hamlet'],
           user: cs.user,
-          date: cs.closed_at,
+          date: new Date(cs.closed_at!),
           isDataError: false,
           comment: `cs${cs.id} (${cs.tags.created_by?.split(' ')[0]}): ${
             cs.tags.comment

@@ -1,4 +1,5 @@
-import type { Issue, IssueType, Tags } from '../../types.js';
+import type { Tags } from 'osm-api';
+import type { Issue, IssueType } from '../../types.js';
 
 export function fieldsToModify(issues: Issue[]): Tags {
   const ac: Record<string, string> = {};

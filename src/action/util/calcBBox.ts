@@ -1,3 +1,4 @@
+import type { Position } from 'geojson';
 import type { BBox, GeoJsonFeature } from '../../types.js';
 
 export function calcBBox(features: GeoJsonFeature[]): BBox {
@@ -8,7 +9,7 @@ export function calcBBox(features: GeoJsonFeature[]): BBox {
     maxLng: -Infinity,
   };
 
-  function visit([_lng, _lat]: [lng: string | number, lat: string | number]) {
+  function visit([_lng, _lat]: Position) {
     const lat = +_lat;
     const lng = +_lng;
     if (lat < bbox.minLat) bbox.minLat = lat;

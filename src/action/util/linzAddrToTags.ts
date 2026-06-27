@@ -1,7 +1,8 @@
-import type { AddressId, LinzAddr, Tags } from '../../types.js';
+import type { Tags } from 'osm-api';
+import type { AddressId, LinzAddr } from '../../types.js';
 
 export function linzAddrToTags(linzId: AddressId, addr: LinzAddr): Tags {
-  return {
+  const tags: Record<string, string | undefined> = {
     'addr:housenumber': addr.housenumber,
     'alt_addr:housenumber': addr.housenumberAlt,
     'addr:street': addr.street,
@@ -12,6 +13,8 @@ export function linzAddrToTags(linzId: AddressId, addr: LinzAddr): Tags {
     'ref:linz:address_id': linzId,
     'linz:stack': addr.isManualStackRequest ? 'yes' : undefined,
   };
+  for (const k in tags) if (!tags[k]) delete tags[k];
+  return <Tags>tags;
 }
 
 export function deleteAllAddressTags(): Tags {

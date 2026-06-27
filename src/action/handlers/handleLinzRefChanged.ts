@@ -1,5 +1,6 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
+import type { Tags } from 'osm-api';
 import type {
   HandlerReturn,
   OsmAddr,
@@ -38,6 +39,15 @@ export async function handleLinzRefChanged(
   const features: HandlerReturn = {};
 
   for (const [, [suburb, newLinzId, osmData, linzData]] of array) {
+    const tags: Tags = {
+      __action: 'edit',
+      'ref:linz:address_id': newLinzId,
+    };
+    // if an address gets subdivided, add the building:flats tag at the same
+    // time as the ID changes into a stack
+    if (typeof linzData.flatCount === 'number') {
+      tags['building:flats'] = linzData.flatCount?.toString();
+    }
     features[LAYER_PREFIX + suburb] ||= [];
     features[LAYER_PREFIX + suburb].push({
       type: 'Feature',
@@ -46,13 +56,7 @@ export async function handleLinzRefChanged(
         type: 'Polygon',
         coordinates: createDiamond(osmData),
       },
-      properties: {
-        __action: 'edit',
-        'ref:linz:address_id': newLinzId,
-        // if an address gets subdivided, add the building:flats tag at the same
-        // time as the ID changes into a stack
-        'building:flats': linzData.flatCount?.toString(),
-      },
+      properties: tags,
     });
   }
 

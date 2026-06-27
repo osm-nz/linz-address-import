@@ -1,3 +1,7 @@
+import type { OsmPatchFeature, Tags } from 'osm-api';
+
+export type { OsmPatchFeature as GeoJsonFeature } from 'osm-api';
+
 /** see microsoft/TypeScript#202 */
 export type Identity<out T> = { _: T; readonly __: unique symbol };
 
@@ -259,40 +263,6 @@ export interface HistoryFile {
 
 export type Coord = [lng: number, lat: number];
 
-export type GeoJsonPoint = {
-  type: 'Point';
-  coordinates: Coord;
-};
-export type GeoJsonLine = {
-  type: 'LineString';
-  coordinates: Coord[];
-};
-export type GeoJsonArea = {
-  type: 'Polygon';
-  coordinates: Coord[][];
-};
-export type GeoJsonMultiPolygon = {
-  type: 'MultiPolygon';
-  coordinates: Coord[][][];
-};
-export type GeoJsonCoords =
-  | GeoJsonPoint
-  | GeoJsonLine
-  | GeoJsonArea
-  | GeoJsonMultiPolygon;
-export type GeoJsonFeature<T = Record<string, string | undefined>> = {
-  type: 'Feature';
-  id: string;
-  geometry: GeoJsonCoords;
-  properties: T;
-};
-export type GeoJson<T = Record<string, string | undefined>> = {
-  type: 'FeatureCollection';
-  features: GeoJsonFeature<T>[];
-  instructions?: string;
-  changesetTags?: Tags;
-};
-
 export type BBox = {
   minLat: number;
   maxLat: number;
@@ -300,10 +270,10 @@ export type BBox = {
   maxLng: number;
 };
 
-export type HandlerReturn = Record<string, GeoJsonFeature[]>;
+export type HandlerReturn = Record<string, OsmPatchFeature[]>;
 export type HandlerReturnWithBBox = {
   [sectorName: string]: {
-    features: GeoJsonFeature[];
+    features: OsmPatchFeature[];
     bbox: BBox;
     instructions?: string;
     changesetTags?: Tags;
@@ -319,12 +289,10 @@ export type ExtraLayers = {
   [layerId: string]: {
     size: ChunkSize;
     instructions?: string;
-    features: GeoJsonFeature[];
+    features: OsmPatchFeature[];
     changesetTags?: Tags;
   };
 };
-
-export type Tags = Record<string, string | undefined>;
 
 export type CoordKey = `${number},${number}`;
 /** a map of how many addresses at each coordinate in the LINZ dataset */

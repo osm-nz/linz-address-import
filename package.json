@@ -23,12 +23,11 @@
   },
   "dependencies": {
     "@id-sdk/geo": "^3.0.0-pre.10",
-    "@id-sdk/vector": "^3.0.0-pre.10",
     "adm-zip": "^0.5.14",
     "csv-parser": "^3.0.0",
     "dotenv": "^16.0.3",
     "koordinates-api": "^0.0.2",
-    "osm-api": "^1.0.5",
+    "osm-api": "^4.0.0",
     "pbf2json": "https://github.com/osm-nz/pbf2json",
     "through2": "^4.0.2",
     "unzipper": "^0.10.11",
@@ -36,6 +35,7 @@
   },
   "devDependencies": {
     "@types/adm-zip": "^0.5.5",
+    "@types/geojson": "^7946.0.16",
     "@types/node": "^22.4.0",
     "@types/pbf2json": "^6.6.1",
     "@types/through2": "^2.0.38",
