@@ -5,7 +5,6 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "request-linz-export": "tsx src/download/requestLinzExport",
     "download-linz": "tsx --env-file-if-exists=.env src/download/downloadLinzExport",
     "download-planet": "tsx --env-file-if-exists=.env src/download/downloadPlanet",
     "preprocess0": "tsx src/preprocess/fetchAndSaveAddressIgnoreList",
@@ -22,20 +21,15 @@
   },
   "dependencies": {
     "@id-sdk/geo": "^3.0.0-pre.10",
-    "adm-zip": "^0.5.14",
     "csv-parser": "^3.2.1",
     "h3-js": "^4.4.0",
-    "koordinates-api": "^0.0.2",
     "osm-api": "^4.0.0",
-    "pbf2json": "https://github.com/osm-nz/pbf2json",
-    "unzipper": "^0.10.11"
+    "pbf2json": "https://github.com/osm-nz/pbf2json"
   },
   "devDependencies": {
-    "@types/adm-zip": "^0.5.5",
     "@types/geojson": "^7946.0.16",
     "@types/node": "^26.0.1",
     "@types/pbf2json": "^6.6.4",
-    "@types/unzipper": "^0.10.5",
     "@vitest/coverage-v8": "^4.1.9",
     "eslint": "^10.6.0",
     "eslint-config-kyle": "^29.0.1",

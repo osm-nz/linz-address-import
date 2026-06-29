@@ -38,7 +38,6 @@ jobs:
           npm run test:ci
         env:
           FORCE_COLOR: 1
-          LINZ_API_KEY: ${{ secrets.LINZ_API_KEY }}
 
       - name: 😥 Print snapshot diff on failure
         if: failure()

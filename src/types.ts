@@ -112,37 +112,28 @@ export type CouldStackData = {
 };
 
 export type LinzSourceAddress = {
-  address_id: AddressId;
+  type: 'Feature';
+  properties?: {
+    id: AddressId;
+    hash: string;
 
-  unit: string;
-  address_number: string;
-  address_number_high: string;
-  address_number_suffix: string;
-
-  full_road_name: string;
-  /** e.g. `Shelly Park` */
-  suburb_locality: string;
-  /** e.g. `Auckland`. The prescense of this field determines whether the OSM tag should be `addr:suburb` instead of `addr:hamlet` */
-  town_city: string;
-  /** stringified number (lng) */
-  shape_X: string;
-  /** stringified number (lat) */
-  shape_Y: string;
-  /** no = water address */
-  is_land: 'T' | 'F';
-
-  // redundant information. don't use
-
-  /** @deprecated */ address_lifecycle: 'Current' | 'Proposed';
-  /** @deprecated */ WKT: string;
-  /** @deprecated */ full_address_number: string;
-  /** @deprecated */ water_route_name: string;
-  /** @deprecated */ full_address: string;
-  /** @deprecated */ road_section_id: string;
-  /** @deprecated */ territorial_authority: string;
-  /** @deprecated */ road_name: string;
-  /** @deprecated */ road_name_type: string;
-  /** @deprecated */ road_name_suffix: string;
+    unit: string;
+    number: string;
+    street: string;
+    /** called `suburb_locality` by LINZ.  e.g. `Shelly Park` */
+    city: string;
+    /** called `town_city` by LINZ. e.g. `Auckland`. The prescense of this field determines whether the OSM tag should be `addr:suburb` instead of `addr:hamlet` */
+    district: string;
+    region: '';
+    postcode: '';
+    accuracy: '';
+    /** @deprecated current OpenAddresses does not passthrough this field */
+    is_land?: 'F';
+  };
+  geometry: {
+    type: 'Point';
+    coordinates: [lon: number, lat: number];
+  };
 };
 
 export enum Status {

@@ -1,76 +1,52 @@
-import { promises as fs } from 'node:fs';
-import path from 'node:path';
-import Unzip from 'adm-zip';
-import type { Koordinates } from 'koordinates-api';
-import { linzCsvFile } from '../preprocess/const.js';
-import { LINZ_LAYER_NAME_SUBSTR } from '../common/const.js';
-import { linzApi } from './util.js';
-
-async function downloadExport(
-  outputFilePath: string,
-  layerNameSubstr: string,
-  api: Koordinates,
-) {
-  console.log('Starting', layerNameSubstr);
-  const outputFile = path.parse(outputFilePath);
-  await fs.mkdir(outputFile.dir, { recursive: true });
-
-  const allExports = await api.listExports();
-  const recentExports = allExports
-    .filter(
-      (item) =>
-        item.created_at &&
-        item.state !== 'gone' &&
-        item.state !== 'cancelled' &&
-        item.name.includes(layerNameSubstr),
-    )
-    .toSorted((a, b) => +new Date(b.created_at!) - +new Date(a.created_at!));
-
-  const mostRecent = recentExports[0];
-  if (!mostRecent) {
-    throw new Error('No recent exports found.');
-  }
-
-  console.log(
-    `\tMost recent export is #${mostRecent.id}, created at ${mostRecent.created_at}`,
-  );
-
-  if (!mostRecent.download_url) {
-    throw new Error('Export has no download_url yet');
-  }
-
-  console.log(`\tDownloading from ${mostRecent.download_url} …`);
-
-  const tempFilePath = await api.downloadExport(mostRecent.download_url);
-  console.log(`\tSaved to ${tempFilePath}`);
-
-  const zip = new Unzip(tempFilePath);
-  const zipEntries = zip.getEntries();
-
-  const csvFile = zipEntries.find((file) => file.entryName.endsWith('.csv'));
-
-  if (!csvFile) {
-    throw new Error('No csv file in zip');
-  }
-
-  console.log(`\tExtracting ${csvFile.entryName}…`);
-
-  zip.extractEntryTo(
-    csvFile.entryName,
-    outputFile.dir,
-    /* maintainEntryPath */ false,
-    /* overwrite */ true,
-    /* keepOriginalPermission */ undefined,
-    outputFile.base,
-  );
-
-  console.log('\tDeleting temp file…');
-  await fs.rm(tempFilePath, { force: true });
-
-  console.log('\tDone!');
-}
+import { createReadStream, createWriteStream, promises as fs } from 'node:fs';
+import { Readable } from 'node:stream';
+import { createGunzip } from 'node:zlib';
+import { finished, pipeline } from 'node:stream/promises';
+import { linzCsvFile, linzZipFile } from '../preprocess/const.js';
+import {
+  download,
+  getAuthToken,
+  getJob,
+  listLayers,
+} from './sdk/OpenAddresses.js';
 
 async function main() {
-  await downloadExport(linzCsvFile, LINZ_LAYER_NAME_SUBSTR, linzApi);
+  console.log('Getting auth token…');
+  const username = process.env.OPEN_ADDRESSES_USERNAME;
+  const password = process.env.OPEN_ADDRESSES_PASSWORD;
+  if (!username || !password) {
+    throw new ReferenceError('Missing OpenAddresses credential');
+  }
+  const token = await getAuthToken(username, password);
+
+  console.log('Getting layers…');
+  const allLayers = await listLayers();
+  const layer = allLayers.find(
+    (l) => l.source === 'nz/countrywide' && l.layer === 'addresses',
+  );
+  if (!layer) throw new ReferenceError('layer not found');
+
+  console.log(`Getting job #${layer.job}…`);
+  const job = await getJob(layer.job);
+  console.log('job', job);
+  console.log('timestamps', {
+    job: new Date(job.created).toLocaleString('sv'),
+    now: new Date().toLocaleString('sv'),
+  });
+
+  console.log(`Downloading ${Math.ceil(layer.size / 1e3 / 1e3)}MB…`);
+  await fs.rm(linzZipFile, { force: true });
+  const response = await download(layer.job, token);
+
+  const fileStream = createWriteStream(linzZipFile, { flags: 'wx' });
+  await finished(Readable.fromWeb(response.body!).pipe(fileStream));
+
+  console.log('Unzipping…');
+  const source = createReadStream(linzZipFile);
+  const destination = createWriteStream(linzCsvFile);
+  await pipeline(source, createGunzip(), destination);
+
+  console.log('Done!');
 }
+
 main();

@@ -1929,7 +1929,7 @@
         ]
       },
       "properties": {
-        "addr:housenumber": "1/218",
+        "addr:housenumber": "1/217",
         "addr:street": "Example Street",
         "addr:suburb": "Oakleigh",
         "ref:linz:address_id": "70218"

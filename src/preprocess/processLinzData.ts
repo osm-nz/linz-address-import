@@ -1,5 +1,5 @@
 import { createReadStream, promises as fs } from 'node:fs';
-import csv from 'csv-parser';
+import { createInterface } from 'node:readline/promises';
 import type { LinzData, LinzSourceAddress } from '../types.js';
 import { nzgbNamesTable } from '../common/nzgbFile.js';
 import {
@@ -9,31 +9,15 @@ import {
   linzTempFile,
 } from './const.js';
 
-/** LINZ's longitude values go >180 e.g. 183deg which is invalid. It should be -177 */
-const correctLng = (lng: number) => {
-  // we could do `((lng + 180) % 360) - 180` but this is computationally cheaper
-  if (lng < 180) return lng;
-  return lng - 360;
-};
-
 /**
  * the format is always "1/23A" (where prefix=1, mainNum=23, suffix=A).
  * We manually construct this instead of using full_address_number because
  * that field uses odd values like "Flat 1, 23" and "Unit 1, 23A".
  * count: Flat(12358), Unit(3558), Apartment(655), Villa(200), Shop(35), Suite(10)
  */
-const convertUnit = (
-  prefix: string,
-  mainNumberLow: string,
-  mainNumberHigh: string,
-  suffix: string,
-) => {
-  const mainNumber = mainNumberHigh
-    ? `${mainNumberLow}-${mainNumberHigh}`
-    : mainNumberLow;
-
-  if (prefix) return `${prefix}/${mainNumber}${suffix}`;
-  return mainNumber + suffix;
+const convertUnit = (prefix: string, mainNumber: string) => {
+  if (prefix) return `${prefix}/${mainNumber}`;
+  return mainNumber;
 };
 
 const preferOfficialName = (name: string) => nzgbNamesTable[name] || name;
@@ -44,41 +28,39 @@ async function linzToJson(): Promise<LinzData> {
   const ignore: IgnoreFile = JSON.parse(await fs.readFile(ignoreFile, 'utf8'));
 
   console.log('Starting preprocess of LINZ data...');
-  return new Promise((resolve, reject) => {
-    const out: LinzData = {};
-    let index = 0;
+  const out: LinzData = {};
+  let index = 0;
 
-    createReadStream(linzCsvFile)
-      .pipe(csv())
-      .on('data', (data: LinzSourceAddress) => {
-        // skip addresses where mappers clicked ignore
-        if (ignore[data.address_id]) return;
+  const fileStream = createReadStream(linzCsvFile);
+  const rl = createInterface({ input: fileStream });
 
-        const lat = +data.shape_Y;
-        const lng = correctLng(+data.shape_X);
+  for await (const line of rl) {
+    const data: LinzSourceAddress = JSON.parse(line);
 
-        out[data.address_id] = {
-          housenumber: convertUnit(
-            data.unit,
-            data.address_number,
-            data.address_number_high,
-            data.address_number_suffix,
-          ),
-          $houseNumberMsb: data.address_number,
-          street: data.full_road_name,
-          suburb: preferOfficialName(data.suburb_locality),
-          town: preferOfficialName(data.town_city),
-          lat,
-          lng,
-        };
-        if (data.is_land === 'F') out[data.address_id].water = true;
+    // skip addresses where mappers clicked ignore
+    if (!data.properties || ignore[data.properties.id]) continue;
 
-        index += 1;
-        if (!(index % 1000)) process.stdout.write('.');
-      })
-      .on('end', () => resolve(out))
-      .on('error', reject);
-  });
+    const [lng, lat] = data.geometry.coordinates;
+
+    out[data.properties.id] = {
+      housenumber: convertUnit(data.properties.unit, data.properties.number),
+      // OpenAddresses doesn't give us the raw housenumber components,
+      // so we need to crudely split `1/2-3A` back into `2-3` (the
+      // 'most significant bit')
+      $houseNumberMsb: data.properties.number.replace(/[A-Z]+$/, ''),
+      street: data.properties.street,
+      suburb: preferOfficialName(data.properties.city),
+      town: preferOfficialName(data.properties.district),
+      lat,
+      lng,
+    };
+    if (data.properties.is_land === 'F') out[data.properties.id].water = true;
+
+    index += 1;
+    if (!(index % 1000)) process.stdout.write('.');
+  }
+
+  return out;
 }
 
 export async function main(): Promise<void> {

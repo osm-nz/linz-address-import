@@ -7,7 +7,7 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -176.035,
+          183.965,
           -36.9
         ]
       },
@@ -21,9 +21,9 @@
   ],
   "bbox": {
     "minLat": -36.9,
-    "minLng": -176.035,
+    "minLng": 183.965,
     "maxLat": -36.9,
-    "maxLng": -176.035
+    "maxLng": 183.965
   },
   "changesetTags": {
     "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",

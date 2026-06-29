@@ -2,9 +2,13 @@ import { join } from 'node:path';
 
 export const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
 
+export const linzZipFile = join(
+  import.meta.dirname,
+  `../../data/linz${mock}.geo.jsonl.gz`,
+);
 export const linzCsvFile = join(
   import.meta.dirname,
-  mock ? '../__tests__/mock/linz-dump.csv' : '../../data/linz.csv',
+  mock ? '../__tests__/mock/linz-dump.jsonl' : '../../data/linz.geo.jsonl',
 );
 
 export const planetFile = join(

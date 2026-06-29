@@ -41,7 +41,8 @@ jobs:
         run: |
           yarn download-linz
         env:
-          LINZ_API_KEY: ${{ secrets.LINZ_API_KEY }}
+          OPEN_ADDRESSES_USERNAME: ${{ secrets.OPEN_ADDRESSES_USERNAME }}
+          OPEN_ADDRESSES_PASSWORD: ${{ secrets.OPEN_ADDRESSES_PASSWORD }}
 
       - name: ⏩ Download list of addresses to ignore
         run: |
