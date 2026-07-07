@@ -1,12 +1,10 @@
 import { execSync } from 'node:child_process';
+import { setTimeout } from 'node:timers/promises';
 import { join } from 'node:path';
 import { promises as fs } from 'node:fs';
-import { main as fetchAndSaveAddressIgnoreList } from '../preprocess/fetchAndSaveAddressIgnoreList.js';
 import { main as preprocessLinz } from '../preprocess/processLinzData.js';
-import { main as preprocessOsm } from '../preprocess/processOsmData.js';
 import { main as stackLinzData } from '../preprocess/stackLinzData.js';
-import { main as conflate } from '../conflate/index.js';
-import { main as action } from '../action/index.js';
+import { entrypoint } from '../entrypoint.js';
 import { outFolder } from '../action/util/const.js';
 
 const joinPath = (...files: string[]) => join(import.meta.dirname, ...files);
@@ -27,20 +25,22 @@ describe('end-to-end test', () => {
   });
 
   it('works', async () => {
-    await fs.rm(outFolder, { recursive: true });
+    await fs.rm(outFolder, { recursive: true, force: true });
     await fs.mkdir(outFolder);
-
-    expect(await time(fetchAndSaveAddressIgnoreList)).toBeLessThan(0.5);
-
-    expect(await time(preprocessOsm)).toBeLessThan(0.5);
+    expect(await time(() => entrypoint({ steps: ['download'] }))).toBeLessThan(
+      0.5,
+    );
 
     expect(await time(preprocessLinz)).toBeLessThan(0.5);
 
     expect(await time(stackLinzData)).toBeLessThan(0.5);
 
-    expect(await time(conflate)).toBeLessThan(0.5);
+    expect(
+      await time(() => entrypoint({ steps: ['match', 'conflate'] })),
+    ).toBeLessThan(0.5);
 
-    expect(await time(action)).toBeLessThan(0.5);
+    // need to wait for git to re-calculate the diff
+    await setTimeout(1000);
 
     const anyUncommitedChanges = !!execSync('git status --porcelain')
       .toString()

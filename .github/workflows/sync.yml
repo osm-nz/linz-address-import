@@ -31,12 +31,6 @@ jobs:
         run: |
           npm ci
 
-      - name: 🌏 Download planet file extract
-        run: |
-          yarn download-planet
-        env:
-          OSM_AUTH: ${{ secrets.OSM_AUTH }}
-
       - name: 🥝 Download LINZ csv file
         run: |
           yarn download-linz
@@ -44,13 +38,11 @@ jobs:
           OPEN_ADDRESSES_USERNAME: ${{ secrets.OPEN_ADDRESSES_USERNAME }}
           OPEN_ADDRESSES_PASSWORD: ${{ secrets.OPEN_ADDRESSES_PASSWORD }}
 
-      - name: ⏩ Download list of addresses to ignore
-        run: |
-          yarn preprocess0
-
       - name: 🚚 Preprocess the .osm.pbf file
         run: |
           yarn preprocess1
+        env:
+          OSM_AUTH: ${{ secrets.OSM_AUTH }}
 
       - name: 🚚 Preprocess the .csv file
         run: |
@@ -60,15 +52,13 @@ jobs:
         run: |
           yarn preprocess3
 
+      - name: 🔁 Match LINZ data with OSM
+        run: |
+          yarn match
+
       - name: 🔁 Conflate LINZ data with OSM
         run: |
           yarn conflate
-
-      - name: 🏡 Generate geojson and reports
-        run: |
-          yarn action
-        env:
-          MAX_ITEMS_PER_DATASET: ${{ secrets.MAX_ITEMS_PER_DATASET }}
 
       - name: ⛅ Upload dist folder
         id: deployment

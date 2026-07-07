@@ -1,0 +1,72 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "n110",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              175.11,
+              -36.899800000000006
+            ],
+            [
+              175.11020000000002,
+              -36.900000000000006
+            ],
+            [
+              175.11,
+              -36.900200000000005
+            ],
+            [
+              175.1098,
+              -36.900000000000006
+            ],
+            [
+              175.11,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "addr:suburb": "Ōpōtiki",
+        "addr:hamlet": "🗑️"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70109",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          175.109,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "109",
+        "addr:street": "Example Street",
+        "addr:suburb": "Ōpōtiki",
+        "ref:linz:address_id": "70109"
+      }
+    }
+  ],
+  "bbox": {
+    "minLat": -36.900200000000005,
+    "minLng": 175.109,
+    "maxLat": -36.899800000000006,
+    "maxLng": 175.11020000000002
+  },
+  "changesetTags": {
+    "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+    "created_by": "LINZ Data Import 3.0.0",
+    "locale": "en-NZ",
+    "source": "https://wiki.osm.org/LINZ",
+    "comment": "Address Update - Ōpōtiki",
+    "import": "yes"
+  }
+}

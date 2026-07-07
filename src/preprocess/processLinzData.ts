@@ -2,12 +2,7 @@ import { createReadStream, promises as fs } from 'node:fs';
 import { createInterface } from 'node:readline/promises';
 import type { LinzData, LinzSourceAddress } from '../types.js';
 import { nzgbNamesTable } from '../common/nzgbFile.js';
-import {
-  type IgnoreFile,
-  ignoreFile,
-  linzCsvFile,
-  linzTempFile,
-} from './const.js';
+import { linzCsvFile, linzTempFile } from './const.js';
 
 // TODO: shouldn't OpenAddresses fix this?
 /** LINZ's longitude values go >180 e.g. 183deg which is invalid. It should be -177 */
@@ -31,9 +26,6 @@ const preferOfficialName = (name: string) => nzgbNamesTable[name] || name;
 
 // TODO: perf baseline is 50seconds
 async function linzToJson(): Promise<LinzData> {
-  console.log('Reading ignore file...');
-  const ignore: IgnoreFile = JSON.parse(await fs.readFile(ignoreFile, 'utf8'));
-
   console.log('Starting preprocess of LINZ data...');
   const out: LinzData = {};
   let index = 0;
@@ -45,11 +37,12 @@ async function linzToJson(): Promise<LinzData> {
     const data: LinzSourceAddress = JSON.parse(line);
 
     // skip addresses where mappers clicked ignore
-    if (!data.properties || ignore[data.properties.id]) continue;
+    if (!data.properties) continue;
 
     const [lng, lat] = data.geometry.coordinates;
 
     out[data.properties.id] = {
+      id: data.properties.id,
       housenumber: convertUnit(data.properties.unit, data.properties.number),
       // OpenAddresses doesn't give us the raw housenumber components,
       // so we need to crudely split `1/2-3A` back into `2-3` (the

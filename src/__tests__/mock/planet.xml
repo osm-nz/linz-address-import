@@ -96,7 +96,7 @@
   </node>
 
   <!-- no LINZ ref (should be 70012). LINZ has an identical entry but location slightly off -->
-  <node id="12" version="1" changeset="1" lat="-36.902" lon="174.912" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
+  <node id="12" version="1" changeset="1" lat="-36.901" lon="174.912" user="" uid="0" visible="true" timestamp="2012-05-19T11:22:33Z">
     <tag k="addr:housenumber" v="12" />
     <tag k="addr:street" v="Example Street" />
     <tag k="addr:hamlet" v="Oakleigh" />

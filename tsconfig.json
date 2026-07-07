@@ -6,7 +6,7 @@
     "module": "node16",
     "moduleResolution": "node16",
     "skipLibCheck": true,
-    "types": ["vitest/globals"],
+    "types": ["node", "vitest/globals"],
     "lib": ["esnext"],
     "target": "es2021",
     "noEmit": true

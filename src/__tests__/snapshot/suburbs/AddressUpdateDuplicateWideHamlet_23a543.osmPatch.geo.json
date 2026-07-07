@@ -1,0 +1,53 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "70098",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          172.998,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "98",
+        "addr:street": "Example Street",
+        "addr:suburb": "Duplicate Wide Hamlet",
+        "ref:linz:address_id": "70098"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70099",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.999,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "99",
+        "addr:street": "Example Street",
+        "addr:suburb": "Duplicate Wide Hamlet",
+        "ref:linz:address_id": "70099"
+      }
+    }
+  ],
+  "bbox": {
+    "minLat": -36.9,
+    "minLng": 172.998,
+    "maxLat": -36.9,
+    "maxLng": 174.999
+  },
+  "changesetTags": {
+    "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+    "created_by": "LINZ Data Import 3.0.0",
+    "locale": "en-NZ",
+    "source": "https://wiki.osm.org/LINZ",
+    "comment": "Address Update - Duplicate Wide Hamlet",
+    "import": "yes"
+  }
+}

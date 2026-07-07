@@ -1,4 +1,5 @@
-import type { AddressId, LinzData, OSMData } from '../types.js';
+import type { DatasetId, OsmFeature } from '@osm-conflation-engine/cli';
+import type { AddressId, LinzData } from '../types.js';
 import type { VisitedCoords } from './stackLinzData.js';
 
 /**
@@ -20,7 +21,7 @@ import type { VisitedCoords } from './stackLinzData.js';
  */
 export function matchAlternativeAddrs(
   linzData: LinzData,
-  osmData: OSMData,
+  osmData: Record<DatasetId, OsmFeature>,
   singleLinzId: AddressId | undefined,
   addrIds: VisitedCoords[string],
 ) {
@@ -36,7 +37,7 @@ export function matchAlternativeAddrs(
   // if any have linz:stack=no, then abort. That means
   // someone deliberately doesn't want these to be consolidated.
   const anyHavePerserveTag = addrIds.some(
-    ([addrId]) => osmData.linz[addrId]?.stackRequest === false,
+    ([addrId]) => osmData[addrId]?.tags['linz:stack'] === 'no',
   );
   if (anyHavePerserveTag) return undefined;
 
@@ -100,8 +101,12 @@ export function matchAlternativeAddrs(
 
   // if someone has manually added alt_addr:housenumber, then
   // we respect that.
-  const someAlreadyHaveAltTag = addrIds.some(
-    ([addrId]) => osmData.linz[addrId]?.alts?.length,
+  const someAlreadyHaveAltTag = addrIds.some(([addrId]) =>
+    Object.keys(osmData[addrId]?.tags || {}).some(
+      (key) =>
+        (key.endsWith(':housenumber') || key.endsWith(':street')) &&
+        /^(alt_addr|addr\d+):/.test(key),
+    ),
   );
 
   if (seenEverything || someAlreadyHaveAltTag) {

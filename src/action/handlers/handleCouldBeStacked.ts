@@ -1,7 +1,8 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
+import type { OsmId } from '@osm-conflation-engine/cli';
 import { toStackId } from '../../common/index.js';
-import type { OsmId, Status, StatusReport } from '../../types.js';
+import type { CouldStackData } from '../../types.js';
 import { outFolder } from '../util/index.js';
 
 type BySuburb = {
@@ -15,11 +16,11 @@ type BySuburb = {
 };
 
 export async function handleCouldBeStacked(
-  array: StatusReport[Status.COULD_BE_STACKED],
+  couldBeStacked: CouldStackData,
 ): Promise<void> {
   let report = '';
 
-  const bySuburb = array.reduce(
+  const bySuburb = Object.entries(couldBeStacked).reduce(
     (_ac, [linzId, [osmId, suburb, addr, meta]]) => {
       const ac = _ac;
       ac[suburb] ||= {};
@@ -42,5 +43,6 @@ export async function handleCouldBeStacked(
     }
   }
 
+  await fs.mkdir(outFolder, { recursive: true });
   await fs.writeFile(join(outFolder, 'could-be-stacked.txt'), report);
 }

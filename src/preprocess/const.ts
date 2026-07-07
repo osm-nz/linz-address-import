@@ -11,18 +11,21 @@ export const linzCsvFile = join(
   mock ? '../__tests__/mock/linz-dump.jsonl' : '../../data/linz.geo.jsonl',
 );
 
-export const planetFile = join(
-  import.meta.dirname,
-  mock ? '../__tests__/mock/planet.pbf' : '../../data/osm.pbf',
-);
-export const osmFile = join(import.meta.dirname, `../../data/osm${mock}.json`);
+export const planetFile = mock
+  ? join(import.meta.dirname, '../__tests__/mock/planet.pbf')
+  : 'https://download.geofabrik.de/australia-oceania/new-zealand-latest.osm.pbf';
+
 export const linzTempFile = join(
   import.meta.dirname,
   `../../data/linzTemp${mock}.json`,
 );
+export const overlappingFile = join(
+  import.meta.dirname,
+  `../../data/overlapping${mock}.json`,
+);
 export const linzFile = join(
   import.meta.dirname,
-  `../../data/linz${mock}.json`,
+  `../../data/linz-processed${mock}.geo.jsonl`,
 );
 export const stackFile = join(
   import.meta.dirname,
@@ -32,6 +35,3 @@ export const ignoreFile = join(
   import.meta.dirname,
   `../../data/ignoreFile${mock}.json`,
 );
-
-/** more performant to lookup an object */
-export type IgnoreFile = Record<string, 1>;

@@ -1,119 +1,72 @@
-import { promises as fs } from 'node:fs';
-import { join } from 'node:path';
-import type {
-  AddressId,
-  GeoJsonFeature,
-  HandlerReturn,
-  LinzAddr,
-  OsmAddr,
-  Status,
-  StatusReport,
-} from '../../types.js';
-import {
-  createDiamond,
-  createSquare,
-  outFolder,
-  toLink,
-} from '../util/index.js';
+import type { MutliFeatureConflationResult } from '@osm-conflation-engine/cli';
+import { toLink } from '../util/const.js';
+import { type CallbackFunctions, Status } from '../../types.js';
+import { isNonTrivial } from '../util/linzAddrToTags.js';
+import { addToReport } from '../../conflate/report.js';
+import { getLocalKeyForOsm, getLocalKeyForSource } from '../../localKeys.js';
+import { REF_TAG } from '../../config.js';
 
-const toKey = (addr: LinzAddr | OsmAddr) =>
-  `${addr.housenumber} ${addr.street}${addr.suburb}`;
+export const mergeOneToMany: CallbackFunctions['mergeOneToMany'] = ({
+  osm: osmAddrList,
+  source,
+}) => {
+  const { properties: linzAddr } = source;
+  // this means there mutiple nodes in OSM with the same address ref.
+  // we need to delete one of them.
 
-export async function handleDuplicateLinzRef(
-  array: StatusReport[Status.MULTIPLE_EXIST],
-): Promise<HandlerReturn> {
   const autofixable: Record<string, '✅' | '⚠️'> = {};
-  const features: GeoJsonFeature[] = [];
+  const result: MutliFeatureConflationResult = {
+    group: `Merge duplicate addresses - ${source.properties.suburb}`,
+    diffPerFeature: {},
+  };
 
-  for (const [linzId, [linzAddr, osmAddrList]] of array) {
-    const simpleNodes = osmAddrList
-      .filter((x) => x.osmId[0] === 'n' && !x.isNonTrivial)
-      // if there are duplicates, keep the oldest node (determined by the node ID)
-      .toSorted((a, b) => +a.osmId.slice(1) - +b.osmId.slice(1));
+  const simpleNodes = osmAddrList
+    .filter((osmAddr) => osmAddr.id[0] === 'n' && !isNonTrivial(osmAddr.tags))
+    // if there are duplicates, keep the oldest node (determined by the node ID)
+    .toSorted((a, b) => +a.id.slice(1) - +b.id.slice(1));
 
-    // we can autofix this if some of the duplicates are simple nodes
+  // we can autofix this if some of the duplicates are simple nodes
 
-    // another case we can autofix is if one node has info that doesn't match the linz ref
-    // e.g. No.12 and No.12A both have the linz ref for No.12
-    const correctKey = toKey(linzAddr);
-    const idDoesntMatchAddr = osmAddrList.filter(
-      (osmAddr) => toKey(osmAddr) !== correctKey,
-    );
-
-    if (idDoesntMatchAddr.length) {
-      for (const dodgyAddr of idDoesntMatchAddr) {
-        // we won't delete it - if it's got mismatched data it's probably a correct address,
-        // someone just copy-pasted the ref tag from another addr
-        features.push({
-          type: 'Feature',
-          id: dodgyAddr.osmId,
-          geometry: {
-            type: 'Polygon',
-            coordinates: createDiamond(dodgyAddr),
-          },
-          properties: { __action: 'edit', 'ref:linz:address_id': '🗑️' },
-        });
-        autofixable[linzId] = '✅';
-      }
-    } else if (simpleNodes.length) {
-      // Either (a) all nodes are simple. Pick the oldest 1 to keep and delete the rest.
-      // Or     ( b) notall of the addresses are simple, so delete only the simple ones.
-      const toDelete =
-        simpleNodes.length === osmAddrList.length
-          ? simpleNodes.slice(1)
-          : simpleNodes;
-
-      const notFullyFixed = osmAddrList.length - simpleNodes.length > 1;
-
-      // delete the simple nodes
-      for (const addr of toDelete) {
-        features.push({
-          type: 'Feature',
-          id: addr.osmId,
-          geometry: {
-            type: 'Polygon',
-            coordinates: createSquare(addr),
-          },
-          properties: { __action: 'delete' },
-        });
-      }
-      autofixable[linzId] = notFullyFixed ? '⚠️' : '✅';
-    }
-  }
-
-  const bySuburb = array.reduce(
-    (ac, [linzId, [linzAddr, osmAddrList]]) => {
-      const suburb = linzAddr.suburb;
-      ac[suburb] ||= [];
-      ac[suburb].push([linzId, linzAddr, osmAddrList]);
-      return ac;
-    },
-    {} as Record<
-      string,
-      [linzId: AddressId, linzAddr: LinzAddr, osmAddrList: OsmAddr[]][]
-    >,
+  // another case we can autofix is if one node has info that doesn't match the linz ref
+  // e.g. No.12 and No.12A both have the linz ref for No.12
+  const correctKey = getLocalKeyForSource(source);
+  const idDoesntMatchAddr = osmAddrList.filter(
+    (osmAddr) => getLocalKeyForOsm(osmAddr) !== correctKey,
   );
 
-  let report = [
-    '✅ = issue can be autofixed',
-    '⚠️ = issue can be partially autofixed',
-    '❌ = issue cannot be autofixed',
-    '',
-  ].join('\n');
-  for (const suburb in bySuburb) {
-    report += `\n${suburb}\n`;
-    for (const [linzId, , osmIdList] of bySuburb[suburb]) {
-      report += `${linzId}\t${
-        autofixable[linzId] || '❌'
-      }\texists on ${osmIdList
-        .map((addr) => toLink(addr.osmId))
-        .join(' and ')}\n`;
+  if (idDoesntMatchAddr.length) {
+    for (const dodgyAddr of idDoesntMatchAddr) {
+      // we won't delete it - if it's got mismatched data it's probably a correct address,
+      // someone just copy-pasted the ref tag from another addr
+      result.diffPerFeature[dodgyAddr.id] = {
+        tags: { __action: 'edit', [REF_TAG]: '🗑️' },
+      };
+      autofixable[linzAddr.id] = '✅';
     }
+  } else if (simpleNodes.length) {
+    // Either (a) all nodes are simple. Pick the oldest 1 to keep and delete the rest.
+    // Or     ( b) notall of the addresses are simple, so delete only the simple ones.
+    const toDelete =
+      simpleNodes.length === osmAddrList.length
+        ? simpleNodes.slice(1)
+        : simpleNodes;
+
+    const notFullyFixed = osmAddrList.length - simpleNodes.length > 1;
+
+    // delete the simple nodes
+    for (const addr of toDelete) {
+      result.diffPerFeature[addr.id] = { tags: { __action: 'delete' } };
+    }
+    autofixable[linzAddr.id] = notFullyFixed ? '⚠️' : '✅';
   }
 
-  await fs.writeFile(join(outFolder, 'duplicate-linz-ref.txt'), report);
+  addToReport(
+    Status.MULTIPLE_EXIST,
+    linzAddr.suburb,
+    `${linzAddr.id}\t${autofixable[linzAddr.id] || '❌'}\texists on ${osmAddrList
+      .map((osmAddr) => toLink(osmAddr.id))
+      .join(' and ')}`,
+  );
 
-  if (!features.length) return {};
-
-  return { 'Merge duplicate addresses': features };
-}
+  return result;
+};

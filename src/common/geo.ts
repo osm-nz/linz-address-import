@@ -1,13 +1,4 @@
-import type { Geometry } from 'geojson';
-import type { Coord, CoordKey } from '../types.js';
-
-export function getFirstCoord(geometry: Geometry): Coord {
-  if (!('coordinates' in geometry)) throw new Error('no coordinates');
-  let firstCoord = geometry.coordinates;
-  while (typeof firstCoord[0] !== 'number') [firstCoord] = firstCoord;
-
-  return firstCoord as Coord;
-}
+import type { CoordKey } from '../types.js';
 
 /**
  * converts a coordinate into a string key, for more performant

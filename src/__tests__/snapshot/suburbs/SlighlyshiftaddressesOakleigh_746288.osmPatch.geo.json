@@ -1,0 +1,100 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "n2",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            174.90200000000002,
+            -36.902
+          ],
+          [
+            174.902,
+            -36.9
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "move"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n12",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            174.912,
+            -36.901
+          ],
+          [
+            174.912,
+            -36.9
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "move",
+        "ref:linz:address_id": "70012"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n211",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            174.2119,
+            -36.900000000000006
+          ],
+          [
+            174.211,
+            -36.9
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "move"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n212",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            174.21290000000002,
+            -36.900000000000006
+          ],
+          [
+            174.212,
+            -36.9
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "move"
+      }
+    }
+  ],
+  "bbox": {
+    "minLat": -36.902,
+    "minLng": 174.211,
+    "maxLat": -36.9,
+    "maxLng": 174.912
+  },
+  "changesetTags": {
+    "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+    "created_by": "LINZ Data Import 3.0.0",
+    "locale": "en-NZ",
+    "source": "https://wiki.osm.org/LINZ",
+    "comment": "Slighly shift addresses - Oakleigh",
+    "import": "yes"
+  }
+}

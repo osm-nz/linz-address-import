@@ -1,6 +1,8 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
-import type { HistoryFile, StatsFile, Status, StatusReport } from '../types.js';
+import type { ConflateResult } from '@osm-conflation-engine/cli';
+import { type HistoryFile, type StatsFile, Status } from '../types.js';
+import { getReportCounts } from '../conflate/report.js';
 import { CDN_URL, mock, outFolder } from './util/index.js';
 
 const STATS_FILE_NAME = 'stats.json';
@@ -9,12 +11,17 @@ const HISTORY_FILE_NAME = 'stats-history.json';
 export const STATS_FILE = join(outFolder, STATS_FILE_NAME);
 export const HISTORY_FILE = join(outFolder, HISTORY_FILE_NAME);
 
-export async function generateStats(data: StatusReport): Promise<void> {
-  const count = Object.fromEntries(
-    Object.entries(data).map(([k, v]) => [+k as Status, v.length]),
-  );
+export async function generateStats(
+  conflationResult: ConflateResult,
+): Promise<void> {
+  const count = getReportCounts();
 
-  const total = Object.values(data).reduce((ac, t) => ac + t.length, 0);
+  const total = Object.values(conflationResult.counts).reduce(
+    (a, b) => a + b,
+    0,
+  );
+  count[Status.PERFECT] = conflationResult.counts.perfect;
+  count[Status.TOTALLY_MISSING] = conflationResult.counts.create;
 
   // mock the date in the test environment, otherwise the snapshot would update each time
   const date = mock ? 'MOCK' : new Date().toISOString();

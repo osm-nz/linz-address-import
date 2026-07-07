@@ -5,6 +5,10 @@ on:
     - cron: '0 16 * * *' # at 4am (it's in UTC)
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   changesetWatch:
     runs-on: ubuntu-latest
@@ -30,7 +34,3 @@ jobs:
         run: |
           mkdir -p data
           npm run changesetWatch
-        env:
-          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
-          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
-          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}

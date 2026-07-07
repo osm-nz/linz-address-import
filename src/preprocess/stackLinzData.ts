@@ -1,16 +1,26 @@
 import { promises as fs } from 'node:fs';
 import { getResolution, latLngToCell } from 'h3-js';
+import {
+  type DatasetId,
+  type OsmFeature,
+  getTempFileNames,
+  readJsonL,
+  writeJsonL,
+} from '@osm-conflation-engine/cli';
+import type { Feature } from 'geojson';
 import type {
   AddressId,
   CoordKey,
   CouldStackData,
   LinzAddr,
   LinzData,
-  OSMData,
 } from '../types.js';
 import { getCoordKey, toStackId, uniq } from '../common/index.js';
-import { linzFile, linzTempFile, mock, osmFile, stackFile } from './const.js';
+import { REF_TAG, config } from '../config.js';
+import { handleCouldBeStacked } from '../action/handlers/handleCouldBeStacked.js';
+import { linzFile, linzTempFile, mock, stackFile } from './const.js';
 import { matchAlternativeAddrs } from './matchAlternativeAddrs.js';
+import { findOverlapping } from './findOverlapping.js';
 
 // the threshold was 11 until Feb 2023, when LINZ added 100k new addresses...
 // in dense urban areas, this limit is further redued
@@ -39,7 +49,12 @@ export type VisitedCoords = Record<
 
 async function mergeIntoStacks(): Promise<LinzData> {
   console.log('reading OSM data into memory...');
-  const osmData: OSMData = JSON.parse(await fs.readFile(osmFile, 'utf8'));
+  const { tempFileNames } = await getTempFileNames(config);
+  const osmData = await readJsonL<OsmFeature, DatasetId>(
+    tempFileNames.osm_processed_with_ref,
+    (row) => <DatasetId>row.tags[REF_TAG],
+  );
+
   console.log('reading LINZ data into memory...');
   const linzData: LinzData = JSON.parse(
     await fs.readFile(linzTempFile, 'utf8'),
@@ -75,7 +90,7 @@ async function mergeIntoStacks(): Promise<LinzData> {
   }
 
   const alreadyInOsm = ([linzId]: VisitedCoords[string][number]) =>
-    linzId in osmData.linz;
+    linzId in osmData;
 
   for (const houseKey in visitedFlats) {
     const rawAddrIds = visitedFlats[houseKey]; // a list of all flats at this MSB house number
@@ -106,17 +121,17 @@ async function mergeIntoStacks(): Promise<LinzData> {
     }
 
     const shouldBeUnstacked =
-      osmData.linz[stackId]?.stackRequest === false ||
-      osmData.linz[singleLinzId]?.stackRequest === false;
+      osmData[stackId]?.tags['linz:stack'] === 'no' ||
+      osmData[singleLinzId]?.tags['linz:stack'] === 'no';
 
     const shouldBeStacked =
-      osmData.linz[stackId]?.stackRequest ||
-      osmData.linz[singleLinzId]?.stackRequest ||
-      addrIds.some(([addrId]) => osmData.linz[addrId]?.stackRequest);
+      osmData[stackId]?.tags['linz:stack'] === 'yes' ||
+      osmData[singleLinzId]?.tags['linz:stack'] === 'yes' ||
+      addrIds.some(([addrId]) => osmData[addrId]?.tags['linz:stack'] === 'yes');
 
     /** check if any of the existing nodes (if any) have `linz:stack=no` */
     const shouldPreserveSeperateNodes = addrIds.some(
-      ([addrId]) => osmData.linz[addrId]?.stackRequest === false,
+      ([addrId]) => osmData[addrId]?.tags['linz:stack'] === 'no',
     );
 
     // >2 because maybe someone got confused with the IDs and mapped a single one.
@@ -128,7 +143,7 @@ async function mergeIntoStacks(): Promise<LinzData> {
       // and X+1 missing, where +1 is a single node for the whole apartment complex. In this case,
       // effectively half are mapped. That single node for the whole complex shouldn't be the
       // deciding factor when it comes to deleting a bunch of existing addresses.
-      !(stackId in osmData.linz); // if it's mapped a stack, favour the stack over any number of addresses mapped separately
+      !(stackId in osmData); // if it's mapped a stack, favour the stack over any number of addresses mapped separately
 
     const uniqLoc = addrIds.map(([, pos]) => pos).filter(uniq).length;
 
@@ -164,7 +179,7 @@ async function mergeIntoStacks(): Promise<LinzData> {
           const a = linzData[linzId];
           const [inOsmL, totalL] = [inOsm.length, addrIds.length];
           couldBeStacked[linzId] = [
-            osmData.linz[linzId].osmId,
+            osmData[linzId].id,
             a.suburb,
             `${housenumberMsb} ${a.street}`,
             inOsmL === totalL
@@ -180,6 +195,7 @@ async function mergeIntoStacks(): Promise<LinzData> {
           ...linzData[firstLinzId],
           housenumber: housenumberMsb, // replace `62A` or `Flat 1, 62` with `62`
           flatCount: addrIds.length,
+          id: stackId,
         };
         // we need to preserve linz:stack=yes, otherwise it will
         // be unstacked next time the script runs.
@@ -201,14 +217,27 @@ async function mergeIntoStacks(): Promise<LinzData> {
   }
 
   await fs.writeFile(stackFile, JSON.stringify(couldBeStacked));
+  await handleCouldBeStacked(couldBeStacked);
 
   return linzData;
 }
 
 export async function main(): Promise<void> {
   const result = await mergeIntoStacks();
+  await findOverlapping(result);
   console.log('saving new linz file...');
-  await fs.writeFile(linzFile, JSON.stringify(result));
+  const jsonl = Object.values(result).map(
+    (row): Feature => ({
+      type: 'Feature',
+      id: row.id,
+      geometry: {
+        type: 'Point',
+        coordinates: [row.lng, row.lat],
+      },
+      properties: row,
+    }),
+  );
+  await writeJsonL(linzFile, jsonl);
 }
 
 if (process.env.NODE_ENV !== 'test') main();

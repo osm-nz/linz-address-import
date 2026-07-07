@@ -10,6 +10,8 @@
 const UNDECLARED_ACCOUNTS = new Set(['catgirlseraid', 'lcmortensen']);
 
 export const isImportUser = (username: string | undefined) =>
-  username?.endsWith('_import') ||
-  username?.endsWith('_linz') ||
-  (username && UNDECLARED_ACCOUNTS.has(username));
+  !!(
+    username?.endsWith('_import') ||
+    username?.endsWith('_linz') ||
+    (username && UNDECLARED_ACCOUNTS.has(username))
+  );

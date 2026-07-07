@@ -1,211 +1,245 @@
+import { readFileSync } from 'node:fs';
 import { geoSphericalDistance } from '@id-sdk/geo';
 import {
-  type AddressId,
-  CheckDate,
-  type Issue,
-  type LinzAddr,
-  type OsmAddr,
-  type Overlapping,
-  Status,
-} from '../types.js';
+  type OsmFeature,
+  OsmFlags,
+  type SingleFeatureConflationResult,
+  type TagDiff,
+} from '@osm-conflation-engine/cli';
+import type { Geometry } from 'geojson';
+import { type LinzSourceFeature, type Overlapping, Status } from '../types.js';
 import { getCoordKey } from '../common/geo.js';
-import { findPotentialOsmAddresses } from './findPotentialOsmAddresses.js';
-import { validate } from './helpers/validate.js';
+import { LAYER_PREFIX, toLink } from '../action/util/const.js';
+import { isNonTrivial } from '../action/util/linzAddrToTags.js';
+import { SPECIAL_REVIEW } from '../action/handlers/existsButDataWrong.js';
+import { overlappingFile } from '../preprocess/const.js';
+import { REF_TAG } from '../config.js';
 import { normaliseStreet } from './helpers/normaliseStreet.js';
 import { compareWithMacrons } from './helpers/diacritics.js';
+import { addToReport } from './report.js';
 
 /** distance in metres beyond which we classify the address as `EXISTS_BUT_LOCATION_WRONG` */
 const LOCATION_THRESHOLD = { MAJOR: 300, MINOR: 10 };
 
-export function processWithRef(
-  addressId: AddressId,
-  linzAddr: LinzAddr,
-  osmAddr: OsmAddr,
-  allOsmAddressesWithNoRef: OsmAddr[],
-  overlapping: Overlapping,
-  slowMode: boolean,
-  linzAddrAlts: Record<AddressId, LinzAddr | undefined>,
-): { status: Status; diagnostics?: unknown } {
-  if (osmAddr.checked === CheckDate.YesRecent) {
-    return { status: Status.PERFECT };
+let overlapping: Overlapping;
+
+/**
+ * @param skipStatusReport only exists when called by us. this is not supplied from the engine
+ */
+export const mergeOneToOne = (
+  {
+    osm: osmAddr,
+    source: { properties: linzAddr },
+  }: {
+    source: LinzSourceFeature;
+    osm: OsmFeature;
+  },
+  skipStatusReport?: boolean,
+): SingleFeatureConflationResult => {
+  overlapping ||= JSON.parse(readFileSync(overlappingFile, 'utf8'));
+  const needsSpecialReview =
+    osmAddr.flags & OsmFlags.IsRecentlyChanged &&
+    !(osmAddr.flags & OsmFlags.IsLastEditedByImporter);
+
+  const tagDiff: TagDiff = { __action: 'edit' };
+  let geometryDiff: Geometry | undefined;
+
+  // 0.
+  if (linzAddr.id !== osmAddr.tags[REF_TAG]) {
+    tagDiff[REF_TAG] = linzAddr.id;
   }
 
-  const altIssues: (Issue | false | undefined)[] = [];
-  if (linzAddr.housenumberAlt) {
-    const isValid = osmAddr.alts?.some(
-      (a) => a.housenumber === linzAddr.housenumberAlt,
-    );
-    if (!isValid) {
-      // need to append the alt_housenumber (no street in this case)
-      altIssues.push(
-        `housenumberAlt|${linzAddr.housenumberAlt}|${osmAddr.alts?.map((a) => a.housenumber).join(';') || ''}`,
-      );
-    }
+  // 1.
+  const houseOk = linzAddr.housenumber === osmAddr.tags['addr:housenumber'];
+  if (!houseOk) {
+    tagDiff['addr:housenumber'] = linzAddr.housenumber;
   }
 
-  for (const id of osmAddr.altRef || []) {
-    const linzAlt = linzAddrAlts[id];
-    if (!linzAlt) {
-      // this ref is invalid, so remove it
-      altIssues.push(`altRef|${addressId}|${id}`);
-      continue;
-    }
-
-    const isStreetDifferent = linzAlt.street !== linzAddr.street;
-    const alreadyExists = osmAddr.alts?.find(
-      (a) =>
-        a.housenumber === linzAlt.housenumber &&
-        (isStreetDifferent ? a.street === linzAlt.street : true),
-    );
-    if (!alreadyExists) {
-      const currentHouse =
-        osmAddr.alts?.map((a) => a.housenumber).join(';') || '';
-      const currentStreet = osmAddr.alts?.map((a) => a.street).join(';') || '';
-
-      if (linzAlt.housenumber !== currentHouse) {
-        altIssues.push(`housenumberAlt|${linzAlt.housenumber}|${currentHouse}`);
-      }
-      if (isStreetDifferent && linzAlt.street !== currentStreet) {
-        altIssues.push(`streetAlt|${linzAlt.street}|${currentStreet}`);
-      }
-    }
-  }
-
-  const houseOk = linzAddr.housenumber === osmAddr.housenumber;
+  // 2.
   const streetOk = compareWithMacrons(
     normaliseStreet(linzAddr.street),
-    normaliseStreet(osmAddr.street || ''),
+    normaliseStreet(osmAddr.tags['addr:street'] || ''),
   );
-  const suburbOk = linzAddr.suburb === osmAddr.suburb;
-  const townOk = // addr:city is only conflated if the tag already exists
-    !osmAddr.town ||
-    !linzAddr.town ||
-    linzAddr.town === linzAddr.suburb || // don't add addr:city if it duplicates addr:suburb
-    linzAddr.town === osmAddr.town;
-  const waterOk = linzAddr.water === osmAddr.water;
-  const flatCountOk = linzAddr.flatCount === osmAddr.flatCount;
-
-  const needsSpecialReview =
-    !!osmAddr.recentlyChanged && !osmAddr.lastEditedByImporter;
-
-  if (
-    houseOk &&
-    streetOk &&
-    suburbOk &&
-    townOk &&
-    waterOk &&
-    flatCountOk &&
-    !altIssues.length &&
-    !osmAddr.doubleSuburb
-  ) {
-    // looks perfect - last check is if location is correct
-
-    const offset = geoSphericalDistance(
-      [linzAddr.lng, linzAddr.lat],
-      [osmAddr.lng, osmAddr.lat],
-    );
-
-    // If a feature was moved by a mapper, that's great. But if it's never
-    // been touched since the original import, then we should move it when
-    // LINZ updates the location. Therefore, use a much lower threshold.
-    const isVeryFarOff = offset > LOCATION_THRESHOLD.MAJOR;
-    const isSlightlyOff =
-      offset > LOCATION_THRESHOLD.MINOR &&
-      !osmAddr.isNonTrivial && // skip nonTrivial addresses (e.g. a business)
-      !overlapping[getCoordKey(linzAddr.lat, linzAddr.lng)] && // respect manually unstacked clumps
-      osmAddr.osmId[0] === 'n' && // skip areas
-      addressId[0] !== '3' && // skip addresses from CADs
-      !linzAddr.flatCount; // skip stacked addresses
-
-    const isLocationOff = osmAddr.lastEditedByImporter
-      ? isSlightlyOff
-      : isVeryFarOff;
-    const isMinorMove =
-      !!osmAddr.lastEditedByImporter && isSlightlyOff && !isVeryFarOff;
-
-    if (!isLocationOff) {
-      // this check makes the conflation process 20 times slower, so it's
-      // only run when slowMode is enabled.
-      if (slowMode) {
-        // The node in question is perfect, but there might be other OSM features with the
-        // same address but no ref. Some common examples include:
-        // - (address node with linz ref) + (address on building) added by StreetComplete user
-        // - two shops with the same address - one has linz ref, the other doesn't
-        const duplicateAddresses = findPotentialOsmAddresses(
-          linzAddr,
-          allOsmAddressesWithNoRef,
-        );
-        if (duplicateAddresses.length === 1) {
-          // There is exactly one duplicate addresses nearby.
-
-          const duplicate = duplicateAddresses[0];
-          if (
-            osmAddr.osmId[0] === 'n' && // only perfect, ref'd nodes, which are..
-            !osmAddr.isNonTrivial && // ...trivial address nodes.
-            duplicate.isUnRefedBuilding // And the building must not have a ref.
-          ) {
-            // The only situation that we specifically handle is the
-            // straightforward StreetComplete case - where a building
-            // and a simple address node duplicate each other.
-            return validate({
-              status: Status.REPLACED_BY_BUILDING,
-              diagnostics: [osmAddr, duplicate, linzAddr.suburb],
-            });
-          }
-        }
-      }
-
-      return { status: Status.PERFECT };
-    }
-
-    return validate({
-      status: Status.EXISTS_BUT_LOCATION_WRONG,
-      diagnostics: [
-        linzAddr.suburb,
-        Math.round(offset),
-        osmAddr,
-        linzAddr.lat,
-        linzAddr.lng,
-        osmAddr.lat,
-        osmAddr.lng,
-        isMinorMove,
-      ],
-    });
+  if (!streetOk) {
+    tagDiff['addr:street'] = linzAddr.street;
   }
 
+  // 3.
+  const suburbOk =
+    linzAddr.suburb ===
+    (osmAddr.tags['addr:suburb'] || osmAddr.tags['addr:hamlet']);
+  if (!suburbOk) {
+    tagDiff['addr:suburb'] = linzAddr.suburb;
+    if (osmAddr.tags['addr:hamlet']) {
+      tagDiff['addr:hamlet'] = '🗑️';
+    }
+  }
+  // 3b. duplicate suburb
+  if (osmAddr.tags['addr:suburb'] && osmAddr.tags['addr:hamlet']) {
+    tagDiff['addr:hamlet'] = '🗑️';
+  }
+
+  // 4.
+  const townOk = // addr:city is only conflated if the tag already exists
+    !osmAddr.tags['addr:city'] ||
+    !linzAddr.town ||
+    linzAddr.town === linzAddr.suburb || // don't add addr:city if it duplicates addr:suburb
+    linzAddr.town === osmAddr.tags['addr:city'];
+
+  // if the `suburb` is changing, also conflate `town`
   const townNeedsChangingBcSuburbChanged =
     !suburbOk && // if suburb is not okay,
-    !!osmAddr.town && // and there is a town
+    !!osmAddr.tags['addr:city'] && // and there is a town
     linzAddr.town !== linzAddr.suburb && // but don't add addr:city if it duplicates addr:suburb
-    linzAddr.town !== osmAddr.town; // and don't do anything if osm already has the correct value
+    linzAddr.town !== osmAddr.tags['addr:city']; // and don't do anything if osm already has the correct value
 
-  // something is wrong in the data
-  const issues: (Issue | false | undefined)[] = [
-    !houseOk && `housenumber|${linzAddr.housenumber}|${osmAddr.housenumber}`,
-    !streetOk && `street|${linzAddr.street}|${osmAddr.street}`,
-    !suburbOk && `suburb|${linzAddr.suburb || ''}|${osmAddr.suburb || ''}`,
-    // if the `suburb` is changing, also conflate `town`
-    (!townOk || townNeedsChangingBcSuburbChanged) &&
-      `town|${linzAddr.town}|${osmAddr.town || ''}`,
-    !flatCountOk &&
-      `flatCount|${linzAddr.flatCount || 0}|${osmAddr.flatCount || 0}`,
-    ...altIssues,
+  if (!townOk || townNeedsChangingBcSuburbChanged) {
+    tagDiff['addr:city'] = linzAddr.town;
+  }
 
-    // this is the buggy one (see #7) if it's a double suburb, the system may think `suburbOk` but it's wrong
-    (osmAddr.doubleSuburb || (!suburbOk && osmAddr.hasHamlet)) &&
-      'doubleSuburb||',
+  // 5.
+  if (linzAddr.water && osmAddr.tags['addr:type'] !== 'water') {
+    tagDiff['addr:type'] = 'water';
+  }
 
-    !waterOk &&
-      `water|${+(linzAddr.water || false)}|${+(osmAddr.water || false)}`,
-  ];
+  // 6.
+  if (linzAddr.flatCount) {
+    if (osmAddr.tags['building:flats'] !== linzAddr.flatCount?.toString()) {
+      tagDiff['building:flats'] = linzAddr.flatCount.toString();
+    }
+  } else {
+    if (osmAddr.tags['building:flats']) tagDiff['building:flats'] = '🗑️';
+  }
 
-  return validate({
-    status: Status.EXISTS_BUT_WRONG_DATA,
-    diagnostics: [
-      osmAddr,
+  // 7.
+  /** metres */
+  const offset = geoSphericalDistance(
+    [linzAddr.lng, linzAddr.lat],
+    osmAddr.centroid,
+  );
+
+  // 8.
+  // If a feature was moved by a mapper, that's great. But if it's never
+  // been touched since the original import, then we should move it when
+  // LINZ updates the location. Therefore, use a much lower threshold.
+  const isVeryFarOff = offset > LOCATION_THRESHOLD.MAJOR;
+  const isSlightlyOff =
+    offset > LOCATION_THRESHOLD.MINOR &&
+    !isNonTrivial(osmAddr.tags) && // skip nonTrivial addresses (e.g. a business)
+    !overlapping[getCoordKey(linzAddr.lat, linzAddr.lng)] && // respect manually unstacked clumps
+    osmAddr.id[0] === 'n' && // skip areas
+    linzAddr.id[0] !== '3' && // skip addresses from CADs
+    !linzAddr.flatCount; // skip stacked addresses
+
+  const isLocationOff =
+    osmAddr.flags & OsmFlags.IsLastEditedByImporter
+      ? isSlightlyOff
+      : isVeryFarOff;
+
+  const isMinorMove =
+    !!(osmAddr.flags & OsmFlags.IsLastEditedByImporter) &&
+    isSlightlyOff &&
+    !isVeryFarOff;
+
+  if (isLocationOff) {
+    tagDiff.__action = 'move';
+    geometryDiff = {
+      type: 'LineString',
+      coordinates: [
+        osmAddr.centroid, // old
+        [linzAddr.lng, linzAddr.lat], // new
+      ],
+    };
+  }
+
+  const group = needsSpecialReview
+    ? SPECIAL_REVIEW
+    : (isMinorMove ? 'Slighly shift addresses - ' : LAYER_PREFIX) +
+      linzAddr.suburb;
+
+  // update the corresponding status report
+  const didRefChange =
+    osmAddr.tags[REF_TAG] && osmAddr.tags[REF_TAG] !== linzAddr.id;
+
+  if (skipStatusReport === true) {
+    // skip
+  } else if (!osmAddr.tags[REF_TAG]) {
+    // has no ref at the moment
+    const code = tagDiff['addr:suburb'] ? 2 : 4;
+    addToReport(
+      Status.EXISTS_BUT_NO_LINZ_REF,
       linzAddr.suburb,
-      needsSpecialReview,
-      ...issues.filter((x): x is Issue => !!x),
-    ],
-  });
-}
+      `${REF_TAG}=${linzAddr.id}\t\t(${code})needs to be added to\t\t${toLink(
+        osmAddr.id,
+      )}`,
+    );
+  } else if (didRefChange) {
+    addToReport(
+      Status.LINZ_REF_CHANGED,
+      linzAddr.suburb,
+      `${osmAddr.tags[REF_TAG]}\t->\t${linzAddr.id}\t\t${toLink(osmAddr.id)}`,
+    );
+  } else if (tagDiff.__action === 'move') {
+    addToReport(
+      Status.EXISTS_BUT_LOCATION_WRONG,
+      linzAddr.suburb,
+      `${linzAddr.id}\t\t${toLink(
+        osmAddr.id,
+      )}\t\tneeds to move ${Math.round(offset)}m to ${linzAddr.lat},${linzAddr.lng}${isMinorMove ? ' *' : ''}`,
+    );
+  } else {
+    if (Object.keys(tagDiff).some((key) => key !== '__action')) {
+      // edit
+
+      // ---- BEGIN LEGACY MADNESS ----
+      // to make the snapshot tests pass, we convert the osm keys into
+      // the whacky legacy format
+      const isDoubleSuburb =
+        (osmAddr.tags['addr:suburb'] || tagDiff['addr:suburb']) &&
+        (osmAddr.tags['addr:hamlet'] || tagDiff['addr:hamlet']);
+
+      const issues = Object.entries(tagDiff).map(([key, _after]) => {
+        if (key === '__action') return '';
+        const after = <string>_after;
+        const before = osmAddr.tags[key];
+        switch (key) {
+          case 'addr:housenumber':
+          case 'addr:street': {
+            return `${key.replace('addr:', '')}|${after}|${before}`;
+          }
+          case 'addr:city': {
+            return `town|${after}|${before}`;
+          }
+          case 'addr:suburb':
+          case 'addr:hamlet': {
+            if (isDoubleSuburb && after === '🗑️') return '';
+            return `suburb|${after}|${osmAddr.tags['addr:suburb'] || osmAddr.tags['addr:hamlet'] || ''}`;
+          }
+          case 'building:flats': {
+            return `flatCount|${after.replace('🗑️', '0')}|${before || 0}`;
+          }
+          case 'addr:type': {
+            return `water|${+(after === 'water')}|${+(before === 'water')}`;
+          }
+          default: {
+            return `${key}|${after}|${before}`;
+          }
+        }
+      });
+      if (isDoubleSuburb) issues.push('doubleSuburb||');
+      // ---- END LEGACY MADNESS ----
+      addToReport(
+        Status.EXISTS_BUT_WRONG_DATA,
+        group.replace(LAYER_PREFIX, ''),
+        `${linzAddr.id}\t\t${toLink(osmAddr.id)}\t\t${issues.filter(Boolean).join('\tand\t')}`,
+      );
+    } else {
+      // perfect :)
+    }
+  }
+
+  return {
+    group,
+    diff: { tags: tagDiff, geometry: geometryDiff },
+  };
+};
