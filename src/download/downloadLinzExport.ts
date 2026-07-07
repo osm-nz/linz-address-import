@@ -2,6 +2,7 @@ import { createReadStream, createWriteStream, promises as fs } from 'node:fs';
 import { Readable } from 'node:stream';
 import { createGunzip } from 'node:zlib';
 import { finished, pipeline } from 'node:stream/promises';
+import { dirname } from 'node:path';
 import { linzCsvFile, linzZipFile } from '../preprocess/const.js';
 import {
   download,
@@ -35,6 +36,7 @@ async function main() {
   });
 
   console.log(`Downloading ${Math.ceil(layer.size / 1e3 / 1e3)}MB…`);
+  await fs.mkdir(dirname(linzZipFile), { recursive: true });
   await fs.rm(linzZipFile, { force: true });
   const response = await download(layer.job, token);
 
