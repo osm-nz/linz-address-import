@@ -22,7 +22,7 @@ import { processDeletions } from './processDeletions.js';
 const mock = process.env.NODE_ENV === 'test' ? '-mock' : '';
 
 export async function main(): Promise<void> {
-  const slow = !!mock || process.argv.includes('--full');
+  const slow = process.argv.includes('--full');
   console.log(
     slow
       ? '🚛 Running in --full mode. This will take significantly longer.'

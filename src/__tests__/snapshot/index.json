@@ -244,28 +244,6 @@
       ]
     },
     {
-      "id": "Mergeaddressnodesandbuildings83bb50_1341avq",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/Mergeaddressnodesandbuildings83bb50_1341avq.osmPatch.geo.json",
-      "name": "Merge address nodes and buildings - 83bb50",
-      "title": "Merge address nodes and buildings - 83bb50",
-      "totalCount": 2,
-      "source": "",
-      "snippet": "delete 1, edit 1",
-      "extent": [
-        [
-          175.1319,
-          -36.900200000000005
-        ],
-        [
-          175.13320000000002,
-          -36.899800000000006
-        ]
-      ],
-      "groupCategories": [
-        "/Categories/Addresses"
-      ]
-    },
-    {
       "id": "Mergeduplicateaddresses83bb50_kv2mqs",
       "url": "https://osm-nz.github.io/linz-address-import/suburbs/Mergeduplicateaddresses83bb50_kv2mqs.osmPatch.geo.json",
       "name": "Merge duplicate addresses - 83bb50",
