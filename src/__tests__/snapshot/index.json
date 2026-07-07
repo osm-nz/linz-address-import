@@ -2,8 +2,8 @@
   "fields": [],
   "results": [
     {
-      "id": "AddressUpdateAbelTasmanNationalPark_177vr3a",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateAbelTasmanNationalPark_177vr3a.osmPatch.geo.json",
+      "id": "AddressUpdateAbelTasmanNationalPark_f67d25",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateAbelTasmanNationalPark_f67d25.osmPatch.geo.json",
       "name": "Address Update - Abel Tasman National Park",
       "title": "Address Update - Abel Tasman National Park",
       "totalCount": 2,
@@ -24,8 +24,8 @@
       ]
     },
     {
-      "id": "AddressUpdatedeletionsfromunknownsector_1szv2s9",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdatedeletionsfromunknownsector_1szv2s9.osmPatch.geo.json",
+      "id": "AddressUpdatedeletionsfromunknownsector_6b0ffb",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdatedeletionsfromunknownsector_6b0ffb.osmPatch.geo.json",
       "name": "Address Update - deletions from unknown sector",
       "title": "Address Update - deletions from unknown sector",
       "totalCount": 1,
@@ -46,8 +46,8 @@
       ]
     },
     {
-      "id": "AddressUpdateDuplicateTallHamlet_il6mtj",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateDuplicateTallHamlet_il6mtj.osmPatch.geo.json",
+      "id": "AddressUpdateDuplicateTallHamlet_dc4e8c",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateDuplicateTallHamlet_dc4e8c.osmPatch.geo.json",
       "name": "Address Update - Duplicate Tall Hamlet",
       "title": "Address Update - Duplicate Tall Hamlet",
       "totalCount": 2,
@@ -68,8 +68,8 @@
       ]
     },
     {
-      "id": "AddressUpdateDuplicateWideHamlet_bu93q9",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateDuplicateWideHamlet_bu93q9.osmPatch.geo.json",
+      "id": "AddressUpdateDuplicateWideHamlet_23a543",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateDuplicateWideHamlet_23a543.osmPatch.geo.json",
       "name": "Address Update - Duplicate Wide Hamlet",
       "title": "Address Update - Duplicate Wide Hamlet",
       "totalCount": 2,
@@ -90,8 +90,8 @@
       ]
     },
     {
-      "id": "AddressUpdateJericho_1rxrbwa",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateJericho_1rxrbwa.osmPatch.geo.json",
+      "id": "AddressUpdateJericho_c39f53",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateJericho_c39f53.osmPatch.geo.json",
       "name": "Address Update - Jericho",
       "title": "Address Update - Jericho",
       "totalCount": 1,
@@ -112,21 +112,21 @@
       ]
     },
     {
-      "id": "AddressUpdateOakleigh_4b67jq",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateOakleigh_4b67jq.osmPatch.geo.json",
+      "id": "AddressUpdateOakleigh_4f1114",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateOakleigh_4f1114.osmPatch.geo.json",
       "name": "Address Update - Oakleigh",
       "title": "Address Update - Oakleigh",
-      "totalCount": 100,
+      "totalCount": 93,
       "source": "",
-      "snippet": "add 34, delete 14, move 2, edit 50",
+      "snippet": "add 37, delete 16, move 2, edit 38",
       "extent": [
         [
           174.144,
-          -36.9022
+          -36.9005333
         ],
         [
           176.1972,
-          -35.9998
+          -36
         ]
       ],
       "groupCategories": [
@@ -134,8 +134,8 @@
       ]
     },
     {
-      "id": "AddressUpdateŌpōtiki_no5kf2",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateŌpōtiki_no5kf2.osmPatch.geo.json",
+      "id": "AddressUpdateŌpōtiki_c9647f",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateŌpōtiki_c9647f.osmPatch.geo.json",
       "name": "Address Update - Ōpōtiki",
       "title": "Address Update - Ōpōtiki",
       "totalCount": 2,
@@ -156,8 +156,8 @@
       ]
     },
     {
-      "id": "AddressUpdateRangitāhua_rx31k4",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateRangitāhua_rx31k4.osmPatch.geo.json",
+      "id": "AddressUpdateRangitāhua_8b4177",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateRangitāhua_8b4177.osmPatch.geo.json",
       "name": "Address Update - Rangitāhua",
       "title": "Address Update - Rangitāhua",
       "totalCount": 1,
@@ -178,20 +178,20 @@
       ]
     },
     {
-      "id": "AddressUpdateWestHoeHeights_5cj1uf",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateWestHoeHeights_5cj1uf.osmPatch.geo.json",
+      "id": "AddressUpdateWestHoeHeights_33429f",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateWestHoeHeights_33429f.osmPatch.geo.json",
       "name": "Address Update - West Hoe Heights",
       "title": "Address Update - West Hoe Heights",
-      "totalCount": 3,
+      "totalCount": 5,
       "source": "",
-      "snippet": "delete 1, edit 2",
+      "snippet": "add 2, delete 1, edit 2",
       "extent": [
         [
           174.94480000000001,
           -36.900200000000005
         ],
         [
-          174.9641,
+          176.963,
           -36.899800000000006
         ]
       ],
@@ -200,54 +200,10 @@
       ]
     },
     {
-      "id": "AddressUpdateWestHoeHeightsAnotherTown_1etb0hn",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateWestHoeHeightsAnotherTown_1etb0hn.osmPatch.geo.json",
-      "name": "Address Update - West Hoe Heights (Another Town)",
-      "title": "Address Update - West Hoe Heights (Another Town)",
-      "totalCount": 1,
-      "source": "",
-      "snippet": "add 1",
-      "extent": [
-        [
-          176.963,
-          -36.9
-        ],
-        [
-          176.963,
-          -36.9
-        ]
-      ],
-      "groupCategories": [
-        "/Categories/Addresses"
-      ]
-    },
-    {
-      "id": "AddressUpdateWestHoeHeightsSilverdale_7cz61z",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateWestHoeHeightsSilverdale_7cz61z.osmPatch.geo.json",
-      "name": "Address Update - West Hoe Heights (Silverdale)",
-      "title": "Address Update - West Hoe Heights (Silverdale)",
-      "totalCount": 1,
-      "source": "",
-      "snippet": "add 1",
-      "extent": [
-        [
-          176.962,
-          -36.9
-        ],
-        [
-          176.962,
-          -36.9
-        ]
-      ],
-      "groupCategories": [
-        "/Categories/Addresses"
-      ]
-    },
-    {
-      "id": "Mergeduplicateaddresses83bb50_kv2mqs",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/Mergeduplicateaddresses83bb50_kv2mqs.osmPatch.geo.json",
-      "name": "Merge duplicate addresses - 83bb50",
-      "title": "Merge duplicate addresses - 83bb50",
+      "id": "MergeduplicateaddressesOakleigh_d0f495",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/MergeduplicateaddressesOakleigh_d0f495.osmPatch.geo.json",
+      "name": "Merge duplicate addresses - Oakleigh",
+      "title": "Merge duplicate addresses - Oakleigh",
       "totalCount": 4,
       "source": "",
       "snippet": "delete 3, edit 1",
@@ -266,10 +222,10 @@
       ]
     },
     {
-      "id": "RecentlyEditedAddresses83bb50_fbfnc6",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/RecentlyEditedAddresses83bb50_fbfnc6.osmPatch.geo.json",
-      "name": "Recently Edited Addresses - 83bb50",
-      "title": "Recently Edited Addresses - 83bb50",
+      "id": "RecentlyEditedAddresses_55471a",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/RecentlyEditedAddresses_55471a.osmPatch.geo.json",
+      "name": "Recently Edited Addresses",
+      "title": "Recently Edited Addresses",
       "totalCount": 1,
       "source": "",
       "snippet": "edit 1",
@@ -289,20 +245,20 @@
       ]
     },
     {
-      "id": "Slighlyshiftaddresses83bb50_167jrl3",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/Slighlyshiftaddresses83bb50_167jrl3.osmPatch.geo.json",
-      "name": "Slighly shift addresses - 83bb50",
-      "title": "Slighly shift addresses - 83bb50",
-      "totalCount": 3,
+      "id": "SlighlyshiftaddressesOakleigh_746288",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/SlighlyshiftaddressesOakleigh_746288.osmPatch.geo.json",
+      "name": "Slighly shift addresses - Oakleigh",
+      "title": "Slighly shift addresses - Oakleigh",
+      "totalCount": 4,
       "source": "",
-      "snippet": "move 3",
+      "snippet": "move 4",
       "extent": [
         [
           174.211,
           -36.902
         ],
         [
-          174.90200000000002,
+          174.912,
           -36.9
         ]
       ],

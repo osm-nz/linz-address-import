@@ -10,37 +10,20 @@ Oakleigh
 70044		https://osm.org/node/44		doubleSuburb||
 70046		https://osm.org/node/46		suburb|Oakleigh|West Hoe Heights	and	doubleSuburb||
 70048		https://osm.org/node/48		housenumber|48|undefined	and	street|Example Street|undefined	and	suburb|Oakleigh|
-70060		https://osm.org/node/60		water|0|1
 70117		https://osm.org/node/117		flatCount|0|44
 70118		https://osm.org/node/118		flatCount|0|0
 70122		https://osm.org/node/122		flatCount|3|0
-70142		https://osm.org/node/142		(swap) housenumber|142|143
-70143		https://osm.org/node/143		(swap) housenumber|143|142
+70142		https://osm.org/node/142		housenumber|142|143
+70143		https://osm.org/node/143		housenumber|143|142
 70161		https://osm.org/node/161		town|Jericho|São Manoël
 70163		https://osm.org/node/163		flatCount|0|3
-70182		https://osm.org/node/182		housenumberAlt|1/182|
-70183		https://osm.org/node/183		housenumberAlt|2/182|
-70184		https://osm.org/node/184		housenumberAlt|3/182|
-70188		https://osm.org/node/188		housenumberAlt|188A|
-70189		https://osm.org/node/189		housenumberAlt|188B|
 70197		https://osm.org/node/197		suburb|Oakleigh|Oakleigh!*@typo
-70207		https://osm.org/node/207		housenumberAlt|3/203|
-70215		https://osm.org/node/215		housenumberAlt|1/215|nonense value
-70217		https://osm.org/node/217		altRef|70217|nonsens
-70220		https://osm.org/node/219		housenumber|1/219|219A	and	housenumberAlt|219A|1/219
 70226		https://osm.org/node/226		street|Whānau Way|Whanau Way
-70231		https://osm.org/node/231		streetAlt|Side Street|
-70233		https://osm.org/node/233		housenumberAlt|4|
-70235		https://osm.org/node/235		streetAlt|Side Street|wrong value
-70237		https://osm.org/node/237		housenumberAlt|6|wrong value
-70239		https://osm.org/node/239		housenumberAlt|7|wrong value	and	streetAlt|Side Street|wrong value
-70247		https://osm.org/node/247		housenumberAlt|1/247|nonense value
-70249		https://osm.org/node/249		altRef|70249|nonsens
-70252		https://osm.org/node/251		housenumber|1/251|251A	and	housenumberAlt|251A|1/251
 stack(70079-70081)		https://osm.org/node/79		suburb|Oakleigh|The City of Ember	and	doubleSuburb||
 stack(70082-70084)		https://osm.org/node/82		housenumber|82|82typo
 stack(70111-70113)		https://osm.org/node/111		flatCount|3|0
 stack(70114-70116)		https://osm.org/node/114		flatCount|3|123
+70142 <-> 70143		need to be swapped		https://osm.org/node/142 <-> https://osm.org/node/143
 
 West Hoe Heights
 70045		https://osm.org/node/45		doubleSuburb||
