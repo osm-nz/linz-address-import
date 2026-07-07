@@ -25,9 +25,9 @@
 {"type":"Feature","properties":{"id":"70042","unit":"","number":"42","street":"Example Street","city":"Oakleigh","district":""},"geometry":{"type":"Point","coordinates":[174.942,-36.9]}}
 {"type":"Feature","properties":{"id":"70043","unit":"","number":"43","street":"Example Street","city":"Oakleigh","district":""},"geometry":{"type":"Point","coordinates":[174.943,-36.9]}}
 {"type":"Feature","properties":{"id":"70044","unit":"","number":"44","street":"Example Street","city":"Oakleigh","district":""},"geometry":{"type":"Point","coordinates":[174.944,-36.9]}}
-{"type":"Feature","properties":{"id":"70045","unit":"","number":"45","street":"Example Street","city":"West Hoe Heights","district":"Silverdale"},"geometry":{"type":"Point","coordinates":[176.945,-36.9]}}
+{"type":"Feature","properties":{"id":"70045","unit":"","number":"45","street":"Example Street","city":"West Hoe Heights","district":"Silverdale"},"geometry":{"type":"Point","coordinates":[174.945,-36.9]}}
 {"type":"Feature","properties":{"id":"70046","unit":"","number":"46","street":"Example Street","city":"Oakleigh","district":""},"geometry":{"type":"Point","coordinates":[174.946,-36.9]}}
-{"type":"Feature","properties":{"id":"70047","unit":"","number":"47","street":"Example Street","city":"West Hoe Heights","district":"Silverdale"},"geometry":{"type":"Point","coordinates":[176.947,-36.9]}}
+{"type":"Feature","properties":{"id":"70047","unit":"","number":"47","street":"Example Street","city":"West Hoe Heights","district":"Silverdale"},"geometry":{"type":"Point","coordinates":[174.947,-36.9]}}
 {"type":"Feature","properties":{"id":"70048","unit":"","number":"48","street":"Example Street","city":"Oakleigh","district":""},"geometry":{"type":"Point","coordinates":[174.948,-36.9]}}
 {"type":"Feature","properties":{"id":"70054","unit":"","number":"54","street":"Example Street","city":"Oakleigh","district":""},"geometry":{"type":"Point","coordinates":[174.954,-36.9]}}
 {"type":"Feature","properties":{"id":"70055","unit":"","number":"55","street":"Example Street","city":"Oakleigh","district":""},"geometry":{"type":"Point","coordinates":[174.955,-36.9]}}
@@ -114,7 +114,7 @@
 {"type":"Feature","properties":{"id":"70158","unit":"","number":"156B","street":"Example Street","city":"Oakleigh","district":""},"geometry":{"type":"Point","coordinates":[175.156,-36.9]}}
 {"type":"Feature","properties":{"id":"70159","unit":"","number":"156C","street":"Example Street","city":"Oakleigh","district":""},"geometry":{"type":"Point","coordinates":[175.156,-36.9]}}
 {"type":"Feature","properties":{"id":"70160","unit":"","number":"160","street":"Example Street","city":"Oakleigh","district":"Jericho"},"geometry":{"type":"Point","coordinates":[176.16,-36.9]}}
-{"type":"Feature","properties":{"id":"70161","unit":"","number":"161","street":"Example Street","city":"Oakleigh","district":"Jericho"},"geometry":{"type":"Point","coordinates":[176.161,-36.9]}}
+{"type":"Feature","properties":{"id":"70161","unit":"","number":"161","street":"Example Street","city":"Oakleigh","district":"Jericho"},"geometry":{"type":"Point","coordinates":[174.161,-36.9]}}
 {"type":"Feature","properties":{"id":"70162","unit":"","number":"162","street":"Example Street","city":"Jericho","district":"Jericho"},"geometry":{"type":"Point","coordinates":[176.162,-36.9]}}
 {"type":"Feature","properties":{"id":"70163","unit":"","number":"163","street":"Example Street","city":"Oakleigh","district":""},"geometry":{"type":"Point","coordinates":[174.163,-36.9]}}
 {"type":"Feature","properties":{"id":"70164","unit":"1","number":"163","street":"Example Street","city":"Oakleigh","district":""},"geometry":{"type":"Point","coordinates":[174.163,-36.9]}}
