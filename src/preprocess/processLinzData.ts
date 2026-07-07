@@ -9,6 +9,13 @@ import {
   linzTempFile,
 } from './const.js';
 
+// TODO: shouldn't OpenAddresses fix this?
+/** LINZ's longitude values go >180 e.g. 183deg which is invalid. It should be -177 */
+const correctLng = (lng: number) => {
+  if (lng < 180) return lng;
+  return lng - 360;
+};
+
 /**
  * the format is always "1/23A" (where prefix=1, mainNum=23, suffix=A).
  * We manually construct this instead of using full_address_number because
@@ -52,7 +59,7 @@ async function linzToJson(): Promise<LinzData> {
       suburb: preferOfficialName(data.properties.city),
       town: preferOfficialName(data.properties.district),
       lat,
-      lng,
+      lng: correctLng(lng),
     };
     if (data.properties.is_land === 'F') out[data.properties.id].water = true;
 
