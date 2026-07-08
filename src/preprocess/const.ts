@@ -13,7 +13,7 @@ export const linzCsvFile = join(
 
 export const planetFile = mock
   ? join(import.meta.dirname, '../__tests__/mock/planet.pbf')
-  : 'https://download.geofabrik.de/australia-oceania/new-zealand-latest.osm.pbf';
+  : 'https://osm-internal.download.geofabrik.de/australia-oceania/new-zealand-latest-internal.osm.pbf';
 
 export const linzTempFile = join(
   import.meta.dirname,
