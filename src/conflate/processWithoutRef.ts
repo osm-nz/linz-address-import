@@ -1,7 +1,7 @@
-import { LAYER_PREFIX, toLink } from '../action/util/const.js';
 import { type CallbackFunctions, Status } from '../types.js';
-import { isNonTrivial, linzAddrToTags } from '../action/util/linzAddrToTags.js';
 import { REF_TAG } from '../config.js';
+import { LAYER_PREFIX, toLink } from './helpers/const.js';
+import { isNonTrivial, linzAddrToTags } from './helpers/linzAddrToTags.js';
 import { mergeOneToOne } from './processWithRef.js';
 import { addToReport } from './report.js';
 

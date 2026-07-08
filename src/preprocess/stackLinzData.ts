@@ -17,7 +17,7 @@ import type {
 } from '../types.js';
 import { getCoordKey, toStackId, uniq } from '../common/index.js';
 import { REF_TAG, config } from '../config.js';
-import { handleCouldBeStacked } from '../action/handlers/handleCouldBeStacked.js';
+import { handleCouldBeStacked } from '../conflate/handleCouldBeStacked.js';
 import { linzFile, linzTempFile, mock, stackFile } from './const.js';
 import { matchAlternativeAddrs } from './matchAlternativeAddrs.js';
 import { findOverlapping } from './findOverlapping.js';

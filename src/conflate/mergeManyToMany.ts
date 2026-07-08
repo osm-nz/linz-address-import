@@ -1,5 +1,5 @@
 import { type CallbackFunctions, Status } from '../types.js';
-import { toLink } from '../action/util/const.js';
+import { toLink } from './helpers/const.js';
 import { addToReport } from './report.js';
 
 export const mergeManyToMany: CallbackFunctions['mergeManyToMany'] = ({

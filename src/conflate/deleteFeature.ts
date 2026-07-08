@@ -1,10 +1,10 @@
-import { LAYER_PREFIX, toLink } from '../action/util/const.js';
+import { REF_TAG } from '../config.js';
+import { type CallbackFunctions, Status } from '../types.js';
+import { LAYER_PREFIX, toLink } from './helpers/const.js';
 import {
   deleteAllAddressTags,
   isNonTrivial,
-} from '../action/util/linzAddrToTags.js';
-import { REF_TAG } from '../config.js';
-import { type CallbackFunctions, Status } from '../types.js';
+} from './helpers/linzAddrToTags.js';
 import { addToReport } from './report.js';
 
 export const deleteFeature: CallbackFunctions['deleteFeature'] = ({ osm }) => {

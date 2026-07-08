@@ -5,7 +5,7 @@ import { promises as fs } from 'node:fs';
 import { main as preprocessLinz } from '../preprocess/processLinzData.js';
 import { main as stackLinzData } from '../preprocess/stackLinzData.js';
 import { entrypoint } from '../entrypoint.js';
-import { outFolder } from '../action/util/const.js';
+import { outFolder } from '../conflate/helpers/const.js';
 
 const joinPath = (...files: string[]) => join(import.meta.dirname, ...files);
 

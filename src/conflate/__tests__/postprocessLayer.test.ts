@@ -6,8 +6,8 @@ import type {
 } from '@osm-conflation-engine/cli';
 import type { OsmPatchFeature } from 'osm-api';
 import type { Point } from 'geojson';
-import { postprocessLayer } from '../existsButDataWrong.js';
-import type { LinzAddr } from '../../../types.js';
+import { postprocessLayer } from '../postprocessLayer.js';
+import type { LinzAddr } from '../../types.js';
 
 describe(postprocessLayer, () => {
   it('can swap features', () => {

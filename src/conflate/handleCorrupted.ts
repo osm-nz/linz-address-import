@@ -2,14 +2,14 @@ import type {
   ConflationResultExtra,
   TagDiff,
 } from '@osm-conflation-engine/cli';
-import { LAYER_PREFIX, toLink } from '../util/const.js';
+import { type CallbackFunctions, Status } from '../types.js';
+import { LAYER_PREFIX, toLink } from './helpers/const.js';
 import {
   deleteAllAddressTags,
   isNonTrivial,
   linzAddrToTags,
-} from '../util/linzAddrToTags.js';
-import { addToReport } from '../../conflate/report.js';
-import { type CallbackFunctions, Status } from '../../types.js';
+} from './helpers/linzAddrToTags.js';
+import { addToReport } from './report.js';
 
 export const handleCorrupted: CallbackFunctions['mergeManyToOne'] & {} = ({
   osm: osmAddr,

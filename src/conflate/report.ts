@@ -1,7 +1,7 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import { Status } from '../types.js';
-import { outFolder } from '../action/util/const.js';
+import { outFolder } from './helpers/const.js';
 
 const reports: Record<Status, { [suburb: string]: string[] }> = {
   [Status.PERFECT]: {}, // not used

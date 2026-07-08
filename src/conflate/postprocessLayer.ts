@@ -1,9 +1,9 @@
 import type { DatasetId, OsmFeature, OsmId } from '@osm-conflation-engine/cli';
 import type { OsmPatchFeature } from 'osm-api';
-import { type CallbackFunctions, type LinzAddr, Status } from '../../types.js';
-import { addToReport } from '../../conflate/report.js';
-import { LAYER_PREFIX, toLink } from '../util/const.js';
-import { REF_TAG } from '../../config.js';
+import { type CallbackFunctions, type LinzAddr, Status } from '../types.js';
+import { REF_TAG } from '../config.js';
+import { addToReport } from './report.js';
+import { LAYER_PREFIX, toLink } from './helpers/const.js';
 
 export const SPECIAL_REVIEW = 'Recently Edited Addresses';
 export const SPECIAL_REVIEW_INFO = `

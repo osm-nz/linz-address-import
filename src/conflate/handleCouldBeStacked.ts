@@ -1,9 +1,9 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import type { OsmId } from '@osm-conflation-engine/cli';
-import { toStackId } from '../../common/index.js';
-import type { CouldStackData } from '../../types.js';
-import { outFolder } from '../util/index.js';
+import { toStackId } from '../common/index.js';
+import type { CouldStackData } from '../types.js';
+import { outFolder } from './helpers/index.js';
 
 type BySuburb = {
   [suburb: string]: {

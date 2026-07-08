@@ -1,5 +1,5 @@
 import type { CallbackFunctions } from '../types.js';
-import { handleCorrupted } from '../action/handlers/handleCorrupted.js';
+import { handleCorrupted } from './handleCorrupted.js';
 import { checkStackedAddr } from './checkStackedAddr.js';
 
 export const mergeManyToOne: CallbackFunctions['mergeManyToOne'] = ({

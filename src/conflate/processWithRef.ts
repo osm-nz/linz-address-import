@@ -9,11 +9,11 @@ import {
 import type { Geometry } from 'geojson';
 import { type LinzSourceFeature, type Overlapping, Status } from '../types.js';
 import { getCoordKey } from '../common/geo.js';
-import { LAYER_PREFIX, toLink } from '../action/util/const.js';
-import { isNonTrivial } from '../action/util/linzAddrToTags.js';
-import { SPECIAL_REVIEW } from '../action/handlers/existsButDataWrong.js';
 import { overlappingFile } from '../preprocess/const.js';
 import { REF_TAG } from '../config.js';
+import { LAYER_PREFIX, toLink } from './helpers/const.js';
+import { isNonTrivial } from './helpers/linzAddrToTags.js';
+import { SPECIAL_REVIEW } from './postprocessLayer.js';
 import { normaliseStreet } from './helpers/normaliseStreet.js';
 import { compareWithMacrons } from './helpers/diacritics.js';
 import { addToReport } from './report.js';

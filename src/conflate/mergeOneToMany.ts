@@ -1,10 +1,10 @@
 import type { MutliFeatureConflationResult } from '@osm-conflation-engine/cli';
-import { toLink } from '../util/const.js';
-import { type CallbackFunctions, Status } from '../../types.js';
-import { isNonTrivial } from '../util/linzAddrToTags.js';
-import { addToReport } from '../../conflate/report.js';
-import { getLocalKeyForOsm, getLocalKeyForSource } from '../../localKeys.js';
-import { REF_TAG } from '../../config.js';
+import { type CallbackFunctions, Status } from '../types.js';
+import { getLocalKeyForOsm, getLocalKeyForSource } from '../localKeys.js';
+import { REF_TAG } from '../config.js';
+import { toLink } from './helpers/const.js';
+import { isNonTrivial } from './helpers/linzAddrToTags.js';
+import { addToReport } from './report.js';
 
 export const mergeOneToMany: CallbackFunctions['mergeOneToMany'] = ({
   osm: osmAddrList,

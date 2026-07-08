@@ -2,8 +2,8 @@ import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import type { ConflateResult } from '@osm-conflation-engine/cli';
 import { type HistoryFile, type StatsFile, Status } from '../types.js';
-import { getReportCounts } from '../conflate/report.js';
-import { CDN_URL, mock, outFolder } from './util/index.js';
+import { getReportCounts } from './report.js';
+import { CDN_URL, mock, outFolder } from './helpers/index.js';
 
 const STATS_FILE_NAME = 'stats.json';
 const HISTORY_FILE_NAME = 'stats-history.json';

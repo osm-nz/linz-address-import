@@ -2,7 +2,7 @@ import { join } from 'node:path';
 import type { Config } from '@osm-conflation-engine/cli';
 import taginfo from '../taginfo.json';
 import { linzFile, planetFile } from './preprocess/const.js';
-import { outFolder } from './action/util/const.js';
+import { outFolder } from './conflate/helpers/const.js';
 
 export const REF_TAG = 'ref:linz:address_id';
 
