@@ -52,7 +52,13 @@ describe(postprocessLayer, () => {
       },
     };
     expect(
-      postprocessLayer({ group: '', features: diffs, osmData, sourceData }),
+      postprocessLayer({
+        category: '',
+        group: '',
+        features: diffs,
+        osmData,
+        sourceData,
+      }),
     ).toStrictEqual([
       {
         type: 'Feature',

@@ -152,11 +152,12 @@ export const mergeOneToOne = (
     };
   }
 
-  const group = needsSpecialReview
+  const category = needsSpecialReview
     ? SPECIAL_REVIEW
-    : `${
-        isMinorMove ? 'Slighly shift addresses - ' : LAYER_PREFIX
-      }${linzAddr.suburb}, ${linzAddr.town}`;
+    : isMinorMove
+      ? 'Slighly shift addresses'
+      : LAYER_PREFIX;
+  const group = `${linzAddr.suburb}, ${linzAddr.town}`;
 
   // update the corresponding status report
   const didRefChange =
@@ -231,7 +232,7 @@ export const mergeOneToOne = (
       // ---- END LEGACY MADNESS ----
       addToReport(
         Status.EXISTS_BUT_WRONG_DATA,
-        group.replace(LAYER_PREFIX, ''),
+        category === SPECIAL_REVIEW ? category : group,
         `${linzAddr.id}\t\t${toLink(osmAddr.id)}\t\t${issues.filter(Boolean).join('\tand\t')}`,
       );
     } else {
@@ -241,6 +242,7 @@ export const mergeOneToOne = (
 
   return {
     group,
+    category,
     diff: { tags: tagDiff, geometry: geometryDiff },
   };
 };

@@ -3,7 +3,7 @@ import type { OsmPatchFeature } from 'osm-api';
 import { type CallbackFunctions, type LinzAddr, Status } from '../types.js';
 import { REF_TAG } from '../config.js';
 import { addToReport } from './report.js';
-import { LAYER_PREFIX, toLink } from './helpers/const.js';
+import { toLink } from './helpers/const.js';
 
 export const SPECIAL_REVIEW = 'Recently Edited Addresses';
 export const SPECIAL_REVIEW_INFO = `
@@ -93,7 +93,7 @@ export const postprocessLayer: CallbackFunctions['postprocessLayer'] & {} = ({
       // this creates a duplicate entry, but nevermind
       addToReport(
         Status.EXISTS_BUT_WRONG_DATA,
-        group.replace(LAYER_PREFIX, ''),
+        group,
         `${a.linzId} <-> ${b.linzId}\t\tneed to be swapped\t\t${toLink(a.osmFeature.id)} <-> ${toLink(b.osmFeature.id)}`,
       );
     } else {

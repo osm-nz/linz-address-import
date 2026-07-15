@@ -42,6 +42,11 @@
     "maxLat": -35,
     "maxLng": 174.997
   },
+  "sectorIds": [
+    "83ba2dfffffffff",
+    "83bb50fffffffff",
+    "83bb53fffffffff"
+  ],
   "changesetTags": {
     "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
     "created_by": "LINZ Data Import 3.0.0",

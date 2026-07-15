@@ -1,10 +1,5 @@
-import {
-  type Callbacks,
-  type RunOptions,
-  run,
-} from '@osm-conflation-engine/cli';
-import type { Point } from 'geojson';
-import type { LinzAddr } from './types.js';
+import { type RunOptions, run } from '@osm-conflation-engine/cli';
+import type { CallbackFunctions } from './types.js';
 import { config } from './config.js';
 import { isImportUser } from './common/accounts.js';
 import { processWithoutRef as create } from './conflate/processWithoutRef.js';
@@ -20,7 +15,7 @@ import { getLocalKeyForOsm, getLocalKeyForSource } from './localKeys.js';
 import { getChangesetTags } from './getChangesetTags.js';
 
 export async function entrypoint(runOptions: RunOptions) {
-  const callbacks: Callbacks<Point, LinzAddr> = {
+  const callbacks: CallbackFunctions = {
     getLocalKeyForOsm,
     getLocalKeyForSource,
     isImportUser,

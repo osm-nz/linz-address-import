@@ -78,7 +78,8 @@ describe(checkStackedAddr, () => {
       centroid: [0, 0],
     });
     expect(checkStackedAddr(osmAddr, [r1, r2])).toStrictEqual({
-      group: 'Address Update - undefined, undefined',
+      category: 'Address Update',
+      group: 'undefined, undefined',
       diff: {
         geometry: undefined,
         tags: { __action: 'edit', 'addr:street': 'Example St' },
@@ -97,7 +98,8 @@ describe(checkStackedAddr, () => {
       centroid: [0, 0],
     });
     expect(checkStackedAddr(osmAddr, [r1, r2])).toStrictEqual({
-      group: 'Address Update - undefined, undefined',
+      category: 'Address Update',
+      group: 'undefined, undefined',
       diff: {
         geometry: undefined,
         tags: { __action: 'edit', 'alt_addr:housenumber': '1B' },
@@ -118,7 +120,8 @@ describe(checkStackedAddr, () => {
       centroid: [0, 0],
     });
     expect(checkStackedAddr(osmAddr, [r1, r2, r3, r4])).toStrictEqual({
-      group: 'Address Update - undefined, undefined',
+      category: 'Address Update',
+      group: 'undefined, undefined',
       diff: {
         geometry: undefined,
         tags: { __action: 'edit', 'addr3:housenumber': '1D' },
@@ -137,7 +140,8 @@ describe(checkStackedAddr, () => {
       centroid: [0, 0],
     });
     expect(checkStackedAddr(osmAddr, [r1, r5])).toStrictEqual({
-      group: 'Address Update - undefined, undefined',
+      category: 'Address Update',
+      group: 'undefined, undefined',
       diff: {
         geometry: undefined,
         tags: { __action: 'edit', 'alt_addr:street': 'Side St' },

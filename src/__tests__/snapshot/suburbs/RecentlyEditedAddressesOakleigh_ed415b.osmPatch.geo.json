@@ -3,29 +3,29 @@
   "features": [
     {
       "type": "Feature",
-      "id": "n110",
+      "id": "n4",
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              175.11,
+              174.90400000000002,
               -36.899800000000006
             ],
             [
-              175.11020000000002,
+              174.90420000000003,
               -36.900000000000006
             ],
             [
-              175.11,
+              174.90400000000002,
               -36.900200000000005
             ],
             [
-              175.1098,
+              174.90380000000002,
               -36.900000000000006
             ],
             [
-              175.11,
+              174.90400000000002,
               -36.899800000000006
             ]
           ]
@@ -33,40 +33,26 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:suburb": "Ōpōtiki",
-        "addr:hamlet": "🗑️"
-      }
-    },
-    {
-      "type": "Feature",
-      "id": "70109",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          175.109,
-          -36.9
-        ]
-      },
-      "properties": {
-        "addr:housenumber": "109",
-        "addr:street": "Example Street",
-        "addr:suburb": "Ōpōtiki",
-        "ref:linz:address_id": "70109"
+        "addr:housenumber": "4A"
       }
     }
   ],
   "bbox": {
     "minLat": -36.900200000000005,
-    "minLng": 175.109,
+    "minLng": 174.90380000000002,
     "maxLat": -36.899800000000006,
-    "maxLng": 175.11020000000002
+    "maxLng": 174.90420000000003
   },
+  "sectorIds": [
+    "83bb50fffffffff"
+  ],
   "changesetTags": {
     "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
     "created_by": "LINZ Data Import 3.0.0",
     "locale": "en-NZ",
     "source": "https://wiki.osm.org/LINZ",
-    "comment": "Address Update - Ōpōtiki, ",
+    "comment": "Recently Edited Addresses - Oakleigh, ",
     "import": "yes"
-  }
+  },
+  "instructions": "These addresses were recently edited by a non-importer. The suggestions from the import tool may be wrong; so this layer is the most time consuming, the history of every feature needs to be carefully checked. If someone has manually edited ref:linz:address_id, the best solution may be to delete the mismatched ref tags, and wait for the next time that the import / conflation system runs."
 }

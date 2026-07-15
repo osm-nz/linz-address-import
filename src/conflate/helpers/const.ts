@@ -19,4 +19,4 @@ export const MAP = <const>{
 export const toLink = (osmId: string): string =>
   `https://osm.org/${MAP[osmId[0] as keyof typeof MAP]}/${osmId.slice(1)}`;
 
-export const LAYER_PREFIX = 'Address Update - ';
+export const LAYER_PREFIX = 'Address Update';
