@@ -94,7 +94,7 @@
     "created_by": "LINZ Data Import 3.0.0",
     "locale": "en-NZ",
     "source": "https://wiki.osm.org/LINZ",
-    "comment": "Slighly shift addresses - Oakleigh",
+    "comment": "Slighly shift addresses - Oakleigh, ",
     "import": "yes"
   }
 }

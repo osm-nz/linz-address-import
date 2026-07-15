@@ -3,29 +3,29 @@
   "features": [
     {
       "type": "Feature",
-      "id": "n59",
+      "id": "n110",
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              174.959,
+              175.11,
               -36.899800000000006
             ],
             [
-              174.9592,
+              175.11020000000002,
               -36.900000000000006
             ],
             [
-              174.959,
+              175.11,
               -36.900200000000005
             ],
             [
-              174.9588,
+              175.1098,
               -36.900000000000006
             ],
             [
-              174.959,
+              175.11,
               -36.899800000000006
             ]
           ]
@@ -33,40 +33,40 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:type": "water"
+        "addr:suburb": "Ōpōtiki",
+        "addr:hamlet": "🗑️"
       }
     },
     {
       "type": "Feature",
-      "id": "70058",
+      "id": "70109",
       "geometry": {
         "type": "Point",
         "coordinates": [
-          174.958,
+          175.109,
           -36.9
         ]
       },
       "properties": {
-        "addr:housenumber": "58",
-        "addr:street": "Awaroa Inlet",
-        "addr:suburb": "Abel Tasman National Park",
-        "addr:type": "water",
-        "ref:linz:address_id": "70058"
+        "addr:housenumber": "109",
+        "addr:street": "Example Street",
+        "addr:suburb": "Ōpōtiki",
+        "ref:linz:address_id": "70109"
       }
     }
   ],
   "bbox": {
     "minLat": -36.900200000000005,
-    "minLng": 174.958,
+    "minLng": 175.109,
     "maxLat": -36.899800000000006,
-    "maxLng": 174.9592
+    "maxLng": 175.11020000000002
   },
   "changesetTags": {
     "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
     "created_by": "LINZ Data Import 3.0.0",
     "locale": "en-NZ",
     "source": "https://wiki.osm.org/LINZ",
-    "comment": "Address Update - Abel Tasman National Park",
+    "comment": "Address Update - Ōpōtiki, ",
     "import": "yes"
   }
 }

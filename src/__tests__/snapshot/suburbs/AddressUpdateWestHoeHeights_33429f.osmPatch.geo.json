@@ -3,76 +3,6 @@
   "features": [
     {
       "type": "Feature",
-      "id": "n45",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              174.94500000000002,
-              -36.899800000000006
-            ],
-            [
-              174.94520000000003,
-              -36.900000000000006
-            ],
-            [
-              174.94500000000002,
-              -36.900200000000005
-            ],
-            [
-              174.94480000000001,
-              -36.900000000000006
-            ],
-            [
-              174.94500000000002,
-              -36.899800000000006
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "__action": "edit",
-        "addr:hamlet": "🗑️"
-      }
-    },
-    {
-      "type": "Feature",
-      "id": "n47",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              174.947,
-              -36.899800000000006
-            ],
-            [
-              174.9472,
-              -36.900000000000006
-            ],
-            [
-              174.947,
-              -36.900200000000005
-            ],
-            [
-              174.9468,
-              -36.900000000000006
-            ],
-            [
-              174.947,
-              -36.899800000000006
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "__action": "edit",
-        "addr:hamlet": "🗑️"
-      }
-    },
-    {
-      "type": "Feature",
       "id": "n64",
       "geometry": {
         "type": "Polygon",
@@ -104,47 +34,13 @@
       "properties": {
         "__action": "delete"
       }
-    },
-    {
-      "type": "Feature",
-      "id": "70062",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          176.962,
-          -36.9
-        ]
-      },
-      "properties": {
-        "addr:housenumber": "62",
-        "addr:street": "Example Street",
-        "addr:suburb": "West Hoe Heights",
-        "ref:linz:address_id": "70062"
-      }
-    },
-    {
-      "type": "Feature",
-      "id": "70063",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          176.963,
-          -36.9
-        ]
-      },
-      "properties": {
-        "addr:housenumber": "63",
-        "addr:street": "Example Street",
-        "addr:suburb": "West Hoe Heights",
-        "ref:linz:address_id": "70063"
-      }
     }
   ],
   "bbox": {
-    "minLat": -36.900200000000005,
-    "minLng": 174.94480000000001,
-    "maxLat": -36.899800000000006,
-    "maxLng": 176.963
+    "minLat": -36.90010000000001,
+    "minLng": 174.9639,
+    "maxLat": -36.8999,
+    "maxLng": 174.9641
   },
   "changesetTags": {
     "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",

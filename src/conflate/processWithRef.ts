@@ -154,8 +154,9 @@ export const mergeOneToOne = (
 
   const group = needsSpecialReview
     ? SPECIAL_REVIEW
-    : (isMinorMove ? 'Slighly shift addresses - ' : LAYER_PREFIX) +
-      linzAddr.suburb;
+    : `${
+        isMinorMove ? 'Slighly shift addresses - ' : LAYER_PREFIX
+      }${linzAddr.suburb}, ${linzAddr.town}`;
 
   // update the corresponding status report
   const didRefChange =

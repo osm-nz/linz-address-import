@@ -12,8 +12,10 @@ export const deleteFeature: CallbackFunctions['deleteFeature'] = ({ osm }) => {
     osm.tags['addr:suburb'] ||
     osm.tags['addr:hamlet'] ||
     'deletions from unknown sector';
+  const town = osm.tags['addr:city'];
 
-  const group = LAYER_PREFIX + suburb;
+  let group = LAYER_PREFIX + suburb;
+  if (town) group += `, ${town}`;
 
   if (osm.id[0] !== 'n' || isNonTrivial(osm.tags)) {
     if (osm.id[0] !== 'n' || osm.tags.building) {

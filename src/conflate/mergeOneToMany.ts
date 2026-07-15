@@ -16,7 +16,7 @@ export const mergeOneToMany: CallbackFunctions['mergeOneToMany'] = ({
 
   const autofixable: Record<string, '✅' | '⚠️'> = {};
   const result: MutliFeatureConflationResult = {
-    group: `Merge duplicate addresses - ${source.properties.suburb}`,
+    group: `Merge duplicate addresses - ${source.properties.suburb}, ${source.properties.town}`,
     diffPerFeature: {},
   };
 

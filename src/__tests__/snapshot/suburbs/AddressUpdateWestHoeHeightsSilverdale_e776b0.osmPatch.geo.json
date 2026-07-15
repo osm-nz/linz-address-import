@@ -1,0 +1,106 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "n45",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.94500000000002,
+              -36.899800000000006
+            ],
+            [
+              174.94520000000003,
+              -36.900000000000006
+            ],
+            [
+              174.94500000000002,
+              -36.900200000000005
+            ],
+            [
+              174.94480000000001,
+              -36.900000000000006
+            ],
+            [
+              174.94500000000002,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "addr:hamlet": "🗑️"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "n47",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.947,
+              -36.899800000000006
+            ],
+            [
+              174.9472,
+              -36.900000000000006
+            ],
+            [
+              174.947,
+              -36.900200000000005
+            ],
+            [
+              174.9468,
+              -36.900000000000006
+            ],
+            [
+              174.947,
+              -36.899800000000006
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "__action": "edit",
+        "addr:hamlet": "🗑️"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "70062",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          176.962,
+          -36.9
+        ]
+      },
+      "properties": {
+        "addr:housenumber": "62",
+        "addr:street": "Example Street",
+        "addr:suburb": "West Hoe Heights",
+        "ref:linz:address_id": "70062"
+      }
+    }
+  ],
+  "bbox": {
+    "minLat": -36.900200000000005,
+    "minLng": 174.94480000000001,
+    "maxLat": -36.899800000000006,
+    "maxLng": 176.962
+  },
+  "changesetTags": {
+    "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
+    "created_by": "LINZ Data Import 3.0.0",
+    "locale": "en-NZ",
+    "source": "https://wiki.osm.org/LINZ",
+    "comment": "Address Update - West Hoe Heights, Silverdale",
+    "import": "yes"
+  }
+}

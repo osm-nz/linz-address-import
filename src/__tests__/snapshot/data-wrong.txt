@@ -2,7 +2,7 @@
 Recently Edited Addresses
 70004		https://osm.org/node/4		housenumber|4A|4
 
-Oakleigh
+Oakleigh, 
 70005		https://osm.org/node/5		street|Example Street|Example Lane
 70006		https://osm.org/node/6		suburb|Oakleigh|Yeetville	and	doubleSuburb||
 70007		https://osm.org/node/7		suburb|Oakleigh|
@@ -15,9 +15,7 @@ Oakleigh
 70122		https://osm.org/node/122		flatCount|3|0
 70142		https://osm.org/node/142		housenumber|142|143
 70143		https://osm.org/node/143		housenumber|143|142
-70161		https://osm.org/node/161		town|Jericho|São Manoël
 70163		https://osm.org/node/163		flatCount|0|3
-70197		https://osm.org/node/197		suburb|Oakleigh|Oakleigh!*@typo
 70226		https://osm.org/node/226		street|Whānau Way|Whanau Way
 stack(70079-70081)		https://osm.org/node/79		suburb|Oakleigh|The City of Ember	and	doubleSuburb||
 stack(70082-70084)		https://osm.org/node/82		housenumber|82|82typo
@@ -25,12 +23,16 @@ stack(70111-70113)		https://osm.org/node/111		flatCount|3|0
 stack(70114-70116)		https://osm.org/node/114		flatCount|3|123
 70142 <-> 70143		need to be swapped		https://osm.org/node/142 <-> https://osm.org/node/143
 
-West Hoe Heights
+West Hoe Heights, Silverdale
 70045		https://osm.org/node/45		doubleSuburb||
 70047		https://osm.org/node/47		doubleSuburb||
 
-Abel Tasman National Park
+Abel Tasman National Park, 
 70059		https://osm.org/node/59		water|1|0
 
-Ōpōtiki
+Ōpōtiki, 
 70110		https://osm.org/node/110		suburb|Ōpōtiki|Opotiki	and	doubleSuburb||
+
+Oakleigh, Jericho
+70161		https://osm.org/node/161		town|Jericho|São Manoël
+70197		https://osm.org/node/197		suburb|Oakleigh|Oakleigh!*@typo

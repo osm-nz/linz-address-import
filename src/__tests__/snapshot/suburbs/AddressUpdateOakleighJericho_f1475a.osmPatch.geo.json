@@ -3,29 +3,29 @@
   "features": [
     {
       "type": "Feature",
-      "id": "n110",
+      "id": "n161",
       "geometry": {
         "type": "Polygon",
         "coordinates": [
           [
             [
-              175.11,
+              174.161,
               -36.899800000000006
             ],
             [
-              175.11020000000002,
+              174.1612,
               -36.900000000000006
             ],
             [
-              175.11,
+              174.161,
               -36.900200000000005
             ],
             [
-              175.1098,
+              174.1608,
               -36.900000000000006
             ],
             [
-              175.11,
+              174.161,
               -36.899800000000006
             ]
           ]
@@ -33,40 +33,57 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:suburb": "Ōpōtiki",
-        "addr:hamlet": "🗑️"
+        "addr:city": "Jericho"
       }
     },
     {
       "type": "Feature",
-      "id": "70109",
+      "id": "n197",
       "geometry": {
-        "type": "Point",
+        "type": "Polygon",
         "coordinates": [
-          175.109,
-          -36.9
+          [
+            [
+              176.197,
+              -36.899800000000006
+            ],
+            [
+              176.1972,
+              -36.900000000000006
+            ],
+            [
+              176.197,
+              -36.900200000000005
+            ],
+            [
+              176.1968,
+              -36.900000000000006
+            ],
+            [
+              176.197,
+              -36.899800000000006
+            ]
+          ]
         ]
       },
       "properties": {
-        "addr:housenumber": "109",
-        "addr:street": "Example Street",
-        "addr:suburb": "Ōpōtiki",
-        "ref:linz:address_id": "70109"
+        "__action": "edit",
+        "addr:suburb": "Oakleigh"
       }
     }
   ],
   "bbox": {
     "minLat": -36.900200000000005,
-    "minLng": 175.109,
+    "minLng": 174.1608,
     "maxLat": -36.899800000000006,
-    "maxLng": 175.11020000000002
+    "maxLng": 176.1972
   },
   "changesetTags": {
     "attribution": "https://wiki.openstreetmap.org/wiki/Contributors#LINZ",
     "created_by": "LINZ Data Import 3.0.0",
     "locale": "en-NZ",
     "source": "https://wiki.osm.org/LINZ",
-    "comment": "Address Update - Ōpōtiki",
+    "comment": "Address Update - Oakleigh, Jericho",
     "import": "yes"
   }
 }

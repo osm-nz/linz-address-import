@@ -16,7 +16,7 @@ export const handleCorrupted: CallbackFunctions['mergeManyToOne'] & {} = ({
   source: linzAddrs,
 }) => {
   // pick the suburb from the first node
-  const group = LAYER_PREFIX + linzAddrs[0].properties.suburb;
+  const group = `${LAYER_PREFIX}${linzAddrs[0].properties.suburb}, ${linzAddrs[0].properties.town}`;
   let tagDiff: TagDiff;
   const extra: ConflationResultExtra = {};
 

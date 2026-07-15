@@ -14,7 +14,7 @@ export const processWithoutRef: CallbackFunctions['create'] = ({
   if (!osmAddrs.length) {
     return {
       selection: undefined,
-      group: LAYER_PREFIX + linzAddr.suburb,
+      group: `${LAYER_PREFIX}${linzAddr.suburb}, ${linzAddr.town}`,
       diff: { tags: linzAddrToTags(linzAddr) },
     };
   }
