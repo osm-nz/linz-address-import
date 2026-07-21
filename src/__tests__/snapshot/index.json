@@ -2,98 +2,6 @@
   "fields": [],
   "results": [
     {
-      "id": "AddressUpdateAbelTasmanNationalPark_1419a0",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateAbelTasmanNationalPark_1419a0.osmPatch.geo.json",
-      "name": "Address Update - Abel Tasman National Park, ",
-      "title": "Address Update - Abel Tasman National Park, ",
-      "totalCount": 25,
-      "source": "",
-      "snippet": "add 2, delete 15, edit 8",
-      "extent": [
-        [
-          174.1608,
-          -36.9005333
-        ],
-        [
-          176.1972,
-          -36.899800000000006
-        ]
-      ],
-      "groupCategories": [
-        "Address Update",
-        "/Categories/Addresses"
-      ]
-    },
-    {
-      "id": "AddressUpdateDuplicateTallHamlet_33e0b3",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateDuplicateTallHamlet_33e0b3.osmPatch.geo.json",
-      "name": "Address Update - Duplicate Tall Hamlet, ",
-      "title": "Address Update - Duplicate Tall Hamlet, ",
-      "totalCount": 2,
-      "source": "",
-      "snippet": "add 2",
-      "extent": [
-        [
-          174.996,
-          -36.9
-        ],
-        [
-          174.997,
-          -35
-        ]
-      ],
-      "groupCategories": [
-        "Address Update",
-        "/Categories/Addresses"
-      ]
-    },
-    {
-      "id": "AddressUpdateDuplicateWideHamlet_fb620c",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateDuplicateWideHamlet_fb620c.osmPatch.geo.json",
-      "name": "Address Update - Duplicate Wide Hamlet, ",
-      "title": "Address Update - Duplicate Wide Hamlet, ",
-      "totalCount": 2,
-      "source": "",
-      "snippet": "add 2",
-      "extent": [
-        [
-          172.998,
-          -36.9
-        ],
-        [
-          174.999,
-          -36.9
-        ]
-      ],
-      "groupCategories": [
-        "Address Update",
-        "/Categories/Addresses"
-      ]
-    },
-    {
-      "id": "AddressUpdateJerichoJericho_b68bf6",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateJerichoJericho_b68bf6.osmPatch.geo.json",
-      "name": "Address Update - Jericho, Jericho",
-      "title": "Address Update - Jericho, Jericho",
-      "totalCount": 1,
-      "source": "",
-      "snippet": "add 1",
-      "extent": [
-        [
-          176.162,
-          -36.9
-        ],
-        [
-          176.162,
-          -36.9
-        ]
-      ],
-      "groupCategories": [
-        "Address Update",
-        "/Categories/Addresses"
-      ]
-    },
-    {
       "id": "AddressUpdateOakleigh_b77619",
       "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateOakleigh_b77619.osmPatch.geo.json",
       "name": "Address Update - Oakleigh, ",
@@ -117,6 +25,29 @@
       ]
     },
     {
+      "id": "AddressUpdateŌpōtikiOakleighDuplicateTallHamletJerichoJerichoAbelTasmanNationalParkOakleighJerichoWe_28e903",
+      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateŌpōtikiOakleighDuplicateTallHamletJerichoJerichoAbelTasmanNationalParkOakleighJerichoWe_28e903.osmPatch.geo.json",
+      "name": "Address Update - Ōpōtiki, ;Oakleigh;Duplicate Tall Hamlet, ;Jericho, Jericho;Abel Tasman National Park, ;Oakleigh, Jericho;West Hoe Heights;Duplicate Wide Hamlet, ;deletions from unknown sector;West Hoe Heights, Silverdale;West Hoe Heights, Another Town",
+      "title": "Address Update - Ōpōtiki, ;Oakleigh;Duplicate Tall Hamlet, ;Jericho, Jericho;Abel Tasman National Park, ;Oakleigh, Jericho;West Hoe Heights;Duplicate Wide Hamlet, ;deletions from unknown sector;West Hoe Heights, Silverdale;West Hoe Heights, Another Town",
+      "totalCount": 34,
+      "source": "",
+      "snippet": "add 9, delete 15, edit 10",
+      "extent": [
+        [
+          172.998,
+          -36.9005333
+        ],
+        [
+          176.963,
+          -35
+        ]
+      ],
+      "groupCategories": [
+        "Address Update",
+        "/Categories/Addresses"
+      ]
+    },
+    {
       "id": "AddressUpdateRangitāhua_e047a6",
       "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateRangitāhua_e047a6.osmPatch.geo.json",
       "name": "Address Update - Rangitāhua, ",
@@ -132,29 +63,6 @@
         [
           -176.035,
           -36.9
-        ]
-      ],
-      "groupCategories": [
-        "Address Update",
-        "/Categories/Addresses"
-      ]
-    },
-    {
-      "id": "AddressUpdateWestHoeHeightsSilverdale_e776b0",
-      "url": "https://osm-nz.github.io/linz-address-import/suburbs/AddressUpdateWestHoeHeightsSilverdale_e776b0.osmPatch.geo.json",
-      "name": "Address Update - West Hoe Heights, Silverdale",
-      "title": "Address Update - West Hoe Heights, Silverdale",
-      "totalCount": 4,
-      "source": "",
-      "snippet": "add 2, edit 2",
-      "extent": [
-        [
-          174.94480000000001,
-          -36.900200000000005
-        ],
-        [
-          176.963,
-          -36.899800000000006
         ]
       ],
       "groupCategories": [

@@ -21,7 +21,7 @@
     "@actions/core": "^3.0.1",
     "@id-sdk/geo": "^3.0.0-pre.10",
     "@osm-conflation-engine/changeset-watcher": "^3.1.1",
-    "@osm-conflation-engine/cli": "^3.1.0",
+    "@osm-conflation-engine/cli": "^3.2.0",
     "csv-parser": "^3.2.1",
     "h3-js": "^4.4.0",
     "osm-api": "^4.0.0"
