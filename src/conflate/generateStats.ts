@@ -16,12 +16,13 @@ export async function generateStats(
 ): Promise<void> {
   const count = getReportCounts();
 
-  const total = Object.values(conflationResult.counts).reduce(
+  const total = Object.values(conflationResult.countsByPhase.conflated).reduce(
     (a, b) => a + b,
     0,
   );
-  count[Status.PERFECT] = conflationResult.counts.perfect;
-  count[Status.TOTALLY_MISSING] = conflationResult.counts.create;
+  count[Status.PERFECT] = conflationResult.countsByPhase.conflated.perfect;
+  count[Status.TOTALLY_MISSING] =
+    conflationResult.countsByPhase.conflated.create;
 
   // mock the date in the test environment, otherwise the snapshot would update each time
   const date = mock ? 'MOCK' : new Date().toISOString();

@@ -1,0 +1,33 @@
+{
+  "config": null,
+  "warnings": [],
+  "countsByPhase": {
+    "init": {
+      "sourceDataset": 164,
+      "ignored": 1,
+      "osm": {
+        "withRef": 102,
+        "noRef": 11,
+        "semi": 32,
+        "duplicateRefs": 11,
+        "lastEditedByImporter": 154,
+        "recentlyChanged": 156,
+        "recentlyChecked": 3
+      }
+    },
+    "matched": {
+      "1": 86,
+      "2": 5,
+      "3": 16,
+      "4": 0,
+      "5": 19,
+      "6": 41
+    },
+    "conflated": {
+      "create": 53,
+      "edit": 44,
+      "delete": 21,
+      "perfect": 204
+    }
+  }
+}

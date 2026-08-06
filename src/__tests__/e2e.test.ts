@@ -39,6 +39,13 @@ describe('end-to-end test', () => {
       await time(() => entrypoint({ steps: ['match', 'conflate'] })),
     ).toBeLessThan(0.5);
 
+    // this file contains unstable stuff, like absolute paths on disk.
+    // so we need to delete that from the snapshot tests.
+    const metricsPath = joinPath('snapshot/metrics.json');
+    const metrics = await JSON.parse(await fs.readFile(metricsPath, 'utf8'));
+    metrics.config = null;
+    await fs.writeFile(metricsPath, JSON.stringify(metrics, null, 2));
+
     // need to wait for git to re-calculate the diff
     await setTimeout(1000);
 

@@ -1,0 +1,228 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.144,
+              -36.9005333
+            ],
+            [
+              175.16320000000002,
+              -36.9005333
+            ],
+            [
+              175.16320000000002,
+              -36
+            ],
+            [
+              174.144,
+              -36
+            ],
+            [
+              174.144,
+              -36.9005333
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "category": "Address Update",
+        "group": "Oakleigh, ",
+        "title": "Address Update - Oakleigh, ",
+        "count": "add 37, delete 3, move 2, edit 32",
+        "totalCount": 74
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              172.998,
+              -36.9005333
+            ],
+            [
+              176.963,
+              -36.9005333
+            ],
+            [
+              176.963,
+              -35
+            ],
+            [
+              172.998,
+              -35
+            ],
+            [
+              172.998,
+              -36.9005333
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "category": "Address Update",
+        "group": "Ōpōtiki, ;Oakleigh;Duplicate Tall Hamlet, ;Jericho, Jericho;Abel Tasman National Park, ;Oakleigh, Jericho;West Hoe Heights;Duplicate Wide Hamlet, ;deletions from unknown sector;West Hoe Heights, Silverdale;West Hoe Heights, Another Town",
+        "title": "Address Update - Ōpōtiki, ;Oakleigh;Duplicate Tall Hamlet, ;Jericho, Jericho;Abel Tasman National Park, ;Oakleigh, Jericho;West Hoe Heights;Duplicate Wide Hamlet, ;deletions from unknown sector;West Hoe Heights, Silverdale;West Hoe Heights, Another Town",
+        "count": "add 9, delete 15, edit 10",
+        "totalCount": 34
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -176.035,
+              -36.9
+            ],
+            [
+              -176.035,
+              -36.9
+            ],
+            [
+              -176.035,
+              -36.9
+            ],
+            [
+              -176.035,
+              -36.9
+            ],
+            [
+              -176.035,
+              -36.9
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "category": "Address Update",
+        "group": "Rangitāhua, ",
+        "title": "Address Update - Rangitāhua, ",
+        "count": "add 1",
+        "totalCount": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.1509,
+              -36.900200000000005
+            ],
+            [
+              175.1371,
+              -36.900200000000005
+            ],
+            [
+              175.1371,
+              -36.899800000000006
+            ],
+            [
+              174.1509,
+              -36.899800000000006
+            ],
+            [
+              174.1509,
+              -36.900200000000005
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "category": "Merge duplicate addresses",
+        "group": "Oakleigh, ",
+        "title": "Merge duplicate addresses - Oakleigh, ",
+        "count": "delete 3, edit 1",
+        "totalCount": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.90380000000002,
+              -36.900200000000005
+            ],
+            [
+              174.90420000000003,
+              -36.900200000000005
+            ],
+            [
+              174.90420000000003,
+              -36.899800000000006
+            ],
+            [
+              174.90380000000002,
+              -36.899800000000006
+            ],
+            [
+              174.90380000000002,
+              -36.900200000000005
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "category": "Recently Edited Addresses",
+        "group": "Oakleigh, ",
+        "title": "Recently Edited Addresses - Oakleigh, ",
+        "instructions": "These addresses were recently edited by a non-importer. The suggestions from the import tool may be wrong; so this layer is the most time consuming, the history of every feature needs to be carefully checked. If someone has manually edited ref:linz:address_id, the best solution may be to delete the mismatched ref tags, and wait for the next time that the import / conflation system runs.",
+        "count": "edit 1",
+        "totalCount": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              174.211,
+              -36.902
+            ],
+            [
+              174.912,
+              -36.902
+            ],
+            [
+              174.912,
+              -36.9
+            ],
+            [
+              174.211,
+              -36.9
+            ],
+            [
+              174.211,
+              -36.902
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "category": "Slighly shift addresses",
+        "group": "Oakleigh, ",
+        "title": "Slighly shift addresses - Oakleigh, ",
+        "count": "move 4",
+        "totalCount": 4
+      }
+    }
+  ]
+}
