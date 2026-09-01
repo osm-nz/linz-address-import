@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://www.schemastore.org/dependabot-2.0.json
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+    allow:
+      - dependency-name: '@osm-conflation-engine/*'
+    groups:
+      osm-conflation-engine:
+        patterns:
+          - '@osm-conflation-engine/*'
