@@ -49,7 +49,7 @@ export const config: Config = {
   e2e_tests: {
     ignore_list_file_path: join(
       import.meta.dirname,
-      './__tests__/mock/ignore-list.csv',
+      './__tests__/mock/ignore-list.json',
     ),
   },
 };
