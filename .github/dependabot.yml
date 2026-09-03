@@ -6,6 +6,9 @@ updates:
     directory: /
     schedule:
       interval: daily
+    cooldown:
+      exclude:
+        - '@osm-conflation-engine/*'
     allow:
       - dependency-name: '@osm-conflation-engine/*'
     groups:
