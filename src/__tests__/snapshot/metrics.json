@@ -11,7 +11,7 @@
         "semi": 32,
         "duplicateRefs": 11,
         "lastEditedByImporter": 154,
-        "recentlyChanged": 156,
+        "recentlyChanged": 1,
         "recentlyChecked": 3
       }
     },
@@ -27,7 +27,7 @@
       "create": 53,
       "edit": 44,
       "delete": 21,
-      "perfect": 204
+      "perfect": 64
     }
   }
 }
