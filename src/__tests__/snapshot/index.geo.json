@@ -8,43 +8,6 @@
         "coordinates": [
           [
             [
-              174.144,
-              -36.9005333
-            ],
-            [
-              175.16320000000002,
-              -36.9005333
-            ],
-            [
-              175.16320000000002,
-              -36
-            ],
-            [
-              174.144,
-              -36
-            ],
-            [
-              174.144,
-              -36.9005333
-            ]
-          ]
-        ]
-      },
-      "properties": {
-        "category": "Address Update",
-        "group": "Oakleigh, ",
-        "title": "Address Update - Oakleigh, ",
-        "count": "add 37, delete 3, move 2, edit 32",
-        "totalCount": 74
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
               172.998,
               -36.9005333
             ],
@@ -68,11 +31,12 @@
         ]
       },
       "properties": {
+        "id": "AddressUpdateŌpōtikiOakleighWestHoeHeightsDuplicateWideHamletDuplicateTallHamletAbelTasmanNationalPa_b6e7f6",
         "category": "Address Update",
-        "group": "Ōpōtiki, ;Oakleigh;Duplicate Tall Hamlet, ;Jericho, Jericho;Abel Tasman National Park, ;Oakleigh, Jericho;West Hoe Heights;Duplicate Wide Hamlet, ;deletions from unknown sector;West Hoe Heights, Silverdale;West Hoe Heights, Another Town",
-        "title": "Address Update - Ōpōtiki, ;Oakleigh;Duplicate Tall Hamlet, ;Jericho, Jericho;Abel Tasman National Park, ;Oakleigh, Jericho;West Hoe Heights;Duplicate Wide Hamlet, ;deletions from unknown sector;West Hoe Heights, Silverdale;West Hoe Heights, Another Town",
-        "count": "add 9, delete 15, edit 10",
-        "totalCount": 34
+        "group": "Ōpōtiki, ;Oakleigh;West Hoe Heights;Duplicate Wide Hamlet, ;Duplicate Tall Hamlet, ;Abel Tasman National Park, ;Oakleigh, Jericho;Jericho, Jericho;West Hoe Heights, Another Town;deletions from unknown sector;West Hoe Heights, Silverdale;Oakleigh, ",
+        "title": "Address Update - Ōpōtiki, ;Oakleigh;West Hoe Heights;Duplicate Wide Hamlet, ;Duplicate Tall Hamlet, ;Abel Tasman National Park, ;Oakleigh, Jericho;Jericho, Jericho;West Hoe Heights, Another Town;deletions from unknown sector;West Hoe Heights, Silverdale;Oakleigh, ",
+        "count": "add 46, delete 18, move 2, edit 42",
+        "totalCount": 108
       }
     },
     {
@@ -105,6 +69,7 @@
         ]
       },
       "properties": {
+        "id": "AddressUpdateRangitāhua_e047a6",
         "category": "Address Update",
         "group": "Rangitāhua, ",
         "title": "Address Update - Rangitāhua, ",
@@ -142,6 +107,7 @@
         ]
       },
       "properties": {
+        "id": "MergeduplicateaddressesOakleigh_c7f850",
         "category": "Merge duplicate addresses",
         "group": "Oakleigh, ",
         "title": "Merge duplicate addresses - Oakleigh, ",
@@ -179,6 +145,7 @@
         ]
       },
       "properties": {
+        "id": "RecentlyEditedAddressesOakleigh_ed415b",
         "category": "Recently Edited Addresses",
         "group": "Oakleigh, ",
         "title": "Recently Edited Addresses - Oakleigh, ",
@@ -217,6 +184,7 @@
         ]
       },
       "properties": {
+        "id": "SlighlyshiftaddressesOakleigh_35d24f",
         "category": "Slighly shift addresses",
         "group": "Oakleigh, ",
         "title": "Slighly shift addresses - Oakleigh, ",
