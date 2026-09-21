@@ -66,7 +66,8 @@ export function checkStackedAddr(
     { osm: osmAddr, source: linzAddrs[0] },
     true,
   );
-  delete result.diff.tags[REF_TAG];
+  const tags = result.diff!.tags;
+  delete tags[REF_TAG];
 
   const maxAltTag = Object.keys(osmAddr.tags)
     .map((key) => +(key.match(/^addr(\d+):/)?.[1] || 0))
@@ -75,7 +76,7 @@ export function checkStackedAddr(
   // if alt_addr exists, then it should be index 1
   if (osmAddr.tags['alt_addr:housenumber']) {
     Object.assign(
-      result.diff.tags,
+      tags,
       checkIfMatching(
         'alt_addr',
         osmAddr,
@@ -88,7 +89,7 @@ export function checkStackedAddr(
   // start at 2 because addr0:* and addr1:* are not valid.
   for (let i = 2; i <= maxAltTag; i++) {
     Object.assign(
-      result.diff.tags,
+      tags,
       checkIfMatching(
         `addr${i}`,
         osmAddr,
