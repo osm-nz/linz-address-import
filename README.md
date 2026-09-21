@@ -5,6 +5,7 @@
 [![Changeset Watch](https://github.com/osm-nz/linz-address-import/actions/workflows/changesetWatch.yml/badge.svg)](https://github.com/osm-nz/linz-address-import/actions/workflows/changesetWatch.yml)
 [![Coverage Status](https://coveralls.io/repos/github/osm-nz/linz-address-import/badge.svg?branch=main)](https://coveralls.io/github/osm-nz/linz-address-import?branch=main)
 ![Lines of code](https://sloc.xyz/github/osm-nz/linz-address-import)
+![](https://img.shields.io/badge/dynamic/json?url=https://osm-conflation-engine.kyle.kiwi/api/run_history/ref%3Alinz%3Aaddress_id&query=$.result.timestamp&label=Last%20Sync&color=31c654)
 
 Street address data from [Land Information New Zealand (LINZ)](https://linz.govt.nz) was [first imported into OpenStreetMap in 2017](https://wiki.openstreetmap.org/wiki/LINZ/Address_Import). Since then, the imported data has become out of date.
 
