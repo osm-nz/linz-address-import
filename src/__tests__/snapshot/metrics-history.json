@@ -1,0 +1,14 @@
+{
+  "lastUpdated": "MOCK",
+  "rows": [
+    {
+      "date": "MOCK",
+      "conflated": {
+        "create": 53,
+        "edit": 44,
+        "delete": 21,
+        "perfect": 64
+      }
+    }
+  ]
+}

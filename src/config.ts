@@ -21,7 +21,7 @@ export const config: Config = {
     type: 'file',
     file: linzFile,
   },
-  o_data: {
+  osm_data: {
     source: {
       type: 'pbf',
       pbf_url: planetFile,

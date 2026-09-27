@@ -192,5 +192,17 @@
         "totalCount": 4
       }
     }
+  ],
+  "__reports": [
+    "report-match-OneToOne.md",
+    "report-match-OneToMany.md",
+    "report-match-ManyToMany.md",
+    "report-match-ManyToOne.md",
+    "report-match-Delete.md",
+    "report-match-Guess.md",
+    "report-conflation-create.md",
+    "report-conflation-edit.md",
+    "report-conflation-move.md",
+    "report-conflation-delete.md"
   ]
 }

@@ -1,0 +1,18 @@
+# Matches – ManyToOne
+
+- 70134 + 70135 + 70136 ⇄ [n134](https://osm.org/node/134)
+- 70215 + 70216 ⇄ [n215](https://osm.org/node/215)
+- 70217 ⇄ [n217](https://osm.org/node/217)
+- 70219 + 70220 ⇄ [n219](https://osm.org/node/219)
+- 70221 + 70222 ⇄ [n221](https://osm.org/node/221)
+- 70227 + 70228 ⇄ [n227](https://osm.org/node/227)
+- 70231 + 70232 ⇄ [n231](https://osm.org/node/231)
+- 70233 + 70234 ⇄ [n233](https://osm.org/node/233)
+- 70235 + 70236 ⇄ [n235](https://osm.org/node/235)
+- 70237 + 70238 ⇄ [n237](https://osm.org/node/237)
+- 70239 + 70240 ⇄ [n239](https://osm.org/node/239)
+- 70247 + 70248 ⇄ [n247](https://osm.org/node/247)
+- 70249 ⇄ [n249](https://osm.org/node/249)
+- 70251 + 70252 ⇄ [n251](https://osm.org/node/251)
+- 70253 + 70254 ⇄ [n253](https://osm.org/node/253)
+- 70023A + 70023B ⇄ [n23](https://osm.org/node/23)
