@@ -141,7 +141,7 @@ export const mergeOneToOne = (
     isSlightlyOff &&
     !isVeryFarOff;
 
-  if (isLocationOff) {
+  if (isLocationOff && osmAddr.id[0] === 'n') {
     tagDiff.__action = 'move';
     geometryDiff = {
       type: 'LineString',
