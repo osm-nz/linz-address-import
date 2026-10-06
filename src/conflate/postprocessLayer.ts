@@ -45,7 +45,7 @@ export const postprocessLayer: CallbackFunctions['postprocessLayer'] & {} = ({
     if (!linzAddr || !osmFeature) continue;
 
     const isDiffPurelyHouseNumber = Object.keys(diff.properties).every(
-      (key) => key === '__action' || key === 'addr:housenumber',
+      (key) => key.startsWith('__') || key === 'addr:housenumber',
     );
     if (!isDiffPurelyHouseNumber) continue;
 
@@ -100,6 +100,4 @@ export const postprocessLayer: CallbackFunctions['postprocessLayer'] & {} = ({
       delete maybeSwappablePairs[key];
     }
   }
-
-  return features;
 };

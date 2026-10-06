@@ -18,7 +18,8 @@
         ]
       },
       "properties": {
-        "__action": "move"
+        "__action": "move",
+        "__oldTags": {}
       }
     },
     {
@@ -39,7 +40,10 @@
       },
       "properties": {
         "__action": "move",
-        "ref:linz:address_id": "70012"
+        "ref:linz:address_id": "70012",
+        "__oldTags": {
+          "ref:linz:address_id": ""
+        }
       }
     },
     {
@@ -59,7 +63,8 @@
         ]
       },
       "properties": {
-        "__action": "move"
+        "__action": "move",
+        "__oldTags": {}
       }
     },
     {
@@ -79,7 +84,8 @@
         ]
       },
       "properties": {
-        "__action": "move"
+        "__action": "move",
+        "__oldTags": {}
       }
     }
   ],

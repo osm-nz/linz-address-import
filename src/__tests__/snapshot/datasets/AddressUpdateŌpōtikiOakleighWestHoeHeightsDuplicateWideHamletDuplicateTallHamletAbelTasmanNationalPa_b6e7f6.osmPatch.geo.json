@@ -34,7 +34,11 @@
       "properties": {
         "__action": "edit",
         "addr:suburb": "Ōpōtiki",
-        "addr:hamlet": "🗑️"
+        "addr:hamlet": "🗑️",
+        "__oldTags": {
+          "addr:suburb": "",
+          "addr:hamlet": "Opotiki"
+        }
       }
     },
     {
@@ -85,7 +89,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -123,7 +128,13 @@
         "addr:housenumber": "🗑️",
         "addr:street": "🗑️",
         "ref:linz:address_id": "🗑️",
-        "__action": "edit"
+        "__action": "edit",
+        "__oldTags": {
+          "addr:hamlet": "Oakleigh",
+          "addr:housenumber": "35",
+          "addr:street": "Example Street",
+          "ref:linz:address_id": "70035"
+        }
       }
     },
     {
@@ -161,7 +172,13 @@
         "addr:housenumber": "🗑️",
         "addr:street": "🗑️",
         "ref:linz:address_id": "🗑️",
-        "__action": "edit"
+        "__action": "edit",
+        "__oldTags": {
+          "addr:hamlet": "Oakleigh",
+          "addr:housenumber": "36",
+          "addr:street": "Example Street",
+          "ref:linz:address_id": "70036"
+        }
       }
     },
     {
@@ -199,7 +216,13 @@
         "addr:housenumber": "🗑️",
         "addr:street": "🗑️",
         "ref:linz:address_id": "🗑️",
-        "__action": "edit"
+        "__action": "edit",
+        "__oldTags": {
+          "addr:hamlet": "Oakleigh",
+          "addr:housenumber": "37",
+          "addr:street": "Example Street",
+          "ref:linz:address_id": "70037"
+        }
       }
     },
     {
@@ -237,7 +260,13 @@
         "addr:housenumber": "🗑️",
         "addr:street": "🗑️",
         "ref:linz:address_id": "🗑️",
-        "__action": "edit"
+        "__action": "edit",
+        "__oldTags": {
+          "addr:hamlet": "Oakleigh",
+          "addr:housenumber": "38",
+          "addr:street": "Example Street",
+          "ref:linz:address_id": "70038"
+        }
       }
     },
     {
@@ -271,7 +300,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -305,7 +335,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -339,7 +370,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -373,7 +405,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -407,7 +440,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -441,7 +475,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -475,7 +510,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -509,7 +545,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -543,7 +580,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -577,7 +615,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -611,7 +650,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -645,7 +685,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -679,7 +720,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -782,7 +824,10 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:type": "water"
+        "addr:type": "water",
+        "__oldTags": {
+          "addr:type": ""
+        }
       }
     },
     {
@@ -835,7 +880,10 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:city": "Jericho"
+        "addr:city": "Jericho",
+        "__oldTags": {
+          "addr:city": "São Manoël"
+        }
       }
     },
     {
@@ -870,7 +918,10 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:suburb": "Oakleigh"
+        "addr:suburb": "Oakleigh",
+        "__oldTags": {
+          "addr:suburb": "Oakleigh!*@typo"
+        }
       }
     },
     {
@@ -938,7 +989,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -973,7 +1025,10 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:hamlet": "🗑️"
+        "addr:hamlet": "🗑️",
+        "__oldTags": {
+          "addr:hamlet": "West Hoe Heights"
+        }
       }
     },
     {
@@ -1008,7 +1063,10 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:hamlet": "🗑️"
+        "addr:hamlet": "🗑️",
+        "__oldTags": {
+          "addr:hamlet": "Oakleigh"
+        }
       }
     },
     {
@@ -1045,7 +1103,8 @@
         ]
       },
       "properties": {
-        "__action": "move"
+        "__action": "move",
+        "__oldTags": {}
       }
     },
     {
@@ -1080,7 +1139,10 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:street": "Example Street"
+        "addr:street": "Example Street",
+        "__oldTags": {
+          "addr:street": "Example Lane"
+        }
       }
     },
     {
@@ -1116,7 +1178,11 @@
       "properties": {
         "__action": "edit",
         "addr:suburb": "Oakleigh",
-        "addr:hamlet": "🗑️"
+        "addr:hamlet": "🗑️",
+        "__oldTags": {
+          "addr:suburb": "",
+          "addr:hamlet": "Yeetville"
+        }
       }
     },
     {
@@ -1151,7 +1217,10 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:suburb": "Oakleigh"
+        "addr:suburb": "Oakleigh",
+        "__oldTags": {
+          "addr:suburb": ""
+        }
       }
     },
     {
@@ -1186,7 +1255,10 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70008"
+        "ref:linz:address_id": "70008",
+        "__oldTags": {
+          "ref:linz:address_id": ""
+        }
       }
     },
     {
@@ -1222,7 +1294,11 @@
       "properties": {
         "__action": "edit",
         "ref:linz:address_id": "70009",
-        "addr:suburb": "Oakleigh"
+        "addr:suburb": "Oakleigh",
+        "__oldTags": {
+          "ref:linz:address_id": "",
+          "addr:suburb": ""
+        }
       }
     },
     {
@@ -1259,7 +1335,12 @@
         "__action": "edit",
         "ref:linz:address_id": "70010",
         "addr:suburb": "Oakleigh",
-        "addr:hamlet": "🗑️"
+        "addr:hamlet": "🗑️",
+        "__oldTags": {
+          "ref:linz:address_id": "",
+          "addr:suburb": "",
+          "addr:hamlet": "Wrongville"
+        }
       }
     },
     {
@@ -1279,7 +1360,8 @@
         ]
       },
       "properties": {
-        "__action": "move"
+        "__action": "move",
+        "__oldTags": {}
       }
     },
     {
@@ -1314,7 +1396,10 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:street": "Example Street"
+        "addr:street": "Example Street",
+        "__oldTags": {
+          "addr:street": "Example Lane"
+        }
       }
     },
     {
@@ -1349,7 +1434,10 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:hamlet": "🗑️"
+        "addr:hamlet": "🗑️",
+        "__oldTags": {
+          "addr:hamlet": "Oakleigh"
+        }
       }
     },
     {
@@ -1385,7 +1473,11 @@
       "properties": {
         "__action": "edit",
         "addr:suburb": "Oakleigh",
-        "addr:hamlet": "🗑️"
+        "addr:hamlet": "🗑️",
+        "__oldTags": {
+          "addr:suburb": "West Hoe Heights",
+          "addr:hamlet": "Oakleigh"
+        }
       }
     },
     {
@@ -1422,7 +1514,12 @@
         "__action": "edit",
         "addr:housenumber": "48",
         "addr:street": "Example Street",
-        "addr:suburb": "Oakleigh"
+        "addr:suburb": "Oakleigh",
+        "__oldTags": {
+          "addr:housenumber": "",
+          "addr:street": "",
+          "addr:suburb": ""
+        }
       }
     },
     {
@@ -1457,7 +1554,10 @@
       },
       "properties": {
         "__action": "edit",
-        "building:flats": "🗑️"
+        "building:flats": "🗑️",
+        "__oldTags": {
+          "building:flats": "44"
+        }
       }
     },
     {
@@ -1492,7 +1592,10 @@
       },
       "properties": {
         "__action": "edit",
-        "building:flats": "🗑️"
+        "building:flats": "🗑️",
+        "__oldTags": {
+          "building:flats": "0"
+        }
       }
     },
     {
@@ -1527,7 +1630,10 @@
       },
       "properties": {
         "__action": "edit",
-        "building:flats": "3"
+        "building:flats": "3",
+        "__oldTags": {
+          "building:flats": ""
+        }
       }
     },
     {
@@ -1562,7 +1668,10 @@
       },
       "properties": {
         "__action": "edit",
-        "building:flats": "🗑️"
+        "building:flats": "🗑️",
+        "__oldTags": {
+          "building:flats": "3"
+        }
       }
     },
     {
@@ -1597,7 +1706,10 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:street": "Whānau Way"
+        "addr:street": "Whānau Way",
+        "__oldTags": {
+          "addr:street": "Whanau Way"
+        }
       }
     },
     {
@@ -1632,7 +1744,10 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70039new"
+        "ref:linz:address_id": "70039new",
+        "__oldTags": {
+          "ref:linz:address_id": "70039old"
+        }
       }
     },
     {
@@ -1667,7 +1782,10 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70129new"
+        "ref:linz:address_id": "70129new",
+        "__oldTags": {
+          "ref:linz:address_id": "70129old"
+        }
       }
     },
     {
@@ -1703,7 +1821,11 @@
       "properties": {
         "__action": "edit",
         "ref:linz:address_id": "stack(70072,70074-70075)",
-        "building:flats": "3"
+        "building:flats": "3",
+        "__oldTags": {
+          "ref:linz:address_id": "stack(70072-70075)",
+          "building:flats": "4"
+        }
       }
     },
     {
@@ -1739,7 +1861,11 @@
       "properties": {
         "__action": "edit",
         "addr:suburb": "Oakleigh",
-        "addr:hamlet": "🗑️"
+        "addr:hamlet": "🗑️",
+        "__oldTags": {
+          "addr:suburb": "",
+          "addr:hamlet": "The City of Ember"
+        }
       }
     },
     {
@@ -1774,7 +1900,10 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:housenumber": "82"
+        "addr:housenumber": "82",
+        "__oldTags": {
+          "addr:housenumber": "82typo"
+        }
       }
     },
     {
@@ -1809,7 +1938,10 @@
       },
       "properties": {
         "__action": "edit",
-        "building:flats": "3"
+        "building:flats": "3",
+        "__oldTags": {
+          "building:flats": ""
+        }
       }
     },
     {
@@ -1844,7 +1976,10 @@
       },
       "properties": {
         "__action": "edit",
-        "building:flats": "3"
+        "building:flats": "3",
+        "__oldTags": {
+          "building:flats": "123"
+        }
       }
     },
     {
@@ -1880,7 +2015,11 @@
       "properties": {
         "__action": "edit",
         "ref:linz:address_id": "stack(70123-70125)",
-        "building:flats": "3"
+        "building:flats": "3",
+        "__oldTags": {
+          "ref:linz:address_id": "THE_OLD_ID",
+          "building:flats": ""
+        }
       }
     },
     {
@@ -1969,7 +2108,13 @@
         "addr:housenumber": "🗑️",
         "addr:street": "🗑️",
         "ref:linz:address_id": "🗑️",
-        "__action": "edit"
+        "__action": "edit",
+        "__oldTags": {
+          "addr:hamlet": "Oakleigh",
+          "addr:housenumber": "134;135;136",
+          "addr:street": "Example Street",
+          "ref:linz:address_id": "70134;70135;70136"
+        }
       }
     },
     {
@@ -2004,7 +2149,10 @@
       },
       "properties": {
         "__action": "edit",
-        "alt_addr:housenumber": "1/215"
+        "alt_addr:housenumber": "1/215",
+        "__oldTags": {
+          "alt_addr:housenumber": "nonense value"
+        }
       }
     },
     {
@@ -2055,7 +2203,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -2090,7 +2239,10 @@
       },
       "properties": {
         "__action": "edit",
-        "alt_addr:street": "Side Street"
+        "alt_addr:street": "Side Street",
+        "__oldTags": {
+          "alt_addr:street": ""
+        }
       }
     },
     {
@@ -2125,7 +2277,10 @@
       },
       "properties": {
         "__action": "edit",
-        "alt_addr:street": "Side Street"
+        "alt_addr:street": "Side Street",
+        "__oldTags": {
+          "alt_addr:street": "wrong value"
+        }
       }
     },
     {
@@ -2160,7 +2315,10 @@
       },
       "properties": {
         "__action": "edit",
-        "alt_addr:housenumber": "6"
+        "alt_addr:housenumber": "6",
+        "__oldTags": {
+          "alt_addr:housenumber": "wrong value"
+        }
       }
     },
     {
@@ -2196,7 +2354,11 @@
       "properties": {
         "__action": "edit",
         "alt_addr:housenumber": "7",
-        "alt_addr:street": "Side Street"
+        "alt_addr:street": "Side Street",
+        "__oldTags": {
+          "alt_addr:housenumber": "wrong value",
+          "alt_addr:street": "wrong value"
+        }
       }
     },
     {
@@ -2247,7 +2409,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -2315,7 +2478,8 @@
         ]
       },
       "properties": {
-        "__action": "delete"
+        "__action": "delete",
+        "__oldTags": {}
       }
     },
     {
@@ -2384,7 +2548,10 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70055"
+        "ref:linz:address_id": "70055",
+        "__oldTags": {
+          "ref:linz:address_id": ""
+        }
       }
     },
     {
@@ -2904,7 +3071,10 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70143"
+        "ref:linz:address_id": "70143",
+        "__oldTags": {
+          "ref:linz:address_id": "70142"
+        }
       }
     },
     {
@@ -2939,7 +3109,10 @@
       },
       "properties": {
         "__action": "edit",
-        "ref:linz:address_id": "70142"
+        "ref:linz:address_id": "70142",
+        "__oldTags": {
+          "ref:linz:address_id": "70143"
+        }
       }
     }
   ],

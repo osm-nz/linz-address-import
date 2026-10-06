@@ -33,7 +33,10 @@
       },
       "properties": {
         "__action": "edit",
-        "addr:housenumber": "4A"
+        "addr:housenumber": "4A",
+        "__oldTags": {
+          "addr:housenumber": "4"
+        }
       }
     }
   ],

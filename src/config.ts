@@ -15,7 +15,6 @@ export const config: Config = {
     name: taginfo.project.name,
     description: taginfo.project.description,
     wiki_page: taginfo.project.doc_url,
-    git_repository: taginfo.project.project_url,
   },
   source_data: {
     type: 'file',

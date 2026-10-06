@@ -51,15 +51,15 @@ describe(postprocessLayer, () => {
         properties: { id: 'row2', housenumber: '12B', street: 'Example St' },
       },
     };
-    expect(
-      postprocessLayer({
-        category: '',
-        group: '',
-        features: diffs,
-        osmData,
-        sourceData,
-      }),
-    ).toStrictEqual([
+    postprocessLayer({
+      category: '',
+      group: '',
+      features: diffs,
+      osmData,
+      sourceData,
+    });
+
+    expect(diffs).toStrictEqual([
       {
         type: 'Feature',
         id: 'n1',
