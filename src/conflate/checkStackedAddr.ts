@@ -62,10 +62,10 @@ export function checkStackedAddr(
   }
 
   // run the normal conflation for the main address (index 0)
-  const result: SingleFeatureConflationResult = mergeOneToOne(
-    { osm: osmAddr, source: linzAddrs[0] },
-    true,
-  );
+  const result: SingleFeatureConflationResult = mergeOneToOne({
+    osm: osmAddr,
+    source: linzAddrs[0],
+  });
   const tags = result.diff!.tags;
   delete tags[REF_TAG];
 

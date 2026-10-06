@@ -1,11 +1,9 @@
-import { REF_TAG } from '../config.js';
-import { type CallbackFunctions, Status } from '../types.js';
-import { LAYER_PREFIX, toLink } from './helpers/const.js';
+import type { CallbackFunctions } from '../types.js';
+import { LAYER_PREFIX } from './helpers/const.js';
 import {
   deleteAllAddressTags,
   isNonTrivial,
 } from './helpers/linzAddrToTags.js';
-import { addToReport } from './report.js';
 
 export const deleteFeature: CallbackFunctions['deleteFeature'] = ({ osm }) => {
   const suburb =
@@ -18,20 +16,6 @@ export const deleteFeature: CallbackFunctions['deleteFeature'] = ({ osm }) => {
   if (town) group += `, ${town}`;
 
   if (osm.id[0] !== 'n' || isNonTrivial(osm.tags)) {
-    if (osm.id[0] !== 'n' || osm.tags.building) {
-      addToReport(
-        Status.NEEDS_DELETE_ON_BUILDING,
-        suburb,
-        `${osm.tags[REF_TAG]}\t\tneeds deleting but is on a building\t\t${toLink(osm.id)}`,
-      );
-    } else {
-      addToReport(
-        Status.NEEDS_DELETE_NON_TRIVIAL,
-        suburb,
-        `${osm.tags[REF_TAG]}\t\tneeds deleting but is on a POI\t\t${toLink(osm.id)}`,
-      );
-    }
-
     // delete tags
     return {
       group,
@@ -41,12 +25,6 @@ export const deleteFeature: CallbackFunctions['deleteFeature'] = ({ osm }) => {
   }
 
   // in this case, it's just a standalone address node
-  addToReport(
-    Status.NEEDS_DELETE,
-    suburb,
-    `${osm.tags[REF_TAG]}\t\tneeds deleting\t\t${toLink(osm.id)}`,
-  );
-
   return {
     group,
     category: LAYER_PREFIX,

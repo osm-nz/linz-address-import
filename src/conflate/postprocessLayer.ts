@@ -1,9 +1,7 @@
 import type { DatasetId, OsmFeature, OsmId } from '@osm-conflation-engine/cli';
 import type { OsmPatchFeature } from 'osm-api';
-import { type CallbackFunctions, type LinzAddr, Status } from '../types.js';
+import type { CallbackFunctions, LinzAddr } from '../types.js';
 import { REF_TAG } from '../config.js';
-import { addToReport } from './report.js';
-import { toLink } from './helpers/const.js';
 
 export const SPECIAL_REVIEW = 'Recently Edited Addresses';
 export const SPECIAL_REVIEW_INFO = `
@@ -22,7 +20,6 @@ const toKey = (right: string, wrong: string, linzAddr: LinzAddr) =>
   `${[right, wrong].toSorted().join('__')}__${linzAddr.street}`;
 
 export const postprocessLayer: CallbackFunctions['postprocessLayer'] & {} = ({
-  group,
   osmData,
   sourceData,
   features,
@@ -89,13 +86,6 @@ export const postprocessLayer: CallbackFunctions['postprocessLayer'] & {} = ({
           'ref:linz:address_id': a.linzId,
         },
       });
-
-      // this creates a duplicate entry, but nevermind
-      addToReport(
-        Status.EXISTS_BUT_WRONG_DATA,
-        group,
-        `${a.linzId} <-> ${b.linzId}\t\tneed to be swapped\t\t${toLink(a.osmFeature.id)} <-> ${toLink(b.osmFeature.id)}`,
-      );
     } else {
       delete maybeSwappablePairs[key];
     }

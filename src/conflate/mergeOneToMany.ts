@@ -1,20 +1,16 @@
 import type { MutliFeatureConflationResult } from '@osm-conflation-engine/cli';
-import { type CallbackFunctions, Status } from '../types.js';
+import type { CallbackFunctions } from '../types.js';
 import { getLocalKeyForOsm, getLocalKeyForSource } from '../localKeys.js';
 import { REF_TAG } from '../config.js';
-import { toLink } from './helpers/const.js';
 import { isNonTrivial } from './helpers/linzAddrToTags.js';
-import { addToReport } from './report.js';
 
 export const mergeOneToMany: CallbackFunctions['mergeOneToMany'] = ({
   osm: osmAddrList,
   source,
 }) => {
-  const { properties: linzAddr } = source;
   // this means there mutiple nodes in OSM with the same address ref.
   // we need to delete one of them.
 
-  const autofixable: Record<string, '✅' | '⚠️'> = {};
   const result: MutliFeatureConflationResult = {
     category: 'Merge duplicate addresses',
     group: `${source.properties.suburb}, ${source.properties.town}`,
@@ -42,7 +38,6 @@ export const mergeOneToMany: CallbackFunctions['mergeOneToMany'] = ({
       result.diffPerFeature[dodgyAddr.id] = {
         tags: { __action: 'edit', [REF_TAG]: '🗑️' },
       };
-      autofixable[linzAddr.id] = '✅';
     }
   } else if (simpleNodes.length) {
     // Either (a) all nodes are simple. Pick the oldest 1 to keep and delete the rest.
@@ -52,22 +47,11 @@ export const mergeOneToMany: CallbackFunctions['mergeOneToMany'] = ({
         ? simpleNodes.slice(1)
         : simpleNodes;
 
-    const notFullyFixed = osmAddrList.length - simpleNodes.length > 1;
-
     // delete the simple nodes
     for (const addr of toDelete) {
       result.diffPerFeature[addr.id] = { tags: { __action: 'delete' } };
     }
-    autofixable[linzAddr.id] = notFullyFixed ? '⚠️' : '✅';
   }
-
-  addToReport(
-    Status.MULTIPLE_EXIST,
-    linzAddr.suburb,
-    `${linzAddr.id}\t${autofixable[linzAddr.id] || '❌'}\texists on ${osmAddrList
-      .map((osmAddr) => toLink(osmAddr.id))
-      .join(' and ')}`,
-  );
 
   return result;
 };

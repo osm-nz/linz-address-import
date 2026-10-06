@@ -44,6 +44,7 @@ export const config: Config = {
   },
   output: {
     folder: outFolder,
+    custom_report_file_names: ['could-be-stacked.txt'],
   },
   e2e_tests: {
     ignore_list_file_path: join(

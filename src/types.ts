@@ -40,8 +40,6 @@ export type LinzData = {
   [linzId: AddressId]: LinzAddr;
 };
 
-export type AltAddrKeyPrefix = 'alt_addr' | `addr${number}`;
-
 export type CouldStackData = {
   [linzId: AddressId]: [
     osmId: OsmId,
@@ -77,48 +75,6 @@ export type LinzSourceAddress = {
     coordinates: [lon: number, lat: number];
   };
 };
-
-export enum Status {
-  PERFECT = 1, // processWithRef
-  EXISTS_BUT_WRONG_DATA = 2, // processWithRef
-  EXISTS_BUT_NO_LINZ_REF = 3, // processWithoutRef
-  MULTIPLE_EXIST_BUT_NO_LINZ_REF = 4, // processWithoutRef
-  MULTIPLE_EXIST = 5, // processDuplicates
-  EXISTS_BUT_LOCATION_WRONG = 6, // processWithRef
-  TOTALLY_MISSING = 7, // processWithoutRef
-  NEEDS_DELETE = 8,
-  NEEDS_DELETE_NON_TRIVIAL = 9,
-  CORRUPT = 10,
-  LINZ_REF_CHANGED = 11,
-  // 12 has been repealed since it's now obsolete. It was UNKNOWN_ERROR
-  // 13 was just a report (FYI, not actionable), and is now generated during preprocessing. It was COULD_BE_STACKED
-  NEEDS_DELETE_ON_BUILDING = 14,
-  REPLACED_BY_BUILDING = 15,
-}
-
-export enum Confidence {
-  /** after a lot of searching we found a similar address, but it's significantly far away */
-  // UNLIKELY_GUESS = 1, // obsolete, we now ignore these rubbish guesses
-
-  /** found a similar address nearby */
-  NORMAL = 2,
-  /** found multiple perfect matches */
-  HIGH_BUT_MULTIPLE = 3,
-  /** found one perfect match */
-  CERTAIN = 4,
-}
-
-export type StatsFile = {
-  total: number;
-  count: Record<Status, number>;
-  date: string;
-  comment?: string;
-};
-
-export interface HistoryFile {
-  lastUpdated: string;
-  rows: StatsFile[];
-}
 
 export type CoordKey = `${number},${number}`;
 /** a map of how many addresses at each coordinate in the LINZ dataset */

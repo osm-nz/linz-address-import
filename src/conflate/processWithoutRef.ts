@@ -1,9 +1,7 @@
-import { type CallbackFunctions, Status } from '../types.js';
-import { REF_TAG } from '../config.js';
-import { LAYER_PREFIX, toLink } from './helpers/const.js';
+import type { CallbackFunctions } from '../types.js';
+import { LAYER_PREFIX } from './helpers/const.js';
 import { isNonTrivial, linzAddrToTags } from './helpers/linzAddrToTags.js';
 import { mergeOneToOne } from './processWithRef.js';
-import { addToReport } from './report.js';
 
 export const processWithoutRef: CallbackFunctions['create'] = ({
   source,
@@ -30,19 +28,6 @@ export const processWithoutRef: CallbackFunctions['create'] = ({
     };
   }
 
-  // at this point confidence will always be 3 (Confidence.HIGH_BUT_MULTIPLE)
-  addToReport(
-    Status.MULTIPLE_EXIST_BUT_NO_LINZ_REF,
-    linzAddr.suburb,
-    `${REF_TAG}=${linzAddr.id}\t\tneeds to be added to\t\t${[
-      // this a legacy bug, keeping it so that the snapshot tests don't change during the migration
-      ...osmAddrs,
-      ...osmAddrs,
-    ]
-      .map((o) => toLink(o.id))
-      .join(' or ')}`,
-  );
-
   // we need to pick which one to add the address-ref to. It's not that important
   // which one we choose. We prefer buildings or POIs. Failing that, we just pick
   // a random one.
@@ -52,6 +37,6 @@ export const processWithoutRef: CallbackFunctions['create'] = ({
 
   return {
     selection: chosenOsmAddr.id,
-    ...mergeOneToOne({ source, osm: osmAddrs[0] }, true),
+    ...mergeOneToOne({ source, osm: osmAddrs[0] }),
   };
 };

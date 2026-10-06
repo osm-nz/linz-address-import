@@ -2,14 +2,13 @@ import type {
   ConflationResultExtra,
   TagDiff,
 } from '@osm-conflation-engine/cli';
-import { type CallbackFunctions, Status } from '../types.js';
-import { LAYER_PREFIX, toLink } from './helpers/const.js';
+import type { CallbackFunctions } from '../types.js';
+import { LAYER_PREFIX } from './helpers/const.js';
 import {
   deleteAllAddressTags,
   isNonTrivial,
   linzAddrToTags,
 } from './helpers/linzAddrToTags.js';
-import { addToReport } from './report.js';
 
 export const handleCorrupted: CallbackFunctions['mergeManyToOne'] & {} = ({
   osm: osmAddr,
@@ -19,14 +18,6 @@ export const handleCorrupted: CallbackFunctions['mergeManyToOne'] & {} = ({
   const group = `${linzAddrs[0].properties.suburb}, ${linzAddrs[0].properties.town}`;
   let tagDiff: TagDiff;
   const extra: ConflationResultExtra = {};
-
-  addToReport(
-    Status.CORRUPT,
-    linzAddrs[0].properties.suburb,
-    `${linzAddrs
-      .map((linzAddr) => linzAddr.properties.id)
-      .join(' and ')}\t\tare on the same node\t\t${toLink(osmAddr.id)}`,
-  );
 
   // 1️⃣ delete or edit the corrupted feature
   // eslint-disable-next-line unicorn/prefer-ternary -- more readable like this
@@ -40,8 +31,8 @@ export const handleCorrupted: CallbackFunctions['mergeManyToOne'] & {} = ({
 
   // 2️⃣ create replacement nodes for the ones that were merged together
   for (const { properties: linzAddr } of linzAddrs) {
-    extra.createFeatures ||= [];
-    extra.createFeatures.push({
+    extra.extraFeatures ||= [];
+    extra.extraFeatures.push({
       type: 'Feature',
       id: linzAddr.id,
       geometry: {
