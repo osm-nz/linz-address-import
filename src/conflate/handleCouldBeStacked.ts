@@ -1,9 +1,19 @@
 import { promises as fs } from 'node:fs';
 import { join } from 'node:path';
 import type { OsmId } from '@osm-conflation-engine/cli';
+import type { OsmFeatureType } from 'osm-api';
 import { toStackId } from '../common/index.js';
 import type { CouldStackData } from '../types.js';
 import { outFolder } from './helpers/index.js';
+
+const MAP: Record<string, OsmFeatureType> = {
+  n: 'node',
+  w: 'way',
+  r: 'relation',
+};
+
+const osmIdToLink = (id: OsmId) =>
+  `[${id}](https://osm.org/${MAP[id[0]]}/${id.slice(1)})`;
 
 type BySuburb = {
   [suburb: string]: {
@@ -33,16 +43,16 @@ export async function handleCouldBeStacked(
   );
 
   for (const suburb in bySuburb) {
-    report += `\n${suburb}\n`;
+    report += `### ${suburb}\n\n`;
     for (const addr in bySuburb[suburb]) {
       const { meta, osmIds, linzIds } = bySuburb[suburb][addr];
 
-      report += `${meta} flats at\t\t${addr}\t\tcould be stacked instead of ${osmIds.join(
-        ',',
-      )}\t\t${toStackId(linzIds)}\n`;
+      report += `- ${meta} flats at _${addr}_ could be stacked instead of ${osmIds
+        .map(osmIdToLink)
+        .join(',')} → \`${toStackId(linzIds)}\`\n`;
     }
   }
 
   await fs.mkdir(outFolder, { recursive: true });
-  await fs.writeFile(join(outFolder, 'could-be-stacked.txt'), report);
+  await fs.writeFile(join(outFolder, 'could-be-stacked.md'), report);
 }
