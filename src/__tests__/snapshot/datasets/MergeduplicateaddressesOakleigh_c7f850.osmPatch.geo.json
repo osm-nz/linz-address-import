@@ -71,7 +71,12 @@
       },
       "properties": {
         "__action": "delete",
-        "__oldTags": {}
+        "__oldTags": {
+          "addr:hamlet": "Oakleigh",
+          "addr:housenumber": "137",
+          "addr:street": "Example Street",
+          "ref:linz:address_id": "70137"
+        }
       }
     },
     {
@@ -106,7 +111,12 @@
       },
       "properties": {
         "__action": "delete",
-        "__oldTags": {}
+        "__oldTags": {
+          "addr:hamlet": "Oakleigh",
+          "addr:housenumber": "149",
+          "addr:street": "Example Street",
+          "ref:linz:address_id": "70149"
+        }
       }
     },
     {
@@ -141,7 +151,12 @@
       },
       "properties": {
         "__action": "delete",
-        "__oldTags": {}
+        "__oldTags": {
+          "addr:hamlet": "Oakleigh",
+          "addr:housenumber": "245",
+          "addr:street": "Example Street",
+          "ref:linz:address_id": "70245"
+        }
       }
     }
   ],

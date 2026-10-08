@@ -15,6 +15,8 @@ export const config: Config = {
     name: taginfo.project.name,
     description: taginfo.project.description,
     wiki_page: taginfo.project.doc_url,
+    taginfo_project_url: taginfo.data_url,
+    license_waiver_url: 'https://osm.wiki/File:LINZ_OSM-CC-4.0_waiver.pdf',
   },
   source_data: {
     type: 'file',
