@@ -24,5 +24,7 @@ export const nzgbNamesTable: Record<string, string> = {
   Orakei: 'Ōrākei', // https://gazetteer.linz.govt.nz/place/33996
   Pohuehue: 'Pōhuehue', // https://gazetteer.linz.govt.nz/place/36359
 
+  'Wanganui East': 'Whanganui East', // changed back to the old spelling in 2026, possibly an error?
+
   Opotiki: 'Ōpōtiki', // // only included here for unit tests. It's correct in the LINZ dataset
 };
