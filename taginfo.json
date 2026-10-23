@@ -6,7 +6,7 @@
     "name": "New Zealand Address Import",
     "description": "Tags used by the New Zealand Address Import project, which regularly updates addresses in OSM based on data from LINZ.",
     "project_url": "https://github.com/osm-nz/linz-address-import",
-    "doc_url": "https://wiki.osm.org/Import/New_Zealand_Street_Addresses_(2021)",
+    "doc_url": "https://osm.wiki/LINZ/Address_Import",
     "icon_url": "https://osm-nz.github.io/img/logo.png",
     "contact_name": "Kyle Hensel",
     "contact_email": "message @kylenz on OpenStreetMap"

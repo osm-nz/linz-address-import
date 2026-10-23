@@ -11,22 +11,15 @@ Street address data from [Land Information New Zealand (LINZ)](https://linz.govt
 
 This project aims to update the address data, and set up a system to reguarly update addresses in OSM, by conflating them with [the data from LINZ](https://data.linz.govt.nz/layer/105689).
 
-> 🚩 This repository also contains the code used to import topographic and hydrographic data from LINZ. For more info, see the [the wiki page](https://wiki.osm.org/LINZ).
+Most of the conflation logic is handled by the general purpose [osm-conflation-engine](https://github.com/osm-nz/osm-conflation-engine) tool.
+This repository contains only the configuration and scripts which are LINZ-specific.
 
-> 🌏 For more information, please see [the wiki page](<https://wiki.openstreetmap.org/wiki/Import/New_Zealand_Street_Addresses_(2021)>) for this project. The rest of this document contains only technical detail. Continue reading if you wish to contribute to the code
-
-# The fork of RapiD
-
-This is modified version of the [RapiD editor](https://github.com/facebookincubator/rapid), which is a modified version of the [iD editor](https://github.com/openstreetmap/iD).
-
-The source code is in a separate repository ([see here](https://github.com/osm-nz/RapiD)). It is available at [osm-nz.github.io](https://osm-nz.github.io)
-
-![Sreenshot of the fork of RapiD](https://user-images.githubusercontent.com/16009897/138576782-df5a7223-cbee-4d3f-9a0f-f7a61d637540.png)
+> 🌏 For more information, please see [the wiki page](https://osm.wiki/LINZ/Address_Import) for this project. The rest of this document contains only technical detail. Continue reading if you wish to contribute to the code
 
 # Operation
 
 If all status badges at the top of this document are green, then the script is automatically running once a week (on Friday morning NZ time).
-The results can be viewed and actioned from [osm-nz.github.io](https://osm-nz.github.io)
+The results can be viewed and actioned from [the homepage of osm-conflation-engine](https://osm-nz.github.io/osm-conflation-engine).
 
 # Setup
 
@@ -56,7 +49,3 @@ There are end-to-end tests than run based on [a mock planet file](src/__tests__/
 You need to install [osmium-tool](https://osmcode.org/osmium-tool/) globally before you can run unit tests.
 
 To start the test, run `npm test`. If it changes the contents of the snapshot folder, commit those changes.
-
-## Process
-
-![Flowchart](https://wiki.openstreetmap.org/wiki/Special:FilePath/LINZ_Address_Conflation_Flowchart.png)
