@@ -204,6 +204,7 @@
     "report-conflation-edit.md",
     "report-conflation-move.md",
     "report-conflation-delete.md",
+    "ignored.md",
     "could-be-stacked.md"
   ]
 }
